@@ -1,0 +1,57 @@
+---
+- :members: sandra garcia
+  :emails: alumno@gmail.com
+  :username: sandra
+  :groupname: udremote
+  :domainname: garcia
+  :host1_ip: 172.16.109.119
+  :host1_username: root
+  :host1_password: 43382892q
+  :host1_hostname: debian
+  :host2_ip: 172.16.109.219
+  :host2_username: root
+  :host2_password: 43382892q
+  :host2_hostname: opensuse
+  :tt_skip: false
+- :members: miriam martin
+  :emails: alumno@gmail.com
+  :username: miriam
+  :groupname: udremote
+  :domainname: martin
+  :host1_ip: 172.16.109.120
+  :host1_username: root
+  :host1_password: 78644068f
+  :host1_hostname: debian
+  :host2_ip: 172.16.109.220
+  :host2_username: root
+  :host2_password: 78644068f
+  :host2_hostname: opensuse
+  :tt_skip: false
+- :members: juan miguel gonzalez
+  :emails: alumno@gmail.com
+  :username: juan-miguel
+  :groupname: udremote
+  :domainname: gonzalez
+  :host1_ip: 172.16.109.121
+  :host1_username: root
+  :host1_password: 78642389f
+  :host1_hostname: debian
+  :host2_ip: 172.16.109.221
+  :host2_username: root
+  :host2_password: 78642389f
+  :host2_hostname: opensuse
+  :tt_skip: false
+- :members: daniel gonzalez
+  :emails: alumno@gmail.com
+  :username: daniel
+  :groupname: udremote
+  :domainname: gonzalez
+  :host1_ip: 172.16.109.122
+  :host1_username: root
+  :host1_password: 43378634j
+  :host1_hostname: debian
+  :host2_ip: 172.16.109.222
+  :host2_username: root
+  :host2_password: 43378634j
+  :host2_hostname: opensuse
+  :tt_skip: false

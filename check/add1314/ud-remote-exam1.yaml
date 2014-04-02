@@ -1,0 +1,57 @@
+---
+- :members: alejandro fuentes
+  :emails: alumno@gmail.com
+  :username: alejandro
+  :groupname: udremote
+  :domainname: fuentes
+  :host1_ip: 172.16.109.107
+  :host1_username: root
+  :host1_password: 78648976q
+  :host1_hostname: debian
+  :host2_ip: 172.16.109.207
+  :host2_username: root
+  :host2_password: 78648976q
+  :host2_hostname: opensuse
+  :tt_skip: false
+- :members: sergio perez
+  :emails: alumno@gmail.com
+  :username: sergio
+  :groupname: udremote
+  :domainname: perez
+  :host1_ip: 172.16.109.108
+  :host1_username: root
+  :host1_password: 78636118s
+  :host1_hostname: debian
+  :host2_ip: 172.16.109.208
+  :host2_username: root
+  :host2_password: 78636118s
+  :host2_hostname: opensuse
+  :tt_skip: false
+- :members: diego gonzalez
+  :emails: alumno@gmail.com
+  :username: diego
+  :groupname: udremote
+  :domainname: gonzalez
+  :host1_ip: 172.16.109.109
+  :host1_username: root
+  :host1_password: 78643596h
+  :host1_hostname: debian
+  :host2_ip: 172.16.109.209
+  :host2_username: root
+  :host2_password: 78643596h
+  :host2_hostname: opensuse
+  :tt_skip: false
+- :members: elias gonzalez perera
+  :emails: alumno@gmail.com
+  :username: elias
+  :groupname: udremote
+  :domainname: gonzalez
+  :host1_ip: 172.16.109.110
+  :host1_username: root
+  :host1_password: 78637155v
+  :host1_hostname: debian
+  :host2_ip: 172.16.109.210
+  :host2_username: root
+  :host2_password: 78637155v
+  :host2_hostname: opensuse
+  :tt_skip: true

@@ -1,0 +1,16 @@
+---
+:global:
+  :host1_username: root
+:cases:
+- :members: student1
+  :emails: student1@email.com
+  :host1_ip: 127.0.0.1
+  :host1_password: toor
+  :username: root
+  :homedir: /root
+- :members: student2
+  :emails: student2@email.com
+  :host1_ip: 127.0.0.1
+  :host1_password: toor
+  :username: darth-maul
+  :homedir: /home/obiwan

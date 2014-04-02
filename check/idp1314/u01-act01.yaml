@@ -1,0 +1,203 @@
+---
+- :members: David Vargas Ruiz
+  :emails: davidvargas.tenerife@gmail.com
+  :host1_ip: 192.168.1.110
+  :host1_username: root
+  :host1_password: profesor
+  :username: david
+  :hostname: vargas
+  :domainname: ruiz
+  :tt_skip: true
+- :members: ABEL GARCÍA GARCÍA
+  :emails: abel.luxo@gmail.com
+  :host1_ip: 172.16.99.89
+  :host1_username: root
+  :host1_password: 78639515p
+  :username: abel
+  :hostname: garcia
+  :domainname: garcia
+- :members: Aitor Domingo Machado Velázquez
+  :emails: aitor.quieres.manises@gmail.com
+  :host1_ip: 172.16.99.84
+  :host1_username: root
+  :host1_password: 78649906a
+  :username: aitor
+  :hostname: machado
+  :domainname: velazquez
+- :members: ALEJANDRO GARCÍA YUMARA
+  :emails: alejandro.g.y.4b.1011@gmail.com
+  :host1_ip: 172.16.99.68
+  :host1_username: root
+  :host1_password: 43837137b
+  :username: alejandro
+  :hostname: garcia
+  :domainname: yumara
+- :members: Alejandro Ortega Freire
+  :emails: alejandro.001@gmail.com
+  :host1_ip: 172.16.99.83
+  :host1_username: root
+  :host1_password: 78624791g
+  :username: alejandro
+  :hostname: ortega
+  :domainname: freire
+- :members: Antonio Iván Cabrera Álvarez
+  :emails: acabalv@1asr.ies
+  :host1_ip: 172.16.99.56
+  :host1_username: root
+  :host1_password: 78623641g
+  :username: antonio
+  :hostname: cabrera
+  :domainname: alvarez
+- :members: ARIADNA JIMÉNEZ RODRÍGUEZ
+  :emails: ariadnajimenezinfo@gmail.com
+  :host1_ip: 172.16.99.7
+  :host1_username: root
+  :host1_password: 42240054w
+  :username: ariadna
+  :hostname: jimenez
+  :domainname: rodriguez
+- :members: AYOZE LUIS HERNÁNDEZ
+  :emails: ivhayozeluis@gmail.com
+  :tt_skip: true
+- :members: Beatriz de Armas Salvador
+  :emails: beatrizsjtfe@hotmail.es
+  :host1_ip: 172.16.99.5
+  :host1_username: root
+  :host1_password: 78643281w
+  :username: beatriz
+  :hostname: dearmas 
+  :domainname: salvador
+  :os: debian6
+- :members: CARLOS SANTOS CARBALLO
+  :emails: carlos.santos.carballo@gmail.com
+  :host1_ip: 172.16.99.51
+  :host1_username: root
+  :host1_password: 43378762a 
+  :username: carlos
+  :hostname: santos
+  :domainname: carballo
+- :members: CARMEN ROSA SIVERIO LINARES
+  :emails: carmita_21_1990@hotmail.com 
+  :host1_ip: 172.16.99.62
+  :host1_username: root
+  :host1_password: 78635633j
+  :username: carmen	
+  :hostname: siverio
+  :domainname: linares
+  :os: debian6
+- :members: Christian González Hernández
+  :emails: christianglezhdez@gmail.com 
+  :host1_ip: 
+  :host1_username: root
+  :host1_password: 78646116p
+  :username: christian	
+  :hostname: gonzalez
+  :domainname: hernandez
+  :tt_skip: true
+- :members: Efraín Hernández Morales y Christian 
+  :emails: efrahdez.92@gmail.com
+  :host1_ip: 172.16.99.54 
+  :host1_username: root
+  :host1_password: 78631141y
+  :username: efrain 	
+  :hostname: hernandez
+  :domainname: morales
+- :members: Eliot Farrais García 
+  :emails: eliot.farrais1994@gmail.com
+  :host1_ip: 172.16.99.27
+  :host1_username: root
+  :host1_password: 43383149c
+  :username: eliot
+  :hostname: farrais
+  :domainname: garcia
+- :members: Gregorio Adrián Quintero Álvarez
+  :emails: adrian29crack@gmail.com
+  :host1_ip: 172.16.99.1
+  :host1_username: root
+  :host1_password: 78649877c
+  :username: adrian
+  :hostname: quintero
+  :domainname: alvarez
+- :members: GÜINEL RODRIGUEZ GARCIA
+  :emails: guinel.wini.94@gmail.com
+  :host1_ip: 172.16.99.33
+  :host1_username: root
+  :host1_password: 78639676p
+  :username: guinel
+  :hostname: rodriguez
+  :domainname: garcia
+- :members: HÉCTOR DANIEL TEJERA CABRERA
+  :tt_skip: true
+- :members: Iván Sosa González
+  :emails: ivan1995tenerife@gmail.com
+  :host1_ip: 172.16.99.92
+  :host1_username: root
+  :host1_password: 78644823a
+  :username: ivan
+  :hostname: sose
+  :domainname: gonzalez
+- :members: Iván José Hernández Regalado
+  :emails: ivanhdezregalado@gmail.com
+  :host1_ip: 172.16.99.17
+  :host1_username: root
+  :host1_password: 78647684n 
+  :username: ivan
+  :hostname: hernandez
+  :domainname: regalado
+- :members: Jorge Opazo López
+  :emails: Opz1992@gmail.com
+  :host1_ip: 172.16.99.66
+  :host1_username: root
+  :host1_password: 78587651d
+  :username: jorge
+  :hostname: opazo
+  :domainname: lopez
+- :members: Luis JAVIER Chafes García
+  :emails: lchagar@1asr.ies
+  :host1_ip: 172.16.99.39
+  :host1_username: root
+  :host1_password: 78574421g
+  :username: javier
+  :hostname: chafes
+  :domainname: garcia
+- :members: MIGUEL ÁNGEL GONZÁLEZ RODRÍGUEZ
+  :emails: soulmigue@gmail.com 
+  :host1_ip: 172.16.99.96
+  :host1_username: root
+  :host1_password: 43378503c
+  :username: miguel
+  :hostname: gonzalez
+  :domainname: rodriguez
+- :members: Sergio Simoes Villalonga
+  :emails: hercio91@gmail.com 
+  :host1_ip: 172.16.99.69
+  :host1_username: root
+  :host1_password: y0504524x
+  :username: sergio
+  :hostname: simoes
+  :domainname: villalonga
+- :members: Silvano Pérez Yanes
+  :emails: guanimensi@gmail.com 
+  :host1_ip: 172.16.99.67
+  :host1_username: root
+  :host1_password: 43388032g
+  :username: silvano
+  :hostname: perez
+  :domainname: yanes
+- :members: Tomás Rodríguez Alonso
+  :emails: tommyrguez@gmail.com
+  :host1_ip: 172.16.99.44 
+  :host1_username: root
+  :host1_password: 78639188a
+  :username: tomas
+  :hostname: rodriguez
+  :domainname: alonso
+- :members: YOLANDA MARÍA GONZÁLEZ MONTELONGO
+  :emails: yoliglezm@gmail.com
+  :host1_ip: 172.16.99.58 
+  :host1_username: root
+  :host1_password: 78645027t
+  :username: yolanda
+  :hostname: gonzalez
+  :domainname: montelongo
+

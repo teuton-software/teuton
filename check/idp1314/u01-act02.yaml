@@ -1,0 +1,10 @@
+---
+- :members: David Vargas Ruiz
+  :emails: davidvargas.tenerife@gmail.com
+  :host1_ip: 192.168.1.107
+  :host1_username: root
+  :host1_password: profesor
+  :username: david
+  :hostname: DUALXdavid
+  :domainname: vargas
+  :tt_skip: false

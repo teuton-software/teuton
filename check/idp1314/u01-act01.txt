@@ -1,0 +1,729 @@
+HEAD
+  title: Executing Teacher tests (version 1)
+  scriptname: ./tests/1asir1314/01-act.rb
+  inputfile: tests/1asir1314/01-act.yaml
+  time: 2013-10-07 10:00:09 +0100
+DATAGROUPS
+  DATAGROUP order='1'
+    HEAD
+      members: ABEL GARCÍA GARCÍA
+      emails: abel.luxo@gmail.com
+      host1_ip: 172.16.99.89
+      host1_username: root
+      host1_password: 78639515p
+      username: abel
+      hostname: garcia
+      domainname: garcia
+    LINES
+      1 (1.0/1.0)Buscando usuario <abel>: cat /etc/passwd|grep 'abel'|wc -l
+      2 (1.0/1.0)Comprobando hostname <garcia>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep garcia |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='2'
+    HEAD
+      members: Aitor Domingo Machado Velázquez
+      emails: aitor.quieres.manises@gmail.com
+      host1_ip: 172.16.99.84
+      host1_username: root
+      host1_password: 78649906a
+      username: aitor
+      hostname: machado
+      domainname: velazquez
+    LINES
+      1 (1.0/1.0)Buscando usuario <aitor>: cat /etc/passwd|grep 'aitor'|wc -l
+      2 (1.0/1.0)Comprobando hostname <machado>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep machado |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='3'
+    HEAD
+      members: ALEJANDRO GARCÍA YUMARA
+      emails: alejandro.g.y.4b.1011@gmail.com
+      host1_ip: 172.16.99.68
+      host1_username: root
+      host1_password: 43837137b
+      username: alejandro
+      hostname: garcia
+      domainname: yumara
+    LINES
+      1 (1.0/1.0)Buscando usuario <alejandro>: cat /etc/passwd|grep 'alejandro'|wc -l
+      2 (1.0/1.0)Comprobando hostname <garcia>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep garcia |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='4'
+    HEAD
+      members: Alejandro Ortega Freire
+      emails: alejandro.001@gmail.com
+      host1_ip: 172.16.99.83
+      host1_username: root
+      host1_password: 78624791g
+      username: alejandro
+      hostname: ortega
+      domainname: freire
+    LINES
+      1 (1.0/1.0)Buscando usuario <alejandro>: cat /etc/passwd|grep 'alejandro'|wc -l
+      2 (1.0/1.0)Comprobando hostname <ortega>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep ortega |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='5'
+    HEAD
+      members: Antonio Iván Cabrera Álvarez
+      emails: acabalv@1asr.ies
+      host1_ip: 172.16.99.56
+      host1_username: root
+      host1_password: 78623641g
+      username: antonio
+      hostname: cabrera
+      domainname: alvarez
+    LINES
+    TAIL
+      max_weight: 0.0
+      good_weight: 0.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 0.0
+  DATAGROUP order='6'
+    HEAD
+      members: ARIADNA JIMÉNEZ RODRÍGUEZ
+      emails: ariadnajimenezinfo@gmail.com
+      host1_ip: 172.16.99.7
+      host1_username: root
+      host1_password: 42240054w
+      username: ariadna
+      hostname: jimenez
+      domainname: rodriguez
+    LINES
+      1 (1.0/1.0)Buscando usuario <ariadna>: cat /etc/passwd|grep 'ariadna'|wc -l
+      2 (1.0/1.0)Comprobando hostname <jimenez>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep jimenez |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='7'
+    HEAD
+      members: Beatriz de Armas Salvador
+      emails: beatrizsjtfe@hotmail.es
+      host1_ip: 172.16.99.5
+      host1_username: root
+      host1_password: 78643281w
+      username: beatriz
+      hostname: dearmas
+      domainname: salvador
+      os: debian6
+    LINES
+    TAIL
+      max_weight: 0.0
+      good_weight: 0.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 0.0
+  DATAGROUP order='8'
+    HEAD
+      members: CARLOS SANTOS CARBALLO
+      emails: carlos.santos.carballo@gmail.com
+      host1_ip: 172.16.99.51
+      host1_username: root
+      host1_password: 43378762a
+      username: carlos
+      hostname: santos
+      domainname: carballo
+    LINES
+    TAIL
+      max_weight: 0.0
+      good_weight: 0.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 0.0
+  DATAGROUP order='9'
+    HEAD
+      members: CARMEN ROSA SIVERIO LINARES
+      emails: carmita_21_1990@hotmail.com
+      host1_ip: 172.16.99.62
+      host1_username: root
+      host1_password: 78635633j
+      username: carmen
+      hostname: siverio
+      domainname: linares
+      os: debian6
+    LINES
+      1 (1.0/1.0)Buscando usuario <carmen>: cat /etc/passwd|grep 'carmen'|wc -l
+      2 (1.0/1.0)Comprobando hostname <siverio>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      - INFO: OS mode = <debian6>
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep Linux |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep '/dev/sda6'| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep '/dev/sda6'| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 2: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='10'
+    HEAD
+      members: Efraín Hernández Morales y Christian
+      emails: efrahdez.92@gmail.com
+      host1_ip: 172.16.99.54
+      host1_username: root
+      host1_password: 78631141y
+      username: efrain
+      hostname: hernandez
+      domainname: morales
+    LINES
+      1 (1.0/1.0)Buscando usuario <efrain>: cat /etc/passwd|grep 'efrain'|wc -l
+      2 (1.0/1.0)Comprobando hostname <hernandez>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep hernandez |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='11'
+    HEAD
+      members: Eliot Farrais García
+      emails: eliot.farrais1994@gmail.com
+      host1_ip: 172.16.99.27
+      host1_username: root
+      host1_password: 43383149c
+      username: eliot
+      hostname: farrais
+      domainname: garcia
+    LINES
+      1 (1.0/1.0)Buscando usuario <eliot>: cat /etc/passwd|grep 'eliot'|wc -l
+      2 (1.0/1.0)Comprobando hostname <farrais>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep farrais |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='12'
+    HEAD
+      members: Gregorio Adrián Quintero Álvarez
+      emails: adrian29crack@gmail.com
+      host1_ip: 172.16.99.1
+      host1_username: root
+      host1_password: 78649877c
+      username: adrian
+      hostname: quintero
+      domainname: alvarez
+    LINES
+      1 (1.0/1.0)Buscando usuario <adrian>: cat /etc/passwd|grep 'adrian'|wc -l
+      2 (1.0/1.0)Comprobando hostname <quintero>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep quintero |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='13'
+    HEAD
+      members: GÜINEL RODRIGUEZ GARCIA
+      emails: guinel.wini.94@gmail.com
+      host1_ip: 172.16.99.33
+      host1_username: root
+      host1_password: 78639676p
+      username: guinel
+      hostname: rodriguez
+      domainname: garcia
+    LINES
+      1 (1.0/1.0)Buscando usuario <guinel>: cat /etc/passwd|grep 'guinel'|wc -l
+      2 (1.0/1.0)Comprobando hostname <rodriguez>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep rodriguez |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='14'
+    HEAD
+      members: Iván Sosa González
+      emails: ivan1995tenerife@gmail.com
+      host1_ip: 172.16.99.92
+      host1_username: root
+      host1_password: 78644823a
+      username: ivan
+      hostname: sose
+      domainname: gonzalez
+    LINES
+      1 (1.0/1.0)Buscando usuario <ivan>: cat /etc/passwd|grep 'ivan'|wc -l
+      2 (/1.0)Comprobando hostname <sose>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (/1.0)SO Debian instalado: uname -a| grep deb7 | grep sose |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 14.0
+      fail_weight: 2.0
+      fail_counter: 2
+      grade: 87.5
+  DATAGROUP order='15'
+    HEAD
+      members: Iván José Hernández Regalado
+      emails: ivanhdezregalado@gmail.com
+      host1_ip: 172.16.99.17
+      host1_username: root
+      host1_password: 78647684n
+      username: ivan
+      hostname: hernandez
+      domainname: regalado
+    LINES
+      1 (1.0/1.0)Buscando usuario <ivan>: cat /etc/passwd|grep 'ivan'|wc -l
+      2 (1.0/1.0)Comprobando hostname <hernandez>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep hernandez |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='16'
+    HEAD
+      members: Jorge Opazo López
+      emails: Opz1992@gmail.com
+      host1_ip: 172.16.99.66
+      host1_username: root
+      host1_password: 78587651d
+      username: jorge
+      hostname: opazo
+      domainname: lopez
+    LINES
+      1 (1.0/1.0)Buscando usuario <jorge>: cat /etc/passwd|grep 'jorge'|wc -l
+      2 (1.0/1.0)Comprobando hostname <opazo>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep opazo |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='17'
+    HEAD
+      members: Luis JAVIER Chafes García
+      emails: lchagar@1asr.ies
+      host1_ip: 172.16.99.39
+      host1_username: root
+      host1_password: 78574421g
+      username: javier
+      hostname: chafes
+      domainname: garcia
+    LINES
+      1 (1.0/1.0)Buscando usuario <javier>: cat /etc/passwd|grep 'javier'|wc -l
+      2 (1.0/1.0)Comprobando hostname <chafes>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep chafes |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='18'
+    HEAD
+      members: MIGUEL ÁNGEL GONZÁLEZ RODRÍGUEZ
+      emails: soulmigue@gmail.com
+      host1_ip: 172.16.99.96
+      host1_username: root
+      host1_password: 43378503c
+      username: miguel
+      hostname: gonzalez
+      domainname: rodriguez
+    LINES
+      1 (/1.0)Buscando usuario <miguel>: cat /etc/passwd|grep 'miguel'|wc -l
+      2 (/1.0)Comprobando hostname <gonzalez>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (/1.0)SO Debian instalado: uname -a| grep deb7 | grep gonzalez |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 13.0
+      fail_weight: 3.0
+      fail_counter: 3
+      grade: 81.25
+  DATAGROUP order='19'
+    HEAD
+      members: Sergio Simoes Villalonga
+      emails: hercio91@gmail.com
+      host1_ip: 172.16.99.69
+      host1_username: root
+      host1_password: y0504524x
+      username: sergio
+      hostname: simoes
+      domainname: villalonga
+    LINES
+      1 (1.0/1.0)Buscando usuario <sergio>: cat /etc/passwd|grep 'sergio'|wc -l
+      2 (1.0/1.0)Comprobando hostname <simoes>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep simoes |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+  DATAGROUP order='20'
+    HEAD
+      members: Silvano Pérez Yanes
+      emails: guanimensi@gmail.com
+      host1_ip: 172.16.99.67
+      host1_username: root
+      host1_password: 43388032g
+      username: silvano
+      hostname: perez
+      domainname: yanes
+    LINES
+      1 (1.0/1.0)Buscando usuario <silvano>: cat /etc/passwd|grep 'silvano'|wc -l
+      2 (1.0/1.0)Comprobando hostname <perez>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep perez |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 15.0
+      fail_weight: 1.0
+      fail_counter: 1
+      grade: 93.75
+  DATAGROUP order='21'
+    HEAD
+      members: Tomás Rodríguez Alonso
+      emails: tommyrguez@gmail.com
+      host1_ip: 172.16.99.44
+      host1_username: root
+      host1_password: 78639188a
+      username: tomas
+      hostname: rodriguez
+      domainname: alonso
+    LINES
+      1 (1.0/1.0)Buscando usuario <tomas>: cat /etc/passwd|grep 'tomas'|wc -l
+      2 (1.0/1.0)Comprobando hostname <rodriguez>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (/1.0)SO Debian instalado: uname -a| grep deb7 | grep rodriguez |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 12.0
+      fail_weight: 4.0
+      fail_counter: 4
+      grade: 75.0
+  DATAGROUP order='22'
+    HEAD
+      members: YOLANDA MARÍA GONZÁLEZ MONTELONGO
+      emails: yoliglezm@gmail.com
+      host1_ip: 172.16.99.58
+      host1_username: root
+      host1_password: 78645027t
+      username: yolanda
+      hostname: gonzalez
+      domainname: montelongo
+    LINES
+      1 (1.0/1.0)Buscando usuario <yolanda>: cat /etc/passwd|grep 'yolanda'|wc -l
+      2 (1.0/1.0)Comprobando hostname <gonzalez>: hostname
+      3 (1.0/1.0)Zona horaria WEST: date | grep WEST | grep 2013 | wc -l
+      4 (1.0/1.0)SO Debian instalado: uname -a| grep deb7 | grep gonzalez |wc -l
+      5 (1.0/1.0)Número de particiones 5: cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l
+      6 (1.0/1.0)Tamaño del disco 10GB: cat var/tmp/fdiskl.tmp |grep Dis|tr -s ' ' ':'|tr ',' '.'|cut -f 3 -d :
+      7 (1.0/1.0)Partición sda1 extendida: cat var/tmp/fdiskl.tmp |grep Extendida| grep '/dev/sda1'| wc -l
+      8 (1.0/1.0)Partición sda5 swap: cat var/tmp/fdiskl.tmp |grep swap| grep '/dev/sda5'| wc -l
+      9 (1.0/1.0)Partición sda6 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda6'| wc -l
+      10 (1.0/1.0)Partición sda7 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda7'| wc -l
+      11 (1.0/1.0)Partición sda8 lógica: cat var/tmp/fdiskl.tmp |grep Linux| grep '/dev/sda8'| wc -l
+      12 (1.0/1.0)Partición raíz es ext4: cat var/tmp/dfhT.tmp | grep uuid| grep ext4| wc -l
+      13 (1.0/1.0)Tamaño partición raíz: cat var/tmp/dfhT.tmp | grep uuid| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      14 (1.0/1.0)Partición home es ext3: cat var/tmp/dfhT.tmp | grep home| grep ext3| wc -l
+      15 (1.0/1.0)Tamaño partición home 500: cat var/tmp/dfhT.tmp | grep home| tr -s ' ' ':'| tr ',' '.'|cut -f 3 -d :
+      16 (1.0/1.0)Nº particiones montadas 1: cat var/tmp/mount.tmp | grep '/dev/sd'| wc -l
+      - INFO: Los Tests han acabado
+    TAIL
+      max_weight: 16.0
+      good_weight: 16.0
+      fail_weight: 0.0
+      fail_counter: 0
+      grade: 100.0
+TAIL
+  result_1: $ (100.0) ABEL GARCÍA GARCÍA
+  result_2: $ (100.0) Aitor Domingo Machado Velázquez
+  result_3: $ (100.0) ALEJANDRO GARCÍA YUMARA
+  result_4: $ (100.0) Alejandro Ortega Freire
+  result_5: ! (0.0) Antonio Iván Cabrera Álvarez
+  result_6: $ (100.0) ARIADNA JIMÉNEZ RODRÍGUEZ
+  result_7: ! (0.0) Beatriz de Armas Salvador
+  result_8: ! (0.0) CARLOS SANTOS CARBALLO
+  result_9: $ (100.0) CARMEN ROSA SIVERIO LINARES
+  result_10: $ (100.0) Efraín Hernández Morales y Christian
+  result_11: $ (100.0) Eliot Farrais García
+  result_12: $ (100.0) Gregorio Adrián Quintero Álvarez
+  result_13: $ (100.0) GÜINEL RODRIGUEZ GARCIA
+  result_14:   (87.5) Iván Sosa González
+  result_15: $ (100.0) Iván José Hernández Regalado
+  result_16: $ (100.0) Jorge Opazo López
+  result_17: $ (100.0) Luis JAVIER Chafes García
+  result_18:   (81.25) MIGUEL ÁNGEL GONZÁLEZ RODRÍGUEZ
+  result_19: $ (100.0) Sergio Simoes Villalonga
+  result_20:   (93.75) Silvano Pérez Yanes
+  result_21:   (75.0) Tomás Rodríguez Alonso
+  result_22: $ (100.0) YOLANDA MARÍA GONZÁLEZ MONTELONGO

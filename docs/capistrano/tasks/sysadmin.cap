@@ -1,0 +1,12 @@
+
+namespace :test do
+	desc 'Free Memory'
+	task :memory do
+		on roles(:ies) do
+			execute 'free'
+			execute 'du -sh /home'
+			data=capture('df -hT')
+			puts data
+		end
+	end
+end
