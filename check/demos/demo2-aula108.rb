@@ -62,14 +62,37 @@ def t.test03_pc_aula108
 	
 	description "Partitions /dev/sda => 3"
 	tempfile "counter.tmp"
-	command "cat var/tmp/demo2-aula108/counter.tmp| grep sda| wc -l"
+	command "cat var/tmp/demo2-aula108/dfht.tmp| grep sda| wc -l"
 	run_on :localhost
 	check result.to_i.equal?(3)
 
+
+	tempfile "blkid.tmp"
+	command "blkid"
+	run_on :host1
+
 	log "Tests finished!"	
+end
+
+def t.NOtest04_uuid
+#/dev/sda1: UUID="758f86be-e8c0-476b-bf48-6a08a55cade4" TYPE="swap" 
+#/dev/sda2: UUID="a0db90b5-2678-4071-bb6d-55837ca11f10" TYPE="ext4" 
+#/dev/sda3: UUID="47b338e0-59c7-48dc-9864-03b9aa96ac8e" TYPE="ext4" 
+#/dev/sda4: UUID="e10610ba-9358-4aae-b5fe-e782d3c29ee5" TYPE="ext4" 
+
+  uuid_sda2="a0db90b5-2678-4071-bb6d-55837ca11f10"
+	uuid_sda3="47b338e0-59c7-48dc-9864-03b9aa96ac8e" 
+	uuid_sda4="e10610ba-9358-4aae-b5fe-e782d3c29ee5" 
+ 
+	desc "Checking UUID on cloned machines"
+	tempfile "dvr_local.tmp"
+	command "cat var/tmp/demo2-aula108/blkid.tmp |grep sda2 |grep #{uuid_sda2}|wc -l"
+	check result.to_i.equal?(1)
+
 end
 
 t.process
 
 t.report.show
 t.report.export :txt
+

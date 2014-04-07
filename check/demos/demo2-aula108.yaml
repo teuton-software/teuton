@@ -126,4 +126,4 @@
 - :members: profesor.aula108
   :emails: profesor.aula108@email.com
   :host1_ip: 172.16.2.8
-  :host1_hostname: pc02.departamento
+  :host1_hostname: pc08.departamento
