@@ -66,6 +66,15 @@ def t.test03_pc_aula108
 	run_on :localhost
 	check result.to_i.equal?(3)
 
+	description "Free space on sda3 > 10%"
+	command "cat var/tmp/demo2-aula108/dfht.tmp| grep sda3| tr -s ' ' ':'|cut -d : -f 6"
+	run_on :localhost
+	check result.to_i.is_greater_than?(10)
+
+	description "Free space on sda4 > 10%"
+	command "cat var/tmp/demo2-aula108/dfht.tmp| grep sda4| tr -s ' ' ':'|cut -d : -f 6"
+	run_on :localhost
+	check result.to_i.is_greater_than?(10)
 
 	tempfile "blkid.tmp"
 	command "blkid"
