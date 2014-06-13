@@ -50,8 +50,11 @@ class Case
 			return false
 		end
 
-		execute("rm #{@tmpdir}/*.tmp") #Detele previous temp files
-
+		r=`ls #{@tmpdir}/*.tmp | wc -l`
+		if r[0].to_i>0 then
+			execute("rm #{@tmpdir}/*.tmp") #Detele previous temp files
+		end
+		
 		laTest=[]
 		public_methods.sort.each { |m| laTest << m.to_s if m.to_s[0..3]=='test' }
 		

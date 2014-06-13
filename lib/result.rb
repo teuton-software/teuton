@@ -45,6 +45,10 @@ class Result
 	def is_greater_than?(pValue)
 		return @content[0]>pValue
 	end
+	
+	def is_less_than?(pValue)
+		return @content[0]<pValue
+	end
 		
 	def to_f
 		r = Result.new
