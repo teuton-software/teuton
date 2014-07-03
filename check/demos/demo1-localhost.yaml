@@ -2,13 +2,13 @@
 :global:
   :host1_username: root
 :cases:
-- :tt_members: student1
+- :tt_members: Superusuario
   :tt_emails: student1@email.com
   :host1_ip: 127.0.0.1
   :host1_password: toor
   :username: root
   :homedir: /root
-- :tt_members: student2
+- :tt_members: Usuario normal
   :tt_emails: student2@email.com
   :host1_ip: 127.0.0.1
   :host1_password: toor

@@ -1,11 +1,9 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/teacher1'
+require_relative '../../lib/teacher'
 
-t = Teacher.new
-
-def t.test01_ping_host
+define_test :ping_host do
 	#Quick test to check if is the host alive or not
 	@alive={}
 	@alive[:host1]=false
@@ -17,7 +15,7 @@ def t.test01_ping_host
 	@alive[:all]= @alive[:host1]
 end
 
-def t.test02_unique_values
+define_test :unique_values do
 	if @alive[:host1] then
 		command "ifconfig", :tempfile => "ifconfig1.tmp"
 		run_on :host1
@@ -27,8 +25,8 @@ def t.test02_unique_values
 	end	
 end
 
-def t.test03_pc_aula108
-	return if !@alive[:host1]
+define_test :pc_aula108 do
+	#return if !@alive[:host1]
 
 	description "Checking user <asir>"
 	command "cat /etc/passwd|grep 'asir:'|wc -l"
@@ -45,40 +43,43 @@ def t.test03_pc_aula108
 	run_on :host1
 	check result.to_s.equal?(get(:host1_hostname))
 
-	command "df -h|grep sda"
-	tempfile "tempfile.tmp"
 	description "Number of sda devices, must be 3"
+	command "df -h|grep sda", :tempfile => "tempfile.tmp"
 	run_on :host1
 	check result.content.count==3
 
 	description "df -hT"
-	tempfile "dfht.tmp"
-	command "df -hT"
+	command "df -hT", :tempfile => "dfht.tmp"
 	run_on :host1
+	filename = tempfile
 	
 	description "Partitions /dev/sda => 3"
-	tempfile "counter.tmp"
-	command "cat var/tmp/demo2-aula108/dfht.tmp| grep sda| wc -l"
+	command "cat #{filename}| grep sda| wc -l", :tempfile => "counter.tmp"
 	run_on :localhost
 	check result.to_i.equal?(3)
 
 	description "Free space on sda3 > 10%"
-	command "cat var/tmp/demo2-aula108/dfht.tmp| grep sda3| tr -s ' ' ':'|cut -d : -f 6"
+	command "cat #{filename}| grep sda3| tr -s ' ' ':'|cut -d : -f 6"
 	run_on :localhost
 	check result.to_i.is_less_than?(90)
 
 	description "Free space on sda4 > 10%"
-	command "cat var/tmp/demo2-aula108/dfht.tmp| grep sda4| tr -s ' ' ':'|cut -d : -f 6"
+	command "cat #{filename}| grep sda4| tr -s ' ' ':'|cut -d : -f 6"
 	run_on :localhost
 	check result.to_i.is_less_than?(90)
 
-	tempfile "blkid.tmp"
-	command "blkid"
+	command "blkid", :tempfile => "blkid.tmp"
 	run_on :host1
 
 	log "Tests finished!"	
 end
 
+start do
+	report.show
+	report.export :txt
+end
+
+=begin
 def t.NOtest04_uuid
 #/dev/sda1: UUID="758f86be-e8c0-476b-bf48-6a08a55cade4" TYPE="swap" 
 #/dev/sda2: UUID="a0db90b5-2678-4071-bb6d-55837ca11f10" TYPE="ext4" 
@@ -95,9 +96,4 @@ def t.NOtest04_uuid
 	check result.to_i.equal?(1)
 
 end
-
-t.process
-
-t.report.show
-t.report.export :txt
-
+=end

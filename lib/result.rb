@@ -59,6 +59,7 @@ class Result
 	def to_i
 		r = Result.new
 		@content.each { |i| r.content<<i.to_i }
+		@content[0]=0 if @content.nil?
 		return r
 	end
 

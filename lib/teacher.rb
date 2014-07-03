@@ -29,11 +29,11 @@ class Teacher
 		#Load cases from yaml config file
 		configdata = YAML::load(File.open(pConfigFilename))
 		@global = configdata[:global] || {}
-		@global[:tt_testname]=($0.split(".")[1]).split("/").last if !@global[:tt_testname]
+		@global[:tt_testname]=File.basename($0,".rb") if !@global[:tt_testname]
 		@caseConfigList = configdata[:cases]
 
 		#Create out dir
-		@outdir = @global[:tt_outdir] || "var/out/#{@global[:tt_testname]}"
+		@outdir = @global[:tt_outdir] || File.join("var",@global[:tt_testname],"out")
 		ensure_dir @outdir
 		@report.outdir=@outdir
 

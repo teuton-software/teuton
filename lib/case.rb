@@ -14,21 +14,20 @@ class Case
 	attr_accessor :result
 
 	def initialize(pConfig)
-		@teacher=Teacher.instance
-		@global=@teacher.global
+		@global=Teacher.instance.global
 		@config=pConfig
 		@tests=Teacher.instance.tests
 				
 		#Define Report datagroup
-		@datagroup = @teacher.report.new_datagroup
+		@datagroup = Teacher.instance.report.new_datagroup
 		@datagroup.head.merge! @config
 		@datagroup.tail[:unique_fault]=0
 		@caseId = @datagroup.order
 
 		#Default configuration
 		@config[:tt_skip] = @config[:tt_skip] || false
-		@mntdir = File.join( "var", "mnt", @global[:tt_testname], @caseId.to_s )
-		@tmpdir = File.join( "var", "tmp", @global[:tt_testname], @caseId.to_s )
+		@mntdir = File.join( "var", @global[:tt_testname], "mnt", @caseId.to_s )
+		@tmpdir = File.join( "var", @global[:tt_testname], "tmp", @caseId.to_s )
 		@remote_tmpdir = File.join( "/", "tmp" )
 
 		ensure_dir @mntdir
@@ -38,8 +37,8 @@ class Case
 		@result = Result.new
 		@result.reset
 
-		@debug=@teacher.is_debug?
-		@verbose=@teacher.is_verbose?
+		@debug=Teacher.instance.is_debug?
+		@verbose=Teacher.instance.is_verbose?
 	
 		@action_counter=0		
 		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
@@ -55,7 +54,7 @@ class Case
 			return false
 		end
 
-		r=`ls #{@tmpdir}/*.tmp | wc -l`
+		r=`ls #{@tmpdir}/*.tmp | wc -l 2>/dev/null`
 		if r[0].to_i>0 then
 			execute("rm #{@tmpdir}/*.tmp") #Detele previous temp files
 		end

@@ -78,12 +78,18 @@ module DSL
 	#Set temp filename
 	def tempfile(pTempfile=:default)
 		if (pTempfile.nil? or pTempfile==:default) 
-			@action[:tempfile]=File.join(@tmpdir,'tt_default.tmp')
+			@action[:tempfile]=File.join(@tmpdir,'tt_local.tmp')
+			@action[:remote_tempfile]=File.join(@remote_tmpdir,'tt_remote.tmp')
 		else
 			@action[:tempfile]=File.join(@tmpdir, pTempfile)
+			@action[:remote_tempfile]=File.join(@remote_tmpdir, pTempfile)
 		end
 		
 		return @action[:tempfile]
+	end
+
+	def remote_tempfile		
+		return @action[:remote_tempfile]
 	end
 
 private
@@ -114,18 +120,15 @@ private
 	
 	#Ejecuta un comando en maquina remota a través de SSH.
 	def run_remote_cmd(pHostname) 
-		lsCmd=@action[:command]
-		lsTempfile=@action[:tempfile] || "tt_remote.tmp"
 		
 		hostname=pHostname.to_s
 		lsIP=get((hostname+'_ip').to_sym)
 		lsUsername=get((hostname+'_username').to_sym)
 		lsPassword=get((hostname+'_password').to_sym)
 
-		lsRemotefile = @remote_tmpdir+"/"+lsTempfile
-		lsLocalfile = @tmpdir+"/"+lsTempfile
-		
-		lsCmd=lsCmd+" > "+lsRemotefile
+		lsRemotefile = remote_tempfile
+		lsLocalfile = tempfile
+		lsCmd=@action[:command]+" > "+lsRemotefile
 		
 		begin
 			lsText="SSH on <#{lsUsername}@#{lsIP}> exec: "+lsCmd
