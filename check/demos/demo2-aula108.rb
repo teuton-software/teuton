@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/teacher'
+require_relative '../../lib/teacher1'
 
 t = Teacher.new
 

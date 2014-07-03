@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../sys/teacher1'
+require_relative '../../lib/teacher1'
 
 =begin
  Curso 1314
