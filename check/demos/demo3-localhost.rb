@@ -3,7 +3,7 @@
 
 require_relative '../../lib/teacher'
 
-define_test "localhost" do
+define_test :localhost do
 	log "Checking users!"
 
 	description "Checking user <"+get(:username)+">"
@@ -20,8 +20,7 @@ define_test "localhost" do
 
 end
 
-work do
-	checkit!
+start do
 	report.show
 	report.export :txt
 end

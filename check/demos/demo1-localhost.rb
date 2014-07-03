@@ -1,15 +1,13 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/teacher1'
+require_relative '../../lib/teacher'
 
 =begin
  Demo script to run on localhost
 =end
 
-t = Teacher.new
-
-def t.test01_localhost
+define_test :test01_localhost do
 	log "Checking users!"
 
 	description "Checking user <"+get(:username)+">"
@@ -28,15 +26,16 @@ def t.test01_localhost
 	tempfile "dfht.tmp"
 	command "df -hT"
 	run_on :localhost
-	tempfile :default
+	
+	filename = tempfile
 	
 	description "Partitions /dev/sda => 3"
-	command "cat #{path_to_tempfile("dfht.tmp")} | grep sda| wc -l"
+	command "cat #{filename} | grep sda| wc -l", :tempfile => :default
 	run_on :localhost
 	check result.to_i.equal?(3)
 
 	description "Partitions /dev/sdb => 1"
-	command "cat #{path_to_tempfile("dfht.tmp")} | grep sdb| wc -l"
+	command "cat #{filename} | grep sdb| wc -l", :tempfile => :default
 	run_on :localhost
 	check result.to_i.equal?(1)
 
@@ -44,8 +43,7 @@ def t.test01_localhost
 	
 end
 
-t.process
-
-t.report.show
-t.report.export :txt
-
+start do
+	report.show
+	report.export :txt
+end

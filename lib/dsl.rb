@@ -2,39 +2,29 @@
 # encoding: utf-8
 
 module DSL
-	#Set command 
 	def command(pCommand, pArgs={})
 		@action[:command]=pCommand
-		if pArgs[:tempfile] then
-			@action[:tempfile]=pArgs[:tempfile]
-		else
-			@action[:tempfile]='tempfile.tmp' 
-		end
+		tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
 	end
-	
-	#Set description
-	def description(pDescription)
+
+	def description(pDescription=nil)
 		desc pDescription
 	end
 	
-	def desc(pDescription)
+	def desc(pDescription=nil)
+		return @action[:description] if pDescription.nil?
 		@action[:description]=pDescription
 	end
 	
-	def path_to_tempfile
-		lsTempfile = tempfile
-		
-		if lsTempfile.split("/")[0]!=@tmpdir then
-			lsLocalfile = @tmpdir+"/"+lsTempfile
-		else
-			lsLocalfile = lsTempfile
-		end
-		return lsLocalfile
-	end
-	
 	#Set weight value for the action
-	def weight(pValue=1.0)
+	def weight(pValue=nil)
+		if pValue.nil? then
+			return @action[:weight]
+		elsif pValue==:default then
+			@action[:weight]=1.0
+		else
 		@action[:weight]=pValue.to_f
+		end
 	end
 	
 	#Run command from the host identify as pHostname
@@ -85,8 +75,15 @@ module DSL
 		end
 	end
 	
-	def tempfile
-		@action[:tempfile]
+	#Set temp filename
+	def tempfile(pTempfile=:default)
+		if (pTempfile.nil? or pTempfile==:default) 
+			@action[:tempfile]=File.join(@tmpdir,'tt_default.tmp')
+		else
+			@action[:tempfile]=File.join(@tmpdir, pTempfile)
+		end
+		
+		return @action[:tempfile]
 	end
 
 private
@@ -110,17 +107,9 @@ private
 	#
 	#A continuación se lee el fichero de salida y se devuelve el contenido leído.
 	def run_local_cmd
-		lsCmd=@action[:command]
-		lsTempfile= tempfile
-		
-		if lsTempfile.split("/")[0]!=@tmpdir then
-			lsLocalfile = @tmpdir+"/"+lsTempfile
-		else
-			lsLocalfile = lsTempfile
-		end
-		lsCmd = lsCmd+' > ' + lsLocalfile
-		execute(lsCmd)
-		@result.content= read_filename(lsLocalfile)	
+		lsCmd=@action[:command]+' > '+@action[:tempfile]
+		execute(lsCmd) 
+		@result.content= read_filename(@action[:tempfile])	
 	end
 	
 	#Ejecuta un comando en maquina remota a través de SSH.

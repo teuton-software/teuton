@@ -23,7 +23,7 @@ class Teacher
 		@tests=[]
 	end
 		
-	def checkit!(pConfigFilename = File.join(File.dirname($0),File.basename($0,".rb")+".yaml") )
+	def check_cases!(pConfigFilename = File.join(File.dirname($0),File.basename($0,".rb")+".yaml") )
 		execute('clear')
 		
 		#Load cases from yaml config file
@@ -50,7 +50,8 @@ class Teacher
 
 		@caseConfigList.each do |lCaseConfig|
 			c = Case.new(lCaseConfig)
-			c.process
+			c.start
+			@cases << c
 		end
 		verboseln "\n"
 		verboseln "="*@report.head[:tt_title].length
@@ -74,8 +75,8 @@ class Teacher
 		@tests << { :name => name, :block => block }
 	end
 	
-	def work(&block)
-		puts "#{self.class} working..."
+	def start(&block)
+		check_cases!
 		instance_eval &block
 	end
 end
@@ -85,7 +86,7 @@ def define_test(name, &block)
 	Teacher.instance.define_test(name, &block)
 end
 
-def work(&block)
-	Teacher.instance.work(&block)
+def start(&block)
+	Teacher.instance.start(&block)
 end
 

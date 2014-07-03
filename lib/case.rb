@@ -27,9 +27,9 @@ class Case
 
 		#Default configuration
 		@config[:tt_skip] = @config[:tt_skip] || false
-		@mntdir = "var/mnt/#{ @global[:tt_testname] }/#{@caseId.to_s}"
-		@tmpdir = "var/tmp/#{ @global[:tt_testname] }/#{@caseId.to_s}"
-		@remote_tmpdir = '/tmp'
+		@mntdir = File.join( "var", "mnt", @global[:tt_testname], @caseId.to_s )
+		@tmpdir = File.join( "var", "tmp", @global[:tt_testname], @caseId.to_s )
+		@remote_tmpdir = File.join( "/", "tmp" )
 
 		ensure_dir @mntdir
 		ensure_dir @tmpdir
@@ -43,11 +43,12 @@ class Case
 	
 		@action_counter=0		
 		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
-
+		tempfile :default
+		
 		verboseln "\nStarting case <"+get(:tt_members)+">"
 	end
 
-	def process	
+	def start
 		lbSkip=@config[:tt_skip]||false
 		if lbSkip==true then
 			verbose "Skipping case <"+@config[:tt_members]+">\n"
@@ -60,7 +61,7 @@ class Case
 		end
 		
 		@tests.each do |t|
-			verbose "* Processing <"+t[:name]+"> "
+			verbose "* Processing <"+t[:name].to_s+"> "
 			instance_eval &t[:block]
 			verbose "\n"
 		end
