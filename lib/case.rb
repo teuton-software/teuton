@@ -53,7 +53,7 @@ class Case
 			return false
 		end
 
-		r=`ls #{@tmpdir}/*.tmp | wc -l 2>/dev/null`
+		r=`ls #{@tmpdir}/*.tmp 2>/dev/null | wc -l`
 		execute("rm #{@tmpdir}/*.tmp") if r[0].to_i>0 #Detele previous temp files
 		
 		if @global[:tt_sequence] then
@@ -63,12 +63,12 @@ class Case
 				instance_eval &t[:block]
 				verbose "\n"
 			end
+			verboseln "\n"
 		else
 			@tests.each { |t| instance_eval &t[:block] }
 		end
 		
 		@datagroup.close
-		verboseln "\n"
 	end
 
 	#Read param pOption from config or global Hash data

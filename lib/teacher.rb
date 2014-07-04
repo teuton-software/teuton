@@ -30,7 +30,7 @@ class Teacher
 		configdata = YAML::load(File.open(pConfigFilename))
 		@global = configdata[:global] || {}
 		@global[:tt_testname]= @global[:tt_testname] || File.basename($0,".rb")
-		@global[:tt_sequence]= @global[:tt_sequence] || true 
+		@global[:tt_sequence]=false if @global[:tt_sequence].nil? 
 		@caseConfigList = configdata[:cases]
 
 		#Create out dir
@@ -50,11 +50,21 @@ class Teacher
 		verboseln bar
 		verboseln @report.head[:tt_title]
 
-		@caseConfigList.each do |lCaseConfig|
-			c = Case.new(lCaseConfig)
-			c.start
-			@cases << c
+		@caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) } # create cases
+		start_time = Time.now
+		if @global[:tt_sequence] then
+			verboseln "[INFO] Running in sequence (#{start_time.to_s})"
+			
+			@cases.each { |c| c.start }
+		else
+			verboseln "[INFO] Running in parallel (#{start_time.to_s})"
+			threads=[]
+			@cases.each { |c| threads << Thread.new{c.start} }
+			threads.each { |t| t.join }
 		end
+		finish_time=Time.now
+		verboseln "\n[INFO] Duration = #{(finish_time-start_time).to_s} (#{finish_time.to_s})"
+
 		verboseln "\n"
 		verboseln bar
 		

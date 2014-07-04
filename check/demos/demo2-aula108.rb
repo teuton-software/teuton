@@ -78,7 +78,7 @@ define_test :pc_aula108 do
 end
 
 start do
-	report.show
+	#report.show
 	report.export :txt
 end
 
