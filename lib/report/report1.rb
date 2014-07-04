@@ -9,28 +9,34 @@ in a structured way.
 =end
 
 class Report
-	attr_accessor :head, :outdir, :datagroups
-	attr_reader :tail
+	attr_accessor :head, :outdir
+	attr_reader :datagroups, :tail
 		
 	def initialize
 		@head={}
 		@datagroups=[]
 		@tail={}
+		@datagroup_counter=0
 		@outdir="var/out"
 	end
 	
-	def new_datagroup
-		d = DataGroup.new
-		@datagroups << d
-		d.order = @datagroups.index(d)
-		return d
+	def start_new_datagroup(lDataGroup={})
+		@current_datagroup = DataGroup.new
+		@datagroup_counter+=1
+		@current_datagroup.head = lDataGroup
+		@current_datagroup.order = @datagroup_counter
+		@datagroups << @current_datagroup
+	end
+	
+	def datagroup
+		@current_datagroup
 	end
 	
 	def close
 		lOrder=0
 		@datagroups.each do |g|
 			lOrder=lOrder+1
-			lMembers=g.head[:tt_members] || 'noname'
+			lMembers=g.head[:members] || 'noname'
 			lGrade=g.tail[:grade] || 0.0
 			lHelp=" "
 			lHelp="?" if lGrade<50.0
@@ -56,7 +62,7 @@ class Report
 		@formatter = FormatterProxy::new(self, pType, pArgs)
 		@formatter.process
 	end
-
+		
 	class DataGroup
 		attr_accessor :head, :lines, :tail
 		attr_accessor :type, :order
@@ -111,7 +117,5 @@ class Report
 			@tail.each { |key,value| puts pTab*2+key.to_s+": "+value.to_s }
 		end		
 	end
-
 end
-		
 

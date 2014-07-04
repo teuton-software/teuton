@@ -6,7 +6,7 @@ require 'net/ssh'
 require 'net/sftp'
 require 'yaml'
 
-require_relative 'report/report'
+require_relative 'report/report1'
 require_relative 'result'
 
 =begin

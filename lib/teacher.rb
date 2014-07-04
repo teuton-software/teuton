@@ -7,7 +7,7 @@ require 'yaml'
 
 require_relative 'case'
 require_relative 'utils'
-require_relative 'report/report2'
+require_relative 'report/report'
 
 class Teacher
 	include Singleton
@@ -29,7 +29,8 @@ class Teacher
 		#Load cases from yaml config file
 		configdata = YAML::load(File.open(pConfigFilename))
 		@global = configdata[:global] || {}
-		@global[:tt_testname]=File.basename($0,".rb") if !@global[:tt_testname]
+		@global[:tt_testname]= @global[:tt_testname] || File.basename($0,".rb")
+		@global[:tt_sequence]= @global[:tt_sequence] || true 
 		@caseConfigList = configdata[:cases]
 
 		#Create out dir
@@ -38,14 +39,15 @@ class Teacher
 		@report.outdir=@outdir
 
 		#Fill report head
-		@report.head[:tt_title]="Executing Teacher tests (version 2)"
+		@report.head[:tt_title]="Executing Teacher tests (version 0.2)"
 		@report.head[:tt_scriptname]=$0
 		@report.head[:tt_configfile]=pConfigFilename
 		@report.head[:tt_debug]=true if @debug
 		@report.head[:tt_start_time_]=Time.new.to_s
 		@report.head.merge!(@global)
 		
-		verboseln "="*@report.head[:tt_title].length
+		bar = "="*@report.head[:tt_title].length
+		verboseln bar
 		verboseln @report.head[:tt_title]
 
 		@caseConfigList.each do |lCaseConfig|
@@ -54,7 +56,7 @@ class Teacher
 			@cases << c
 		end
 		verboseln "\n"
-		verboseln "="*@report.head[:tt_title].length
+		verboseln bar
 		
 		@report.close
 	end

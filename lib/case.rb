@@ -44,7 +44,6 @@ class Case
 		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
 		tempfile :default
 		
-		verboseln "\nStarting case <"+get(:tt_members)+">"
 	end
 
 	def start
@@ -55,14 +54,17 @@ class Case
 		end
 
 		r=`ls #{@tmpdir}/*.tmp | wc -l 2>/dev/null`
-		if r[0].to_i>0 then
-			execute("rm #{@tmpdir}/*.tmp") #Detele previous temp files
-		end
+		execute("rm #{@tmpdir}/*.tmp") if r[0].to_i>0 #Detele previous temp files
 		
-		@tests.each do |t|
-			verbose "* Processing <"+t[:name].to_s+"> "
-			instance_eval &t[:block]
-			verbose "\n"
+		if @global[:tt_sequence] then
+			verboseln "\nStarting case <"+get(:tt_members)+">"
+			@tests.each do |t|
+				verbose "* Processing <"+t[:name].to_s+"> "
+				instance_eval &t[:block]
+				verbose "\n"
+			end
+		else
+			@tests.each { |t| instance_eval &t[:block] }
 		end
 		
 		@datagroup.close

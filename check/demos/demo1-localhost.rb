@@ -43,6 +43,6 @@ define_test :test01_localhost do
 end
 
 start do
-	report.show
+	#report.show
 	report.export :txt
 end

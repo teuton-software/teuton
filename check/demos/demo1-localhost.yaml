@@ -1,5 +1,6 @@
 ---
 :global:
+  :tt_sequence: false
   :host1_username: root
 :cases:
 - :tt_members: Superusuario
