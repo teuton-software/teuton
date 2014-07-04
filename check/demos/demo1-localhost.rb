@@ -22,22 +22,21 @@ define_test :test01_localhost do
 
 	log "Checking partitions!"
 
-	description "df -hT"
-	tempfile "dfht.tmp"
-	command "df -hT"
+	description "Lookup for partitions"
+	command "cat /proc/partitions", :tempfile => "proc-partitions.tmp"
 	run_on :localhost
 	
 	filename = tempfile
 	
-	description "Partitions /dev/sda => 3"
+	description "Partitions /dev/sda == 3"
 	command "cat #{filename} | grep sda| wc -l", :tempfile => :default
 	run_on :localhost
-	check result.to_i.equal?(3)
+	check result.to_i.equal?(3+1)
 
-	description "Partitions /dev/sdb => 1"
+	description "Partitions /dev/sdb == 2"
 	command "cat #{filename} | grep sdb| wc -l", :tempfile => :default
 	run_on :localhost
-	check result.to_i.equal?(1)
+	check result.to_i.equal?(2+1)
 
 	log "Tests finished!"
 	

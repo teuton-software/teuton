@@ -31,6 +31,7 @@ class Result
 	#Return 'true' if the parameter value is near to the target value.
 	#To get this we consider a 10% desviation or less, as an acceptable result.
 	def is_near_to?(pfValue)
+		return false if @content.nil?
 		lfTarget=@content[0].to_f
 		lfDesv=(lfTarget.to_f*10.0)/100.0
 			 
@@ -43,10 +44,12 @@ class Result
 	end
 	
 	def is_greater_than?(pValue)
+		return false if @content.nil?
 		return @content[0]>pValue
 	end
 	
 	def is_less_than?(pValue)
+		return false if @content.nil?
 		return @content[0]<pValue
 	end
 		
@@ -59,7 +62,6 @@ class Result
 	def to_i
 		r = Result.new
 		@content.each { |i| r.content<<i.to_i }
-		@content[0]=0 if @content.nil?
 		return r
 	end
 

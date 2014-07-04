@@ -26,7 +26,7 @@ define_test :unique_values do
 end
 
 define_test :pc_aula108 do
-	#return if !@alive[:host1]
+	if @alive[:host1] then
 
 	description "Checking user <asir>"
 	command "cat /etc/passwd|grep 'asir:'|wc -l"
@@ -71,7 +71,10 @@ define_test :pc_aula108 do
 	command "blkid", :tempfile => "blkid.tmp"
 	run_on :host1
 
-	log "Tests finished!"	
+	log "Tests finished!"
+	else
+	log "Not alive!"
+	end	
 end
 
 start do

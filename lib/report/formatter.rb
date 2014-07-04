@@ -160,8 +160,8 @@ class TXTFormatter < FormatterProxy::BaseFormatter
 		pGroup.lines.each do |i|
 			if i.class.to_s=='Hash' then
 				lValue=i[:weight] if i[:check]
-				w tab*3+i[:id].to_s+" ("+lValue.to_s+"/"+i[:weight].to_s+")"
-				w i[:description].to_s+": "+i[:command].to_s+"\n"
+				w tab*3+i[:id].to_s+" ("+lValue.to_s+"/"+i[:weight].to_s+") "
+				w i[:description].to_s+" { "+i[:command].to_s+" }\n"
 			else
 				w tab*3+"- "+i.to_s+"\n"
 			end
