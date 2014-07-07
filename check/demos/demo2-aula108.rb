@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/teacher'
+require_relative '../../lib/tool'
 
 define_test :ping_host do
 	#Quick test to check if is the host alive or not

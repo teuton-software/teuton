@@ -12,22 +12,29 @@ class Case
 	include DSL
 	include Utils
 	attr_accessor :result
+	attr_reader :id, :report
+	@@id=1
 
 	def initialize(pConfig)
 		@global=Teacher.instance.global
 		@config=pConfig
 		@tests=Teacher.instance.tests
+		@id=@@id; @@id+=1
 				
-		#Define Report datagroup
-		@datagroup = Teacher.instance.report.new_datagroup
-		@datagroup.head.merge! @config
-		@datagroup.tail[:unique_fault]=0
-		@caseId = @datagroup.order
+		#Define Case Report
+		@report = Report.new(@id)
+		@report.filename="case-#{@id.to_s}"
+		@report.outdir=File.join( "var", @global[:tt_testname], "out" )
+		ensure_dir @report.outdir
+		
+		@report.head.merge! @config
+		@report.tail[:case_id]=@id
+		@report.tail[:unique_fault]=0
 
 		#Default configuration
 		@config[:tt_skip] = @config[:tt_skip] || false
-		@mntdir = File.join( "var", @global[:tt_testname], "mnt", @caseId.to_s )
-		@tmpdir = File.join( "var", @global[:tt_testname], "tmp", @caseId.to_s )
+		@mntdir = File.join( "var", @global[:tt_testname], "mnt", @id.to_s )
+		@tmpdir = File.join( "var", @global[:tt_testname], "tmp", @id.to_s )
 		@remote_tmpdir = File.join( "/", "tmp" )
 
 		ensure_dir @mntdir
@@ -68,14 +75,7 @@ class Case
 			@tests.each { |t| instance_eval &t[:block] }
 		end
 		
-		@datagroup.close
-	end
-
-	#Read param pOption from config or global Hash data
-	def get(pOption)
-		return @config[pOption] if @config[pOption]
-		return @global[pOption] if @global[pOption]
-		return nil
+		@report.close_case
 	end
 
 end

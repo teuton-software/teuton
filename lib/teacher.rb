@@ -12,11 +12,12 @@ require_relative 'report/report'
 class Teacher
 	include Singleton
 	include Utils
-	attr_reader :global, :report, :tests
+	attr_reader :global, :tests
 	
 	def initialize
 		@global = {}
-		@report = Report.new
+		@report = Report.new(0)
+		@report.filename="resume"
 		@cases = []		
 		@debug = false
 		@verbose = true
@@ -43,7 +44,6 @@ class Teacher
 		@report.head[:tt_scriptname]=$0
 		@report.head[:tt_configfile]=pConfigFilename
 		@report.head[:tt_debug]=true if @debug
-		@report.head[:tt_start_time_]=Time.new.to_s
 		@report.head.merge!(@global)
 		
 		bar = "="*@report.head[:tt_title].length
@@ -63,12 +63,15 @@ class Teacher
 			threads.each { |t| t.join }
 		end
 		finish_time=Time.now
+		@report.tail[:start_time_]=start_time
+		@report.tail[:finish_time]=finish_time
+		@report.tail[:duration]=finish_time-start_time
 		verboseln "\n[INFO] Duration = #{(finish_time-start_time).to_s} (#{finish_time.to_s})"
 
 		verboseln "\n"
 		verboseln bar
 		
-		@report.close
+		close_main_report
 	end
 	
 	def debug=(pValue)
@@ -91,14 +94,42 @@ class Teacher
 		check_cases!
 		instance_eval &block
 	end
-end
+	
+	def show(data=:resume)
+		case data
+		when :resume
+			@report.show
+		when :all
+			@report.show
+			@cases.each { |c| puts "____"; c.report.show }
+			puts "."
+		end
+	end
+	
+	def export(data=:resume, pArgs={})
+		format= pArgs[:format] || :txt
+		case data
+		when :resume
+			@report.export format
+		when :all
+			@report.export format
+			@cases.each { |c| c.report.export format }
+		end
+	end
 
+private
 
-def define_test(name, &block)
-	Teacher.instance.define_test(name, &block)
-end
+	def close_main_report
+		@cases.each do |c|
+			lMembers=c.report.head[:tt_members] || 'noname'
+			lGrade=c.report.tail[:grade] || 0.0
+			lHelp=" "
+			lHelp="?" if lGrade<50.0
+			lHelp="*" if lGrade==100.0
+			
+			@report.lines << "Case #{c.id.to_s} #{lHelp} (#{lGrade.to_s}) #{lMembers}"
+		end
+	end
 
-def start(&block)
-	Teacher.instance.start(&block)
 end
 

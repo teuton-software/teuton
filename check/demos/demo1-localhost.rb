@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/teacher'
+require_relative '../../lib/tool'
 
 =begin
  Demo script to run on localhost
@@ -43,6 +43,6 @@ define_test :test01_localhost do
 end
 
 start do
-	#report.show
-	report.export :txt
+	show :resume
+	export :all, :formar => :txt
 end

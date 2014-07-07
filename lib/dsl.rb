@@ -2,6 +2,14 @@
 # encoding: utf-8
 
 module DSL
+
+	#Read param pOption from config or global Hash data
+	def get(pOption)
+		return @config[pOption] if @config[pOption]
+		return @global[pOption] if @global[pOption]
+		return nil
+	end
+
 	def command(pCommand, pArgs={})
 		@action[:command]=pCommand
 		tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
@@ -52,7 +60,7 @@ module DSL
 		@action[:id]=@action_counter
 		@action[:weight]=lWeight
 		@action[:check]=pCond
-		@datagroup.lines << @action.clone
+		@report.lines << @action.clone
 
 		c="?"
 		c="." if pCond
@@ -63,7 +71,7 @@ module DSL
 		s="INFO: "
 		s="WARN: " if pType==:warn
 		s="ERROR: " if pType==:error
-		@datagroup.lines << s+pText
+		@report.lines << s+pText
 	end
 			
 	def unique(psKey, psValue="")

@@ -5,25 +5,25 @@
 	
 module FormatterProxy
 	
-	def FormatterProxy.new(pReport, pType, pArgs)
-		f = CSVFormatter.new(pReport) if pType==:csv
-		f = HTMLFormatter.new(pReport) if pType==:html
-		f = TXTFormatter.new(pReport) if pType==:txt
-		f = XMLFormatter.new(pReport) if pType==:xml
-		f.init(pArgs)
+	def FormatterProxy.new(pReport, pFormat, pFilename)
+		f = CSVFormatter.new(pReport) if pFormat==:csv
+		f = HTMLFormatter.new(pReport) if pFormat==:html
+		f = TXTFormatter.new(pReport) if pFormat==:txt
+		f = XMLFormatter.new(pReport) if pFormat==:xml
+		f.init(pFilename)
 		return f
 	end
 	
 	class BaseFormatter
 		def initialize(pReport)
 			@head = pReport.head
-			@datagroups = pReport.datagroups
+			@lines = pReport.lines
 			@tail = pReport.tail
 		end
 		
-		def init(pArgs)
-			@params=pArgs
-			@file = File.open(@params[:filename],'w')
+		def init(pFilename)
+			@filename=pFilename
+			@file = File.open(@filename,'w')
 		end
 	
 		def w(pText)
@@ -48,19 +48,11 @@ class HTMLFormatter < FormatterProxy::BaseFormatter
 		super(pReport)
 	end
 	
-	def init(pArgs)
-		@params=pArgs
-		@params[:filename]=@params[:filename]||"default.html"
-		@params[:dirname]=@params[:dirname]||"var/out"
-		@params[:tab]=@params[:tab]||"   "
-		@file = File.open(@params[:dirname]+"/"+@params[:filename],'w')
-	end
-
 	def process
 		puts "<html>"
-		puts "<head><title>Teacher1</title></head>"
+		puts "<head><title>tt-checker</title></head>"
 		puts "<body>"
-		puts "<header><h1><a name=\"index\">Teacher v1</a></h1>"
+		puts "<header><h1><a name=\"index\">tt-checker v0.2</a></h1>"
 		puts '<ul>'
 		@head.each do |key,value|
 			puts "<li><b>"+key.to_s+": </b>"+value.to_s+"</li>" if key!=:title 
@@ -77,7 +69,7 @@ class HTMLFormatter < FormatterProxy::BaseFormatter
 			puts "<td>"+i.tail[:fail_counter].to_s+"</td></tr>"
 		end
 		puts "</tbody></table></header>"
-		puts "<article><h1>Cases</h1>"
+		puts "<h1>Cases</h1>"
 		counter=0
 		@datagroups.each do |i|
 			counter+=1
@@ -89,7 +81,7 @@ class HTMLFormatter < FormatterProxy::BaseFormatter
 			puts "<li><b>"+key.to_s+": </b>"+value.to_s+"</li>"
 		end
 		puts '</ul>'
-		puts "</article></body></html>"
+		puts "</body></html>"
 	end
 
 	def process_datagroup(pGroup, pCounter)
@@ -131,43 +123,27 @@ class TXTFormatter < FormatterProxy::BaseFormatter
 	def initialize(pReport)
 		super(pReport)
 	end
-	
-	def init(pArgs)
-		@params=pArgs
-		@params[:filename]=@params[:filename] || "default.txt"
-		@params[:dirname]=@params[:dirname] || "var/out"
-		@params[:tab]=@params[:tab] || "  "
-		@file = File.open(@params[:dirname]+"/"+@params[:filename],'w')
-	end
-	
+		
 	def process
-		tab=@params[:tab]
+		tab="  "
 		w "HEAD\n"
 		@head.each { |key,value| w tab+key.to_s+": "+value.to_s+"\n" }
-		w "DATAGROUPS\n"
-		@datagroups.each { |item| process_datagroup item }
+
+		w "LINES\n"
+		@lines.each do |i|
+			if i.class.to_s=='Hash' then
+				lValue=i[:weight] if i[:check]
+				w tab+i[:id].to_s+" ("+lValue.to_s+"/"+i[:weight].to_s+") "
+				w i[:description].to_s+" { "+i[:command].to_s+" }\n"
+			else
+				w tab+"- "+i.to_s+"\n"
+			end
+		end
+
 		w "TAIL\n"
 		@tail.each { |key,value| w tab+key.to_s+": "+value.to_s+"\n" }
 		deinit
-	end
-	
-	def process_datagroup(pGroup)
-		tab=@params[:tab]
-		w tab+"DATAGROUP order='"+pGroup.order.to_s+"'\n"
-		w tab*2+"HEAD\n"
-		pGroup.head.each { |key,value| w tab*3+key.to_s+": "+value.to_s+"\n" }
-		w tab*2+"LINES\n"
-		pGroup.lines.each do |i|
-			if i.class.to_s=='Hash' then
-				lValue=i[:weight] if i[:check]
-				w tab*3+i[:id].to_s+" ("+lValue.to_s+"/"+i[:weight].to_s+") "
-				w i[:description].to_s+" { "+i[:command].to_s+" }\n"
-			else
-				w tab*3+"- "+i.to_s+"\n"
-			end
-		end
-		w tab*2+"TAIL\n"
-		pGroup.tail.each { |key,value| w tab*3+key.to_s+": "+value.to_s+"\n" }
+
 	end
 end
 
@@ -177,57 +153,37 @@ class XMLFormatter < FormatterProxy::BaseFormatter
 	def initialize(pReport)
 		super(pReport)
 	end
-	
-	def init(pArgs)
-		@params=pArgs
-		@params[:filename]=@params[:filename]||"default.xml"
-		@params[:dirname]=@params[:dirname]||"var/out"
-		@params[:tab]=@params[:tab]||"   "
-		@file = File.open(@params[:dirname]+"/"+@params[:filename],'w')
-	end
-	
+		
 	def process
-		tab=@params[:tab]
-		w "<teacher version='1'>\n"
+		tab="  "
+		w "<tt-checker version='0.2'>\n"
 		w tab+"<head>\n"
 		@head.each { |key,value| w tab*2+"<"+key.to_s+">"+value.to_s+"</"+key.to_s+">\n" }
-		w tab+"</head>\n"
-		w tab+"<datagroups>\n"
-		@datagroups.each { |item| process_datagroup item }
-		w tab+"</datagroups>\n"
+		w tab+"</head>\n"		
+		
+		w tab+"<lines>\n"
+		@lines.each do |i|
+			if i.class.to_s=='Hash' then
+				w tab*2+"<line>\n"
+				w tab*3+"<id>"+i[:id].to_s+"</id>\n"
+				w tab*3+"<description>"+i[:description].to_s+"</description>\n"
+				w tab*3+"<command"
+				w " tempfile='"+i[:tempfile]+"'" if i[:tempfile]
+				w ">"+i[:command].to_s+"</command>\n"
+				w tab*3+"<check>"+i[:check].to_s+"</check>\n"
+				w tab*3+"<weigth>"+i[:weight].to_s+"</weigth>\n"
+				w tab*2+"</line>\n"
+			else
+				w tab*2+"<line type='log'>"+i.to_s+"</line>\n"
+			end
+		end
+		w tab+"</lines>\n"
+		
 		w tab+"<tail>\n"
 		@tail.each { |key,value| w tab*2+"<"+key.to_s+">"+value.to_s+"</"+key.to_s+">\n" }
 		w tab+"</tail>\n"
-		w "</teacher>\n"
+		w "</tt-checker>\n"
+
 		deinit
-	end
-	
-	def process_datagroup(pGroup)
-		tab=@params[:tab]
-		w tab*2+"<datagroup order='"+pGroup.order.to_s+"'>\n"
-		w tab*3+"<head>\n"
-		pGroup.head.each { |key,value| w tab*4+"<"+key.to_s+">"+value.to_s+"</"+key.to_s+">\n" }
-		w tab*3+"</head>\n"
-		w tab*3+"<lines>\n"
-		pGroup.lines.each do |i|
-			if i.class.to_s=='Hash' then
-				w tab*4+"<line>\n"
-				w tab*5+"<id>"+i[:id].to_s+"</id>\n"
-				w tab*5+"<weigth>"+i[:weight].to_s+"</weigth>\n"
-				w tab*5+"<description>"+i[:description].to_s+"</description>\n"
-				w tab*5+"<command"
-				w " tempfile='"+i[:tempfile]+"'" if i[:tempfile]
-				w ">"+i[:command].to_s+"</command>\n"
-				w tab*5+"<check>"+i[:check].to_s+"</check>\n"
-				w tab*4+"</line>\n"
-			else
-				w tab*4+"<line type='log'>"+i.to_s+"</line>\n"
-			end
-		end
-		w tab*3+"</lines>\n"
-		w tab*3+"<tail>\n"
-		pGroup.tail.each { |key,value| w tab*4+"<"+key.to_s+">"+value.to_s+"</"+key.to_s+">\n" }
-		w tab*3+"</tail>\n"
-		w tab*2+"</datagroup>\n"
 	end
 end
