@@ -44,5 +44,5 @@ end
 
 start do
 	show :resume
-	export :all, :formar => :txt
+	export :all, :format => :txt
 end

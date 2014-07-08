@@ -28,7 +28,7 @@ class Report
 		lFailCounter=0
 		@lines.each do |i|
 			if i.class.to_s=='Hash' then
-				lMax += i[:weight]
+				lMax += i[:weight] if i[:weight]>0
 				if i[:check] then
 					lGood+= i[:weight]
 				else
@@ -47,38 +47,28 @@ class Report
 		end
 		@tail[:grade]=0 if @tail[:unique_fault]>0
 	end
-			
-	def show_main
-		puts "HEAD"
-		@head.each { |key,value| puts "  "+key.to_s+": "+value.to_s }
-			
-		puts "DATAGROUPS"
-		@datagroups.each { |i| i.show }
-			
-		puts "TAIL"
-		@tail.each { |key,value| puts "  "+key.to_s+": "+value.to_s }
-	end	
-						
-	def show(pTab="  ")
+									
+	def show
+	  tab="  "
 		puts 'HEAD'
-		@head.each { |key,value| puts pTab+key.to_s+": "+value.to_s }
+		@head.each { |key,value| puts tab+key.to_s+": "+value.to_s }
 		puts 'LINES'
 		@lines.each do |i|
 			if i.class.to_s=='Hash' then
 				value=0.0
 				value=i[:weight] if i[:check]
-				puts pTab+i[:id].to_s+" ("+value.to_s+"/"+i[:weight].to_s+") "+i[:description]
+				puts tab+i[:id].to_s+" ("+value.to_s+"/"+i[:weight].to_s+") "+i[:description]
 			else
-				puts pTab+"- "+i.to_s
+				puts tab+"- "+i.to_s
 			end
 		end
 		puts 'TAIL'
-		@tail.each { |key,value| puts pTab+key.to_s+": "+value.to_s }
+		@tail.each { |key,value| puts tab+key.to_s+": "+value.to_s }
 	end		
 
 	def export( format)
 		filepath= File.join( @outdir, @filename+"."+format.to_s )
-		@formatter = FormatterProxy::new(self, format, filepath)
+		@formatter = FormatterProxy::get(self, format, filepath)
 		@formatter.process
 	end
 

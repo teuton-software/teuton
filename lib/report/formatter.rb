@@ -8,7 +8,7 @@ require_relative 'xml_formatter'
 
 module FormatterProxy
 	
-	def FormatterProxy.new(pReport, pFormat, pFilename)
+	def FormatterProxy.get(pReport, pFormat, pFilename)
 		f = CSVFormatter.new(pReport) if pFormat==:csv
 		f = HTMLFormatter.new(pReport) if pFormat==:html
 		f = TXTFormatter.new(pReport) if pFormat==:txt

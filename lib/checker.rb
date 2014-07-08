@@ -93,6 +93,7 @@ class Checker
 	def start(&block)
 		check_cases!
 		instance_eval &block
+		@cases.each { |c| c.deinit }
 	end
 	
 	def show(data=:resume)
@@ -113,7 +114,9 @@ class Checker
 			@report.export format
 		when :all
 			@report.export format
-			@cases.each { |c| c.report.export format }
+			threads=[]
+			@cases.each { |c| threads << Thread.new{ c.report.export format } }
+			threads.each { |t| t.join }
 		end
 	end
 

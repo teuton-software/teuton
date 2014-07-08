@@ -27,10 +27,6 @@ class Case
 		@report.outdir=File.join( "var", @global[:tt_testname], "out" )
 		ensure_dir @report.outdir
 		
-		@report.head.merge! @config
-		@report.tail[:case_id]=@id
-		@report.tail[:unique_fault]=0
-
 		#Default configuration
 		@config[:tt_skip] = @config[:tt_skip] || false
 		@mntdir = File.join( "var", @global[:tt_testname], "mnt", @id.to_s )
@@ -50,7 +46,7 @@ class Case
 		@action_counter=0		
 		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
 		tempfile :default
-		
+		@sessions={}	
 	end
 
 	def start
@@ -59,12 +55,13 @@ class Case
 			verbose "Skipping case <"+@config[:tt_members]+">\n"
 			return false
 		end
-
+		
+		start_time = Time.now
 		r=`ls #{@tmpdir}/*.tmp 2>/dev/null | wc -l`
 		execute("rm #{@tmpdir}/*.tmp") if r[0].to_i>0 #Detele previous temp files
 		
 		if @global[:tt_sequence] then
-			verboseln "\nStarting case <"+get(:tt_members)+">"
+			verboseln "Starting case <"+get(:tt_members)+">"
 			@tests.each do |t|
 				verbose "* Processing <"+t[:name].to_s+"> "
 				instance_eval &t[:block]
@@ -74,8 +71,19 @@ class Case
 		else
 			@tests.each { |t| instance_eval &t[:block] }
 		end
-		
+
+		finish_time=Time.now
+		@report.head.merge! @config
+		@report.tail[:case_id]=@id
+		@report.tail[:start_time_]=start_time
+		@report.tail[:finish_time]=finish_time
+		@report.tail[:duration]=finish_time-start_time		
+		@report.tail[:unique_fault]=0
 		@report.close_case
+	end
+	
+	def deinit
+		@sessions.each_value { |s| s.close if s!=:nosession }
 	end
 
 end

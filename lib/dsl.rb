@@ -3,13 +3,6 @@
 
 module DSL
 
-	#Read param pOption from config or global Hash data
-	def get(pOption)
-		return @config[pOption] if @config[pOption]
-		return @global[pOption] if @global[pOption]
-		return nil
-	end
-
 	def command(pCommand, pArgs={})
 		@action[:command]=pCommand
 		tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
@@ -22,6 +15,31 @@ module DSL
 	def desc(pDescription=nil)
 		return @action[:description] if pDescription.nil?
 		@action[:description]=pDescription
+	end
+	
+	#Read param pOption from config or global Hash data
+	def get(pOption)
+		return @config[pOption] if @config[pOption]
+		return @global[pOption] if @global[pOption]
+		return nil
+	end
+
+	def open_session( type=:ssh, pArgs={})
+		hostname=pArgs[:with].to_s || pArgs[:for].to_s || '16.16.16.16'
+
+		return @sessions[hostname] if !@sessions[hostname].nil?
+		
+		lsIP=get((hostname+'_ip').to_sym)
+		lsUsername=get((hostname+'_username').to_sym)
+		lsPassword=get((hostname+'_password').to_sym)
+		
+		begin
+			lsText="[ERROR] SSH on <#{lsUsername}@#{lsIP}> exec: "+lsCmd
+			@sessions[hostname] = Net::SSH.start(lsIP, lsUsername, :password => lsPassword)
+		rescue
+			@sessions[hostname]=:nosession
+			log(lsText) #, :error)
+		end
 	end
 	
 	#Set weight value for the action
@@ -78,7 +96,7 @@ module DSL
 		if @unique_values[psKey]==nil then
 			@unique_values[psKey]=psValue
 		else
-			@datagroup.tail[:unique_fault]+=1
+			@report.tail[:unique_fault]+=1
 			log("Unique value (#{psKey}): #{psValue}",:error)
 		end
 	end
@@ -143,6 +161,8 @@ private
 		begin
 			lsText="SSH on <#{lsUsername}@#{lsIP}> exec: "+lsCmd
 			Net::SSH.start(lsIP, lsUsername, :password => lsPassword) {|ssh| ssh.exec(lsCmd) }
+			#ssh = open_session :ssh, :with => hostname
+			#ssh.exec!(lsCmd)
 
 			lsText="SFTP downloading <#{lsIP}:#{lsRemotefile}>"
 			Net::SFTP.start(lsIP, lsUsername, :password => lsPassword) { |sftp| sftp.download!(lsRemotefile, lsLocalfile) }

@@ -1,0 +1,21 @@
+---
+:global:
+  :tt_sequence: true
+  :host1_username: root
+  :host1_password: profesor
+:cases:
+- :tt_members: root
+  :tt_emails: root@email.com
+  :host1_ip: 192.168.1.201
+  :host1_hostname: debian.vargas
+  :username: root
+- :tt_members: profesor
+  :tt_emails: profesor@email.com
+  :host1_ip: 192.168.1.202
+  :host1_hostname: david.vargas
+  :username: profesor
+- :tt_members: david
+  :tt_emails: david@email.com
+  :host1_ip: 192.168.1.203
+  :host1_hostname: david.vargas
+  :username: david
