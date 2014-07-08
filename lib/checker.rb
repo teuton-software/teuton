@@ -9,7 +9,7 @@ require_relative 'case'
 require_relative 'utils'
 require_relative 'report/report'
 
-class Teacher
+class Checker
 	include Singleton
 	include Utils
 	attr_reader :global, :tests
@@ -40,7 +40,7 @@ class Teacher
 		@report.outdir=@outdir
 
 		#Fill report head
-		@report.head[:tt_title]="Executing Teacher tests (version 0.2)"
+		@report.head[:tt_title]="Executing tt-checker tests (version 0.2)"
 		@report.head[:tt_scriptname]=$0
 		@report.head[:tt_configfile]=pConfigFilename
 		@report.head[:tt_debug]=true if @debug

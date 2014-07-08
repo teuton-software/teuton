@@ -1,13 +1,13 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative 'teacher'
+require_relative 'checker'
 
 def define_test(name, &block)
-	Teacher.instance.define_test(name, &block)
+	Checker.instance.define_test(name, &block)
 end
 
 def start(&block)
-	Teacher.instance.start(&block)
+	Checker.instance.start(&block)
 end
 

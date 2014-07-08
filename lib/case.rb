@@ -3,9 +3,9 @@
 
 require 'net/ssh'
 require 'net/sftp'
+require_relative 'checker'
 require_relative 'dsl'
 require_relative 'result'
-require_relative 'teacher'
 require_relative 'utils'
 
 class Case
@@ -16,14 +16,14 @@ class Case
 	@@id=1
 
 	def initialize(pConfig)
-		@global=Teacher.instance.global
+		@global=Checker.instance.global
 		@config=pConfig
-		@tests=Teacher.instance.tests
+		@tests=Checker.instance.tests
 		@id=@@id; @@id+=1
 				
 		#Define Case Report
 		@report = Report.new(@id)
-		@report.filename="case-#{@id.to_s}"
+		@report.filename=( @id<10 ? "case-0#{@id.to_s}" : "case-#{@id.to_s}" )
 		@report.outdir=File.join( "var", @global[:tt_testname], "out" )
 		ensure_dir @report.outdir
 		
@@ -44,8 +44,8 @@ class Case
 		@result = Result.new
 		@result.reset
 
-		@debug=Teacher.instance.is_debug?
-		@verbose=Teacher.instance.is_verbose?
+		@debug=Checker.instance.is_debug?
+		@verbose=Checker.instance.is_verbose?
 	
 		@action_counter=0		
 		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
