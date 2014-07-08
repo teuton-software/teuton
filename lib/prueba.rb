@@ -16,4 +16,5 @@ comando="whoami"
 output = ssh.exec!(comando)
 puts "Ejecutando el comando: #{comando}"
 puts output
+puts ssh.class
 ssh.close

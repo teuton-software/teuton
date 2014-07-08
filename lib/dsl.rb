@@ -24,18 +24,18 @@ module DSL
 		return nil
 	end
 
-	def open_session( type=:ssh, pArgs={})
-		hostname=pArgs[:with].to_s || pArgs[:for].to_s || '16.16.16.16'
-
+	def get_ssh_session_for( hostname )
 		return @sessions[hostname] if !@sessions[hostname].nil?
-		
-		lsIP=get((hostname+'_ip').to_sym)
-		lsUsername=get((hostname+'_username').to_sym)
-		lsPassword=get((hostname+'_password').to_sym)
-		
+		puts "\nDEBUG create ssh session for <#{hostname}>"
+		ip=get((hostname+'_ip').to_sym)
+		puts "DEBUG ip=#{ip}"
+		username=get((hostname+'_username').to_sym)
+		puts "DEBUG username=#{username}"
+		password=get((hostname+'_password').to_sym)
+		puts "DEBUG password=#{password}"
 		begin
-			lsText="[ERROR] SSH on <#{lsUsername}@#{lsIP}> exec: "+lsCmd
-			@sessions[hostname] = Net::SSH.start(lsIP, lsUsername, :password => lsPassword)
+			lsText="[ERROR] Session on <#{username}@#{ip}> exec: "+lsCmd
+			@sessions[hostname] = Net::SSH.start(ip, username, :password => password)
 		rescue
 			@sessions[hostname]=:nosession
 			log(lsText) #, :error)
@@ -150,25 +150,44 @@ private
 	def run_remote_cmd(pHostname) 
 		
 		hostname=pHostname.to_s
-		lsIP=get((hostname+'_ip').to_sym)
-		lsUsername=get((hostname+'_username').to_sym)
-		lsPassword=get((hostname+'_password').to_sym)
+		ip=get((hostname+'_ip').to_sym)
+		username=get((hostname+'_username').to_sym)
+		password=get((hostname+'_password').to_sym)
 
 		lsRemotefile = remote_tempfile
 		lsLocalfile = tempfile
 		lsCmd=@action[:command]+" > "+lsRemotefile
+		cmd_state=:err
 		
 		begin
-			lsText="SSH on <#{lsUsername}@#{lsIP}> exec: "+lsCmd
-			Net::SSH.start(lsIP, lsUsername, :password => lsPassword) {|ssh| ssh.exec(lsCmd) }
-			#ssh = open_session :ssh, :with => hostname
+			Net::SSH.start(ip, username, :password => password) {|ssh| ssh.exec(lsCmd) }
+			#ssh = get_ssh_session_for(hostname)
 			#ssh.exec!(lsCmd)
-
-			lsText="SFTP downloading <#{lsIP}:#{lsRemotefile}>"
-			Net::SFTP.start(lsIP, lsUsername, :password => lsPassword) { |sftp| sftp.download!(lsRemotefile, lsLocalfile) }
-		rescue
+			#
+			cmd_state=:ok
+		rescue Errno::EHOSTUNREACH
+			lsText="ERROR: Host #{ip} unreachable!"
 			verbose "!"
 			log(lsText) #, :error)
+		rescue Net::SSH::AuthenticationFailed
+			lsText="ERROR: SSH::AuthenticationFailed!"
+			verbose "!"
+			log(lsText) #, :error)
+		rescue Exception => e
+			lsText="[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+lsCmd
+			verbose "!"
+			log(lsText) #, :error)
+		end
+
+		if cmd_state==:ok then
+			begin
+				lsText="SFTP downloading <#{ip}:#{lsRemotefile}>"
+				Net::SFTP.start(ip, username, :password => password) { |sftp| sftp.download!(lsRemotefile, lsLocalfile) }
+			rescue Exception => e
+				lsText="[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+lsCmd
+				verbose "!"
+				log(lsText) #, :error)
+			end
 		end
 		
 		@result.content=read_filename(lsLocalfile)
