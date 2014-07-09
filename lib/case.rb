@@ -30,7 +30,7 @@ class Case
 		#Default configuration
 		@config[:tt_skip] = @config[:tt_skip] || false
 		@mntdir = File.join( "var", @global[:tt_testname], "mnt", @id.to_s )
-		@tmpdir = File.join( "var", @global[:tt_testname], "tmp", @id.to_s )
+		@tmpdir = File.join( "var", @global[:tt_testname], "tmp" ) #, @id.to_s )
 		@remote_tmpdir = File.join( "/", "tmp" )
 
 		ensure_dir @mntdir
@@ -55,11 +55,12 @@ class Case
 			verbose "Skipping case <"+@config[:tt_members]+">\n"
 			return false
 		end
+
+		names=@id.to_s+"-*.tmp"
+		r=`ls #{@tmpdir}/#{names} 2>/dev/null | wc -l`
+		execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Detele previous temp files
 		
-		start_time = Time.now
-		r=`ls #{@tmpdir}/*.tmp 2>/dev/null | wc -l`
-		execute("rm #{@tmpdir}/*.tmp") if r[0].to_i>0 #Detele previous temp files
-		
+		start_time = Time.now		
 		if @global[:tt_sequence] then
 			verboseln "Starting case <"+get(:tt_members)+">"
 			@tests.each do |t|

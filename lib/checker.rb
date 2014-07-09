@@ -52,14 +52,14 @@ class Checker
 
 		@caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) } # create cases
 		start_time = Time.now
+
 		if @global[:tt_sequence] then
 			verboseln "[INFO] Running in sequence (#{start_time.to_s})"
-			
-			@cases.each { |c| c.start }
+			@cases.each { |c| c.start } # Process every case in sequence
 		else
 			verboseln "[INFO] Running in parallel (#{start_time.to_s})"
 			threads=[]
-			@cases.each { |c| threads << Thread.new{c.start} }
+			@cases.each { |c| threads << Thread.new{c.start} } # Process cases in parallel
 			threads.each { |t| t.join }
 		end
 		finish_time=Time.now

@@ -17,12 +17,12 @@ define_test :remote_hosts do
 	check result.to_s.equal?(get(:host1_hostname))
 
 	description "Number of MBR sda partitions, must be 3"
-	command "fdisk -l|grep -v Disco|grep sda", :tempfile => "tempfile.tmp"
+	command "fdisk -l|grep -v Disco|grep sda", :tempfile => :default
 	run_on :host1
 	check result.content.count==3
 
 	description "df -hT"
-	command "df -hT", :tempfile => "dfht.tmp"
+	command "df -hT", :tempfile => "dfht"
 	run_on :host1
 	filename = tempfile
 	

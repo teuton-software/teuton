@@ -23,7 +23,7 @@ define_test :test01_localhost do
 	log "Checking partitions!"
 
 	description "Lookup for partitions"
-	command "cat /proc/partitions", :tempfile => "proc-partitions.tmp"
+	command "cat /proc/partitions", :tempfile => "proc-partitions"
 	run_on :localhost
 	
 	filename = tempfile
