@@ -1,6 +1,6 @@
 ---
 :global:
-  :tt_sequence: true
+  :tt_sequence: false
   :host1_username: root
   :host1_password: profesor
 :cases:
@@ -17,6 +17,7 @@
   :host1_hostname: david.vargas
   :username: profesor
 - :tt_members: david
+  :tt_skip: false
   :tt_emails: david@email.com
   :host1_ip: 192.168.1.203
   :host1_hostname: david.vargas
