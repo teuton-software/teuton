@@ -125,6 +125,7 @@ private
 		lsCmd=@action[:command]+' > '+@action[:tempfile]
 		execute(lsCmd) 
 		@result.content= read_filename(@action[:tempfile])	
+		#@result.content = execute( @action[:command] )	
 	end
 	
 	def run_remote_cmd(pHostname) 		

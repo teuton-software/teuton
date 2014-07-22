@@ -15,13 +15,16 @@ module Utils
 
 	#Execute the system command if debug is false.
 	def execute(psCmd)
-		return if @debug
+		output=[]
+		return output if @debug
 		begin
-			system(psCmd)
+			text=`#{psCmd}`
+			output=text.split("\n")
 		rescue
 			verbose "!"
 			log ("Local exec: "+psCmd) #, :error)
 		end
+		return output
 	end
 
 	def verboseln(psText)
