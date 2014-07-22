@@ -12,7 +12,7 @@ Net::SSH.start("192.168.1.201", "profesor", :password => "profesor") do |ssh|
 end
 
 ssh=Net::SSH.start("192.168.1.201", "profesor", :password => "profesor")
-comando="whoami"
+comando="pwd"
 output = ssh.exec!(comando)
 puts "Ejecutando el comando: #{comando}"
 puts output

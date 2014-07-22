@@ -45,7 +45,7 @@ module DSL
 			if lsIP.include?('127.0.0.') then
 				run_local_cmd
 			else
-				run_remote_cmd2 pHostname
+				run_remote_cmd pHostname
 			end
 		end
 	end
@@ -128,51 +128,6 @@ private
 	end
 	
 	def run_remote_cmd(pHostname) 		
-		hostname=pHostname.to_s
-		ip=get((hostname+'_ip').to_sym)
-		username=get((hostname+'_username').to_sym)
-		password=get((hostname+'_password').to_sym)
-
-		lsRemotefile = remote_tempfile
-		lsLocalfile = tempfile
-		lsCmd=@action[:command]+" > "+lsRemotefile
-		cmd_state=:err
-		
-		begin
-			Net::SSH.start(ip, username, :password => password) {|ssh| ssh.exec(lsCmd) }
-			#ssh = get_ssh_session_for(hostname)
-			#ssh.exec!(lsCmd)
-			#
-			cmd_state=:ok
-		rescue Errno::EHOSTUNREACH
-			lsText="ERROR: Host #{ip} unreachable!"
-			verbose "!"
-			log(lsText) #, :error)
-		rescue Net::SSH::AuthenticationFailed
-			lsText="ERROR: SSH::AuthenticationFailed!"
-			verbose "!"
-			log(lsText) #, :error)
-		rescue Exception => e
-			lsText="[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+lsCmd
-			verbose "!"
-			log(lsText) #, :error)
-		end
-
-		if cmd_state==:ok then
-			begin
-				lsText="SFTP downloading <#{ip}:#{lsRemotefile}>"
-				Net::SFTP.start(ip, username, :password => password) { |sftp| sftp.download!(lsRemotefile, lsLocalfile) }
-			rescue Exception => e
-				lsText="[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+lsCmd
-				verbose "!"
-				log(lsText) #, :error)
-			end
-		end
-		
-		@result.content=read_filename(lsLocalfile)
-	end
-
-	def run_remote_cmd2(pHostname) 		
 		hostname=pHostname.to_s
 
 		ip=get((hostname+'_ip').to_sym)

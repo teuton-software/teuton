@@ -24,10 +24,8 @@ module Utils
 		end
 	end
 
-	#Show message on screen if verbose mode is true.
 	def verboseln(psText)
-		return if !@verbose
-		puts psText
+		verbose(psText+"\n")
 	end
 	
 	def verbose(psText)
