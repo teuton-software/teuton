@@ -122,33 +122,29 @@ private
 	end
 	
 	def run_local_cmd
-		lsCmd=@action[:command]+' > '+@action[:tempfile]
-		execute(lsCmd) 
-		@result.content= read_filename(@action[:tempfile])	
-		#@result.content = execute( @action[:command] )	
+		#lsCmd=@action[:command]+' > '+@action[:tempfile]
+		#execute(lsCmd) 
+		#@result.content= read_filename(@action[:tempfile])	
+		@result.content = execute( @action[:command] )	
 	end
 	
 	def run_remote_cmd(pHostname) 		
 		hostname=pHostname.to_s
-
-		ip=get((hostname+'_ip').to_sym)
-		username=get((hostname+'_username').to_sym)
-		password=get((hostname+'_password').to_sym)
-
-		lsRemotefile = remote_tempfile
-		lsLocalfile = tempfile
-		lsCmd=@action[:command]+" > "+lsRemotefile
-		cmd_state=:err
+		output=[]
 		
 		begin
 			if @sessions[hostname].nil?
+				ip=get((hostname+'_ip').to_sym)
+				username=get((hostname+'_username').to_sym)
+				password=get((hostname+'_password').to_sym)
 				@sessions[hostname] = Net::SSH.start(ip, username, :password => password)
-			elsif @sessions[hostname]==:nosession
-				raise "Session object Not available!"
 			end
-			ssh=@sessions[hostname] 
-			ssh.exec!(lsCmd)
-			cmd_state=:ok
+			
+			if @sessions[hostname].class==Net::SSH::Connection::Session
+				ssh=@sessions[hostname] 
+				text=ssh.exec!( @action[:command] )
+				output = text.split("\n")
+			end
 		rescue Errno::EHOSTUNREACH
 			lsText="ERROR: Host #{ip} unreachable!"
 			@sessions[hostname]=:nosession
@@ -165,18 +161,7 @@ private
 			verbose "!"
 			log(lsText) #, :error)
 		end
-
-		if cmd_state==:ok then
-			begin
-				lsText="SFTP downloading <#{ip}:#{lsRemotefile}>"
-				Net::SFTP.start(ip, username, :password => password) { |sftp| sftp.download!(lsRemotefile, lsLocalfile) }
-			rescue Exception => e
-				lsText="[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+lsCmd
-				verbose "!"
-				log(lsText) #, :error)
-			end
-		end
 		
-		@result.content=read_filename(lsLocalfile)
+		@result.content=output
 	end
 end

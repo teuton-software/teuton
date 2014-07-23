@@ -17,18 +17,13 @@ define_test :remote_hosts do
 	check result.to_s.equal?(get(:host1_hostname))
 
 	description "Number of MBR sda partitions, must be 3"
-	command "fdisk -l|grep -v Disco|grep sda", :tempfile => :default
+	command "fdisk -l|grep -v Disco|grep sda"
 	run_on :host1
 	check result.content.count==3
-
-	description "df -hT"
-	command "df -hT", :tempfile => "dfht"
-	run_on :host1
-	filename = tempfile
 	
 	description "Free space on rootfs > 10%"
-	command "cat #{filename}| grep rootfs| tr -s ' ' ':'|cut -d : -f 5", :tempfile => :default
-	run_on :localhost
+	command "df -hT| grep rootfs| tr -s ' ' ':'|cut -d : -f 6"
+	run_on :host1
 	check result.to_i.is_less_than?(90)
 
 	log "Tests finished!"

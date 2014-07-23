@@ -21,20 +21,14 @@ define_test :test01_localhost do
 	check result.to_s.equal?(get(:homedir))
 
 	log "Checking partitions!"
-
-	description "Lookup for partitions"
-	command "cat /proc/partitions", :tempfile => "proc-partitions"
-	run_on :localhost
-	
-	filename = tempfile
 	
 	description "Partitions /dev/sda == 3"
-	command "cat #{filename} | grep sda| wc -l", :tempfile => :default
+	command "cat /proc/partitions | grep sda| wc -l"
 	run_on :localhost
 	check result.to_i.equal?(3+1)
 
 	description "Partitions /dev/sdb == 2"
-	command "cat #{filename} | grep sdb| wc -l", :tempfile => :default
+	command "cat /proc/partitions | grep sdb| wc -l"
 	run_on :localhost
 	check result.to_i.equal?(2+1)
 
