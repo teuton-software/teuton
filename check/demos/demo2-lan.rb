@@ -4,7 +4,6 @@
 require_relative '../../lib/tool'
 
 define_test :remote_hosts do
-	log "Starting tests!"
 
 	description "Checking user <"+get(:username)+">"
 	command "cat /etc/passwd|grep '"+get(:username)+":'|wc -l"
@@ -25,8 +24,6 @@ define_test :remote_hosts do
 	command "df -hT| grep rootfs| tr -s ' ' ':'|cut -d : -f 6"
 	run_on :host1
 	check result.to_i.is_less_than?(90)
-
-	log "Tests finished!"
 end
 
 start do

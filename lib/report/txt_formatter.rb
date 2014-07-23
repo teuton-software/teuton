@@ -14,7 +14,7 @@ class TXTFormatter < BaseFormatter
 		w "HEAD\n"
 		@head.each { |key,value| w tab+key.to_s+": "+value.to_s+"\n" }
 
-		w "LINES\n"
+		w "HISTORY\n"
 		@lines.each do |i|
 			if i.class.to_s=='Hash' then
 				lValue=i[:weight] if i[:check]

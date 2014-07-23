@@ -3,20 +3,22 @@
 
 module DSL
 
-	def command(pCommand, pArgs={})
-		@action[:command]=pCommand
-		tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
-	end
-
-	def description(pDescription=nil)
-		desc pDescription
+	def desc(pDescription=nil)
+		description pDescription
 	end
 	
-	def desc(pDescription=nil)
+	def description(pDescription=nil)
 		return @action[:description] if pDescription.nil?
 		@action[:description]=pDescription
 	end
 	
+	def command(pCommand, pArgs={})
+		@action[:command]=pCommand
+		desc(pArgs[:desc]) if pArgs[:desc]
+		description(pArgs[:description]) if pArgs[:description]
+		tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
+	end
+
 	#Read param pOption from config or global Hash data
 	def get(pOption)
 		return @config[pOption] if @config[pOption]
@@ -37,12 +39,12 @@ module DSL
 	
 	#Run command from the host identify as pHostname
 	def run_on(pHostname=:localhost)
-		if pHostname==:localhost || pHostname.to_s.include?('127.0.0.') then
+		if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
 			run_local_cmd
 		else
 			key=( (pHostname.to_s.split('_')[0])+'_ip' ).to_sym
-			lsIP=get( key )
-			if lsIP.include?('127.0.0.') then
+			ip=get( key )
+			if ip.include?('127.0.0.') then
 				run_local_cmd
 			else
 				run_remote_cmd pHostname
@@ -50,8 +52,6 @@ module DSL
 		end
 	end
 
-	#Si se cumple la condición, entonces se registra el evento como un acierto.
-	#En caso contrario se registra como un error.	
 	def check(pCond, pArgs={})
 		@action[:weight]=pArgs[:weight].to_f if pArgs[:weight]
 		lWeight= @action[:weight]
@@ -67,31 +67,31 @@ module DSL
 		verbose c
 	end
 	
-	def log(pText, pType=:info)
+	def log(pText="", pType=:info)
 		s="INFO: "
 		s="WARN: " if pType==:warn
 		s="ERROR: " if pType==:error
 		@report.lines << s+pText
 	end
 			
-	def unique(psKey, psValue="")
-		if @unique_values[psKey]==nil then
-			@unique_values[psKey]=psValue
-		else
-			@report.tail[:unique_fault]+=1
-			log("Unique value (#{psKey}): #{psValue}",:error)
-		end
+	def unique( key, value )
+		@uniques << [ key, value ]
+		#if @unique_values[psKey]==nil then
+		#	@unique_values[psKey]=psValue
+		#else
+		#	@report.tail[:unique_fault]+=1
+		#	log("Unique value (#{psKey}): #{psValue}",:error)
+		#end
 	end
 	
-	#Set temp filename
 	def tempfile(pTempfile=nil)
 		ext='.tmp'
 		pre=@id.to_s+"-"
 		if pTempfile.nil? then
 			return @action[:tempfile]
 		elsif pTempfile==:default 
-			@action[:tempfile]=File.join(@tmpdir, pre+'tt_local.tmp')
-			@action[:remote_tempfile]=File.join(@remote_tmpdir, pre+'tt_remote.tmp')
+			@action[:tempfile]=File.join(@tmpdir, pre+'tt_local'+ext)
+			@action[:remote_tempfile]=File.join(@remote_tmpdir, pre+'tt_remote'+ext)
 		else
 			@action[:tempfile]=File.join(@tmpdir, pre+pTempfile+ext)
 			@action[:remote_tempfile]=File.join(@remote_tmpdir, pre+pTempfile+ext)
@@ -106,7 +106,6 @@ module DSL
 
 private
 
-	#Se devuelve el contenido del fichero indicado en los parámetros de entrada.
 	def read_filename(psFilename)
 		begin
 			lFile = File.open(psFilename,'r')
@@ -122,44 +121,37 @@ private
 	end
 	
 	def run_local_cmd
-		#lsCmd=@action[:command]+' > '+@action[:tempfile]
-		#execute(lsCmd) 
-		#@result.content= read_filename(@action[:tempfile])	
 		@result.content = execute( @action[:command] )	
 	end
 	
 	def run_remote_cmd(pHostname) 		
 		hostname=pHostname.to_s
+		ip=get((hostname+'_ip').to_sym)
+		username=get((hostname+'_username').to_sym)
+		password=get((hostname+'_password').to_sym)
 		output=[]
 		
 		begin
 			if @sessions[hostname].nil?
-				ip=get((hostname+'_ip').to_sym)
-				username=get((hostname+'_username').to_sym)
-				password=get((hostname+'_password').to_sym)
 				@sessions[hostname] = Net::SSH.start(ip, username, :password => password)
 			end
 			
 			if @sessions[hostname].class==Net::SSH::Connection::Session
-				ssh=@sessions[hostname] 
-				text=ssh.exec!( @action[:command] )
+				text=@sessions[hostname].exec!( @action[:command] )
 				output = text.split("\n")
 			end
 		rescue Errno::EHOSTUNREACH
-			lsText="ERROR: Host #{ip} unreachable!"
 			@sessions[hostname]=:nosession
 			verbose "!"
-			log(lsText) #, :error)
+			log( "Host #{ip} unreachable!", :error)
 		rescue Net::SSH::AuthenticationFailed
-			lsText="ERROR: SSH::AuthenticationFailed!"
 			@sessions[hostname]=:nosession
 			verbose "!"
-			log(lsText) #, :error)
+			log( "SSH::AuthenticationFailed!", :error)
 		rescue Exception => e
-			lsText="[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+lsCmd
 			@sessions[hostname]=:nosession
 			verbose "!"
-			log(lsText) #, :error)
+			log( "[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+@action[:command], :error)
 		end
 		
 		@result.content=output

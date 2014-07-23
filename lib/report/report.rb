@@ -52,7 +52,7 @@ class Report
 	  tab="  "
 		puts 'HEAD'
 		@head.each { |key,value| puts tab+key.to_s+": "+value.to_s }
-		puts 'LINES'
+		puts 'HISTORY'
 		@lines.each do |i|
 			if i.class.to_s=='Hash' then
 				value=0.0

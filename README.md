@@ -106,8 +106,3 @@ by our script. Let's see:
 The above file configures 2 diferents cases with their params. The script
 use this information when execute every case.
 
-**Technology Stack**
-====================
-* Ruby 1.9
-* Gems: net-ssh, net-sftp
-

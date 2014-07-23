@@ -45,8 +45,9 @@ class Case
 	
 		@action_counter=0		
 		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
-		tempfile :default
+		@uniques=[]
 		@sessions={}	
+		tempfile :default
 	end
 
 	def start
@@ -70,7 +71,11 @@ class Case
 			end
 			verboseln "\n"
 		else
-			@tests.each { |t| instance_eval &t[:block] }
+			@tests.each do |t| 
+				log("Begin "+t[:name].to_s)
+				instance_eval &t[:block]
+				log("End "+t[:name].to_s)
+			end
 		end
 
 		finish_time=Time.now

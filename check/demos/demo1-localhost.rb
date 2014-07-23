@@ -31,9 +31,6 @@ define_test :test01_localhost do
 	command "cat /proc/partitions | grep sdb| wc -l"
 	run_on :localhost
 	check result.to_i.equal?(2+1)
-
-	log "Tests finished!"
-	
 end
 
 start do
