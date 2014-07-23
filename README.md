@@ -97,11 +97,9 @@ by our script. Let's see:
 :global:
 :cases:
 - :tt_members: Student1
-  :tt_emails: student1@email.com
   :host1_ip: 1.1.1.1
   :host1_password: password4student1
 - :tt_members: Student2
-  :tt_emails: student2@email.com
   :host1_ip: 2.2.2.2
   :host1_password: passowrd4student2
 ```
