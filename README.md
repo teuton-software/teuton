@@ -74,14 +74,17 @@ will be execute in the target host.
 result with our expectations:
 
 **STEP 3**
-At the end of our script, we order showing a resume on the screen when
-fisish, and create reports for every case in txt format.
+At the end of our example script we have:
 ```
 start do
 	show :resume
 	export :all, :format => :txt
 end
 ```
+The above lines order:
+* showing a resume on the screen when finish, and 
+* create reports for every case in txt format.
+
 Now we have our script file ready. Notice that we could use others export 
 formats as XML, HTML, CVS.
 
