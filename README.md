@@ -69,7 +69,7 @@ with our words, so every body could easily understant what we are trying
 to check.
 * `command "cat /etc/passwd|grep david|wc -l"`: Define the command that 
 will be execute in the target host.
-* `run_from :localhost`: Execute the previous command into the target host.
+* `run_from :host1`: Execute the previous command into the target host.
 * `check result.to_i.equal?(1)`: At the end we need to check the obtained 
 result with our expectations:
 
