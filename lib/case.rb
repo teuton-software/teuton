@@ -12,7 +12,7 @@ class Case
 	include DSL
 	include Utils
 	attr_accessor :result
-	attr_reader :id, :report
+	attr_reader :id, :report, :uniques
 	@@id=1
 
 	def initialize(pConfig)
@@ -45,7 +45,7 @@ class Case
 	
 		@action_counter=0		
 		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
-		@uniques=[]
+		@uniques={}
 		@sessions={}	
 		tempfile :default
 	end
@@ -85,7 +85,10 @@ class Case
 		@report.tail[:finish_time]=finish_time
 		@report.tail[:duration]=finish_time-start_time		
 		@report.tail[:unique_fault]=0
-		@report.close_case
+	end
+	
+	def close
+		@report.close
 	end
 	
 	def deinit

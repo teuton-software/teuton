@@ -10,6 +10,8 @@ require_relative '../../lib/tool'
 define_test :test01_localhost do
 	log "Checking users!"
 
+	unique "username", get(:username)
+
 	description "Checking user <"+get(:username)+">"
 	command "cat /etc/passwd|grep ':"+get(:username)+"'|wc -l"
 	run_on :localhost
@@ -31,6 +33,7 @@ define_test :test01_localhost do
 	command "cat /proc/partitions | grep sdb| wc -l"
 	run_on :localhost
 	check result.to_i.equal?(2+1)
+	
 end
 
 start do

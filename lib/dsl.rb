@@ -75,7 +75,7 @@ module DSL
 	end
 			
 	def unique( key, value )
-		@uniques << [ key, value ]
+		@uniques[key] = value 
 		#if @unique_values[psKey]==nil then
 		#	@unique_values[psKey]=psValue
 		#else

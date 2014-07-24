@@ -21,7 +21,7 @@ class Report
 		@tail={}
 	end
 
-	def close_case
+	def close
 		lMax=0.0
 		lGood=0.0
 		lFail=0.0

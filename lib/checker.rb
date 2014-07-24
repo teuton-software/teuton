@@ -52,7 +52,6 @@ class Checker
 
 		@caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) } # create cases
 		start_time = Time.now
-
 		if @global[:tt_sequence] then
 			verboseln "[INFO] Running in sequence (#{start_time.to_s})"
 			@cases.each { |c| c.start } # Process every case in sequence
@@ -62,6 +61,23 @@ class Checker
 			@cases.each { |c| threads << Thread.new{c.start} } # Process cases in parallel
 			threads.each { |t| t.join }
 		end
+		
+		uniques={}
+		@cases.each do |c|
+			c.uniques.each_pair do |key,value|
+				k=(key.to_s+"="+value.to_s).to_sym
+				if uniques[k].nil? then
+					uniques[k]=[ c.id ]
+				else
+					uniques[k] << c.id
+				end
+			end
+		end
+		
+		threads=[]
+		@cases.each { |c| threads << Thread.new{c.close} }
+		threads.each { |t| t.join }
+
 		finish_time=Time.now
 		@report.tail[:start_time_]=start_time
 		@report.tail[:finish_time]=finish_time
