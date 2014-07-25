@@ -70,4 +70,8 @@ class Result
 		@content.each { |i| r.content<<i.to_s }
 		return r
 	end
+	
+	def value
+		@content[0]
+	end
 end

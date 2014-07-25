@@ -45,7 +45,7 @@ class Case
 	
 		@action_counter=0		
 		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
-		@uniques={}
+		@uniques=[]
 		@sessions={}	
 		tempfile :default
 	end
@@ -84,10 +84,17 @@ class Case
 		@report.tail[:start_time_]=start_time
 		@report.tail[:finish_time]=finish_time
 		@report.tail[:duration]=finish_time-start_time		
-		@report.tail[:unique_fault]=0
 	end
 	
-	def close
+	def close(uniques)
+		fails=0
+		@uniques.each do |key|
+			if uniques[key].include?(id) and uniques[key].count>1 then
+				fails+=1
+				log("Unique => #{key.to_s}, conflict with => #{uniques[key].to_s}", :error)
+			end
+		end
+		@report.tail[:unique_fault]=fails
 		@report.close
 	end
 	

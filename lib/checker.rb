@@ -62,20 +62,21 @@ class Checker
 			threads.each { |t| t.join }
 		end
 		
+		# Collect "unique" values from all cases
 		uniques={}
 		@cases.each do |c|
-			c.uniques.each_pair do |key,value|
-				k=(key.to_s+"="+value.to_s).to_sym
-				if uniques[k].nil? then
-					uniques[k]=[ c.id ]
+			c.uniques.each do |key|
+				if uniques[key].nil? then
+					uniques[key]=[ c.id ]
 				else
-					uniques[k] << c.id
+					uniques[key] << c.id
 				end
 			end
 		end
-		
+
+		# Close reports for all cases
 		threads=[]
-		@cases.each { |c| threads << Thread.new{c.close} }
+		@cases.each { |c| threads << Thread.new{c.close uniques} }
 		threads.each { |t| t.join }
 
 		finish_time=Time.now

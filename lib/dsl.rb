@@ -75,13 +75,9 @@ module DSL
 	end
 			
 	def unique( key, value )
-		@uniques[key] = value 
-		#if @unique_values[psKey]==nil then
-		#	@unique_values[psKey]=psValue
-		#else
-		#	@report.tail[:unique_fault]+=1
-		#	log("Unique value (#{psKey}): #{psValue}",:error)
-		#end
+		return if value.nil?
+		k=(key.to_s+"="+value.to_s).to_sym
+		@uniques << k
 	end
 	
 	def tempfile(pTempfile=nil)

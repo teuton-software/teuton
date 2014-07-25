@@ -24,6 +24,11 @@ define_test :remote_hosts do
 	command "df -hT| grep rootfs| tr -s ' ' ':'|cut -d : -f 6"
 	run_on :host1
 	check result.to_i.is_less_than?(90)
+
+	command "ifconfig| grep eth0| tr -s ' ' '$'|cut -d $ -f 5"
+	run_on :host1
+	unique 'eth0_MAC', result.value
+
 end
 
 start do
