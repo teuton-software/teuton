@@ -4,7 +4,7 @@
 #Define tasks
 desc "Clean temp files."
 task :clean do
-	system("rm -rf var/tmp/*")
+	system("rm -rf var/*")
 end
 
 desc "Debian full installation"
@@ -23,15 +23,13 @@ task :zypperpackages do
 	system("zypper --non-interactive in --auto-agree-with-licenses nmap openssh")
 end
 
-desc "Install rubygems"
+desc "rubygems installation"
 task :rubygems do
-	system("gem install net-ssh net-sftp rspec")
+	system("gem install net-ssh net-sftp rspec pony")
 end
 
 desc "Creating auxiliar directories"
 task :auxdirs do
-	system("chmod +x check/demos/*.rb")
-	system("mkdir -p var/mnt")
-	system("mkdir -p var/out")
-	system("mkdir -p var/tmp")
+	system("chmod +x ./check/demos/*.rb")
+	system("mkdir -p var")
 end
