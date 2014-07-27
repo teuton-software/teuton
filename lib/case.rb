@@ -30,7 +30,7 @@ class Case
 		#Default configuration
 		@config[:tt_skip] = @config[:tt_skip] || false
 		@mntdir = File.join( "var", @global[:tt_testname], "mnt", @id.to_s )
-		@tmpdir = File.join( "var", @global[:tt_testname], "tmp" ) #, @id.to_s )
+		@tmpdir = File.join( "var", @global[:tt_testname], "tmp" )
 		@remote_tmpdir = File.join( "/", "tmp" )
 
 		ensure_dir @mntdir

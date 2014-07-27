@@ -8,12 +8,12 @@ module Utils
 			#Dir.mkdir(psDirname)
 			#TODO: Mod cross-platform. Not use system command.
 			execute("mkdir #{psDirname} -p")
+			#File.mkdir(psDirname)
 			return false
 		end
 		return true
 	end
 
-	#Execute the system command if debug is false.
 	def execute(psCmd)
 		output=[]
 		return output if @debug

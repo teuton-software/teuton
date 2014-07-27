@@ -137,6 +137,31 @@ class Checker
 		end
 	end
 
+	def build_gamelist
+		ensure_dir File.join(@outdir, "views")
+		file = File.open( File.join(@outdir, "show_gamelist.rb"), 'w' )
+		file.write(%s{#!/usr/bin/ruby
+# encoding: utf-8
+
+require 'sinatra/base'
+
+class GameList < Sinatra::Base
+	set :static, true
+  set :public_folder, 'public'
+  #set :bind, '192.168.1.104'
+  #set :port, 1616
+	
+	get '/' do
+		erb :index
+	end
+end
+
+GameList.run!
+})
+
+		file.close
+	end
+	
 private
 
 	def close_main_report

@@ -39,4 +39,5 @@ end
 start do
 	show :resume
 	export :all, :format => :txt
+	build_gamelist
 end
