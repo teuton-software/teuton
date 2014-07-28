@@ -5,6 +5,7 @@ require 'rubygems'
 require 'singleton'
 require 'yaml'
 
+require_relative 'builder'
 require_relative 'case'
 require_relative 'utils'
 require_relative 'report/report'
@@ -12,6 +13,7 @@ require_relative 'report/report'
 class Checker
 	include Singleton
 	include Utils
+	include Builder
 	attr_reader :global, :tests
 	
 	def initialize
@@ -137,29 +139,11 @@ class Checker
 		end
 	end
 
-	def build_gamelist
-		ensure_dir File.join(@outdir, "views")
-		file = File.open( File.join(@outdir, "show_gamelist.rb"), 'w' )
-		file.write(%s{#!/usr/bin/ruby
-# encoding: utf-8
-
-require 'sinatra/base'
-
-class GameList < Sinatra::Base
-	set :static, true
-  set :public_folder, 'public'
-  #set :bind, '192.168.1.104'
-  #set :port, 1616
-	
-	get '/' do
-		erb :index
-	end
-end
-
-GameList.run!
-})
-
-		file.close
+	def build( app, pArgs={})
+		case app
+		when :gamelist
+			build_game_list pArgs
+		end
 	end
 	
 private

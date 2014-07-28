@@ -4,21 +4,21 @@
 require_relative 'formatter'
 
 =begin
- This class maintain all the results 
- obtained from every case/test, in a structured way.
+ This class maintain the results of every case, in a structured way.
 =end
 
 class Report
-	attr_accessor :outdir, :filename
+	attr_accessor :id, :outdir, :filename
 	attr_accessor :head, :lines, :tail
-	attr_accessor :type, :id
+	attr_reader :history
 		
 	def initialize(pId)
 		@id=pId
-		@outdir="var/out"
+		@outdir="var"
 		@head={}
 		@lines=[]
 		@tail={}
+		@history=""
 	end
 
 	def close
@@ -31,9 +31,11 @@ class Report
 				lMax += i[:weight] if i[:weight]>0
 				if i[:check] then
 					lGood+= i[:weight]
+					@history+="."
 				else
 					lFail+= i[:weight]
 					lFailCounter+=1
+					@history+="?"
 				end
 			end
 		end

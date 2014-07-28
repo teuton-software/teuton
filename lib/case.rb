@@ -101,5 +101,4 @@ class Case
 	def deinit
 		@sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
 	end
-
 end
