@@ -30,11 +30,12 @@ module Builder
 		file.write("<table border='1'>")
 		file.write("<thead><tr><td>Case</td><td>History</td></tr></thead>")
 		file.write("<tbody>")
+		list=[]
 		@cases.each do |c|
 			name=c.report.head[:tt_members] || 'noname'
-			history=c.report.history
-			file.write("<tr><td>#{name}</td><td>#{history}</td></tr>")
+			list << [ c.report.tail[:grade].to_f, name.to_s, c.report.history.to_s ]
 		end
+		list.reverse.each { |i| file.write("<tr><td>#{i[1]}</td><td>#{i[2]}</td></tr>") }
 		file.write("</tbody></table>")
 		file.close
 	end
