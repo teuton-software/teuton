@@ -84,6 +84,8 @@ class Case
 		@report.tail[:start_time_]=start_time
 		@report.tail[:finish_time]=finish_time
 		@report.tail[:duration]=finish_time-start_time		
+
+		@sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
 	end
 	
 	def close(uniques)
@@ -98,7 +100,4 @@ class Case
 		@report.close
 	end
 	
-	def deinit
-		@sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
-	end
 end

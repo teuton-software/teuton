@@ -1,7 +1,5 @@
-#!/usr/bin/ruby
 # encoding: utf-8
 
-require 'rubygems'
 require 'singleton'
 require 'yaml'
 
@@ -11,24 +9,23 @@ require_relative 'utils'
 require_relative 'report/report'
 
 class Checker
-	include Singleton
-	include Utils
-	include Builder
-	attr_reader :global, :tests
+  include Singleton
+  include Utils
+  include Builder
+  
+  attr_reader :global, :tests
 	
-	def initialize
-		@global = {}
-		@report = Report.new(0)
-		@report.filename="resume"
+  def initialize
+    @global = {}
+		@tests=[]
+    @report = Report.new(0)
+    @report.filename="resume"
 		@cases = []		
 		@debug = false
 		@verbose = true
-		@tests=[]
 	end
 		
 	def check_cases!(pConfigFilename = File.join(File.dirname($0),File.basename($0,".rb")+".yaml") )
-		execute('clear')
-		
 		#Load cases from yaml config file
 		configdata = YAML::load(File.open(pConfigFilename))
 		@global = configdata[:global] || {}
@@ -42,15 +39,7 @@ class Checker
 		@report.outdir=@outdir
 
 		#Fill report head
-		@report.head[:tt_title]="Executing tt-checker tests (version 0.2)"
-		@report.head[:tt_scriptname]=$0
-		@report.head[:tt_configfile]=pConfigFilename
-		@report.head[:tt_debug]=true if @debug
-		@report.head.merge!(@global)
-		
-		bar = "="*@report.head[:tt_title].length
-		verboseln bar
-		verboseln @report.head[:tt_title]
+    open_main_report(pConfigFilename)
 
 		@caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) } # create cases
 		start_time = Time.now
@@ -80,23 +69,10 @@ class Checker
 		threads=[]
 		@cases.each { |c| threads << Thread.new{c.close uniques} }
 		threads.each { |t| t.join }
-
-		finish_time=Time.now
-		@report.tail[:start_time_]=start_time
-		@report.tail[:finish_time]=finish_time
-		@report.tail[:duration]=finish_time-start_time
-		verboseln "\n[INFO] Duration = #{(finish_time-start_time).to_s} (#{finish_time.to_s})"
-
-		verboseln "\n"
-		verboseln bar
 		
-		close_main_report
+		close_main_report(start_time)
 	end
-	
-	def debug=(pValue)
-		@debug=pValue
-	end
-	
+		
 	def is_debug?
 		@debug
 	end
@@ -112,27 +88,24 @@ class Checker
 	def start(&block)
 		check_cases!
 		instance_eval &block
-		@cases.each { |c| c.deinit }
 	end
 	
-	def show(data=:resume)
-		case data
-		when :resume
+	def show(mode=:resume)
+		if mode==:resume or mode==:all then
 			@report.show
-		when :all
-			@report.show
+		end
+		if mode==:details or mode==:all then
 			@cases.each { |c| puts "____"; c.report.show }
 			puts "."
 		end
 	end
 	
-	def export(data=:resume, pArgs={})
+	def export(mode=:resume, pArgs={})
 		format= pArgs[:format] || :txt
-		case data
-		when :resume
+		if mode==:resume or mode==:all then
 			@report.export format
-		when :all
-			@report.export format
+		end
+		if mode==:details or mode==:all then
 			threads=[]
 			@cases.each { |c| threads << Thread.new{ c.report.export format } }
 			threads.each { |t| t.join }
@@ -148,17 +121,38 @@ class Checker
 	
 private
 
-	def close_main_report
+	def close_main_report(start_time)
+    finish_time=Time.now
+    @report.tail[:start_time]=start_time
+    @report.tail[:finish_time]=finish_time
+    @report.tail[:duration]=finish_time-start_time
+    
+    verboseln "\n[INFO] Duration = #{(finish_time-start_time).to_s} (#{finish_time.to_s})"
+    verboseln "\n"
+    verboseln "="*@report.head[:tt_title].length
+
 		@cases.each do |c|
-			lMembers=c.report.head[:tt_members] || 'noname'
-			lGrade=c.report.tail[:grade] || 0.0
-			lHelp=" "
-			lHelp="?" if lGrade<50.0
-			lHelp="*" if lGrade==100.0
+      lMembers=c.report.head[:tt_members] || 'noname'
+      lGrade=c.report.tail[:grade] || 0.0
+      lHelp=" "
+      lHelp="?" if lGrade<50.0
+      lHelp="*" if lGrade==100.0
 			
 			@report.lines << "Case #{c.id.to_s} #{lHelp} (#{lGrade.to_s}) #{lMembers}"
 		end
 	end
 
+  def open_main_report(pConfigFilename)
+ 		@report.head[:tt_title]="Executing tt-checker tests (version 0.3)"
+		@report.head[:tt_scriptname]=$0
+		@report.head[:tt_configfile]=pConfigFilename
+		@report.head[:tt_debug]=true if @debug
+		@report.head.merge!(@global)
+		
+		execute('clear')
+		verboseln "="*@report.head[:tt_title].length
+		verboseln @report.head[:tt_title]
+ end
+  
 end
 
