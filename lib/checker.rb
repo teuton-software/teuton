@@ -18,15 +18,15 @@ class Checker
   def initialize
     @global = {}
 		@tests=[]
+		@cases = []		
     @report = Report.new(0)
     @report.filename="resume"
-		@cases = []		
 		@debug = false
 		@verbose = true
 	end
 		
 	def check_cases!(pConfigFilename = File.join(File.dirname($0),File.basename($0,".rb")+".yaml") )
-		#Load cases from yaml config file
+		#Load configurations from yaml file
 		configdata = YAML::load(File.open(pConfigFilename))
 		@global = configdata[:global] || {}
 		@global[:tt_testname]= @global[:tt_testname] || File.basename($0,".rb")
@@ -100,7 +100,7 @@ class Checker
 		end
 	end
 	
-	def export(mode=:resume, pArgs={})
+	def export(mode=:all, pArgs={})
 		format= pArgs[:format] || :txt
 		if mode==:resume or mode==:all then
 			@report.export format
