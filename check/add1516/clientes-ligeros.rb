@@ -32,9 +32,24 @@ define_test :users do
 	run_on :host1
 	check result.to_i.equal?(3)
 
+	description "User <#{get(:apellido1)}1>"
+	command "cat /etc/passwd | grep #{get(:apellido1)}1 | wc -l"
+	run_on :host1
+	check result.to_i.equal?(1)
+
+	description "User <#{get(:apellido1)}2>"
+	command "cat /etc/passwd | grep #{get(:apellido1)}2 | wc -l"
+	run_on :host1
+	check result.to_i.equal?(1)
+
+	description "User <#{get(:apellido1)}3>"
+	command "cat /etc/passwd | grep #{get(:apellido1)}3 | wc -l"
+	run_on :host1
+	check result.to_i.equal?(1)
+
 end
 
-define_test :cliente_ligero do
+define_test :thin_clients do
 	description "Cliente ligero 192.168.0.20"
 	command "arp | grep 192.168.0.20|grep eth1"
 	run_on :host1
