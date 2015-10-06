@@ -1,5 +1,5 @@
-CHECKER TOOL
-============
+CHECKING MACHINES
+=================
 
 **Introduction**
 ================

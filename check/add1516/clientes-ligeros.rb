@@ -18,6 +18,9 @@ define_test :hostnames do
 	command "hostname -f"
 	run_on :host1
 	check result.equal?(get(:host1_hostname))
+
+	unique "hostname", result.value
+	
 end
 
 define_test :users do

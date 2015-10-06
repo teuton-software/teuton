@@ -19,7 +19,7 @@ class Result
 	def not_equal?(pValue)
 		return !equal?(pValue)
 	end
-
+	    
 	def include?(pValue)
 		return @content.include? pValue
 	end
