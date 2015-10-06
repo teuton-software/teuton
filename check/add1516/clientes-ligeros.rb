@@ -53,6 +53,7 @@ define_test :users do
 end
 
 define_test :thin_clients do
+
 	description "Cliente ligero 192.168.0.20"
 	command "arp | grep 192.168.0.20|grep eth1"
 	run_on :host1
@@ -63,6 +64,9 @@ define_test :thin_clients do
 	run_on :host1
 	check result.to_i.equal?(1)
 
+	command "ip link | grep ether"
+	unique "MAC", result.value
+	
 end
 
 start do
