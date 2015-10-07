@@ -24,42 +24,36 @@ define_test :hostnames do
 end
 
 define_test :users do
-	
-	description "Users <#{get(:apellido1)}[123]>"
-	command "cat /etc/passwd | grep #{get(:apellido1)}| wc -l"
-	run_on :host1
-	check result.to_i.equal?(3)
-	
-	description "Users passwd <#{get(:apellido1)}[123]>"
-	command "cat /etc/shadow | grep #{get(:apellido1)}| cut -d : -f 2| wc -l"
-	run_on :host1
-	check result.to_i.equal?(3)
+		
+	[1,2,3].each do |i|
+	  username=get(:apellido1)+i.to_s
 
-	description "User <#{get(:apellido1)}1>"
-	command "cat /etc/passwd | grep #{get(:apellido1)}1 | wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
+	  description "User <#{username}> exists"
+	  command "cat /etc/passwd | grep #{username} | wc -l"
+	  run_on :host1
+	  check result.to_i.equal?(1)
 
-	description "User <#{get(:apellido1)}2>"
-	command "cat /etc/passwd | grep #{get(:apellido1)}2 | wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
+	  description "Users <#{username}> with passwd>"
+	  command "cat /etc/shadow | grep #{username}| cut -d : -f 2| wc -l"
+	  run_on :host1
+	  check result.to_i.equal?(1)
 
-	description "User <#{get(:apellido1)}3>"
-	command "cat /etc/passwd | grep #{get(:apellido1)}3 | wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
-
+	  description "User <#{username}> logged"
+	  command "last | grep #{username} | wc -l"
+	  run_on :host1
+	  check result.to_i.not_equal?(0)
+    end
+    
 end
 
 define_test :thin_clients do
 
-	description "Cliente ligero 192.168.0.20"
+	description "Thin client 192.168.0.20"
 	command "arp | grep 192.168.0.20|grep eth1"
 	run_on :host1
 	check result.to_i.equal?(1)
 	
-	description "Cliente ligero 192.168.0.21"
+	description "Thin client 192.168.0.21"
 	command "arp | grep 192.168.0.21|grep eth1"
 	run_on :host1
 	check result.to_i.equal?(1)

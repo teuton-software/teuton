@@ -17,6 +17,7 @@ class TXTFormatter < BaseFormatter
 		w "HISTORY\n"
 		@lines.each do |i|
 			if i.class.to_s=='Hash' then
+			    lValue=0.0
 				lValue=i[:weight] if i[:check]
 				w tab+i[:id].to_s+" ("+lValue.to_s+"/"+i[:weight].to_s+") "
 				w '"'+i[:description].to_s+'": '+i[:command].to_s+"\n"
