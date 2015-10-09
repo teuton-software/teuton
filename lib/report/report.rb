@@ -58,9 +58,9 @@ class Report
 			if i.class.to_s=='Hash' then
 				value=0.0
 				value=i[:weight] if i[:check]
-				puts tab+i[:id].to_s+" ("+value.to_s+"/"+i[:weight].to_s+") "+i[:description]
+				puts tab+"%03d"%i[:id]+" ("+"%2d.2f"%value.to_f+"/"+"%2d.2f"%i[:weight].to_f+") "+i[:description]
 			else
-				puts tab+"- "+i.to_s
+				puts tab+"-  "+i.to_s
 			end
 		end
 		puts 'TAIL'

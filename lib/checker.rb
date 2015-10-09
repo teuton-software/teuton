@@ -112,16 +112,16 @@ class Checker
 		end
 	end
 
-	def build( app, pArgs={})
-		case app
-		when :gamelist
-			build_game_list pArgs
-		end
+  def build( app, pArgs={})
+	case app
+	when :gamelist
+	  build_game_list pArgs
 	end
+  end
 	
 private
 
-	def close_main_report(start_time)
+  def close_main_report(start_time)
     finish_time=Time.now
     @report.tail[:start_time]=start_time
     @report.tail[:finish_time]=finish_time
@@ -131,28 +131,28 @@ private
     verboseln "\n"
     verboseln "="*@report.head[:tt_title].length
 
-		@cases.each do |c|
+	@cases.each do |c|
       lMembers=c.report.head[:tt_members] || 'noname'
       lGrade=c.report.tail[:grade] || 0.0
       lHelp=" "
       lHelp="?" if lGrade<50.0
       lHelp="*" if lGrade==100.0
 			
-			@report.lines << "Case "+"%02d"%c.id.to_i+" #{lHelp} ("+"%.2f"%lGrade.to_f+") #{lMembers}"
-		end
+	  @report.lines << "Case_"+"%03d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+"#{lHelp} #{lMembers}"
 	end
+  end
 
   def open_main_report(pConfigFilename)
- 		@report.head[:tt_title]="Executing tt-checker tests (version 0.3)"
-		@report.head[:tt_scriptname]=$0
-		@report.head[:tt_configfile]=pConfigFilename
-		@report.head[:tt_debug]=true if @debug
-		@report.head.merge!(@global)
+ 	@report.head[:tt_title]="Executing tt-checker tests (version 0.3)"
+	@report.head[:tt_scriptname]=$0
+	@report.head[:tt_configfile]=pConfigFilename
+	@report.head[:tt_debug]=true if @debug
+	@report.head.merge!(@global)
 		
-		execute('clear')
-		verboseln "="*@report.head[:tt_title].length
-		verboseln @report.head[:tt_title]
- end
+	execute('clear')
+	verboseln "="*@report.head[:tt_title].length
+    verboseln @report.head[:tt_title]
+  end
   
 end
 
