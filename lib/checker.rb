@@ -138,7 +138,7 @@ private
       lHelp="?" if lGrade<50.0
       lHelp="*" if lGrade==100.0
 			
-	  @report.lines << "Case_"+"%03d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+"#{lHelp} #{lMembers}"
+	  @report.lines << "Case_"+"%03d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
 	end
   end
 

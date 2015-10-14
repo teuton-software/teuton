@@ -38,7 +38,9 @@ module DSL
 	end
 	
 	#Run command from the host identify as pHostname
-	def run_on(pHostname=:localhost)
+	def run_on(pHostname=:localhost, pArgs={})
+		command(pArgs[:command]) if pArgs[:command]
+	
 		if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
 			run_local_cmd
 		else
@@ -52,6 +54,7 @@ module DSL
 		end
 	end
 
+	#check <condition>, :weight => <value>
 	def check(pCond, pArgs={})
 		@action[:weight]=pArgs[:weight].to_f if pArgs[:weight]
 		lWeight= @action[:weight]
