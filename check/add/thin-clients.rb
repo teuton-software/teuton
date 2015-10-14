@@ -4,23 +4,22 @@
 require_relative '../../lib/tool'
 
 =begin
- Módulo ADD1516. Actividad Clientes ligeros
+ Course name: ADD1516
+ Activity: Thin Clients LTSP
 =end
 
 define_test :hostnames_configured do
+  description "Checking SSH port <"+get(:host1_ip)+">"
+  run_on :localhost, :command => "nmap #{get(:host1_ip)} | grep ssh|wc -l"
+  check result.to_i.equal?(1)
 
-	description "Checking SSH port <"+get(:host1_ip)+">"
-	command "nmap #{get(:host1_ip)} | grep ssh|wc -l"
-	run_on :localhost
-	check result.to_i.equal?(1)
+  description "Checking hostname <"+get(:host1_hostname)+">"
+  run_on :host1, :command => "hostname -f"
+  check result.equal?(get(:host1_hostname))
 
-	description "Checking hostname <"+get(:host1_hostname)+">"
-	command "hostname -f"
-	run_on :host1
-	check result.equal?(get(:host1_hostname))
-
-	unique "hostname", result.value
-	
+  unique "hostname", result.value	
+  run_on :host1, :command => "blkid |grep sda1"
+  unique "UUID", result.value	
 end
 
 define_test :users_defined do
@@ -53,8 +52,7 @@ define_test :software_installed do
   check result.to_i.equal?(1)
 
   run_on :host1, :command => "ltsp-info| grep 'found image'| tr -s ':' ' '|tr -s ' ' ':'| cut -d : -f 3"
-  imagefulname=result.value
-  
+  log imagefullname=result.value
 end
 
 define_test :services_running do
@@ -65,7 +63,16 @@ define_test :services_running do
     run_on :host1, :command => "ps -ef| grep #{service}| grep -v color| wc -l"
     check result.to_i.equal?(1)
   end
-    
+  
+  filename='/etc/default/isc-dhcp-server'
+  description "<#{filename}> content"
+  run_on :host1, :command => "cat #{filename}|grep INTERFACES"
+  check result.value.include? 'INTERFACES="eth1"'
+
+  filename='/etc/default/tftpd-pha'
+  description "<#{filename}> content"
+  run_on :host1, :command => "cat #{filename}|grep TFTP_ADDRESS"
+  check result.value.include? 'TFTP_ADDRESS="192.168.0.1:69"'
 end
 
 define_test :thin_clients_running do
