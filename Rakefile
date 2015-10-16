@@ -7,29 +7,29 @@ task :clean do
 	system("rm -rf var/*")
 end
 
-desc "Debian full installation"
-task :debian => [:debpackages, :rubygems, :auxdirs]
+desc "Debian installation"
+task :debian => [:debpackages, :install_gems, :create_auxdirs]
 
-desc "Install Debian packages "
+desc "_install deb packages "
 task :debpackages do
 	system("apt-get install -y nmap ssh")
 end
 
-desc "OpenSUSE full installation"
-task :suse => [:zypperpackages, :rubygems, :auxdirs]
+desc "OpenSUSE installation"
+task :suse => [:zypperpackages, :install_gems, :create_auxdirs]
 
-desc "Install OpenSuse packages"
+desc "_install rpm packages"
 task :zypperpackages do
 	system("zypper --non-interactive in --auto-agree-with-licenses nmap openssh")
 end
 
-desc "rubygems installation"
-task :rubygems do
+desc "_install gems"
+task :install_gems do
 	system("gem install net-ssh net-sftp rspec pony")
 end
 
-desc "Creating auxiliar directories"
-task :auxdirs do
+desc "_creating auxiliar directories"
+task :create_auxdirs do
 	system("chmod +x ./check/demos/*.rb")
 	system("mkdir -p var")
 end
