@@ -136,14 +136,14 @@ private
       lGrade=c.report.tail[:grade] || 0.0
       lHelp=" "
       lHelp="?" if lGrade<50.0
-      lHelp="*" if lGrade==100.0
+      #lHelp="*" if lGrade==100.0
 			
 	  @report.lines << "Case_"+"%03d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
 	end
   end
 
   def open_main_report(pConfigFilename)
- 	@report.head[:tt_title]="Executing tt-checker tests (version 0.3)"
+ 	@report.head[:tt_title]="Executing [checking-machines] tests (version 0.4)"
 	@report.head[:tt_scriptname]=$0
 	@report.head[:tt_configfile]=pConfigFilename
 	@report.head[:tt_debug]=true if @debug
