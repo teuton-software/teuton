@@ -5,7 +5,7 @@ require_relative '../../lib/tool'
 
 =begin
  Course name : ADD1516
- Activity    : Commands 01
+ Activity    : SSH conections
  MV OS       : GNU/Linux Debian 7
 =end
 
@@ -171,3 +171,29 @@ start do
 	show :resume
 	export :all
 end
+
+=begin
+---
+:global:
+  :groupname: udremote
+  :host1_username: root
+  :host1_hostname: debian
+  :host2_username: root
+  :host2_hostname: opensuse
+  :year: '2015'
+:cases:
+- :tt_members: David Vargas
+  :firstname: david
+  :lastname: vargas
+  :host1_ip: 172.16.109.101
+  :host1_password: profesor
+  :host2_ip: 172.16.109.201
+  :host2_password: profesor
+- :tt_members: richard stallman
+  :firstname: richard
+  :lastname: stallman
+  :host1_ip: 172.16.109.110
+  :host1_password: 78787878v
+  :host2_ip: 172.16.109.210
+  :host2_password: 78787878v
+=end
