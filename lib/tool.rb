@@ -2,7 +2,7 @@
 
 require_relative 'checker'
 
-def define_test(name, &block)
+def check(name, &block)
   Checker.instance.define_test(name, &block)
 end
 

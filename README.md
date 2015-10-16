@@ -13,22 +13,23 @@ We obtain automaticaly, the results of every student
 **Installation**
 ================
 Required: 
-* rake --version =>10.1.0
-* ruby -v => 1.9.3p194
+* `rake --version` =>10.1.0
+* `ruby -v` => 1.9.3p194
+* SSH client software
+* Install this gems `gem install net-ssh net-sftp rspec pony`
 
-Use the next command to install the required software on Debian OS:
- 
-  `rake debian_install`
-
-TODO:
-* `rake suse_install`, `rake windows_install`, `rake mac_install`, etc.
+> Use the next command to install it:
+> 
+> * `rake debian` to install on Debian.
+> * `rake opensuse`, to install on OpenSuse.
+>
 
 **Getting started**
 ===================
 To run one example test, do this `./check/demos/demo1-localhost.rb`.
 
 You will see the resumed results on the screen.
-And several files *./var/demo1-localhost/out/* are created with the results 
+And several files are created in /var/demo1-localhost/out/* with the results 
 in TXT format.
 
 There exists a YAML configuration file `.check/demos/demo1-localhost.yaml`, 
@@ -42,36 +43,36 @@ Now we will show how to create our own activity test, in four steps:
 **STEP 1**
 First, create an empty file with execution permission, and include a 
 reference to our tool.
-```
-require_relative '../../lib/tool'
-```
+
+    require_relative '../../lib/tool'
+
 This file will be called, for example, `./check/demos/my_demo.rb`.
 
 **STEP 2**
-Second, write tests using the four key words: description, command, run_on and check.
+Second, write tests using the four key words: `desc`, `on` and `expect`.
 Let's see an example:
-```
-define_test :test_name do
 
-	description "Checking user david"
-	command "cat /etc/passwd|grep ':david'|wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
+```
+check :test_name do
+
+	desc "Checking user david"
+	on :host1, :execute => "cat /etc/passwd|grep ':david'|wc -l"
+	expect result.to_i.equal?(1)
 
 	log "Tests finished!"
 	
 end
 ```
+
 The above example checks if 'david' user exists, on *host1* system.
 
-* `description "Checking user <david>"`, Describe the action or the target 
-with our words, so every body could easily understant what we are trying
+* `desc "Checking user <david>"`, Describe the action or the target 
+with our words, so every body could easily understand what we are trying
 to check.
-* `command "cat /etc/passwd|grep david|wc -l"`: Define the command that 
-will be execute in the target host.
-* `run_from :host1`: Execute the previous command into the target host.
-* `check result.to_i.equal?(1)`: At the end we need to check the obtained 
-result with our expectations:
+* `on :host1, :execute => "cat /etc/passwd|grep david|wc -l"`: Execute the command 
+into the target host.
+* `expect result.to_i.equal?(1)`: At the end we need to check the obtained 
+result with our expectations.
 
 **STEP 3**
 At the end of our example script we have:

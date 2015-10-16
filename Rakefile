@@ -12,15 +12,15 @@ task :debian => [:debpackages, :install_gems, :create_auxdirs]
 
 desc "_install deb packages "
 task :debpackages do
-	system("apt-get install -y nmap ssh")
+	system("apt-get install -y ssh")
 end
 
 desc "OpenSUSE installation"
-task :suse => [:zypperpackages, :install_gems, :create_auxdirs]
+task :opensuse => [:zypperpackages, :install_gems, :create_auxdirs]
 
 desc "_install rpm packages"
 task :zypperpackages do
-	system("zypper --non-interactive in --auto-agree-with-licenses nmap openssh")
+	system("zypper --non-interactive in --auto-agree-with-licenses openssh")
 end
 
 desc "_install gems"

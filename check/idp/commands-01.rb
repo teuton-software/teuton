@@ -9,54 +9,54 @@ require_relative '../../lib/tool'
  MV OS       : GNU/Linux Debian 7
 =end
 
-define_test :hostname_configured do
-  description "Checking SSH port <"+get(:host1_ip)+">"
-  run_on :localhost, :command => "nmap #{get(:host1_ip)} | grep ssh|wc -l"
-  check result.to_i.equal?(1)
+check :hostname_configurations do
+  desc "Checking SSH port <"+get(:host1_ip)+">"
+  on :localhost, :execute => "nmap #{get(:host1_ip)} | grep ssh|wc -l"
+  expect result.to_i.equal?(1)
 
   _hostname="#{get(:lastname1)}.#{get(:lastname2)}"
-  description "Checking hostname <"+_hostname+">"
-  run_on :host1, :command => "hostname -f"
-  check result.equal?(_hostname)
+  desc "Checking hostname <"+_hostname+">"
+  on :host1, :execute => "hostname -f"
+  expect result.equal?(_hostname)
 
   unique "hostname", result.value	
-  run_on :host1, :command => "blkid |grep sda1"
+  on :host1, :execute => "blkid |grep sda1"
   unique "UUID", result.value	
 end
 
-define_test :user_defined do
+check :user_definitions do
   username=get(:firstname)
 
-  description "User <#{username}> exists"
-  run_on :host1, :command => "cat /etc/passwd | grep #{username} | wc -l"
-  check result.to_i.equal?(1)
+  desc "User <#{username}> exists"
+  on :host1, :execute => "cat /etc/passwd | grep #{username} | wc -l"
+  expect result.to_i.equal?(1)
 
-  description "Users <#{username}> with not empty password "
-  run_on :host1, :command => "cat /etc/shadow | grep #{username}| cut -d : -f 2| wc -l"
-  check result.to_i.equal?(1)
+  desc "Users <#{username}> with not empty password "
+  on :host1, :exceute => "cat /etc/shadow | grep #{username}| cut -d : -f 2| wc -l"
+  expect result.to_i.equal?(1)
 
-  description "User <#{username}> logged"
-  run_on :host1, :command => "last | grep #{username[0,8]} | wc -l"
-  check result.to_i.not_equal?(0)
+  desc "User <#{username}> logged"
+  on :host1, :execute => "last | grep #{username[0,8]} | wc -l"
+  expect result.to_i.not_equal?(0)
 end
 
-define_test :directory_tree_exists do
+check :directory_and_files_created do
   dirs=[ 'fuw', 'idp', 'lnd', 'lnt' ]
   
   dirs.each do |dirname|
     dirfullname="/home/#{get(:firstname)}/Documentos/curso1516/#{dirname}"
-    description "Exist directory <#{dirfullname}>"
-    run_on :host1, :command => "vdir #{dirfullname} -d | wc -l"
-    check result.to_i.equal?(1)
+    desc "Exist directory <#{dirfullname}>"
+    on :host1, :execute => "vdir #{dirfullname} -d | wc -l"
+    expect result.to_i.equal?(1)
     
     filefullname="#{dirfullname}/leeme.txt"
-    description "Exist file <#{filefullname}>"
-    run_on :host1, :command => "vdir #{filefullname} | wc -l"
-    check result.to_i.equal?(1)
+    desc "Exist file <#{filefullname}>"
+    on :host1, :execute => "vdir #{filefullname} | wc -l"
+    expect result.to_i.equal?(1)
 
-    description "Content file <#{filefullname}> with <#{get(:firstname)}>"
-    run_on :host1, :command => "cat #{filefullname} | grep #{get(:firstname)}| wc -l"
-    check result.to_i.equal?(1)    
+    desc "Content file <#{filefullname}> with <#{get(:firstname)}>"
+    on :host1, :execute => "cat #{filefullname} | grep #{get(:firstname)}| wc -l"
+    expect result.to_i.equal?(1)    
   end
 end
 

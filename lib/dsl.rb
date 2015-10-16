@@ -3,11 +3,11 @@
 
 module DSL
 
-	def desc(pDescription=nil)
-		description pDescription
+	def description(pDescription=nil)
+		desc pDescription
 	end
 	
-	def description(pDescription=nil)
+	def desc(pDescription=nil)
 		return @action[:description] if pDescription.nil?
 		@action[:description]=pDescription
 	end
@@ -38,8 +38,11 @@ module DSL
 	end
 	
 	#Run command from the host identify as pHostname
-	def run_on(pHostname=:localhost, pArgs={})
-		command(pArgs[:command]) if pArgs[:command]
+	#on :host1, :execute => "command"
+	def on(pHostname=:localhost, pArgs={})
+		command(pArgs[:execute]) if pArgs[:execute]
+		command(pArgs[:exec]) if pArgs[:exec]
+		tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
 	
 		if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
 			run_local_cmd
@@ -54,8 +57,8 @@ module DSL
 		end
 	end
 
-	#check <condition>, :weight => <value>
-	def check(pCond, pArgs={})
+	#expect <condition>, :weight => <value>
+	def expect(pCond, pArgs={})
 		@action[:weight]=pArgs[:weight].to_f if pArgs[:weight]
 		lWeight= @action[:weight]
 

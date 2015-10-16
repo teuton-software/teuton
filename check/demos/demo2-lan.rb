@@ -3,31 +3,25 @@
 
 require_relative '../../lib/tool'
 
-define_test :remote_hosts do
+check :remote_hosts_configurations do
+  desc "Checking user <"+get(:username)+">"
+  on :host1, :execute => "cat /etc/passwd|grep '"+get(:username)+":'|wc -l"
+  expect result.to_i.equal?(1)
 
-	description "Checking user <"+get(:username)+">"
-	command "cat /etc/passwd|grep '"+get(:username)+":'|wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
+  desc "Checking hostname <"+get(:host1_hostname)+">"
+  on :host1, :execute => "hostname -f"
+  expect result.to_s.equal?(get(:host1_hostname))
 
-	description "Checking hostname <"+get(:host1_hostname)+">"
-	command "hostname -f"
-	run_on :host1
-	check result.to_s.equal?(get(:host1_hostname))
-
-	description "Number of MBR sda partitions, must be 3"
-	command "fdisk -l|grep -v Disco|grep sda"
-	run_on :host1
-	check result.content.count==3
+  desc "Number of MBR sda partitions, must be 3"
+  on :host1, :execute => "fdisk -l|grep -v Disco|grep sda"
+  expect result.content.count==3
 	
-	description "Free space on rootfs > 10%"
-	command "df -hT| grep rootfs| tr -s ' ' ':'|cut -d : -f 6"
-	run_on :host1
-	check result.to_i.is_less_than?(90)
+  desc "Free space on rootfs > 10%"
+  on :host1, :execute => "df -hT| grep rootfs| tr -s ' ' ':'|cut -d : -f 6"
+  expect result.to_i.is_less_than?(90)
 
-	command "ifconfig| grep eth0| tr -s ' ' '$'|cut -d $ -f 5"
-	run_on :host1
-	unique 'eth0_MAC', result.value
+  on :host1, :execute => "ifconfig| grep eth0| tr -s ' ' '$'|cut -d $ -f 5"
+  unique 'eth0_MAC', result.value
 
 end
 
