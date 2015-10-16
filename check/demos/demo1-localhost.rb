@@ -36,3 +36,22 @@ start do
   export :all, :format => :txt
   build :gamelist
 end
+
+=begin
+---
+:global:
+  :host1_username: root
+:cases:
+- :tt_members: Superusuario
+  :tt_emails: student1@email.com
+  :host1_ip: 127.0.0.1
+  :host1_password: toor
+  :username: root
+  :homedir: /root
+- :tt_members: Usuario normal
+  :tt_emails: student2@email.com
+  :host1_ip: 127.0.0.1
+  :host1_password: toor
+  :username: darth-maul
+  :homedir: /home/obiwan
+=end

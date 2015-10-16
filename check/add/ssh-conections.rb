@@ -108,54 +108,43 @@ check :ssh_configurations_on_host2 do
 end
 
 check :vncserver_configurations_on_host1 do
-	return if !@alive[:host1]
+  desc "Tightvncserver installed on <#{get(:host1_ip)}>"
+  on :host1, :execute => "dpkg -l tightvncserver| grep 'ii'| wc -l"
+  expect result.to_i.equal?(1)
 
-	desc "Tightvncserver installed on <#{get(:host1_ip)}>"
-	command "dpkg -l tightvncserver| grep 'ii'| wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
-
-	command "nmap -Pn #{get(:host1_ip)}", :tempfile => 'mv1_nmap.tmp'
-	run_on :localhost
+  on :localhost, :execute => "nmap -Pn #{get(:host1_ip)}", :tempfile => 'mv1_nmap.tmp'
+  filename = tempfile
+  
+  #command "ps -ef| grep tightvnc| grep geometry| wc -l", :tempfile => 'tightvnc.tmp'
+  #vncserver :1
 	
-	#command "ps -ef| grep tightvnc| grep geometry| wc -l", :tempfile => 'tightvnc.tmp'
-	#vncserver :1
-	
-	desc "Services 'vnc' on <#{get(:host1_ip)}>"
-	command "cat var/tmp/mv1_nmap.tmp|grep 'vnc'| wc -l"
-	run_on :localhost
-	check result.to_i.equal?(1)
+  desc "Services 'vnc' on <#{get(:host1_ip)}>"
+  on :localhost, :execute => "cat #{filename}|grep 'vnc'| wc -l"
+  expect result.to_i.equal?(1)
 
-	desc "Services active on ip/port #{get(:host1_ip)}/6001"
-	command "cat var/tmp/mv1_nmap.tmp |grep '6001'| wc -l"
-	run_on :localhost
-	check result.to_i.equal?(1)
+  desc "Services active on ip/port #{get(:host1_ip)}/6001"
+  on :localhost, :execute => "cat #{filename} |grep '6001'| wc -l"
+  expect result.to_i.equal?(1)
 end
 
-def t.test08_mv2_git_clone
-	return if !@alive[:host2]
-
-	desc "Git installed on <#{get(:host1_ip)}>"
-	command "dpkg -l git| grep 'ii'| wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
+check :git_clone_on_host2
+  desc "Git installed on <#{get(:host1_ip)}>"
+  on :host1, :execute => "dpkg -l git| grep 'ii'| wc -l"
+  expect result.to_i.equal?(1)
 	
-	#desc "Proyect from GitHub cloned on <#{get(:host1_ip)}>"
-	#command "vdir -a /home/#{get(:username)}/add1314profesor/ | grep '.git'| wc -l"
-	#run_on :host1
-	#check result.to_i.equal?(1)
+  #desc "Proyect from GitHub cloned on <#{get(:host1_ip)}>"
+  #on :host1, :execute => "vdir -a /home/#{get(:username)}/add1314profesor/ | grep '.git'| wc -l"
+  #check result.to_i.equal?(1)
 
-	desc "Git installed on <#{get(:host2_ip)}>"
-	command "git --version| grep git |grep version| wc -l"
-	run_on :host2
-	check result.to_i.equal?(1)
+  desc "Git installed on <#{get(:host2_ip)}>"
+  on :host2, :execute => "git --version| grep git |grep version| wc -l"
+  expect result.to_i.equal?(1)
 	
-	desc "Proyect from GitHub cloned on <#{get(:host2_ip)}>"
-	command "vdir -a /home/#{get(:username)}/add1314profesor/unit.1/ | grep '.exam_remoto'| wc -l"
-	run_on :host2
-	check result.to_i.equal?(1)
+  desc "Proyect from GitHub cloned on <#{get(:host2_ip)}>"
+  on :host2, :execute => "vdir -a /home/#{get(:firstname)}/add1314profesor/unit.1/ | grep '.exam_remoto'| wc -l"
+  expect result.to_i.equal?(1)
 
-	log "Tests finished"
+  log "Tests finished"
 end
 
 start do
