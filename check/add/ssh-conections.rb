@@ -53,7 +53,8 @@ check :ssh_configurations do
   expect result.to_i.equal?(2)
 
   on :host1, :execute => "cat /home/#{get(:firstname)}/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
-	
+  @filename1=tempfile
+  	
   desc "Host2 hostname defined on Host1"
   on :host1, :execute => "cat /etc/hosts| grep #{get(:host2_hostname)}| grep #{get(:host2_ip)}| wc -l"
   expect result.to_i.equal?(1)
@@ -76,47 +77,37 @@ check :opensuse_configurations do
   on :host2, :execute => "hostname -d" 
   expect result.to_s.equal?(get(:lastname))
 
-	desc "Exist username <"+get(:username)+">"
-	command "cat /etc/passwd|grep '"+get(:username)+"'|wc -l"
-	run_on :host2
-	check result.to_i.equal?(1)
+  desc "Exist username <"+get(:firstname)+">"
+  on :host2, :execute => "cat /etc/passwd|grep '"+get(:firstname)+"'|wc -l"
+  expect result.to_i.equal?(1)
 
-	desc "Checking groupname <"+get(:groupname)+">"
-	command "cat /etc/group|grep '"+get(:groupname)+"'|wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
+  desc "Checking groupname <"+get(:groupname)+">"
+  on :host1, :execute => "cat /etc/group|grep '"+get(:groupname)+"'|wc -l"
+  expect result.to_i.equal?(1)
 
-	desc "User maingroup == "+get(:groupname)+" "
-	command "id "+get(:username)+"| tr -s ' ' ':'| cut -d : -f 2| grep "+get(:groupname)+"|wc -l"
-	run_on :host1
-	check result.to_i.equal?(1)
+  desc "User maingroup == "+get(:groupname)+" "
+  on :host1, :execute => "id "+get(:firstname)+"| tr -s ' ' ':'| cut -d : -f 2| grep "+get(:groupname)+"|wc -l"
+  expect result.to_i.equal?(1)
 end
 
-def t.test06_mv2_ssh_config
-	return if !@alive[:host2]
+check :ssh_configurations_on_host2 do
+  desc "Permissions /home/#{get(:firstname)}/.ssh => rwx------"
+  on :host2, :expect => "vdir -a /home/#{get(:firstname)}/ | grep '.ssh'| grep 'rwx------'| wc -l"
+  expect result.to_i.equal?(1)
 
-	desc "Permisos /home/#{get(:username)}/.ssh => rwx------"
-	command "vdir -a /home/#{get(:username)}/ | grep '.ssh'| grep 'rwx------'| wc -l"
-	run_on :host2
-	check result.to_i.equal?(1)
+  on :host2, :execute => "cat /home/#{get(:firstname)}/.ssh/authorized_keys", :tempfile => "mv2_authorizedkeys.tmp"
+  filename2=tempfile
+  	
+  desc "mv2(authorized_keys) == mv1(id_rsa.pub)"
+  on :localhost, :execute => "diff #{@filename1} #{filename2}| wc -l"
+  expect result.to_i.equal?(0)
 
-	command "cat /home/#{get(:username)}/.ssh/authorized_keys", :tempfile => "mv2_authorizedkeys.tmp"
-	run_on :host2
-	
-	desc "mv2(authorized_keys) == mv1(id_rsa.pub)"
-	s=`cat var/tmp/mv1_idrsapub.tmp`
-	s.chop!
-	command "cat var/tmp/mv2_authorizedkeys.tmp | grep '#{s}'| wc -l"
-	run_on :localhost
-	check result.to_i.equal?(1)
-
-	desc "mv2: Host1 hostname defined"
-	command "cat /etc/hosts| grep #{get(:host1_hostname)}| grep #{get(:host1_ip)}| wc -l"
-	run_on :host2
-	check result.to_i.equal?(1)	
+  desc "mv2: Host1 hostname defined"
+  on :host2, :execute => "cat /etc/hosts| grep #{get(:host1_hostname)}| grep #{get(:host1_ip)}| wc -l"
+  expect result.to_i.equal?(1)	
 end
 
-def t.test07_mv1_vncserver
+check :vncserver_configurations_on_host1 do
 	return if !@alive[:host1]
 
 	desc "Tightvncserver installed on <#{get(:host1_ip)}>"
