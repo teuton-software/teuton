@@ -28,11 +28,11 @@ check :user_definitions do
   username=get(:firstname)
 
   desc "User <#{username}> exists"
-  on :host1, :execute => "cat /etc/passwd | grep #{username} | wc -l"
+  on :host1, :execute => "cat /etc/passwd | grep '#{username}:' | wc -l"
   expect result.to_i.equal?(1)
 
   desc "Users <#{username}> with not empty password "
-  on :host1, :exceute => "cat /etc/shadow | grep #{username}| cut -d : -f 2| wc -l"
+  on :host1, :exceute => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
   expect result.to_i.equal?(1)
 
   desc "User <#{username}> logged"
