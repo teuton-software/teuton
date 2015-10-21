@@ -10,19 +10,10 @@ The students do the classwork on their own Virtual Machines.
 And at the end, the teacher evaluate using this tool.
 We obtain automaticaly, the results of every student
 
-**Installation**
+**Documentation**
 ================
-Required: 
-* `rake --version` =>10.1.0
-* `ruby -v` => 1.9.3p194
-* SSH client software
-* Install this gems `gem install net-ssh net-sftp rspec pony`
+* [Requirements] (./docs/en/requirements.md)
 
-> Use the next command to install it:
-> 
-> * `rake debian` to install on Debian.
-> * `rake opensuse`, to install on OpenSuse.
->
 
 **Getting started**
 ===================

@@ -48,21 +48,33 @@ check :disk_size do
 end
 
 check :partitions_size_and_type do
-  partitions={ :sda5 => ['953M', '[SWAP]'],
-               :sda6 => ['6,5G', '/'],
-               :sda7 => ['476M', '/home'],
-               :sda8 => ['94M', 'sda8']
+  partitions={ :sda5 => ['[SWAP]','953M', '952M'],
+               :sda6 => ['/'     ,'6,5G', '6,5G'],
+               :sda7 => ['/home' ,'476M', '475M'],
+               :sda8 => ['sda8'  ,'94M' , '93M']
                 }
   
   partitions.each_pair do |key,value|
-    desc "Partition #{key} size <#{value[0]}>"
+    desc "Partition #{key} mounted on <#{value[0]}>"
     on :host1, :execute => "lsblk |grep part| grep #{key}| grep #{value[0]}| wc -l"
     expect result.to_i.equal?(1)
-    
-    desc "Partition #{key} mounted on <#{value[2]}>"
-    on :host1, :execute => "lsblk |grep part| grep #{key}| grep #{value[1]}| wc -l"
+
+    desc "Partition #{key} size <#{value[1]}>"
+    on :host1, :execute => "lsblk |grep part| grep #{key}| tr -s ' ' ':'| cut -d ':' -f 5"
+    expect(result.to_s.equal?(value[1]) || result.to_s.equal?(value[2]))    
+  end
+
+  partitions={ ['/dev/disk', '/', 'ext4'],
+               ['/dev/disk', '/', 'ext4']
+  }
+  
+  partitions.each_pair do |key,value|  
+     desc "Partition #{key} type <#{value}>"
+    on :host1, :execute => "df -hT | grep #{key}| grep #{value}|wc -l"
     expect result.to_i.equal?(1)
   end
+
+  
 end
 
 start do
