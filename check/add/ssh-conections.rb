@@ -127,7 +127,7 @@ check :vncserver_configurations_on_host1 do
   expect result.to_i.equal?(1)
 end
 
-check :git_clone_on_host2
+check :git_clone_on_host2 do
   desc "Git installed on <#{get(:host1_ip)}>"
   on :host1, :execute => "dpkg -l git| grep 'ii'| wc -l"
   expect result.to_i.equal?(1)
@@ -149,7 +149,7 @@ end
 
 start do
 	show :resume
-	export :all
+	export :all, :format => :txt
 end
 
 =begin

@@ -100,17 +100,17 @@ class Checker
 		end
 	end
 	
-	def export(mode=:all, pArgs={})
-		format= pArgs[:format] || :txt
-		if mode==:resume or mode==:all then
-			@report.export format
-		end
-		if mode==:details or mode==:all then
-			threads=[]
-			@cases.each { |c| threads << Thread.new{ c.report.export format } }
-			threads.each { |t| t.join }
-		end
-	end
+  def export(mode=:all, pArgs={})
+    format= pArgs[:format] || :txt
+    if mode==:resume or mode==:all then
+      @report.export format
+    end
+    if mode==:details or mode==:all then
+      threads=[]
+      @cases.each { |c| threads << Thread.new{ c.report.export format } }
+      threads.each { |t| t.join }
+    end
+  end
 
   def build( app, pArgs={})
 	case app
