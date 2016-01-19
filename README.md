@@ -2,14 +2,14 @@
 
 #Introduction
 
-This tools helps teacher to evaluate a group of students classwork on their own machines.
+This program helps teachers to evaluate a group of students classwork, done on their own machines.
 
 Steps:
 
-1. Teacher defines a practice activity for the group of students. 
-Teacher definies a list of required goals and the way to check it.
-1. The students do the classwork on their own Virtual/Real Machines. 
-1. Execute the tool, that automaticaly evaluate and create results report of every student.
+1. Define a practice activity for the group of students. 
+Teacher defines a list of required goals and the way to check it.
+1. Every student does the classwork on their own Virtual/Real Machines. 
+1. The teacher execute the tool, that automaticaly evaluate and create results report of every student.
 
 #Quick demo
 
