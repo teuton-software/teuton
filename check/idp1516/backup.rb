@@ -121,7 +121,7 @@ end
 start do
 	show :resume
 	export :all
-	build :gamelist, :port => 8080
+#	build :gamelist, :port => 8080
 end
 
 =begin
