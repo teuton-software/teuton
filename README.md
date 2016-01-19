@@ -21,7 +21,7 @@ To run our first demo activity we do:
 
 `./check/demos/demo1-localhost.rb`.
 
-You will see the brief report on the screen, and the extended output files are 
+> You will see the brief *report on the screen*, and the extended *output files* are 
 saved into `./var/demo1-localhost/out/` directory.
 
 #Documentation
