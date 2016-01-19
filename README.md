@@ -2,7 +2,9 @@
 
 #Introduction
 
-This program helps teachers to evaluate a group of students classwork, done on their own machines.
+This is an Open Source program, for use in computer laboratory. 
+*Sysadmin* helps teachers to evaluate remotely and automaticaly 
+the workclass done into students machines.
 
 Steps:
 
@@ -10,6 +12,12 @@ Steps:
 Teacher defines a list of required goals and the way to check it.
 1. **Every student does the classwork** on their own Virtual/Real Machines. 
 1. The teacher **execute the tool**, that automaticaly evaluate and create results report of every student.
+
+I'm using *sysadmin* with my students but it could be improved (as everything of course).
+I would like other users (interested in sysadmin and teaching) to know this and
+receive comments, suggestions or collaborations to improve it.
+
+Thanks!
 
 #Quick demo
 
