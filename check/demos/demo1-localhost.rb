@@ -33,8 +33,7 @@ end
 
 start do
   show :resume
-  export :all, :format => :txt
-  build :gamelist
+  export :all
 end
 
 =begin
