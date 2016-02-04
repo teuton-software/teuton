@@ -5,7 +5,7 @@ require 'net/sftp'
 
 require_relative 'checker'
 require_relative 'case/dsl'
-require_relative 'result'
+require_relative 'case/result'
 require_relative 'utils'
 
 class Case
@@ -16,40 +16,40 @@ class Case
   attr_reader :id, :report, :uniques
   @@id=1
 
-	def initialize(pConfig)
-		@global=Checker.instance.global
-		@config=pConfig
-		@tests=Checker.instance.tests
-		@id=@@id; @@id+=1
+  def initialize(pConfig)
+    @global=Checker.instance.global
+    @config=pConfig
+    @tests=Checker.instance.tests
+    @id=@@id; @@id+=1
 				
-		#Define Case Report
-		@report = Report.new(@id)
-		@report.filename=( @id<10 ? "case-0#{@id.to_s}" : "case-#{@id.to_s}" )
-		@report.outdir=File.join( "var", @global[:tt_testname], "out" )
-		ensure_dir @report.outdir
+    #Define Case Report
+    @report = Report.new(@id)
+    @report.filename=( @id<10 ? "case-0#{@id.to_s}" : "case-#{@id.to_s}" )
+    @report.outdir=File.join( "var", @global[:tt_testname], "out" )
+    ensure_dir @report.outdir
 		
-		#Default configuration
-		@config[:tt_skip] = @config[:tt_skip] || false
-		@mntdir = File.join( "var", @global[:tt_testname], "mnt", @id.to_s )
-		@tmpdir = File.join( "var", @global[:tt_testname], "tmp" )
-		@remote_tmpdir = File.join( "/", "tmp" )
+    #Default configuration
+    @config[:tt_skip] = @config[:tt_skip] || false
+    @mntdir = File.join( "var", @global[:tt_testname], "mnt", @id.to_s )
+    @tmpdir = File.join( "var", @global[:tt_testname], "tmp" )
+    @remote_tmpdir = File.join( "/", "tmp" )
 
-		ensure_dir @mntdir
-		ensure_dir @tmpdir
+    ensure_dir @mntdir
+    ensure_dir @tmpdir
 
-		@unique_values={}
-		@result = Result.new
-		@result.reset
+    @unique_values={}
+    @result = Result.new
+    @result.reset
 
-		@debug=Checker.instance.is_debug?
-		@verbose=Checker.instance.is_verbose?
+    @debug=Checker.instance.is_debug?
+    @verbose=Checker.instance.is_verbose?
 	
-		@action_counter=0		
-		@action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
-		@uniques=[]
-		@sessions={}	
-		tempfile :default
-	end
+    @action_counter=0		
+    @action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
+    @uniques=[]
+    @sessions={}	
+    tempfile :default
+  end
 
 	def start
 		lbSkip=@config[:tt_skip]||false
