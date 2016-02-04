@@ -1,4 +1,4 @@
 
-General email      : teachertools.tenerife@gmail.com
-David Vargas email : dvarrui@gmail.com
+* General (teachertools.tenerife@gmail.com)
+* David Vargas (dvarrui@gmail.com)
 
