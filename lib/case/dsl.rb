@@ -1,41 +1,40 @@
-#!/usr/bin/ruby
 # encoding: utf-8
 
 module DSL
 
-	def description(pDescription=nil)
-		desc pDescription
-	end
+  def description(pDescription=nil)
+    desc pDescription
+  end
 	
-	def desc(pDescription=nil)
-		return @action[:description] if pDescription.nil?
-		@action[:description]=pDescription
-	end
+  def desc(pDescription=nil)
+    return @action[:description] if pDescription.nil?
+    @action[:description]=pDescription
+  end
 	
-	def command(pCommand, pArgs={})
-		@action[:command]=pCommand
-		desc(pArgs[:desc]) if pArgs[:desc]
-		description(pArgs[:description]) if pArgs[:description]
-		tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
-	end
+  def command(pCommand, pArgs={})
+    @action[:command]=pCommand
+    desc(pArgs[:desc]) if pArgs[:desc]
+    description(pArgs[:description]) if pArgs[:description]
+    tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
+  end
 
-	#Read param pOption from config or global Hash data
-	def get(pOption)
-		return @config[pOption] if @config[pOption]
-		return @global[pOption] if @global[pOption]
-		return nil
-	end
+  #Read param pOption from config or global Hash data
+  def get(pOption)
+    return @config[pOption] if @config[pOption]
+    return @global[pOption] if @global[pOption]
+    return nil
+  end
 	
-	#Set weight value for the action
-	def weight(pValue=nil)
-		if pValue.nil? then
-			return @action[:weight]
-		elsif pValue==:default then
-			@action[:weight]=1.0
-		else
-		@action[:weight]=pValue.to_f
-		end
-	end
+  #Set weight value for the action
+  def weight(pValue=nil)
+    if pValue.nil? then
+      return @action[:weight]
+    elsif pValue==:default then
+      @action[:weight]=1.0
+    else
+      @action[:weight]=pValue.to_f
+      end
+  end
 	
 	#Run command from the host identify as pHostname
 	#on :host1, :execute => "command"

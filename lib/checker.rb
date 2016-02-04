@@ -3,6 +3,7 @@
 require 'singleton'
 require 'yaml'
 
+require_relative 'application'
 require_relative 'builder'
 require_relative 'case'
 require_relative 'utils'
@@ -25,6 +26,15 @@ class Checker
 	@verbose = true
   end
 		
+  def define_test(name, &block)
+    @tests << { :name => name, :block => block }
+  end
+	
+  def start(&block)
+    check_cases!
+    instance_eval &block
+  end
+
   def check_cases!(pConfigFilename = File.join(File.dirname($0),File.basename($0,".rb")+".yaml") )
 	#Load configurations from yaml file
 	configdata = YAML::load(File.open(pConfigFilename))
@@ -73,32 +83,23 @@ class Checker
 	close_main_report(start_time)
   end
 		
-	def is_debug?
-		@debug
-	end
+  def is_debug?
+    @debug
+  end
 	
-	def is_verbose?
-		@verbose
-	end
-
-	def define_test(name, &block)
-		@tests << { :name => name, :block => block }
-	end
+  def is_verbose?
+    @verbose
+  end
 	
-	def start(&block)
-		check_cases!
-		instance_eval &block
-	end
-	
-	def show(mode=:resume)
-		if mode==:resume or mode==:all then
-			@report.show
-		end
-		if mode==:details or mode==:all then
-			@cases.each { |c| puts "____"; c.report.show }
-			puts "."
-		end
-	end
+  def show(mode=:resume)
+    if mode==:resume or mode==:all then
+      @report.show
+    end
+    if mode==:details or mode==:all then
+      @cases.each { |c| puts "____"; c.report.show }
+      puts "."
+    end
+  end
 	
   def export(mode=:all, pArgs={})
     format= pArgs[:format] || :txt
@@ -143,7 +144,9 @@ private
   end
 
   def open_main_report(pConfigFilename)
- 	@report.head[:tt_title]="Executing [checking-machines] tests (version 0.4)"
+    app=Application.instance
+    
+ 	@report.head[:tt_title]="Executing [#{app.name}] tests (version #{app.version})"
 	@report.head[:tt_scriptname]=$0
 	@report.head[:tt_configfile]=pConfigFilename
 	@report.head[:tt_debug]=true if @debug

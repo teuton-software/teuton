@@ -9,4 +9,3 @@ end
 def start(&block)
   Checker.instance.start(&block)
 end
-

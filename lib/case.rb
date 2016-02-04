@@ -2,17 +2,19 @@
 
 require 'net/ssh'
 require 'net/sftp'
+
 require_relative 'checker'
-require_relative 'dsl'
+require_relative 'case/dsl'
 require_relative 'result'
 require_relative 'utils'
 
 class Case
-	include DSL
-	include Utils
-	attr_accessor :result
-	attr_reader :id, :report, :uniques
-	@@id=1
+  include DSL
+  include Utils
+
+  attr_accessor :result
+  attr_reader :id, :report, :uniques
+  @@id=1
 
 	def initialize(pConfig)
 		@global=Checker.instance.global
