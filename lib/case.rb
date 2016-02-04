@@ -89,16 +89,16 @@ class Case
 		@sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
 	end
 	
-	def close(uniques)
-		fails=0
-		@uniques.each do |key|
-			if uniques[key].include?(id) and uniques[key].count>1 then
-				fails+=1
-				log("Unique => #{key.to_s}, conflict with => #{uniques[key].to_s}", :error)
-			end
-		end
-		@report.tail[:unique_fault]=fails
-		@report.close
-	end
+  def close(uniques)
+    fails=0
+    @uniques.each do |key|
+      if uniques[key].include?(id) and uniques[key].count>1 then
+        fails+=1
+        log("Unique => #{key.to_s}, conflict with => #{uniques[key].to_s}", :error)
+      end
+    end
+    @report.tail[:unique_fault]=fails
+    @report.close
+  end
 	
 end
