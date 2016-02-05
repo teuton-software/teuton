@@ -129,40 +129,40 @@ private
 		end
 	end
 	
-	def run_local_cmd
-		@result.content = execute( @action[:command] )	
-	end
+  def run_local_cmd
+    @result.content = my_execute( @action[:command] )	
+  end
 	
-	def run_remote_cmd(pHostname) 		
-		hostname=pHostname.to_s
-		ip=get((hostname+'_ip').to_sym)
-		username=get((hostname+'_username').to_sym)
-		password=get((hostname+'_password').to_sym)
-		output=[]
+  def run_remote_cmd(pHostname) 		
+    hostname=pHostname.to_s
+    ip=get((hostname+'_ip').to_sym)
+    username=get((hostname+'_username').to_sym)
+    password=get((hostname+'_password').to_sym)
+    output=[]
 		
-		begin
-			if @sessions[hostname].nil?
-				@sessions[hostname] = Net::SSH.start(ip, username, :password => password)
-			end
+    begin
+      if @sessions[hostname].nil?
+        @sessions[hostname] = Net::SSH.start(ip, username, :password => password)
+      end
 			
-			if @sessions[hostname].class==Net::SSH::Connection::Session
-				text=@sessions[hostname].exec!( @action[:command] )
-				output = text.split("\n")
-			end
-		rescue Errno::EHOSTUNREACH
-			@sessions[hostname]=:nosession
-			verbose "!"
-			log( "Host #{ip} unreachable!", :error)
-		rescue Net::SSH::AuthenticationFailed
-			@sessions[hostname]=:nosession
-			verbose "!"
-			log( "SSH::AuthenticationFailed!", :error)
-		rescue Exception => e
-			@sessions[hostname]=:nosession
-			verbose "!"
-			log( "[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+@action[:command], :error)
-		end
+      if @sessions[hostname].class==Net::SSH::Connection::Session
+        text=@sessions[hostname].exec!( @action[:command] )
+        output = text.split("\n")
+      end
+    rescue Errno::EHOSTUNREACH
+      @sessions[hostname]=:nosession
+      verbose "!"
+      log( "Host #{ip} unreachable!", :error)
+    rescue Net::SSH::AuthenticationFailed
+      @sessions[hostname]=:nosession
+      verbose "!"
+      log( "SSH::AuthenticationFailed!", :error)
+    rescue Exception => e
+      @sessions[hostname]=:nosession
+      verbose "!"
+      log( "[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+@action[:command], :error)
+    end
 		
-		@result.content=output
-	end
+    @result.content=output
+  end
 end
