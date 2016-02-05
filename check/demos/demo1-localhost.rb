@@ -13,27 +13,27 @@ check :test01_localhost do
   unique "username", get(:username)
 
   desc "Checking user <"+get(:username)+">"
-  on :localhost, :execute =>"cat /etc/passwd|grep ':"+get(:username)+"'|wc -l"
+  goto :localhost, :execute => "id #{get(:username)}| wc -l"
   expect result.to_i.equal?(1)
 
   desc "Checking home directory"
-  on '127.0.0.1', :execute => "cat /etc/passwd|grep #{get(:username)}|cut -d: -f6"
+  goto '127.0.0.1', :execute => "cat /etc/passwd|grep #{get(:username)}|cut -d: -f6"
   expect result.to_s.equal?(get(:homedir))
 
   log "Checking partitions!"
 	
   desc "Partitions /dev/sda == 3"
-  on :localhost, :execute => "cat /proc/partitions | grep sda| wc -l"
+  goto :localhost, :execute => "cat /proc/partitions | grep sda| wc -l"
   expect result.to_i.equal?(3+1)
 
   desc "Partitions /dev/sdb == 2"
-  on :localhost, :execute => "cat /proc/partitions | grep sdb| wc -l"
+  goto :localhost, :execute => "cat /proc/partitions | grep sdb| wc -l"
   expect result.to_i.equal?(2+1)
 end
 
 start do
-  show :resume
-  export :all
+  show
+  export
 end
 
 =begin

@@ -37,12 +37,13 @@ module DSL
   end
 	
   #Run command from the host identify as pHostname
-  #on :host1, :execute => "command"
-  def goto(pHostname=:localhost, pArgs={})
-    on(pHostname, pArgs={})
+  #goto :host1, :execute => "command"
+  def on(pHostname=:localhost, pArgs={})
+    verboseln("deprecated method on")
+    goto(pHostname, pArgs)
   end
   
-  def on(pHostname=:localhost, pArgs={})
+  def goto(pHostname=:localhost, pArgs={})
     command(pArgs[:execute]) if pArgs[:execute]
     command(pArgs[:exec]) if pArgs[:exec]
     tempfile(pArgs[:tempfile]) if pArgs[:tempfile]

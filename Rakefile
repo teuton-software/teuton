@@ -25,7 +25,8 @@ end
 
 desc "_install gems"
 task :install_gems do
-	system("gem install net-ssh net-sftp rspec pony")
+  names=['net-ssh', 'net-sftp', 'rspec', 'pony', 'rainbow']
+  names.each { |n| system("gem install #{n}") }
 end
 
 desc "_creating auxiliar directories"
