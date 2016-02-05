@@ -36,54 +36,58 @@ module DSL
       end
   end
 	
-	#Run command from the host identify as pHostname
-	#on :host1, :execute => "command"
-	def on(pHostname=:localhost, pArgs={})
-		command(pArgs[:execute]) if pArgs[:execute]
-		command(pArgs[:exec]) if pArgs[:exec]
-		tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
+  #Run command from the host identify as pHostname
+  #on :host1, :execute => "command"
+  def goto(pHostname=:localhost, pArgs={})
+    on(pHostname, pArgs={})
+  end
+  
+  def on(pHostname=:localhost, pArgs={})
+    command(pArgs[:execute]) if pArgs[:execute]
+    command(pArgs[:exec]) if pArgs[:exec]
+    tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
 	
-		if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
-			run_local_cmd
-		else
-			key=( (pHostname.to_s.split('_')[0])+'_ip' ).to_sym
-			ip=get( key )
-			if ip.include?('127.0.0.') then
-				run_local_cmd
-			else
-				run_remote_cmd pHostname
-			end
-		end
-	end
+    if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
+      run_local_cmd
+    else
+      key=( (pHostname.to_s.split('_')[0])+'_ip' ).to_sym
+      ip=get( key )
+      if ip.include?('127.0.0.') then
+        run_local_cmd
+      else
+        run_remote_cmd pHostname
+      end
+    end
+  end
 
-	#expect <condition>, :weight => <value>
-	def expect(pCond, pArgs={})
-		@action[:weight]=pArgs[:weight].to_f if pArgs[:weight]
-		lWeight= @action[:weight]
+  #expect <condition>, :weight => <value>
+  def expect(pCond, pArgs={})
+    @action[:weight]=pArgs[:weight].to_f if pArgs[:weight]
+    lWeight= @action[:weight]
 
-		@action_counter+=1
-		@action[:id]=@action_counter
-		@action[:weight]=lWeight
-		@action[:check]=pCond
-		@report.lines << @action.clone
+    @action_counter+=1
+    @action[:id]=@action_counter
+    @action[:weight]=lWeight
+    @action[:check]=pCond
+    @report.lines << @action.clone
 
-		c="?"
-		c="." if pCond
-		verbose c
-	end
+    c="?"
+    c="." if pCond
+    verbose c
+  end
 	
-	def log(pText="", pType=:info)
-		s="INFO: "
-		s="WARN: " if pType==:warn
-		s="ERROR: " if pType==:error
-		@report.lines << s+pText
-	end
+  def log(pText="", pType=:info)
+    s="INFO: "
+    s="WARN: " if pType==:warn
+    s="ERROR: " if pType==:error
+    @report.lines << s+pText
+  end
 			
-	def unique( key, value )
-		return if value.nil?
-		k=(key.to_s+"="+value.to_s).to_sym
-		@uniques << k
-	end
+  def unique( key, value )
+    return if value.nil?
+    k=(key.to_s+"="+value.to_s).to_sym
+    @uniques << k
+  end
 	
   def tempfile(pTempfile=nil)
     ext='.tmp'
@@ -115,19 +119,19 @@ module DSL
 
 private
 
-	def read_filename(psFilename)
-		begin
-			lFile = File.open(psFilename,'r')
-			lItem = lFile.readlines
-			lFile.close
+  def read_filename(psFilename)
+    begin
+      lFile = File.open(psFilename,'r')
+      lItem = lFile.readlines
+      lFile.close
 			
-			lItem.map! { |i| i.sub(/\n/,"") }
+      lItem.map! { |i| i.sub(/\n/,"") }
 			
-			return lItem
-		rescue
-			return []
-		end
-	end
+      return lItem
+    rescue
+      return []
+    end
+  end
 	
   def run_local_cmd
     @result.content = my_execute( @action[:command] )	
