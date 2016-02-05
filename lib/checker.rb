@@ -7,7 +7,7 @@ require_relative 'application'
 require_relative 'builder'
 require_relative 'case'
 require_relative 'utils'
-require_relative 'report/report'
+require_relative 'report'
 
 class Checker
   include Singleton
