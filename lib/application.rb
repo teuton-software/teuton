@@ -6,10 +6,12 @@ class Application
   include Singleton
     
   attr_reader :name, :version
+  attr_accessor :global
 
   def initialize
     @name="sysadmin-game"
     @version="0.5"
+    @global={}
   end
 
 end

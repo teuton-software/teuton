@@ -3,7 +3,7 @@
 require 'net/ssh'
 require 'net/sftp'
 
-require_relative 'checker'
+require_relative 'application'
 require_relative 'case/dsl'
 require_relative 'case/result'
 require_relative 'utils'
@@ -17,7 +17,7 @@ class Case
   @@id=1
 
   def initialize(pConfig)
-    @global=Checker.instance.global
+    @global=Application.instance.global
     @config=pConfig
     @tests=Checker.instance.tests
     @id=@@id; @@id+=1
@@ -51,43 +51,43 @@ class Case
     tempfile :default
   end
 
-	def start
-		lbSkip=@config[:tt_skip]||false
-		if lbSkip==true then
-			verbose "Skipping case <"+@config[:tt_members]+">\n"
-			return false
-		end
+  def start
+    lbSkip=@config[:tt_skip]||false
+    if lbSkip==true then
+      verbose "Skipping case <"+@config[:tt_members]+">\n"
+      return false
+    end
 
-		names=@id.to_s+"-*.tmp"
-		r=`ls #{@tmpdir}/#{names} 2>/dev/null | wc -l`
-		execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Detele previous temp files
+    names=@id.to_s+"-*.tmp"
+    r=`ls #{@tmpdir}/#{names} 2>/dev/null | wc -l`
+    execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Detele previous temp files
 		
-		start_time = Time.now		
-		if @global[:tt_sequence] then
-			verboseln "Starting case <"+get(:tt_members)+">"
-			@tests.each do |t|
-				verbose "* Processing <"+t[:name].to_s+"> "
-				instance_eval &t[:block]
-				verbose "\n"
-			end
-			verboseln "\n"
-		else
-			@tests.each do |t| 
-				log("Begin "+t[:name].to_s)
-				instance_eval &t[:block]
-				log("End "+t[:name].to_s)
-			end
-		end
+    start_time = Time.now		
+    if @global[:tt_sequence] then
+      verboseln "Starting case <"+get(:tt_members)+">"
+      @tests.each do |t|
+        verbose "* Processing <"+t[:name].to_s+"> "
+        instance_eval &t[:block]
+        verbose "\n"
+      end
+      verboseln "\n"
+    else
+      @tests.each do |t| 
+        log("Begin "+t[:name].to_s)
+        instance_eval &t[:block]
+        log("End "+t[:name].to_s)
+      end
+    end
 
-		finish_time=Time.now
-		@report.head.merge! @config
-		@report.tail[:case_id]=@id
-		@report.tail[:start_time_]=start_time
-		@report.tail[:finish_time]=finish_time
-		@report.tail[:duration]=finish_time-start_time		
+    finish_time=Time.now
+    @report.head.merge! @config
+    @report.tail[:case_id]=@id
+    @report.tail[:start_time_]=start_time
+    @report.tail[:finish_time]=finish_time
+    @report.tail[:duration]=finish_time-start_time		
 
-		@sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
-	end
+    @sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
+  end
 	
   def close(uniques)
     fails=0

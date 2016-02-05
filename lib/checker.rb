@@ -14,10 +14,9 @@ class Checker
   include Utils
   include Builder
   
-  attr_reader :global, :tests
+  attr_reader :tests
 	
   def initialize
-    @global = {}
 	@tests=[]
 	@cases = []		
     @report = Report.new(0)
@@ -38,13 +37,14 @@ class Checker
   def check_cases!(pConfigFilename = File.join(File.dirname($0),File.basename($0,".rb")+".yaml") )
 	#Load configurations from yaml file
 	configdata = YAML::load(File.open(pConfigFilename))
-	@global = configdata[:global] || {}
-	@global[:tt_testname]= @global[:tt_testname] || File.basename($0,".rb")
-	@global[:tt_sequence]=false if @global[:tt_sequence].nil? 
+	app=Application.instance
+	app.global = configdata[:global] || {}
+	app.global[:tt_testname]= app.global[:tt_testname] || File.basename($0,".rb")
+	app.global[:tt_sequence]=false if app.global[:tt_sequence].nil? 
 	@caseConfigList = configdata[:cases]
 
 	#Create out dir
-	@outdir = @global[:tt_outdir] || File.join("var",@global[:tt_testname],"out")
+	@outdir = app.global[:tt_outdir] || File.join("var",app.global[:tt_testname],"out")
 	ensure_dir @outdir
 	@report.outdir=@outdir
 
@@ -53,14 +53,14 @@ class Checker
 
 	@caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) } # create cases
 	start_time = Time.now
-	if @global[:tt_sequence] then
-		verboseln "[INFO] Running in sequence (#{start_time.to_s})"
-		@cases.each { |c| c.start } # Process every case in sequence
+    if app.global[:tt_sequence] then
+      verboseln "[INFO] Running in sequence (#{start_time.to_s})"
+      @cases.each { |c| c.start } # Process every case in sequence
 	else
-		verboseln "[INFO] Running in parallel (#{start_time.to_s})"
-		threads=[]
-		@cases.each { |c| threads << Thread.new{c.start} } # Process cases in parallel
-		threads.each { |t| t.join }
+      verboseln "[INFO] Running in parallel (#{start_time.to_s})"
+      threads=[]
+      @cases.each { |c| threads << Thread.new{c.start} } # Process cases in parallel
+      threads.each { |t| t.join }
 	end
 		
 	# Collect "unique" values from all cases
@@ -137,7 +137,6 @@ private
       lGrade=c.report.tail[:grade] || 0.0
       lHelp=" "
       lHelp="?" if lGrade<50.0
-      #lHelp="*" if lGrade==100.0
 			
 	  @report.lines << "Case_"+"%03d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
 	end
@@ -150,7 +149,7 @@ private
 	@report.head[:tt_scriptname]=$0
 	@report.head[:tt_configfile]=pConfigFilename
 	@report.head[:tt_debug]=true if @debug
-	@report.head.merge!(@global)
+	@report.head.merge!(app.global)
 		
 	execute('clear')
 	verboseln "="*@report.head[:tt_title].length
