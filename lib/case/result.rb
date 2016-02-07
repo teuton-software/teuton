@@ -1,8 +1,8 @@
-#!/usr/bin/ruby
 # encoding: utf-8
 
 class Result
   attr_accessor :content
+  attr_reader :expected, :value
 		
   def initialize
 	reset
@@ -10,17 +10,22 @@ class Result
 		
   def reset
 	@content=[]
+	@value=nil
+	@expected=nil
   end
 		
   def equal?(pValue)
-    return @content[0]==pValue
+    @expected=pValue
+    return @value==pValue
   end
 
   def not_equal?(pValue)
-    return !equal?(pValue)
+    @expected=pValue
+    return @value!=pValue
   end
 	    
   def include?(pValue)
+    @expected=pValue
     return @content.include? pValue
   end
 		
@@ -31,6 +36,8 @@ class Result
   #Return 'true' if the parameter value is near to the target value.
   #To get this we consider a 10% desviation or less, as an acceptable result.
   def is_near_to?(pfValue)
+    @expected=pfValue
+
 	return false if @content.nil?
 	lfTarget=@content[0].to_f
 	lfDesv=(lfTarget.to_f*10.0)/100.0
@@ -44,19 +51,20 @@ class Result
   end
 	
   def is_greater_than?(pValue)
+    @expected=pValue
 	return false if @content.nil? || @content[0].nil?
 	return @content[0]>pValue
   end
 	
   def is_less_than?(pValue)
+    @expected=pValue
 	return false if @content.nil? || @content[0].nil?
 	return @content[0]<pValue
   end
 		
   def to_f
-	r = Result.new
-	@content.each { |i| r.content<<i.to_f }
-	return r
+    @value = @content[0].to_f
+	self
   end
 
   def float
@@ -64,9 +72,8 @@ class Result
   end
   	
   def to_i
-	r = Result.new
-	@content.each { |i| r.content<<i.to_i }
-	return r
+    @value = @content[0].to_i
+	self
   end
 	
   def integer
@@ -74,17 +81,12 @@ class Result
   end
 
   def to_s
-	r = Result.new
-	@content.each { |i| r.content<<i.to_s }
-	return r
+    @value = @content[0].to_s
+	self
   end
 	
   def string
 	to_s
-  end
-	
-  def value
-	@content[0]
   end
   
   def data

@@ -70,6 +70,8 @@ module DSL
     @action[:id]=@action_counter
     @action[:weight]=lWeight
     @action[:check]=pCond
+    @action[:result]=@result.value
+    @action[:expected]=@result.expected
     @report.lines << @action.clone
 
     c="?"
