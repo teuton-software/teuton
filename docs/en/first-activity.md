@@ -19,10 +19,8 @@ Let's see an example:
 check :test_name do
 
 	desc "Checking user david"
-	on :host1, :execute => "id david |wc -l"
+	goto :host1, :execute => "id david |wc -l"
 	expect result.to_i.equal?(1)
-
-	log "Tests finished!"
 	
 end
 ```
@@ -33,7 +31,7 @@ Let's see the key words used:
 * `desc "Checking user <david>"`, Describe the action or the target 
 with our words, so every one could easily understand what we are trying
 to check.
-* `on :host1, :execute => "cat /etc/passwd|grep david|wc -l"`: Execute the command 
+* `goto :host1, :execute => "cat /etc/passwd|grep david|wc -l"`: Execute the command 
 into the target host.
 * `expect result.to_i.equal?(1)`: At the end we need to check the obtained 
 result with our expectations.
@@ -42,8 +40,8 @@ result with our expectations.
 At the end of our example script we add this lines:
 ```
 start do
-	show :resume
-	export :all, :format => :txt
+	show
+	export
 end
 ```
 The above lines order:
