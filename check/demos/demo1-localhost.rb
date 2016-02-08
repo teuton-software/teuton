@@ -11,7 +11,7 @@ check :exist_user do
 
   desc "Checking user <"+get(:username)+">"
   goto :localhost, :execute => "id #{get(:username)}| wc -l"
-  expect result.to_i.equal?(1)
+  expect result.equal?(1)
 
 end
 

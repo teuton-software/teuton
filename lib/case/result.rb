@@ -13,15 +13,26 @@ class Result
 	@value=nil
 	@expected=nil
   end
+  
+  def value
+    @content[0]
+  end
 		
   def equal?(pValue)
     @expected=pValue
-    return @value==pValue
+    case pValue.class.to_s
+    when 'Fixnum'
+      lValue=@content[0].to_i
+    when 'Float'
+      lValue=@content[0].to_f
+    else
+      lValue=@content[0]
+    end
+    return lValue==pValue
   end
 
   def not_equal?(pValue)
-    @expected=pValue
-    return @value!=pValue
+    return !equal?(pValue)
   end
 	    
   def include?(pValue)
@@ -47,49 +58,37 @@ class Result
   end
 		
   def is_empty?
+    @expected=true
 	return @content.empty
   end
 	
   def is_greater_than?(pValue)
     @expected=pValue
 	return false if @content.nil? || @content[0].nil?
-	return @content[0]>pValue
+
+    case pValue.class.to_s
+    when 'Fixnum'
+      lValue=@content[0].to_i
+    when 'Float'
+      lValue=@content[0].to_f
+    else
+      lValue=@content[0]
+    end
+	return lValue>pValue
   end
 	
   def is_less_than?(pValue)
     @expected=pValue
 	return false if @content.nil? || @content[0].nil?
-	return @content[0]<pValue
+    case pValue.class.to_s
+    when 'Fixnum'
+      lValue=@content[0].to_i
+    when 'Float'
+      lValue=@content[0].to_f
+    else
+      lValue=@content[0]
+    end
+	return lValue<pValue
   end
 		
-  def to_f
-    @value = @content[0].to_f
-	self
-  end
-
-  def float
-    to_f
-  end
-  	
-  def to_i
-    @value = @content[0].to_i
-	self
-  end
-	
-  def integer
-	to_i
-  end
-
-  def to_s
-    @value = @content[0].to_s
-	self
-  end
-	
-  def string
-	to_s
-  end
-  
-  def data
-    value
-  end
 end
