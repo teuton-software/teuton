@@ -81,8 +81,8 @@ module DSL
 	
   def log(pText="", pType=:info)
     s="INFO: "
-    s="WARN: " if pType==:warn
-    s="ERROR: " if pType==:error
+    s=Rainbow("WARN:").color(:yellow)+" " if pType==:warn
+    s=Rainbow("ERROR:").bg(:red)+" " if pType==:error
     @report.lines << s+pText
   end
 			

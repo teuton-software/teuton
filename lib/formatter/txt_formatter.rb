@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'rainbow'
+require 'terminal-table'
 require_relative 'base_formatter'
 
 class TXTFormatter < BaseFormatter
@@ -12,7 +13,10 @@ class TXTFormatter < BaseFormatter
   def process
     tab="  "
     w Rainbow("HEAD").bg(:blue)+"\n"
-    @head.each { |key,value| w tab+key.to_s+": "+value.to_s+"\n" }
+    my_screen_table = Terminal::Table.new do |st|
+      @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
+    end
+    w my_screen_table.to_s+"\n"
 
     w Rainbow("HISTORY").bg(:blue)+"\n"
     @lines.each do |i|
@@ -34,7 +38,21 @@ class TXTFormatter < BaseFormatter
     end
 
     w Rainbow("TAIL").bg(:blue)+"\n"
-    @tail.each { |key,value| w tab+key.to_s+": "+value.to_s+"\n" }
+    my_screen_table = Terminal::Table.new do |st|
+      @tail.each do |key,value| 
+        if key.to_s=='grade'
+          key=Rainbow(key.to_s).bright 
+          value=Rainbow(value.to_s).bright 
+        end
+        if key.to_s=='unique_fault' and value.to_i!=0
+          key=Rainbow(key.to_s).bg(:red) 
+          value=Rainbow(value.to_s).bg(:red) 
+        end
+        st.add_row [ key.to_s, value.to_s] 
+      end
+    end
+    w my_screen_table.to_s+"\n"
+    
     deinit
   end
   
