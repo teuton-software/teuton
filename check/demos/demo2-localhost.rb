@@ -13,11 +13,11 @@ check :exist_username do
 
   desc "Checking user <"+get(:username)+">"
   goto :localhost, :execute => "id #{get(:username)}| wc -l"
-  expect result.to_i.equal?(1)
+  expect result.equal?(1)
 
   desc "Checking home directory"
   goto '127.0.0.1', :execute => "cat /etc/passwd|grep #{get(:username)}|cut -d: -f6"
-  expect result.to_s.equal?(get(:homedir))
+  expect result.equal?(get(:homedir))
 
 end
 
@@ -25,11 +25,11 @@ check :partitions do
 	
   desc "Partitions /dev/sda == 4"
   goto :localhost, :execute => "cat /proc/partitions | grep sda| wc -l"
-  expect result.to_i.equal?(4)
+  expect result.equal?(4)
 
   desc "Partitions /dev/sdb == 3"
   goto :localhost, :execute => "cat /proc/partitions | grep sdb| wc -l"
-  expect result.to_i.equal?(3)
+  expect result.equal?(3)
 end
 
 start do

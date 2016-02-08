@@ -23,7 +23,7 @@ class TXTFormatter < BaseFormatter
           lValue=i[:weight]
           color=:green 
         end
-        w tab+"%02d"%i[:id]+" "+Rainbow("("+lValue.to_s+"/"+i[:weight].to_s+")").color(color)+"\n"       
+        w tab+"%02d"%i[:id]+" ("+Rainbow(lValue.to_s+"/"+i[:weight].to_s).color(color)+")\n"       
         w tab+"\t\t"+Rainbow("Description").bright+" : #{i[:description].to_s}\n"
         w tab+"\t\t"+Rainbow("Command    ").bright+" : #{i[:command].to_s}\n"
         w tab+"\t\t"+Rainbow("Expected   ").bright+" : #{i[:expected].to_s}\n"
