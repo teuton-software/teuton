@@ -90,5 +90,10 @@ class Result
     end
 	return lValue<pValue
   end
+  
+  def contain?(pValue)
+    @expected=pValue
+    return @content.contain? pValue
+  end
 		
 end
