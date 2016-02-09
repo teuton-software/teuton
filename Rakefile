@@ -20,12 +20,13 @@ task :opensuse => [:zypperpackages, :install_gems, :create_auxdirs]
 
 desc "_install rpm packages"
 task :zypperpackages do
-	system("zypper --non-interactive in --auto-agree-with-licenses openssh")
+  names=[ 'openssh', 'rubygem-pry' ]
+  names.each { |n| system("zypper --non-interactive in --auto-agree-with-licenses #{n}") }
 end
 
 desc "_install gems"
 task :install_gems do
-  names=['net-ssh', 'net-sftp', 'rspec', 'pony', 'rainbow']
+  names=['net-ssh', 'net-sftp', 'rspec', 'pony', 'rainbow', 'terminal-table']
   names.each { |n| system("gem install #{n}") }
 end
 
