@@ -6,8 +6,9 @@ How to create our own activity test, in four steps:
 ##STEP 1
 Create an empty file with execution permission, and include a 
 reference to our tool (`lib/tool.rb`).
-
+```
     require_relative '../../lib/tool'
+```
 
 This file will be called, for example, `./check/demos/my_demo.rb`.
 
@@ -20,8 +21,8 @@ check :test_name do
 
 	desc "Checking user david"
 	goto :host1, :execute => "id david |wc -l"
-	expect result.to_i.equal?(1)
-	
+	expect result.equal?(1)
+
 end
 ```
 
@@ -31,17 +32,17 @@ Let's see the key words used:
 * `desc "Checking user <david>"`, Describe the action or the target 
 with our words, so every one could easily understand what we are trying
 to check.
-* `goto :host1, :execute => "cat /etc/passwd|grep david|wc -l"`: Execute the command 
+* `goto :host1, :execute => "id david|wc -l"`: Execute the command 
 into the target host.
-* `expect result.to_i.equal?(1)`: At the end we need to check the obtained 
+* `expect result.equal?(1)`: At the end we need to check the obtained 
 result with our expectations.
 
 ##STEP 3
 At the end of our example script we add this lines:
 ```
 start do
-	show
-	export
+  show
+  export
 end
 ```
 The above lines order:
@@ -62,7 +63,7 @@ by our script. Let's see:
   :host1_password: password4student1
 - :tt_members: Student2
   :host1_ip: 2.2.2.2
-  :host1_password: passowrd4student2
+  :host1_password: password4student2
 ```
 The above file configures 2 diferents cases with their own params. The script
 use this information when execute every case.
