@@ -1,14 +1,9 @@
 ---
 :global:
-  :host1_username: root
 :cases:
-- :tt_members: Student1name
+- :tt_members: Student-1-name
   :tt_emails: student1@email.com
-  :host1_ip: 127.0.0.1
-  :host1_password: toor
   :username: root
-- :tt_members: Student2name
+- :tt_members: Student-2-name
   :tt_emails: student2@email.com
-  :host1_ip: 127.0.0.1
-  :host1_password: toor
   :username: darth-maul
