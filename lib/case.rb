@@ -73,9 +73,9 @@ class Case
       verboseln "\n"
     else
       @tests.each do |t| 
-        log("Begin "+t[:name].to_s)
+        log("Begin "+Rainbow(t[:name].to_s).color(:blue).to_s)
         instance_eval &t[:block]
-        log("End "+t[:name].to_s)
+        log("End "+Rainbow(t[:name].to_s).color(:blue).to_s)
       end
     end
 
