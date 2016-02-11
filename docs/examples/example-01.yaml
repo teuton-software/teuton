@@ -3,4 +3,3 @@
 :cases:
 - :tt_members: student1
   :tt_emails: student1@email.com
-  :host1_ip: 127.0.0.1

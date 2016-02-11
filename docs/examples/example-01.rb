@@ -4,7 +4,7 @@
 require_relative '../../lib/tool'
 
 =begin
- Demo script to run on localhost
+  Test if exist user <obiwan> into localhost
 =end
 
 check :exist_user_obiwan do
@@ -20,11 +20,3 @@ start do
   export
 end
 
-=begin
----
-:global:
-:cases:
-- :tt_members: Superusuario
-  :tt_emails: student1@email.com
-  :host1_ip: 127.0.0.1
-=end
