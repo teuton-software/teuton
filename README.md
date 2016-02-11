@@ -24,19 +24,22 @@ Thanks!
 #Quick demo
 
 Every activity consist of 2 files. Let's look at this demo:
-* `./check/demos/demo1-localhost.rb`: This is the script wich defines the activity.
-* `./check/demos/demo1-localhost.yaml`: This file contains the configuration for every 
+* `./docs/examples/example-01.rb`: This is the script wich defines the activity.
+* `./docs/examples/example-01.yaml`: This file contains the configuration for every 
 student machine (cases).
 
 To run this demo activity we do: 
-* `./check/demos/demo1-localhost.rb`, or
-* `ruby check/demos/demo1-localhost.rb`, or
+* `./docs/examples/example-01.rb`, or
+* `ruby docs/example/example-01.rb`, or
 
 > **Results** 
 > * You will see a brief *report on the screen*.
-> * and the extended *output files* are saved into `./var/demo1-localhost/out/` directory.
+> * and the extended *output files* are saved into `./var/example-01/out/` directory.
+> * There exists more activities into the `check` directory. This is the place
+where save your own activity scripts.
 
 #Documentation
 * [Installation](./docs/en/installation.md)
+* [Examples](./docs/examples/README.md)
 * [Create our first activity](./docs/en/first-activity.md)
 * [DSL Key words](./docs/en/dsl-key-words.md)
