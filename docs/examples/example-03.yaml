@@ -1,0 +1,22 @@
+---
+:global:
+  :host1_username: root
+:cases:
+- :tt_members: obiwan kenobi
+  :tt_emails: obiwan@email.com
+  :host1_ip: 192.168.1.101
+  :host1_password: password-case1
+  :host1_hostname: jedi.startwars
+  :username: obiwan
+- :tt_members: darth-maul
+  :tt_emails: darth-maul@email.com
+  :host1_ip: 192.168.1.102
+  :host1_password: password-case2
+  :host1_hostname: sith.starwars
+  :username: dmaul
+- :tt_members: r2d2
+  :tt_emails: rd2d2@email.com
+  :host1_ip: 192.168.1.103
+  :host1_password: password-case3
+  :host1_hostname: robot.startwars
+  :username: r2d2
