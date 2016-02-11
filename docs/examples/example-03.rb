@@ -28,6 +28,6 @@ check :configurations do
 end
 
 start do
-	show
-	export
+  show
+  export
 end
