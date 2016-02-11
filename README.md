@@ -30,7 +30,7 @@ student machine (cases).
 
 To run this demo activity we do: 
 * `./docs/examples/example-01.rb`, or
-* `ruby docs/example/example-01.rb`, or
+* `ruby docs/example/example-01.rb`.
 
 > **Results** 
 > * You will see a brief *report on the screen*.
