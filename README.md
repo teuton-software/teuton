@@ -43,3 +43,4 @@ where save your own activity scripts.
 * [Examples](./docs/en/examples.md)
 * [Create our first activity](./docs/en/first-activity.md)
 * [DSL Key words](./docs/en/dsl-key-words.md)
+* [Spanish documentation](./doc/es/README.md)
