@@ -40,6 +40,6 @@ where save your own activity scripts.
 
 #Documentation
 * [Installation](./docs/en/installation.md)
-* [Examples](./docs/examples/README.md)
+* [Examples](./docs/en/examples.md)
 * [Create our first activity](./docs/en/first-activity.md)
 * [DSL Key words](./docs/en/dsl-key-words.md)
