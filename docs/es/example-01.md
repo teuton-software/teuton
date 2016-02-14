@@ -52,8 +52,13 @@ Esto quiere decir que no se ha completado ninguno de los objetivos previstos.
 
 Para tener más información y averiguarlo que ha pasado con cada caso, debemos
 consultar el informe del mismo. Los informes se graban en `var/example-01/out`.
-Puesto que nuestro caso es el 01, consultaremo el fichero `var/example-01/out/case-01.txt`.
+```
+var/example-01/out/
+├── case-01.txt
+└── resume.txt
+```
 
+Puesto que nuestro caso es el 01, consultaremo el fichero `var/example-01/out/case-01.txt`.
 ```
 INITIAL CONFIGURATIONS
 +------------+--------------------+

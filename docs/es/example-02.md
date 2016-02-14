@@ -66,6 +66,13 @@ otro evaluado con 0%.
 Para tener más información y averiguarlo que ha pasado con cada caso, debemos
 consultar el informe del mismo. Los informes se graban en `var/example-02/out`.
 
+```
+var/example-02/out/
+├── case-01.txt
+├── case-02.txt
+└── resume.txt
+```
+
 ###case-01
 Primero vemos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
 ```
