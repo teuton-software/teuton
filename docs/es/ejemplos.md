@@ -1,27 +1,14 @@
 
 #Ejemplos
 
+* [example-01](example-01.md): Comprueba si existe el usuario *obiwan* en la máquina *localhost*.
+
 
 |Script   | Fichero de configuración | Descripción |
 |-------- | ----------- |------------ |
-|[example-01.rb](../examples/example-01.rb) | [example-01.yaml](../examples/example-01.yaml) | Comprueba si existe el usuario *obiwan* en la máquina *localhost* |
 |[example-02.rb](../examples/example-02.rb) | [example-02.yaml](../examples/example-02.yaml) | Test if exist username for every case into localhost |
 |[example-03.rb](../examples/example-03.rb) | [example-03.yaml](../examples/example-03.yaml) | Test several targets for every case into diferents hosts |
 
-
-##example-01
-Comprueba si existe el usuario *obiwan* en la máquina *localhost*.
-
-* **desc**: Texto que describe el objetivo que buscamos.
-* **goto**: Moverse a la máquina *localhost*, y ejecutar el comando.
-* **expect**: Evalua si el resultado es igual al valor esperado.
-
-El fichero de configuración no establece ninguna variable global, y 
-sólo contiene un caso. Este caso tiene los siguientes parámetros:
-
-* **tt_members**: Estos son los nombres de los miembros del grupo separados por comas.
-* **tt_emails**: Contiene las direcciones de correo de los miembros del grupo separados por coma.
-Esta información se usará para enviar por correo a cada estudiante el informe de sus resultados.
 
 ##example-02
 Test if exist specific username for every case into localhost:  
