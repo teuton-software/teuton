@@ -29,15 +29,15 @@ Executing [sysadmin-game] tests (version 0.5)
 [INFO] Duration = 0.011921461 (2016-02-14 12:33:34 +0000)
 
 =============================================
-HEAD
+INITIAL CONFIGURATIONS
   tt_title: Executing [sysadmin-game] tests (version 0.5)
   tt_scriptname: ./docs/examples/example-01.rb
   tt_configfile: ./docs/examples/example-01.yaml
   tt_testname: example-01
   tt_sequence: false
-HISTORY
+TARGETS HISTORY
   -  Case_01 =>   0 ? student1
-TAIL
+FINAL VALUES
   start_time: 2016-02-14 12:33:34 +0000
   finish_time: 2016-02-14 12:33:34 +0000
   duration: 0.011921461
@@ -55,13 +55,13 @@ consultar el informe del mismo. Los informes se graban en `var/example-01/out`.
 Puesto que nuestro caso es el 01, consultaremo el fichero `var/example-01/out/case-01.txt`.
 
 ```
-HEAD
+INITIAL CONFIGURATIONS
 +------------+--------------------+
 | tt_members | student1           |
 | tt_emails  | student1@email.com |
 | tt_skip    | false              |
 +------------+--------------------+
-HISTORY
+TARGETS HISTORY
   - INFO: Begin exist_user_obiwan
   01 (0.0/1.0)
   		Description : Checking user <obiwan>
@@ -69,7 +69,7 @@ HISTORY
   		Expected    : 1
   		Result      : 0
   - INFO: End exist_user_obiwan
-TAIL
+FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
 | start_time_  | 2016-02-14 12:33:34 +0000 |
@@ -84,12 +84,12 @@ TAIL
 +--------------+---------------------------+
 ```
 
-Como vemos en HISTORY (que es donde se registran las acciones sobre los objetivos),
+Como vemos en *TARGETS HISTORY* (que es donde se registran las acciones sobre los objetivos),
 hay una acción puntuada con 0 puntos, en la que se esperaba como resultado un 1 y
 se obtuvo un 0. El comando ejecutado fue `id obiwan|wc -l`. Por tanto, deducimos
 que no se cumplió el objetivo de tener creado dicho usuario en el sistema.
 
-El informe en la zona TAIL, nos da datos sobre:
+El informe en la zona *FINAL VALUES*, nos da datos sobre:
 * El número de identificación del caso. Por si fueran más de uno facilitar su identificación.
 * Fecha/hora de inicio de la prueba de evaluación.
 * Fecha/hora de finalización de la prueba de evaluación.

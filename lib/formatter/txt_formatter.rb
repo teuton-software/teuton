@@ -12,13 +12,13 @@ class TXTFormatter < BaseFormatter
 		
   def process
     tab="  "
-    w Rainbow("HEAD").bg(:blue)+"\n"
+    w Rainbow("INITIAL CONFIGURATIONS").bg(:blue)+"\n"
     my_screen_table = Terminal::Table.new do |st|
       @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
     w my_screen_table.to_s+"\n"
 
-    w Rainbow("HISTORY").bg(:blue)+"\n"
+    w Rainbow("TARGETS HISTORY").bg(:blue)+"\n"
     @lines.each do |i|
       if i.class.to_s=='Hash' then
         lValue=0.0
@@ -37,7 +37,7 @@ class TXTFormatter < BaseFormatter
       end
     end
 
-    w Rainbow("TAIL").bg(:blue)+"\n"
+    w Rainbow("FINAL VALUES").bg(:blue)+"\n"
     my_screen_table = Terminal::Table.new do |st|
       @tail.each do |key,value| 
         if key.to_s=='grade'

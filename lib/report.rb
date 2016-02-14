@@ -51,9 +51,9 @@ class Report
 									
   def show
     tab="  "
-    puts 'HEAD'
+    puts 'INITIAL CONFIGURATIONS'
     @head.each { |key,value| puts tab+key.to_s+": "+value.to_s }
-    puts 'HISTORY'
+    puts 'TARGETS HISTORY'
     @lines.each do |i|
       if i.class.to_s=='Hash' then
         value=0.0
@@ -63,7 +63,7 @@ class Report
         puts tab+"-  "+i.to_s
       end
     end
-    puts 'TAIL'
+    puts 'FINAL VALUES'
     @tail.each { |key,value| puts tab+key.to_s+": "+value.to_s }
   end		
 

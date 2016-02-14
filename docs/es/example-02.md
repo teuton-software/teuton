@@ -42,22 +42,22 @@ Executing [sysadmin-game] tests (version 0.5)
 [INFO] Duration = 0.013452716 (2016-02-14 13:05:02 +0000)
 
 =============================================
-HEAD
+INITIAL CONFIGURATIONS
   tt_title: Executing [sysadmin-game] tests (version 0.5)
   tt_scriptname: ./docs/examples/example-02.rb
   tt_configfile: ./docs/examples/example-02.yaml
   tt_testname: example-02
   tt_sequence: false
-HISTORY
-  -  Case_001 => 100   Student-name-1
-  -  Case_002 =>   0 ? Student-name-2
-TAIL
+TARGETS HISTORY
+  -  Case_01 => 100   Student-name-1
+  -  Case_02 =>   0 ? Student-name-2
+FINAL VALUES
   start_time: 2016-02-14 13:05:02 +0000
   finish_time: 2016-02-14 13:05:02 +0000
   duration: 0.013452716
 ```
 
-Aquí lo importante es ver en HISTORY el resumen de todos los casos analizados
+Aquí lo importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
 con su evaluación. En este ejemplo, tenemos 2 casos. Uno 100% bien y el 
 otro evaluado con 0%.
 
@@ -69,14 +69,14 @@ consultar el informe del mismo. Los informes se graban en `var/example-02/out`.
 ###case-01
 Primero vemos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
 ```
-HEAD
+INITIAL CONFIGURATIONS
 +------------+--------------------+
 | tt_members | Student-name-1     |
 | tt_emails  | student1@email.com |
 | username   | root               |
 | tt_skip    | false              |
 +------------+--------------------+
-HISTORY
+TARGETS HISTORY
   - INFO: Begin exist_username
   01 (1.0/1.0)
   		Description : Checking user <root>
@@ -84,7 +84,7 @@ HISTORY
   		Expected    : 1
   		Result      : 1
   - INFO: End exist_username
-TAIL
+FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
 | start_time_  | 2016-02-14 13:05:02 +0000 |
@@ -102,14 +102,14 @@ TAIL
 ###case-02
 Ahora vemos el informe del caso 02, consultando el fichero `var/example-02/out/case-02.txt`.
 ```
-HEAD
+INITIAL CONFIGURATIONS
 +------------+--------------------+
 | tt_members | Student-name-2     |
 | tt_emails  | student2@email.com |
 | username   | darth-maul         |
 | tt_skip    | false              |
 +------------+--------------------+
-HISTORY
+TARGETS HISTORY
   - INFO: Begin exist_username
   01 (0.0/1.0)
   		Description : Checking user <darth-maul>
@@ -117,7 +117,7 @@ HISTORY
   		Expected    : 1
   		Result      : 0
   - INFO: End exist_username
-TAIL
+FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 2                         |
 | start_time_  | 2016-02-14 13:05:02 +0000 |
