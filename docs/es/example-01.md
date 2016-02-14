@@ -3,7 +3,7 @@
 
 * Script: [example-01.rb](../examples/example-01.rb) 
 * Fichero de configuración: [example-01.yaml](../examples/example-01.yaml)
-* Descripción: Comprueba si existe el usuario *obiwan* en la máquina *localhost*.
+* Descripción: *Comprueba si existe el usuario *obiwan* en la máquina *localhost*.*
 
 Vemos que en el script hay las siguientes intrucciones:
 * **desc**: Texto que describe el objetivo que buscamos.
@@ -49,7 +49,7 @@ Aquí lo importante es ver en HISTORY el resumen de todos los casos analizados
 con su evaluación. En este ejemplo, sólo tenemos un caso que evaluado con 0%.
 Esto quiere decir que no se ha completado ninguno de los objetivos previstos.
 
-##Informes
+##Informe de salida
 
 Para tener más información y averiguarlo que ha pasado con cada caso, debemos
 consultar el informe del mismo. Los informes se graban en `var/example-01/out`.

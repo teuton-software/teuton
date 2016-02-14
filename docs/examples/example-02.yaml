@@ -1,9 +1,9 @@
 ---
 :global:
 :cases:
-- :tt_members: Student-1-name
+- :tt_members: Student-name-1
   :tt_emails: student1@email.com
   :username: root
-- :tt_members: Student-2-name
+- :tt_members: Student-name-2
   :tt_emails: student2@email.com
   :username: darth-maul
