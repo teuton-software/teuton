@@ -20,8 +20,8 @@ El fichero de configuración no establece ninguna variable global, y
 sólo contiene un caso. Este caso tiene los siguientes parámetros:
 
 * **tt_members**: Estos son los nombres de los miembros del grupo separados por comas.
-* **tt_emails**: The emails of the members of this group, separated by comma. This
-  will be used to send email to every student with their results.
+* **tt_emails**: Contiene las direcciones de correo de los miembros del grupo separados por coma.
+Esta información se usará para enviar por correo a cada estudiante el informe de sus resultados.
 
 ##example-02
 Test if exist specific username for every case into localhost:  
