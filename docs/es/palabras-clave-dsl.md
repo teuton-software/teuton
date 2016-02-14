@@ -6,7 +6,11 @@ las siguientes palabras clave del DSL *sysadmin-game*.
 
 ##check
 
-`check :testname do ... end`
+```
+    check :nombre_del_test do 
+      ... 
+    end
+```
 
 * Sirve para definir un grupo de objetivos o elementos de comprobación.
 * Como mínimo es obligatorio crear un `check` donde podremos definir nuestros
@@ -14,30 +18,47 @@ objetivos o elementos de evaluación.
 * Podemos usar `check`, tantas veces como queramos. Principalmente sirve
 para agrupar objetivos que están relacionados por razones de claridad para nosotros.
 No porque lo requiera la herrramienta.
-: Define a group of items to check.
 
 ##desc, description
 
 `desc "Escribe aquí la descripción de tu objetivo con tus propias palabras"`
 
-* Describe the action or the target with your own words, so every one 
-could easily understand what we are trying to do.
+* Nos permite introducir una descripción del objetivo que vamos a evaluar,
+usando nuestras propias palabras, de modo que cualquiera pueda entender
+facilmente lo que estamos tratando de hacer.
+* Además, dicho texto aparecerá en los informes de salida, para ayudarnos
+a analizar la información más facilmente.
 
 ##goto
 
 `goto :host1, :execute => "id david|wc -l"`
 
-* Execute the command into the specified host.
+* Con esta instrucción damos la orden de conectarnos con la máquina `host1`,
+y de ejecutar el comando especificado dentro de ella.
+* `host1` es una etiqueta que identifica una máquina determinada. La definición
+concreta de dicha máquina (ip, username, password) vendrá en el fichero
+de configuración que acompaña al script.
 
 ##expect
-* `expect result.to_i.equal?(1)`
-* After command execution we check the obtained result with our expectations.
+
+`expect result.to_i.equal?(1)`
+
+* Después de ejecutar un comando en una maquina determinada, obtenemos un resultado.
+Éste se guarda en `result`.
+* Con la instrucción `expect` evaluamos si el resultado obtenido coincide o no con el valor
+esperado.
 
 ##start
+
+```
+    start do
+      ...
+    end
+```
+
 We put this action at the end of every script, so it is the timr to begin
 running the tests over the machines.
 
-* `start do ... end`
 
 ##show
 * `show`, it's the same as `show :resume`
