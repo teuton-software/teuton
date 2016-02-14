@@ -28,7 +28,6 @@ Executing [sysadmin-game] tests (version 0.5)
 ?
 [INFO] Duration = 0.011921461 (2016-02-14 12:33:34 +0000)
 
-
 =============================================
 HEAD
   tt_title: Executing [sysadmin-game] tests (version 0.5)
@@ -37,7 +36,7 @@ HEAD
   tt_testname: example-01
   tt_sequence: false
 HISTORY
-  -  Case_001 =>   0 ? student1
+  -  Case_01 =>   0 ? student1
 TAIL
   start_time: 2016-02-14 12:33:34 +0000
   finish_time: 2016-02-14 12:33:34 +0000

@@ -5,11 +5,24 @@
 * Fichero de configuración: [example-02.yaml](../examples/example-02.yaml)
 * Descripción: *Personalizar cada caso con el fichero de configuración.*
 
+Como vimos en example-01 si ahora queremos comprobar un nombre de usuario
+diferente, tenemos que modificar el script de evaluación...¿y si
+sacamos los parámetros que pueden cambiar a un fichero de configuración
+externo? ¿Mejor? ¿verdad?
+
+En este ejemplo vamos a poner los nombres de usuarios a comprobar en el
+fichero de configuración, y para leer dichos valores desde el script usaremos
+la instrucción del DSL *get*.
+
 Vemos que en el script hay la siguiente nueva intrucción:
 * **get**: Lee el valor del parámetro del fichero de configuración. Para cada caso 
 será diferente. Las acciones de comprobación toman el valor configurado para
 cada caso del fichero de configuración, de esta forma cada caso se evalúa
 con diferentes valores.
+* *get* intenta primero leer el valor solicitado en la configuración del caso,
+y si no lo encuentra lo intenta leer de la configuración global. De este forma
+podemos tenemos parámetros específicos para cada caso, o comunes para todos
+ellos.
 
 En este ejemplo no tenemos definidas variables globales de configuración.
 Para cada caso se definen los parámetros siguientes: `tt_members`, `tt_emails` 
@@ -25,10 +38,8 @@ Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la siguiente sa
 =============================================
 Executing [sysadmin-game] tests (version 0.5)
 [INFO] Running in parallel (2016-02-14 13:05:02 +0000)
-.id: darth-maul: no existe ese usuario
-?
+.?
 [INFO] Duration = 0.013452716 (2016-02-14 13:05:02 +0000)
-
 
 =============================================
 HEAD
@@ -55,6 +66,7 @@ otro evaluado con 0%.
 Para tener más información y averiguarlo que ha pasado con cada caso, debemos
 consultar el informe del mismo. Los informes se graban en `var/example-02/out`.
 
+###case-01
 Primero vemos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
 ```
 HEAD
@@ -87,7 +99,7 @@ TAIL
 +--------------+---------------------------+
 ```
 
-
+###case-02
 Ahora vemos el informe del caso 02, consultando el fichero `var/example-02/out/case-02.txt`.
 ```
 HEAD
