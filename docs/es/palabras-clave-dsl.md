@@ -19,7 +19,7 @@ objetivos o elementos de evaluación.
 para agrupar objetivos que están relacionados por razones de claridad para nosotros.
 No porque lo requiera la herrramienta.
 
-##desc, description
+###desc, description
 
 `desc "Escribe aquí la descripción de tu objetivo con tus propias palabras"`
 
@@ -29,7 +29,7 @@ facilmente lo que estamos tratando de hacer.
 * Además, dicho texto aparecerá en los informes de salida, para ayudarnos
 a analizar la información más facilmente.
 
-##goto
+###goto
 
 `goto :host1, :execute => "id david|wc -l"`
 
@@ -39,7 +39,7 @@ y de ejecutar el comando especificado dentro de ella.
 concreta de dicha máquina (ip, username, password) vendrá en el fichero
 de configuración que acompaña al script.
 
-##expect
+###expect
 
 `expect result.to_i.equal?(1)`
 
@@ -56,23 +56,38 @@ esperado.
     end
 ```
 
-We put this action at the end of every script, so it is the timr to begin
-running the tests over the machines.
+* Escribiremos estra instrucción al final de cada script.
+* Las instrucciones `check` definen las pruebas que queremos realizar, pero la instrucción
+`start` es la que finalmente inicia la ejecución de las pruebas de evaluación 
+dentro de cada una de las máquinas de cada caso.
+* Si no escribimos esta instrucción las pruebas no se van a ejecutar.
 
+###show
 
-##show
-* `show`, it's the same as `show :resume`
-* `show :resume`, show a resume on the screen when the script finish.
-* `show :details`, show details of every case when the script finish.
-* `show :all`, it's the same as `show :resume` and `show :details`.
+```
+    start do
+      show
+    end
+```
 
-##export
-* `export`, it's the same as `export :all`
-* `export :all`, create ouput file with the results of every single case.
-By default use TXT format ouput.
-* `export :all, :format => :txt`, create ouput text file with the results of every single case.
+* `show`, esto es lo mismo que `show :resume`
+* `show :resume`, muestra un resumen en pantalla del resultado cuando terminan las evaluaciones.
+* `show :details`, muestra todos los detalles de los casos en pantalla al terminar las evaluaciones.
+* `show :all`, esto es lo mismo que `show :resume` y `show :details`.
 
-Other values for `:format` option are:
-* `:txt`, plain text
-* `:html`, HTML
-* `:xml`, XML
+###export
+
+```
+    start do
+      export
+    end
+```
+
+* `export`, Esto es lo mismo que `export :all`
+* `export :all`, crea un fichero de salida para cada caso, con los resultados 
+de la evaluación. Por defecto se usa TXT como formato de salida.
+* `export :all, :format => :txt`, Ésta es la forma de definir los ficheros de salida
+que queremos crear y el formato de los mismos.
+
+Otros valores para el formato de salida, pueden ser: `:txt`, `:html` y `:xml`.
+
