@@ -8,6 +8,8 @@ require_relative '../../lib/tool'
   * desc: Describe the target
   * goto: Move to localhost, and execute the command
   * expect: Check if the results are equal to expected value
+  
+  Teacher host (localhost) must have GNU/Linux OS.
 =end
 
 check :exist_user_obiwan do
@@ -22,4 +24,3 @@ start do
   show
   export
 end
-

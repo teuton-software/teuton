@@ -4,10 +4,14 @@
 * Script: [example-01.rb](../examples/example-01.rb) 
 * Fichero de configuración: [example-01.yaml](../examples/example-01.yaml)
 * Descripción: *Comprueba si existe el usuario *obiwan* en la máquina *localhost*.*
+* Sistema operativo de *localhost*: GNU/Linux.
 
 Vemos que en el script hay las siguientes intrucciones:
 * **desc**: Texto que describe el objetivo que buscamos.
-* **goto**: Moverse a la máquina *localhost*, y ejecutar el comando.
+* **goto**: Moverse a la máquina *localhost*, y ejecutar el comando. Hay que hacer notar
+que en este caso el comando se ejecutará en *localhost*, y puesto que el comando del
+script es `id david | wc -l`, el sistema operativo de *localhost* debe ser un GNU/Linux,
+o en su defecto otro sistema operativo que entienda el comando a ejecutar.
 * **expect**: Evalua si el resultado es igual al valor esperado.
 
 El fichero de configuración no establece ninguna variable global, y 
@@ -44,9 +48,10 @@ FINAL VALUES
 
 ```
 
-Aquí lo importante es ver en HISTORY el resumen de todos los casos analizados
-con su evaluación. En este ejemplo, sólo tenemos un caso que evaluado con 0%.
-Esto quiere decir que no se ha completado ninguno de los objetivos previstos.
+Aquí lo importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
+con su evaluación final. En este ejemplo, sólo tenemos un caso (case_01) que 
+tiene como resultado un 0%. Esto quiere decir que no se ha completado ninguno 
+de los objetivos previstos para dicho caso.
 
 ##Informe de salida
 
@@ -94,13 +99,18 @@ hay una acción puntuada con 0 puntos, en la que se esperaba como resultado un 1
 se obtuvo un 0. El comando ejecutado fue `id obiwan|wc -l`. Por tanto, deducimos
 que no se cumplió el objetivo de tener creado dicho usuario en el sistema.
 
-El informe en la zona *FINAL VALUES*, nos da datos sobre:
+En la zona *FINAL VALUES* del informe podemos ver los siguientes datos:
 * El número de identificación del caso. Por si fueran más de uno facilitar su identificación.
-* Fecha/hora de inicio de la prueba de evaluación.
-* Fecha/hora de finalización de la prueba de evaluación.
+En nuestro caso es `1`.
+* Fecha/hora de inicio y finalización de la prueba de evaluación. Estos valores establecen
+el periodo de tiempo en el que se realiza la prueba, y por tanto el periodo de tiempo en el
+que se realiza la medición del cumplimiento de los objetivos. Es posible que el alumno
+modifique el estado de la máquina fuera de dicho intervalo temporal, en cuyo caso, dichas
+no modificaciones no serán tenidas en cuenta.
 * Duración de la prueba de evaluación para ese caso concreto.
-* `unique_fault`: En estea prueba no se usa. Lo veremos más adelante.
-* Cada objetivo tiene un peso en la evaluación. Por defecto todos tienen pero 1, 
-a menos que indiquemos otro valor.
+* `unique_fault`: En esta prueba no se usa. Lo veremos más adelante.
+* Cada objetivo tiene un peso en la fórmulara de evaluación. Realmente para calcular
+la nota final se usa una media ponderada de todos los objetivos. Por defecto 
+todos tienen pero 1, a menos que indiquemos otro valor diferente (ya veremos un ejemplo).
 * `fail_counter`: Es la cantidad de objetivos fallados.
 * `grade`: Es la puntuación final en %. En este caso 0 %.
