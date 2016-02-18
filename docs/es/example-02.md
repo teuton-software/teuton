@@ -3,24 +3,25 @@
 
 * Script: [example-02.rb](../examples/example-02.rb) 
 * Fichero de configuración: [example-02.yaml](../examples/example-02.yaml)
-* Descripción: *Personalizar cada caso con el fichero de configuración.*
+* Descripción: *Personalizar cada caso usando el fichero de configuración.*
 
-Como vimos en example-01 si ahora queremos comprobar un nombre de usuario
-diferente, tenemos que modificar el script de evaluación...¿y si
-sacamos los parámetros que pueden cambiar a un fichero de configuración
-externo? ¿Mejor? ¿verdad?
+En el ejemplo anterior (`example-01`) vimos que tenía el objetivo de
+comprobar la existencia de un usuario concreto. Si queremos comprobar 
+un nombre de usuario diferente, tendríamos que modificar el script de 
+evaluación... Pero ¿y si sacamos los parámetros que pueden cambiar 
+de la prueba, a un fichero de configuración externo? ¿Mejor? ¿verdad?
 
-En este ejemplo vamos a poner los nombres de usuarios a comprobar en el
-fichero de configuración, y para leer dichos valores desde el script usaremos
-la instrucción del DSL *get*.
+En este ejemplo vamos a poner los nombres de usuarios a comprobar (objetivos)
+en el fichero de configuración, y para leer dichos valores desde el script usaremos
+la instrucción *get* del DSL (Consultar [example-02.rb](../examples/example-02.rb)).
 
-Vemos que en el script hay la siguiente nueva intrucción:
-* **get**: Lee el valor del parámetro del fichero de configuración. Para cada caso 
-será diferente. Las acciones de comprobación toman el valor configurado para
-cada caso del fichero de configuración, de esta forma cada caso se evalúa
-con diferentes valores.
+Vemos que en el script hay una nueva intrucción:
+* **get**: Lee el valor del parámetro indicado, del contenido del fichero 
+de configuración. Para cada caso podrá ser diferente. Las acciones de 
+comprobación toman el valor configurado para cada caso del fichero 
+de configuración, y de esta forma cada caso se evalúa con diferentes valores.
 * *get* intenta primero leer el valor solicitado en la configuración del caso,
-y si no lo encuentra lo intenta leer de la configuración global. De este forma
+y si no lo encuentra lo intenta leer de la configuración global. De esta forma
 podemos tenemos parámetros específicos para cada caso, o comunes para todos
 ellos.
 
@@ -30,6 +31,7 @@ y `username`.
 * **username**: Este parámetro tiene diferente valor para cada caso, de modo
 que cuando se ejecuta la accción de comprobación, ésta será diferente en cada
 caso.
+* Consulta el fichero de configuración de este ejemplo.
 
 ##Ejecución
 Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la siguiente salida por pantalla:
@@ -57,14 +59,15 @@ FINAL VALUES
   duration: 0.013452716
 ```
 
-Aquí lo importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
-con su evaluación. En este ejemplo, tenemos 2 casos. Uno 100% bien y el 
-otro evaluado con 0%.
+Aquí lo más importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
+con su evaluación final. En este ejemplo, tenemos 2 casos: case_01 con 
+puntuación del 100% y case_02 con puntuación de 0%.
 
 ##Informes de salida
 
-Para tener más información y averiguarlo que ha pasado con cada caso, debemos
-consultar el informe del mismo. Los informes se graban en `var/example-02/out`.
+Para tener más información sobre cada caso, y averiguar lo que ha pasado
+con cada uno para obtener las puntuaciones finales, debemos consultar 
+los informes. Los informes se graban en `var/example-02/out`.
 
 ```
 var/example-02/out/
@@ -74,7 +77,7 @@ var/example-02/out/
 ```
 
 ###case-01
-Primero vemos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
+Veamos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
 ```
 INITIAL CONFIGURATIONS
 +------------+--------------------+
