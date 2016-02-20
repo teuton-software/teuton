@@ -13,7 +13,7 @@ Ejemplo anterior | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./
 * Script: [example-01.rb](../examples/example-01.rb) 
 * Fichero de configuración: [example-01.yaml](../examples/example-01.yaml)
 * Descripción: *Comprueba si existe el usuario *obiwan* en la máquina *localhost*.*
-* Requisitos: El sistema operativo de la máquina *localhost* debe ser GNU/Linux.
+* Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en *localhost*.
 
 ##Script
 

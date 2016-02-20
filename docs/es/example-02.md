@@ -14,7 +14,7 @@
 * Script: [example-02.rb](../examples/example-02.rb) 
 * Fichero de configuración: [example-02.yaml](../examples/example-02.yaml)
 * Descripción: *Personalizar cada caso usando el fichero de configuración.*
-* Requisitos: El sistema operativo de la máquina *localhost* debe ser GNU/Linux.
+* Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en *localhost*.
 
 ##Script
 
@@ -91,7 +91,8 @@ var/example-02/out/
 └── resume.txt
 ```
 
-###Informe de salida para case-01
+###Informe de salida para `case-01`
+
 Veamos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
 ```
 INITIAL CONFIGURATIONS
@@ -172,3 +173,4 @@ para variables de configuración específicas de la aplicación. Algunos ejemplo
 * `tt_members`: Que guarda una lista con los nombres de los miembros del grupo de trabajo.
 * `tt_emails`: Que guarda una lista con las cuentas de correo de los miembros del grupo de trabajo.
 * `tt_skip`: Toma los valores true/false. Y define si debemos procesar/evaluar este caso o no.
+Por defecto, toma el valor `True`, y no es necesario especificarlo.
