@@ -8,8 +8,7 @@
     En este ejemplo, vamos a hacer uso del fichero de configuración.
     Cada script (demo.rb) va acompañado de un fichero de configuración (demo.yaml).
     El contenido del fichero de configuración tiene formato YAML.
-    Para leer el contenido del fichero de configuración desde el script,
-    usaremos la instruccion get del DSL.
+    Para leer el contenido del fichero de configuración desde el script, usaremos la instruccion get del DSL.
 ```
 
 * Script: [example-02.rb](../examples/example-02.rb) 
@@ -157,3 +156,19 @@ FINAL VALUES
 | grade        | 0.0                       |
 +--------------+---------------------------+
 ```
+
+##Recordatorio
+
+Dentro del fichero de configuración, podemos crear todas las variables 
+que necesitamos para nuestro script/actividad.
+
+Si las definimos en la zona `global` serán accesibles para todos los casos, y
+en el caso de definarlas dentro de cada caso, sólo serán accesibles para dicho
+caso.
+
+Tener en cuenta que podemos usar los nombres que queramos para nuestras variables
+de configuración, pero evitar que comiencen por `tt_`. Este prefijo está reservado
+para variables de configuración específicas de la aplicación. Algunos ejemplos son:
+* `tt_members`: Que guarda una lista con los nombres de los miembros del grupo de trabajo.
+* `tt_emails`: Que guarda una lista con las cuentas de correo de los miembros del grupo de trabajo.
+* `tt_skip`: Toma los valores true/false. Y define si debemos procesar/evaluar este caso o no.
