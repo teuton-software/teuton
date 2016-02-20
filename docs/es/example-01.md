@@ -130,3 +130,14 @@ la nota final se usa una media ponderada de todos los objetivos. Por defecto
 todos tienen pero 1, a menos que indiquemos otro valor diferente (ya veremos un ejemplo).
 * `fail_counter`: Es la cantidad de objetivos fallados.
 * `grade`: Es la puntuación final en %. En este caso 0 %.
+
+##Recordatorio
+
+Podemos crear tantos objetivos evaluables como queramos, usando las instrucciones
+`desc`, `goto` y `expect`. Cuantas más pongamos, más exhaustiva será nuestra 
+evaluación.
+
+Los objetivos deben ir siempre dentro de un bloque `check :name do ... end`.
+
+Si tiemos muchos objetivos podemos crear varias agrupaciones `check` para repartirlos.
+Las agrupaciones `check` sólo sirven para tener las cosas más ordenadas.
