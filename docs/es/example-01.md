@@ -2,11 +2,10 @@
 #example-01
 
 ```
-    En este ejemplo, veremos como definimos un objetivo evaluable.
+    En este ejemplo, veremos como definir un objetivo evaluable.
     Los objetivos son cada uno de los aspectos que vamos a medir en los trabajos realizados.
-    Cada trabajo será realizado por un alumno o por un grupo de alumnos, nosotros los
-    llamaremos casos.
-    Cada caso estable una lista de miembros.
+    Cada trabajo será realizado por un alumno o varios, nosotros los llamaremos casos.
+    Cada caso define un parámetro con la lista de sus miembros.
 ```
 
 * Script: [example-01.rb](../examples/example-01.rb) 
