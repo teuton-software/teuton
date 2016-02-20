@@ -1,5 +1,5 @@
 
-[README](./README.md) | [Ejemplos](./ejemplos.md) | [example-02](./example-02.md)
+Ejemplo anterior | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./example-02.md)
 
 #example-01
 
@@ -34,7 +34,7 @@ sólo contiene un caso. Este caso tiene los siguientes parámetros:
 * **tt_emails**: Contiene las direcciones de correo de los miembros del grupo separados por coma.
 Esta información se usará para enviar por correo a cada estudiante el informe de sus resultados.
 
-##Ejecución
+##Ejecución del script
 
 Para ejecutamos el script hacemos `./docs/examples/example-01.rb`, y vemos la siguiente salida por pantalla:
 

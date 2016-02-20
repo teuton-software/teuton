@@ -1,9 +1,23 @@
 
+
+[Ejemplo anterior](./example-01.md) | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./example-03.md)
+
 #example-02
+
+```
+    En este ejemplo, vamos a hacer uso del fichero de configuración.
+    Cada script (demo.rb) va acompañado de un fichero de configuración (demo.yaml).
+    El contenido del fichero de configuración tiene formato YAML.
+    Para leer el contenido del fichero de configuración desde el script,
+    usaremos la instruccion get del DSL.
+```
 
 * Script: [example-02.rb](../examples/example-02.rb) 
 * Fichero de configuración: [example-02.yaml](../examples/example-02.yaml)
 * Descripción: *Personalizar cada caso usando el fichero de configuración.*
+* Requisitos: El sistema operativo de la máquina *localhost* debe ser GNU/Linux.
+
+##Script
 
 En el ejemplo anterior (`example-01`) vimos que tenía el objetivo de
 comprobar la existencia de un usuario concreto. Si queremos comprobar 
@@ -14,6 +28,8 @@ de la prueba, a un fichero de configuración externo? ¿Mejor? ¿verdad?
 En este ejemplo vamos a poner los nombres de usuarios a comprobar (objetivos)
 en el fichero de configuración, y para leer dichos valores desde el script usaremos
 la instrucción *get* del DSL (Consultar [example-02.rb](../examples/example-02.rb)).
+
+##Fichero de configuración
 
 Vemos que en el script hay una nueva intrucción:
 * **get**: Lee el valor del parámetro indicado, del contenido del fichero 
@@ -33,7 +49,7 @@ que cuando se ejecuta la accción de comprobación, ésta será diferente en cad
 caso.
 * Consulta el fichero de configuración de este ejemplo.
 
-##Ejecución
+##Ejecución del script
 Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la siguiente salida por pantalla:
 
 ```
