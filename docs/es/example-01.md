@@ -1,18 +1,30 @@
 
 #example-01
 
+```
+    En este ejemplo, veremos como definimos un objetivo evaluable.
+    Los objetivos son cada uno de los aspectos que vamos a medir en los trabajos realizados.
+    Cada trabajo será realizado por un alumno o por un grupo de alumnos, nosotros los
+    llamaremos casos.
+    Cada caso estable una lista de miembros.
+```
+
 * Script: [example-01.rb](../examples/example-01.rb) 
 * Fichero de configuración: [example-01.yaml](../examples/example-01.yaml)
 * Descripción: *Comprueba si existe el usuario *obiwan* en la máquina *localhost*.*
-* Sistema operativo de *localhost*: GNU/Linux.
+* Requisitos: El sistema operativo de la máquina *localhost* debe ser GNU/Linux.
+
+##Script
 
 Vemos que en el script hay las siguientes intrucciones:
 * **desc**: Texto que describe el objetivo que buscamos.
 * **goto**: Moverse a la máquina *localhost*, y ejecutar el comando. Hay que hacer notar
 que en este caso el comando se ejecutará en *localhost*, y puesto que el comando del
-script es `id david | wc -l`, el sistema operativo de *localhost* debe ser un GNU/Linux,
+script es `id obiwan | wc -l`, el sistema operativo de *localhost* debe ser un GNU/Linux,
 o en su defecto otro sistema operativo que entienda el comando a ejecutar.
 * **expect**: Evalua si el resultado es igual al valor esperado.
+
+##El fichero de configuración
 
 El fichero de configuración no establece ninguna variable global, y 
 sólo contiene un caso. Este caso tiene los siguientes parámetros:
@@ -22,7 +34,8 @@ sólo contiene un caso. Este caso tiene los siguientes parámetros:
 Esta información se usará para enviar por correo a cada estudiante el informe de sus resultados.
 
 ##Ejecución
-Ejecutamos el script con `./docs/examples/example-01.rb` y vemos la siguiente salida por pantalla:
+
+Para ejecutamos el script hacemos `./docs/examples/example-01.rb`, y vemos la siguiente salida por pantalla:
 
 ```
 
@@ -48,14 +61,16 @@ FINAL VALUES
 
 ```
 
-Aquí lo importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
+En la sección *TARGETS HISTORY* vemos el resumen de todos los casos analizados
 con su evaluación final. En este ejemplo, sólo tenemos un caso (case_01) que 
-tiene como resultado un 0%. Esto quiere decir que no se ha completado ninguno 
+tiene como resultado final un 0%. Esto quiere decir que no se ha completado ninguno 
 de los objetivos previstos para dicho caso.
+
+> Cuando el valor final de la evaluación de cada caso es menor a 50% se acompaña de un '?'.
 
 ##Informe de salida
 
-Para tener más información y averiguarlo que ha pasado con cada caso, debemos
+Para tener información más detalla y averiguar lo que ha pasado en cada caso, debemos
 consultar el informe del mismo. Los informes se graban en `var/example-01/out`.
 ```
 var/example-01/out/
