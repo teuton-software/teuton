@@ -91,7 +91,7 @@ var/example-02/out/
 └── resume.txt
 ```
 
-###case-01
+###Informe de salida para case-01
 Veamos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
 ```
 INITIAL CONFIGURATIONS
@@ -124,7 +124,7 @@ FINAL VALUES
 +--------------+---------------------------+
 ```
 
-###case-02
+###Informe de salida para `case-02`
 Ahora vemos el informe del caso 02, consultando el fichero `var/example-02/out/case-02.txt`.
 ```
 INITIAL CONFIGURATIONS
