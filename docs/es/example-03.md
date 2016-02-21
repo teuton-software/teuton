@@ -87,14 +87,14 @@ caso.
 * Consulta el fichero de configuración de este ejemplo.
 
 ##Ejecución del script
-Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la siguiente salida por pantalla:
+Ejecutamos el script con `./docs/examples/example-03.rb` y vemos la siguiente salida por pantalla:
 
 ```
 =============================================
 Executing [sysadmin-game] tests (version 0.5)
-[INFO] Running in parallel (2016-02-20 13:11:02 +0000)
-!!!?????????
-[INFO] Duration = 3.022436335 (2016-02-20 13:11:05 +0000)
+[INFO] Running in parallel (2016-02-21 12:14:14 +0000)
+...!????.?
+[INFO] Duration = 5.380654018 (2016-02-21 12:14:19 +0000)
 
 
 =============================================
@@ -103,22 +103,22 @@ INITIAL CONFIGURATIONS
   tt_scriptname: ./docs/examples/example-03.rb
   tt_configfile: ./docs/examples/example-03.yaml
   host1_username: root
+  host1_password: profesor
   tt_testname: example-03
   tt_sequence: false
 TARGETS HISTORY
-  -  Case_01 =>   0 ? obiwan kenobi
-  -  Case_02 =>   0 ? darth-maul
-  -  Case_03 =>   0 ? r2d2
+  -  Case_01 =>   0 ? darth-maul
+  -  Case_02 =>  33 ? r2d2
+  -  Case_03 => 100   obiwan kenobi
 FINAL VALUES
-  start_time: 2016-02-20 13:11:02 +0000
-  finish_time: 2016-02-20 13:11:05 +0000
-  duration: 3.022436335
-
+  start_time: 2016-02-21 12:14:14 +0000
+  finish_time: 2016-02-21 12:14:19 +0000
+  duration: 5.380654018
 ```
 
 Aquí lo más importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
-con su evaluación final. En este ejemplo, tenemos 3 casos, y todos ellos tienen
-como puntuación final 0%. Veamos el motivo en los informes.
+con su evaluación final. En este ejemplo, tenemos los siguientes 3 casos con distinta
+puntuación final.
 
 ##Informes de salida
 
@@ -137,42 +137,44 @@ var/example-03/out/
 ###Informe de salida para `case-01`
 
 Veamos el informe del caso 01, consultando el fichero `var/example-03/out/case-01.txt`.
+
 ```
 INITIAL CONFIGURATIONS
-+----------------+------------------+
-| tt_members     | obiwan kenobi    |
-| tt_emails      | obiwan@email.com |
-| host1_ip       | 192.168.1.101    |
-| host1_password | password-case1   |
-| host1_hostname | jedi.startwars   |
-| username       | obiwan           |
-| tt_skip        | false            |
-+----------------+------------------+
++----------------+----------------------+
+| tt_members     | darth-maul           |
+| tt_emails      | darth-maul@email.com |
+| tt_skip        | false                |
+| host1_ip       | 192.168.1.108        |
+| host1_hostname | sith.starwars        |
+| username       | dmaul                |
++----------------+----------------------+
 TARGETS HISTORY
-  - INFO: Begin configurations
-  - ERROR: Host 192.168.1.101 unreachable!
+  - INFO: Begin host_configuration
+  - ERROR: Host 192.168.1.108 unreachable!
   01 (0.0/1.0)
-  		Description : Exist user <obiwan>
-  		Command     : id obiwan |wc -l
-  		Expected    : 1
+  		Description : Hostname is <sith.starwars>
+  		Command     : hostname -f
+  		Expected    : sith.starwars
   		Result      : 
   02 (0.0/1.0)
-  		Description : Hostname is <jedi.startwars>
-  		Command     : hostname -f
-  		Expected    : jedi.startwars
-  		Result      : 
-  03 (0.0/1.0)
   		Description : DNS Server OK
-  		Command     : host www.google.es| grep 'has address'
+  		Command     : host www.google.es| grep 'has address'| wc -l
   		Expected    : 1
   		Result      : 
-  - INFO: End configurations
+  - INFO: End host_configuration
+  - INFO: Begin user_configuration
+  03 (0.0/1.0)
+  		Description : Exist user <dmaul>
+  		Command     : id dmaul |wc -l
+  		Expected    : 1
+  		Result      : 
+  - INFO: End user_configuration
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-02-20 13:11:02 +0000 |
-| finish_time  | 2016-02-20 13:11:05 +0000 |
-| duration     | 3.012580292               |
+| start_time_  | 2016-02-21 12:14:14 +0000 |
+| finish_time  | 2016-02-21 12:14:17 +0000 |
+| duration     | 3.010793217               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 0.0                       |
@@ -182,14 +184,15 @@ FINAL VALUES
 +--------------+---------------------------+
 ```
 
-Se ha intentado evaluar 3 objetivos. Y los tres sin éxito, puesto que el valor
-esperado con coincide con el valor obtenido.
+Se ha intentado evaluar los objetivos, y todos sin éxito, puesto que el valor
+esperado no coincide con el valor obtenido.
 
 Si nos fijamos veremos en la sección *TARGETS HISTORY* una línea de ERROR.
-Esta línea con el mensaje `Host 192.168.1.101 unreachable!` nos dice que no ha 
-sido posible establecer una conexión SSH con dicha IP. Si no hay conexión,
-no se puede consultar el estado de los objetivos y por tanto la nota final
-será 0%.
+Esta línea con el mensaje nos dice que no ha sido posible establecer 
+una conexión SSH con dicha IP. En nuestro ejemplo, la máquina estaba apagada.
+
+Cuando no hay conexión, no se puede consultar el estado de los objetivos 
+y por tanto la nota final será 0%.
 
 Algunos de los motivos por los que puede no funcionar la conexión SSH a las máquinas remotas:
 * La máquina remota está apagada.
@@ -197,6 +200,110 @@ Algunos de los motivos por los que puede no funcionar la conexión SSH a las má
 * La máquina remota no tiene instalado el servicio SSH.
 * La máquina remota no tiene configurado el acceso SSH para nuestro usuario.
 * El cortafuegos de la máquina remota y/o la máquina del profesor cortan las comunicaciones SSH.
+
+###Informe de salida para `case-02`
+
+Veamos el informe del caso 02, consultando el fichero `var/example-03/out/case-02.txt`.
+
+```
+INITIAL CONFIGURATIONS
++----------------+-----------------+
+| tt_members     | r2d2            |
+| tt_emails      | rd2d2@email.com |
+| tt_skip        | false           |
+| host1_ip       | 192.168.1.109   |
+| host1_hostname | robot.starwars  |
+| username       | r2d2            |
++----------------+-----------------+
+TARGETS HISTORY
+  - INFO: Begin host_configuration
+  01 (0.0/1.0)
+  		Description : Hostname is <robot.starwars>
+  		Command     : hostname -f
+  		Expected    : robot.starwars
+  		Result      : curso1516.ies
+  02 (1.0/1.0)
+  		Description : DNS Server OK
+  		Command     : host www.google.es| grep 'has address'| wc -l
+  		Expected    : 1
+  		Result      : 1
+  - INFO: End host_configuration
+  - INFO: Begin user_configuration
+  03 (0.0/1.0)
+  		Description : Exist user <r2d2>
+  		Command     : id r2d2 |wc -l
+  		Expected    : 1
+  		Result      : id: r2d2: No existe ese usuario
+  - INFO: End user_configuration
+FINAL VALUES
++--------------+---------------------------+
+| case_id      | 2                         |
+| start_time_  | 2016-02-21 12:14:14 +0000 |
+| finish_time  | 2016-02-21 12:14:19 +0000 |
+| duration     | 5.365698817               |
+| unique_fault | 0                         |
+| max_weight   | 3.0                       |
+| good_weight  | 1.0                       |
+| fail_weight  | 2.0                       |
+| fail_counter | 2                         |
+| grade        | 33.33333333333333         |
++--------------+---------------------------+
+```
+
+En este caso, si hemos establecido una conexión SSH correcta con la máquina,
+pero sólo se ha cumplido satisfactoriamente 1 de los 3 objetivos previstos.
+
+###Informe de salida para `case-03`
+
+Veamos el informe del caso 03, consultando el fichero `var/example-03/out/case-03.txt`.
+
+```
+INITIAL CONFIGURATIONS
++----------------+------------------+
+| tt_members     | obiwan kenobi    |
+| tt_emails      | obiwan@email.com |
+| tt_skip        | false            |
+| host1_ip       | 192.168.1.113    |
+| host1_hostname | jedi.starwars    |
+| username       | obiwan           |
++----------------+------------------+
+TARGETS HISTORY
+  - INFO: Begin host_configuration
+  01 (1.0/1.0)
+  		Description : Hostname is <jedi.starwars>
+  		Command     : hostname -f
+  		Expected    : jedi.starwars
+  		Result      : jedi.starwars
+  02 (1.0/1.0)
+  		Description : DNS Server OK
+  		Command     : host www.google.es| grep 'has address'| wc -l
+  		Expected    : 1
+  		Result      : 1
+  - INFO: End host_configuration
+  - INFO: Begin user_configuration
+  03 (1.0/1.0)
+  		Description : Exist user <obiwan>
+  		Command     : id obiwan |wc -l
+  		Expected    : 1
+  		Result      : 1
+  - INFO: End user_configuration
+FINAL VALUES
++--------------+---------------------------+
+| case_id      | 3                         |
+| start_time_  | 2016-02-21 12:14:14 +0000 |
+| finish_time  | 2016-02-21 12:14:15 +0000 |
+| duration     | 1.177294342               |
+| unique_fault | 0                         |
+| max_weight   | 3.0                       |
+| good_weight  | 3.0                       |
+| fail_weight  | 0.0                       |
+| fail_counter | 0                         |
+| grade        | 100.0                     |
++--------------+---------------------------+
+```
+
+Comprobamos que todos los objetivos se han cumplido correctamente.
+
 
 ##Recordatorio
 
