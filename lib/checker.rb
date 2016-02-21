@@ -113,6 +113,12 @@ class Checker
     end
   end
 
+  def send(pArgs={})
+    threads=[]
+    @cases.each { |c| threads << Thread.new{ c.send pArgs} }
+    threads.each { |t| t.join }
+  end
+  
   def build( app, pArgs={})
 	case app
 	when :gamelist

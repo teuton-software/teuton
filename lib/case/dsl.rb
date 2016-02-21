@@ -120,6 +120,21 @@ module DSL
     @remote_tmpdir
   end
 
+  def send(pArgs={})
+    if pArgs[:copy_to] then
+
+      hostname=pArgs[:copy_to].to_s
+      ip=get((hostname+'_ip').to_sym)
+      username=get((hostname+'_username').to_sym)
+      password=get((hostname+'_password').to_sym)
+      filename=File.join(tempdir,"case") #TOFIX
+      
+      @action[:command]="scp #{filename} #{username}@#ip:/#{remote_tempdir}"
+      
+      run_local_cmd
+    end
+  end
+  
 private
 
   def read_filename(psFilename)
