@@ -100,5 +100,10 @@ class Case
     @report.tail[:unique_fault]=fails
     @report.close
   end
-	
+
+  def id_to_s
+    return id.to_s if id<10
+    return "0"+id.to_s
+  end
+  
 end

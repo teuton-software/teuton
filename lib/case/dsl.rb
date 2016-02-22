@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'net/sftp'
+
 module DSL
 
   def description(pDescription=nil)
@@ -127,11 +129,15 @@ module DSL
       ip=get((hostname+'_ip').to_sym)
       username=get((hostname+'_username').to_sym)
       password=get((hostname+'_password').to_sym)
-      filename=File.join(tempdir,"case") #TOFIX
+      localfilepath=File.join(tempdir,"case-#{id_to_s}.*")
+      remotefilepath=remote_tempdir
       
-      @action[:command]="scp #{filename} #{username}@#ip:/#{remote_tempdir}"
-      
-      run_local_cmd
+      #@action[:command]="scp #{filename} #{username}@#{ip}:/#{remote_tempdir}" 
+  
+      # upload a file or directory to the remote host
+      Net::SFTP.start(hostname, username, :password => password) do |sftp|
+        sftp.upload!(localfilepath, remotefilepath)
+      end
     end
   end
   

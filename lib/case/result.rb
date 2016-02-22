@@ -63,7 +63,7 @@ class Result
   end
 	
   def is_greater_than?(pValue)
-    @expected=pValue
+    @expected="Greater than #{pValue}"
 	return false if @content.nil? || @content[0].nil?
 
     case pValue.class.to_s
