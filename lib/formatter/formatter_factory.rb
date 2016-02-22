@@ -3,6 +3,7 @@
 require_relative 'csv_formatter'
 require_relative 'html_formatter'
 require_relative 'txt_formatter'
+require_relative 'colored_text_formatter'
 require_relative 'xml_formatter'
 
 module FormatterFactory
@@ -15,6 +16,8 @@ module FormatterFactory
       f=HTMLFormatter.new(pReport)
     when :txt
       f=TXTFormatter.new(pReport)
+    when :colored_text
+      f=ColoredTextFormatter.new(pReport)
     when :xml
       f=XMLFormatter.new(pReport) if pFormat==:xml
     end
