@@ -41,5 +41,6 @@ By default use TXT format ouput.
 
 Other values for `:format` option are:
 * `:txt`, plain text
+* `:colored_text`, plain text with color
 * `:html`, HTML
 * `:xml`, XML

@@ -89,5 +89,5 @@ de la evaluación. Por defecto se usa TXT como formato de salida.
 * `export :all, :format => :txt`, Ésta es la forma de definir los ficheros de salida
 que queremos crear y el formato de los mismos.
 
-Otros valores para el formato de salida, pueden ser: `:txt`, `:html` y `:xml`.
+Otros valores para el formato de salida, pueden ser: `:txt`, `colored_text`, `:html` y `:xml`.
 
