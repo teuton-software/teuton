@@ -17,7 +17,7 @@ class Result
   def value
     @content[0]
   end
-		
+  
   def equal?(pValue)
     @expected=pValue
     case pValue.class.to_s
@@ -31,23 +31,26 @@ class Result
     return lValue==pValue
   end
 
+  alias_method :is_equal? :equal?
+  
   def not_equal?(pValue)
     return !equal?(pValue)
   end
 	    
   def include?(pValue)
-    @expected=pValue
+    @expected="Include <#{pValue}> value"
     return @content.include? pValue
   end
 		
   def not_include?(pValue)
+    @expected="Not include <#{pValue}> value"
 	return not(@content.include? pValue)
   end
 
   #Return 'true' if the parameter value is near to the target value.
   #To get this we consider a 10% desviation or less, as an acceptable result.
   def is_near_to?(pfValue)
-    @expected=pfValue
+    @expected="Is near to #{pfValue.to_s}"
 
 	return false if @content.nil?
 	lfTarget=@content[0].to_f
@@ -58,7 +61,7 @@ class Result
   end
 		
   def is_empty?
-    @expected=true
+    @expected="Empty!"
 	return @content.empty
   end
 	
@@ -78,7 +81,8 @@ class Result
   end
 	
   def is_less_than?(pValue)
-    @expected=pValue
+    @expected="Lesser than #{pValue.to_s}"
+    
 	return false if @content.nil? || @content[0].nil?
     case pValue.class.to_s
     when 'Fixnum'
@@ -92,7 +96,7 @@ class Result
   end
   
   def contain?(pValue)
-    @expected=pValue
+    @expected="Contain <#{pValue}> value"
     return @content.contain? pValue
   end
 		
