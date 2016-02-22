@@ -3,7 +3,7 @@
 class Result
   attr_accessor :content
   attr_reader :expected, :value
-		
+
   def initialize
 	reset
   end

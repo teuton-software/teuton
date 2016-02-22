@@ -73,7 +73,10 @@ module DSL
     @action[:weight]=lWeight
     @action[:check]=pCond
     @action[:result]=@result.value
+    
     @action[:expected]=@result.expected
+    @action[:expected]=pArgs[:expected] if pArgs[:expected]
+    
     @report.lines << @action.clone
 
     c="?"
