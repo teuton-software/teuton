@@ -31,7 +31,7 @@ class Result
     return lValue==pValue
   end
 
-  alias_method :is_equal? :equal?
+  alias_method :is_equal?, :equal?
   
   def not_equal?(pValue)
     return !equal?(pValue)

@@ -128,18 +128,22 @@ module DSL
   def send(pArgs={})
     if pArgs[:copy_to] then
 
-      hostname=pArgs[:copy_to].to_s
-      ip=get((hostname+'_ip').to_sym)
-      username=get((hostname+'_username').to_sym)
-      password=get((hostname+'_password').to_sym)
-      localfilepath=File.join(tempdir,"case-#{id_to_s}.*")
-      remotefilepath=remote_tempdir
-      
-      #@action[:command]="scp #{filename} #{username}@#{ip}:/#{remote_tempdir}" 
-  
+      host=pArgs[:copy_to].to_s
+      ip=get((host+'_ip').to_sym)
+      username=get((host+'_username').to_sym)
+      password=get((host+'_password').to_sym)
+      filename="case-#{id_to_s}.txt"
+      localfilepath=File.join(tempdir,"../out/",filename)
+      remotefilepath=File.join(remote_tempdir,filename)
+       
       # upload a file or directory to the remote host
-      Net::SFTP.start(hostname, username, :password => password) do |sftp|
-        sftp.upload!(localfilepath, remotefilepath)
+      begin
+        Net::SFTP.start(ip, username, :password => password) do |sftp|
+          sftp.upload!(localfilepath, remotefilepath)
+        end
+        puts("[ OK  ] #{get(:tt_members)}: upload local=#{localfilepath}, remote=#{remotefilepath}")
+      rescue
+        puts("[ERROR] #{get(:tt_members)}: upload local=#{localfilepath}, remote=#{remotefilepath}")
       end
     end
   end
