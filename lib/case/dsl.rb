@@ -141,9 +141,9 @@ module DSL
         Net::SFTP.start(ip, username, :password => password) do |sftp|
           sftp.upload!(localfilepath, remotefilepath)
         end
-        verboseln("[ OK  ] #{get(:tt_members)}: upload local=#{localfilepath}, remote=#{remotefilepath}")
+        verboseln("[ OK  ] #{get(:tt_members)}: scp <#{remotefilepath}>")
       rescue
-        verboseln("[ERROR] #{get(:tt_members)}: upload local=#{localfilepath}, remote=#{remotefilepath}")
+        verboseln("[ERROR] #{get(:tt_members)}: scp <#{localfilepath}> => <#{remotefilepath}>")
       end
     end
   end
