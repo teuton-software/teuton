@@ -91,3 +91,21 @@ que queremos crear y el formato de los mismos.
 
 Otros valores para el formato de salida, pueden ser: `:txt`, `colored_text`, `:html` y `:xml`.
 
+###send
+
+```
+    start do
+      export
+      send_copy :to => :host1
+    end
+```
+
+* La instrucción `send` se debe ejecutar después de haber generado los
+informes de salida. Esto es, después de un `export`.
+* `host1`, Es la etiqueta de uno de los host que hayamos definido para los alumnos.
+* `send :copy_to => :host1`, copia el informe de cada caso en el directorio
+temporal de la máquina `host1`.
+
+> En el futuro tendremos la opción `send_copy :via => :email`.
+De modo que se envíen copia de los informes de cada caso a todos los miembros
+del grupo, vía correo electrónico.

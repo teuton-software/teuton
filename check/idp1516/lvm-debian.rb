@@ -113,7 +113,7 @@ end
 start do
   show
   export
-  send :copy_to => :host1
+  send_copy :to => :host1
 end
 
 =begin
