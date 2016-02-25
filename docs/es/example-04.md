@@ -38,38 +38,46 @@ Ejecutamos el script con `./docs/examples/example-04.rb` y vemos la siguiente sa
 
 ```
 =============================================
-Executing [sysadmin-game] tests (version 0.6)
-[INFO] Running in parallel (2016-02-25 19:00:45 +0000)
-...!????.?
-[INFO] Duration = 5.351382427 (2016-02-25 19:00:50 +0000)
+Executing [sysadmin-game] tests (version 0.7)
+[INFO] Running in parallel (2016-02-25 19:27:48 +0000)
+!???...?.?
+[INFO] Duration = 5.340914829 (2016-02-25 19:27:53 +0000)
 
 
 =============================================
 INITIAL CONFIGURATIONS
-  tt_title: Executing [sysadmin-game] tests (version 0.6)
-  tt_scriptname: ./docs/examples/example-04.rb
-  tt_configfile: ./docs/examples/example-04.yaml
-  host1_username: root
-  host1_password: profesor
-  tt_testname: example-04
-  tt_sequence: false
++----------------+-----------------------------------------------+
+| tt_title       | Executing [sysadmin-game] tests (version 0.7) |
+| tt_scriptname  | ./docs/examples/example-04.rb                 |
+| tt_configfile  | ./docs/examples/example-04.yaml               |
+| host1_username | root                                          |
+| host1_password | profesor                                      |
+| tt_testname    | example-04                                    |
+| tt_sequence    | false                                         |
++----------------+-----------------------------------------------+
 TARGETS HISTORY
   -  Case_01 =>   0 ? darth-maul
   -  Case_02 =>  33 ? r2d2
   -  Case_03 => 100   obiwan kenobi
 FINAL VALUES
-  start_time: 2016-02-25 19:00:45 +0000
-  finish_time: 2016-02-25 19:00:50 +0000
-  duration: 5.351382427
-[ERROR] darth-maul: scp <var/example-04/tmp/../out/case-01.txt> => </tmp/case-01.txt>
++-------------+---------------------------+
+| start_time  | 2016-02-25 19:27:48 +0000 |
+| finish_time | 2016-02-25 19:27:53 +0000 |
+| duration    | 5.340914829               |
++-------------+---------------------------+
 [ OK  ] obiwan kenobi: scp </tmp/case-03.txt>
+[ERROR] darth-maul: scp <var/example-04/tmp/../out/case-01.txt> => </tmp/case-01.txt>
 [ OK  ] r2d2: scp </tmp/case-02.txt>
-
 ```
 
-Aquí lo más importante es ver que después de evaluarse las máquinas, se
-deja copia del informe en todas aquellas que tienen conexión SSH.
+Cuando termina la evaluación de las máquinas, se copia de informe 
+en todas aquellas máquinas remotas que tienen conexión SSH. La máquina
+de `darth-maul` está apagada.
 
 ##Informes de salida
 
-En el directorio temporal de cada máquina `:host1` de cada caso.
+En el directorio temporal de cada máquina remota `:host1` de cada caso,
+se ha guardado copia de cada informe.
+
+Esto permite que los alumnos tengan un feedback casi de forma inmediata, si
+nos parece adecuado.

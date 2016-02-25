@@ -96,7 +96,7 @@ Otros valores para el formato de salida, pueden ser: `:txt`, `colored_text`, `:h
 ```
     start do
       export
-      send_copy :to => :host1
+      send :copy_to => :host1
     end
 ```
 
@@ -106,6 +106,6 @@ informes de salida. Esto es, después de un `export`.
 * `send :copy_to => :host1`, copia el informe de cada caso en el directorio
 temporal de la máquina `host1`.
 
-> En el futuro tendremos la opción `send_copy :via => :email`.
+> En el futuro tendremos la opción `send :copy_via => :email`.
 De modo que se envíen copia de los informes de cada caso a todos los miembros
 del grupo, vía correo electrónico.

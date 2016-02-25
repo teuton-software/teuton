@@ -125,10 +125,10 @@ module DSL
     @remote_tmpdir
   end
 
-  def send_copy(pArgs={})
-    if pArgs[:to] then
+  def send(pArgs={})
+    if pArgs[:copy_to] then
 
-      host=pArgs[:to].to_s
+      host=pArgs[:copy_to].to_s
       ip=get((host+'_ip').to_sym)
       username=get((host+'_username').to_sym)
       password=get((host+'_password').to_sym)
