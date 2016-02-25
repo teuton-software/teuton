@@ -35,5 +35,5 @@ end
 start do
   show
   export
-  send_copy :to => :host1
+  send :copy_to => :host1
 end

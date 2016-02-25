@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require 'terminal-table'
 require_relative 'formatter/formatter_factory'
 
 =begin
@@ -52,7 +53,11 @@ class Report
   def show
     tab="  "
     puts 'INITIAL CONFIGURATIONS'
-    @head.each { |key,value| puts tab+key.to_s+": "+value.to_s }
+    my_screen_table = Terminal::Table.new do |st|
+      @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
+    end
+    puts my_screen_table.to_s
+    
     puts 'TARGETS HISTORY'
     @lines.each do |i|
       if i.class.to_s=='Hash' then
@@ -64,7 +69,12 @@ class Report
       end
     end
     puts 'FINAL VALUES'
-    @tail.each { |key,value| puts tab+key.to_s+": "+value.to_s }
+    my_screen_table = Terminal::Table.new do |st|
+      @tail.each do |key,value| 
+        st.add_row [ key.to_s, value.to_s] 
+      end
+    end
+    puts my_screen_table.to_s
   end		
 
   def export( format=:txt)
