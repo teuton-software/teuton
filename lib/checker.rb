@@ -113,9 +113,9 @@ class Checker
     end
   end
 
-  def send(pArgs={})
+  def send_copy(pArgs={})
     threads=[]
-    @cases.each { |c| threads << Thread.new{ c.send pArgs} }
+    @cases.each { |c| threads << Thread.new{ c.send_copy pArgs} }
     threads.each { |t| t.join }
   end
   

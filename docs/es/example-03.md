@@ -1,12 +1,12 @@
 
-[Ejemplo anterior](./example-02.md) | [Listado de Ejemplos](./ejemplos.md) | Ejemplo siguiente
+[Ejemplo anterior](./example-02.md) | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./example-04.md)
 
 ##example-03
 
 ```
-    En este ejemplo, vamos necesitar varias másquinas: la del profesore y varias de estudiantes.
-    Las másquinas de los estudiantes tienen el contenido que va a ser evaluado.
-    La máquinas del profesor tiene el script que evalua el grado de cumplimiento de los objetivos de las diferetnes máquinas de los estudiantes.
+    En este ejemplo, vamos necesitar varias máquinas: la del profesore y varias de estudiantes.
+    Las msquinas de los estudiantes tienen el contenido que va a ser evaluado.
+    La máquinas del profesor tiene el script que evalua el grado de cumplimiento de los objetivos de las diferentes máquinas de los estudiantes.
     Usaremos el fichero de configuración para definir las diferentes máquinas remotas.
     Usaremos SSH como vía de comunicación entre las máquinas.
 ```
@@ -50,11 +50,8 @@ una personalización de la máquina `host1` diferente.
 * `username`: Será el nombre de un usuario que cada alumno/grupo debe tener
 creado dentro de su `host1`.
 
-Notice that host1 it is diferent machine depending every case. So we can define
-diferents machines for every student. But in our activity script,we call it with the
-same name (host1).
-
-
+Recordar que la etiqueta host1 identifica a diferentes máquinas
+según se define en el fichero de configuración para cada caso.
 
 En el ejemplo anterior (`example-01`) vimos que tenía el objetivo de
 comprobar la existencia de un usuario concreto. Si queremos comprobar 
