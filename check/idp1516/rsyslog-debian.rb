@@ -4,12 +4,14 @@
 require_relative '../../lib/tool'
 
 =begin
- Course name : IDP1516
- Activity    : RSyslog Debian (Trimestre2)
- MV OS       : host1 => Debian8
-               host2 => Windows7
-=end
-
+  Course name : IDP1516
+     Activity : RSyslog Debian (Trimestre2)
+        MV OS : host1 => Debian8
+              : host2 => Windows7
+   Teacher OS : GNU/Linux
+  English URL : (Under construction. Sorry!)
+  Spanish URL : https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/idp/monitorizar/eventos-locales-windows-debian.md
+=end 
 
 check :host1_configurations do
 
@@ -72,7 +74,7 @@ check :host1_user_definitions do
   expect result.not_equal?(0)
 end
 
-check :host1_webmin do
+check :webmin_on_host1 do
 
   desc "Webmin installed"
   goto :host1, :execute => "dpkg -l webmin| grep webmin| wc -l"
@@ -88,13 +90,13 @@ check :host1_webmin do
   
 end
 
-check :host1_rsyslog do
+check :rsyslog_on_host1 do
 
   desc "rsyslog configuration"
   goto :host1, :execute => "file /etc/rsyslog.d/#{get(:firstname)}.conf | grep text| wc -l"
-  expect result.equal? 0
+  expect result.equal? 1
 
-  desc "Exist prueba-local.log file"
+  desc "Exist <prueba-local.log> file"
   goto :host1, :execute => "file /var/log/#{get(:firstname)}/prueba-local.log| grep text |wc -l"
   expect result.equal? 1
 
@@ -102,12 +104,24 @@ check :host1_rsyslog do
   goto :host1, :execute => "file /var/log/#{get(:firstname)}/prueba-local.log| grep text |wc -l"
   expect result.equal? 1
 
+  desc "Test rsyslog configuration with logger command"
+  content="sysadmin-game."+(rand 100).to_s
+  goto :host1, :execute => "logger -p local0.info '#{content}'"
+  goto :host1, :execute => "cat /var/log/#{get(:firstname)}/prueba-local.log| grep #{content} |wc -l"
+  expect result.is_greater_than? 0
+
 end
 
 check :host1_logrotate do
-  desc "logrotate configuration"
+
+  desc "Exist logrotate configuration file"
   goto :host1, :execute => "file /etc/logrotate.d/#{get(:firstname)} | grep text| wc -l"
   expect result.equal? 1
+
+  desc "Logrotate configuration contains our log file"
+  goto :host1, :execute => "cat /etc/logrotate.d/#{get(:firstname)} | grep '/var/log/#{get(:firstname)}'| wc -l"
+  expect result.equal? 1
+
 end
 
 start do
@@ -117,6 +131,7 @@ start do
 end
 
 =begin
+#Example of configuration file:
 ---
 :global:
   :host1_username: root
