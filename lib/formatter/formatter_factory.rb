@@ -19,7 +19,7 @@ module FormatterFactory
     when :colored_text
       f=ColoredTextFormatter.new(pReport)
     when :xml
-      f=XMLFormatter.new(pReport) if pFormat==:xml
+      f=XMLFormatter.new(pReport)
     end
     f.init(pFilename)
     return f

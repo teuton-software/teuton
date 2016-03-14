@@ -29,8 +29,8 @@ class TXTFormatter < BaseFormatter
         w tab+"%02d"%i[:id]+" ("+lValue.to_s+"/"+i[:weight].to_s+")\n"       
         w tab+"\t\tDescription : #{i[:description].to_s}\n"
         w tab+"\t\tCommand     : #{i[:command].to_s}\n"
-        w tab+"\t\tExpected    : #{i[:expected].to_s}\n"
-        w tab+"\t\tResult      : #{i[:result].to_s}\n"
+        w tab+"\t\tExpected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
+        w tab+"\t\tResult      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
       else
         w tab+"- "+i.to_s+"\n"
       end
