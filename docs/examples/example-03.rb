@@ -33,5 +33,5 @@ end
 
 start do
   show
-  export
+  export :format => :colored_text
 end
