@@ -101,8 +101,10 @@ class Checker
     end
   end
 	
-  def export(mode=:all, pArgs={})
-    format= pArgs[:format] || :txt
+  def export(pArgs={})
+    #default :mode=>:all, :format=>:txt
+    format = pArgs[:format] || :txt
+    mode = pArgs[:mode] || :all
     if mode==:resume or mode==:all then
       @report.export format
     end

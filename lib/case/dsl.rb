@@ -126,13 +126,16 @@ module DSL
   end
 
   def send(pArgs={})
+    format=pArgs[:format] || :txt
+    
     if pArgs[:copy_to] then
 
       host=pArgs[:copy_to].to_s
       ip=get((host+'_ip').to_sym)
       username=get((host+'_username').to_sym)
       password=get((host+'_password').to_sym)
-      filename="case-#{id_to_s}.txt"
+      
+      filename="case-#{id_to_s}.#{format}"
       localfilepath=File.join(tempdir,"../out/",filename)
       remotefilepath=File.join(remote_tempdir,filename)
        
