@@ -34,6 +34,6 @@ end
 
 start do
   show
-  export
-  send :copy_to => :host1
+  export :format => :colored_text
+  send :copy_to => :host1, :format=> :colored_text
 end
