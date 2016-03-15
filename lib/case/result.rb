@@ -18,7 +18,7 @@ class Result
     @content[0]
   end
   
-  def equal?(pValue)
+  def equal(pValue)
     @expected=pValue
     case pValue.class.to_s
     when 'Fixnum'
@@ -31,9 +31,9 @@ class Result
     return lValue==pValue
   end
 
-  alias_method :is_equal?, :equal?
+  alias_method :is_equal?, :equal
   
-  def not_equal?(pValue)
+  def not_equal(pValue)
     return !equal?(pValue)
   end
 	    
@@ -65,7 +65,7 @@ class Result
 	return @content.empty
   end
 	
-  def is_greater_than?(pValue)
+  def greater(pValue)
     @expected="Greater than #{pValue}"
 	return false if @content.nil? || @content[0].nil?
 
@@ -80,7 +80,7 @@ class Result
 	return lValue>pValue
   end
 	
-  def is_less_than?(pValue)
+  def smaller(pValue)
     @expected="Lesser than #{pValue.to_s}"
     
 	return false if @content.nil? || @content[0].nil?

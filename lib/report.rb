@@ -11,6 +11,7 @@ class Report
   attr_accessor :id, :outdir, :filename
   attr_accessor :head, :lines, :tail
   attr_reader :history
+  attr_reader :format
 		
   def initialize(pId)
     @id=pId
@@ -78,8 +79,9 @@ class Report
   end		
 
   def export( format=:txt)
-    filepath= File.join( @outdir, @filename+"."+format.to_s )
-    @formatter = FormatterFactory::get(self, format, filepath)
+    @format=format
+    filepath= File.join( @outdir, @filename+"."+@format.to_s )
+    @formatter = FormatterFactory::get(self, @format, filepath)
     @formatter.process
   end
 

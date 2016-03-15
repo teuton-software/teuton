@@ -126,7 +126,8 @@ module DSL
   end
 
   def send(pArgs={})
-    format=pArgs[:format] || :txt
+    #format=pArgs[:format] || :txt
+    format=@report.format
     
     if pArgs[:copy_to] then
 
