@@ -15,7 +15,7 @@ task "Create user with your name" do
 
   desc "Checking user <"+get(:username)+">"
   goto :localhost, :execute => "id #{get(:username)}| wc -l"
-  expect result.equal?(1)
+  expect result.equal(1)
 
 end
 

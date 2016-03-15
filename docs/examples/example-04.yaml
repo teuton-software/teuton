@@ -6,18 +6,18 @@
 - :tt_members: darth-maul
   :tt_emails: darth-maul@email.com
   :tt_skip: false
-  :host1_ip: 192.168.1.108
+  :host1_ip: 192.168.1.200
   :host1_hostname: sith.starwars
   :username: dmaul
 - :tt_members: r2d2
   :tt_emails: rd2d2@email.com
   :tt_skip: false
-  :host1_ip: 192.168.1.109
+  :host1_ip: 192.168.1.201
   :host1_hostname: robot.starwars
   :username: r2d2
 - :tt_members: obiwan kenobi
   :tt_emails: obiwan@email.com
   :tt_skip: false
-  :host1_ip: 192.168.1.113
+  :host1_ip: 192.168.1.202
   :host1_hostname: jedi.starwars
   :username: obiwan

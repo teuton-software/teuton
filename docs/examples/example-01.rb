@@ -16,7 +16,7 @@ task "Create user obiwan" do
 
   desc "Checking user <obiwan>"
   goto :localhost, :execute => "id obiwan| wc -l"
-  expect result.equal?(1)
+  expect result.equal(1)
 
 end
 
