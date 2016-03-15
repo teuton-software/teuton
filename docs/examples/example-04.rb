@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/tool'
+require_relative '../../lib/sysadmingame'
 
 =begin
   Test several targets for every case into diferent hosts:
@@ -12,7 +12,7 @@ require_relative '../../lib/tool'
   * send_copy: copy report to temporal directory into the host used by the case
 =end
 
-check :host_configuration do
+task "Configure hostname and DNS server" do
 
   desc "Hostname is <"+get(:host1_hostname)+">"
   goto :host1, :execute => "hostname -f"
@@ -24,7 +24,7 @@ check :host_configuration do
 
 end
 
-check :user_configuration do
+task "Create user with your name" do
 
   desc "Exist user <"+get(:username)+">"
   goto :host1, :execute => "id #{get(:username)} |wc -l"

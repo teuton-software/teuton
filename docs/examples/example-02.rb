@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/tool'
+require_relative '../../lib/sysadmingame'
 
 =begin
   Test if exist username for every case into localhost:
@@ -11,7 +11,7 @@ require_relative '../../lib/tool'
   * get: Get the value for every case from the configuration YAML file.
 =end
 
-check :exist_username do
+task "Create user with your name" do
 
   desc "Checking user <"+get(:username)+">"
   goto :localhost, :execute => "id #{get(:username)}| wc -l"

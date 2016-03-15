@@ -2,7 +2,7 @@
 
 require_relative 'tool'
 
-def check(name, &block)
+def task(name, &block)
   Tool.instance.define_test(name, &block)
 end
 

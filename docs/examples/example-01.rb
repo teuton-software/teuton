@@ -12,7 +12,7 @@ require_relative '../../lib/sysadmingame'
   Teacher host (localhost) must have GNU/Linux OS.
 =end
 
-check :exist_user_obiwan do
+task "Create user obiwan" do
 
   desc "Checking user <obiwan>"
   goto :localhost, :execute => "id obiwan| wc -l"
