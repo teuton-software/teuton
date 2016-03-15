@@ -137,7 +137,8 @@ Podemos crear tantos objetivos evaluables como queramos, usando las instruccione
 `desc`, `goto` y `expect`. Cuantas más pongamos, más exhaustiva será nuestra 
 evaluación.
 
-Los objetivos deben ir siempre dentro de un bloque `check :name do ... end`.
+Los objetivos deben ir siempre dentro de un bloque `task "Task name" do ... end`.
 
-Si tiemos muchos objetivos podemos crear varias agrupaciones `check` para repartirlos.
-Las agrupaciones `check` sólo sirven para tener las cosas más ordenadas.
+Si tenemos muchos objetivos podemos agruparlos en una o varias tareas 
+`task`.
+
