@@ -6,7 +6,7 @@
 
 ```
     En este ejemplo, vamos a hacer uso del fichero de configuración.
-    Cada script (demo.rb) va acompañado de un fichero de configuración (demo.yaml).
+    Cada script (.rb) va acompañado de un fichero de configuración (.yaml).
     El contenido del fichero de configuración tiene formato YAML.
     Para leer el contenido del fichero de configuración desde el script, usaremos la instruccion get del DSL.
 ```
@@ -41,42 +41,53 @@ podemos tenemos parámetros específicos para cada caso, o comunes para todos
 ellos.
 
 En este ejemplo no tenemos definidas variables globales de configuración.
-Para cada caso se definen los parámetros siguientes: `tt_members`, `tt_emails` 
-y `username`.
+Para cada caso se definen los parámetros `tt_members` y `username`.
 * **username**: Este parámetro tiene diferente valor para cada caso, de modo
 que cuando se ejecuta la accción de comprobación, ésta será diferente en cada
 caso.
 * Consulta el fichero de configuración de este ejemplo.
 
+> Podemos tener tantos parámetros como queramos. Eso sí, todos los casos deben
+tener los mismos parámetros, pero pueden tener valores diferentes.
+
 ##Ejecución del script
 Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la siguiente salida por pantalla:
 
+
 ```
 =============================================
-Executing [sysadmin-game] tests (version 0.5)
-[INFO] Running in parallel (2016-02-14 13:05:02 +0000)
-.?
-[INFO] Duration = 0.013452716 (2016-02-14 13:05:02 +0000)
+Executing [sysadmin-game] tests (version 0.8)
+[INFO] Running in parallel (2016-03-15 19:36:51 +0000)
+.id: darth-maul: no existe ese usuario
+?
+[INFO] Duration = 0.016200555 (2016-03-15 19:36:51 +0000)
+
 
 =============================================
 INITIAL CONFIGURATIONS
-  tt_title: Executing [sysadmin-game] tests (version 0.5)
-  tt_scriptname: ./docs/examples/example-02.rb
-  tt_configfile: ./docs/examples/example-02.yaml
-  tt_testname: example-02
-  tt_sequence: false
++---------------+-----------------------------------------------+
+| tt_title      | Executing [sysadmin-game] tests (version 0.8) |
+| tt_scriptname | ./docs/examples/example-02.rb                 |
+| tt_configfile | ./docs/examples/example-02.yaml               |
+| tt_testname   | example-02                                    |
+| tt_sequence   | false                                         |
++---------------+-----------------------------------------------+
 TARGETS HISTORY
   -  Case_01 => 100   Student-name-1
   -  Case_02 =>   0 ? Student-name-2
 FINAL VALUES
-  start_time: 2016-02-14 13:05:02 +0000
-  finish_time: 2016-02-14 13:05:02 +0000
-  duration: 0.013452716
++-------------+---------------------------+
+| start_time  | 2016-03-15 19:36:51 +0000 |
+| finish_time | 2016-03-15 19:36:51 +0000 |
+| duration    | 0.016200555               |
++-------------+---------------------------+
+
 ```
 
 Aquí lo más importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
-con su evaluación final. En este ejemplo, tenemos 2 casos: case_01 con 
-puntuación del 100% y case_02 con puntuación de 0%.
+con su evaluación final. En este ejemplo, tenemos 2 casos:
+* case_01 con puntuación del 100% y 
+* case_02 con puntuación de 0%.
 
 ##Informes de salida
 
@@ -94,28 +105,28 @@ var/example-02/out/
 ###Informe de salida para `case-01`
 
 Veamos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
+
 ```
 INITIAL CONFIGURATIONS
-+------------+--------------------+
-| tt_members | Student-name-1     |
-| tt_emails  | student1@email.com |
-| username   | root               |
-| tt_skip    | false              |
-+------------+--------------------+
++------------+----------------+
+| tt_members | Student-name-1 |
+| username   | root           |
+| tt_skip    | false          |
++------------+----------------+
 TARGETS HISTORY
-  - INFO: Begin exist_username
+  - INFO: Begin Create user with your name
   01 (1.0/1.0)
   		Description : Checking user <root>
   		Command     : id root| wc -l
-  		Expected    : 1
-  		Result      : 1
-  - INFO: End exist_username
+  		Expected    : 1 (Fixnum)
+  		Result      : 1 (String)
+  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-02-14 13:05:02 +0000 |
-| finish_time  | 2016-02-14 13:05:02 +0000 |
-| duration     | 0.006277666               |
+| start_time_  | 2016-03-15 19:36:51 +0000 |
+| finish_time  | 2016-03-15 19:36:51 +0000 |
+| duration     | 0.008261729               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |
@@ -123,32 +134,33 @@ FINAL VALUES
 | fail_counter | 0                         |
 | grade        | 100.0                     |
 +--------------+---------------------------+
+
 ```
 
 ###Informe de salida para `case-02`
 Ahora vemos el informe del caso 02, consultando el fichero `var/example-02/out/case-02.txt`.
+
 ```
 INITIAL CONFIGURATIONS
-+------------+--------------------+
-| tt_members | Student-name-2     |
-| tt_emails  | student2@email.com |
-| username   | darth-maul         |
-| tt_skip    | false              |
-+------------+--------------------+
++------------+----------------+
+| tt_members | Student-name-2 |
+| username   | darth-maul     |
+| tt_skip    | false          |
++------------+----------------+
 TARGETS HISTORY
-  - INFO: Begin exist_username
+  - INFO: Begin Create user with your name
   01 (0.0/1.0)
   		Description : Checking user <darth-maul>
   		Command     : id darth-maul| wc -l
-  		Expected    : 1
-  		Result      : 0
-  - INFO: End exist_username
+  		Expected    : 1 (Fixnum)
+  		Result      : 0 (String)
+  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 2                         |
-| start_time_  | 2016-02-14 13:05:02 +0000 |
-| finish_time  | 2016-02-14 13:05:02 +0000 |
-| duration     | 0.005351234               |
+| start_time_  | 2016-03-15 19:36:51 +0000 |
+| finish_time  | 2016-03-15 19:36:51 +0000 |
+| duration     | 0.00792939                |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 0.0                       |
@@ -156,21 +168,23 @@ FINAL VALUES
 | fail_counter | 1                         |
 | grade        | 0.0                       |
 +--------------+---------------------------+
+
 ```
 
 ##Recordatorio
 
-Dentro del fichero de configuración, podemos crear todas las variables 
+Dentro del fichero de configuración, podemos crear todas los parámetros/valor 
 que necesitamos para nuestro script/actividad.
 
 Si las definimos en la zona `global` serán accesibles para todos los casos, y
-en el caso de definarlas dentro de cada caso, sólo serán accesibles para dicho
-caso.
+si las definimos dentro de cada caso, sólo serán accesibles para dicho
+caso particular.
 
 Tener en cuenta que podemos usar los nombres que queramos para nuestras variables
 de configuración, pero evitar que comiencen por `tt_`. Este prefijo está reservado
-para variables de configuración específicas de la aplicación. Algunos ejemplos son:
+para variables de configuración específicas de la aplicación *SyadminGame*.
+
+Algunos ejemplos son:
 * `tt_members`: Que guarda una lista con los nombres de los miembros del grupo de trabajo.
-* `tt_emails`: Que guarda una lista con las cuentas de correo de los miembros del grupo de trabajo.
 * `tt_skip`: Toma los valores true/false. Y define si debemos procesar/evaluar este caso o no.
 Por defecto, toma el valor `True`, y no es necesario especificarlo.

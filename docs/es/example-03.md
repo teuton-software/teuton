@@ -4,10 +4,15 @@
 ##example-03
 
 ```
-    En este ejemplo, vamos necesitar varias máquinas: la del profesore y varias de estudiantes.
-    Las msquinas de los estudiantes tienen el contenido que va a ser evaluado.
-    La máquinas del profesor tiene el script que evalua el grado de cumplimiento de los objetivos de las diferentes máquinas de los estudiantes.
+    En este ejemplo, vamos necesitar varias máquinas: 
+    * la del profesor y 
+    * varias de estudiantes para ser evaluadas.
+
+    La máquina del profesor tiene el script que evalua el grado de cumplimiento 
+    de los objetivos de las diferentes máquinas de los estudiantes.
+    
     Usaremos el fichero de configuración para definir las diferentes máquinas remotas.
+    
     Usaremos SSH como vía de comunicación entre las máquinas.
 ```
 
@@ -76,8 +81,7 @@ podemos tenemos parámetros específicos para cada caso, o comunes para todos
 ellos.
 
 En este ejemplo no tenemos definidas variables globales de configuración.
-Para cada caso se definen los parámetros siguientes: `tt_members`, `tt_emails` 
-y `username`.
+Para cada caso se definen los parámetros `tt_members` y `username`.
 * **username**: Este parámetro tiene diferente valor para cada caso, de modo
 que cuando se ejecuta la accción de comprobación, ésta será diferente en cada
 caso.
@@ -88,29 +92,33 @@ Ejecutamos el script con `./docs/examples/example-03.rb` y vemos la siguiente sa
 
 ```
 =============================================
-Executing [sysadmin-game] tests (version 0.5)
-[INFO] Running in parallel (2016-02-21 12:14:14 +0000)
+Executing [sysadmin-game] tests (version 0.8)
+[INFO] Running in parallel (2016-03-15 19:42:05 +0000)
 ...!????.?
-[INFO] Duration = 5.380654018 (2016-02-21 12:14:19 +0000)
+[INFO] Duration = 5.481694416 (2016-03-15 19:42:10 +0000)
 
 
 =============================================
 INITIAL CONFIGURATIONS
-  tt_title: Executing [sysadmin-game] tests (version 0.5)
-  tt_scriptname: ./docs/examples/example-03.rb
-  tt_configfile: ./docs/examples/example-03.yaml
-  host1_username: root
-  host1_password: profesor
-  tt_testname: example-03
-  tt_sequence: false
++----------------+-----------------------------------------------+
+| tt_title       | Executing [sysadmin-game] tests (version 0.8) |
+| tt_scriptname  | ./docs/examples/example-03.rb                 |
+| tt_configfile  | ./docs/examples/example-03.yaml               |
+| host1_username | root                                          |
+| host1_password | profesor                                      |
+| tt_testname    | example-03                                    |
+| tt_sequence    | false                                         |
++----------------+-----------------------------------------------+
 TARGETS HISTORY
-  -  Case_01 =>   0 ? darth-maul
-  -  Case_02 =>  33 ? r2d2
+  -  Case_01 =>  33 ? darth-maul
+  -  Case_02 =>   0 ? r2d2
   -  Case_03 => 100   obiwan kenobi
 FINAL VALUES
-  start_time: 2016-02-21 12:14:14 +0000
-  finish_time: 2016-02-21 12:14:19 +0000
-  duration: 5.380654018
++-------------+---------------------------+
+| start_time  | 2016-03-15 19:42:05 +0000 |
+| finish_time | 2016-03-15 19:42:10 +0000 |
+| duration    | 5.481694416               |
++-------------+---------------------------+
 ```
 
 Aquí lo más importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
@@ -135,43 +143,99 @@ var/example-03/out/
 
 Veamos el informe del caso 01, consultando el fichero `var/example-03/out/case-01.txt`.
 
+
 ```
 INITIAL CONFIGURATIONS
 +----------------+----------------------+
 | tt_members     | darth-maul           |
 | tt_emails      | darth-maul@email.com |
 | tt_skip        | false                |
-| host1_ip       | 192.168.1.108        |
+| host1_ip       | 192.168.1.200        |
 | host1_hostname | sith.starwars        |
 | username       | dmaul                |
 +----------------+----------------------+
 TARGETS HISTORY
-  - INFO: Begin host_configuration
-  - ERROR: Host 192.168.1.108 unreachable!
+  - INFO: Begin Configure hostname and DNS server
   01 (0.0/1.0)
   		Description : Hostname is <sith.starwars>
   		Command     : hostname -f
-  		Expected    : sith.starwars
-  		Result      : 
-  02 (0.0/1.0)
+  		Expected    : sith.starwars (String)
+  		Result      : curso1516.ies (String)
+  02 (1.0/1.0)
   		Description : DNS Server OK
   		Command     : host www.google.es| grep 'has address'| wc -l
-  		Expected    : 1
-  		Result      : 
-  - INFO: End host_configuration
-  - INFO: Begin user_configuration
+  		Expected    : Greater than 0 (String)
+  		Result      : 16 (String)
+  - INFO: End Configure hostname and DNS server
+  - INFO: Begin Create user with your name
   03 (0.0/1.0)
   		Description : Exist user <dmaul>
   		Command     : id dmaul |wc -l
-  		Expected    : 1
-  		Result      : 
-  - INFO: End user_configuration
+  		Expected    : 1 (Fixnum)
+  		Result      : id: dmaul: No existe ese usuario (String)
+  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-02-21 12:14:14 +0000 |
-| finish_time  | 2016-02-21 12:14:17 +0000 |
-| duration     | 3.010793217               |
+| start_time_  | 2016-03-15 19:42:05 +0000 |
+| finish_time  | 2016-03-15 19:42:10 +0000 |
+| duration     | 5.470615108               |
+| unique_fault | 0                         |
+| max_weight   | 3.0                       |
+| good_weight  | 1.0                       |
+| fail_weight  | 2.0                       |
+| fail_counter | 2                         |
+| grade        | 33.33333333333333         |
++--------------+---------------------------+
+
+```
+
+En este caso, si hemos establecido una conexión SSH correcta con la máquina,
+pero sólo se ha cumplido satisfactoriamente 1 de los 3 objetivos previstos.
+
+ 
+###Informe de salida para `case-02`
+
+Veamos el informe del caso 02, consultando el fichero `var/example-03/out/case-02.txt`.
+
+
+```
+INITIAL CONFIGURATIONS
++----------------+-----------------+
+| tt_members     | r2d2            |
+| tt_emails      | rd2d2@email.com |
+| tt_skip        | false           |
+| host1_ip       | 192.168.1.201   |
+| host1_hostname | robot.starwars  |
+| username       | r2d2            |
++----------------+-----------------+
+TARGETS HISTORY
+  - INFO: Begin Configure hostname and DNS server
+  - ERROR: Host 192.168.1.201 unreachable!
+  01 (0.0/1.0)
+  		Description : Hostname is <robot.starwars>
+  		Command     : hostname -f
+  		Expected    : robot.starwars (String)
+  		Result      :  (NilClass)
+  02 (0.0/1.0)
+  		Description : DNS Server OK
+  		Command     : host www.google.es| grep 'has address'| wc -l
+  		Expected    : Greater than 0 (String)
+  		Result      :  (NilClass)
+  - INFO: End Configure hostname and DNS server
+  - INFO: Begin Create user with your name
+  03 (0.0/1.0)
+  		Description : Exist user <r2d2>
+  		Command     : id r2d2 |wc -l
+  		Expected    : 1 (Fixnum)
+  		Result      :  (NilClass)
+  - INFO: End Create user with your name
+FINAL VALUES
++--------------+---------------------------+
+| case_id      | 2                         |
+| start_time_  | 2016-03-15 19:42:05 +0000 |
+| finish_time  | 2016-03-15 19:42:08 +0000 |
+| duration     | 3.008435827               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 0.0                       |
@@ -179,6 +243,7 @@ FINAL VALUES
 | fail_counter | 3                         |
 | grade        | 0.0                       |
 +--------------+---------------------------+
+
 ```
 
 Se ha intentado evaluar los objetivos, y todos sin éxito, puesto que el valor
@@ -198,61 +263,11 @@ Algunos de los motivos por los que puede no funcionar la conexión SSH a las má
 * La máquina remota no tiene configurado el acceso SSH para nuestro usuario.
 * El cortafuegos de la máquina remota y/o la máquina del profesor cortan las comunicaciones SSH.
 
-###Informe de salida para `case-02`
-
-Veamos el informe del caso 02, consultando el fichero `var/example-03/out/case-02.txt`.
-
-```
-INITIAL CONFIGURATIONS
-+----------------+-----------------+
-| tt_members     | r2d2            |
-| tt_emails      | rd2d2@email.com |
-| tt_skip        | false           |
-| host1_ip       | 192.168.1.109   |
-| host1_hostname | robot.starwars  |
-| username       | r2d2            |
-+----------------+-----------------+
-TARGETS HISTORY
-  - INFO: Begin host_configuration
-  01 (0.0/1.0)
-  		Description : Hostname is <robot.starwars>
-  		Command     : hostname -f
-  		Expected    : robot.starwars
-  		Result      : curso1516.ies
-  02 (1.0/1.0)
-  		Description : DNS Server OK
-  		Command     : host www.google.es| grep 'has address'| wc -l
-  		Expected    : 1
-  		Result      : 1
-  - INFO: End host_configuration
-  - INFO: Begin user_configuration
-  03 (0.0/1.0)
-  		Description : Exist user <r2d2>
-  		Command     : id r2d2 |wc -l
-  		Expected    : 1
-  		Result      : id: r2d2: No existe ese usuario
-  - INFO: End user_configuration
-FINAL VALUES
-+--------------+---------------------------+
-| case_id      | 2                         |
-| start_time_  | 2016-02-21 12:14:14 +0000 |
-| finish_time  | 2016-02-21 12:14:19 +0000 |
-| duration     | 5.365698817               |
-| unique_fault | 0                         |
-| max_weight   | 3.0                       |
-| good_weight  | 1.0                       |
-| fail_weight  | 2.0                       |
-| fail_counter | 2                         |
-| grade        | 33.33333333333333         |
-+--------------+---------------------------+
-```
-
-En este caso, si hemos establecido una conexión SSH correcta con la máquina,
-pero sólo se ha cumplido satisfactoriamente 1 de los 3 objetivos previstos.
 
 ###Informe de salida para `case-03`
 
 Veamos el informe del caso 03, consultando el fichero `var/example-03/out/case-03.txt`.
+
 
 ```
 INITIAL CONFIGURATIONS
@@ -260,36 +275,36 @@ INITIAL CONFIGURATIONS
 | tt_members     | obiwan kenobi    |
 | tt_emails      | obiwan@email.com |
 | tt_skip        | false            |
-| host1_ip       | 192.168.1.113    |
+| host1_ip       | 192.168.1.202    |
 | host1_hostname | jedi.starwars    |
 | username       | obiwan           |
 +----------------+------------------+
 TARGETS HISTORY
-  - INFO: Begin host_configuration
+  - INFO: Begin Configure hostname and DNS server
   01 (1.0/1.0)
   		Description : Hostname is <jedi.starwars>
   		Command     : hostname -f
-  		Expected    : jedi.starwars
-  		Result      : jedi.starwars
+  		Expected    : jedi.starwars (String)
+  		Result      : jedi.starwars (String)
   02 (1.0/1.0)
   		Description : DNS Server OK
   		Command     : host www.google.es| grep 'has address'| wc -l
-  		Expected    : 1
-  		Result      : 1
-  - INFO: End host_configuration
-  - INFO: Begin user_configuration
+  		Expected    : Greater than 0 (String)
+  		Result      : 16 (String)
+  - INFO: End Configure hostname and DNS server
+  - INFO: Begin Create user with your name
   03 (1.0/1.0)
   		Description : Exist user <obiwan>
   		Command     : id obiwan |wc -l
-  		Expected    : 1
-  		Result      : 1
-  - INFO: End user_configuration
+  		Expected    : 1 (Fixnum)
+  		Result      : 1 (String)
+  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 3                         |
-| start_time_  | 2016-02-21 12:14:14 +0000 |
-| finish_time  | 2016-02-21 12:14:15 +0000 |
-| duration     | 1.177294342               |
+| start_time_  | 2016-03-15 19:42:05 +0000 |
+| finish_time  | 2016-03-15 19:42:06 +0000 |
+| duration     | 1.250920979               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 3.0                       |
@@ -311,8 +326,8 @@ Podemos tener tantos casos como queramos. El hecho de tener más alumnos/grupos 
 no aumenta el tiempo de evaluación puesto que las evaluaciones de todos los casos se hacen
 en paralelo usando técnicas de programación multihilo.
 
-Como la evaluación termina al evaluar todos lo casos, lo que si puede pasar es que el proceso
-se demore más de la cuenta al tener que esperar las másquinas rápidas por alguna que
+Como la evaluación termina al evaluar todos los casos en paralelo, puede pasar que el proceso
+se demore más de la cuenta al tener que esperar las máquinas rápidas por alguna que
 sea más lenta.
 
 En nuestro ejemplo cada alumno/grupo hacía uso de una máquina para realizar su trabajo.

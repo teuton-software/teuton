@@ -37,7 +37,7 @@ Para ejecutar esta actividad de ejemplo hacemos:
 > **Resultados** 
 > * Veremos un breve *informe en la pantalla*.
 > * los *ficheros de salida* en su versión extendida se guardan en el directorio `./var/example-01/out/`.
-> * Existen más actividades en el directorio `check`. Este directorio es el que debemos
+> * Existen más actividades en el directorio `check`. Este es un buen directorio donde
 guardar los scripts que definen nuestras actividades.
 
 #Documentación

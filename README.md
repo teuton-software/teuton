@@ -35,7 +35,7 @@ To run this demo activity we do:
 > **Results** 
 > * You will see a brief *report on the screen*.
 > * and the extended *output files* are saved into `./var/example-01/out/` directory.
-> * There exists more activities into the `check` directory. This is the place
+> * There exists more activities into the `check` directory. This is a good place
 where save your own activity scripts.
 
 #Documentation
