@@ -19,7 +19,7 @@ class Case
   def initialize(pConfig)
     @global=Application.instance.global
     @config=pConfig
-    @tests=Checker.instance.tests
+    @tests=Tool.instance.tests
     @id=@@id; @@id+=1
 				
     #Define Case Report
@@ -41,8 +41,8 @@ class Case
     @result = Result.new
     @result.reset
 
-    @debug=Checker.instance.is_debug?
-    @verbose=Checker.instance.is_verbose?
+    @debug=Tool.instance.is_debug?
+    @verbose=Tool.instance.is_verbose?
 	
     @action_counter=0		
     @action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}

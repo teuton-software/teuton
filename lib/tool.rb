@@ -4,15 +4,13 @@ require 'singleton'
 require 'yaml'
 
 require_relative 'application'
-require_relative 'builder'
 require_relative 'case'
 require_relative 'utils'
 require_relative 'report'
 
-class Checker
+class Tool
   include Singleton
   include Utils
-  include Builder
   
   attr_reader :tests
 	
@@ -120,14 +118,7 @@ class Checker
     @cases.each { |c| threads << Thread.new{ c.send pArgs} }
     threads.each { |t| t.join }
   end
-  
-  def build( app, pArgs={})
-	case app
-	when :gamelist
-	  build_game_list pArgs
-	end
-  end
-	
+  	
 private
 
   def close_main_report(start_time)
