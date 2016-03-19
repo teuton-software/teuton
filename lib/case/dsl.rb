@@ -5,10 +5,14 @@ require 'net/sftp'
 module DSL
 
   def description(pDescription=nil)
-    desc pDescription
+    target pDescription
   end
 	
   def desc(pDescription=nil)
+    target pDescription
+  end
+
+  def target(pDescription=nil)
     return @action[:description] if pDescription.nil?
     @action[:description]=pDescription
   end
@@ -85,7 +89,7 @@ module DSL
   end
 	
   def log(pText="", pType=:info)
-    s="INFO: "
+    s=""
     s=Rainbow("WARN:").color(:yellow)+" " if pType==:warn
     s=Rainbow("ERROR:").bg(:red)+" " if pType==:error
     @report.lines << s+pText
