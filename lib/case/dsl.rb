@@ -4,10 +4,6 @@ require 'net/sftp'
 
 module DSL
 
-  def description(pDescription=nil)
-    target pDescription
-  end
-	
   def desc(pDescription=nil)
     target pDescription
   end
