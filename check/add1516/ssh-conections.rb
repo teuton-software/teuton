@@ -12,149 +12,149 @@ require_relative '../../lib/sysadmingame'
 =end
 
 task "Ensure that very HOST is unique" do
-  goto :host1, :execute => "ifconfig| grep HWaddr| tr -s ' ' '%'| cut -d % -f 5"
+  goto :host1, :exec => "ifconfig| grep HWaddr| tr -s ' ' '%'| cut -d % -f 5"
   unique "MAC[host1]", result.value 
 
-  goto :host2, :execute => "ifconfig| grep HWaddr| tr -s ' ' '%'| cut -d % -f 5"
+  goto :host2, :exec => "ifconfig| grep HWaddr| tr -s ' ' '%'| cut -d % -f 5"
   unique "MAC[host2]", result.value
 end
 
 task "Configure Debian host" do	
 
-  desc "Zona horaria <WET #{get(:year)}>"
-  goto :host1, :execute => "date | grep WET | grep #{get(:year)} | wc -l"
+  target "Zona horaria <WET #{get(:year)}>"
+  goto   :host1, :exec => "date | grep WET | grep #{get(:year)} | wc -l"
   expect result.equal(1)
 
-  desc "OS Debian 64 bits"
-  goto :host1, :execute => "uname -a| grep Debian| grep 64| wc -l"
+  target "OS Debian 64 bits"
+  goto   :host1, :exec => "uname -a| grep Debian| grep 64| wc -l"
   expect result.equal(1)
 
-  desc "Cheking hostname <"+get(:host1_hostname)+">"
-  goto :host1, :execute => "hostname -a"
+  target "Cheking hostname <"+get(:host1_hostname)+">"
+  goto   :host1, :exec => "hostname -a"
   expect result.equal(get(:host1_hostname))
 	
-  desc "Checking domainname <"+get(:lastname)+">"
-  goto :host1, :execute =>  "hostname -d" 
+  target "Checking domainname <"+get(:lastname)+">"
+  goto   :host1, :exec =>  "hostname -d" 
   expect result.equal(get(:lastname))
 	
-  desc "Checking username <"+get(:firstname)+">"
-  goto :host1, :execute => "cat /etc/passwd|grep '"+get(:firstname)+"'|wc -l"
+  target "Checking username <"+get(:firstname)+">"
+  goto   :host1, :exec => "cat /etc/passwd|grep '"+get(:firstname)+"'|wc -l"
   expect result.equal(1)
 
-  desc "Checking groupname <"+get(:groupname)+">"
-  goto :host1,  :execute => "cat /etc/group|grep '"+get(:groupname)+"'|wc -l"
+  target "Checking groupname <"+get(:groupname)+">"
+  goto   :host1,  :exec => "cat /etc/group|grep '"+get(:groupname)+"'|wc -l"
   expect result.equal(1)
 
-  desc "User member of group <"+get(:groupname)+">"
-  goto :host1, :execute => "id "+get(:firstname)+"| tr -s ' ' ':'| cut -d : -f 2| grep "+get(:groupname)+"|wc -l"
+  target "User member of group <"+get(:groupname)+">"
+  goto :host1, :exec => "id "+get(:firstname)+"| tr -s ' ' ':'| cut -d : -f 2| grep "+get(:groupname)+"|wc -l"
   expect result.equal(1)
   
 end
 
 task "Configure Debian SSH" do
 
-  desc "Claves privada y pública en usuario <#{get(:firstname)}>"
-  goto :host1, :execute => "vdir /home/#{get(:firstname)}/.ssh/id_*| wc -l"
+  target "Claves privada y pública en usuario <#{get(:firstname)}>"
+  goto   :host1, :exec => "vdir /home/#{get(:firstname)}/.ssh/id_*| wc -l"
   expect result.equal(2)
 
-  goto :host1, :execute => "cat /home/#{get(:firstname)}/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
+  goto :host1, :exec => "cat /home/#{get(:firstname)}/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
   @filename1=tempfile
   	
-  desc "Host2 hostname defined on Host1"
-  goto :host1, :execute => "cat /etc/hosts| grep #{get(:host2_hostname)}| grep #{get(:host2_ip)}| wc -l"
+  target "Host2 hostname defined on Host1"
+  goto :host1, :exec => "cat /etc/hosts| grep #{get(:host2_hostname)}| grep #{get(:host2_ip)}| wc -l"
   expect result.equal(1)
 
 end
 
 task "Configure OpenSUSE host" do
 
-  desc "Zona horaria <WET #{get(:year)}>"
-  goto :host2, :execute => "date | grep WET | grep #{get(:year)} | wc -l"
+  target "Zona horaria <WET #{get(:year)}>"
+  goto :host2, :exec => "date | grep WET | grep #{get(:year)} | wc -l"
   expect result.equal(1)
 
-  desc "OS OpenSuse 64 bits"
-  goto :host2, :execute => "uname -a| grep opensuse| grep x86_64| wc -l"
+  target "OS OpenSuse 64 bits"
+  goto :host2, :exec => "uname -a| grep opensuse| grep x86_64| wc -l"
   expect result.equal(1)
 
-  desc "Value hostname == "+get(:host2_hostname)+" "
-  goto :host2, :execute => "hostname -a"
+  target "Value hostname == "+get(:host2_hostname)+" "
+  goto :host2, :exec => "hostname -a"
   expect result.equal(get(:host2_hostname))
 	
-  desc "Value domainname == "+get(:lastname)+" "
-  goto :host2, :execute => "hostname -d" 
+  target "Value domainname == "+get(:lastname)+" "
+  goto :host2, :exec => "hostname -d" 
   expect result.equal(get(:lastname))
 
-  desc "Exist username <"+get(:firstname)+">"
-  goto :host2, :execute => "cat /etc/passwd|grep '"+get(:firstname)+"'|wc -l"
+  target "Exist username <"+get(:firstname)+">"
+  goto :host2, :exec => "cat /etc/passwd|grep '"+get(:firstname)+"'|wc -l"
   expect result.equal(1)
 
-  desc "Checking groupname <"+get(:groupname)+">"
-  goto :host1, :execute => "cat /etc/group|grep '"+get(:groupname)+"'|wc -l"
+  target "Checking groupname <"+get(:groupname)+">"
+  goto :host1, :exec => "cat /etc/group|grep '"+get(:groupname)+"'|wc -l"
   expect result.equal(1)
 
-  desc "User maingroup == "+get(:groupname)+" "
-  goto :host1, :execute => "id "+get(:firstname)+"| tr -s ' ' ':'| cut -d : -f 2| grep "+get(:groupname)+"|wc -l"
+  target "User maingroup == "+get(:groupname)+" "
+  goto :host1, :exec => "id "+get(:firstname)+"| tr -s ' ' ':'| cut -d : -f 2| grep "+get(:groupname)+"|wc -l"
   expect result.equal(1)
   
 end
 
 task "Configure OpenSUSE SSH" do
 
-  desc "Permissions /home/#{get(:firstname)}/.ssh => rwx------"
-  goto :host2, :execute => "vdir -a /home/#{get(:firstname)}/ | grep '.ssh'| grep 'rwx------'| wc -l"
+  target "Permissions /home/#{get(:firstname)}/.ssh => rwx------"
+  goto :host2, :exec => "vdir -a /home/#{get(:firstname)}/ | grep '.ssh'| grep 'rwx------'| wc -l"
   expect result.equal(1)
 
-  goto :host2, :execute => "cat /home/#{get(:firstname)}/.ssh/authorized_keys", :tempfile => "mv2_authorizedkeys.tmp"
+  goto :host2, :exec => "cat /home/#{get(:firstname)}/.ssh/authorized_keys", :tempfile => "mv2_authorizedkeys.tmp"
   filename2=tempfile
   	
-  desc "mv2(authorized_keys) == mv1(id_rsa.pub)"
-  goto :localhost, :execute => "diff #{@filename1} #{filename2}| wc -l"
+  target "mv2(authorized_keys) == mv1(id_rsa.pub)"
+  goto :localhost, :exec => "diff #{@filename1} #{filename2}| wc -l"
   expect result.equal?(0)
 
-  desc "mv2: Host1 hostname defined"
-  goto :host2, :execute => "cat /etc/hosts| grep #{get(:host1_hostname)}| grep #{get(:host1_ip)}| wc -l"
+  target "mv2: Host1 hostname defined"
+  goto :host2, :exec => "cat /etc/hosts| grep #{get(:host1_hostname)}| grep #{get(:host1_ip)}| wc -l"
   expect result.equal?(1)
   	
 end
 
 task "Configure Debian VNC server" do
 
-  desc "Tightvncserver installed on <#{get(:host1_ip)}>"
-  goto :host1, :execute => "dpkg -l tightvncserver| grep 'ii'| wc -l"
+  target "Tightvncserver installed on <#{get(:host1_ip)}>"
+  goto :host1, :exec => "dpkg -l tightvncserver| grep 'ii'| wc -l"
   expect result.equal(1)
 
-  goto :localhost, :execute => "nmap -Pn #{get(:host1_ip)}", :tempfile => 'mv1_nmap.tmp'
+  goto :localhost, :exec => "nmap -Pn #{get(:host1_ip)}", :tempfile => 'mv1_nmap.tmp'
   filename = tempfile
   
   #command "ps -ef| grep tightvnc| grep geometry| wc -l", :tempfile => 'tightvnc.tmp'
   #vncserver :1
 	
-  desc "Services 'vnc' on <#{get(:host1_ip)}>"
-  goto :localhost, :execute => "cat #{filename}|grep 'vnc'| wc -l"
+  target "Services 'vnc' on <#{get(:host1_ip)}>"
+  goto :localhost, :exec => "cat #{filename}|grep 'vnc'| wc -l"
   expect result.equal(1)
 
-  desc "Services active on ip/port #{get(:host1_ip)}/6001"
-  goto :localhost, :execute => "cat #{filename} |grep '6001'| wc -l"
+  target "Services active on ip/port #{get(:host1_ip)}/6001"
+  goto :localhost, :exec => "cat #{filename} |grep '6001'| wc -l"
   expect result.equal(1)
   
 end
 
 task "Do git clone into OpenSUSE host" do
 
-  desc "Git installed on <#{get(:host1_ip)}>"
-  goto :host1, :execute => "dpkg -l git| grep 'ii'| wc -l"
+  target "Git installed on <#{get(:host1_ip)}>"
+  goto :host1, :exec => "dpkg -l git| grep 'ii'| wc -l"
   expect result.equal?(1)
 	
-  #desc "Proyect from GitHub cloned on <#{get(:host1_ip)}>"
-  #on :host1, :execute => "vdir -a /home/#{get(:username)}/add1314profesor/ | grep '.git'| wc -l"
+  #target "Proyect from GitHub cloned on <#{get(:host1_ip)}>"
+  #on :host1, :exec => "vdir -a /home/#{get(:username)}/add1314profesor/ | grep '.git'| wc -l"
   #check result.to_i.equal?(1)
 
-  desc "Git installed on <#{get(:host2_ip)}>"
-  goto :host2, :execute => "git --version| grep git |grep version| wc -l"
+  target "Git installed on <#{get(:host2_ip)}>"
+  goto :host2, :exec => "git --version| grep git |grep version| wc -l"
   expect result.equal?(1)
 	
-  desc "Proyect from GitHub cloned on <#{get(:host2_ip)}>"
-  goto :host2, :execute => "vdir -a /home/#{get(:firstname)}/add1314profesor/unit.1/ | grep '.exam_remoto'| wc -l"
+  target "Proyect from GitHub cloned on <#{get(:host2_ip)}>"
+  goto :host2, :exec => "vdir -a /home/#{get(:firstname)}/add1314profesor/unit.1/ | grep '.exam_remoto'| wc -l"
   expect result.equal?(1)
 
   log "Tests finished"
