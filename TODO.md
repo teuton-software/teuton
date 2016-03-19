@@ -1,10 +1,18 @@
 
 #TO-DO list
 
-* `send_copy :by => :email`
-* rspec and given-then-when
-* Improve english documentation
-* Mejorar la documentación en español
-* Make videos showing how to use this tool
-* Gamification (bonus, lives, etc.)
-
+* Documentation
+    * Revise Spanish docs
+    * Mejorar la documentación en español
+    * Improve english documentation
+    * Make videos showing how to use this tool
+* DSL
+    * `send :copy_by => :email`
+    * `advise "Some usefull information"` provide this information when studends demand help.
+    * `information`
+* Code Quality
+    * Implement unit tests
+    * rspec and given-then-when
+* Gamification
+    * When students demand help they recibe some advises 
+    * Ideas: bonus, lives, etc.
