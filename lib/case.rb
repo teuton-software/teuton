@@ -73,9 +73,8 @@ class Case
       verboseln "\n"
     else
       @tests.each do |t| 
-        log("TASK <#{t[:name]}> begin")
+        log("TASK: #{t[:name]}")
         instance_eval &t[:block]
-        log("TASK <#{t[:name]}> end")
       end
     end
 
