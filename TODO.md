@@ -13,6 +13,7 @@
 * Code Quality
     * Implement unit tests
     * rspec and given-then-when
+    * Vagrant: use vagrant machines as case hosts.
 * Gamification
     * When students demand help they recibe some advises 
     * Ideas: bonus, lives, etc.
