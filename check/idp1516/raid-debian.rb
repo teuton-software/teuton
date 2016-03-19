@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/tool'
+require_relative '../../lib/sysadmingame'
 
 =begin
  Course name : IDP1516
@@ -11,70 +11,70 @@ require_relative '../../lib/tool'
 =end
 
 
-check :host1_configurations do
+target :host1_configurations do
 
-  desc "ping #{get(:host1_ip)} to #{get(:host1_osname)}"
-  goto :localhost, :execute => "ping #{get(:host1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  target "ping #{get(:host1_ip)} to #{get(:host1_osname)}"
+  goto :localhost, :exec => "ping #{get(:host1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
   expect result.equal?(0)
 
-  desc "SSH port 22 on <"+get(:host1_ip)+"> open"
-  goto :localhost, :execute => "nmap #{get(:host1_ip)} -Pn | grep ssh|wc -l"
+  target "SSH port 22 on <"+get(:host1_ip)+"> open"
+  goto :localhost, :exec => "nmap #{get(:host1_ip)} -Pn | grep ssh|wc -l"
   expect result.equal?(1)
 
   hostname1a="#{get(:lastname1)}3"
-  desc "Checking hostname -a <"+hostname1a+">"
-  goto :host1, :execute => "hostname -a"
+  target "Checking hostname -a <"+hostname1a+">"
+  goto :host1, :exec => "hostname -a"
   expect result.equal?(hostname1a)
 
   hostname1b="#{get(:lastname2)}"
-  desc "Checking hostname -d <"+hostname1b+">"
-  goto :host1, :execute => "hostname -d"
+  target "Checking hostname -d <"+hostname1b+">"
+  goto :host1, :exec => "hostname -d"
   expect result.equal?(hostname1b)
 
   hostname1c="#{hostname1a}.#{hostname1b}"
-  desc "Checking hostname -f <"+hostname1c+">"
-  goto :host1, :execute => "hostname -f"
+  target "Checking hostname -f <"+hostname1c+">"
+  goto :host1, :exec => "hostname -f"
   expect result.equal?(hostname1c)
 
-  goto :host1, :execute => "blkid |grep sda1"
+  goto :host1, :exec => "blkid |grep sda1"
   unique "UUID_sda1", result.value	
-  goto :host1, :execute => "blkid |grep sda2"
+  goto :host1, :exec => "blkid |grep sda2"
   unique "UUID_sda2", result.value	
 
 end
 
-check :host2_configurations do
+target :host2_configurations do
 
-  desc "ping #{get(:host2_ip)} to #{get(:host2_osname)}"
-  goto :localhost, :execute => "ping #{get(:host2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  target "ping #{get(:host2_ip)} to #{get(:host2_osname)}"
+  goto :localhost, :exec => "ping #{get(:host2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
   expect result.equal?(0)
   
-  desc "netbios-ssn service on #{get(:host2_ip)}"
-  goto :localhost, :execute => "nmap -Pn #{get(:host2_ip)} | grep '139/tcp'| grep 'open'|wc -l"
+  target "netbios-ssn service on #{get(:host2_ip)}"
+  goto :localhost, :exec => "nmap -Pn #{get(:host2_ip)} | grep '139/tcp'| grep 'open'|wc -l"
   expect result.equal?(1)
 
 end
 
-check :user_definitions do
+target :user_definitions do
   username=get(:firstname)
 
-  desc "User <#{username}> exists"
-  goto :host1, :execute => "id '#{username}' | wc -l"
+  target "User <#{username}> exists"
+  goto :host1, :exec => "id '#{username}' | wc -l"
   expect result.equal?(1)
 
-  desc "Users <#{username}> with not empty password "
-  goto :host1, :execute => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
+  target "Users <#{username}> with not empty password "
+  goto :host1, :exec => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
   expect result.equal?(1)
 
-  desc "User <#{username}> logged"
-  goto :host1, :execute => "last | grep #{username[0,8]} | wc -l"
+  target "User <#{username}> logged"
+  goto :host1, :exec => "last | grep #{username[0,8]} | wc -l"
   expect result.not_equal?(0)
 end
 
-check :raid0_into_host1 do
+target :raid0_into_host1 do
 end
 
-check :raid1_into_host1 do
+target :raid1_into_host1 do
 
 end  
 

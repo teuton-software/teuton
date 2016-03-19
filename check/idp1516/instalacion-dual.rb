@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/tool'
+require_relative '../../lib/sysadmingame'
 
 =begin
  Course name : IDP1516
@@ -9,65 +9,65 @@ require_relative '../../lib/tool'
  MV OS       : Window7 con OpenSUSE 132.
 =end
 
-check :hostname_configurations do
-  #desc "ping to <"+get(:host1_ip)+">"
-  #on :localhost, :execute => "ping #{get(:host1_ip)} | grep errors|wc -l"
+task :hostname_configurations do
+  #target "ping to <"+get(:host1_ip)+">"
+  #on :localhost, :exec => "ping #{get(:host1_ip)} | grep errors|wc -l"
   #expect result.to_i.equal?(0)
 
-  desc "SSH port 22 on <"+get(:host1_ip)+"> open"
-  on :localhost, :execute => "nmap #{get(:host1_ip)} -Pn | grep ssh|wc -l"
+  target "SSH port 22 on <"+get(:host1_ip)+"> open"
+  on :localhost, :exec => "nmap #{get(:host1_ip)} -Pn | grep ssh|wc -l"
   expect result.to_i.equal?(1)
 
   _hostname="DUALX#{get(:lastname1)}"
-  desc "Checking hostname -a <"+_hostname+">"
-  on :host1, :execute => "hostname -a"
+  target "Checking hostname -a <"+_hostname+">"
+  on :host1, :exec => "hostname -a"
   expect result.equal?(_hostname)
 
   _hostname="#{get(:lastname2)}"
-  desc "Checking hostname -d <"+_hostname+">"
-  on :host1, :execute => "hostname -d"
+  target "Checking hostname -d <"+_hostname+">"
+  on :host1, :exec => "hostname -d"
   expect result.equal?(_hostname)
 
   _hostname="DUALX#{get(:lastname1)}.#{get(:lastname2)}"
-  desc "Checking hostname -f <"+_hostname+">"
-  on :host1, :execute => "hostname -f"
+  target "Checking hostname -f <"+_hostname+">"
+  on :host1, :exec => "hostname -f"
   expect result.equal?(_hostname)
 
-  on :host1, :execute => "blkid |grep sda1"
+  on :host1, :exec => "blkid |grep sda1"
   unique "UUID_sda1", result.value	
-  on :host1, :execute => "blkid |grep sda2"
+  on :host1, :exec => "blkid |grep sda2"
   unique "UUID_sda2", result.value	
-  on :host1, :execute => "blkid |grep sda6"
+  on :host1, :exec => "blkid |grep sda6"
   unique "UUID_sda6", result.value	
-  on :host1, :execute => "blkid |grep sda7"
+  on :host1, :exec => "blkid |grep sda7"
   unique "UUID_sda7", result.value	
 end
 
-check :user_definitions do
+task :user_definitions do
   username=get(:firstname)
 
-  desc "User <#{username}> exists"
-  on :host1, :execute => "cat /etc/passwd | grep '#{username}:' | wc -l"
+  target "User <#{username}> exists"
+  on :host1, :exec => "cat /etc/passwd | grep '#{username}:' | wc -l"
   expect result.to_i.equal?(1)
 
-  desc "Users <#{username}> with not empty password "
-  on :host1, :execute => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
+  target "Users <#{username}> with not empty password "
+  on :host1, :exec => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
   expect result.to_i.equal?(1)
 
-  desc "User <#{username}> logged"
-  on :host1, :execute => "last | grep #{username[0,8]} | wc -l"
+  target "User <#{username}> logged"
+  on :host1, :exec => "last | grep #{username[0,8]} | wc -l"
   expect result.to_i.not_equal?(0)
 end
 
-check :disk_size do
+task :disk_size do
   size='18'
-  desc "Disk sda size <#{size}>"
-  on :host1, :execute => "lsblk |grep disk| grep sda| grep #{size}|grep G| wc -l"
+  target "Disk sda size <#{size}>"
+  on :host1, :exec => "lsblk |grep disk| grep sda| grep #{size}|grep G| wc -l"
   expect result.to_i.equal?(1)
 end
 
 
-check :partitions_size_and_type do
+task :partitions_size_and_type do
   partitions={ :sda1 => ['sda1'  ,'11,7G' , '12G'],
                :sda2 => ['sda2'  ,'100M' , '100M'],
                :sda5 => ['[SWAP]','500M', '500M'],
@@ -76,12 +76,12 @@ check :partitions_size_and_type do
                 }
   
   partitions.each_pair do |key,value|
-    desc "Partition #{key} mounted on <#{value[0]}>"
-    on :host1, :execute => "lsblk |grep part| grep #{key}| grep #{value[0]}| wc -l"
+    target "Partition #{key} mounted on <#{value[0]}>"
+    on :host1, :exec => "lsblk |grep part| grep #{key}| grep #{value[0]}| wc -l"
     expect result.to_i.equal?(1)
 
-    desc "Partition #{key} size <#{value[1]}>"
-    on :host1, :execute => "lsblk |grep part| grep #{key}| tr -s ' ' ':'| cut -d ':' -f 5"
+    target "Partition #{key} size <#{value[1]}>"
+    on :host1, :exec => "lsblk |grep part| grep #{key}| tr -s ' ' ':'| cut -d ':' -f 5"
     expect(result.to_s.equal?(value[1]) || result.to_s.equal?(value[2]))    
   end
 
@@ -90,8 +90,8 @@ check :partitions_size_and_type do
              }
   
   partitions.each_pair do |key,value|  
-     desc "Partition #{key} type <#{value[2]}>"
-    on :host1, :execute => "df -hT | grep #{key}| grep #{value[2]}|wc -l"
+     target "Partition #{key} type <#{value[2]}>"
+    on :host1, :exec => "df -hT | grep #{key}| grep #{value[2]}|wc -l"
     expect result.to_i.equal?(1)
   end  
 end

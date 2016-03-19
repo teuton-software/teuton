@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/tool'
+require_relative '../../lib/sysadmingame'
 
 =begin
   Course name : IDP1516
@@ -13,113 +13,113 @@ require_relative '../../lib/tool'
   Spanish URL : https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/idp/monitorizar/eventos-locales-windows-debian.md
 =end 
 
-check :host1_configurations do
+task :host1_configurations do
 
-  desc "ping #{get(:host1_ip)} to Debian"
-  goto :localhost, :execute => "ping #{get(:host1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  target "ping #{get(:host1_ip)} to Debian"
+  goto :localhost, :exec => "ping #{get(:host1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
   expect result.equal?(0)
 
-  desc "SSH port 22 on <"+get(:host1_ip)+"> open"
-  goto :localhost, :execute => "nmap #{get(:host1_ip)} -Pn | grep ssh|wc -l"
+  target "SSH port 22 on <"+get(:host1_ip)+"> open"
+  goto :localhost, :exec => "nmap #{get(:host1_ip)} -Pn | grep ssh|wc -l"
   expect result.equal?(1)
 
   hostname1a="#{get(:lastname1)}"
-  desc "Checking hostname -a <"+hostname1a+">"
-  goto :host1, :execute => "hostname -a"
+  target "Checking hostname -a <"+hostname1a+">"
+  goto :host1, :exec => "hostname -a"
   expect result.equal?(hostname1a)
 
   hostname1b="#{get(:host1_hostname)}"
-  desc "Checking hostname -d <"+hostname1b+">"
-  goto :host1, :execute => "hostname -d"
+  target "Checking hostname -d <"+hostname1b+">"
+  goto :host1, :exec => "hostname -d"
   expect result.equal?(hostname1b)
 
   hostname1c="#{hostname1a}.#{hostname1b}"
-  desc "Checking hostname -f <"+hostname1c+">"
-  goto :host1, :execute => "hostname -f"
+  target "Checking hostname -f <"+hostname1c+">"
+  goto :host1, :exec => "hostname -f"
   expect result.equal?(hostname1c)
 
-  goto :host1, :execute => "blkid |grep sda1"
+  goto :host1, :exec => "blkid |grep sda1"
   unique "UUID_sda1", result.value	
-  goto :host1, :execute => "blkid |grep sda2"
+  goto :host1, :exec => "blkid |grep sda2"
   unique "UUID_sda2", result.value	
 
 end
 
-check :host2_configurations do
+task :host2_configurations do
 
-  desc "ping #{get(:host2_ip)} to Windows2012"
-  goto :localhost, :execute => "ping #{get(:host2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  target "ping #{get(:host2_ip)} to Windows2012"
+  goto :localhost, :exec => "ping #{get(:host2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
   expect result.equal?(0)
   
-  desc "netbios-ssn service on #{get(:host2_ip)}"
-  goto :localhost, :execute => "nmap -Pn #{get(:host2_ip)} | grep '139/tcp'| grep 'open'|wc -l"
+  target "netbios-ssn service on #{get(:host2_ip)}"
+  goto :localhost, :exec => "nmap -Pn #{get(:host2_ip)} | grep '139/tcp'| grep 'open'|wc -l"
   expect result.equal?(1)
 
 end
 
-check :host1_user_definitions do
+task :host1_user_definitions do
 
   username=get(:firstname)
 
-  desc "User <#{username}> exists"
-  goto :host1, :execute => "id '#{username}' | wc -l"
+  target "User <#{username}> exists"
+  goto :host1, :exec => "id '#{username}' | wc -l"
   expect result.equal?(1)
 
-  desc "Users <#{username}> with not empty password "
-  goto :host1, :execute => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
+  target "Users <#{username}> with not empty password "
+  goto :host1, :exec => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
   expect result.equal?(1)
 
-  desc "User <#{username}> logged"
-  goto :host1, :execute => "last | grep #{username[0,8]} | wc -l"
+  target "User <#{username}> logged"
+  goto :host1, :exec => "last | grep #{username[0,8]} | wc -l"
   expect result.not_equal?(0)
 end
 
-check :webmin_on_host1 do
+task :webmin_on_host1 do
 
-  desc "Webmin installed"
-  goto :host1, :execute => "dpkg -l webmin| grep webmin| wc -l"
+  target "Webmin installed"
+  goto :host1, :exec => "dpkg -l webmin| grep webmin| wc -l"
   expect result.equal? 1
 
-  desc "Executing Webmin"
-  goto :host1, :execute => "ps -ef|grep webmin| wc -l"
+  target "Executing Webmin"
+  goto :host1, :exec => "ps -ef|grep webmin| wc -l"
   expect result.equal? 1
   
-  desc "Webmin working on port 10000"
-  goto :host1, :execute => "netstat -ntap|grep webmin| grep '127.0.0.1:10000'| wc -l"
+  target "Webmin working on port 10000"
+  goto :host1, :exec => "netstat -ntap|grep webmin| grep '127.0.0.1:10000'| wc -l"
   expect result.equal? 1
   
 end
 
-check :rsyslog_on_host1 do
+task :rsyslog_on_host1 do
 
-  desc "rsyslog configuration"
-  goto :host1, :execute => "file /etc/rsyslog.d/#{get(:firstname)}.conf | grep text| wc -l"
+  target "rsyslog configuration"
+  goto :host1, :exec => "file /etc/rsyslog.d/#{get(:firstname)}.conf | grep text| wc -l"
   expect result.equal? 1
 
-  desc "Exist <prueba-local.log> file"
-  goto :host1, :execute => "file /var/log/#{get(:firstname)}/prueba-local.log| grep text |wc -l"
+  target "Exist <prueba-local.log> file"
+  goto :host1, :exec => "file /var/log/#{get(:firstname)}/prueba-local.log| grep text |wc -l"
   expect result.equal? 1
 
-  desc "Content of prueba-local.log file"
-  goto :host1, :execute => "file /var/log/#{get(:firstname)}/prueba-local.log| grep text |wc -l"
+  target "Content of prueba-local.log file"
+  goto :host1, :exec => "file /var/log/#{get(:firstname)}/prueba-local.log| grep text |wc -l"
   expect result.equal? 1
 
-  desc "Test rsyslog configuration with logger command"
+  target "Test rsyslog configuration with logger command"
   content="sysadmin-game."+(rand 100).to_s
-  goto :host1, :execute => "logger -p local0.info '#{content}'"
-  goto :host1, :execute => "cat /var/log/#{get(:firstname)}/prueba-local.log| grep #{content} |wc -l"
+  goto :host1, :exec => "logger -p local0.info '#{content}'"
+  goto :host1, :exec => "cat /var/log/#{get(:firstname)}/prueba-local.log| grep #{content} |wc -l"
   expect result.is_greater_than? 0
 
 end
 
-check :host1_logrotate do
+task :host1_logrotate do
 
-  desc "Exist logrotate configuration file"
-  goto :host1, :execute => "file /etc/logrotate.d/#{get(:firstname)} | grep text| wc -l"
+  target "Exist logrotate configuration file"
+  goto :host1, :exec => "file /etc/logrotate.d/#{get(:firstname)} | grep text| wc -l"
   expect result.equal? 1
 
-  desc "Logrotate configuration contains our log file"
-  goto :host1, :execute => "cat /etc/logrotate.d/#{get(:firstname)} | grep '/var/log/#{get(:firstname)}'| wc -l"
+  target "Logrotate configuration contains our log file"
+  goto :host1, :exec => "cat /etc/logrotate.d/#{get(:firstname)} | grep '/var/log/#{get(:firstname)}'| wc -l"
   expect result.equal? 1
 
 end

@@ -15,48 +15,48 @@ require_relative '../../lib/sysadmingame'
 
 task "Configure W7 and W2008server" do
 
-  desc "ping <"+get(:host1_ip)+"> to Windows7"
-  on :localhost, :execute => "ping #{get(:host1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  target "ping <"+get(:host1_ip)+"> to Windows7"
+  on :localhost, :exec => "ping #{get(:host1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
   expect result.to_i.equal(0)
 
-  desc "ping <"+get(:host2_ip)+"> to Windows2008server"
-  on :localhost, :execute => "ping #{get(:host2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  target "ping <"+get(:host2_ip)+"> to Windows2008server"
+  on :localhost, :exec => "ping #{get(:host2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
   expect result.equal(0)
   
-  desc "netbios-ssn service on <"+get(:host2_ip)+">"
-  on :localhost, :execute => "nmap -Pn #{get(:host2_ip)} | grep '139/tcp'| grep 'open'|wc -l"
+  target "netbios-ssn service on <"+get(:host2_ip)+">"
+  on :localhost, :exec => "nmap -Pn #{get(:host2_ip)} | grep '139/tcp'| grep 'open'|wc -l"
   expect result.equal(1)
 
-  desc "microsoft-ds service on <"+get(:host2_ip)+">"
-  on :localhost, :execute => "nmap -Pn #{get(:host2_ip)} | grep '445/tcp'| grep 'open'|wc -l"
+  target "microsoft-ds service on <"+get(:host2_ip)+">"
+  on :localhost, :exec => "nmap -Pn #{get(:host2_ip)} | grep '445/tcp'| grep 'open'|wc -l"
   expect result.equal(1)
 
 end
 
 task "Configure OpenSSUE 13.2" do
 
-  desc "SSH port 22 on <"+get(:host3_ip)+"> open"
-  on :localhost, :execute => "nmap #{get(:host3_ip)} -Pn | grep ssh|wc -l"
+  target "SSH port 22 on <"+get(:host3_ip)+"> open"
+  on :localhost, :exec => "nmap #{get(:host3_ip)} -Pn | grep ssh|wc -l"
   expect result.equal(1)
 
   hostname3a="#{get(:lastname1)}3"
-  desc "Checking hostname -a <"+hostname3a+">"
-  on :host3, :execute => "hostname -a"
+  target "Checking hostname -a <"+hostname3a+">"
+  on :host3, :exec => "hostname -a"
   expect result.equal(hostname3a)
 
   hostname3b="#{get(:lastname2)}"
-  desc "Checking hostname -d <"+hostname3b+">"
-  on :host3, :execute => "hostname -d"
+  target "Checking hostname -d <"+hostname3b+">"
+  on :host3, :exec => "hostname -d"
   expect result.equal(hostname3b)
 
   hostname3c="#{hostname3a}.#{hostname3b}"
-  desc "Checking hostname -f <"+hostname3c+">"
-  on :host3, :execute => "hostname -f"
+  target "Checking hostname -f <"+hostname3c+">"
+  on :host3, :exec => "hostname -f"
   expect result.equal(hostname3c)
 
-  on :host3, :execute => "blkid |grep sda1"
+  on :host3, :exec => "blkid |grep sda1"
   unique "UUID_sda1", result.value	
-  on :host3, :execute => "blkid |grep sda2"
+  on :host3, :exec => "blkid |grep sda2"
   unique "UUID_sda2", result.value
   	
 end
@@ -65,16 +65,16 @@ task "Configure users" do
 
   username=get(:firstname)
 
-  desc "User <#{username}> exists"
-  on :host3, :execute => "id '#{username}' | wc -l"
+  target "User <#{username}> exists"
+  on :host3, :exec => "id '#{username}' | wc -l"
   expect result.equal(1)
 
-  desc "Users <#{username}> with not empty password "
-  on :host3, :execute => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
+  target "Users <#{username}> with not empty password "
+  on :host3, :exec => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
   expect result.equal(1)
 
-  desc "User <#{username}> logged"
-  on :host3, :execute => "last | grep #{username[0,8]} | wc -l"
+  target "User <#{username}> logged"
+  on :host3, :exec => "last | grep #{username[0,8]} | wc -l"
   expect result.not_equal(0)
 end
 
@@ -85,8 +85,8 @@ task "Create files to be saved" do
   
   files1.each do |filename|
     filepath=dir1+filename
-    desc "Exist file <#{filepath}>"
-    on :host3, :execute => "file '#{filepath}' | wc -l"
+    target "Exist file <#{filepath}>"
+    on :host3, :exec => "file '#{filepath}' | wc -l"
     expect result.equal(1)
   end
 
@@ -95,8 +95,8 @@ task "Create files to be saved" do
   
   files2.each do |filename|
     filepath=dir2+filename
-    desc "Exist file <#{filepath}>"
-    on :host3, :execute => "file '#{filepath}' | wc -l"
+    target "Exist file <#{filepath}>"
+    on :host3, :exec => "file '#{filepath}' | wc -l"
     expect result.equal(1)
   end
 end
@@ -109,16 +109,16 @@ task "Check backup output" do
   pcnumber=get(:host3_ip).split(".")[2]
   dir="/var/backup-#{pcnumber}/#{get(:firstname)}1"
   
-  desc "Exist directory <#{dir}>"
-  on :host3, :execute => "file '#{dir}' | grep directory| wc -l"
+  target "Exist directory <#{dir}>"
+  on :host3, :exec => "file '#{dir}' | grep directory| wc -l"
   expect result.equal(1)
 
-  desc "Owner/Group of <#{dir}>"
-  on :host3, :execute => "vdir '#{dir}' -d | grep #{username}|grep #{groupname} |wc -l"
+  target "Owner/Group of <#{dir}>"
+  on :host3, :exec => "vdir '#{dir}' -d | grep #{username}|grep #{groupname} |wc -l"
   expect result.equal(1)
 
-  desc "Permisions of <#{dir}> must be <drwxrwx--->"
-  on :host3, :execute => "vdir '#{dir}' -d | grep 'drwxrwx--- '| wc -l"
+  target "Permisions of <#{dir}> must be <drwxrwx--->"
+  on :host3, :exec => "vdir '#{dir}' -d | grep 'drwxrwx--- '| wc -l"
   expect result.equal(1)
 
 end  

@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/tool'
+require_relative '../../lib/sysadmingame'
 
 =begin
  Course name : IDP1516
@@ -9,53 +9,53 @@ require_relative '../../lib/tool'
  MV OS       : GNU/Linux Debian 7
 =end
 
-check :hostname_configurations do
-  desc "Checking SSH port <"+get(:host1_ip)+">"
-  on :localhost, :execute => "nmap #{get(:host1_ip)} | grep ssh|wc -l"
+task :hostname_configurations do
+  target "Checking SSH port <"+get(:host1_ip)+">"
+  on :localhost, :exec => "nmap #{get(:host1_ip)} | grep ssh|wc -l"
   expect result.to_i.equal?(1)
 
   _hostname="#{get(:lastname1)}.#{get(:lastname2)}"
-  desc "Checking hostname <"+_hostname+">"
-  on :host1, :execute => "hostname -f"
+  target "Checking hostname <"+_hostname+">"
+  on :host1, :exec => "hostname -f"
   expect result.equal?(_hostname)
 
   unique "hostname", result.value	
-  on :host1, :execute => "blkid |grep sda1"
+  on :host1, :exec => "blkid |grep sda1"
   unique "UUID", result.value	
 end
 
-check :user_definitions do
+task :user_definitions do
   username=get(:firstname)
 
-  desc "User <#{username}> exists"
-  on :host1, :execute => "cat /etc/passwd | grep '#{username}:' | wc -l"
+  target "User <#{username}> exists"
+  on :host1, :exec => "cat /etc/passwd | grep '#{username}:' | wc -l"
   expect result.to_i.equal?(1)
 
-  desc "Users <#{username}> with not empty password "
+  target "Users <#{username}> with not empty password "
   on :host1, :exceute => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
   expect result.to_i.equal?(1)
 
-  desc "User <#{username}> logged"
-  on :host1, :execute => "last | grep #{username[0,8]} | wc -l"
+  target "User <#{username}> logged"
+  on :host1, :exec => "last | grep #{username[0,8]} | wc -l"
   expect result.to_i.not_equal?(0)
 end
 
-check :directory_and_files_created do
+task :directory_and_files_created do
   dirs=[ 'fuw', 'idp', 'lnd', 'lnt' ]
   
   dirs.each do |dirname|
     dirfullname="/home/#{get(:firstname)}/Documentos/curso1516/#{dirname}"
-    desc "Exist directory <#{dirfullname}>"
-    on :host1, :execute => "vdir #{dirfullname} -d | wc -l"
+    target "Exist directory <#{dirfullname}>"
+    on :host1, :exec => "vdir #{dirfullname} -d | wc -l"
     expect result.to_i.equal?(1)
     
     filefullname="#{dirfullname}/leeme.txt"
-    desc "Exist file <#{filefullname}>"
-    on :host1, :execute => "vdir #{filefullname} | wc -l"
+    target "Exist file <#{filefullname}>"
+    on :host1, :exec => "vdir #{filefullname} | wc -l"
     expect result.to_i.equal?(1)
 
-    desc "Content file <#{filefullname}> with <#{get(:firstname)}>"
-    on :host1, :execute => "cat #{filefullname} | grep #{get(:firstname)}| wc -l"
+    target "Content file <#{filefullname}> with <#{get(:firstname)}>"
+    on :host1, :exec => "cat #{filefullname} | grep #{get(:firstname)}| wc -l"
     expect result.to_i.equal?(1)    
   end
 end
