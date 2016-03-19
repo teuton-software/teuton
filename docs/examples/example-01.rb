@@ -5,9 +5,9 @@ require_relative '../../lib/sysadmingame'
 
 =begin
   Test if exist user <obiwan> into localhost
-  * desc: Describe the target
-  * goto: Move to localhost, and execute the command
-  * expect: Check if the results are equal to expected value
+  * target : Describe the target
+  * goto   : Move to localhost, and execute the command
+  * expect : Check if the results are equal to expected value
   
   Teacher host (localhost) must have GNU/Linux OS.
 =end

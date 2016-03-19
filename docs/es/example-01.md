@@ -19,7 +19,7 @@ Ejemplo anterior | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./
 ##Script
 
 Vemos que en el script hay las siguientes intrucciones:
-* **desc**: Texto que describe el objetivo que buscamos.
+* **target**: Texto que describe el objetivo que buscamos.
 * **goto**: Moverse a la máquina *localhost*, y ejecutar el comando. Hay que hacer notar
 que en este caso el comando se ejecutará en *localhost*, y puesto que el comando del
 script es `id obiwan | wc -l`, el sistema operativo de *localhost* debe ser un GNU/Linux,
@@ -35,15 +35,16 @@ sólo contiene un caso. Este caso tiene los siguientes parámetros:
 
 ##Ejecución del script
 
-Para ejecutamos el script hacemos `./docs/examples/example-01.rb`, y vemos la siguiente salida por pantalla:
+Para ejecutar el script hacemos `./docs/examples/example-01.rb`, y 
+veremos la siguiente salida por pantalla:
 
 ```
 =============================================
 Executing [sysadmin-game] tests (version 0.8)
-[INFO] Running in parallel (2016-03-15 19:30:23 +0000)
+[INFO] Running in parallel (2016-03-19 21:17:24 +0000)
 id: obiwan: no existe ese usuario
 ?
-[INFO] Duration = 0.012565169 (2016-03-15 19:30:23 +0000)
+[INFO] Duration = 0.009143058 (2016-03-19 21:17:24 +0000)
 
 
 =============================================
@@ -59,9 +60,9 @@ TARGETS HISTORY
   -  Case_01 =>   0 ? student1
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2016-03-15 19:30:23 +0000 |
-| finish_time | 2016-03-15 19:30:23 +0000 |
-| duration    | 0.012565169               |
+| start_time  | 2016-03-19 21:17:24 +0000 |
+| finish_time | 2016-03-19 21:17:24 +0000 |
+| duration    | 0.009143058               |
 +-------------+---------------------------+
 ```
 
@@ -92,19 +93,18 @@ INITIAL CONFIGURATIONS
 | tt_skip    | false    |
 +------------+----------+
 TARGETS HISTORY
-  - INFO: Begin Create user obiwan
+  - TASK: Create user obiwan
   01 (0.0/1.0)
   		Description : Checking user <obiwan>
   		Command     : id obiwan| wc -l
   		Expected    : 1 (Fixnum)
   		Result      : 0 (String)
-  - INFO: End Create user obiwan
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-03-15 19:30:23 +0000 |
-| finish_time  | 2016-03-15 19:30:23 +0000 |
-| duration     | 0.006345811               |
+| start_time_  | 2016-03-19 21:17:24 +0000 |
+| finish_time  | 2016-03-19 21:17:24 +0000 |
+| duration     | 0.0042141                 |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 0.0                       |
@@ -112,7 +112,7 @@ FINAL VALUES
 | fail_counter | 1                         |
 | grade        | 0.0                       |
 +--------------+---------------------------+
-```
+``` 
 
 Como vemos en *TARGETS HISTORY* (que es donde se registran las acciones sobre los objetivos),
 hay una acción puntuada con 0 puntos, en la que se esperaba como resultado un 1 y

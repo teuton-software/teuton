@@ -44,9 +44,9 @@ Ejecutamos el script con `./docs/examples/example-04.rb` y vemos la siguiente sa
 ```
 =============================================
 Executing [sysadmin-game] tests (version 0.8)
-[INFO] Running in parallel (2016-03-15 19:49:24 +0000)
+[INFO] Running in parallel (2016-03-19 21:35:29 +0000)
 ...!????.?
-[INFO] Duration = 5.473399382 (2016-03-15 19:49:30 +0000)
+[INFO] Duration = 5.499742474 (2016-03-19 21:35:35 +0000)
 
 
 =============================================
@@ -66,19 +66,19 @@ TARGETS HISTORY
   -  Case_03 => 100   obiwan kenobi
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2016-03-15 19:49:24 +0000 |
-| finish_time | 2016-03-15 19:49:30 +0000 |
-| duration    | 5.473399382               |
+| start_time  | 2016-03-19 21:35:29 +0000 |
+| finish_time | 2016-03-19 21:35:35 +0000 |
+| duration    | 5.499742474               |
 +-------------+---------------------------+
-[ OK  ] obiwan kenobi: scp </tmp/case-03.colored_text>
 [ERROR] r2d2: scp <var/example-04/tmp/../out/case-02.colored_text> => </tmp/case-02.colored_text>
+[ OK  ] obiwan kenobi: scp </tmp/case-03.colored_text>
 [ OK  ] darth-maul: scp </tmp/case-01.colored_text>
 
 ```
 
-Cuando termina la evaluación de las máquinas, se copia de informe 
-en todas aquellas máquinas remotas que tienen conexión SSH. La máquina
-de `rd2d2` está apagada.
+Cuando termina la evaluación de las máquinas, se copia el informe 
+de cada caso en el directorio temporal de su máquina remota. Como la máquina
+de `rd2d2` está apagada, no podrá recibir el fichero.
 
 ##Informes de salida
 

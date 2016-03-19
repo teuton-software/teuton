@@ -51,16 +51,16 @@ caso.
 tener los mismos parámetros, pero pueden tener valores diferentes.
 
 ##Ejecución del script
-Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la siguiente salida por pantalla:
 
+Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la siguiente salida por pantalla:
 
 ```
 =============================================
 Executing [sysadmin-game] tests (version 0.8)
-[INFO] Running in parallel (2016-03-15 19:36:51 +0000)
+[INFO] Running in parallel (2016-03-19 21:21:59 +0000)
 .id: darth-maul: no existe ese usuario
 ?
-[INFO] Duration = 0.016200555 (2016-03-15 19:36:51 +0000)
+[INFO] Duration = 0.01266727 (2016-03-19 21:21:59 +0000)
 
 
 =============================================
@@ -77,11 +77,10 @@ TARGETS HISTORY
   -  Case_02 =>   0 ? Student-name-2
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2016-03-15 19:36:51 +0000 |
-| finish_time | 2016-03-15 19:36:51 +0000 |
-| duration    | 0.016200555               |
+| start_time  | 2016-03-19 21:21:59 +0000 |
+| finish_time | 2016-03-19 21:21:59 +0000 |
+| duration    | 0.01266727                |
 +-------------+---------------------------+
-
 ```
 
 Aquí lo más importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
@@ -114,19 +113,18 @@ INITIAL CONFIGURATIONS
 | tt_skip    | false          |
 +------------+----------------+
 TARGETS HISTORY
-  - INFO: Begin Create user with your name
+  - TASK: Create user with your name
   01 (1.0/1.0)
   		Description : Checking user <root>
   		Command     : id root| wc -l
   		Expected    : 1 (Fixnum)
   		Result      : 1 (String)
-  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-03-15 19:36:51 +0000 |
-| finish_time  | 2016-03-15 19:36:51 +0000 |
-| duration     | 0.008261729               |
+| start_time_  | 2016-03-19 21:21:59 +0000 |
+| finish_time  | 2016-03-19 21:21:59 +0000 |
+| duration     | 0.004730329               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |
@@ -134,8 +132,7 @@ FINAL VALUES
 | fail_counter | 0                         |
 | grade        | 100.0                     |
 +--------------+---------------------------+
-
-```
+``` 
 
 ###Informe de salida para `case-02`
 Ahora vemos el informe del caso 02, consultando el fichero `var/example-02/out/case-02.txt`.
@@ -148,19 +145,18 @@ INITIAL CONFIGURATIONS
 | tt_skip    | false          |
 +------------+----------------+
 TARGETS HISTORY
-  - INFO: Begin Create user with your name
+  - TASK: Create user with your name
   01 (0.0/1.0)
   		Description : Checking user <darth-maul>
   		Command     : id darth-maul| wc -l
   		Expected    : 1 (Fixnum)
   		Result      : 0 (String)
-  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 2                         |
-| start_time_  | 2016-03-15 19:36:51 +0000 |
-| finish_time  | 2016-03-15 19:36:51 +0000 |
-| duration     | 0.00792939                |
+| start_time_  | 2016-03-19 21:21:59 +0000 |
+| finish_time  | 2016-03-19 21:21:59 +0000 |
+| duration     | 0.004479595               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 0.0                       |
@@ -168,7 +164,6 @@ FINAL VALUES
 | fail_counter | 1                         |
 | grade        | 0.0                       |
 +--------------+---------------------------+
-
 ```
 
 ##Recordatorio

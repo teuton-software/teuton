@@ -93,9 +93,9 @@ Ejecutamos el script con `./docs/examples/example-03.rb` y vemos la siguiente sa
 ```
 =============================================
 Executing [sysadmin-game] tests (version 0.8)
-[INFO] Running in parallel (2016-03-15 19:42:05 +0000)
+[INFO] Running in parallel (2016-03-19 21:27:02 +0000)
 ...!????.?
-[INFO] Duration = 5.481694416 (2016-03-15 19:42:10 +0000)
+[INFO] Duration = 6.127315789 (2016-03-19 21:27:08 +0000)
 
 
 =============================================
@@ -115,9 +115,9 @@ TARGETS HISTORY
   -  Case_03 => 100   obiwan kenobi
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2016-03-15 19:42:05 +0000 |
-| finish_time | 2016-03-15 19:42:10 +0000 |
-| duration    | 5.481694416               |
+| start_time  | 2016-03-19 21:27:02 +0000 |
+| finish_time | 2016-03-19 21:27:08 +0000 |
+| duration    | 6.127315789               |
 +-------------+---------------------------+
 ```
 
@@ -155,7 +155,7 @@ INITIAL CONFIGURATIONS
 | username       | dmaul                |
 +----------------+----------------------+
 TARGETS HISTORY
-  - INFO: Begin Configure hostname and DNS server
+  - TASK: Configure hostname and DNS server
   01 (0.0/1.0)
   		Description : Hostname is <sith.starwars>
   		Command     : hostname -f
@@ -166,20 +166,18 @@ TARGETS HISTORY
   		Command     : host www.google.es| grep 'has address'| wc -l
   		Expected    : Greater than 0 (String)
   		Result      : 16 (String)
-  - INFO: End Configure hostname and DNS server
-  - INFO: Begin Create user with your name
+  - TASK: Create user with your name
   03 (0.0/1.0)
   		Description : Exist user <dmaul>
   		Command     : id dmaul |wc -l
   		Expected    : 1 (Fixnum)
   		Result      : id: dmaul: No existe ese usuario (String)
-  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-03-15 19:42:05 +0000 |
-| finish_time  | 2016-03-15 19:42:10 +0000 |
-| duration     | 5.470615108               |
+| start_time_  | 2016-03-19 21:27:02 +0000 |
+| finish_time  | 2016-03-19 21:27:08 +0000 |
+| duration     | 6.10091783                |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 1.0                       |
@@ -187,10 +185,9 @@ FINAL VALUES
 | fail_counter | 2                         |
 | grade        | 33.33333333333333         |
 +--------------+---------------------------+
+``` 
 
-```
-
-En este caso, si hemos establecido una conexión SSH correcta con la máquina,
+En este caso, se ha establecido una conexión con la máquina remota (SSH),
 pero sólo se ha cumplido satisfactoriamente 1 de los 3 objetivos previstos.
 
  
@@ -210,7 +207,7 @@ INITIAL CONFIGURATIONS
 | username       | r2d2            |
 +----------------+-----------------+
 TARGETS HISTORY
-  - INFO: Begin Configure hostname and DNS server
+  - TASK: Configure hostname and DNS server
   - ERROR: Host 192.168.1.201 unreachable!
   01 (0.0/1.0)
   		Description : Hostname is <robot.starwars>
@@ -222,20 +219,18 @@ TARGETS HISTORY
   		Command     : host www.google.es| grep 'has address'| wc -l
   		Expected    : Greater than 0 (String)
   		Result      :  (NilClass)
-  - INFO: End Configure hostname and DNS server
-  - INFO: Begin Create user with your name
+  - TASK: Create user with your name
   03 (0.0/1.0)
   		Description : Exist user <r2d2>
   		Command     : id r2d2 |wc -l
   		Expected    : 1 (Fixnum)
   		Result      :  (NilClass)
-  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 2                         |
-| start_time_  | 2016-03-15 19:42:05 +0000 |
-| finish_time  | 2016-03-15 19:42:08 +0000 |
-| duration     | 3.008435827               |
+| start_time_  | 2016-03-19 21:27:02 +0000 |
+| finish_time  | 2016-03-19 21:27:05 +0000 |
+| duration     | 3.028308833               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 0.0                       |
@@ -243,10 +238,9 @@ FINAL VALUES
 | fail_counter | 3                         |
 | grade        | 0.0                       |
 +--------------+---------------------------+
+``` 
 
-```
-
-Se ha intentado evaluar los objetivos, y todos sin éxito, puesto que el valor
+Se han intentadon evaluar los objetivos, y todos sin éxito, puesto que el valor
 esperado no coincide con el valor obtenido.
 
 Si nos fijamos veremos en la sección *TARGETS HISTORY* una línea de ERROR.
@@ -268,7 +262,6 @@ Algunos de los motivos por los que puede no funcionar la conexión SSH a las má
 
 Veamos el informe del caso 03, consultando el fichero `var/example-03/out/case-03.txt`.
 
-
 ```
 INITIAL CONFIGURATIONS
 +----------------+------------------+
@@ -280,7 +273,7 @@ INITIAL CONFIGURATIONS
 | username       | obiwan           |
 +----------------+------------------+
 TARGETS HISTORY
-  - INFO: Begin Configure hostname and DNS server
+  - TASK: Configure hostname and DNS server
   01 (1.0/1.0)
   		Description : Hostname is <jedi.starwars>
   		Command     : hostname -f
@@ -291,20 +284,18 @@ TARGETS HISTORY
   		Command     : host www.google.es| grep 'has address'| wc -l
   		Expected    : Greater than 0 (String)
   		Result      : 16 (String)
-  - INFO: End Configure hostname and DNS server
-  - INFO: Begin Create user with your name
+  - TASK: Create user with your name
   03 (1.0/1.0)
   		Description : Exist user <obiwan>
   		Command     : id obiwan |wc -l
   		Expected    : 1 (Fixnum)
   		Result      : 1 (String)
-  - INFO: End Create user with your name
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 3                         |
-| start_time_  | 2016-03-15 19:42:05 +0000 |
-| finish_time  | 2016-03-15 19:42:06 +0000 |
-| duration     | 1.250920979               |
+| start_time_  | 2016-03-19 21:27:02 +0000 |
+| finish_time  | 2016-03-19 21:27:04 +0000 |
+| duration     | 2.291787136               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 3.0                       |
@@ -312,10 +303,9 @@ FINAL VALUES
 | fail_counter | 0                         |
 | grade        | 100.0                     |
 +--------------+---------------------------+
+
 ```
-
-Comprobamos que todos los objetivos se han cumplido correctamente.
-
+En esta caso, podemos comprobar que todos los objetivos se han cumplido correctamente.
 
 ##Recordatorio
 
