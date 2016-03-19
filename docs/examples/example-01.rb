@@ -14,7 +14,7 @@ require_relative '../../lib/sysadmingame'
 
 task "Create user obiwan" do
 
-  desc "Checking user <obiwan>"
+  target "Checking user <obiwan>"
   goto :localhost, :execute => "id obiwan| wc -l"
   expect result.equal(1)
 
