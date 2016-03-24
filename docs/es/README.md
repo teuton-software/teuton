@@ -42,6 +42,6 @@ guardar los scripts que definen nuestras actividades.
 
 #Documentación
 * [Instalación](./instalacion.md)
-* [Ejemplos](./ejemplos.md)
+* [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./palabras-clave-dsl.md)

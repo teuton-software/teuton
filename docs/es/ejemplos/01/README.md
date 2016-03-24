@@ -1,5 +1,4 @@
 
-Ejemplo anterior | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./example-02.md)
 
 #example-01
 
@@ -10,8 +9,8 @@ Ejemplo anterior | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./
     Cada caso tiene un parámetro con la lista de sus miembros.
 ```
 
-* Script: [example-01.rb](../examples/example-01.rb) 
-* Fichero de configuración: [example-01.yaml](../examples/example-01.yaml)
+* Script: [example-01.rb](../../../examples/example-01.rb) 
+* Fichero de configuración: [example-01.yaml](../../../examples/example-01.yaml)
 * Descripción: *Comprueba si existe el usuario *obiwan* en la máquina *localhost*.*
 * Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en *localhost*.
 * SO localhost: GNU/Linux
@@ -36,35 +35,7 @@ sólo contiene un caso. Este caso tiene los siguientes parámetros:
 ##Ejecución del script
 
 Para ejecutar el script hacemos `./docs/examples/example-01.rb`, y 
-veremos la siguiente salida por pantalla:
-
-```
-=============================================
-Executing [sysadmin-game] tests (version 0.8)
-[INFO] Running in parallel (2016-03-19 21:17:24 +0000)
-id: obiwan: no existe ese usuario
-?
-[INFO] Duration = 0.009143058 (2016-03-19 21:17:24 +0000)
-
-
-=============================================
-INITIAL CONFIGURATIONS
-+---------------+-----------------------------------------------+
-| tt_title      | Executing [sysadmin-game] tests (version 0.8) |
-| tt_scriptname | ./docs/examples/example-01.rb                 |
-| tt_configfile | ./docs/examples/example-01.yaml               |
-| tt_testname   | example-01                                    |
-| tt_sequence   | false                                         |
-+---------------+-----------------------------------------------+
-TARGETS HISTORY
-  -  Case_01 =>   0 ? student1
-FINAL VALUES
-+-------------+---------------------------+
-| start_time  | 2016-03-19 21:17:24 +0000 |
-| finish_time | 2016-03-19 21:17:24 +0000 |
-| duration    | 0.009143058               |
-+-------------+---------------------------+
-```
+veremos la siguiente [salida por pantalla](./resume.txt):
 
 En la sección *TARGETS HISTORY* vemos el resumen de todos los casos analizados
 con su evaluación final. En este ejemplo, sólo tenemos un caso (case_01) que 
@@ -85,34 +56,7 @@ var/example-01/out/
 ```
 
 Puesto que nuestro caso es el 01, consultaremo el fichero `var/example-01/out/case-01.txt`.
-
-```
-INITIAL CONFIGURATIONS
-+------------+----------+
-| tt_members | student1 |
-| tt_skip    | false    |
-+------------+----------+
-TARGETS HISTORY
-  - TASK: Create user obiwan
-  01 (0.0/1.0)
-  		Description : Checking user <obiwan>
-  		Command     : id obiwan| wc -l
-  		Expected    : 1 (Fixnum)
-  		Result      : 0 (String)
-FINAL VALUES
-+--------------+---------------------------+
-| case_id      | 1                         |
-| start_time_  | 2016-03-19 21:17:24 +0000 |
-| finish_time  | 2016-03-19 21:17:24 +0000 |
-| duration     | 0.0042141                 |
-| unique_fault | 0                         |
-| max_weight   | 1.0                       |
-| good_weight  | 0.0                       |
-| fail_weight  | 1.0                       |
-| fail_counter | 1                         |
-| grade        | 0.0                       |
-+--------------+---------------------------+
-``` 
+[Ver ejemplo](./case-01.txt).
 
 Como vemos en *TARGETS HISTORY* (que es donde se registran las acciones sobre los objetivos),
 hay una acción puntuada con 0 puntos, en la que se esperaba como resultado un 1 y
