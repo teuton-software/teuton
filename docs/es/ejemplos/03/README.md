@@ -115,7 +115,7 @@ pero sólo se ha cumplido satisfactoriamente 1 de los 3 objetivos previstos.
  
 ###Informe de salida para `case-02`
 
-Veamos el [informe del caso 02](./case02.txt), consultando el fichero `var/example-03/out/case-02.txt`.
+Veamos el [informe del caso 02](./case-02.txt), consultando el fichero `var/example-03/out/case-02.txt`.
 
 Se han intentadon evaluar los objetivos, y todos sin éxito, puesto que el valor
 esperado no coincide con el valor obtenido.
