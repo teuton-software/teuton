@@ -30,13 +30,15 @@
     * `export :format=>:csv, :prefix => IAN`
     * `goto :hots1, :puppet => "Puppet instructions"`
     * `goto :hots1, :chef => "Chef instructions"`
+    * `expect result.well_done?`
     * `information { author "AUTHOR"; version "VERSION"; url "URL" }`
+    * `result.test("...")
     * `send :email_to => :members_emails`
 * Installation
     * Use Bundler to install gems instead of rake.
     * It will be usefull use sysadming-game as gem? And install it with `gem install sysadmin-game`.
 * Code Quality
-    * Implement unit tests using rspec and given-then-when
+    * Implement unit tests using rspec and given-then-when.
     * Vagrant: test how to use vagrant machines as case hosts.
 * Gamification
     * More ideas: bonus, lives, etc.
