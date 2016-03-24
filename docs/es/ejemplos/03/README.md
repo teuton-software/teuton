@@ -1,23 +1,19 @@
 
-[Ejemplo anterior](./example-02.md) | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./example-04.md)
 
 ##example-03
 
 ```
-    En este ejemplo, vamos necesitar varias máquinas: 
-    * la del profesor y 
-    * varias de estudiantes para ser evaluadas.
-
-    La máquina del profesor tiene el script que evalua el grado de cumplimiento 
-    de los objetivos de las diferentes máquinas de los estudiantes.
-    
-    Usaremos el fichero de configuración para definir las diferentes máquinas remotas.
-    
-    Usaremos SSH como vía de comunicación entre las máquinas.
+* En este ejemplo, vamos necesitar varias máquinas: 
+    (a) la del profesor y 
+    (b) varias de estudiantes para ser evaluadas.
+* La máquina del profesor tiene el script que evalua el grado de cumplimiento 
+  de los objetivos de las diferentes máquinas de los estudiantes.    
+* Usaremos el fichero de configuración para definir las diferentes máquinas remotas.   
+* Usaremos SSH como vía de comunicación entre las máquinas.
 ```
 
-* Script: [example-03.rb](../examples/example-03.rb) 
-* Fichero de configuración: [example-03.yaml](../examples/example-03.yaml)
+* Script: [example-03.rb](../../../examples/example-03.rb) 
+* Fichero de configuración: [example-03.yaml](../../../examples/example-03.yaml)
 * Descripción: Evalua varios casos entrando en *máquinas remotas*.
 * Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en las *máquinas remotas*.
 *localhost* puede ser cualquier otro sistema operativo.
@@ -66,7 +62,7 @@ de la prueba, a un fichero de configuración externo? ¿Mejor? ¿verdad?
 
 En este ejemplo vamos a poner los nombres de usuarios a comprobar (objetivos)
 en el fichero de configuración, y para leer dichos valores desde el script usaremos
-la instrucción *get* del DSL (Consultar [example-02.rb](../examples/example-02.rb)).
+la instrucción *get*.
 
 ##Fichero de configuración
 
@@ -88,40 +84,10 @@ caso.
 * Consulta el fichero de configuración de este ejemplo.
 
 ##Ejecución del script
-Ejecutamos el script con `./docs/examples/example-03.rb` y vemos la siguiente salida por pantalla:
+Ejecutamos el script con `./docs/examples/example-03.rb` y vemos la siguiente 
+[salida por pantalla](./resume.txt).
 
-```
-=============================================
-Executing [sysadmin-game] tests (version 0.8)
-[INFO] Running in parallel (2016-03-19 21:27:02 +0000)
-...!????.?
-[INFO] Duration = 6.127315789 (2016-03-19 21:27:08 +0000)
-
-
-=============================================
-INITIAL CONFIGURATIONS
-+----------------+-----------------------------------------------+
-| tt_title       | Executing [sysadmin-game] tests (version 0.8) |
-| tt_scriptname  | ./docs/examples/example-03.rb                 |
-| tt_configfile  | ./docs/examples/example-03.yaml               |
-| host1_username | root                                          |
-| host1_password | profesor                                      |
-| tt_testname    | example-03                                    |
-| tt_sequence    | false                                         |
-+----------------+-----------------------------------------------+
-TARGETS HISTORY
-  -  Case_01 =>  33 ? darth-maul
-  -  Case_02 =>   0 ? r2d2
-  -  Case_03 => 100   obiwan kenobi
-FINAL VALUES
-+-------------+---------------------------+
-| start_time  | 2016-03-19 21:27:02 +0000 |
-| finish_time | 2016-03-19 21:27:08 +0000 |
-| duration    | 6.127315789               |
-+-------------+---------------------------+
-```
-
-Aquí lo más importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
+Lo más significativo es ver en TARGETS HISTORY el resumen de todos los casos analizados
 con su evaluación final. En este ejemplo, tenemos los siguientes 3 casos con distinta
 puntuación final.
 
@@ -141,51 +107,7 @@ var/example-03/out/
 
 ###Informe de salida para `case-01`
 
-Veamos el informe del caso 01, consultando el fichero `var/example-03/out/case-01.txt`.
-
-
-```
-INITIAL CONFIGURATIONS
-+----------------+----------------------+
-| tt_members     | darth-maul           |
-| tt_emails      | darth-maul@email.com |
-| tt_skip        | false                |
-| host1_ip       | 192.168.1.200        |
-| host1_hostname | sith.starwars        |
-| username       | dmaul                |
-+----------------+----------------------+
-TARGETS HISTORY
-  - TASK: Configure hostname and DNS server
-  01 (0.0/1.0)
-  		Description : Hostname is <sith.starwars>
-  		Command     : hostname -f
-  		Expected    : sith.starwars (String)
-  		Result      : curso1516.ies (String)
-  02 (1.0/1.0)
-  		Description : DNS Server OK
-  		Command     : host www.google.es| grep 'has address'| wc -l
-  		Expected    : Greater than 0 (String)
-  		Result      : 16 (String)
-  - TASK: Create user with your name
-  03 (0.0/1.0)
-  		Description : Exist user <dmaul>
-  		Command     : id dmaul |wc -l
-  		Expected    : 1 (Fixnum)
-  		Result      : id: dmaul: No existe ese usuario (String)
-FINAL VALUES
-+--------------+---------------------------+
-| case_id      | 1                         |
-| start_time_  | 2016-03-19 21:27:02 +0000 |
-| finish_time  | 2016-03-19 21:27:08 +0000 |
-| duration     | 6.10091783                |
-| unique_fault | 0                         |
-| max_weight   | 3.0                       |
-| good_weight  | 1.0                       |
-| fail_weight  | 2.0                       |
-| fail_counter | 2                         |
-| grade        | 33.33333333333333         |
-+--------------+---------------------------+
-``` 
+Veamos el [informe del caso 01](./case-01.txt), consultando el fichero `var/example-03/out/case-01.txt`.
 
 En este caso, se ha establecido una conexión con la máquina remota (SSH),
 pero sólo se ha cumplido satisfactoriamente 1 de los 3 objetivos previstos.
@@ -193,52 +115,7 @@ pero sólo se ha cumplido satisfactoriamente 1 de los 3 objetivos previstos.
  
 ###Informe de salida para `case-02`
 
-Veamos el informe del caso 02, consultando el fichero `var/example-03/out/case-02.txt`.
-
-
-```
-INITIAL CONFIGURATIONS
-+----------------+-----------------+
-| tt_members     | r2d2            |
-| tt_emails      | rd2d2@email.com |
-| tt_skip        | false           |
-| host1_ip       | 192.168.1.201   |
-| host1_hostname | robot.starwars  |
-| username       | r2d2            |
-+----------------+-----------------+
-TARGETS HISTORY
-  - TASK: Configure hostname and DNS server
-  - ERROR: Host 192.168.1.201 unreachable!
-  01 (0.0/1.0)
-  		Description : Hostname is <robot.starwars>
-  		Command     : hostname -f
-  		Expected    : robot.starwars (String)
-  		Result      :  (NilClass)
-  02 (0.0/1.0)
-  		Description : DNS Server OK
-  		Command     : host www.google.es| grep 'has address'| wc -l
-  		Expected    : Greater than 0 (String)
-  		Result      :  (NilClass)
-  - TASK: Create user with your name
-  03 (0.0/1.0)
-  		Description : Exist user <r2d2>
-  		Command     : id r2d2 |wc -l
-  		Expected    : 1 (Fixnum)
-  		Result      :  (NilClass)
-FINAL VALUES
-+--------------+---------------------------+
-| case_id      | 2                         |
-| start_time_  | 2016-03-19 21:27:02 +0000 |
-| finish_time  | 2016-03-19 21:27:05 +0000 |
-| duration     | 3.028308833               |
-| unique_fault | 0                         |
-| max_weight   | 3.0                       |
-| good_weight  | 0.0                       |
-| fail_weight  | 3.0                       |
-| fail_counter | 3                         |
-| grade        | 0.0                       |
-+--------------+---------------------------+
-``` 
+Veamos el [informe del caso 02](./case02.txt), consultando el fichero `var/example-03/out/case-02.txt`.
 
 Se han intentadon evaluar los objetivos, y todos sin éxito, puesto que el valor
 esperado no coincide con el valor obtenido.
@@ -257,54 +134,10 @@ Algunos de los motivos por los que puede no funcionar la conexión SSH a las má
 * La máquina remota no tiene configurado el acceso SSH para nuestro usuario.
 * El cortafuegos de la máquina remota y/o la máquina del profesor cortan las comunicaciones SSH.
 
-
 ###Informe de salida para `case-03`
 
-Veamos el informe del caso 03, consultando el fichero `var/example-03/out/case-03.txt`.
+Veamos el [informe del caso 03](./case-03.txt), consultando el fichero `var/example-03/out/case-03.txt`.
 
-```
-INITIAL CONFIGURATIONS
-+----------------+------------------+
-| tt_members     | obiwan kenobi    |
-| tt_emails      | obiwan@email.com |
-| tt_skip        | false            |
-| host1_ip       | 192.168.1.202    |
-| host1_hostname | jedi.starwars    |
-| username       | obiwan           |
-+----------------+------------------+
-TARGETS HISTORY
-  - TASK: Configure hostname and DNS server
-  01 (1.0/1.0)
-  		Description : Hostname is <jedi.starwars>
-  		Command     : hostname -f
-  		Expected    : jedi.starwars (String)
-  		Result      : jedi.starwars (String)
-  02 (1.0/1.0)
-  		Description : DNS Server OK
-  		Command     : host www.google.es| grep 'has address'| wc -l
-  		Expected    : Greater than 0 (String)
-  		Result      : 16 (String)
-  - TASK: Create user with your name
-  03 (1.0/1.0)
-  		Description : Exist user <obiwan>
-  		Command     : id obiwan |wc -l
-  		Expected    : 1 (Fixnum)
-  		Result      : 1 (String)
-FINAL VALUES
-+--------------+---------------------------+
-| case_id      | 3                         |
-| start_time_  | 2016-03-19 21:27:02 +0000 |
-| finish_time  | 2016-03-19 21:27:04 +0000 |
-| duration     | 2.291787136               |
-| unique_fault | 0                         |
-| max_weight   | 3.0                       |
-| good_weight  | 3.0                       |
-| fail_weight  | 0.0                       |
-| fail_counter | 0                         |
-| grade        | 100.0                     |
-+--------------+---------------------------+
-
-```
 En esta caso, podemos comprobar que todos los objetivos se han cumplido correctamente.
 
 ##Recordatorio
