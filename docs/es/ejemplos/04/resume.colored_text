@@ -1,0 +1,20 @@
+[44mINITIAL CONFIGURATIONS[0m
++----------------+-----------------------------------------------+
+| tt_title       | Executing [sysadmin-game] tests (version 0.8) |
+| tt_scriptname  | ./docs/examples/example-04.rb                 |
+| tt_configfile  | ./docs/examples/example-04.yaml               |
+| host1_username | root                                          |
+| host1_password | profesor                                      |
+| tt_testname    | example-04                                    |
+| tt_sequence    | false                                         |
++----------------+-----------------------------------------------+
+[44mTARGETS HISTORY[0m
+  - Case_01 =>  33 ? darth-maul
+  - Case_02 =>   0 ? r2d2
+  - Case_03 => 100   obiwan kenobi
+[44mFINAL VALUES[0m
++-------------+---------------------------+
+| start_time  | 2016-03-24 18:58:44 +0000 |
+| finish_time | 2016-03-24 18:58:49 +0000 |
+| duration    | 5.455685797               |
++-------------+---------------------------+

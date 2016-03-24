@@ -1,0 +1,40 @@
+[44mINITIAL CONFIGURATIONS[0m
++----------------+----------------------+
+| tt_members     | darth-maul           |
+| tt_emails      | darth-maul@email.com |
+| tt_skip        | false                |
+| host1_ip       | 192.168.1.200        |
+| host1_hostname | sith.starwars        |
+| username       | dmaul                |
++----------------+----------------------+
+[44mTARGETS HISTORY[0m
+  - TASK: Configure hostname and DNS server
+  01 ([31m0.0/1.0[0m)
+  		[1mDescription[0m : Hostname is <sith.starwars>
+  		[1mCommand    [0m : hostname -f
+  		[1mExpected   [0m : sith.starwars (String)
+  		[1mResult     [0m : curso1516.ies (String)
+  02 ([32m1.0/1.0[0m)
+  		[1mDescription[0m : DNS Server OK
+  		[1mCommand    [0m : host www.google.es| grep 'has address'| wc -l
+  		[1mExpected   [0m : Greater than 0 (String)
+  		[1mResult     [0m : 16 (String)
+  - TASK: Create user with your name
+  03 ([31m0.0/1.0[0m)
+  		[1mDescription[0m : Exist user <dmaul>
+  		[1mCommand    [0m : id dmaul |wc -l
+  		[1mExpected   [0m : 1 (Fixnum)
+  		[1mResult     [0m : id: dmaul: No existe ese usuario (String)
+[44mFINAL VALUES[0m
++--------------+---------------------------+
+| case_id      | 1                         |
+| start_time_  | 2016-03-24 18:58:44 +0000 |
+| finish_time  | 2016-03-24 18:58:49 +0000 |
+| duration     | 5.447940538               |
+| unique_fault | 0                         |
+| max_weight   | 3.0                       |
+| good_weight  | 1.0                       |
+| fail_weight  | 2.0                       |
+| fail_counter | 2                         |
+| [1mgrade[0m        | [1m33.33333333333333[0m         |
++--------------+---------------------------+

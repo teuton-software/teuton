@@ -1,0 +1,40 @@
+[44mINITIAL CONFIGURATIONS[0m
++----------------+------------------+
+| tt_members     | obiwan kenobi    |
+| tt_emails      | obiwan@email.com |
+| tt_skip        | false            |
+| host1_ip       | 192.168.1.202    |
+| host1_hostname | jedi.starwars    |
+| username       | obiwan           |
++----------------+------------------+
+[44mTARGETS HISTORY[0m
+  - TASK: Configure hostname and DNS server
+  01 ([32m1.0/1.0[0m)
+  		[1mDescription[0m : Hostname is <jedi.starwars>
+  		[1mCommand    [0m : hostname -f
+  		[1mExpected   [0m : jedi.starwars (String)
+  		[1mResult     [0m : jedi.starwars (String)
+  02 ([32m1.0/1.0[0m)
+  		[1mDescription[0m : DNS Server OK
+  		[1mCommand    [0m : host www.google.es| grep 'has address'| wc -l
+  		[1mExpected   [0m : Greater than 0 (String)
+  		[1mResult     [0m : 16 (String)
+  - TASK: Create user with your name
+  03 ([32m1.0/1.0[0m)
+  		[1mDescription[0m : Exist user <obiwan>
+  		[1mCommand    [0m : id obiwan |wc -l
+  		[1mExpected   [0m : 1 (Fixnum)
+  		[1mResult     [0m : 1 (String)
+[44mFINAL VALUES[0m
++--------------+---------------------------+
+| case_id      | 3                         |
+| start_time_  | 2016-03-24 18:58:44 +0000 |
+| finish_time  | 2016-03-24 18:58:45 +0000 |
+| duration     | 1.411425502               |
+| unique_fault | 0                         |
+| max_weight   | 3.0                       |
+| good_weight  | 3.0                       |
+| fail_weight  | 0.0                       |
+| fail_counter | 0                         |
+| [1mgrade[0m        | [1m100.0[0m                     |
++--------------+---------------------------+
