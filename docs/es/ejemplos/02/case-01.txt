@@ -1,0 +1,26 @@
+INITIAL CONFIGURATIONS
++------------+----------------+
+| tt_members | Student-name-1 |
+| username   | root           |
+| tt_skip    | false          |
++------------+----------------+
+TARGETS HISTORY
+  - TASK: Create user with your name
+  01 (1.0/1.0)
+  		Description : Checking user <root>
+  		Command     : id root| wc -l
+  		Expected    : 1 (Fixnum)
+  		Result      : 1 (String)
+FINAL VALUES
++--------------+---------------------------+
+| case_id      | 1                         |
+| start_time_  | 2016-03-24 17:48:34 +0000 |
+| finish_time  | 2016-03-24 17:48:34 +0000 |
+| duration     | 0.00497058                |
+| unique_fault | 0                         |
+| max_weight   | 1.0                       |
+| good_weight  | 1.0                       |
+| fail_weight  | 0.0                       |
+| fail_counter | 0                         |
+| grade        | 100.0                     |
++--------------+---------------------------+

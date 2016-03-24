@@ -1,18 +1,16 @@
 
 
-[Ejemplo anterior](./example-01.md) | [Listado de Ejemplos](./ejemplos.md) | [Ejemplo siguiente](./example-03.md)
-
 #example-02
 
 ```
-    En este ejemplo, vamos a hacer uso del fichero de configuración.
-    Cada script (.rb) va acompañado de un fichero de configuración (.yaml).
-    El contenido del fichero de configuración tiene formato YAML.
-    Para leer el contenido del fichero de configuración desde el script, usaremos la instruccion get del DSL.
+* En este ejemplo, vamos a hacer uso del fichero de configuración.
+* Cada script (.rb) va acompañado de un fichero de configuración (.yaml).
+* El contenido del fichero de configuración tiene formato YAML.
+* Para leer el contenido del fichero de configuración desde el script, usaremos la instruccion get del DSL.
 ```
 
-* Script: [example-02.rb](../examples/example-02.rb) 
-* Fichero de configuración: [example-02.yaml](../examples/example-02.yaml)
+* Script: [example-02.rb](../../../examples/example-02.rb) 
+* Fichero de configuración: [example-02.yaml](../../../examples/example-02.yaml)
 * Descripción: *Personalizar cada caso usando el fichero de configuración.*
 * Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en *localhost*.
 
@@ -26,12 +24,12 @@ de la prueba, a un fichero de configuración externo? ¿Mejor? ¿verdad?
 
 En este ejemplo vamos a poner los nombres de usuarios a comprobar (objetivos)
 en el fichero de configuración, y para leer dichos valores desde el script usaremos
-la instrucción *get* del DSL (Consultar [example-02.rb](../examples/example-02.rb)).
+la instrucción *get*.
 
 ##Fichero de configuración
 
-Vemos que en el script hay una nueva intrucción:
-* **get**: Lee el valor del parámetro indicado, del contenido del fichero 
+Vemos que en el script hay una nueva instrucción:
+* **get** lee el valor del parámetro indicado, del contenido del fichero 
 de configuración. Para cada caso podrá ser diferente. Las acciones de 
 comprobación toman el valor configurado para cada caso del fichero 
 de configuración, y de esta forma cada caso se evalúa con diferentes valores.
@@ -52,36 +50,8 @@ tener los mismos parámetros, pero pueden tener valores diferentes.
 
 ##Ejecución del script
 
-Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la siguiente salida por pantalla:
-
-```
-=============================================
-Executing [sysadmin-game] tests (version 0.8)
-[INFO] Running in parallel (2016-03-19 21:21:59 +0000)
-.id: darth-maul: no existe ese usuario
-?
-[INFO] Duration = 0.01266727 (2016-03-19 21:21:59 +0000)
-
-
-=============================================
-INITIAL CONFIGURATIONS
-+---------------+-----------------------------------------------+
-| tt_title      | Executing [sysadmin-game] tests (version 0.8) |
-| tt_scriptname | ./docs/examples/example-02.rb                 |
-| tt_configfile | ./docs/examples/example-02.yaml               |
-| tt_testname   | example-02                                    |
-| tt_sequence   | false                                         |
-+---------------+-----------------------------------------------+
-TARGETS HISTORY
-  -  Case_01 => 100   Student-name-1
-  -  Case_02 =>   0 ? Student-name-2
-FINAL VALUES
-+-------------+---------------------------+
-| start_time  | 2016-03-19 21:21:59 +0000 |
-| finish_time | 2016-03-19 21:21:59 +0000 |
-| duration    | 0.01266727                |
-+-------------+---------------------------+
-```
+Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la 
+siguiente [salida por pantalla](./resume.txt).
 
 Aquí lo más importante es ver en TARGETS HISTORY el resumen de todos los casos analizados
 con su evaluación final. En este ejemplo, tenemos 2 casos:
@@ -104,67 +74,11 @@ var/example-02/out/
 ###Informe de salida para `case-01`
 
 Veamos el informe del caso 01, consultando el fichero `var/example-02/out/case-01.txt`.
-
-```
-INITIAL CONFIGURATIONS
-+------------+----------------+
-| tt_members | Student-name-1 |
-| username   | root           |
-| tt_skip    | false          |
-+------------+----------------+
-TARGETS HISTORY
-  - TASK: Create user with your name
-  01 (1.0/1.0)
-  		Description : Checking user <root>
-  		Command     : id root| wc -l
-  		Expected    : 1 (Fixnum)
-  		Result      : 1 (String)
-FINAL VALUES
-+--------------+---------------------------+
-| case_id      | 1                         |
-| start_time_  | 2016-03-19 21:21:59 +0000 |
-| finish_time  | 2016-03-19 21:21:59 +0000 |
-| duration     | 0.004730329               |
-| unique_fault | 0                         |
-| max_weight   | 1.0                       |
-| good_weight  | 1.0                       |
-| fail_weight  | 0.0                       |
-| fail_counter | 0                         |
-| grade        | 100.0                     |
-+--------------+---------------------------+
-``` 
+[Consultar fichero](./case-01.txt).
 
 ###Informe de salida para `case-02`
 Ahora vemos el informe del caso 02, consultando el fichero `var/example-02/out/case-02.txt`.
-
-```
-INITIAL CONFIGURATIONS
-+------------+----------------+
-| tt_members | Student-name-2 |
-| username   | darth-maul     |
-| tt_skip    | false          |
-+------------+----------------+
-TARGETS HISTORY
-  - TASK: Create user with your name
-  01 (0.0/1.0)
-  		Description : Checking user <darth-maul>
-  		Command     : id darth-maul| wc -l
-  		Expected    : 1 (Fixnum)
-  		Result      : 0 (String)
-FINAL VALUES
-+--------------+---------------------------+
-| case_id      | 2                         |
-| start_time_  | 2016-03-19 21:21:59 +0000 |
-| finish_time  | 2016-03-19 21:21:59 +0000 |
-| duration     | 0.004479595               |
-| unique_fault | 0                         |
-| max_weight   | 1.0                       |
-| good_weight  | 0.0                       |
-| fail_weight  | 1.0                       |
-| fail_counter | 1                         |
-| grade        | 0.0                       |
-+--------------+---------------------------+
-```
+[Consultar fichero](./case-02.txt).
 
 ##Recordatorio
 

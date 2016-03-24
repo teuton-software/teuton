@@ -1,0 +1,26 @@
+INITIAL CONFIGURATIONS
++------------+----------------+
+| tt_members | Student-name-2 |
+| username   | darth-maul     |
+| tt_skip    | false          |
++------------+----------------+
+TARGETS HISTORY
+  - TASK: Create user with your name
+  01 (0.0/1.0)
+  		Description : Checking user <darth-maul>
+  		Command     : id darth-maul| wc -l
+  		Expected    : 1 (Fixnum)
+  		Result      : 0 (String)
+FINAL VALUES
++--------------+---------------------------+
+| case_id      | 2                         |
+| start_time_  | 2016-03-24 17:48:34 +0000 |
+| finish_time  | 2016-03-24 17:48:34 +0000 |
+| duration     | 0.005192298               |
+| unique_fault | 0                         |
+| max_weight   | 1.0                       |
+| good_weight  | 0.0                       |
+| fail_weight  | 1.0                       |
+| fail_counter | 1                         |
+| grade        | 0.0                       |
++--------------+---------------------------+
