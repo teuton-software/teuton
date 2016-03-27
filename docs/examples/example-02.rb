@@ -14,7 +14,7 @@ require_relative '../../lib/sysadmingame'
 task "Create user with your name" do
 
   target "Checking user <"+get(:username)+">"
-  goto :localhost, :execute => "id #{get(:username)}| wc -l"
+  goto :localhost, :exec => "id #{get(:username)}| wc -l"
   expect result.equal(1)
 
 end
