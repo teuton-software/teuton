@@ -31,8 +31,9 @@ class Result
     return lValue==pValue
   end
 
+  alias_method :eq, :equal
   alias_method :is_equal?, :equal
-  
+    
   def not_equal(pValue)
     return !equal?(pValue)
   end
@@ -79,8 +80,11 @@ class Result
     end
 	return lValue>pValue
   end
+
+  alias_method :gt, :greater
+  alias_method :greater_than, :greater
 	
-  def smaller(pValue)
+  def lesser(pValue)
     @expected="Lesser than #{pValue.to_s}"
     
 	return false if @content.nil? || @content[0].nil?
@@ -94,7 +98,11 @@ class Result
     end
 	return lValue<pValue
   end
-  
+
+  alias_method :lt, :lesser
+  alias_method :smaller, :lesser
+  alias_method :lesser_than, :lesser
+
   def contain?(pValue)
     @expected="Contain <#{pValue}> value"
     return @content.contain? pValue
