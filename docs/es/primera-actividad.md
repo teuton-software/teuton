@@ -13,13 +13,8 @@ Este comando nos crea:
 * `check/foo/demo.yaml`: Fichero de configuración YAML
 * `check/foo/.gitignore`: Para prevenir la subida de ficheros YAML al repositorio Git.
 
-> Manualmentem podemos crear un fichero vacío con permisos de ejecución. 
-Incluyendo una referencia a nuestra herramienta (`lib/sysadmingame.rb`).
-```
-    require_relative '../../lib/sysadmingame'
-```
-
-Este fichero puede llamarse, por ejemplo, `./check/foo/demo.rb`.
+> Manualmentem podemos crear un fichero vacío `./check/foo/demo.rb` con permisos de ejecución. 
+Incluyendo una referencia a nuestra herramienta (`require_relative '../../lib/sysadmingame'`).
 
 ##PASO 2: Personalizar los objetivos
 

@@ -13,11 +13,8 @@ This command will create:
 * `check/foo/.gitignore`: To prevent upload YAML files to Git repository.
 
 
-> Manually, you can create an empty file with execution permission, 
-and include a reference to our tool (`lib/sysadmingame`).
-> ```
->     require_relative '../../lib/sysadmingame'
-> ```
+> Manually, you can create an empty file `check/foo/demo.rb` with execution permission, 
+and include a reference to our tool (`require_relative '../../lib/sysadmingame'`).
 
 ##STEP 2: Personalize your targets
 
