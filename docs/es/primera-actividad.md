@@ -1,7 +1,7 @@
 
 #Creando nuestra primera actividad
 
-¿Cómo crear nuestra propia actividad de evaluación en cuatro pasos?
+¿Cómo crear nuestra propia actividad de evaluación en tres pasos?
 
 ##PASO 1: Crear los ficheros base
 

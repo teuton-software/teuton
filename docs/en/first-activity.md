@@ -1,7 +1,7 @@
 
 #Creating our first activity
 
-How to create our own activity test, in four steps:
+How to create our own activity test, in three steps:
 
 ##STEP 1: Create skeleton files
 
