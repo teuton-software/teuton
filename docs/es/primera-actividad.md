@@ -44,7 +44,7 @@ comprobar si el resultado obtenido coincide con el valor esperado.
 ##PASO 3: Personalizar el fichero de configuración
 
 Como paso final, necesitamos un fichero de configuración en formato YAML
-(`chekc/foo/demo.yaml`). Este fichero define los parámetros y configuraciones 
+(`chekc/foo/demo.yaml`). Este fichero contiene los parámetros y configuraciones 
 de los hosts usados por nuestro script.
 
 > Veamos un ejemplo: 

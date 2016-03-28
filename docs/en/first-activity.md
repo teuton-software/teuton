@@ -43,7 +43,7 @@ result with our expectations.
 
 ##STEP 3: Personalize Configfile
 
-We need a YAML configuration file (`check/foo/demo.yaml`), where define 
+We need a YAML configuration file (`check/foo/demo.yaml`), with 
 the params and hosts used by our script.
 
 > Let's see an example:
