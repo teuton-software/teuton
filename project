@@ -1,0 +1,38 @@
+#!/usr/bin/ruby
+# encoding: utf-8
+
+require 'rainbow'
+
+require_relative 'lib/application'
+require_relative 'lib/project'
+
+def show_help
+  puts "Usage: #{$0}\n\n"
+  puts "\t"+Rainbow("--help").bright+"\t\t\t\tShow this help."
+  puts "\t"+Rainbow("--version").bright+"\t\t\tShow the program version."
+  puts "\t"+Rainbow("--create path/to/file/foo").bright+"\tCreate new FOO project."
+  puts "\t\t\t\t\tExample: #{$0} --create foo"
+#  puts "\t"+Rainbow("path/to/file/foo.rb").bright+"\t\tRun activity path/to/file/foo.rb"
+#  puts "\t\t\t\t\tExample: #{$0} check/demo/foo"
+  puts ""
+end
+
+def show_version
+  app=Application.instance
+  t = Rainbow(app.name).color(:green)+" (version "+Rainbow(app.version).color(:blue)+")"
+  puts t
+end
+
+if ARGV.count==0 then
+  puts "Usage: #{$0} --help"
+elsif ['h','-h','help','--help'].include?(ARGV.first) then
+  show_help
+elsif ['v','-v','version','--version'].include?(ARGV[0]) then
+  show_version
+elsif ['c','-c','create','--create'].include?(ARGV[0]) then
+  Project::create(ARGV[1])
+else
+  Project::run(ARGV.first)
+end
+
+
