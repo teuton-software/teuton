@@ -3,67 +3,66 @@
 
 How to create our own activity test, in four steps:
 
-##STEP 1
-Create an empty file with execution permission, and include a 
-reference to our tool (`lib/tool.rb`).
-```
-    require_relative '../../lib/tool'
-```
+##STEP 1: Create skeleton files
 
-This file will be called, for example, `./check/demos/my_demo.rb`.
+You can create the files manually, or run `./project --create check/foo/demo`.
 
-##STEP 2
-Second, write tests using the key words: `desc`, `on` and `expect`.
+This command will create:
+* `check/foo/demo.rb`: Script
+* `check/foo/demo.yaml`: YAML Config file.
+* `check/foo/.gitignore`: To prevent upload YAML files to Git repository.
+
+
+> Manually, you can create an empty file with execution permission, 
+and include a reference to our tool (`lib/sysadmingame`).
+> ```
+>     require_relative '../../lib/sysadmingame'
+> ```
+
+##STEP 2: Personalize your targets
+
+Second, write tests using the key words: `target`, `goto` and `expect`.
 Let's see an example:
 
 ```
-check :test_name do
-
-	desc "Checking user david"
-	goto :host1, :execute => "id david |wc -l"
-	expect result.equal?(1)
-
+task "task_name" do
+	target "Checking user david"
+	goto   :host1, :exec => "id david |wc -l"
+	expect result.equal(1)
 end
 ```
 
 The above example checks if 'david' user exists, on *host1* system.
 
-Let's see the key words used:
-* `desc "Checking user <david>"`, Describe the action or the target 
+> Let's see the key words used:
+>
+> * `target "Checking user <david>"`, Describe the action or the target 
 with our words, so every one could easily understand what we are trying
 to check.
-* `goto :host1, :execute => "id david|wc -l"`: Execute the command 
+> * `goto :host1, :exec => "id david|wc -l"`: Execute the command 
 into the target host.
-* `expect result.equal?(1)`: At the end we need to check the obtained 
+> * `expect result.equal(1)`: At the end we need to check the obtained 
 result with our expectations.
 
-##STEP 3
-At the end of our example script we add this lines:
-```
-start do
-  show
-  export
-end
-```
-The above lines order:
-* Start the process of testing every case.
-* Showing a resume on the screen when finish, and 
-* Create reports for every case in txt format.
+##STEP 3: Personalize Configfile
 
-##STEP 4
-We need a YAML configuration file, where define the params and hosts used
-by our script. Let's see:
+We need a YAML configuration file (`check/foo/demo.yaml`), where define 
+the params and hosts used by our script.
 
-```
----
-:global:
-:cases:
-- :tt_members: Student1
-  :host1_ip: 1.1.1.1
-  :host1_password: password4student1
-- :tt_members: Student2
-  :host1_ip: 2.2.2.2
-  :host1_password: password4student2
-```
-The above file configures 2 diferents cases with their own params. The script
-use this information when execute every case.
+> Let's see an example:
+>
+> ```
+> ---
+> :global:
+> :cases:
+> - :tt_members: Student1
+>   :host1_ip: 1.1.1.1
+>   :host1_password: password4student1
+> - :tt_members: Student2
+>   :host1_ip: 2.2.2.2
+>   :host1_password: password4student2
+> ```
+> The above file configures 2 diferents cases with their own params. The script
+> use this information when execute every case.
+
+That's all!
