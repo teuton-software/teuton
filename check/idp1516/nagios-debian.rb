@@ -69,6 +69,25 @@ task "Configure host Debian1" do
   @uuid_debian1=result.value
 end
 
+task "Ping from debian1 to *" do  
+  target "ping debian1 to debian2_ip"
+  goto :debian1, :exec => "ping #{get(:debian2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping debian1 to debian2_name"
+  goto :debian1, :exec => "ping #{@short_hostname[2]} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping debian1 to windows1_ip"
+  goto :debian1, :exec => "ping #{get(:windows1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping debian1 to windows1_name"
+  goto :debian1, :exec => "ping #{@short_hostname[3]} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+end
+
 task "Configure Nagios Server" do
 
   packages=['nagios3', 'nagios3-doc', 'nagios-nrpe-plugin']
@@ -95,6 +114,86 @@ task "Configure Nagios Server" do
     pathtofiles << f
   end
 
+  #grupos.XX.cfg
+  filepath= pathtofiles.select { |i| i.include? 'grupos'}
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup' |wc -l"
+  expect result.eq 3
+  
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name routers#{@student_number}' |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name servidores#{@student_number}' |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name clientes#{@student_number}' |wc -l"
+  expect result.eq 1
+
+  #grupo-de-routersXX.cfg
+  filepath= pathtofiles.select { |i| i.include? 'grupo-de-routers'}
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
+  expect result.eq 2
+  
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep bender#{@student_number}' |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:bender_ip)}' |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name' | grep caronte#{@student_number}' |wc -l"
+  expect result.eq 1
+  
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:caronte_ip)}' |wc -l"
+  expect result.eq 1
+
+  #grupo-de-servidoresXX.cfg
+  filepath= pathtofiles.select { |i| i.include? 'grupo-de-servidores'}
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
+  expect result.eq 1
+  
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep leela#{@student_number}' |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:leela_ip)}' |wc -l"
+  expect result.eq 1
+
+  #grupo-de-clientesXX.cfg
+  filepath= pathtofiles.select { |i| i.include? 'grupo-de-clientes'}
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
+  expect result.eq 2
+  
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep #{@short_hostname[2]}' |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:debian2_ip)}' |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep #{@short_hostname[3]}' |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:windows1_ip)}' |wc -l"
+  expect result.eq 1
+  
 end
 
 task "Configure Host Debian2" do
@@ -152,6 +251,47 @@ task "¿ Debian1==Debian2 ?" do
   end  
 end
 
+task "Ping from debian2 to *" do  
+  target "ping debian2 to debian1_ip"
+  goto :debian2, :exec => "ping #{get(:debian1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping debian2 to debian1_name"
+  goto :debian2, :exec => "ping #{@short_hostname[1]} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping debian2 to windows1_ip"
+  goto :debian2, :exec => "ping #{get(:windows1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping debian2 to windows1_name"
+  goto :debian2, :exec => "ping #{@short_hostname[3]} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+end
+
+task "Configure Nagios Agent on Debian2" do
+
+  packages=['nagios-nrpe-server', 'nagios-plugins-basic']
+
+  packages.each do |package|
+    target "Package #{package} installed"
+    goto :debian2, :exec => "dpkg -l #{package}| grep 'ii' |wc -l"
+    expect result.eq 1
+  end
+
+  file="/etc/nagios/nrpe.cfg"
+
+  target "<#{file}> content"
+  goto :debian2, :exec => "cat #{file}| grep 'allowed_hosts' |grep #{get(:debian1_ip)} |wc -l"
+  expect result.eq 1
+
+  target "NRPE debian1 to debian2"
+  goto :debian1, :exec => "/usr/lib/nagios/plugins/check_nrpe -H #{get(:debian2_ip)} |wc -l"
+  expect result.eq 1
+
+end
+
 task "Windows configuration" do
 
   @short_hostname[3]="#{get(:lastname1)}#{@student_number}w"
@@ -165,6 +305,25 @@ task "Windows configuration" do
   target "netbios-ssn service on #{get(:windows1_ip)}"
   goto :localhost, :exec => "nmap -Pn #{get(:windows1_ip)} | grep '139/tcp'| grep 'open'|wc -l"
   expect result.eq 1
+
+end
+
+task "Ping from windows1 to *" do  
+  target "ping windows1 to debian1_ip"
+  goto :windows1, :exec => "ping #{get(:debian1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping windows1 to debian1_name"
+  goto :windows1, :exec => "ping #{@short_hostname[1]} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping windows1 to debian2_ip"
+  goto :windows1, :exec => "ping #{get(:debian2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
+
+  target "ping windows1 to debian2_name"
+  goto :windows1, :exec => "ping #{@short_hostname[2]} -c 1| grep 'Destination Host Unreachable'|wc -l"
+  expect result.eq 0
 
 end
 
