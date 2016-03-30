@@ -1,8 +1,6 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/sysadmingame'
-
 =begin
   Test if exist user <obiwan> into localhost
   * target : Describe the target

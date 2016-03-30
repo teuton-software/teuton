@@ -1,8 +1,6 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/sysadmingame'
-
 =begin
   Test several targets for every case into diferent hosts:
   * target : Describe the target
