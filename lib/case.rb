@@ -72,8 +72,10 @@ class Case
       end
       verboseln "\n"
     else
-      @tests.each do |t| 
-        log("TASK: #{t[:name]}")
+      @tests.each do |t|
+        msg="TASK: #{t[:name]}" 
+        log("="*msg.size)
+        log(msg)
         instance_eval &t[:block]
       end
     end
