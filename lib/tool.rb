@@ -150,8 +150,8 @@ private
   def open_main_report(pConfigFilename)
     app=Application.instance
     
- 	@report.head[:tt_title]="Executing [#{app.name}] tests (version #{app.version})"
-	@report.head[:tt_scriptname]=$0
+ 	@report.head[:tt_title]="Executing [#{app.name}] (version #{app.version})"
+	@report.head[:tt_scriptname]=$SCRIPTPATH
 	@report.head[:tt_configfile]=pConfigFilename
 	@report.head[:tt_debug]=true if @debug
 	@report.head.merge!(app.global)
