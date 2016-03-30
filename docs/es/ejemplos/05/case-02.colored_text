@@ -1,0 +1,43 @@
+[44mINITIAL CONFIGURATIONS[0m
++----------------+-----------------+
+| tt_members     | r2d2            |
+| tt_emails      | rd2d2@email.com |
+| tt_skip        | false           |
+| host1_ip       | 192.168.1.201   |
+| host1_hostname | robot.starwars  |
+| username       | r2d2            |
++----------------+-----------------+
+[44mTARGETS HISTORY[0m
+  - =======================================
+  - TASK: Configure hostname and DNS server
+  - [41mERROR:[0m Host 192.168.1.201 unreachable!
+  01 ([31m0.0/1.0[0m)
+  		[1mDescription[0m : Hostname is <robot.starwars>
+  		[1mCommand    [0m : hostname -f
+  		[1mExpected   [0m : robot.starwars (String)
+  		[1mResult     [0m :  (NilClass)
+  02 ([31m0.0/1.0[0m)
+  		[1mDescription[0m : DNS Server OK
+  		[1mCommand    [0m : host www.google.es| grep 'has address'| wc -l
+  		[1mExpected   [0m : Greater than 0 (String)
+  		[1mResult     [0m :  (NilClass)
+  - ================================
+  - TASK: Create user with your name
+  03 ([31m0.0/1.0[0m)
+  		[1mDescription[0m : Exist user <r2d2>
+  		[1mCommand    [0m : id r2d2 |wc -l
+  		[1mExpected   [0m : 1 (Fixnum)
+  		[1mResult     [0m :  (NilClass)
+[44mFINAL VALUES[0m
++--------------+---------------------------+
+| case_id      | 2                         |
+| start_time_  | 2016-03-30 21:01:19 +0100 |
+| finish_time  | 2016-03-30 21:01:22 +0100 |
+| duration     | 3.010559774               |
+| unique_fault | 0                         |
+| max_weight   | 3.0                       |
+| good_weight  | 0.0                       |
+| fail_weight  | 3.0                       |
+| fail_counter | 3                         |
+| [1mgrade[0m        | [1m0.0[0m                       |
++--------------+---------------------------+

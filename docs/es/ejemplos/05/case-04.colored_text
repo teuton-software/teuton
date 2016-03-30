@@ -1,0 +1,45 @@
+[44mINITIAL CONFIGURATIONS[0m
++----------------+-----------------+
+| tt_members     | Darth Vader     |
+| tt_emails      | vader@email.com |
+| tt_skip        | false           |
+| host1_ip       | 192.168.1.202   |
+| host1_hostname | jedi.starwars   |
+| username       | obiwan          |
++----------------+-----------------+
+[44mTARGETS HISTORY[0m
+  - =======================================
+  - TASK: Configure hostname and DNS server
+  01 ([32m1.0/1.0[0m)
+  		[1mDescription[0m : Hostname is <jedi.starwars>
+  		[1mCommand    [0m : hostname -f
+  		[1mExpected   [0m : jedi.starwars (String)
+  		[1mResult     [0m : jedi.starwars (String)
+  02 ([32m1.0/1.0[0m)
+  		[1mDescription[0m : DNS Server OK
+  		[1mCommand    [0m : host www.google.es| grep 'has address'| wc -l
+  		[1mExpected   [0m : Greater than 0 (String)
+  		[1mResult     [0m : 16 (String)
+  - ================================
+  - TASK: Create user with your name
+  03 ([32m1.0/1.0[0m)
+  		[1mDescription[0m : Exist user <obiwan>
+  		[1mCommand    [0m : id obiwan |wc -l
+  		[1mExpected   [0m : 1 (Fixnum)
+  		[1mResult     [0m : 1 (String)
+  - [41mERROR:[0m Unique:
+  - [41mERROR:[0m    ├── Value     => UUID sda2=/dev/sda2: UUID="5c771f64-86f1-443e-8d02-c74bf9262678" UUID_SUB="64787e15-f064-45b0-8216-10beb9cef4fc" TYPE="btrfs" PTTYPE="dos" PARTUUID="000e934e-02" 
+  - [41mERROR:[0m    └── Conflicts => [3, 4]
+[44mFINAL VALUES[0m
++--------------+---------------------------+
+| case_id      | 4                         |
+| start_time_  | 2016-03-30 21:01:19 +0100 |
+| finish_time  | 2016-03-30 21:01:20 +0100 |
+| duration     | 1.135706408               |
+| [41munique_fault[0m | [41m1[0m                         |
+| max_weight   | 3.0                       |
+| good_weight  | 3.0                       |
+| fail_weight  | 0.0                       |
+| fail_counter | 0                         |
+| [1mgrade[0m        | [1m0[0m                         |
++--------------+---------------------------+
