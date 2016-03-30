@@ -32,12 +32,18 @@ class Tool
     instance_eval &block
   end
 
-  def check_cases!(pConfigFilename = File.join(File.dirname($0),File.basename($0,".rb")+".yaml") )
+  def check_cases!
+    if $SCRIPTPATH.nil? 
+      $SCRIPTPATH=$0 
+    end
+    
+    pConfigFilename = File.join(File.dirname($SCRIPTPATH),File.basename($SCRIPTPATH,".rb")+".yaml")
+
 	#Load configurations from yaml file
 	configdata = YAML::load(File.open(pConfigFilename))
 	app=Application.instance
 	app.global = configdata[:global] || {}
-	app.global[:tt_testname]= app.global[:tt_testname] || File.basename($0,".rb")
+	app.global[:tt_testname]= app.global[:tt_testname] || File.basename($SCRIPTPATH,".rb")
 	app.global[:tt_sequence]=false if app.global[:tt_sequence].nil? 
 	@caseConfigList = configdata[:cases]
 

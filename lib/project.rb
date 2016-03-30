@@ -44,12 +44,9 @@ module Project
   end
   
   def self.run(pathtofile)
-    puts "UNDER DEVELOPMENT, I'm sorry!"
-    exit
-       
-    puts "Running #{pathtofile}"
+    $SCRIPTPATH=pathtofile   
     require_relative 'sysadmingame'
-    require_relative "../#{pathtofile}"
+    require_relative "../#{$SCRIPTPATH}"
   end
 
 end
