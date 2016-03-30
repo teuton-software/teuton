@@ -1,13 +1,13 @@
 INITIAL CONFIGURATIONS
-+----------------+------------------+
-| tt_members     | obiwan kenobi    |
-| tt_emails      | obiwan@email.com |
-| tt_skip        | false            |
-| host1_ip       | 192.168.1.202    |
-| host1_hostname | jedi.starwars    |
-| username       | obiwan           |
-+----------------+------------------+
++----------------+---------------+
+| tt_members     | obiwan kenobi |
+| host1_ip       | 192.168.1.202 |
+| host1_hostname | jedi.starwars |
+| username       | obiwan        |
+| tt_skip        | false         |
++----------------+---------------+
 TARGETS HISTORY
+  - =======================================
   - TASK: Configure hostname and DNS server
   01 (1.0/1.0)
   		Description : Hostname is <jedi.starwars>
@@ -19,6 +19,7 @@ TARGETS HISTORY
   		Command     : host www.google.es| grep 'has address'| wc -l
   		Expected    : Greater than 0 (String)
   		Result      : 16 (String)
+  - ================================
   - TASK: Create user with your name
   03 (1.0/1.0)
   		Description : Exist user <obiwan>
@@ -28,9 +29,9 @@ TARGETS HISTORY
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 3                         |
-| start_time_  | 2016-03-24 18:54:38 +0000 |
-| finish_time  | 2016-03-24 18:54:39 +0000 |
-| duration     | 1.6801988                 |
+| start_time_  | 2016-03-30 20:47:12 +0100 |
+| finish_time  | 2016-03-30 20:47:13 +0100 |
+| duration     | 0.782740309               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 3.0                       |

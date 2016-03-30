@@ -4,6 +4,7 @@ INITIAL CONFIGURATIONS
 | tt_skip    | false    |
 +------------+----------+
 TARGETS HISTORY
+  - ========================
   - TASK: Create user obiwan
   01 (0.0/1.0)
   		Description : Checking user <obiwan>
@@ -13,9 +14,9 @@ TARGETS HISTORY
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-03-24 17:44:53 +0000 |
-| finish_time  | 2016-03-24 17:44:53 +0000 |
-| duration     | 0.00504681                |
+| start_time_  | 2016-03-30 20:46:00 +0100 |
+| finish_time  | 2016-03-30 20:46:00 +0100 |
+| duration     | 0.006443248               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 0.0                       |
