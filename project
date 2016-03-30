@@ -8,10 +8,10 @@ require_relative 'lib/project'
 
 def show_help
   puts "Usage: #{$0}\n\n"
-  puts "\t"+Rainbow("--help").bright+"\t\t\t\tShow this help."
-  puts "\t"+Rainbow("--version").bright+"\t\t\tShow the program version."
-  puts "\t"+Rainbow("--create path/to/file/foo").bright+"\tCreate new FOO project."
-  puts "\t\t\t\t\tExample: #{$0} --create foo"
+  puts "\t"+Rainbow("help").bright+" "*20+"=> Show this help."
+  puts "\t"+Rainbow("version").bright+" "*17+"=> Show the program version."
+  puts "\t"+Rainbow("create path/to/file/foo").bright+" "+"=> Create new FOO project."
+  puts "\t"+" "*27+"Example: #{$0} create check/demo/foo"
 #  puts "\t"+Rainbow("path/to/file/foo.rb").bright+"\t\tRun activity path/to/file/foo.rb"
 #  puts "\t\t\t\t\tExample: #{$0} check/demo/foo"
   puts ""
@@ -24,7 +24,7 @@ def show_version
 end
 
 if ARGV.count==0 then
-  puts "Usage: #{$0} --help"
+  puts "Usage: #{$0} help"
 elsif ['h','-h','help','--help'].include?(ARGV.first) then
   show_help
 elsif ['v','-v','version','--version'].include?(ARGV[0]) then
