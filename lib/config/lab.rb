@@ -1,7 +1,4 @@
-#!/usr/bin/ruby
 # encoding: utf-8
-
-require_relative '../../lib/sysadmingame'
 
 task "TASK NAME" do
 
