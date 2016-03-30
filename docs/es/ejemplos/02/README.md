@@ -50,7 +50,7 @@ tener los mismos parámetros, pero pueden tener valores diferentes.
 
 ##Ejecución del script
 
-Ejecutamos el script con `./docs/examples/example-02.rb` y vemos la 
+Ejecutamos el script con `./project docs/examples/example-02.rb` y vemos la 
 siguiente [salida por pantalla](./resume.txt).
 
 Aquí lo más importante es ver en TARGETS HISTORY el resumen de todos los casos analizados

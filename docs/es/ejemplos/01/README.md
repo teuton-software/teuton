@@ -3,10 +3,10 @@
 #example-01
 
 ```
-    En este ejemplo, veremos como definir un objetivo evaluable.
-    Los objetivos son cada uno de los aspectos que medimos en los trabajos realizados.
-    Cada trabajo será realizado por un alumno o varios, nosotros los llamaremos casos.
-    Cada caso tiene un parámetro con la lista de sus miembros.
+En este ejemplo, veremos como definir un objetivo evaluable.
+Los objetivos son cada uno de los aspectos que medimos en los trabajos realizados.
+Cada trabajo será realizado por un alumno o varios, nosotros los llamaremos casos.
+Cada caso tiene un parámetro con la lista de sus miembros.
 ```
 
 * Script: [example-01.rb](../../../examples/example-01.rb) 
@@ -34,7 +34,7 @@ sólo contiene un caso. Este caso tiene los siguientes parámetros:
 
 ##Ejecución del script
 
-Para ejecutar el script hacemos `./docs/examples/example-01.rb`, y 
+Para ejecutar el script hacemos `./project docs/examples/example-01.rb`, y 
 veremos la siguiente [salida por pantalla](./resume.txt):
 
 En la sección *TARGETS HISTORY* vemos el resumen de todos los casos analizados

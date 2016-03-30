@@ -35,7 +35,7 @@ de cada alumnos a la máquina `:host1` de cada caso.
 
 ##Ejecución del script
 
-Ejecutamos el script con `./docs/examples/example-04.rb` y vemos la siguiente 
+Ejecutamos el script con `./project docs/examples/example-04.rb` y vemos la siguiente 
 [salida por pantalla](./resume.colored_text).
 
 Cuando termina la evaluación de las máquinas, se copia el informe 

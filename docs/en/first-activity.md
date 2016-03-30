@@ -1,11 +1,11 @@
 
 #Creating our first activity
 
-How to create our own activity test, in three steps:
+How to create our own activity test, in four steps:
 
 ##STEP 1: Create skeleton files
 
-You can create the files manually, or run `./project --create check/foo/demo`.
+You can create the files manually, or run `./project create check/foo/demo`.
 
 This command will create:
 * `check/foo/demo.rb`: Script
@@ -61,5 +61,9 @@ the params and hosts used by our script.
 > ```
 > The above file configures 2 diferents cases with their own params. The script
 > use this information when execute every case.
+
+##STEP 4: run the script
+
+`/project check/foo/demo.rb`
 
 That's all!

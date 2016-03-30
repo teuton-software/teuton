@@ -28,7 +28,7 @@ Every sysadmin-game activity consists of 2 files. Let's look at this demo:
 * `./docs/examples/example-01.yaml`: This file contains the configuration for every 
 student machine (cases).
 
-To run this demo activity we do `ruby docs/example/example-01.rb`.
+To run this demo activity we do `./project docs/example/example-01.rb`.
 
 > **Results** 
 > * You will see a brief *report on the screen* during execution.

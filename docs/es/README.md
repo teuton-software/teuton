@@ -34,7 +34,7 @@ Cada actividad consiste de 2 ficheros. Echemos un vistazo al siguiente ejemplo:
 * `./docs/examples/example-01.yaml`: Este fichero contiene las configuraciones para
 cada máquina de cada estudiante (casos).
 
-Para ejecutar esta actividad de ejemplo hacemo `ruby docs/example/example-01.rb`.
+Para ejecutar la actividad de ejemplo hacemos `./project docs/example/example-01.rb`.
 
 > **Resultados** 
 > * Veremos un breve *informe en la pantalla*.

@@ -84,7 +84,7 @@ caso.
 * Consulta el fichero de configuración de este ejemplo.
 
 ##Ejecución del script
-Ejecutamos el script con `./docs/examples/example-03.rb` y vemos la siguiente 
+Ejecutamos el script con `./project docs/examples/example-03.rb` y vemos la siguiente 
 [salida por pantalla](./resume.txt).
 
 Lo más significativo es ver en TARGETS HISTORY el resumen de todos los casos analizados

@@ -5,8 +5,7 @@
 
 ##PASO 1: Crear los ficheros base
 
-
-Podemos crear los ficheros manualmente o bien ejecutar `./project --create check/foo/demo`.
+Podemos crear los ficheros manualmente o bien ejecutar `./project create check/foo/demo`.
 
 Este comando nos crea:
 * `check/foo/demo.rb`: Script
@@ -66,6 +65,10 @@ de los hosts usados por nuestro script.
 
 El fichero de configuración anterior configura 2 casos (concursantes) 
 con sus propios parámetros. El script usa esta información cuando ejecuta cada caso.
+
+##PASO 4: Ejecutar el script
+
+`./project check/foo/demo.rb`
 
 ¡Eso es todo!
 
