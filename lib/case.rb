@@ -95,7 +95,9 @@ class Case
     @uniques.each do |key|
       if uniques[key].include?(id) and uniques[key].count>1 then
         fails+=1
-        log("Unique => #{key.to_s}, conflict with => #{uniques[key].to_s}", :error)
+        log("Unique:", :error)
+        log("   ├── Value     => #{key.to_s}", :error)
+        log("   └── Conflicts => #{uniques[key].to_s}", :error)
       end
     end
     @report.tail[:unique_fault]=fails
