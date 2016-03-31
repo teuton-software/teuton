@@ -106,8 +106,13 @@ class Tool
   end
 	
   def export(pArgs={})
-    #default :mode=>:all, :format=>:txt
-    format = pArgs[:format] || :txt
+    if pArgs.class!=Hash then
+      puts "[ERROR] export Argument = #{pArgs}, class = #{pArgs.class.to_s}"
+      raise "export Arguments are incorrect"
+    end
+    #default :mode=>:all, :format=>:txt    
+    format=pArgs[:format] || :txt
+    
     mode = pArgs[:mode] || :all
     if mode==:resume or mode==:all then
       @report.export format
