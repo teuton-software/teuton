@@ -4,15 +4,12 @@ require 'net/sftp'
 
 module DSL
 
-  def desc(pDescription=nil)
-    target pDescription
-  end
-
   def target(pDescription=nil)
     return @action[:description] if pDescription.nil?
     @action[:description]=pDescription
   end
-	
+  alias_method :desc, :target
+  	
   def command(pCommand, pArgs={})
     @action[:command]=pCommand
     desc(pArgs[:desc]) if pArgs[:desc]
@@ -39,12 +36,7 @@ module DSL
   end
 	
   #Run command from the host identify as pHostname
-  #goto :host1, :execute => "command"
-  def on(pHostname=:localhost, pArgs={})
-    verboseln("deprecated method on")
-    goto(pHostname, pArgs)
-  end
-  
+  #goto :host1, :execute => "command"   
   def goto(pHostname=:localhost, pArgs={})
     command(pArgs[:execute]) if pArgs[:execute]
     command(pArgs[:exec]) if pArgs[:exec]
@@ -62,6 +54,8 @@ module DSL
       end
     end
   end
+
+  alias_method :on, :goto
 
   #expect <condition>, :weight => <value>
   def expect(pCond, pArgs={})
