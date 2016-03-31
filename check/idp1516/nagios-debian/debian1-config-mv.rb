@@ -27,7 +27,7 @@ task "Configure host Debian1" do
   expect result.eq @domain[1]
 
   @long_hostname=[]
-  @long_hostname[1]="#{@short_hostname[1]}.#{@domain[1]}}"
+  @long_hostname[1]="#{@short_hostname[1]}.#{@domain[1]}"
   
   target "Checking hostname -f <"+@long_hostname[1]+">"
   goto :debian1, :exec => "hostname -f"
