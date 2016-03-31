@@ -11,13 +11,13 @@
   Spanish URL : https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/idp/monitorizar/nagios-debian-windows.md
 =end 
 
-require_relative 'nagios-debian/debian-server'
-require_relative 'nagios-debian/debian-agent'
-require_relative 'nagios-debian/windows-agent'
+require_relative 'nagios-debian/debian1-config-mv'
+#require_relative 'nagios-debian/debian-agent'
+#require_relative 'nagios-debian/windows-agent'
 
 start do
   show
-  export :colored_text
+  export :format => :colored_text
   send :copy_to => :debian1
 end
 
