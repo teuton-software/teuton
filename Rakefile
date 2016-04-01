@@ -4,7 +4,7 @@
 #Define tasks
 desc "Clean temp files."
 task :clean do
-	system("rm -rf var/*")
+  system("rm -rf var/*")
 end
 
 desc "Debian installation"
@@ -12,7 +12,7 @@ task :debian => [:debpackages, :install_gems, :create_auxdirs]
 
 desc "_install deb packages "
 task :debpackages do
-	system("apt-get install -y ssh")
+  system("apt-get install -y ssh")
 end
 
 desc "OpenSUSE installation"
@@ -32,6 +32,13 @@ end
 
 desc "_creating auxiliar directories"
 task :create_auxdirs do
-	system("chmod +x ./check/demos/*.rb")
-	system("mkdir -p var")
+  system("chmod +x ./check/demos/*.rb")
+  system("mkdir -p var")
 end
+
+desc "Run Test"
+task :run_tests do
+  #OpenSUSE
+  system("rspec")
+end
+
