@@ -182,6 +182,7 @@ private
         text=@sessions[hostname].exec!( @action[:command] )
         output = text.split("\n")
       end
+    
     rescue Errno::EHOSTUNREACH
       @sessions[hostname]=:nosession
       verbose "!"
@@ -190,6 +191,13 @@ private
       @sessions[hostname]=:nosession
       verbose "!"
       log( "SSH::AuthenticationFailed!", :error)
+    rescue Net::SSH::HostKeyMismatch
+      @sessions[hostname]=:nosession
+      verbose "!"
+      log( "SSH::HostKeyMismatch!", :error)
+      log( "* The destination server's fingerprint is not matching what is in your local known_hosts file.",:error)
+      log( "* Remove the existing entry in your local known_hosts file", :error)
+      log( "* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' -R #{ip}", :error)
     rescue Exception => e
       @sessions[hostname]=:nosession
       verbose "!"
