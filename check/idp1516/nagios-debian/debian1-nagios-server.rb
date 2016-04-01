@@ -18,7 +18,7 @@ task "Configure Nagios Server" do
   files=['grupos','grupo-de-routers','grupo-de-servidores','grupo-de-clientes']
   pathtofiles=[]
   files.each do |file|
-    f=file+@student_number+".cfg"
+    f=dir+"/"+file+@student_number+".cfg"
     target "File <#{f}> exist"
     goto :debian1, :exec => "file #{f}| grep 'ASCII text' |wc -l"
     expect result.eq 1
@@ -27,10 +27,11 @@ task "Configure Nagios Server" do
   end
 
   #grupos.XX.cfg
-  filepath= pathtofiles.select { |i| i.include? 'grupos'}
-
+  f= pathtofiles.select { |i| i.include? 'grupos'}
+  filepath=f[0]
+  
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name' |wc -l"
   expect result.eq 3
   
   target "<#{filepath}> content"
@@ -38,7 +39,7 @@ task "Configure Nagios Server" do
   expect result.eq 1
 
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name servidores#{@student_number}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name servidores#{@steudent_number}' |wc -l"
   expect result.eq 1
 
   target "<#{filepath}> content"
@@ -46,64 +47,80 @@ task "Configure Nagios Server" do
   expect result.eq 1
 
   #grupo-de-routersXX.cfg
-  filepath= pathtofiles.select { |i| i.include? 'grupo-de-routers'}
-
+  f= pathtofiles.select { |i| i.include? 'grupo-de-routers'}
+  filepath=f[0]
+  
   target "<#{filepath}> content"
   goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
   expect result.eq 2
   
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep bender#{@student_number}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep bender#{@student_number} |wc -l"
   expect result.eq 1
 
-  target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:bender_ip)}' |wc -l"
+  #Router bender
+  target "<#{filepath}> content Router bender address"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:bender_ip)} |wc -l"
   expect result.eq 1
 
-  target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'host_name' | grep caronte#{@student_number}' |wc -l"
+  target "<#{filepath}> content Router bender host_name"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name' | grep bender#{@student_number} |wc -l"
   expect result.eq 1
   
-  target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:caronte_ip)}' |wc -l"
+  target "<#{filepath}> content Router caronte address"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:caronte_ip)} |wc -l"
   expect result.eq 1
 
-  #grupo-de-servidoresXX.cfg
-  filepath= pathtofiles.select { |i| i.include? 'grupo-de-servidores'}
+  target "<#{filepath}> content Router caronte host_name"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name' | grep caronte#{@student_number} |wc -l"
+  expect result.eq 1
 
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'parent'| grep bender#{@student_number} |wc -l"
+  expect result.eq 2
+
+  #grupo-de-servidoresXX.cfg
+  f= pathtofiles.select { |i| i.include? 'grupo-de-servidores'}
+  filepath=f[0]
+  
   target "<#{filepath}> content"
   goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
   expect result.eq 1
   
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep leela#{@student_number}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep leela#{@student_number} |wc -l"
   expect result.eq 1
 
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:leela_ip)}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:leela_ip)} |wc -l"
+  expect result.eq 1
+
+  target "<#{filepath}> content"
+  goto :debian1, :exec => "cat #{filepath}| grep 'parent'| grep bender#{@student_number} |wc -l"
   expect result.eq 1
 
   #grupo-de-clientesXX.cfg
-  filepath= pathtofiles.select { |i| i.include? 'grupo-de-clientes'}
-
+  f= pathtofiles.select { |i| i.include? 'grupo-de-clientes'}
+  filapath=f[0]
+  
   target "<#{filepath}> content"
   goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
   expect result.eq 2
   
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep #{@short_hostname[2]}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep #{@short_hostname[2]} |wc -l"
   expect result.eq 1
 
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:debian2_ip)}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:debian2_ip)} |wc -l"
   expect result.eq 1
 
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep #{@short_hostname[3]}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep #{@short_hostname[3]} |wc -l"
   expect result.eq 1
 
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:windows1_ip)}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:windows1_ip)} |wc -l"
   expect result.eq 1
   
 end
