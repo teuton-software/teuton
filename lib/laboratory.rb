@@ -35,18 +35,18 @@ class Laboratory
   def target(description="empty")
     @targetid+=1
     i=@targetid
-    puts "(%03d"%i+") target : #{description}"
+    puts "(%03d"%i+") target #{description}"
   end
 
   def goto(pHost=:localhost, pArgs={})
     h=pHost.to_s
     h=":#{h}" if pHost.class==Symbol
 
-    puts "      goto   : #{h} and #{pArgs.to_s}"
+    puts "      goto   #{h} and #{pArgs.to_s}"
   end
 
   def expect(pCond, pArgs={})
-    puts "      expect : #{result.expected} (#{result.expected.class.to_s})"
+    puts "      expect #{result.expected} (#{result.expected.class.to_s})"
     puts ""
   end
   
@@ -58,7 +58,7 @@ class Laboratory
   end
   
   def unique(key,value)
-    puts "warn! Unique value for <#{key.to_s}>"
+    puts "    ! Unique value for <#{key.to_s}>"
     puts ""
   end
   
