@@ -21,34 +21,45 @@ class Laboratory
   
   def whatihavetodo
     @tasks = Tool.instance.tasks
+    puts ""
     @tasks.each do |t|
       msg ="TASK: #{t[:name]}"
-      puts "" 
       puts("="*msg.size)
       puts msg
       puts ""
       instance_eval &t[:block]
+      puts ""
     end  
   end
     
   def target(description="empty")
     @targetid+=1
-    puts "(#{@targetid.to_s}) target \"#{description}\""
+    i=@targetid
+    puts "(%03d"%i+") target : #{description}"
   end
 
   def goto(pHost=:localhost, pArgs={})
-    puts "    goto #{pHost.to_s} and #{pArgs.to_s}"
+    h=pHost.to_s
+    h=":#{h}" if pHost.class==Symbol
+
+    puts "      goto   : #{h} and #{pArgs.to_s}"
   end
 
   def expect(pCond, pArgs={})
+    puts "      expect : #{result.expected} (#{result.expected.class.to_s})"
+    puts ""
   end
   
   def get(varname)
-    return("get(#{varname.to_sym})")
+    v=varname.to_s
+    v=":#{v}" if varname.class==Symbol
+    
+    return("get(#{v})")
   end
   
   def unique(key,value)
-    puts " *  Unique value for <#{key.to_s}>"
+    puts "warn! Unique value for <#{key.to_s}>"
+    puts ""
   end
   
 end
