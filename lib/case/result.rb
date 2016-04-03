@@ -18,8 +18,9 @@ class Result
     @content[0]
   end
   
-  def equal(pValue)
+  def eq(pValue)
     @expected=pValue
+
     case pValue.class.to_s
     when 'Fixnum'
       lValue=@content[0].to_i
@@ -31,12 +32,24 @@ class Result
     return lValue==pValue
   end
 
-  alias_method :eq, :equal
-  alias_method :is_equal?, :equal
+  alias_method :equal, :eq
+  alias_method :is_equal?, :eq
     
-  def not_equal(pValue)
-    return !equal?(pValue)
+  def neq(pValue)
+    @expected="Not equal to #{pValue}"
+
+    case pValue.class.to_s
+    when 'Fixnum'
+      lValue=@content[0].to_i
+    when 'Float'
+      lValue=@content[0].to_f
+    else
+      lValue=@content[0]
+    end
+    return lValue!=pValue
   end
+
+  alias_method :not_equal, :neq
 	    
   def include?(pValue)
     @expected="Include <#{pValue}> value"
@@ -66,7 +79,22 @@ class Result
 	return @content.empty
   end
 	
-  def greater(pValue)
+  def ge(pValue)
+    @expected="Greater or equal to #{pValue}"
+	return false if @content.nil? || @content[0].nil?
+
+    case pValue.class.to_s
+    when 'Fixnum'
+      lValue=@content[0].to_i
+    when 'Float'
+      lValue=@content[0].to_f
+    else
+      lValue=@content[0]
+    end
+	return lValue>=pValue
+  end
+
+  def gt(pValue)
     @expected="Greater than #{pValue}"
 	return false if @content.nil? || @content[0].nil?
 
@@ -81,10 +109,25 @@ class Result
 	return lValue>pValue
   end
 
-  alias_method :gt, :greater
-  alias_method :greater_than, :greater
+  alias_method :greater, :gt
+  alias_method :greater_than, :gt
 	
-  def lesser(pValue)
+  def le(pValue)
+    @expected="Lesser or equal to #{pValue.to_s}"
+    
+	return false if @content.nil? || @content[0].nil?
+    case pValue.class.to_s
+    when 'Fixnum'
+      lValue=@content[0].to_i
+    when 'Float'
+      lValue=@content[0].to_f
+    else
+      lValue=@content[0]
+    end
+	return lValue<=pValue
+  end
+
+  def lt(pValue)
     @expected="Lesser than #{pValue.to_s}"
     
 	return false if @content.nil? || @content[0].nil?
@@ -99,9 +142,9 @@ class Result
 	return lValue<pValue
   end
 
-  alias_method :lt, :lesser
-  alias_method :smaller, :lesser
-  alias_method :lesser_than, :lesser
+  alias_method :lesser, :lt
+  alias_method :smaller, :lt
+  alias_method :lesser_than, :lt
 
   def contain?(pValue)
     @expected="Contain <#{pValue}> value"
