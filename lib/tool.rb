@@ -23,7 +23,7 @@ class Tool
 	@verbose = true
   end
 		
-  def define_test(name, &block)
+  def define_task(name, &block)
     @tests << { :name => name, :block => block }
   end
 	

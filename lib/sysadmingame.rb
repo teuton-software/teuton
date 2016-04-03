@@ -3,7 +3,7 @@
 require_relative 'tool'
 
 def task(name, &block)
-  Tool.instance.define_test(name, &block)
+  Tool.instance.define_task(name, &block)
 end
 
 def start(&block)
