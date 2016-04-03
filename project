@@ -31,6 +31,8 @@ elsif ['v','-v','version','--version'].include?(ARGV[0]) then
   show_version
 elsif ['c','-c','create','--create'].include?(ARGV[0]) then
   Project::create(ARGV[1])
+elsif ['l','-l','lab','--lab'].include?(ARGV[0]) then
+  Project::laboratory(ARGV[1])
 else
   Project::run(ARGV.first)
 end

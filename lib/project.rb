@@ -43,10 +43,18 @@ module Project
     end
   end
   
+  def self.laboratory(pathtofile)
+    $SCRIPTPATH=pathtofile   
+    require_relative 'laboratory'
+    require_relative "../#{$SCRIPTPATH}"
+    lab =Laboratory.new
+    lab.whatihavetodo
+  end
+
   def self.run(pathtofile)
     $SCRIPTPATH=pathtofile   
     require_relative 'sysadmingame'
     require_relative "../#{$SCRIPTPATH}"
   end
-
+  
 end
