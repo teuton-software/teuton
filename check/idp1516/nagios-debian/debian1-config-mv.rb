@@ -10,7 +10,7 @@ task "Configure host Debian1" do
   goto :localhost, :exec => "nmap #{get(:debian1_ip)} -Pn | grep ssh|wc -l"
   expect result.eq 1
 
-  @student_number=get(:debian1_ip).split(".")[2]
+  @student_number=get(:debian1_ip).split(".")[2]||"999"
   @student_number="0"+@student_number if @student_number.size==1
   @short_hostname=[]
   @short_hostname[1]="#{get(:lastname1)}#{@student_number}g"
