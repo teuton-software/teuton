@@ -1,7 +1,4 @@
-#!/usr/bin/ruby
 # encoding: utf-8
-
-require_relative '../../lib/sysadmingame'
 
 =begin
  Course name : IDP1516
@@ -68,14 +65,14 @@ task :user_definitions do
 
   target "User <#{username}> logged"
   goto :host1, :exec => "last | grep #{username[0,8]} | wc -l"
-  expect result.not_equal?(0)
+  expect result.neq 0
 end
 
 task :lvm1_host1 do
 
   target "vgdisplay vg-debian"
   goto :host1, :exec => "vgdisplay vg-debian | wc -l"
-  expect result.is_greater_than? 0
+  expect result.gt 0
 
   target "vg-debian/lv-raiz"
   goto :host1, :exec => "lvdisplay vg-debian| grep 'vg-debian/lv-raiz' |wc -l"
@@ -94,15 +91,15 @@ task :lvm2_into_host1 do
 
   target "Disk sdb"
   goto :host1, :exec => "fdisk -l /dev/sdb|grep sdb|wc -l"
-  expect result.is_greater_than? 1
+  expect result.gt 1
 
   target "Disk sdc"
   goto :host1, :exec => "fdisk -l /dev/sdc|grep sdc|wc -l"
-  expect result.is_greater_than? 3
+  expect result.gt 3
 
   target "vg-extra"
   goto :host1, :exec => "vgdisplay vg-extra | wc -l"
-  expect result.is_greater_than? 0
+  expect result.gt 0
 
   target "vg-extra/lv-extra"
   goto :host1, :exec => "lvdisplay vg-extra| grep 'vg-extra/lv-extra' |wc -l"

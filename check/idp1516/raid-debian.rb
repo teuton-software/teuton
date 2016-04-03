@@ -1,7 +1,4 @@
-#!/usr/bin/ruby
 # encoding: utf-8
-
-require_relative '../../lib/sysadmingame'
 
 =begin
  Course name : IDP1516
@@ -11,7 +8,7 @@ require_relative '../../lib/sysadmingame'
 =end
 
 
-target :host1_configurations do
+task :host1_configurations do
 
   target "ping #{get(:host1_ip)} to #{get(:host1_osname)}"
   goto :localhost, :exec => "ping #{get(:host1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
@@ -43,7 +40,7 @@ target :host1_configurations do
 
 end
 
-target :host2_configurations do
+task :host2_configurations do
 
   target "ping #{get(:host2_ip)} to #{get(:host2_osname)}"
   goto :localhost, :exec => "ping #{get(:host2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
@@ -55,7 +52,7 @@ target :host2_configurations do
 
 end
 
-target :user_definitions do
+task :user_definitions do
   username=get(:firstname)
 
   target "User <#{username}> exists"
@@ -68,19 +65,19 @@ target :user_definitions do
 
   target "User <#{username}> logged"
   goto :host1, :exec => "last | grep #{username[0,8]} | wc -l"
-  expect result.not_equal?(0)
+  expect result.neq 0
 end
 
-target :raid0_into_host1 do
+task :raid0_into_host1 do
 end
 
-target :raid1_into_host1 do
+task:raid1_into_host1 do
 
 end  
 
 start do
-	show :resume
-	export :all
+	show
+	export
 end
 
 =begin

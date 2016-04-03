@@ -1,7 +1,4 @@
-#!/usr/bin/ruby
 # encoding: utf-8
-
-require_relative '../../lib/sysadmingame'
 
 =begin
   Course name : IDP1516
@@ -71,7 +68,7 @@ task :host1_user_definitions do
 
   target "User <#{username}> logged"
   goto :host1, :exec => "last | grep #{username[0,8]} | wc -l"
-  expect result.not_equal?(0)
+  expect result.neq 0
 end
 
 task :webmin_on_host1 do
@@ -108,7 +105,7 @@ task :rsyslog_on_host1 do
   content="sysadmin-game."+(rand 100).to_s
   goto :host1, :exec => "logger -p local0.info '#{content}'"
   goto :host1, :exec => "cat /var/log/#{get(:firstname)}/prueba-local.log| grep #{content} |wc -l"
-  expect result.is_greater_than? 0
+  expect result.gt 0
 
 end
 
