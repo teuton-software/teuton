@@ -12,10 +12,10 @@ class Tool
   include Singleton
   include Utils
   
-  attr_reader :tests
+  attr_reader :tasks
 	
   def initialize
-	@tests=[]
+	@tasks=[]
 	@cases = []		
     @report = Report.new(0)
     @report.filename="resume"
@@ -24,7 +24,7 @@ class Tool
   end
 		
   def define_task(name, &block)
-    @tests << { :name => name, :block => block }
+    @tasks << { :name => name, :block => block }
   end
 	
   def start(&block)

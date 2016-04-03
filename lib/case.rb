@@ -19,7 +19,7 @@ class Case
   def initialize(pConfig)
     @global=Application.instance.global
     @config=pConfig
-    @tests=Tool.instance.tests
+    @tasks=Tool.instance.tasks
     @id=@@id; @@id+=1
 				
     #Define Case Report
@@ -65,14 +65,14 @@ class Case
     start_time = Time.now		
     if @global[:tt_sequence] then
       verboseln "Starting case <"+get(:tt_members)+">"
-      @tests.each do |t|
+      @tasks.each do |t|
         verbose "* Processing <"+t[:name].to_s+"> "
         instance_eval &t[:block]
         verbose "\n"
       end
       verboseln "\n"
     else
-      @tests.each do |t|
+      @tasks.each do |t|
         msg="TASK: #{t[:name]}" 
         log("="*msg.size)
         log(msg)
