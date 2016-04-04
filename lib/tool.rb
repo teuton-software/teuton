@@ -22,11 +22,7 @@ class Tool
 	@debug = false
 	@verbose = true
   end
-		
-  def define_task(name, &block)
-    @tasks << { :name => name, :block => block }
-  end
-	
+			
   def start(&block)
     check_cases!
     instance_eval &block

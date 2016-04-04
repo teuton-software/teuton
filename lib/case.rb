@@ -19,7 +19,7 @@ class Case
   def initialize(pConfig)
     @global=Application.instance.global
     @config=pConfig
-    @tasks=Tool.instance.tasks
+    @tasks=Application.instance.tasks
     @id=@@id; @@id+=1
 				
     #Define Case Report

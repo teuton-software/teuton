@@ -1,9 +1,9 @@
 
-require_relative 'tool'
+require_relative 'application'
 require_relative 'case/result'
 
 def task(name, &block)
-  Tool.instance.define_task(name, &block)
+  Application.instance.tasks << { :name => name, :block => block }
 end
 
 def start(&block)
@@ -20,7 +20,7 @@ class Laboratory
   end
   
   def whatihavetodo
-    @tasks = Tool.instance.tasks
+    @tasks = Application.instance.tasks
     puts ""
     @tasks.each do |t|
       msg ="TASK: #{t[:name]}"
