@@ -96,8 +96,9 @@ class Laboratory
     my_screen_table = Terminal::Table.new do |st|
         st.add_row [ "Params Stats"  , "Count"] 
         st.add_separator
-        @gets.each_pair do |key,value|
-          st.add_row [ key  , value.to_s]
+        list=@gets.sort_by { |k,v| v}
+        list.reverse.each do |item|
+          st.add_row [ item[0]  , item[1].to_s]
         end 
         st.add_separator
         st.add_row [ "TOTAL", @stats[:gets] ]

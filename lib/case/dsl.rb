@@ -60,6 +60,7 @@ module DSL
   #expect <condition>, :weight => <value>
   def expect(pCond, pArgs={})
     @action[:weight]=pArgs[:weight].to_f if pArgs[:weight]
+    @action[:weight]=pArgs[:w].to_f if pArgs[:w]
     lWeight= @action[:weight]
 
     @action_counter+=1
