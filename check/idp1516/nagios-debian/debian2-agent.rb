@@ -19,7 +19,7 @@ task "Configure Host Debian2" do
   goto :debian2, :exec => "hostname -d"
   expect result.eq get(:domain)
 
-  @long_hostname[2]="#{@short_hostname[2]}.#{get(:domain)}}"
+  @long_hostname[2]="#{@short_hostname[2]}.#{get(:domain)}"
 
   target "Checking hostname -f <"+@long_hostname[2]+">"
   goto :debian2, :exec => "hostname -f"
@@ -85,8 +85,8 @@ task "Configure Nagios Agent on Debian2" do
   file="/etc/nagios/nrpe.cfg"
 
   target "File <#{file}> exist"
-  goto :debian2, :exec => "file #{file}| grep 'ASCII text' |wc -l"
-  expect result.eq 1
+  goto :debian2, :exec => "file #{file}"
+  expect result.include? "text"
 
   target "<#{file}> content: server_port=5666"
   goto :debian2, :exec => "cat #{file}| grep 'server_port' |grep 5666 |wc -l"
@@ -105,13 +105,13 @@ task "Configure Nagios Agent on Debian2" do
   expect result.eq 1
 
   texts=[]
-  texts << "command[check_users]=/usr/lib/nagios/plugins/check_users"
-  texts << "command[check_load]=/usr/lib/nagios/plugins/check_load"
-  texts << "command[check_disk]=/usr/lib/nagios/plugins/check_disk"
+  texts << [ "command", "check_users", "/usr/lib/nagios/plugins/check_users"]
+  texts << [ "command", "check_load" , "/usr/lib/nagios/plugins/check_load"]
+  texts << [ "command", "check_disk" , "/usr/lib/nagios/plugins/check_disk"]
   
-  texts.each do |text|
-    target "<#{file}> content: \"#{text}\""
-    goto :debian2, :exec => "cat #{file}| grep '#{text}' |wc -l"
+  texts.each do |item|
+    target "<#{file}> content: \"#{item.to_s}\""
+    goto :debian2, :exec => "cat #{file}| grep -v '#'|grep #{item[0]}|grep #{item[1]}|grep #{item[2]}|wc -l"
     expect result.eq 1
   end
 end
@@ -120,12 +120,12 @@ task "Debian2: Restart Agent service on Debian2" do
 
   target "Debian2: Stop agent service"
   goto   :debian2, :exec => "service nagios-nrpe-server stop"
-  goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep inactive"
+  goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep inactive| wc -l"
   expect result.eq 1
 
   target "Debian2: Start agent service"
   goto   :debian2, :exec => "service nagios-nrpe-server start"
-  goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep active"
+  goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep active| wc -l"
   expect result.eq(1), :weight => 5
   
   target "NRPE debian1 to debian2"

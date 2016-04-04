@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-task "Windows configuration" do
+task "Windows external configuration" do
 
   @short_hostname[3]="#{get(:lastname1)}#{@student_number}w"
   @long_hostname[3]="#{@short_hostname[3]}.#{get(:domain)}}"
@@ -15,6 +15,7 @@ task "Windows configuration" do
 
 end
 
+=begin
 task "Ping from windows1 to *" do  
   target "ping windows1 to debian1_ip"
   goto :windows1, :exec => "ping #{get(:debian1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
