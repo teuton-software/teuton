@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 task "Configure Host Debian2" do
 
@@ -16,12 +15,11 @@ task "Configure Host Debian2" do
   goto :debian2, :exec => "hostname -a"
   expect result.eq @short_hostname[2]
 
-  @domain[2]=get(:lastname2)
-  target "Checking hostname -d <"+@domain[2]+">"
+  target "Checking hostname -d <"+get(:domain)+">"
   goto :debian2, :exec => "hostname -d"
-  expect result.eq @domain[2]
+  expect result.eq get(:domain)
 
-  @long_hostname[2]="#{@short_hostname[2]}.#{@domain[2]}}"
+  @long_hostname[2]="#{@short_hostname[2]}.#{get(:domain)}}"
 
   target "Checking hostname -f <"+@long_hostname[2]+">"
   goto :debian2, :exec => "hostname -f"
