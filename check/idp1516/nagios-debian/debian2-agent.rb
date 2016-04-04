@@ -116,7 +116,7 @@ task "Configure Nagios Agent on Debian2" do
   end
 end
 
-task "Restart Agent service on Debian2" do
+task "Debian2: Restart Agent service on Debian2" do
 
   target "Debian2: Stop agent service"
   goto   :debian2, :exec => "service nagios-nrpe-server stop"
@@ -126,15 +126,10 @@ task "Restart Agent service on Debian2" do
   target "Debian2: Start agent service"
   goto   :debian2, :exec => "service nagios-nrpe-server start"
   goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep active"
-  expect result.eq(1), :weight => 2
+  expect result.eq(1), :weight => 5
   
-end
-
-task "Exec check_nrpe commands from debian1 to debian2" do
-
   target "NRPE debian1 to debian2"
   goto :debian1, :exec => "/usr/lib/nagios/plugins/check_nrpe -H #{get(:debian2_ip)} |wc -l"
-  expect result.eq 1
-
+  expect result.eq(1), :weight => 5
 end
 

@@ -3,8 +3,7 @@
 task "Windows configuration" do
 
   @short_hostname[3]="#{get(:lastname1)}#{@student_number}w"
-  @domain[3]=get(:lastname2)
-  @long_hostname[3]="#{@short_hostname[3]}.#{@domain[3]}}"
+  @long_hostname[3]="#{@short_hostname[3]}.#{get(:domain)}}"
 
   target "Conection with <#{get(:windows1_ip)}>"
   goto :localhost, :exec => "ping #{get(:windows1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
@@ -36,30 +35,47 @@ task "Ping from windows1 to *" do
 end
 
 =begin
-Toda la configuración se guarda en el archivo C:\Program Files\NSClient++\nsclient.ini (o C:\Archivos de Programas\NSClient++\nsclient.ini). Si no tildaron nada durante la instalación, verán que está vacío, a excepción de unos comentarios.
-NSClient no utiliza el mismo formato de configuración que el visto en el host Linux, es más, varía bastante. Para empezar, la configuración se divide en secciones (formato estándar de los .ini). Por otra parte, los plugins se deben habilitar antes de ser utilizados. Además los plugins se llaman con ejecutables diferentes (CheckCpu. CheckDriveSize, etc), y los alias se definen de otra manera. Para estandarizar, en la configuración utilicé los mismos alias que en el host Linux, así es posible realizar grupos de hosts que incluyan tanto servidores Linux como Windows, y ejecutar los mismos comandos en ambos.
-La configuración que utilizaremos será la siguiente:
- Para estandarizar, en la configuración utilicé los mismos alias que en el host Linux, así es posible realizar grupos de hosts que incluyan tanto servidores Linux como Windows, y ejecutar los mismos comandos en ambos.
-La configuración que utilizaremos será la siguiente:
+task "Windows: Configure Nagios Agent" do
 
-    [/modules]
-    ; habilitamos el uso de NRPE
-    NRPEServer = 1
+  file="C:\Program Files\NSClient++\nsclient.ini"
 
-    ; habilitamos plugins a utilizar. Como se ve, los plugins se agrupan por tipo.
-    CheckSystem=1
-    CheckDisk=1
-    CheckExternalScripts=1
+  target "File <#{file}> exist"
+  goto :windows1, :exec => "file #{file}| grep 'ASCII text' |wc -l"
+  expect result.eq 1
 
-    ; creamos los mismos alias que en la definición del host Linux, y agregamos un alias para chequear servicios
-    [/settings/external scripts/alias]
-    check_load=CheckCpu MaxWarn=80 time=5m ; alias para chequear la carga de CPU. Si sobrepasa el 80% en un intervalo de 5 minutos, nos alertará.
-    check_disk=CheckDriveSize ShowAll MinWarnFree=10% MinCritFree=5% ; alias para chequear el espacio en todos los discos del servidor
-    check_firewall_service=CheckServiceState MpsSvc; alias para chequear el servicio del firewall de Windows (llamado MpsSvc).
+  texts=[]
+  texts << "NRPEServer=1"
+  texts << "CheckSystem=1"
+  texts << "CheckDisk=1"
+  texts << "CheckExternalScripts=1"
+  
+  texts << "check_load=CheckCpu"
+  texts << "check_disk=CheckDriveSize"
+  texts << "check_firewall_service=CheckServiceState MpsSvc"
+  texts << "allowed hosts=#{get(:debian1_ip)}"
+   
+  texts.each do |text|
+    target "<#{file}> content: \"#{text}\""
+    goto :windows1, :exec => "cat #{file}| grep '#{text}' |wc -l"
+    expect result.eq 1
+  end
+end
 
-    [/settings/default]
-    ; permitimos el acceso al servidor Nagios para las consultas.
-    allowed hosts = 192.168.0.100
+task "Restart Agent service on Debian2" do
 
+  target "Debian2: Stop agent service"
+  goto   :debian2, :exec => "service nagios-nrpe-server stop"
+  goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep inactive"
+  expect result.eq 1
 
+  target "Debian2: Start agent service"
+  goto   :debian2, :exec => "service nagios-nrpe-server start"
+  goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep active"
+  expect result.eq(1), :weight => 2
+  
+  target "NRPE debian1 to windows1"
+  goto :debian1, :exec => "/usr/lib/nagios/plugins/check_nrpe -H #{get(:windows1_ip)} |wc -l"
+  expect result.eq 1
+
+end
 =end
