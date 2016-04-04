@@ -42,14 +42,14 @@ task "Configure Host Debian2" do
   expect result.gt 0
 
   goto :debian2, :exec => "blkid |grep sda1"
-  unique "UUID_sda1", result.value	
+  unique "debian2_sda1_UUID", result.value	
 
   @uuid_debian2=result.value
 end
 
 task "¿ Debian1==Debian2 ?" do
   if @uuid_debian1!=@uuid_debian2 then
-    log("UUID debian1 distinto de debian2",:error)
+    log("UUID debian1 distinto de debian2",:warn)
   end  
 end
 
@@ -84,9 +84,53 @@ task "Configure Nagios Agent on Debian2" do
 
   file="/etc/nagios/nrpe.cfg"
 
-  target "<#{file}> content"
+  target "File <#{file}> exist"
+  goto :debian2, :exec => "file #{file}| grep 'ASCII text' |wc -l"
+  expect result.eq 1
+
+  target "<#{file}> content: server_port=5666"
+  goto :debian2, :exec => "cat #{file}| grep 'server_port' |grep 5666 |wc -l"
+  expect result.eq 1
+
+  target "<#{file}> content: server_address=#{get(:debian2_ip)}"
+  goto :debian2, :exec => "cat #{file}| grep 'server_address' |grep #{get(:debian2_ip)} |wc -l"
+  expect result.eq 1
+
+  target "<#{file}> content: allowed_hosts=127.0.0.1"
+  goto :debian2, :exec => "cat #{file}| grep 'allowed_hosts' |grep '127.0.0.1'|wc -l"
+  expect result.eq 1
+
+  target "<#{file}> content: allowed_hosts=#{get(:debian1_ip)}"
   goto :debian2, :exec => "cat #{file}| grep 'allowed_hosts' |grep #{get(:debian1_ip)} |wc -l"
   expect result.eq 1
+
+  texts=[]
+  texts << "command[check_users]=/usr/lib/nagios/plugins/check_users"
+  texts << "command[check_load]=/usr/lib/nagios/plugins/check_load"
+  texts << "command[check_disk]=/usr/lib/nagios/plugins/check_disk"
+  
+  texts.each do |text|
+    target "<#{file}> content: \"#{text}\""
+    goto :debian2, :exec => "cat #{file}| grep '#{text}' |wc -l"
+    expect result.eq 1
+  end
+end
+
+task "Restart Agent service on Debian2" do
+
+  target "Debian2: Stop agent service"
+  goto   :debian2, :exec => "service nagios-nrpe-server stop"
+  goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep inactive"
+  expect result.eq 1
+
+  target "Debian2: Start agent service"
+  goto   :debian2, :exec => "service nagios-nrpe-server start"
+  goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep active"
+  expect result.eq(1), :weight => 2
+  
+end
+
+task "Exec check_nrpe commands from debian1 to debian2" do
 
   target "NRPE debian1 to debian2"
   goto :debian1, :exec => "/usr/lib/nagios/plugins/check_nrpe -H #{get(:debian2_ip)} |wc -l"
@@ -94,25 +138,3 @@ task "Configure Nagios Agent on Debian2" do
 
 end
 
-=begin
-La configuración del agente NRPE se realiza desde el archivo /etc/nagios/nrpe.cfg. 
-Las variables a tener en cuenta en este archivo son:
-
-    server_port=5666 #define en qué puerto (TCP) escuchará el agente. 
-    Por defecto es el 5666, pero se puede setear cualquiera.
-
-    server_address=192.168.0.3 # indica en qué dirección IP escuchará 
-    el agente, en caso que el servidor posea más de una IP.
-
-    allowed_hosts=192.168.0.100 # define qué IPs tienen permitido 
-    conectarse al agente en busca de datos. Es un parámetro de seguridad mínimo para limita
-
-command[check_users]=/usr/lib/nagios/plugins/check_users -w 5 -c 10 
-# alias check_user para obtener la cantidad de usuarios logueados y alertar si hay más de 5 logueados al mismo tiempo.
-command[check_load]=/usr/lib/nagios/plugins/check_load -w 15,10,5 -c 30,25,20 
-#alias check_load para obtener la carga de CPU
-command[check_disk]=/usr/lib/nagios/plugins/check_disk -w 20% -c 10% -x sda
- #alias check_disk para obtener el espacio disponible en el disco /dev/sda y alertar si queda menos de 20% de espacio en alguna partición.
-
-# /etc/init.d/nagios-nrpe-server restart
-=end

@@ -47,7 +47,7 @@ task "Configure host Debian1" do
   expect result.gt 0
 
   goto :debian1, :exec => "blkid |grep sda1"
-  unique "UUID_sda1", result.value	
+  unique "debian1_sda1_UUID", result.value	
 
   @uuid_debian1=result.value
 end

@@ -125,3 +125,16 @@ task "Configure Nagios Server" do
   
 end
 
+task "Debian1: Restart Nagios service" do
+
+  target "Debian1: Stop agent service"
+  goto   :debian1, :exec => "service nagios3 stop"
+  goto   :debian1, :exec => "service nagios3 status |grep Active|grep inactive"
+  expect result.eq 1
+
+  target "Debian1: Start agent service"
+  goto   :debian1, :exec => "service nagios3 start"
+  goto   :debian1, :exec => "service nagios3 status |grep Active|grep active"
+  expect result.eq(1), :weight => 2
+  
+end
