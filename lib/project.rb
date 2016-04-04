@@ -44,9 +44,8 @@ module Project
   end
   
   def self.laboratory(pathtofile)
-    $SCRIPTPATH=pathtofile   
     require_relative 'laboratory'
-    require_relative "../#{$SCRIPTPATH}"
+    require_relative "../#{pathtofile}"
     lab =Laboratory.new
     lab.whatihavetodo
   end
