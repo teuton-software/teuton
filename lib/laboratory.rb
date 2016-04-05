@@ -54,7 +54,10 @@ class Laboratory
   end
 
   def expect(pCond, pArgs={})
+    weight=1.0
+    weight=pArgs[:weight].to_f if pArgs[:weight]
     puts "      expect #{result.expected} (#{result.expected.class.to_s})"
+    puts "      weight #{weight.to_s}"
     puts ""
   end
   
