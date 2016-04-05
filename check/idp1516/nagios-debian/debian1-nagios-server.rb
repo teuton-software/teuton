@@ -141,6 +141,6 @@ task "Debian1: Restart Nagios service" do
   target "Debian1: Start agent service"
   goto   :debian1, :exec => "service nagios3 start"
   goto   :debian1, :exec => "service nagios3 status |grep Active|grep active|wc -l"
-  expect result.eq(1), :weight => 2
+  expect result.eq(1), :weight => 5
   
 end
