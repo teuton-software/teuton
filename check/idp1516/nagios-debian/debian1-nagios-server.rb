@@ -35,15 +35,15 @@ task "Configure Nagios Server" do
   expect result.eq 3
   
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name routers#{@student_number}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name'|grep 'routers#{@student_number}' |wc -l"
   expect result.eq 1
 
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name servidores#{@steudent_number}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name'|grep 'servidores#{@student_number}' |wc -l"
   expect result.eq 1
 
   target "<#{filepath}> content"
-  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name clientes#{@student_number}' |wc -l"
+  goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name'|grep 'clientes#{@student_number}' |wc -l"
   expect result.eq 1
 
   #grupo-de-routersXX.cfg

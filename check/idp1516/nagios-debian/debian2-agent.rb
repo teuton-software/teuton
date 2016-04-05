@@ -85,8 +85,8 @@ task "Configure Nagios Agent on Debian2" do
   file="/etc/nagios/nrpe.cfg"
 
   target "File <#{file}> exist"
-  goto :debian2, :exec => "file #{file}"
-  expect result.include? "text"
+  goto :debian2, :exec => "file #{file}|grep 'text'|wc -l"
+  expect result.eq 1
 
   target "<#{file}> content: server_port=5666"
   goto :debian2, :exec => "cat #{file}| grep 'server_port' |grep 5666 |wc -l"
