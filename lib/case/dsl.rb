@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'net/sftp'
+require 'net/telnet'
 
 module DSL
 
@@ -59,8 +60,7 @@ module DSL
 
   #expect <condition>, :weight => <value>
   def expect(pCond, pArgs={})
-    @action[:weight]=pArgs[:weight].to_f if pArgs[:weight]
-    @action[:weight]=pArgs[:w].to_f if pArgs[:w]
+    weight(pArgs[:weight])
     lWeight= @action[:weight]
 
     @action_counter+=1
@@ -73,6 +73,7 @@ module DSL
     @action[:expected]=pArgs[:expected] if pArgs[:expected]
     
     @report.lines << @action.clone
+    weight(1.0)
 
     c="?"
     c="." if pCond
@@ -140,9 +141,9 @@ module DSL
         Net::SFTP.start(ip, username, :password => password) do |sftp|
           sftp.upload!(localfilepath, remotefilepath)
         end
-        verboseln("[ OK  ] #{get(:tt_members)}: scp <#{remotefilepath}>")
+        verboseln("=> [ OK  ] #{get(:tt_members)}: <#{remotefilepath}>")
       rescue
-        verboseln("[ERROR] #{get(:tt_members)}: scp <#{localfilepath}> => <#{remotefilepath}>")
+        verboseln("=> [ERROR] #{get(:tt_members)}: scp <#{localfilepath}> => <#{remotefilepath}>")
       end
     end
   end
@@ -166,8 +167,24 @@ private
   def run_local_cmd
     @result.content = my_execute( @action[:command] )	
   end
-	
-  def run_remote_cmd(pHostname) 		
+
+  def run_remote_cmd(pHostname)
+    hostname=pHostname.to_s
+    protocol=get((hostname+'_protocol').to_sym) if get((hostname+'_protocol').to_sym)
+    protocol=:ssh if protocol.nil?
+    protocol=protocol.to_sym
+    
+    case protocol
+    when :ssh
+      run_remote_cmd_ssh(pHostname)
+    when :telnet
+      run_remote_cmd_telnet(pHostname)
+    else
+      raise "Unkown protocol <#{protocol.to_s}>"
+    end
+  end
+  	
+  def run_remote_cmd_ssh(pHostname) 		
     hostname=pHostname.to_s
     ip=get((hostname+'_ip').to_sym)
     username=get((hostname+'_username').to_sym)
@@ -207,4 +224,41 @@ private
 		
     @result.content=output
   end
+
+=begin
+
+lines=[]
+puts "[INFO] : "+a
+h.close
+
+puts "LINES"
+puts lines
+=end
+  def run_remote_cmd_telnet(pHostname) 		
+    hostname=pHostname.to_s
+    ip=get((hostname+'_ip').to_sym)
+    username=get((hostname+'_username').to_sym)
+    password=get((hostname+'_password').to_sym)
+    output=[]
+
+    begin
+      if @sessions[hostname].nil?
+        h = Net::Telnet::new( { "Host"=>ip, "Timeout"=>30, "Prompt"=>/sysadmingame/ })
+        h.login( username, password)
+        @sessions[hostname] = h
+      end
+			
+      if @sessions[hostname]!=:nosession
+        @sessions[hostname].cmd(@action[:command]) {|i| output << i}
+      end
+    
+    rescue Exception => e
+      @sessions[hostname]=:nosession
+      verbose "!"
+      log( "[#{e.class.to_s}] Telnet on <#{username}@#{ip}> exec: "+@action[:command], :error)
+    end
+
+    @result.content=output
+  end
+
 end

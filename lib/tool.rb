@@ -122,6 +122,8 @@ class Tool
 
   def send(pArgs={})
     threads=[]
+    puts ""
+    puts "[INFO] Sending files..."
     @cases.each { |c| threads << Thread.new{ c.send pArgs} }
     threads.each { |t| t.join }
   end
