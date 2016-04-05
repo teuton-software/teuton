@@ -13,6 +13,7 @@
 
 require_relative 'nagios-debian/debian1-config-mv'
 require_relative 'nagios-debian/debian1-nagios-server'
+require_relative 'nagios-debian/debian2-config-mv'
 require_relative 'nagios-debian/debian2-agent'
 #require_relative 'nagios-debian/windows-agent'
 
