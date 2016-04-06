@@ -21,7 +21,7 @@ class Result
   def expected
     prefix=""
     if @alterations.size>0 then
-      prefix=@alterations.join("&")+" = "
+      prefix="[#{@alterations.join("&")}] "
     end
     return prefix+@expected.to_s
   end

@@ -11,10 +11,17 @@
 
 task "Create user obiwan" do
 
-  target "Checking user <obiwan>"
+  target "Checking user <obiwan> using commands"
   goto :localhost, :exec => "id obiwan| wc -l"
   expect result.equal(1)
 
+  target "Checking user <obiwan> using size! method"
+  goto :localhost, :exec => "id obiwan"
+  expect result.size!.eq 1
+
+  target "Checking user <obiwan> using grep! and size! methods"
+  goto :localhost, :exec => "cat /etc/passwd"
+  expect result.grep!("obiwan").size!.eq 1
 end
 
 start do
