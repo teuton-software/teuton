@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-task "Windows external configuration" do
+task "Windows1 external configuration" do
 
   @short_hostname[3]="#{get(:lastname1)}#{@student_number}w"
   @long_hostname[3]="#{@short_hostname[3]}.#{get(:domain)}}"
@@ -13,6 +13,9 @@ task "Windows external configuration" do
   goto :localhost, :exec => "nmap -Pn #{get(:windows1_ip)} | grep '139/tcp'| grep 'open'|wc -l"
   expect result.eq 1
 
+end
+
+task "Windows1 internal configurations" do
 end
 
 =begin

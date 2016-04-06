@@ -55,8 +55,13 @@ task "Debian2: Restart Agent service on Debian2" do
   goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep active| wc -l"
   expect result.eq(1), :weight => 5
   
+  target "debian1 nmap to debian2"
+  goto :debian1, :exec => "nmap -Pn #{get(:debian2_ip)}"
+  expect result.grep!("5666").size!.eq(1), :weight => 5
+
   target "NRPE debian1 to debian2"
   goto :debian1, :exec => "/usr/lib/nagios/plugins/check_nrpe -H #{get(:debian2_ip)} |wc -l"
   expect result.eq(1), :weight => 5
+  
 end
 
