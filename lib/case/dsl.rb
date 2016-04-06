@@ -39,6 +39,7 @@ module DSL
   #Run command from the host identify as pHostname
   #goto :host1, :execute => "command"   
   def goto(pHostname=:localhost, pArgs={})
+    @result.reset
     command(pArgs[:execute]) if pArgs[:execute]
     command(pArgs[:exec]) if pArgs[:exec]
     tempfile(pArgs[:tempfile]) if pArgs[:tempfile]

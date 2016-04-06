@@ -2,7 +2,6 @@
 
 class Result
   attr_accessor :content
-  attr_reader :expected, :value
 
   def initialize
 	reset
@@ -12,10 +11,19 @@ class Result
 	@content=[]
 	@value=nil
 	@expected=nil
+	@alterations=[]
   end
   
   def value
     @content[0]
+  end
+  
+  def expected
+    prefix=""
+    if @alterations.size>0 then
+      prefix=@alterations.join("&")+" = "
+    end
+    return prefix+@expected.to_s
   end
   
   def eq(pValue)
@@ -34,7 +42,7 @@ class Result
 
   alias_method :equal, :eq
   alias_method :is_equal?, :eq
-    
+
   def neq(pValue)
     @expected="Not equal to #{pValue}"
 
@@ -50,15 +58,38 @@ class Result
   end
 
   alias_method :not_equal, :neq
-	    
+
+  def grep!(pText)
+    @alterations << "grep!(#{pText})"
+    @content.select! { |i| i.include?(pText) }
+    self
+  end
+  	    
+  def grep_v!(pText)
+    @alterations << "grep_v!(#{pText})"
+    @content.reject! { |i| i.include?(pText) }
+    self
+  end
+
+  def size!
+    @alterations << "size!"
+    @content=(@content.size)
+    self
+  end
+   
   def include?(pValue)
     @expected="Include <#{pValue}> value"
-    return @content.include? pValue
+    return @content[0].include? pValue
   end
 		
   def not_include?(pValue)
     @expected="Not include <#{pValue}> value"
-	return not(@content.include? pValue)
+	return not(@content[0].include? pValue)
+  end
+
+  def contain?(pValue)
+    @expected="Contain <#{pValue}> value"
+    return @content.contain? pValue
   end
 
   #Return 'true' if the parameter value is near to the target value.
@@ -145,10 +176,5 @@ class Result
   alias_method :lesser, :lt
   alias_method :smaller, :lt
   alias_method :lesser_than, :lt
-
-  def contain?(pValue)
-    @expected="Contain <#{pValue}> value"
-    return @content.contain? pValue
-  end
 		
 end

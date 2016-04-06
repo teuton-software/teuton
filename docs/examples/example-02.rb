@@ -10,10 +10,17 @@
 
 task "Create user with your name" do
 
-  target "Checking user <"+get(:username)+">"
+  target "Checking user <"+get(:username)+"> using commands"
   goto :localhost, :exec => "id #{get(:username)}| wc -l"
-  expect result.equal(1)
+  expect result.eq 1
 
+  target "Checking user <"+get(:username)+"> using size! method"
+  goto :localhost, :exec => "id #{get(:username)}"
+  expect result.size!.eq 1
+
+  target "Checking user <"+get(:username)+"> using grep! and size! methods"
+  goto :localhost, :exec => "cat /etc/passwd"
+  expect result.grep!(get(:username)).size!.eq 1
 end
 
 start do
