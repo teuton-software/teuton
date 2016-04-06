@@ -16,7 +16,33 @@ task "Windows1 external configuration" do
 end
 
 task "Windows1 internal configurations" do
+
+  target "Windows1 version"
+  goto :windows1, :exec => "ver"
+  expect result.grep!("Windows").grep!("6.1").size!.eq 1
+
+  target "Windows1 COMPUTERNAME"
+  goto :windows1, :exec => "set"
+  expect result.grep!("COMPUTERNAME").grep!(@short_hostname[3]).size!.eq 1
+
+  #ipconfig => IPv4, subred
+
+  target "Windows1 enlace"
+  goto :windows1, :exec => "ipconfig"
+  expect result.grep!("enlace").grep!(get(:bender_ip)).size!.eq 1
+
+  target "Windows1 router OK"
+  goto :windows1, :exec => "ping 8.8.4.4"
+  expect result.grep!("Respuesta").size!.gt 0
+
+  target "Windows1 DNS OK"
+  goto :windows1, :exec => "nslookup www.iespuertodelacruz.es"
+  expect result.grep!("Address:").grep!("88.198.18.148").size!.eq 1
+
 end
+
+#find cadena fichero
+#type muestra fichero
 
 =begin
 task "Ping from windows1 to *" do  
