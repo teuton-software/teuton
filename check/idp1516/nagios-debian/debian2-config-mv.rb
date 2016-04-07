@@ -56,20 +56,20 @@ end
 
 task "Ping from debian2 to *" do  
   target "ping debian2 to debian1_ip"
-  goto :debian2, :exec => "ping #{get(:debian1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :debian2, :exec => "ping #{get(:debian1_ip)} -c 1"
+  expect result.grep!("64 bytes from").count!.eq 1
 
   target "ping debian2 to debian1_name"
-  goto :debian2, :exec => "ping #{@short_hostname[1]} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :debian2, :exec => "ping #{@short_hostname[1]} -c 1"
+  expect result.grep!("64 bytes from").count!.eq 1
 
   target "ping debian2 to windows1_ip"
-  goto :debian2, :exec => "ping #{get(:windows1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :debian2, :exec => "ping #{get(:windows1_ip)} -c 1"
+  expect result.grep!("64 bytes from").count!.eq 1
 
   target "ping debian2 to windows1_name"
-  goto :debian2, :exec => "ping #{@short_hostname[3]} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :debian2, :exec => "ping #{@short_hostname[3]} -c 1"
+  expect result.grep!("64 bytes from").count!.eq 1
 
 end
 

@@ -32,14 +32,15 @@ task "Configure Nagios Agent on Debian2" do
   expect result.eq 1
 
   texts=[]
-  texts << [ "command", "check_users", "/usr/lib/nagios/plugins/check_users"]
-  texts << [ "command", "check_load" , "/usr/lib/nagios/plugins/check_load"]
-  texts << [ "command", "check_disk" , "/usr/lib/nagios/plugins/check_disk"]
+  texts << [ "command", "check_users" , "/usr/lib/nagios/plugins/check_users"]
+  texts << [ "command", "check_load"  , "/usr/lib/nagios/plugins/check_load"]
+  texts << [ "command", "check_disk"  , "/usr/lib/nagios/plugins/check_disk"]
+  texts << [ "command", "check_procs" , "/usr/lib/nagios/plugins/check_procs"]
   
   texts.each do |item|
     target "<#{file}> content: \"#{item.to_s}\""
-    goto :debian2, :exec => "cat #{file}| grep -v '#'|grep #{item[0]}|grep #{item[1]}|grep #{item[2]}|wc -l"
-    expect result.eq 1
+    goto :debian2, :exec => "cat #{file}| grep -v '#'|grep #{item[0]}"
+    expect result.grep!(item[1]).grep!(item[2]).count!.eq 1
   end
 end
 

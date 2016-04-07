@@ -15,12 +15,15 @@ task "Windows1 external configuration" do
 
 end
 
+
 task "Windows1 internal configurations" do
 
   target "Windows1 version"
   goto :windows1, :exec => "ver"
-  expect result.grep!("Windows").grep!("6.1").size!.eq 1
+  expect result.find!("Windows").find!("6.1").count!.eq 1
+end
 
+=begin
   target "Windows1 COMPUTERNAME"
   goto :windows1, :exec => "set"
   expect result.grep!("COMPUTERNAME").grep!(@short_hostname[3]).size!.eq 1
@@ -33,7 +36,7 @@ task "Windows1 internal configurations" do
 
   target "Windows1 router OK"
   goto :windows1, :exec => "ping 8.8.4.4"
-  expect result.grep!("Respuesta").size!.gt 0
+  expect result.grep!("Respuesta").size!.gt 1
 
   target "Windows1 DNS OK"
   goto :windows1, :exec => "nslookup www.iespuertodelacruz.es"
@@ -43,24 +46,23 @@ end
 
 #find cadena fichero
 #type muestra fichero
-
 =begin
 task "Ping from windows1 to *" do  
   target "ping windows1 to debian1_ip"
-  goto :windows1, :exec => "ping #{get(:debian1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :windows1, :exec => "ping #{get(:debian1_ip)}"
+  expect result.find!("Respuesta").count!.gt 1
 
   target "ping windows1 to debian1_name"
-  goto :windows1, :exec => "ping #{@short_hostname[1]} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :windows1, :exec => "ping #{@short_hostname[1]}"
+  expect result.find!("Respuesta").count!.gt 1
 
   target "ping windows1 to debian2_ip"
-  goto :windows1, :exec => "ping #{get(:debian2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :windows1, :exec => "ping #{get(:debian2_ip)}"
+  expect result.find!("Respuesta").count!.gt 1
 
   target "ping windows1 to debian2_name"
-  goto :windows1, :exec => "ping #{@short_hostname[2]} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :windows1, :exec => "ping #{@short_hostname[2]}"
+  expect result.find!("Respuesta").count!.gt 1
 
 end
 
