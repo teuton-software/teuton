@@ -49,7 +49,9 @@ module DSL
     else
       key=( (pHostname.to_s.split('_')[0])+'_ip' ).to_sym
       ip=get( key )
-      if ip.include?('127.0.0.') then
+      if ip.nil? then
+        log("IP nil!",:error)
+      elsif ip.include?('127.0.0.') then
         run_local_cmd
       else
         run_remote_cmd pHostname
