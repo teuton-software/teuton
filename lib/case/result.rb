@@ -64,19 +64,22 @@ class Result
     @content.select! { |i| i.include?(pText) }
     self
   end
-  	    
+  alias_method :find!, :grep!
+
   def grep_v!(pText)
     @alterations << "grep_v!(#{pText})"
     @content.reject! { |i| i.include?(pText) }
     self
   end
+  alias_method :not_find!, :grep_v!
 
   def size!
     @alterations << "size!"
     @content=(@content.size)
     self
   end
-   
+  alias_method :count!, :size!
+
   def include?(pValue)
     @expected="Include <#{pValue}> value"
     return @content[0].include? pValue
