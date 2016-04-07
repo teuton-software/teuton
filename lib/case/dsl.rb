@@ -85,7 +85,7 @@ module DSL
 	
   def log(pText="", pType=:info)
     s=""
-    s=Rainbow("WARN:").color(:yellow)+" " if pType==:warn
+    s=Rainbow("WARN!:").color(:yellow)+" " if pType==:warn
     s=Rainbow("ERROR:").bg(:red)+" " if pType==:error
     @report.lines << s+pText
   end
@@ -185,7 +185,7 @@ private
     when :telnet
       run_remote_cmd_telnet(pHostname)
     else
-      raise "Unkown protocol <#{protocol.to_s}>"
+      raise "Unkown remote protocol <#{protocol.to_s}>"
     end
   end
   	
@@ -228,17 +228,9 @@ private
     end
 		
     @result.content=output
+    @result.content.compact!
   end
 
-=begin
-
-lines=[]
-puts "[INFO] : "+a
-h.close
-
-puts "LINES"
-puts lines
-=end
   def run_remote_cmd_telnet(pHostname) 		
     hostname=pHostname.to_s
     ip=get((hostname+'_ip').to_sym)
@@ -247,24 +239,28 @@ puts lines
     output=[]
 
     begin
-      if @sessions[hostname].nil?
-        h = Net::Telnet::new( { "Host"=>ip, "Timeout"=>60, "Prompt"=>/sysadmingame/ })
-        h.login( username, password)
-        @sessions[hostname] = h
-      end
-			
-      if @sessions[hostname]!=:nosession
-        @sessions[hostname].cmd(@action[:command]) {|i| output << i}
-      end
-    
+      h = Net::Telnet::new( { "Host"=>ip, "Timeout"=>30, "Prompt"=>/sysadmingame/ })
+      h.login( username, password)
+      text=""
+      h.cmd(@action[:command]) {|i| text << i}
+      output=text.split("\n")
+      h.close
+    rescue Net::OpenTimeout
+      verbose "!"
+      log( " ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
+      log( " └── Revise host IP!", :warn)
+    rescue Net::ReadTimeout
+      verbose "!"
+      log( " ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue Exception => e
-      @sessions[hostname]=:nosession
       verbose "!"
       log( " ExceptionType=<#{e.class.to_s}> doing telnet on <#{username}@#{ip}> exec: "+@action[:command], :error)
-      log( " * username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
+      log( " └── username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end
 
+    output=[] if output.nil?
     @result.content=output
+    @result.content.compact!
   end
 
 end

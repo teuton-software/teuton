@@ -18,6 +18,19 @@ class Result
     @content[0]
   end
   
+  def debug
+    my_screen_table = Terminal::Table.new do |st|
+        st.add_row [ "size=#{@content.size}", "result.debug()" ] 
+        st.add_separator
+        i=0
+        @content.each do |item|
+          st.add_row [ "Line_"+i.to_s  , item] 
+          i+=1
+        end
+    end
+    puts "\n"+my_screen_table.to_s+"\n"
+  end
+  
   def expected
     prefix=""
     if @alterations.size>0 then
@@ -60,25 +73,35 @@ class Result
   alias_method :not_equal, :neq
 
   def grep!(pText)
-    @alterations << "grep!(#{pText})"
-    @content.select! { |i| i.include?(pText) }
+    return self if @content.size==0
+
+    if pText=="Address:" then
+      puts "="*40
+      debug
+    end
+    
+    @content=[] if @content.nil?
+    @alterations << "grep!(#{pText.to_s})"
+    @content.select! { |i| i.include?(pText.to_s) }
     self
   end
   alias_method :find!, :grep!
 
   def grep_v!(pText)
+    return self if @content.size==0
+
     @alterations << "grep_v!(#{pText})"
     @content.reject! { |i| i.include?(pText) }
     self
   end
   alias_method :not_find!, :grep_v!
 
-  def size!
-    @alterations << "size!"
+  def count!
+    @alterations << "count!"
     @content=(@content.size)
     self
   end
-  alias_method :count!, :size!
+  alias_method :size!, :count!
 
   def include?(pValue)
     @expected="Include <#{pValue}> value"
