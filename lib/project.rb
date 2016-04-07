@@ -46,7 +46,7 @@ module Project
   def self.laboratory(pathtofile)
     require_relative 'laboratory'
     require_relative "../#{pathtofile}"
-    lab =Laboratory.new
+    lab =Laboratory.new("../#{pathtofile}")
     lab.whatihavetodo
   end
 

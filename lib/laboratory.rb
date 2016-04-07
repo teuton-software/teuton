@@ -15,7 +15,14 @@ end
 class Laboratory
   attr_reader :result
   
-  def initialize
+  def initialize(pathtofile)
+    @path={}
+    @path[:script]   = pathtofile
+    @path[:dirname]  = File.dirname(pathtofile)
+    @path[:filename] = File.basename( pathtofile, ".rb")
+    @path[:config]   = File.join( @path[:dirname], @path[:filename]+".yaml" )
+    puts @path.to_s
+    
     @result = Result.new
     @targetid=0
     @stats={ :tasks => 0, :targets => 0, :uniques => 0, :gets => 0}
@@ -34,6 +41,7 @@ class Laboratory
       
       instance_eval &t[:block]
     end
+    
     
     show_stats
   end
