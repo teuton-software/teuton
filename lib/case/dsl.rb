@@ -248,7 +248,7 @@ puts lines
 
     begin
       if @sessions[hostname].nil?
-        h = Net::Telnet::new( { "Host"=>ip, "Timeout"=>30, "Prompt"=>/sysadmingame/ })
+        h = Net::Telnet::new( { "Host"=>ip, "Timeout"=>60, "Prompt"=>/sysadmingame/ })
         h.login( username, password)
         @sessions[hostname] = h
       end
@@ -260,7 +260,8 @@ puts lines
     rescue Exception => e
       @sessions[hostname]=:nosession
       verbose "!"
-      log( "[#{e.class.to_s}] Telnet on <#{username}@#{ip}> exec: "+@action[:command], :error)
+      log( " ExceptionType=<#{e.class.to_s}> doing telnet on <#{username}@#{ip}> exec: "+@action[:command], :error)
+      log( " * username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end
 
     @result.content=output
