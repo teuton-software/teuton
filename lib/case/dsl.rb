@@ -258,9 +258,7 @@ private
       log( " └── username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end
 
-    output=[] if output.nil?
     @result.content=output
-    @result.content.compact!
   end
 
 end

@@ -20,12 +20,18 @@ class Result
   
   def debug
     my_screen_table = Terminal::Table.new do |st|
-        st.add_row [ "size=#{@content.size}", "result.debug()" ] 
-        st.add_separator
-        i=0
-        @content.each do |item|
-          st.add_row [ "Line_"+i.to_s  , item] 
-          i+=1
+        if @content.class==Array then
+          st.add_row [ "count=#{@content.count}", "result.debug()" ] 
+          st.add_separator
+          i=0
+          @content.each do |item|
+            st.add_row [ "Line_"+i.to_s  , item] 
+            i+=1
+          end
+        else
+          st.add_row [ "", "result.debug()" ] 
+          st.add_separator
+          st.add_row [ @content.class.to_s  , @content.to_s] 
         end
     end
     puts "\n"+my_screen_table.to_s+"\n"
@@ -74,12 +80,7 @@ class Result
 
   def grep!(pText)
     return self if @content.size==0
-
-    if pText=="Address:" then
-      puts "="*40
-      debug
-    end
-    
+        
     @content=[] if @content.nil?
     @alterations << "grep!(#{pText.to_s})"
     @content.select! { |i| i.include?(pText.to_s) }
@@ -98,7 +99,14 @@ class Result
 
   def count!
     @alterations << "count!"
-    @content=(@content.size)
+    if @content.class==Array
+      @content=[ @content.count ]
+    elsif @content.nil?
+      @content=["0"]
+    else
+      @content=["1"]
+    end
+    
     self
   end
   alias_method :size!, :count!
