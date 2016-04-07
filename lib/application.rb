@@ -10,7 +10,7 @@ class Application
 
   def initialize
     @name="sysadmin-game"
-    @version="0.9.3"
+    @version="0.9.4"
     @global={}
     @tasks=[]
   end
