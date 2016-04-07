@@ -47,6 +47,7 @@ class Laboratory
   end
 
   def goto(pHost=:localhost, pArgs={})
+    result.reset
     h=pHost.to_s
     h=":#{h}" if pHost.class==Symbol
 
@@ -97,14 +98,14 @@ class Laboratory
     return if @stats[:gets]==0
     
     my_screen_table = Terminal::Table.new do |st|
-        st.add_row [ "Params Stats"  , "Count"] 
-        st.add_separator
-        list=@gets.sort_by { |k,v| v}
-        list.reverse.each do |item|
-          st.add_row [ item[0]  , item[1].to_s]
-        end 
-        st.add_separator
-        st.add_row [ "TOTAL", @stats[:gets] ]
+      st.add_row [ "Params Stats"  , "Count"] 
+      st.add_separator
+      list=@gets.sort_by { |k,v| v}
+      list.reverse.each do |item|
+        st.add_row [ item[0]  , item[1].to_s]
+      end 
+      st.add_separator
+      st.add_row [ "TOTAL", @stats[:gets] ]
     end
     puts my_screen_table.to_s+"\n"
     
