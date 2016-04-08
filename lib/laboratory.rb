@@ -26,7 +26,7 @@ class Laboratory
     @targetid=0
     @stats={ :tasks => 0, :targets => 0, :uniques => 0, :gets => 0}
     @gets={}
-    @hosts=[]
+    @hosts={}
   end
   
   def whatihavetodo
@@ -59,8 +59,11 @@ class Laboratory
     h=pHost.to_s
     h=":#{h}" if pHost.class==Symbol
 
-    @hosts << h
-
+    if @hosts[h] 
+      @hosts[h]+=1
+    else
+      @hosts[h]=1
+    end
     puts "      goto   #{h} and #{pArgs.to_s}"
   end
 
@@ -113,21 +116,20 @@ class Laboratory
         list.reverse.each do |item|
           st.add_row [ item[0]  , item[1].to_s]
         end 
-        st.add_separator
+        st.add_row [ " ", " "]
         st.add_row [ "TOTAL", @stats[:gets] ]
       end
      puts my_screen_table.to_s+"\n"
     end
 
-    if @hosts.count>0
-      my_screen_table = Terminal::Table.new do |st|
-        st.add_row [ "Configured Hosts"] 
-        st.add_separator
-        @hosts.each { |host| st.add_row [host] } 
-        st.add_row [ "TOTAL=#{@hosts.count.to_s}" ]
-      end
-     puts my_screen_table.to_s+"\n"
-    end    
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row [ "Hostnames", "Count" ] 
+      st.add_separator
+      @hosts.each_pair { |k,v| st.add_row [ k, v] } 
+      st.add_row [ " ", " "]
+      st.add_row [ "TOTAL", @hosts.count.to_s ]
+    end
+   puts my_screen_table.to_s+"\n"
   end
   
 end
