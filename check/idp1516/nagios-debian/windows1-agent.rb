@@ -23,7 +23,7 @@ task "Windows1 internal configurations" do
 
   target "Windows1 COMPUTERNAME"
   goto :windows1, :exec => "set"
-  expect result.find!("COMPUTERNAME").find!(@short_hostname[3]).count!.eq 1
+  expect result.find!("COMPUTERNAME").find!(@short_hostname[3].upcase).count!.eq 1
 
   target "Windows1 enlace <#{get(:bender_ip)}>"
   goto :windows1, :exec => "ipconfig"

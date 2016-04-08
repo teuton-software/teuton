@@ -39,8 +39,8 @@ task "Configure Nagios Agent on Debian2" do
   
   texts.each do |item|
     target "<#{file}> content: \"#{item.to_s}\""
-    goto :debian2, :exec => "cat #{file}| grep -v '#'|grep #{item[0]}"
-    expect result.grep!(item[1]).grep!(item[2]).count!.eq 1
+    goto :debian2, :exec => "cat #{file}| grep -v '#'| grep -v 'zombie'"
+    expect result.grep!(item[0]).grep!(item[1]).grep!(item[2]).count!.eq 1
   end
 end
 
