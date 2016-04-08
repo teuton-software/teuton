@@ -26,7 +26,8 @@ end
 
 desc "_install gems"
 task :install_gems do
-  names=['net-ssh', 'net-sftp', 'rspec', 'pony', 'rainbow', 'terminal-table']
+  #gem: pony?
+  names=['net-ssh', 'net-sftp', 'rspec', 'rspec-given', 'rainbow', 'terminal-table']
   names.each { |n| system("gem install #{n}") }
 end
 
