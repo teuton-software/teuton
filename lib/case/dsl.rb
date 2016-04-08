@@ -72,6 +72,7 @@ module DSL
     @action[:check]=pCond
     @action[:result]=@result.value
     
+    @action[:alterations]=@result.alterations
     @action[:expected]=@result.expected
     @action[:expected]=pArgs[:expected] if pArgs[:expected]
     

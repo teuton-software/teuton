@@ -37,12 +37,16 @@ class Result
     puts "\n"+my_screen_table.to_s+"\n"
   end
   
-  def expected
+  def alterations
     prefix=""
     if @alterations.size>0 then
-      prefix="[#{@alterations.join("&")}] "
+      prefix=@alterations.join(" & ")
     end
-    return prefix+@expected.to_s
+    return prefix
+  end
+
+  def expected
+    return @expected.to_s
   end
   
   def eq(pValue)
@@ -78,15 +82,15 @@ class Result
 
   alias_method :not_equal, :neq
 
-  def grep!(pText)
+  def find!(pText)
     return self if @content.size==0
         
     @content=[] if @content.nil?
-    @alterations << "grep!(#{pText.to_s})"
+    @alterations << "find!(#{pText.to_s})"
     @content.select! { |i| i.include?(pText.to_s) }
     self
   end
-  alias_method :find!, :grep!
+  alias_method :grep!, :find!
 
   def grep_v!(pText)
     return self if @content.size==0
