@@ -21,12 +21,12 @@ class Laboratory
     @path[:dirname]  = File.dirname(pathtofile)
     @path[:filename] = File.basename( pathtofile, ".rb")
     @path[:config]   = File.join( @path[:dirname], @path[:filename]+".yaml" )
-    puts @path.to_s
     
     @result = Result.new
     @targetid=0
     @stats={ :tasks => 0, :targets => 0, :uniques => 0, :gets => 0}
     @gets={}
+    @hosts=[]
   end
   
   def whatihavetodo
@@ -58,6 +58,8 @@ class Laboratory
     result.reset
     h=pHost.to_s
     h=":#{h}" if pHost.class==Symbol
+
+    @hosts << h
 
     puts "      goto   #{h} and #{pArgs.to_s}"
   end
@@ -103,20 +105,29 @@ class Laboratory
     end
     puts my_screen_table.to_s+"\n"
     
-    return if @stats[:gets]==0
-    
-    my_screen_table = Terminal::Table.new do |st|
-      st.add_row [ "Params Stats"  , "Count"] 
-      st.add_separator
-      list=@gets.sort_by { |k,v| v}
-      list.reverse.each do |item|
-        st.add_row [ item[0]  , item[1].to_s]
-      end 
-      st.add_separator
-      st.add_row [ "TOTAL", @stats[:gets] ]
+    if @gets.count>0
+      my_screen_table = Terminal::Table.new do |st|
+        st.add_row [ "Params Stats"  , "Count"] 
+        st.add_separator
+        list=@gets.sort_by { |k,v| v}
+        list.reverse.each do |item|
+          st.add_row [ item[0]  , item[1].to_s]
+        end 
+        st.add_separator
+        st.add_row [ "TOTAL", @stats[:gets] ]
+      end
+     puts my_screen_table.to_s+"\n"
     end
-    puts my_screen_table.to_s+"\n"
-    
+
+    if @hosts.count>0
+      my_screen_table = Terminal::Table.new do |st|
+        st.add_row [ "Configured Hosts"] 
+        st.add_separator
+        @hosts.each { |host| st.add_row [host] } 
+        st.add_row [ "TOTAL=#{@hosts.count.to_s}" ]
+      end
+     puts my_screen_table.to_s+"\n"
+    end    
   end
   
 end
