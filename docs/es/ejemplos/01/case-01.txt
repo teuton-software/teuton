@@ -27,9 +27,9 @@ TARGETS HISTORY
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-04-10 23:02:35 +0100 |
-| finish_time  | 2016-04-10 23:02:35 +0100 |
-| duration     | 0.011554071               |
+| start_time_  | 2016-04-10 23:07:45 +0100 |
+| finish_time  | 2016-04-10 23:07:45 +0100 |
+| duration     | 0.01187583                |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 0.0                       |

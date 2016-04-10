@@ -1,17 +1,17 @@
 INITIAL CONFIGURATIONS
-+---------------+-------------------------------------------+
-| tt_title      | Executing [sysadmin-game] (version 0.8.2) |
-| tt_scriptname | docs/examples/example-02.rb               |
-| tt_configfile | docs/examples/example-02.yaml             |
-| tt_testname   | example-02                                |
-| tt_sequence   | false                                     |
-+---------------+-------------------------------------------+
++---------------+--------------------------------------------+
+| tt_title      | Executing [sysadmin-game] (version 0.10.1) |
+| tt_scriptname | docs/examples/example-02.rb                |
+| tt_configfile | docs/examples/example-02.yaml              |
+| tt_testname   | example-02                                 |
+| tt_sequence   | false                                      |
++---------------+--------------------------------------------+
 TARGETS HISTORY
   - Case_01 => 100   Student-name-1
   - Case_02 =>   0 ? Student-name-2
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2016-03-30 20:46:46 +0100 |
-| finish_time | 2016-03-30 20:46:46 +0100 |
-| duration    | 0.016296952               |
+| start_time  | 2016-04-10 23:08:03 +0100 |
+| finish_time | 2016-04-10 23:08:03 +0100 |
+| duration    | 0.022535287               |
 +-------------+---------------------------+
