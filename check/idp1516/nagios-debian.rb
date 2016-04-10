@@ -11,6 +11,32 @@
   Spanish URL : https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/idp/monitorizar/nagios-debian-windows.md
 =end 
 
+
+task "Register Information" do
+  goto :debian1, :exec => "blkid |grep sda1"
+  log ("debian1_sda1_UUID = #{result.value}")	
+
+  goto :debian2, :exec => "blkid |grep sda1"
+  log ("debian2_sda1_UUID = #{result.value}")	
+
+  goto :debian1, :exec => "ip a"
+  mac=result.grep!("link/ether").value
+  log ("debian1_MAC = #{mac}")
+  unique "MAC", mac
+
+  goto :debian2, :exec => "ip a"
+  mac=result.grep!("link/ether").value
+  log ("debian2_MAC = #{mac}")
+  unique "MAC", mac
+  
+  goto :windows1, :exec => "ipconfig"
+  mac=result.find!("Direcci").content[0]
+  log ("windows1_MAC = #{mac}")
+  unique "MAC", mac
+  
+end
+
+
 require_relative 'nagios-debian/debian1-config-mv'
 require_relative 'nagios-debian/debian1-nagios-server'
 require_relative 'nagios-debian/debian2-config-mv'
