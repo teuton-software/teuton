@@ -66,10 +66,11 @@ class Laboratory
     end
     puts "      goto   #{h} and #{pArgs.to_s}"
   end
-
+  
   def expect(pCond, pArgs={})
     weight=1.0
     weight=pArgs[:weight].to_f if pArgs[:weight]
+    puts "      alter  #{result.alterations}" if result.alterations.size>0
     puts "      expect #{result.expected} (#{result.expected.class.to_s})"
     puts "      weight #{weight.to_s}"
     puts ""

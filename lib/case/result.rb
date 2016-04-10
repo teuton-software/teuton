@@ -83,23 +83,23 @@ class Result
   alias_method :not_equal, :neq
 
   def find!(pText)
-    return self if @content.size==0
-        
-    @content=[] if @content.nil?
     @alterations << "find!(#{pText.to_s})"
+    return self if @content.size==0
+
+    @content=[] if @content.nil?
     @content.select! { |i| i.include?(pText.to_s) }
     self
   end
   alias_method :grep!, :find!
 
-  def grep_v!(pText)
+  def not_find!(pText)
+    @alterations << "grep_v!(#{pText})"
     return self if @content.size==0
 
-    @alterations << "grep_v!(#{pText})"
     @content.reject! { |i| i.include?(pText) }
     self
   end
-  alias_method :not_find!, :grep_v!
+  alias_method :grep_v!, :not_find! 
 
   def count!
     @alterations << "count!"
