@@ -44,7 +44,12 @@ task "Windows1: Restart Agent service" do
   expect result.eq(1), :weight => 2
 =end
 
-task "Debian1: check service on Windows1" do
+task "Check service on Windows1" do
+
+  target "Windows1: check Agent Nagios service"
+  goto :windows1, :exec => "sc query"
+  expect result.find!("Nagios Agent").count!.eq(1), :weight => 5
+
   target "Debian1 nmap to debian2"
   goto :debian1, :exec => "nmap -Pn #{get(:windows1_ip)}"
   expect result.find!("5666").find!("open").count!.eq(1), :weight => 5

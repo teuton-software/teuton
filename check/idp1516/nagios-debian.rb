@@ -29,7 +29,7 @@ task "Register Information" do
   log ("debian2_MAC = #{mac}")
   unique "MAC", mac
   
-  goto :windows1, :exec => "ipconfig"
+  goto :windows1, :exec => "ipconfig /all"
   mac=result.find!("Direcci").content[0]
   log ("windows1_MAC = #{mac}")
   unique "MAC", mac
