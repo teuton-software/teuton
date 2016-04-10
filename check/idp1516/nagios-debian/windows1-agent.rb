@@ -39,7 +39,6 @@ task "Windows1 internal configurations" do
 
 end
 
-=begin
 task "Ping from windows1 to *" do  
   target "ping windows1 to debian1_ip"
   goto :windows1, :exec => "ping #{get(:debian1_ip)}"
@@ -59,14 +58,13 @@ task "Ping from windows1 to *" do
 
 end
 
-=begin
 task "Windows: Configure Nagios Agent" do
 
   file="C:\Program Files\NSClient++\nsclient.ini"
 
-  target "File <#{file}> exist"
-  goto :windows1, :exec => "file #{file}| grep 'ASCII text' |wc -l"
-  expect result.eq 1
+#  target "File <#{file}> exist"
+#  goto   :windows1, :exec => "type #{file}"
+#  expect result.find!("text").count!.eq 1
 
   texts=[]
   texts << ["ssl options"  , "no-sslv2, no-sslv3"]
@@ -90,6 +88,7 @@ task "Windows: Configure Nagios Agent" do
   end
 end
 
+=begin
 task "Windows1: Restart Agent service" do
 
   target "Windows1: Stop agent service"
