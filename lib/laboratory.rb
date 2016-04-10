@@ -24,7 +24,7 @@ class Laboratory
     
     @result = Result.new
     @targetid=0
-    @stats={ :tasks => 0, :targets => 0, :uniques => 0, :gets => 0}
+    @stats={ :tasks => 0, :targets => 0, :uniques => 0, :gets => 0, :logs => 0}
     @gets={}
     @hosts={}
   end
@@ -41,7 +41,6 @@ class Laboratory
       
       instance_eval &t[:block]
     end
-    
     
     show_stats
   end
@@ -97,7 +96,11 @@ class Laboratory
     puts "    ! Unique value for <#{key.to_s}>"
     puts ""
   end
-  
+
+  def log(text="", type=:info)
+    @stats[:logs]+=1
+  end
+    
   def show_stats
     @stats[:hosts]=0
     @hosts.each_pair { |k,v| @stats[:hosts]+=v }
@@ -107,10 +110,11 @@ class Laboratory
         st.add_separator
         st.add_row [ "Tasks"  , @stats[:tasks]] 
         st.add_row [ "Targets", @stats[:targets]] 
-        st.add_row [ "Gets"   , @stats[:gets]] 
-        st.add_row [ "Uniques", @stats[:uniques]] 
         st.add_row [ "Goto"  , @stats[:hosts]] 
         @hosts.each_pair { |k,v| st.add_row [ "* #{k}", v] } 
+        st.add_row [ "Gets"   , @stats[:gets]] 
+        st.add_row [ "Uniques", @stats[:uniques]] 
+        st.add_row [ "Logs"   , @stats[:uniques]] 
     end
     puts my_screen_table.to_s+"\n"
     
