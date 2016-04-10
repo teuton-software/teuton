@@ -1,63 +1,5 @@
 # encoding: utf-8
 
-task "Windows1 external configuration" do
-
-  @short_hostname[3]="#{get(:lastname1)}#{@student_number}w"
-  @long_hostname[3]="#{@short_hostname[3]}.#{get(:domain)}}"
-
-  target "Conection with <#{get(:windows1_ip)}>"
-  goto :localhost, :exec => "ping #{get(:windows1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
-  
-  target "netbios-ssn service on #{get(:windows1_ip)}"
-  goto :localhost, :exec => "nmap -Pn #{get(:windows1_ip)} | grep '139/tcp'| grep 'open'|wc -l"
-  expect result.eq 1
-
-end
-
-task "Windows1 internal configurations" do
-
-  target "Windows1 version"
-  goto :windows1, :exec => "ver"
-  expect result.find!("Windows").find!("6.1").count!.eq 1
-
-  target "Windows1 COMPUTERNAME"
-  goto :windows1, :exec => "set"
-  expect result.find!("COMPUTERNAME").find!(@short_hostname[3].upcase).count!.eq 1
-
-  target "Windows1 enlace <#{get(:bender_ip)}>"
-  goto :windows1, :exec => "ipconfig"
-  expect result.find!("enlace").find!(get(:bender_ip)).count!.eq 1
-
-  target "Windows1 router OK"
-  goto :windows1, :exec => "ping 8.8.4.4"
-  expect result.find!("Respuesta").count!.gt 1
-
-  target "Windows1 DNS OK"
-  goto :windows1, :exec => "nslookup www.iespuertodelacruz.es"
-  expect result.find!("Address:").find!("88.198.18.148").count!.eq 1
-
-end
-
-task "Ping from windows1 to *" do  
-  target "ping windows1 to debian1_ip"
-  goto :windows1, :exec => "ping #{get(:debian1_ip)}"
-  expect result.find!("Respuesta").count!.gt 1
-
-  target "ping windows1 to debian1_name"
-  goto :windows1, :exec => "ping #{@short_hostname[1]}"
-  expect result.find!("Respuesta").count!.gt 1
-
-  target "ping windows1 to debian2_ip"
-  goto :windows1, :exec => "ping #{get(:debian2_ip)}"
-  expect result.find!("Respuesta").count!.gt 1
-
-  target "ping windows1 to debian2_name"
-  goto :windows1, :exec => "ping #{@short_hostname[2]}"
-  expect result.find!("Respuesta").count!.gt 1
-
-end
-
 task "Windows: Configure Nagios Agent" do
 
   file="C:\Program Files\NSClient++\nsclient.ini"
@@ -100,9 +42,11 @@ task "Windows1: Restart Agent service" do
   goto   :debian2, :exec => "net start nsclient"
   goto   :debian2, :exec => "service nagios-nrpe-server status |grep Active|grep active"
   expect result.eq(1), :weight => 2
-  
+=end
+
+task "Debian1: check service on Windows1" do
   target "Debian1 nmap to debian2"
-  goto :debian1, :exec => "nmap -Pn #{get(:debian2_ip)}"
+  goto :debian1, :exec => "nmap -Pn #{get(:windows1_ip)}"
   expect result.find!("5666").find!("open").count!.eq(1), :weight => 5
 
   target "NRPE debian1 to windows1"
@@ -110,4 +54,3 @@ task "Windows1: Restart Agent service" do
   expect result.find!("fine").count!.eq 1
 
 end
-=end

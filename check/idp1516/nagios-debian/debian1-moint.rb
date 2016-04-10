@@ -1,13 +1,5 @@
 # encoding: utf-8
 
-task "Monit on debian1?" do
-
-  target "netbios-ssn service on #{get(:windows1_ip)}"
-  goto :localhost, :exec => "nmap -Pn #{get(:windows1_ip)} | grep '139/tcp'| grep 'open'|wc -l"
-  expect result.eq 1
-
-end
-
 =begin
 
     # Fichero /etc/monit/monirc de ejemplo
@@ -79,6 +71,7 @@ task "Windows: Configure Nagios Agent" do
   end
 end
 
+
 task "Windows1: Restart Agent service" do
 
   target "Windows1: Stop agent service"
@@ -101,3 +94,11 @@ task "Windows1: Restart Agent service" do
 
 end
 =end
+
+task "Monit running on Debian1" do
+
+  target "Monit service port open at <#{get(:debian1_ip)}>"
+  goto :localhost, :exec => "nmap -Pn #{get(:debian1_ip)} | grep '2182/tcp'| grep 'open'|wc -l"
+  expect result.eq 1
+
+end
