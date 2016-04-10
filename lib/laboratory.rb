@@ -98,6 +98,9 @@ class Laboratory
   end
   
   def show_stats
+    @stats[:hosts]=0
+    @hosts.each_pair { |k,v| @stats[:hosts]+=v }
+    
     my_screen_table = Terminal::Table.new do |st|
         st.add_row [ "DSL Stats"  , "Count"] 
         st.add_separator
@@ -105,6 +108,8 @@ class Laboratory
         st.add_row [ "Targets", @stats[:targets]] 
         st.add_row [ "Gets"   , @stats[:gets]] 
         st.add_row [ "Uniques", @stats[:uniques]] 
+        st.add_row [ "Goto"  , @stats[:hosts]] 
+        @hosts.each_pair { |k,v| st.add_row [ "* #{k}", v] } 
     end
     puts my_screen_table.to_s+"\n"
     
@@ -121,15 +126,6 @@ class Laboratory
       end
      puts my_screen_table.to_s+"\n"
     end
-
-    my_screen_table = Terminal::Table.new do |st|
-      st.add_row [ "Hostnames", "Count" ] 
-      st.add_separator
-      @hosts.each_pair { |k,v| st.add_row [ k, v] } 
-      st.add_row [ " ", " "]
-      st.add_row [ "TOTAL", @hosts.count.to_s ]
-    end
-   puts my_screen_table.to_s+"\n"
   end
   
 end
