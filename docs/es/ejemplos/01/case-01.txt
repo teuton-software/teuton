@@ -7,20 +7,33 @@ TARGETS HISTORY
   - ========================
   - TASK: Create user obiwan
   01 (0.0/1.0)
-  		Description : Checking user <obiwan>
+  		Description : Checking user <obiwan> using commands
   		Command     : id obiwan| wc -l
-  		Expected    : 1 (Fixnum)
+  		Alterations : 
+  		Expected    : 1 (String)
   		Result      : 0 (String)
+  02 (0.0/1.0)
+  		Description : Checking user <obiwan> using size! method
+  		Command     : id obiwan
+  		Alterations : count!
+  		Expected    : 1 (String)
+  		Result      : 0 (Fixnum)
+  03 (0.0/1.0)
+  		Description : Checking user <obiwan> using grep! and size! methods
+  		Command     : cat /etc/passwd
+  		Alterations : find!(obiwan) & count!
+  		Expected    : 1 (String)
+  		Result      : 0 (Fixnum)
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-03-30 20:46:00 +0100 |
-| finish_time  | 2016-03-30 20:46:00 +0100 |
-| duration     | 0.006443248               |
+| start_time_  | 2016-04-10 23:02:35 +0100 |
+| finish_time  | 2016-04-10 23:02:35 +0100 |
+| duration     | 0.011554071               |
 | unique_fault | 0                         |
-| max_weight   | 1.0                       |
+| max_weight   | 3.0                       |
 | good_weight  | 0.0                       |
-| fail_weight  | 1.0                       |
-| fail_counter | 1                         |
+| fail_weight  | 3.0                       |
+| fail_counter | 3                         |
 | grade        | 0.0                       |
 +--------------+---------------------------+
