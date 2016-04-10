@@ -17,6 +17,7 @@ require_relative 'nagios-debian/debian2-config-mv'
 require_relative 'nagios-debian/debian2-agent'
 require_relative 'nagios-debian/windows1-config-mv'
 require_relative 'nagios-debian/windows1-agent'
+require_relative 'nagios-debian/debian1-monit'
 
 start do
   show
