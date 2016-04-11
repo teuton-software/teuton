@@ -2,7 +2,7 @@
 
 task "Windows: Configure Nagios Agent" do
 
-  file="C:\\Program Files\\NSClient++\\nsclient.ini"
+  file="\"C:\\Program Files\\NSClient++\\nsclient.ini\""
 
 #  target "File <#{file}> exist"
 #  goto   :windows1, :exec => "type #{file}"
@@ -24,7 +24,7 @@ task "Windows: Configure Nagios Agent" do
   texts << ["allowed hosts"          , get(:debian1_ip) ]
    
   texts.each do |text|
-    target "<#{file}> content: <#{text.join(" ")}>"
+    target "<#{file}> content: <#{text.join(" = ")}>"
     goto   :windows1, :exec => "type #{file}"
     
     text.each { |item| result.find!(item) }
