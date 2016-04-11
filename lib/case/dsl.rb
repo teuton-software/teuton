@@ -240,20 +240,27 @@ private
     output=[]
 
     begin
-      h = Net::Telnet::new( { "Host"=>ip, "Timeout"=>30, "Prompt"=>/sysadmingame/ })
-      h.login( username, password)
-      text=""
-      h.cmd(@action[:command]) {|i| text << i}
-      output=text.split("\n")
-      h.close
+      if @sessions[hostname].nil? or @sessions[hostname]==:ok
+        h = Net::Telnet::new( { "Host"=>ip, "Timeout"=>30, "Prompt"=>/sysadmingame/ })
+        h.login( username, password)
+        text=""
+        h.cmd(@action[:command]) {|i| text << i}
+        output=text.split("\n")
+        h.close      
+        @sessions[hostname] = :ok
+      end
+
     rescue Net::OpenTimeout
+      @sessions[hostname] = :nosession
       verbose "!"
       log( " ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
       log( " └── Revise host IP!", :warn)
     rescue Net::ReadTimeout
+      @sessions[hostname] = :nosession
       verbose "!"
       log( " ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue Exception => e
+      @sessions[hostname] = :nosession
       verbose "!"
       log( " ExceptionType=<#{e.class.to_s}> doing telnet on <#{username}@#{ip}> exec: "+@action[:command], :error)
       log( " └── username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
