@@ -6,8 +6,8 @@ task "Windows1 external configuration" do
   @long_hostname[3]="#{@short_hostname[3]}.#{get(:domain)}}"
 
   target "Conection with <#{get(:windows1_ip)}>"
-  goto :localhost, :exec => "ping #{get(:windows1_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
-  expect result.eq 0
+  goto :localhost, :exec => "ping #{get(:windows1_ip)} -c 1"
+  expect result.find!("Destination Host Unreachable").count!.eq 0
   
   target "netbios-ssn service on #{get(:windows1_ip)}"
   goto :localhost, :exec => "nmap -Pn #{get(:windows1_ip)} | grep '139/tcp'| grep 'open'|wc -l"
