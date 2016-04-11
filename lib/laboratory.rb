@@ -106,31 +106,23 @@ class Laboratory
     @hosts.each_pair { |k,v| @stats[:hosts]+=v }
     
     my_screen_table = Terminal::Table.new do |st|
-        st.add_row [ "DSL Stats"  , "Count"] 
-        st.add_separator
-        st.add_row [ "Tasks"  , @stats[:tasks]] 
-        st.add_row [ "Targets", @stats[:targets]] 
-        st.add_row [ "Goto"  , @stats[:hosts]] 
-        @hosts.each_pair { |k,v| st.add_row [ "* #{k}", v] } 
-        st.add_row [ "Gets"   , @stats[:gets]] 
-        st.add_row [ "Uniques", @stats[:uniques]] 
-        st.add_row [ "Logs"   , @stats[:uniques]] 
-    end
-    puts my_screen_table.to_s+"\n"
-    
-    if @gets.count>0
-      my_screen_table = Terminal::Table.new do |st|
-        st.add_row [ "Params Stats"  , "Count"] 
-        st.add_separator
+      st.add_row [ "DSL Stats"  , "Count"] 
+      st.add_separator
+      st.add_row [ "Tasks"  , @stats[:tasks]] 
+      st.add_row [ "Targets", @stats[:targets]] 
+      st.add_row [ "Goto"  , @stats[:hosts]] 
+      @hosts.each_pair { |k,v| st.add_row [ " * #{k}", v] } 
+      st.add_row [ "Uniques", @stats[:uniques]] 
+      st.add_row [ "Logs"   , @stats[:uniques]] 
+      st.add_row [ " "      , " " ] 
+      st.add_row [ "Gets"   , @stats[:gets]] 
+
+      if @gets.count>0
         list=@gets.sort_by { |k,v| v}
-        list.reverse.each do |item|
-          st.add_row [ item[0]  , item[1].to_s]
-        end 
-        st.add_row [ " ", " "]
-        st.add_row [ "TOTAL", @stats[:gets] ]
-      end
-     puts my_screen_table.to_s+"\n"
+        list.reverse.each { |item|  st.add_row [ " * #{item[0]}"  , item[1].to_s] }
+      end 
     end
+    puts my_screen_table.to_s+"\n"    
   end
   
 end
