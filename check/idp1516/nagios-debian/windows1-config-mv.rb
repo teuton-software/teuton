@@ -37,9 +37,13 @@ task "Windows1 internal configurations" do
   goto :windows1, :exec => "nslookup www.iespuertodelacruz.es"
   expect result.find!("Address:").find!("88.198.18.148").count!.eq 1
 
-  #target "Windows1 USERDOMAIN"
-  #goto :windows1, :exec => "set"
-  #expect result.find!("USERDOMAIN").find!(@short_hostname[3].upcase).count!.eq 1
+  target "Windows1 WORKGROUP_NAME"
+  goto :windows1, :exec => "net config workstation"
+  expect result.find!("Dominio de estaci").find!("de trabajo").find!(get(:dominio).upcase).count!.eq 1
+
+  target "Windows1 ProductName"
+  goto :windows1, :exec => "reg query \"HKLM\Software\Microsoft\Windows NT\CurrentVersion\" /t REG_SZ"
+  expect result.find!("ProductName").find!(get(:windows1_productname)).count!.eq 1
 
 end
 
