@@ -1,4 +1,4 @@
-[44mINITIAL CONFIGURATIONS[0m
+INITIAL CONFIGURATIONS
 +----------------+-----------------+
 | tt_members     | Darth Vader     |
 | tt_emails      | vader@email.com |
@@ -7,42 +7,42 @@
 | host1_hostname | jedi.starwars   |
 | username       | obiwan          |
 +----------------+-----------------+
-[44mTARGETS HISTORY[0m
+TARGETS HISTORY
   - =======================================
   - TASK: Configure hostname and DNS server
-  01 ([32m1.0/1.0[0m)
-  		[1mDescription[0m : Hostname is <jedi.starwars>
-  		[1mCommand    [0m : hostname -f
-  		[1mAlterations[0m : 
-  		[1mExpected   [0m : jedi.starwars (String)
-  		[1mResult     [0m : jedi.starwars (String)
-  02 ([32m1.0/1.0[0m)
-  		[1mDescription[0m : DNS Server OK
-  		[1mCommand    [0m : host www.google.es| grep 'has address'| wc -l
-  		[1mAlterations[0m : 
-  		[1mExpected   [0m : Greater than 0 (String)
-  		[1mResult     [0m : 16 (String)
+  01 (1.0/1.0)
+  		Description : Hostname is <jedi.starwars>
+  		Command     : hostname -f
+  		Alterations : 
+  		Expected    : jedi.starwars (String)
+  		Result      : jedi.starwars (String)
+  02 (1.0/1.0)
+  		Description : DNS Server OK
+  		Command     : host www.google.es| grep 'has address'| wc -l
+  		Alterations : 
+  		Expected    : Greater than 0 (String)
+  		Result      : 16 (String)
   - ================================
   - TASK: Create user with your name
-  03 ([32m1.0/1.0[0m)
-  		[1mDescription[0m : Exist user <obiwan>
-  		[1mCommand    [0m : id obiwan |wc -l
-  		[1mAlterations[0m : 
-  		[1mExpected   [0m : 1 (String)
-  		[1mResult     [0m : 1 (String)
+  03 (1.0/1.0)
+  		Description : Exist user <obiwan>
+  		Command     : id obiwan |wc -l
+  		Alterations : 
+  		Expected    : 1 (String)
+  		Result      : 1 (String)
   - [41mERROR:[0m Unique:
   - [41mERROR:[0m    ├── Value     => UUID sda2=/dev/sda2: UUID="5c771f64-86f1-443e-8d02-c74bf9262678" UUID_SUB="64787e15-f064-45b0-8216-10beb9cef4fc" TYPE="btrfs" PTTYPE="dos" PARTUUID="000e934e-02" 
   - [41mERROR:[0m    └── Conflicts => [3, 4]
-[44mFINAL VALUES[0m
+FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 4                         |
-| start_time_  | 2016-04-17 12:22:10 +0100 |
-| finish_time  | 2016-04-17 12:22:11 +0100 |
-| duration     | 0.921163434               |
-| [41munique_fault[0m | [41m1[0m                         |
+| start_time_  | 2016-04-17 12:25:43 +0100 |
+| finish_time  | 2016-04-17 12:25:43 +0100 |
+| duration     | 0.92177781                |
+| unique_fault | 1                         |
 | max_weight   | 3.0                       |
 | good_weight  | 3.0                       |
 | fail_weight  | 0.0                       |
 | fail_counter | 0                         |
-| [1mgrade[0m        | [1m0[0m                         |
+| grade        | 0                         |
 +--------------+---------------------------+
