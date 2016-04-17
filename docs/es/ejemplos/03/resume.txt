@@ -1,20 +1,20 @@
 INITIAL CONFIGURATIONS
-+----------------+-------------------------------------------+
-| tt_title       | Executing [sysadmin-game] (version 0.8.2) |
-| tt_scriptname  | docs/examples/example-03.rb               |
-| tt_configfile  | docs/examples/example-03.yaml             |
-| host1_username | root                                      |
-| host1_password | profesor                                  |
-| tt_testname    | example-03                                |
-| tt_sequence    | false                                     |
-+----------------+-------------------------------------------+
++----------------+--------------------------------------------+
+| tt_title       | Executing [sysadmin-game] (version 0.16.0) |
+| tt_scriptname  | docs/examples/example-03.rb                |
+| tt_configfile  | docs/examples/example-03.yaml              |
+| host1_username | root                                       |
+| host1_password | profesor                                   |
+| tt_testname    | example-03                                 |
+| tt_sequence    | false                                      |
++----------------+--------------------------------------------+
 TARGETS HISTORY
   - Case_01 =>  33 ? darth-maul
   - Case_02 =>   0 ? r2d2
   - Case_03 => 100   obiwan kenobi
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2016-03-30 20:47:12 +0100 |
-| finish_time | 2016-03-30 20:47:17 +0100 |
-| duration    | 5.52658707                |
+| start_time  | 2016-04-17 12:20:08 +0100 |
+| finish_time | 2016-04-17 12:20:14 +0100 |
+| duration    | 6.062016686               |
 +-------------+---------------------------+

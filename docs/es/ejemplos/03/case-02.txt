@@ -13,11 +13,13 @@ TARGETS HISTORY
   01 (0.0/1.0)
   		Description : Hostname is <robot.starwars>
   		Command     : hostname -f
+  		Alterations : 
   		Expected    : robot.starwars (String)
   		Result      :  (NilClass)
   02 (0.0/1.0)
   		Description : DNS Server OK
   		Command     : host www.google.es| grep 'has address'| wc -l
+  		Alterations : 
   		Expected    : Greater than 0 (String)
   		Result      :  (NilClass)
   - ================================
@@ -25,14 +27,15 @@ TARGETS HISTORY
   03 (0.0/1.0)
   		Description : Exist user <r2d2>
   		Command     : id r2d2 |wc -l
-  		Expected    : 1 (Fixnum)
+  		Alterations : 
+  		Expected    : 1 (String)
   		Result      :  (NilClass)
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 2                         |
-| start_time_  | 2016-03-30 20:47:12 +0100 |
-| finish_time  | 2016-03-30 20:47:15 +0100 |
-| duration     | 3.007764837               |
+| start_time_  | 2016-04-17 12:20:08 +0100 |
+| finish_time  | 2016-04-17 12:20:11 +0100 |
+| duration     | 3.007422347               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 0.0                       |

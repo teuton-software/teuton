@@ -13,11 +13,13 @@
   01 ([32m1.0/1.0[0m)
   		[1mDescription[0m : Hostname is <jedi.starwars>
   		[1mCommand    [0m : hostname -f
+  		[1mAlterations[0m : 
   		[1mExpected   [0m : jedi.starwars (String)
   		[1mResult     [0m : jedi.starwars (String)
   02 ([32m1.0/1.0[0m)
   		[1mDescription[0m : DNS Server OK
   		[1mCommand    [0m : host www.google.es| grep 'has address'| wc -l
+  		[1mAlterations[0m : 
   		[1mExpected   [0m : Greater than 0 (String)
   		[1mResult     [0m : 16 (String)
   - ================================
@@ -25,14 +27,15 @@
   03 ([32m1.0/1.0[0m)
   		[1mDescription[0m : Exist user <obiwan>
   		[1mCommand    [0m : id obiwan |wc -l
-  		[1mExpected   [0m : 1 (Fixnum)
+  		[1mAlterations[0m : 
+  		[1mExpected   [0m : 1 (String)
   		[1mResult     [0m : 1 (String)
 [44mFINAL VALUES[0m
 +--------------+---------------------------+
 | case_id      | 3                         |
-| start_time_  | 2016-03-30 20:47:43 +0100 |
-| finish_time  | 2016-03-30 20:47:44 +0100 |
-| duration     | 0.808504007               |
+| start_time_  | 2016-04-17 12:20:31 +0100 |
+| finish_time  | 2016-04-17 12:20:32 +0100 |
+| duration     | 0.683707077               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 3.0                       |
