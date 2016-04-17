@@ -14,11 +14,13 @@
   01 ([31m0.0/1.0[0m)
   		[1mDescription[0m : Hostname is <robot.starwars>
   		[1mCommand    [0m : hostname -f
+  		[1mAlterations[0m : 
   		[1mExpected   [0m : robot.starwars (String)
   		[1mResult     [0m :  (NilClass)
   02 ([31m0.0/1.0[0m)
   		[1mDescription[0m : DNS Server OK
   		[1mCommand    [0m : host www.google.es| grep 'has address'| wc -l
+  		[1mAlterations[0m : 
   		[1mExpected   [0m : Greater than 0 (String)
   		[1mResult     [0m :  (NilClass)
   - ================================
@@ -26,14 +28,15 @@
   03 ([31m0.0/1.0[0m)
   		[1mDescription[0m : Exist user <r2d2>
   		[1mCommand    [0m : id r2d2 |wc -l
-  		[1mExpected   [0m : 1 (Fixnum)
+  		[1mAlterations[0m : 
+  		[1mExpected   [0m : 1 (String)
   		[1mResult     [0m :  (NilClass)
 [44mFINAL VALUES[0m
 +--------------+---------------------------+
 | case_id      | 2                         |
-| start_time_  | 2016-03-30 21:01:19 +0100 |
-| finish_time  | 2016-03-30 21:01:22 +0100 |
-| duration     | 3.010559774               |
+| start_time_  | 2016-04-17 12:22:10 +0100 |
+| finish_time  | 2016-04-17 12:22:13 +0100 |
+| duration     | 3.007862109               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 0.0                       |

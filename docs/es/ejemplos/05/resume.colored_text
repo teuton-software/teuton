@@ -1,13 +1,13 @@
 [44mINITIAL CONFIGURATIONS[0m
-+----------------+-------------------------------------------+
-| tt_title       | Executing [sysadmin-game] (version 0.8.2) |
-| tt_scriptname  | docs/examples/example-05.rb               |
-| tt_configfile  | docs/examples/example-05.yaml             |
-| host1_username | root                                      |
-| host1_password | profesor                                  |
-| tt_testname    | example-05                                |
-| tt_sequence    | false                                     |
-+----------------+-------------------------------------------+
++----------------+--------------------------------------------+
+| tt_title       | Executing [sysadmin-game] (version 0.16.0) |
+| tt_scriptname  | docs/examples/example-05.rb                |
+| tt_configfile  | docs/examples/example-05.yaml              |
+| host1_username | root                                       |
+| host1_password | profesor                                   |
+| tt_testname    | example-05                                 |
+| tt_sequence    | false                                      |
++----------------+--------------------------------------------+
 [44mTARGETS HISTORY[0m
   - Case_01 =>  33 ? darth-maul
   - Case_02 =>   0 ? r2d2
@@ -15,7 +15,7 @@
   - Case_04 =>   0 ? Darth Vader
 [44mFINAL VALUES[0m
 +-------------+---------------------------+
-| start_time  | 2016-03-30 21:01:19 +0100 |
-| finish_time | 2016-03-30 21:01:24 +0100 |
-| duration    | 5.510005144               |
+| start_time  | 2016-04-17 12:22:10 +0100 |
+| finish_time | 2016-04-17 12:22:16 +0100 |
+| duration    | 5.5230111                 |
 +-------------+---------------------------+
