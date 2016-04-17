@@ -13,27 +13,33 @@ TARGETS HISTORY
   		Expected    : 1 (String)
   		Result      : 0 (String)
   02 (0.0/1.0)
-  		Description : Checking user <obiwan> using size! method
+  		Description : Checking user <obiwan> using count! method
   		Command     : id obiwan
   		Alterations : count!
   		Expected    : 1 (String)
   		Result      : 0 (Fixnum)
   03 (0.0/1.0)
-  		Description : Checking user <obiwan> using grep! and size! methods
+  		Description : Checking user <obiwan, obi-wan> using find! and count! methods with String arg
   		Command     : cat /etc/passwd
   		Alterations : find!(obiwan) & count!
   		Expected    : 1 (String)
-  		Result      : 0 (Fixnum)
+  		Result      : 34 (Fixnum)
+  04 (0.0/1.0)
+  		Description : Checking user <obiwan> using find! and count! methods with Regexp arg
+  		Command     : cat /etc/passwd
+  		Alterations : find!((?-mix:obiwan|obi-wan)) & count!
+  		Expected    : 1 (String)
+  		Result      : 34 (Fixnum)
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-04-10 23:07:45 +0100 |
-| finish_time  | 2016-04-10 23:07:45 +0100 |
-| duration     | 0.01187583                |
+| start_time_  | 2016-04-17 12:12:38 +0100 |
+| finish_time  | 2016-04-17 12:12:38 +0100 |
+| duration     | 0.012331471               |
 | unique_fault | 0                         |
-| max_weight   | 3.0                       |
+| max_weight   | 4.0                       |
 | good_weight  | 0.0                       |
-| fail_weight  | 3.0                       |
-| fail_counter | 3                         |
+| fail_weight  | 4.0                       |
+| fail_counter | 4                         |
 | grade        | 0.0                       |
 +--------------+---------------------------+
