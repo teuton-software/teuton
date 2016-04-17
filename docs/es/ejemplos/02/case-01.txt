@@ -19,22 +19,22 @@ TARGETS HISTORY
   		Alterations : count!
   		Expected    : 1 (String)
   		Result      : 1 (Fixnum)
-  03 (1.0/1.0)
-  		Description : Checking user <root> using grep! and size! methods
+  03 (0.0/1.0)
+  		Description : Checking user <root> using grep! and size! methods with String arg
   		Command     : cat /etc/passwd
   		Alterations : find!(root) & count!
   		Expected    : 1 (String)
-  		Result      : 1 (Fixnum)
+  		Result      : 34 (Fixnum)
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-04-10 23:08:03 +0100 |
-| finish_time  | 2016-04-10 23:08:03 +0100 |
-| duration     | 0.015125343               |
+| start_time_  | 2016-04-17 12:14:31 +0100 |
+| finish_time  | 2016-04-17 12:14:31 +0100 |
+| duration     | 0.019787712               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
-| good_weight  | 3.0                       |
-| fail_weight  | 0.0                       |
-| fail_counter | 0                         |
-| grade        | 100.0                     |
+| good_weight  | 2.0                       |
+| fail_weight  | 1.0                       |
+| fail_counter | 1                         |
+| grade        | 66.66666666666666         |
 +--------------+---------------------------+
