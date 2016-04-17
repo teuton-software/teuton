@@ -18,9 +18,10 @@ task "Create user with your name" do
   goto :localhost, :exec => "id #{get(:username)}"
   expect result.size!.eq 1
 
-  target "Checking user <"+get(:username)+"> using grep! and size! methods"
+  target "Checking user <"+get(:username)+"> using grep! and size! methods with String arg"
   goto :localhost, :exec => "cat /etc/passwd"
   expect result.grep!(get(:username)).size!.eq 1
+
 end
 
 start do

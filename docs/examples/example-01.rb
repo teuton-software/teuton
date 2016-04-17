@@ -15,13 +15,17 @@ task "Create user obiwan" do
   goto :localhost, :exec => "id obiwan| wc -l"
   expect result.equal(1)
 
-  target "Checking user <obiwan> using size! method"
+  target "Checking user <obiwan> using count! method"
   goto :localhost, :exec => "id obiwan"
-  expect result.size!.eq 1
+  expect result.count!.eq 1
 
-  target "Checking user <obiwan> using grep! and size! methods"
+  target "Checking user <obiwan, obi-wan> using find! and count! methods with String arg"
   goto :localhost, :exec => "cat /etc/passwd"
-  expect result.grep!("obiwan").size!.eq 1
+  expect result.find!("obiwan").count!.eq 1
+
+  target "Checking user <obiwan> using find! and count! methods with Regexp arg"
+  goto :localhost, :exec => "cat /etc/passwd"
+  expect result.find!(/obiwan|obi-wan/).count!.eq 1
 end
 
 start do
