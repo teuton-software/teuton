@@ -18,25 +18,6 @@ class Result
     @content[0]
   end
   
-  def debug
-    my_screen_table = Terminal::Table.new do |st|
-        if @content.class==Array then
-          st.add_row [ "count=#{@content.count}", "result.debug()" ] 
-          st.add_separator
-          i=0
-          @content.each do |item|
-            st.add_row [ "Line_"+i.to_s  , item] 
-            i+=1
-          end
-        else
-          st.add_row [ "", "result.debug()" ] 
-          st.add_separator
-          st.add_row [ @content.class.to_s  , @content.to_s] 
-        end
-    end
-    puts "\n"+my_screen_table.to_s+"\n"
-  end
-  
   def alterations
     prefix=""
     if @alterations.size>0 then
@@ -45,6 +26,25 @@ class Result
     return prefix
   end
 
+  def debug
+    my_screen_table = Terminal::Table.new do |st|
+      if @content.class==Array then
+        st.add_row [ "count=#{@content.count}", "result.debug()" ] 
+        st.add_separator
+        i=0
+        @content.each do |item|
+          st.add_row [ "Line_"+i.to_s  , item] 
+          i+=1
+        end
+      else
+        st.add_row [ "", "result.debug()" ] 
+        st.add_separator
+        st.add_row [ @content.class.to_s  , @content.to_s] 
+      end
+    end
+    puts "\n"+my_screen_table.to_s+"\n"
+  end
+  
   def expected
     return @expected.to_s
   end
@@ -63,7 +63,9 @@ class Result
     return lValue==pValue
   end
 
+  alias_method :eq?, :eq
   alias_method :equal, :eq
+  alias_method :equal?, :eq
   alias_method :is_equal?, :eq
 
   def neq(pValue)
@@ -80,16 +82,18 @@ class Result
     return lValue!=pValue
   end
 
+  alias_method :neq?, :neq
   alias_method :not_equal, :neq
+  alias_method :not_equal?, :neq
 
   def find!(pText)
     @alterations << "find!(#{pText.to_s})"
     return self if @content.size==0
 
-    @content=[] if @content.nil?
     @content.select! { |i| i.include?(pText.to_s) }
     self
   end
+
   alias_method :grep!, :find!
 
   def not_find!(pText)
@@ -99,10 +103,12 @@ class Result
     @content.reject! { |i| i.include?(pText) }
     self
   end
+
   alias_method :grep_v!, :not_find! 
 
   def count!
     @alterations << "count!"
+
     if @content.class==Array
       @content=[ @content.count ]
     elsif @content.nil?
@@ -113,6 +119,8 @@ class Result
     
     self
   end
+
+  alias_method :length!, :count!
   alias_method :size!, :count!
 
   def include?(pValue)
@@ -143,10 +151,13 @@ class Result
 	return false 
   end
 		
-  def is_empty?
+  def empty
     @expected="Empty!"
 	return @content.empty
   end
+
+  alias_method :empty?, :empty
+  alias_method :is_empty?, :empty
 	
   def ge(pValue)
     @expected="Greater or equal to #{pValue}"
@@ -162,6 +173,9 @@ class Result
     end
 	return lValue>=pValue
   end
+
+  alias_method :greater_or_equal , :ge
+  alias_method :greater_or_equal?, :ge
 
   def gt(pValue)
     @expected="Greater than #{pValue}"
@@ -195,6 +209,9 @@ class Result
     end
 	return lValue<=pValue
   end
+
+  alias_method :lesser_or_equal , :le
+  alias_method :lesser_or_equal?, :le
 
   def lt(pValue)
     @expected="Lesser than #{pValue.to_s}"
