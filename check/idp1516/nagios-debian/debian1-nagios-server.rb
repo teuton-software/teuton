@@ -20,7 +20,7 @@ task "Configure Nagios Server" do
   files.each do |file|
     f=dir+"/"+file+@student_number+".cfg"
     target "File <#{f}> exist"
-    goto :debian1, :exec => "file #{f}| grep 'ASCII text' |wc -l"
+    goto :debian1, :exec => "file #{f}| grep 'text' |wc -l"
     expect result.eq 1
     
     pathtofiles << f

@@ -9,7 +9,7 @@ task "Windows: Configure Nagios Agent" do
 #  expect result.find!("text").count!.eq 1
 
   texts=[]
-  texts << ["ssl options"  , "no-sslv2, no-sslv3"]
+  texts << ["ssl options"  , "no-sslv2" , "no-sslv3"]
   texts << ["verify mode"  , "none"]
   texts << ["insecure"     , "true"]
 
