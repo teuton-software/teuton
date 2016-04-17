@@ -90,7 +90,14 @@ class Result
     @alterations << "find!(#{pText.to_s})"
     return self if @content.size==0
 
-    @content.select! { |i| i.include?(pText.to_s) }
+    case pText.class
+    when String
+      @content.select! { |i| i.include?(pText.to_s) }
+    when Regexp
+      temp = @content.clone
+      @content= temp.grep pText
+    end
+    
     self
   end
 
