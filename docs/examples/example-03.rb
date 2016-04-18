@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 =begin
   Test several targets for every case into diferent hosts:
@@ -15,16 +14,16 @@ task "Configure hostname and DNS server" do
   expect result.equal(get(:host1_hostname))
 
   target "DNS Server OK"
-  goto   :host1, :exec => "host www.google.es| grep 'has address'| wc -l"
-  expect result.greater(0)
+  goto   :host1, :exec => "host www.google.es"
+  expect result.find!("has address").count!.greater(0)
 
 end
 
 task "Create user with your name" do
 
   target "Exist user <"+get(:username)+">"
-  goto   :host1, :exec => "id #{get(:username)} |wc -l"
-  expect result.equal(1)
+  goto   :host1, :exec => "id #{get(:username)}"
+  expect result.count!.eq 1
 
 end
 
