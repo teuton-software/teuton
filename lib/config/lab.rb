@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 task "TASK NAME" do
 
