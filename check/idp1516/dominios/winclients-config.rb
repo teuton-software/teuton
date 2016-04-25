@@ -5,11 +5,11 @@ task "<wincli[12]> external configuration" do
            { :label      => 'wincli1', 
              :goto       => :wincli1, 
              :ip         => :wincli1_ip, 
-             :short_name => @short_hostname[1].upcase } ,
+             :short_name => get(:wincli1_sname).upcase } ,
            { :label      => 'wincli2', 
              :goto       => :wincli2, 
              :ip         => :wincli2_ip, 
-             :short_name => @short_hostname[2].upcase } 
+             :short_name => get(:wincli2_sname).upcase } 
           ]
          
   winclients.each do |cli|
@@ -37,11 +37,11 @@ task "<wincli[12]> internal configurations" do
            { :label      => 'wincli1', 
              :goto       => :wincli1, 
              :ip         => :wincli1_ip, 
-             :short_name => @short_hostname[1].upcase } ,
+             :short_name => get(:wincli1_sname).upcase } ,
            { :label      => 'wincli2', 
              :goto       => :wincli2, 
              :ip         => :wincli2_ip, 
-             :short_name => @short_hostname[2].upcase } 
+             :short_name => get(:wincli1_sname).upcase } 
          ]
          
   winclients.each do |cli|
@@ -86,16 +86,16 @@ task "Ping from wincli1 to *" do
   goto   :wincli1, :exec => "ping #{get(:winserver_ip)}"
   expect result.find!("Respuesta").count!.gt 1
 
-  target "ping wincli1 to #{@short_hostname[0]}"
-  goto   :wincli1, :exec => "ping #{@short_hostname[0]}"
+  target "ping wincli1 to #{get(:winserver_sname)}"
+  goto   :wincli1, :exec => "ping #{get(:winserver_sname)}"
   expect result.find!("Respuesta").count!.gt 1
 
   target "ping wincli1 to #{get(:wincli2_ip)}"
   goto   :wincli1, :exec => "ping #{get(:wincli2_ip)}"
   expect result.find!("Respuesta").count!.gt 1
 
-  target "ping wincli1 to #{@short_hostname[2]}"
-  goto   :wincli1, :exec => "ping #{@short_hostname[2]}"
+  target "ping wincli1 to #{get(:wincli2_sname)}"
+  goto   :wincli1, :exec => "ping #{get(:wincli2_sname)}"
   expect result.find!("Respuesta").count!.gt 1
 end
 
@@ -104,15 +104,15 @@ task "Ping from wincli2 to *" do
   goto   :wincli2, :exec => "ping #{get(:winserver_ip)}"
   expect result.find!("Respuesta").count!.gt 1
 
-  target "ping wincli2 to #{@short_hostname[0]}"
-  goto   :wincli2, :exec => "ping #{@short_hostname[0]}"
+  target "ping wincli2 to #{get(:winserver_sname)}"
+  goto   :wincli2, :exec => "ping #{get(:winserver_sname)}"
   expect result.find!("Respuesta").count!.gt 1
 
   target "ping wincli2 to #{get(:wincli1_ip)}"
   goto   :wincli2, :exec => "ping #{get(:wincli1_ip)}"
   expect result.find!("Respuesta").count!.gt 1
 
-  target "ping wincli2 to #{@short_hostname[1]}"
-  goto   :wincli2, :exec => "ping #{@short_hostname[1]}"
+  target "ping wincli2 to #{get(:wincli1_sname)}"
+  goto   :wincli2, :exec => "ping #{get(:wincli1_sname)}"
   expect result.find!("Respuesta").count!.gt 1
 end

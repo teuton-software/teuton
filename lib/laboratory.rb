@@ -108,12 +108,7 @@ class Laboratory
     key=":"+key.to_s if key.class==Symbol
     value=":"+value.to_s if value.class==Symbol
        
-    if @sets[key]
-      sets[key]+=1
-    else
-      @sets[key]=1
-    end
-    
+    @sets[key]=value   
     return "set(#{key.to_s},#{value.to_s})"
   end
 
@@ -140,8 +135,7 @@ class Laboratory
 
       st.add_row [ "Sets"   , @stats[:sets]] 
       if @sets.count>0
-        list=@sets.sort_by { |k,v| v}
-        list.reverse.each { |item|  st.add_row [ " * #{item[0]}"  , item[1].to_s] }
+        @sets.each_pair { |k,v|  st.add_row [ " * #{k}"  , v.to_s] }
       end 
     end
     puts my_screen_table.to_s+"\n"    
