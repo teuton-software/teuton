@@ -18,14 +18,18 @@ module DSL
     tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
   end
 
-  #Read param pOption from config or global Hash data
+  #Read param pOption from [running, config or global] Hash data
   def get(pOption)
     return @running_config[pOption] if @running_config[pOption]
     return @case_config[pOption]    if @case_config[pOption]
     return @global_config[pOption]  if @global_config[pOption]
     return nil
   end
-	
+
+  def set( key, value)
+    @running_config[key]=value
+  end
+  
   #Set weight value for the action
   def weight(pValue=nil)
     if pValue.nil? then

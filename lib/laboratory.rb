@@ -24,8 +24,9 @@ class Laboratory
     
     @result = Result.new
     @targetid=0
-    @stats={ :tasks => 0, :targets => 0, :uniques => 0, :gets => 0, :logs => 0}
+    @stats={ :tasks => 0, :targets => 0, :uniques => 0, :gets => 0, :logs => 0, :sets => 0 }
     @gets={}
+    @sets={}
     @hosts={}
   end
   
@@ -100,7 +101,22 @@ class Laboratory
   def log(text="", type=:info)
     @stats[:logs]+=1
   end
+
+  def set(key, value)
+    @stats[:sets]+=1
     
+    key=":"+key.to_s if key.class==Symbol
+    value=":"+value.to_s if value.class==Symbol
+       
+    if @sets[key]
+      sets[key]+=1
+    else
+      @sets[key]=1
+    end
+    
+    return "set(#{key.to_s},#{value.to_s})"
+  end
+
   def show_stats
     @stats[:hosts]=0
     @hosts.each_pair { |k,v| @stats[:hosts]+=v }
@@ -115,10 +131,16 @@ class Laboratory
       st.add_row [ "Uniques", @stats[:uniques]] 
       st.add_row [ "Logs"   , @stats[:uniques]] 
       st.add_row [ " "      , " " ] 
-      st.add_row [ "Gets"   , @stats[:gets]] 
 
+      st.add_row [ "Gets"   , @stats[:gets]] 
       if @gets.count>0
         list=@gets.sort_by { |k,v| v}
+        list.reverse.each { |item|  st.add_row [ " * #{item[0]}"  , item[1].to_s] }
+      end 
+
+      st.add_row [ "Sets"   , @stats[:sets]] 
+      if @sets.count>0
+        list=@sets.sort_by { |k,v| v}
         list.reverse.each { |item|  st.add_row [ " * #{item[0]}"  , item[1].to_s] }
       end 
     end
