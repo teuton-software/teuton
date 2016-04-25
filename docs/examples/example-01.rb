@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 =begin
   Test if exist user <obiwan> into localhost
