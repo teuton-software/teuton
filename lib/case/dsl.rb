@@ -20,8 +20,9 @@ module DSL
 
   #Read param pOption from config or global Hash data
   def get(pOption)
-    return @config[pOption] if @config[pOption]
-    return @global[pOption] if @global[pOption]
+    return @running_config[pOption] if @running_config[pOption]
+    return @case_config[pOption]    if @case_config[pOption]
+    return @global_config[pOption]  if @global_config[pOption]
     return nil
   end
 	

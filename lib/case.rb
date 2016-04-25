@@ -17,21 +17,23 @@ class Case
   @@id=1
 
   def initialize(pConfig)
-    @global=Application.instance.global
-    @config=pConfig
+    @global_config  = Application.instance.global
+    @case_config    = pConfig
+    @running_config = {}
+    
     @tasks=Application.instance.tasks
     @id=@@id; @@id+=1
 				
     #Define Case Report
     @report = Report.new(@id)
     @report.filename=( @id<10 ? "case-0#{@id.to_s}" : "case-#{@id.to_s}" )
-    @report.outdir=File.join( "var", @global[:tt_testname], "out" )
+    @report.outdir=File.join( "var", @global_config[:tt_testname], "out" )
     ensure_dir @report.outdir
 		
     #Default configuration
-    @config[:tt_skip] = @config[:tt_skip] || false
-    @mntdir = File.join( "var", @global[:tt_testname], "mnt", @id.to_s )
-    @tmpdir = File.join( "var", @global[:tt_testname], "tmp" )
+    @case_config[:tt_skip] = @case_config[:tt_skip] || false
+    @mntdir = File.join( "var", get(:tt_testname), "mnt", @id.to_s )
+    @tmpdir = File.join( "var", get(:tt_testname), "tmp" )
     @remote_tmpdir = File.join( "/", "tmp" )
 
     ensure_dir @mntdir
@@ -52,9 +54,9 @@ class Case
   end
 
   def start
-    lbSkip=@config[:tt_skip]||false
+    lbSkip=get(:tt_skip)||false
     if lbSkip==true then
-      verbose "Skipping case <"+@config[:tt_members]+">\n"
+      verbose "Skipping case <#{get(:tt_members)}>\n"
       return false
     end
 
@@ -63,7 +65,7 @@ class Case
     execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Detele previous temp files
 		
     start_time = Time.now		
-    if @global[:tt_sequence] then
+    if get(:tt_sequence) then
       verboseln "Starting case <"+get(:tt_members)+">"
       @tasks.each do |t|
         verbose "* Processing <"+t[:name].to_s+"> "
@@ -81,7 +83,7 @@ class Case
     end
 
     finish_time=Time.now
-    @report.head.merge! @config
+    @report.head.merge! @case_config
     @report.tail[:case_id]=@id
     @report.tail[:start_time_]=start_time
     @report.tail[:finish_time]=finish_time
