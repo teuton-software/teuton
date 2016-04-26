@@ -60,7 +60,13 @@ class ColoredTextFormatter < BaseFormatter
       app.hall_of_fame.each do |line|
         mycolor=:green
         mycolor=:red if line[0]<50 
-        st.add_row [ Rainbow(line[0]).color(mycolor).bright, Rainbow(line[1]).color(mycolor).bright ] 
+        text1=Rainbow(line[0]).color(mycolor)
+        text2=Rainbow(line[1]).color(mycolor)
+        if line[0]==@tail[:grade]
+          text1=text1.bright
+          text2=text2.bright          
+        end
+        st.add_row [ text1, text2 ] 
       end
     end
     w my_screen_table.to_s+"\n"
