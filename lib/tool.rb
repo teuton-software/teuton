@@ -149,8 +149,33 @@ private
 			
 	  @report.lines << "Case_"+"%02d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
 	end
+	
+	build_hall_of_fame
   end
 
+  def build_hall_of_fame
+    celebrities={}
+    
+	@cases.each do |c|
+      grade=c.report.tail[:grade]
+      if celebrities[grade]
+        label = celebrities[grade]+"*"
+      else
+        label = "*"
+      end
+      celebrities[grade] = label 
+	end
+	
+	a=celebrities.sort_by { |key, value| key }
+	list=a.reverse
+	
+    @report.lines << "------------"
+    @report.lines << "Hall Of Fame"
+    list.each do |line|
+      @report.lines << "%3d"%line[0]+" #{line[1]}"
+    end
+  end
+  
   def open_main_report(pConfigFilename)
     app=Application.instance
     
