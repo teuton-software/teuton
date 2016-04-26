@@ -75,11 +75,15 @@ class Tool
 	  end
 	end
 
-	# Close reports for all cases
+	# Close reports for all cases    
 	threads=[]
 	@cases.each { |c| threads << Thread.new{c.close uniques} }
 	threads.each { |t| t.join }
-		
+
+    # Build Hall of Fame
+    app=Application.instance
+    app.hall_of_fame = build_hall_of_fame
+
 	close_main_report(start_time)
   end
 		
@@ -148,9 +152,7 @@ private
       lHelp=app.letter[:error] if lGrade<50.0
 			
 	  @report.lines << "Case_"+"%02d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
-	end
-	
-	build_hall_of_fame
+	end	
   end
 
   def build_hall_of_fame
@@ -168,12 +170,7 @@ private
 	
 	a=celebrities.sort_by { |key, value| key }
 	list=a.reverse
-	
-    @report.lines << "------------"
-    @report.lines << "Hall Of Fame"
-    list.each do |line|
-      @report.lines << "%3d"%line[0]+" #{line[1]}"
-    end
+    return list	
   end
   
   def open_main_report(pConfigFilename)

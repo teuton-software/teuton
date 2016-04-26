@@ -78,6 +78,16 @@ class Report
       end
     end
     puts my_screen_table.to_s
+
+    puts 'HALL OF FAME'
+    app=Application.instance    
+    my_screen_table = Terminal::Table.new do |st|
+      app.hall_of_fame.each do |line| 
+        st.add_row [ line[0], line[1] ] 
+      end
+    end
+    puts my_screen_table.to_s
+
   end		
 
   def export( format=:txt)
