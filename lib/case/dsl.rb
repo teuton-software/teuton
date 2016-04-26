@@ -84,8 +84,9 @@ module DSL
     @report.lines << @action.clone
     weight(1.0)
 
-    c="?"
-    c="." if pCond
+    app=Application.instance
+    c=app.letter[:bad]
+    c=app.letter[:good] if pCond
     verbose c
   end
 	
@@ -195,7 +196,8 @@ private
     end
   end
   	
-  def run_remote_cmd_ssh(pHostname) 		
+  def run_remote_cmd_ssh(pHostname)
+    app=Application.instance 		
     hostname=pHostname.to_s
     ip=get((hostname+'_ip').to_sym)
     username=get((hostname+'_username').to_sym)
@@ -214,22 +216,22 @@ private
     
     rescue Errno::EHOSTUNREACH
       @sessions[hostname]=:nosession
-      verbose "!"
+      verbose app.letter[:error]
       log( "Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       @sessions[hostname]=:nosession
-      verbose "!"
+      verbose app.letter[:error]
       log( "SSH::AuthenticationFailed!", :error)
     rescue Net::SSH::HostKeyMismatch
       @sessions[hostname]=:nosession
-      verbose "!"
+      verbose app.letter[:error]
       log( "SSH::HostKeyMismatch!", :error)
       log( "* The destination server's fingerprint is not matching what is in your local known_hosts file.",:error)
       log( "* Remove the existing entry in your local known_hosts file", :error)
       log( "* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' -R #{ip}", :error)
     rescue Exception => e
       @sessions[hostname]=:nosession
-      verbose "!"
+      verbose app.letter[:error]
       log( "[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+@action[:command], :error)
     end
 		
@@ -257,16 +259,16 @@ private
 
     rescue Net::OpenTimeout
       @sessions[hostname] = :nosession
-      verbose "!"
+      verbose app.letter[:error]
       log( " ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
       log( " └── Revise host IP!", :warn)
     rescue Net::ReadTimeout
       @sessions[hostname] = :nosession
-      verbose "!"
+      verbose app.letter[:error]
       log( " ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue Exception => e
       @sessions[hostname] = :nosession
-      verbose "!"
+      verbose app.letter[:error]
       log( " ExceptionType=<#{e.class.to_s}> doing telnet on <#{username}@#{ip}> exec: "+@action[:command], :error)
       log( " └── username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end

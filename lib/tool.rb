@@ -59,7 +59,7 @@ class Tool
 	else
       verboseln "[INFO] Running in parallel (#{start_time.to_s})"
       threads=[]
-      @cases.each { |c| threads << Thread.new{c.start} } # Process cases in parallel
+      @cases.each { |c| threads << Thread.new{c.start} } # Process cases run in parallel
       threads.each { |t| t.join }
 	end
 		
@@ -144,7 +144,7 @@ private
       lMembers=c.report.head[:tt_members] || 'noname'
       lGrade=c.report.tail[:grade] || 0.0
       lHelp=" "
-      lHelp="?" if lGrade<50.0
+      lHelp="!" if lGrade<50.0
 			
 	  @report.lines << "Case_"+"%02d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
 	end
