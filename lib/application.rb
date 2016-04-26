@@ -11,10 +11,10 @@ class Application
   
   def initialize
     @name="sysadmin-game"
-    @version="0.17.0"
+    @version="0.17.1"
     @global={}
     @tasks=[]
-    @letter={ :good=>'.', :bad=>'F', :error=>'?' }
+    @letter={ :good=>'.', :bad=>'F', :error=>'?', :none=>' ' }
   end
 
 end

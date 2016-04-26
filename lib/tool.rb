@@ -140,11 +140,12 @@ private
     verboseln "\n"
     verboseln "="*@report.head[:tt_title].length
 
+    app=Application.instance
 	@cases.each do |c|
       lMembers=c.report.head[:tt_members] || 'noname'
       lGrade=c.report.tail[:grade] || 0.0
-      lHelp=" "
-      lHelp="!" if lGrade<50.0
+      lHelp=app.letter[:none]
+      lHelp=app.letter[:error] if lGrade<50.0
 			
 	  @report.lines << "Case_"+"%02d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
 	end
