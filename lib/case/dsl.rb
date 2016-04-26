@@ -132,7 +132,7 @@ module DSL
   end
 
   def send(pArgs={})
-    return if @config[:tt_skip]
+    return if get(:tt_skip)
     
     #format=pArgs[:format] || :txt
     format=@report.format
