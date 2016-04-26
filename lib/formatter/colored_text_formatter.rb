@@ -54,6 +54,17 @@ class ColoredTextFormatter < BaseFormatter
     end
     w my_screen_table.to_s+"\n"
     
+    w Rainbow("HALL OF FAME").bg(:blue)+"\n"
+    app=Application.instance
+    my_screen_table = Terminal::Table.new do |st|
+      app.hall_of_fame.each do |line|
+        mycolor=:green
+        mycolor=:red if line[0]<50 
+        st.add_row [ Rainbow(line[0]).color(mycolor).bright, Rainbow(line[1]).color(mycolor).bright ] 
+      end
+    end
+    w my_screen_table.to_s+"\n"
+
     deinit
   end
   
