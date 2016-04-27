@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 require "minitest/autorun"
 require_relative "../lib/case/result"
 
@@ -124,9 +126,17 @@ class TestResult < Minitest::Test
   end
   
   def test_reset
-    assert_equal @result.value, @content[0]
+    assert_equal @content[0], @result.value
     @result.reset
-    assert_equal @result.value, nil    
+    assert_equal nil, @result.value 
+  end
+
+  def test_restore!
+    assert_equal @content[0], @result.value 
+    @result.count!
+    assert_equal 3, @result.value.to_i
+    @result.restore!
+    assert_equal @content[0], @result.value     
   end
 
 end

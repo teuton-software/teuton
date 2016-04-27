@@ -1,20 +1,28 @@
-# encoding: utf-8
 
 class Result
-  attr_accessor :content
+  #attr_accessor :content
 
   def initialize
 	reset
   end
 		
   def reset
+    @content_backup=[]
 	@content=[]
 	@value=nil
 	@expected=nil
 	@alterations=[]
   end
-  
+
+  def restore!
+    temp = @content_backup.clone
+    reset
+    @content_backup = temp
+    @content = temp.clone
+  end
+    
   def value
+  
     @content[0]
   end
   
@@ -142,6 +150,15 @@ class Result
   def contain?(pValue)
     @expected="Contain <#{pValue}> value"
     return @content.contain? pValue
+  end
+  
+  def content=(content)
+    @content_backup = content.clone
+    @content = content.clone
+  end
+  
+  def content
+    return @content
   end
 
   #Return 'true' if the parameter value is near to the target value.
