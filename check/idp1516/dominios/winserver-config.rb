@@ -1,6 +1,8 @@
 
-task "<winserver> external configuration" do
+task "Set internal params..." do
 
+  log "Setting internal params"
+  
   student_number=get(:winserver_ip).split(".")[2]||"99"
   student_number="0"+student_number if student_number.size==1
 
@@ -27,6 +29,10 @@ task "<winserver> external configuration" do
   set(:wincli2_sname, short_hostname[2])
   set(:wincli2_lname, long_hostname[2])
 
+end
+
+task "<winserver> external configuration" do
+
   target "Conection with <#{get(:winserver_ip)}>"
   goto :localhost, :exec => "ping #{get(:winserver_ip)} -c 1"
   expect result.find!("Destination Host Unreachable").count!.eq 0
@@ -38,9 +44,11 @@ task "<winserver> external configuration" do
           [ '389/tcp', 'ldap' ]
          ]
 
+  # Only one conection to get the command output
+  goto :localhost, :exec => "nmap -Pn #{get(:winserver_ip)}"
   ports.each do |port|
     target "windserver #{get(:winserver_ip)} port #{port[0]}"
-    goto :localhost, :exec => "nmap -Pn #{get(:winserver_ip)}"
+    result.restore! # Use the same original output to evaluate differents values
     expect result.grep!(port[0]).grep!("open").grep!(port[1]).count!.eq(1)
   end
 
