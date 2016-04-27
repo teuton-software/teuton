@@ -17,14 +17,14 @@ task "<wincli[12]> external configuration" do
     goto   :localhost, :exec => "ping #{get(cli[:ip])} -c 1"
     expect result.find!("Destination Host Unreachable").count!.eq 0
   
-    ports=[
-            [ '23/tcp' , 'telnet'], 
-            [ '139/tcp', 'netbios-ssn']
-          ]
+    goto   :localhost, :exec => "nmap -Pn #{get(cli[:ip])}" #Execute command once
+
+    ports=[ [ '23/tcp' , 'telnet'], 
+            [ '139/tcp', 'netbios-ssn'] ]
 
     ports.each do |port|
       target "#{cli[:label]} #{get(cli[:ip])} port #{port[0]}"
-      goto   :localhost, :exec => "nmap -Pn #{get(cli[:ip])}"
+      result.restore! # Eval result several times over the same original result
       expect result.grep!(port[0]).grep!("open").grep!(port[1]).count!.eq(1)
     end
   end
