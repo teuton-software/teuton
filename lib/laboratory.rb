@@ -100,6 +100,7 @@ class Laboratory
 
   def log(text="", type=:info)
     @stats[:logs]+=1
+    puts "      log    [#{type.to_s}]: "+text.to_s   
   end
 
   def set(key, value)
