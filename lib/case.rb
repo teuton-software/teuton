@@ -190,7 +190,8 @@ private
     @result.content.compact!
   end
 
-  def run_remote_cmd_telnet(pHostname) 		
+  def run_remote_cmd_telnet(pHostname) 	
+    app=Application.instance
     hostname=pHostname.to_s
     ip=get((hostname+'_ip').to_sym)
     username=get((hostname+'_username').to_sym)
