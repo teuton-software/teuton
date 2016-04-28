@@ -94,6 +94,7 @@ class Result
   alias_method :not_equal, :neq
   alias_method :not_equal?, :neq
 
+#TODO: Error line 102 undefined include? method for 0 Fixnum...
   def find!(pText)
     @alterations << "find!(#{pText.to_s})"
     return self if @content.size==0
@@ -128,7 +129,7 @@ class Result
     elsif @content.nil?
       @content=["0"]
     else
-      @content=["1"]
+      @content=[ @content.to_i.to_s ]
     end
     
     self
