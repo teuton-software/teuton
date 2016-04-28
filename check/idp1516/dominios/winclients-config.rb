@@ -52,7 +52,7 @@ task "<wincli[12]> internal configurations" do
 
     target "#{cli[:label]} version"
     goto cli[:goto], :exec => "ver"
-    expect result.find!("Windows").find!("6.0.6002").count!.eq 1
+    expect result.find!("Windows").find!("6.1").count!.eq 1
 
     target "#{cli[:label]} COMPUTERNAME"
     goto cli[:goto], :exec => "set"
@@ -76,7 +76,7 @@ task "<wincli[12]> internal configurations" do
 
     target "#{cli[:label]} ProductName"
     goto cli[:goto], :exec => "reg query \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\" /t REG_SZ"
-    expect result.find!("ProductName").find!("Windows 7").find!("Enterprise").count!.eq 1
+    expect result.find!("ProductName").find!("Windows 7").find!("Professional").count!.eq 1
   end
   
 end

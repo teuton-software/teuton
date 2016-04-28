@@ -6,6 +6,7 @@ Spanish URL:
 
 require_relative 'winserver-config' 
 require_relative 'winclients-config' 
+require_relative 'winserver-active-directory' 
 
 start do
   show
