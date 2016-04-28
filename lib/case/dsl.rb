@@ -94,7 +94,7 @@ module DSL
     s=""
     s=Rainbow("WARN!:").color(:yellow)+" " if pType==:warn
     s=Rainbow("ERROR:").bg(:red)+" " if pType==:error
-    @report.lines << s+pText
+    @report.lines << s+pText.to_s
   end
 			
   def unique( key, value )
