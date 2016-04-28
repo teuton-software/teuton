@@ -62,7 +62,7 @@ class Case
 
     names=@id.to_s+"-*.tmp"
     r=`ls #{@tmpdir}/#{names} 2>/dev/null | wc -l`
-    execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Detele previous temp files
+    execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Delete previous temp files
 		
     start_time = Time.now		
     if get(:tt_sequence) then
@@ -98,8 +98,17 @@ class Case
       if uniques[key].include?(id) and uniques[key].count>1 then
         fails+=1
         log("Unique:", :error)
-        log("   ├── Value     => #{key.to_s}", :error)
-        log("   └── Conflicts => #{uniques[key].to_s}", :error)
+        begin
+          log("   ├── Value     => #{key.to_s}", :error)
+         rescue Exception => e
+          log(key, :error)
+          log(e.to_s, :error)
+        end
+        begin
+          log("   └── Conflicts => #{uniques[key].to_s}", :error)
+         rescue Exception => e
+          log(e.to_s, :error)
+        end
       end
     end
     @report.tail[:unique_fault]=fails
