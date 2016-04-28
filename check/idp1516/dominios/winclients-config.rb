@@ -34,14 +34,16 @@ end
 task "<wincli[12]> internal configurations" do
   
   winclients=[ 
-           { :label      => 'wincli1', 
-             :goto       => :wincli1, 
-             :ip         => :wincli1_ip, 
-             :short_name => get(:wincli1_sname).upcase } ,
-           { :label      => 'wincli2', 
-             :goto       => :wincli2, 
-             :ip         => :wincli2_ip, 
-             :short_name => get(:wincli2_sname).upcase } 
+           { :label       => 'wincli1', 
+             :goto        => :wincli1, 
+             :ip          => :wincli1_ip, 
+             :short_name  => get(:wincli1_sname).upcase,
+             :productname => get(:wincli1_productname) } ,
+           { :label       => 'wincli2', 
+             :goto        => :wincli2, 
+             :ip          => :wincli2_ip, 
+             :short_name  => get(:wincli2_sname).upcase.
+             :productname => get(:wincli2_productname) } 
          ]
          
   winclients.each do |cli|
@@ -76,7 +78,7 @@ task "<wincli[12]> internal configurations" do
 
     target "#{cli[:label]} ProductName"
     goto cli[:goto], :exec => "reg query \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\" /t REG_SZ"
-    expect result.find!("ProductName").find!("Windows 7").find!("Professional").count!.eq 1
+    expect result.find!("ProductName").find!(cli[:productname]).count!.eq 1
   end
   
 end
