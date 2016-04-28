@@ -41,7 +41,7 @@ task "<wincli[12]> internal configurations" do
            { :label      => 'wincli2', 
              :goto       => :wincli2, 
              :ip         => :wincli2_ip, 
-             :short_name => get(:wincli1_sname).upcase } 
+             :short_name => get(:wincli2_sname).upcase } 
          ]
          
   winclients.each do |cli|
@@ -76,7 +76,7 @@ task "<wincli[12]> internal configurations" do
 
     target "#{cli[:label]} ProductName"
     goto cli[:goto], :exec => "reg query \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\" /t REG_SZ"
-    expect result.find!("ProductName").find!("Windows Server").find!("2008").count!.eq 1
+    expect result.find!("ProductName").find!("Windows 7").find!("Enterprise").count!.eq 1
   end
   
 end

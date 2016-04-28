@@ -9,5 +9,6 @@ require_relative 'winclients-config'
 
 start do
   show
-  export :format => :colored_text
+  #export :format => :colored_text
+  export
 end
