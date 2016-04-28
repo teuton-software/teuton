@@ -42,7 +42,7 @@ task "winserver domain computers" do
   names= []
   
   computers.each do |user|
-    names << "CN=#{user},CN=Computer,DC=#{domains[0]},DC=#{domains[1]}"
+    names << "CN=#{user},CN=Computers,DC=#{domains[0]},DC=#{domains[1]}"
   end
   
   goto :winserver, :exec => "dsquery computer domainroot"
