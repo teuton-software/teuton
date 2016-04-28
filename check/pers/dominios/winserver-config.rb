@@ -59,15 +59,15 @@ task "winserver internal configurations" do
 
   target "winserver version"
   goto   :winserver, :exec => "ver"
-  expect result.find!("Windows").find!("6.0.6002").count!.eq 1
+  expect result.find!("Windows").find!(get(:winserver_version)).count!.eq 1
 
   target "winserver COMPUTERNAME"
   goto   :winserver, :exec => "set"
   expect result.find!("COMPUTERNAME").find!(get(:winserver_sname).upcase).count!.eq 1
 
-  target "winserver enlace <#{get(:gateway_ip)}>"
+  target "winserver enlace <#{get(:gateway)}>"
   goto   :winserver, :exec => "ipconfig"
-  expect result.find!("enlace").find!(get(:gateway_ip)).count!.eq 1
+  expect result.find!("enlace").find!(get(:gateway)).count!.eq 1
 
   target "winserver router OK"
   goto   :winserver, :exec => "ping 8.8.4.4"
@@ -83,25 +83,6 @@ task "winserver internal configurations" do
 
   target "winserver ProductName"
   goto   :winserver, :exec => "reg query \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\" /t REG_SZ"
-  expect result.find!("ProductName").find!("Windows Server").find!("2008").count!.eq 1
-
-end
-
-task "Ping from winserver to *" do  
-  target "ping winserver to #{get(:wincli1_ip)}"
-  goto   :winserver, :exec => "ping #{get(:wincli1_ip)}"
-  expect result.find!("Respuesta").count!.gt 1
-
-  target "ping winserver to windows1_name"
-  goto   :winserver, :exec => "ping #{get(:wincli1_sname)}"
-  expect result.find!("Respuesta").count!.gt 1
-
-  target "ping winserver to #{get(:wincli2_ip)}"
-  goto   :winserver, :exec => "ping #{get(:wincli2_ip)}"
-  expect result.find!("Respuesta").count!.gt 1
-
-  target "ping winserver to windows2_name"
-  goto   :winserver, :exec => "ping #{get(:wincli2_sname)}"
-  expect result.find!("Respuesta").count!.gt 1
+  expect result.find!("ProductName").find!(get(:winserver_productname)).count!.eq 1
 
 end

@@ -37,7 +37,7 @@ end
 
 task "winserver domain computers" do
 
-  computers= [ get(:wincli1_sname), get(:wincli2_sname)]
+  computers= [ get(:wincli1_sname).upcase, get(:wincli2_sname).upcase]
   domains=get(:domain).split(".")
   names= []
   
