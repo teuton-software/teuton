@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'net/sftp'
-require 'net/telnet'
 
 module DSL
 
@@ -18,10 +16,6 @@ module DSL
 
   #Read param pOption from [running, config or global] Hash data
   def get(pOption)
-    #return @running_config[pOption] unless @running_config[pOption].nil?
-    #return @case_config[pOption]    unless @case_config[pOption].nil?
-    #return @global_config[pOption]  unless @global_config[pOption].nil?
-    #return nil
     @config.get(pOption)
   end
 
@@ -96,7 +90,9 @@ module DSL
     s=Rainbow("ERROR:").bg(:red)+" " if pType==:error
     @report.lines << s+pText.to_s
   end
-			
+
+  alias_method :msg, :log
+	
   def unique( key, value )
     return if value.nil?
     k=(key.to_s+"="+value.to_s).to_sym
