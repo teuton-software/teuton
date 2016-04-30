@@ -27,8 +27,8 @@ class Case
     #Define Case Report
     @report = Report.new(@id)
     @report.filename=( @id<10 ? "case-0#{@id.to_s}" : "case-#{@id.to_s}" )
-    @report.outdir=File.join( "var", @global_config[:tt_testname], "out" )
-    ensure_dir @report.outdir
+    @report.output_dir=File.join( "var", @global_config[:tt_testname], "out" )
+    ensure_dir @report.output_dir
 		
     #Default configuration
     @case_config[:tt_skip] = @case_config[:tt_skip] || false

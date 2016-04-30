@@ -46,7 +46,7 @@ class Tool
 	#Create out dir
 	@outdir = app.global[:tt_outdir] || File.join("var",app.global[:tt_testname],"out")
 	ensure_dir @outdir
-	@report.outdir=@outdir
+	@report.output_dir = @outdir
 
 	#Fill report head
     open_main_report(pConfigFilename)
