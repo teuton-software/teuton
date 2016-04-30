@@ -23,23 +23,27 @@ TARGETS HISTORY
   		Command     : cat /etc/passwd
   		Alterations : find!(obiwan) & count!
   		Expected    : 1 (String)
-  		Result      : 34 (Fixnum)
+  		Result      : 0 (Fixnum)
   04 (0.0/1.0)
   		Description : Checking user <obiwan> using find! and count! methods with Regexp arg
   		Command     : cat /etc/passwd
   		Alterations : find!((?-mix:obiwan|obi-wan)) & count!
   		Expected    : 1 (String)
-  		Result      : 34 (Fixnum)
+  		Result      : 0 (Fixnum)
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-04-17 12:12:38 +0100 |
-| finish_time  | 2016-04-17 12:12:38 +0100 |
-| duration     | 0.012331471               |
+| start_time_  | 2016-04-30 12:09:30 +0100 |
+| finish_time  | 2016-04-30 12:09:30 +0100 |
+| duration     | 0.011983459               |
 | unique_fault | 0                         |
 | max_weight   | 4.0                       |
 | good_weight  | 0.0                       |
 | fail_weight  | 4.0                       |
 | fail_counter | 4                         |
-| grade        | 0.0                       |
+| grade        | 0                         |
 +--------------+---------------------------+
+HALL OF FAME
++---+---+
+| 0 | * |
++---+---+
