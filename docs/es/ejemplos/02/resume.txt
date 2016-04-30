@@ -1,17 +1,22 @@
 INITIAL CONFIGURATIONS
 +---------------+--------------------------------------------+
-| tt_title      | Executing [sysadmin-game] (version 0.10.1) |
+| tt_title      | Executing [sysadmin-game] (version 0.17.2) |
 | tt_scriptname | docs/examples/example-02.rb                |
 | tt_configfile | docs/examples/example-02.yaml              |
 | tt_testname   | example-02                                 |
 | tt_sequence   | false                                      |
 +---------------+--------------------------------------------+
 TARGETS HISTORY
-  - Case_01 =>  66   Student-name-1
+  - Case_01 => 100   Student-name-1
   - Case_02 =>   0 ? Student-name-2
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2016-04-17 12:14:31 +0100 |
-| finish_time | 2016-04-17 12:14:31 +0100 |
-| duration    | 0.034617409               |
+| start_time  | 2016-04-30 12:26:35 +0100 |
+| finish_time | 2016-04-30 12:26:35 +0100 |
+| duration    | 0.018739993               |
 +-------------+---------------------------+
+HALL OF FAME
++-----+---+
+| 100 | * |
+| 0   | * |
++-----+---+

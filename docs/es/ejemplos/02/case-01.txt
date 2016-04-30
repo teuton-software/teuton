@@ -14,27 +14,32 @@ TARGETS HISTORY
   		Expected    : 1 (String)
   		Result      : 1 (String)
   02 (1.0/1.0)
-  		Description : Checking user <root> using size! method
+  		Description : Checking user <root> using count! method
   		Command     : id root
   		Alterations : count!
   		Expected    : 1 (String)
   		Result      : 1 (Fixnum)
-  03 (0.0/1.0)
-  		Description : Checking user <root> using grep! and size! methods with String arg
+  03 (1.0/1.0)
+  		Description : Checking user <root> using find! and count! methods with String arg
   		Command     : cat /etc/passwd
   		Alterations : find!(root) & count!
   		Expected    : 1 (String)
-  		Result      : 34 (Fixnum)
+  		Result      : 1 (Fixnum)
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 1                         |
-| start_time_  | 2016-04-17 12:14:31 +0100 |
-| finish_time  | 2016-04-17 12:14:31 +0100 |
-| duration     | 0.019787712               |
+| start_time_  | 2016-04-30 12:26:35 +0100 |
+| finish_time  | 2016-04-30 12:26:35 +0100 |
+| duration     | 0.012517769               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
-| good_weight  | 2.0                       |
-| fail_weight  | 1.0                       |
-| fail_counter | 1                         |
-| grade        | 66.66666666666666         |
+| good_weight  | 3.0                       |
+| fail_weight  | 0.0                       |
+| fail_counter | 0                         |
+| grade        | 100                       |
 +--------------+---------------------------+
+HALL OF FAME
++-----+---+
+| 100 | * |
+| 0   | * |
++-----+---+
