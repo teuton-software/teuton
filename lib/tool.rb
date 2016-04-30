@@ -19,8 +19,9 @@ class Tool
 	@cases = []		
     @report = Report.new(0)
     @report.filename="resume"
-	@debug = false
-	@verbose = true
+    app=Application.instance
+	@debug = app.debug
+	@verbose = app.verbose
   end
 			
   def start(&block)
