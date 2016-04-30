@@ -18,28 +18,34 @@ TARGETS HISTORY
   		Result      :  (NilClass)
   02 (0.0/1.0)
   		Description : DNS Server OK
-  		Command     : host www.google.es| grep 'has address'| wc -l
-  		Alterations : 
+  		Command     : host www.google.es
+  		Alterations : find!(has address) & count!
   		Expected    : Greater than 0 (String)
-  		Result      :  (NilClass)
+  		Result      : 0 (Fixnum)
   - ================================
   - TASK: Create user with your name
   03 (0.0/1.0)
   		Description : Exist user <r2d2>
-  		Command     : id r2d2 |wc -l
-  		Alterations : 
+  		Command     : id r2d2
+  		Alterations : count!
   		Expected    : 1 (String)
-  		Result      :  (NilClass)
+  		Result      : 0 (Fixnum)
 FINAL VALUES
 +--------------+---------------------------+
 | case_id      | 2                         |
-| start_time_  | 2016-04-17 12:20:08 +0100 |
-| finish_time  | 2016-04-17 12:20:11 +0100 |
-| duration     | 3.007422347               |
+| start_time_  | 2016-04-30 13:00:55 +0100 |
+| finish_time  | 2016-04-30 13:00:58 +0100 |
+| duration     | 3.007357751               |
 | unique_fault | 0                         |
 | max_weight   | 3.0                       |
 | good_weight  | 0.0                       |
 | fail_weight  | 3.0                       |
 | fail_counter | 3                         |
-| grade        | 0.0                       |
+| grade        | 0                         |
 +--------------+---------------------------+
+HALL OF FAME
++-----+---+
+| 100 | * |
+| 67  | * |
+| 0   | * |
++-----+---+
