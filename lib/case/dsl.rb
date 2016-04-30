@@ -18,9 +18,9 @@ module DSL
 
   #Read param pOption from [running, config or global] Hash data
   def get(pOption)
-    return @running_config[pOption] if @running_config[pOption]
-    return @case_config[pOption]    if @case_config[pOption]
-    return @global_config[pOption]  if @global_config[pOption]
+    return @running_config[pOption] unless @running_config[pOption].nil?
+    return @case_config[pOption]    unless @case_config[pOption].nil?
+    return @global_config[pOption]  unless @global_config[pOption].nil?
     return nil
   end
 
