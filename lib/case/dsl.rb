@@ -18,14 +18,16 @@ module DSL
 
   #Read param pOption from [running, config or global] Hash data
   def get(pOption)
-    return @running_config[pOption] unless @running_config[pOption].nil?
-    return @case_config[pOption]    unless @case_config[pOption].nil?
-    return @global_config[pOption]  unless @global_config[pOption].nil?
-    return nil
+    #return @running_config[pOption] unless @running_config[pOption].nil?
+    #return @case_config[pOption]    unless @case_config[pOption].nil?
+    #return @global_config[pOption]  unless @global_config[pOption].nil?
+    #return nil
+    @config.get(pOption)
   end
 
   def set( key, value)
-    @running_config[key]=value
+    #@running_config[key]=value
+    @config.set(key,value)
   end
   
   #Set weight value for the action

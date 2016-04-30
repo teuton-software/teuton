@@ -16,29 +16,25 @@ class Case
   include Utils
 
   attr_accessor :result
-  attr_reader :id, :skip, :report, :uniques
+  attr_reader :id, :config, :report, :uniques
   @@id=1
 
   def initialize(pConfig)
-    #@config = Case::Config.new(pConfig)
-    @global_config  = Application.instance.global
-    @case_config    = pConfig
-    @running_config = {}
+    @config = Case::Config.new( :local => pConfig, :global => Application.instance.global)
     
     @tasks=Application.instance.tasks
     @id=@@id; @@id+=1
-    @skip=false
 				
     #Define Case Report
     @report = Report.new(@id)
     @report.filename=( @id<10 ? "case-0#{@id.to_s}" : "case-#{@id.to_s}" )
-    @report.output_dir=File.join( "var", @global_config[:tt_testname], "out" )
+    @report.output_dir=File.join( "var", @config.global[:tt_testname], "out" )
     ensure_dir @report.output_dir
 		
     #Default configuration
-    @case_config[:tt_skip] = @case_config[:tt_skip] || false
-    @mntdir = File.join( "var", get(:tt_testname), "mnt", @id.to_s )
-    @tmpdir = File.join( "var", get(:tt_testname), "tmp" )
+    @config.local[:tt_skip] = @config.local[:tt_skip] || false
+    @mntdir = File.join( "var", @config.get(:tt_testname), "mnt", @id.to_s )
+    @tmpdir = File.join( "var", @config.get(:tt_testname), "tmp" )
     @remote_tmpdir = File.join( "/", "tmp" )
 
     ensure_dir @mntdir
@@ -57,11 +53,15 @@ class Case
     @sessions={}	
     tempfile :default
   end
-
+  
+  def skip
+    @config.get(:tt_skip)
+  end
+  
   def start
     @skip=get(:tt_skip)||false
     if @skip==true then
-      verbose "Skipping case <#{get(:tt_members)}>\n"
+      verbose "Skipping case <#{@config.get(:tt_members)}>\n"
       return false
     end
 
@@ -71,7 +71,7 @@ class Case
 		
     start_time = Time.now		
     if get(:tt_sequence) then
-      verboseln "Starting case <"+get(:tt_members)+">"
+      verboseln "Starting case <"+@config.get(:tt_members)+">"
       @tasks.each do |t|
         verbose "* Processing <"+t[:name].to_s+"> "
         instance_eval &t[:block]
@@ -88,11 +88,11 @@ class Case
     end
 
     finish_time=Time.now
-    @report.head.merge! @case_config
+    @report.head.merge! @config.local
     @report.tail[:case_id]=@id
     @report.tail[:start_time_]=start_time
     @report.tail[:finish_time]=finish_time
-    @report.tail[:duration]=finish_time-start_time		
+    @report.tail[:duration]=finish_time-start_time	
 
     @sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
   end
@@ -147,7 +147,7 @@ private
 
   def run_remote_cmd(pHostname)
     hostname=pHostname.to_s
-    protocol=get((hostname+'_protocol').to_sym) if get((hostname+'_protocol').to_sym)
+    protocol=get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
     protocol=:ssh if protocol.nil?
     protocol=protocol.to_sym
     
@@ -165,8 +165,8 @@ private
     app=Application.instance 		
     hostname=pHostname.to_s
     ip=get((hostname+'_ip').to_sym)
-    username=get((hostname+'_username').to_sym)
-    password=get((hostname+'_password').to_sym)
+    username=@config.get((hostname+'_username').to_sym)
+    password=@config.get((hostname+'_password').to_sym)
     output=[]
 		
     begin
@@ -208,8 +208,8 @@ private
     app=Application.instance
     hostname=pHostname.to_s
     ip=get((hostname+'_ip').to_sym)
-    username=get((hostname+'_username').to_sym)
-    password=get((hostname+'_password').to_sym)
+    username=@config.get((hostname+'_username').to_sym)
+    password=@config.get((hostname+'_password').to_sym)
     output=[]
 
     begin
