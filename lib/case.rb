@@ -13,7 +13,7 @@ class Case
   include Utils
 
   attr_accessor :result
-  attr_reader :id, :report, :uniques
+  attr_reader :id, :skip, :report, :uniques
   @@id=1
 
   def initialize(pConfig)
@@ -23,6 +23,7 @@ class Case
     
     @tasks=Application.instance.tasks
     @id=@@id; @@id+=1
+    @skip=false
 				
     #Define Case Report
     @report = Report.new(@id)
@@ -54,8 +55,8 @@ class Case
   end
 
   def start
-    lbSkip=get(:tt_skip)||false
-    if lbSkip==true then
+    @skip=get(:tt_skip)||false
+    if @skip==true then
       verbose "Skipping case <#{get(:tt_members)}>\n"
       return false
     end
@@ -91,7 +92,7 @@ class Case
 
     @sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
   end
-	
+  
   def close(uniques)
     fails=0
     @uniques.each do |key|

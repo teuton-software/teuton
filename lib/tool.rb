@@ -165,7 +165,7 @@ private
       else
         label = "*"
       end
-      celebrities[grade] = label 
+      celebrities[grade] = label unless c.skip
 	end
 	
 	a=celebrities.sort_by { |key, value| key }
