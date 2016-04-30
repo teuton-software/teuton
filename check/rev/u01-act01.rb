@@ -1,77 +1,51 @@
-#!/usr/bin/ruby
-# encoding: utf-8
-
-require_relative '../../lib/teacher1'
 
 =begin
- Curso 1314
- IDP U1 Actividad 1
- David Vargas Ruiz
+ Course   : 201314
+ Activity : IDP U1 Actividad 1
+ Author   : David Vargas Ruiz
 =end
 
-
-t = Teacher.new
-
-def t.test01_ping_host
-	#Quick test to check is the host is alive or not
-	@alive=false
-
-	result = `ping -q -c 1 -i 0.3 #{get(:host1_ip)}`
-	if ($?.exitstatus == 0) then
-		@alive=true
-	end
-	
-end
-
-def t.test02_check_config
-	return if !@alive
+task "host1 check_config"
 	
 	#variables defined with the same value for every case
-	lsYear='2013'
 	lsDefault_os='deb7'
 	
-	command "date | grep WEST | grep #{lsYear} | wc -l"
-	description "Zona horaria WEST"
-	run_from :host1
-	check result.to_i.equal?(1)
+	target "Zona horaria WEST"
+	goto   :host1, :exec => "date"
+	expect result.find!("WEST").find!(get(:year).count!.eq 1
 
-	command "cat /etc/passwd|grep '"+get(:username)+"'|wc -l"
-	description "Checking username <"+get(:username)+">"
-	run_from :host1
-	check result.to_i.equal?(1)
+	target "Checking username <#{get(:username)}>"
+	goto   :host1, :exec => "cat /etc/passwd"
+	expect result.find!(get(:username)).count!.eq 1
 
-	command "hostname"
-	description "Cheking hostname <"+get(:hostname)+">"
-	run_from :host1
-	check result.to_s.equal?(get(:hostname))
+	target "Cheking hostname <#{get(:hostname)}>"
+	goto   :host1, :exec => "hostname"
+	expect result.eq get(:hostname)
 	
-	command "dnsdomainname"
-	description "Checking dnsdomainname <"+get(:domainname)+">"
-	run_from :host1
-	check result.to_s.equal?(get(:domainname))
+	target "Checking dnsdomainname <#{get(:domainname)}>"
+	goto   :host1, :exec => "dnsdomainname"
+	expect result.eq get(:domainname)
 
-	command "dir /etc/rc2.d/*dm| wc -l"
-	description "We don't need GUI installed"
-	run_from :host1
-	check result.to_i.equal?(0)
+	target "We don't need GUI installed"
+	goto   :host1, :exec => "dir /etc/rc2.d/*dm"
+	check  result.count!.eq 0
 
 	#Some students used debian6 instead of debian7
+	target "SO Debian instalado"
 	if get(:os)=='debian6' then
 		log "OS mode = <#{get(:os)}>"
-		command "uname -a| grep Linux |wc -l"
+	    goto  :host1, :exec => "uname -a| grep Linux"
 	else
-		command "uname -a| grep #{lsDefault_os} | grep #{get(:hostname)} |wc -l"
+		goto  :host1, :exec => "uname -a| grep #{get(:default_os} | grep #{get(:hostname)}"
     end
-	description "SO Debian instalado"
-	run_from :host1
-	check result.to_i.equal?(1)
+	expect result.eq 1
     
 	command "fdisk -l"
 	tempfile 'fdiskl.tmp'
 	run_from :host1
 
+	target  "Número de particiones 5"
 	command "cat var/tmp/fdiskl.tmp| grep -v Dis| grep '/dev/sd'| wc -l"
-	description "Número de particiones 5"
 	run_from :localhost
 	check result.to_i.equal?(5)
 	
@@ -156,8 +130,9 @@ def t.test02_check_config
 	log "Los Tests han acabado"
 end
 
-t.process File.join(File.dirname(__FILE__),'u01-act01.yaml')
 
-t.report.show
-t.report.export :txt
+start do
+  show
+  export
+end
 
