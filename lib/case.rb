@@ -4,6 +4,7 @@ require 'net/ssh'
 require 'net/sftp'
 
 require_relative 'application'
+require_relative 'case/config'
 require_relative 'case/dsl'
 require_relative 'case/result'
 require_relative 'utils'
@@ -19,6 +20,7 @@ class Case
   @@id=1
 
   def initialize(pConfig)
+    #@config = Case::Config.new(pConfig)
     @global_config  = Application.instance.global
     @case_config    = pConfig
     @running_config = {}
