@@ -13,8 +13,6 @@ module DSL
   	
   def command(pCommand, pArgs={})
     @action[:command]=pCommand
-    desc(pArgs[:desc]) if pArgs[:desc]
-    description(pArgs[:description]) if pArgs[:description]
     tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
   end
 
@@ -146,8 +144,12 @@ module DSL
       
       filename="case-#{id_to_s}.#{format}"
       localfilepath=File.join(tempdir,"../out/",filename)
-      remotefilepath=File.join(remote_tempdir,filename)
-       
+      if pArgs[:remote_dir]
+        remotefilepath=File.join(pArgs[:remote_dir],filename) 
+      else
+        remotefilepath=File.join(remote_tempdir,filename)
+      end
+           
       # upload a file or directory to the remote host
       begin
         Net::SFTP.start(ip, username, :password => password) do |sftp|
