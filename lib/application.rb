@@ -10,7 +10,7 @@ class Application
   
   def initialize
     @name="sysadmin-game"
-    @version="0.17.2"
+    @version="0.17.3"
     @letter={ :good=>'.', :bad=>'F', :error=>'?', :none=>' ' }
     @output_basedir="var"
 
