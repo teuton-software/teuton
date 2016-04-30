@@ -8,6 +8,8 @@ require_relative 'case/dsl'
 require_relative 'case/result'
 require_relative 'utils'
 
+#TODO split Case class into several classes: Case, Action?, Session?, RunCommand class
+
 class Case
   include DSL
   include Utils
