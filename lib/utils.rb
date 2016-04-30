@@ -1,14 +1,11 @@
-# encoding: utf-8
 
 module Utils
 
-  #Create the directory if it dosn't exist.
-  def ensure_dir(psDirname)
-    if !Dir.exists?(psDirname) then
-      #Dir.mkdir(psDirname)
-      #TODO: Mod cross-platform. Not use system command.
-      my_execute("mkdir #{psDirname} -p")
-      #File.mkdir(psDirname)
+  # Create the directory if it dosn't exist.
+  def ensure_dir(dirname)
+    if !Dir.exists?(dirname) then
+      puts dirname
+      FileUtils.mkdir_p(dirname)
       return false
     end
     return true
