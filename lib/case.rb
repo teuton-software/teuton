@@ -2,6 +2,7 @@
 
 require 'net/ssh'
 require 'net/sftp'
+require 'net/telnet'
 
 require_relative 'application'
 require_relative 'case/config'
@@ -44,8 +45,8 @@ class Case
     @result = Result.new
     @result.reset
 
-    @debug=Tool.instance.is_debug?
-    @verbose=Tool.instance.is_verbose?
+    @debug=Application.instance.debug
+    @verbose=Application.instance.verbose
 	
     @action_counter=0		
     @action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
@@ -147,7 +148,7 @@ private
 
   def run_remote_cmd(pHostname)
     hostname=pHostname.to_s
-    protocol=get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
+    protocol=@config.get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
     protocol=:ssh if protocol.nil?
     protocol=protocol.to_sym
     
@@ -164,7 +165,7 @@ private
   def run_remote_cmd_ssh(pHostname)
     app=Application.instance 		
     hostname=pHostname.to_s
-    ip=get((hostname+'_ip').to_sym)
+    ip=@config.get((hostname+'_ip').to_sym)
     username=@config.get((hostname+'_username').to_sym)
     password=@config.get((hostname+'_password').to_sym)
     output=[]
@@ -207,7 +208,7 @@ private
   def run_remote_cmd_telnet(pHostname) 	
     app=Application.instance
     hostname=pHostname.to_s
-    ip=get((hostname+'_ip').to_sym)
+    ip=@config.get((hostname+'_ip').to_sym)
     username=@config.get((hostname+'_username').to_sym)
     password=@config.get((hostname+'_password').to_sym)
     output=[]
