@@ -81,9 +81,9 @@ class Case
       verboseln "\n"
     else
       @tasks.each do |t|
-        msg="TASK: #{t[:name]}" 
-        log("="*msg.size)
-        log(msg)
+        m="TASK: #{t[:name]}" 
+        log("="*m.size)
+        log(m)
         instance_eval &t[:block]
       end
     end
