@@ -16,7 +16,7 @@ class Case
   include DSL
   include Utils
 
-  attr_accessor :result
+  attr_accessor :result, :action
   attr_reader :id, :config, :report, :uniques
   @@id=1
 

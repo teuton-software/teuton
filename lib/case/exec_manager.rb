@@ -2,17 +2,13 @@
 
 require 'net/ssh'
 require 'net/sftp'
+require 'net/telnet'
 
 require_relative 'application'
-require_relative 'case/config'
-require_relative 'case/dsl'
-require_relative 'case/result'
-
-#TODO split Case class into several classes: Case, Action?, Session?, RunCommand class
 
 class Case
 
-  class RunManager
+  class ExecManager
   
     def initialize(parent)
       @parent = parent
@@ -20,7 +16,11 @@ class Case
       @debug=Tool.instance.is_debug?
       @verbose=Tool.instance.is_verbose?
 	
-      @sessions={}	
+      @sessions={}
+
+      @action=@parent.action
+      @config=@parent.config
+      @result=@parent.result
     end
   
     #execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Delete previous temp files
@@ -45,7 +45,7 @@ class Case
 
     def run_remote_cmd(pHostname)
       hostname=pHostname.to_s
-      protocol=get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
+      protocol=@config.get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
       protocol=:ssh if protocol.nil?
       protocol=protocol.to_sym
     
@@ -79,18 +79,18 @@ class Case
       rescue Errno::EHOSTUNREACH
         @sessions[hostname]=:nosession
         verbose app.letter[:error]
-        log( "Host #{ip} unreachable!", :error)
+        @parent.log( "Host #{ip} unreachable!", :error)
       rescue Net::SSH::AuthenticationFailed
         @sessions[hostname]=:nosession
         verbose app.letter[:error]
-        log( "SSH::AuthenticationFailed!", :error)
+        @parent.log( "SSH::AuthenticationFailed!", :error)
       rescue Net::SSH::HostKeyMismatch
         @sessions[hostname]=:nosession
         verbose app.letter[:error]
-        log( "SSH::HostKeyMismatch!", :error)
-        log( "* The destination server's fingerprint is not matching what is in your local known_hosts file.",:error)
-        log( "* Remove the existing entry in your local known_hosts file", :error)
-        log( "* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' -R #{ip}", :error)
+        @parent.log( "SSH::HostKeyMismatch!", :error)
+        @parent.log( "* The destination server's fingerprint is not matching what is in your local known_hosts file.",:error)
+        @parent.log( "* Remove the existing entry in your local known_hosts file", :error)
+        @parent.log( "* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' -R #{ip}", :error)
       rescue Exception => e
         @sessions[hostname]=:nosession
         verbose app.letter[:error]
@@ -146,7 +146,7 @@ class Case
         output=text.split("\n")
       rescue
         verbose "!"
-        log ("Local exec: "+psCmd) #, :error)
+        @parent.log ("Local exec: "+psCmd) #, :error)
       end
       return output
     end
