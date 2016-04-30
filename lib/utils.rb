@@ -4,7 +4,6 @@ module Utils
   # Create the directory if it dosn't exist.
   def ensure_dir(dirname)
     if !Dir.exists?(dirname) then
-      puts dirname
       FileUtils.mkdir_p(dirname)
       return false
     end
