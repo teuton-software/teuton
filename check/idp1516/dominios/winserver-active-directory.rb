@@ -71,7 +71,7 @@ task "winserver profiles" do
   end
 
 
-  file='maul.V2\\Desktop\sith\personajes.txt'
+  file='maul.V2\\Desktop\\sith\\personajes.txt'
   target "Content of <#{file}>"
   goto   :winserver, :exec => "type e:\\#{get(:profiles_dir)}\\#{file}"
   expect result.count!.eq 2
@@ -84,7 +84,7 @@ task "winserver profiles" do
   result.restore!
   expect result.find!("maul").count!.eq 1
   
-  file='obiwan.V2\\Desktop\jedi\personajes.txt'
+  file='obiwan.V2\\Desktop\\jedi\\personajes.txt'
   target "Content of <#{file}>"
   goto   :winserver, :exec => "type e:\\#{get(:profiles_dir)}\\#{file}"
   expect result.count!.eq 2
