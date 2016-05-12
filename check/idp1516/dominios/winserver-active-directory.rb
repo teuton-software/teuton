@@ -2,6 +2,9 @@
 task "winserver domain groups" do
 
   groups= [ 'jedi', 'sith']
+  if get(:domain).nil? then
+    set(:domain,"falta.dominio")
+  end
   domains=get(:domain).split(".")
   names= []
   
@@ -66,5 +69,32 @@ task "winserver profiles" do
     result.restore!
     expect result.find!(user).find!(".V2").count!.eq 1
   end
+
+
+  file='maul.V2\\Desktop\sith\personajes.txt'
+  target "Content of <#{file}>"
+  goto   :winserver, :exec => "type e:\\#{get(:profiles_dir)}\\#{file}"
+  expect result.count!.eq 2
   
+  target "Content of <#{file}> with vader"
+  result.restore!
+  expect result.find!("vader").count!.eq 1
+
+  target "Content of <#{file}> with maul"
+  result.restore!
+  expect result.find!("maul").count!.eq 1
+  
+  file='obiwan.V2\\Desktop\jedi\personajes.txt'
+  target "Content of <#{file}>"
+  goto   :winserver, :exec => "type e:\\#{get(:profiles_dir)}\\#{file}"
+  expect result.count!.eq 2
+  
+  target "Content of <#{file}> with obiwan"
+  result.restore!
+  expect result.find!("obiwan").count!.eq 1
+
+  target "Content of <#{file}> with yoda"
+  result.restore!
+  expect result.find!("yoda").count!.eq 1
+
 end

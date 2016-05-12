@@ -3,6 +3,9 @@ task "Set internal params..." do
 
   log "Setting internal params"
   
+  if get(:winserver_ip).nil?
+    set(:winserver_ip,"99.99.99.99")
+  end
   student_number=get(:winserver_ip).split(".")[2]||"99"
   student_number="0"+student_number if student_number.size==1
 
