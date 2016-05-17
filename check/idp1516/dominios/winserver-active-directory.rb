@@ -70,7 +70,9 @@ task "winserver profiles" do
     expect result.find!(user).find!(".V2").count!.eq 1
   end
 
+end
 
+=begin
   file='maul.V2\\Desktop\\sith\\personajes.txt'
   target "Content of <#{file}>"
   goto   :winserver, :exec => "type e:\\#{get(:profiles_dir)}\\#{file}"
@@ -97,4 +99,4 @@ task "winserver profiles" do
   result.restore!
   expect result.find!("yoda").count!.eq 1
 
-end
+=end
