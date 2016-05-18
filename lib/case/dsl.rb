@@ -130,7 +130,6 @@ module DSL
   def send(pArgs={})
     return if get(:tt_skip)
     
-    #format=pArgs[:format] || :txt
     format=@report.format
     
     if pArgs[:copy_to] then
@@ -142,6 +141,10 @@ module DSL
       
       filename="case-#{id_to_s}.#{format}"
       localfilepath=File.join(tempdir,"../out/",filename)
+      if pArgs[:prefix]
+        filename=pArgs[:prefix].to_s+filename
+      end
+      
       if pArgs[:remote_dir]
         remotefilepath=File.join(pArgs[:remote_dir],filename) 
       else
