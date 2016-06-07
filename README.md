@@ -1,3 +1,6 @@
+
+![logo](./docs/logo.png)
+
 #SysadminGame
 
 #Introduction
