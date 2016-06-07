@@ -1,7 +1,7 @@
 
-![logo](./docs/logo.png)
-
 #SysadminGame
+
+![logo](./docs/logo.png)
 
 #Introduction
 
