@@ -2,16 +2,20 @@
 
 ##example-03
 
-```
-* En este ejemplo, vamos necesitar varias máquinas: 
-    (a) la del profesor y 
-    (b) varias de estudiantes para ser evaluadas.
+##Objetivos
+
 * La máquina del profesor tiene el script que evalua el grado de cumplimiento 
   de los objetivos de las diferentes máquinas de los estudiantes.    
 * Usaremos el fichero de configuración para definir las diferentes máquinas remotas.   
 * Usaremos SSH como vía de comunicación entre las máquinas.
-```
 
+> También se puede usar el protocolo Telnet
+
+##Requisitos
+
+* En este ejemplo, vamos necesitar varias máquinas: 
+    (a) la del profesor y 
+    (b) varias de estudiantes para ser evaluadas.
 * Script: [example-03.rb](../../../examples/example-03.rb) 
 * Fichero de configuración: [example-03.yaml](../../../examples/example-03.yaml)
 * Descripción: Evalua varios casos entrando en *máquinas remotas*.

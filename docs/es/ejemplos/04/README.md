@@ -1,16 +1,20 @@
 
-##example-04
+#example-04
 
-```
-* En este ejemplo, vamos necesitar varias máquinas: 
-    (a) la del profesor y 
-    (b) varias de estudiantes.
+
+##Objetivos
 * La máquina del profesor tiene el script que evalua el grado de cumplimiento 
   de los objetivos de las diferentes máquinas de los estudiantes.
 * Usaremos el fichero de configuración para definir las diferentes máquinas remotas.
 * Usaremos SSH como vía de comunicación entre las máquinas.
-```
 
+> También se puede usar el protocolo Telnet
+
+##Requisitos
+
+* En este ejemplo, vamos necesitar varias máquinas: 
+    (a) la del profesor y 
+    (b) varias de estudiantes.
 * Script: [example-04.rb](../../../examples/example-04.rb) 
 * Fichero de configuración: [example-04.yaml](../../../examples/example-04.yaml)
 * Descripción: Evalua varios casos entrando en *máquinas remotas*, dejando 

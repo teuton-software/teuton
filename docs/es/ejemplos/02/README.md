@@ -2,13 +2,15 @@
 
 #example-02
 
-```
+##Objetivos
+
 * En este ejemplo, vamos a hacer uso del fichero de configuración.
 * Cada script (.rb) va acompañado de un fichero de configuración (.yaml).
 * El contenido del fichero de configuración tiene formato YAML.
 * Para leer el contenido del fichero de configuración desde el script, 
   usaremos la instruccion get del DSL.
-```
+
+##Requisitos
 
 * Script: [example-02.rb](../../../examples/example-02.rb) 
 * Fichero de configuración: [example-02.yaml](../../../examples/example-02.yaml)

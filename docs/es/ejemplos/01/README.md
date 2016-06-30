@@ -2,12 +2,14 @@
 
 #example-01
 
-```
+
+##Objetivos
 * En este ejemplo, veremos como definir un objetivo evaluable.
 * Los objetivos son cada uno de los aspectos que medimos en los trabajos realizados.
 * Cada trabajo será realizado por un alumno o varios, nosotros los llamaremos casos.
 * Cada caso tiene un parámetro con la lista de sus miembros.
-```
+
+##Requisitos
 
 * Script: [example-01.rb](../../../examples/example-01.rb) 
 * Fichero de configuración: [example-01.yaml](../../../examples/example-01.yaml)
@@ -82,7 +84,7 @@ todos tienen pero 1, a menos que indiquemos otro valor diferente (ya veremos un 
 ##Recordatorio
 
 Podemos crear tantos objetivos evaluables como queramos, usando las instrucciones
-`desc`, `goto` y `expect`. Cuantas más pongamos, más exhaustiva será nuestra 
+`target`, `goto` y `expect`. Cuantas más pongamos, más exhaustiva será nuestra 
 evaluación.
 
 Los objetivos deben ir siempre dentro de un bloque de tarea: `task "Task name" do ... end`.
