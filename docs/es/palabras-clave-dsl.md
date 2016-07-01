@@ -22,7 +22,7 @@ objetivos o elementos de evaluación.
 
 ###target
 
-`target "Escribe aquí la descripción de tu objetivo con tus propias palabras"`
+`target "Escribe aquí la descripción del objetivo con tus propias palabras"`
 
 * Nos permite introducir una descripción del objetivo que vamos a evaluar,
 usando nuestras propias palabras, de modo que cualquiera pueda entender
@@ -32,7 +32,7 @@ a analizar la información más facilmente.
 
 ###goto
 
-`goto :host1, :execute => "id david|wc -l"`
+`goto :host1, :execute => "id david"`
 
 > Ya sé que a los programadores no les gusta la sentencia `goto`, pero ésta
 es diferente. Piensa en ella como si hablaras en inglés, no como programador.
@@ -57,7 +57,9 @@ obtiene un resultado, que se guarda en `result`.
     * `result.ge(VALUE)`, devuelve true si el resultado es mayor o igual que VALUE
     * `result.lt(VALUE)`, devuelve true si el resultado es menor que VALUE
     * `result.le(VALUE)`, devuelve true si el resultado es menor o igual que VALUE
-    * `result.find!(VALUE)` o `result.grep!(VALUE)`, transforma el resultado, de modo que sólo quedan las líneas que contengan VALUE
+    * `result.find!(VALUE)` o `result.grep!(VALUE)`, transforma el resultado, 
+    de modo que sólo quedan las líneas que contengan VALUE. VALUE puede ser la cadena
+    de texto (Por ejemplo, `"Hello!"`) para filtrar o una expresión regular(Por ejemplo: `/[Hi|Hello]/`.
     * `result.not_find!(VALUE)` o `result.grep_v!(VALUE)`, transforma el resultado, de modo que sólo quedan las líneas que no contengan VALUE
     * `resutl.alterations`, muestra las transformaciones que se han realizado al resultado.
     * `result.restore!`, vuelve a restaurar el contenido del resultado a su valor original antes de las transformaciones.
