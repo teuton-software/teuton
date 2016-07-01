@@ -67,12 +67,15 @@ obtiene un resultado, que se guarda en `result`.
 
 ###expect
 
-`expect result.eq(1)`
+```
+expect result.eq(1)
+expect result.eq("obiwan")
+``` 
 
 * Después de ejecutar un comando en una maquina determinada, obtenemos un resultado, que
 se guarda en `result`.
 * Con la instrucción `expect` evaluamos si el resultado obtenido coincide o no con el valor
-esperado.
+esperado. Esta información se guarda para incluirla en los informes finales.
 
 ##start
 
@@ -114,10 +117,10 @@ dentro de cada una de las máquinas de cada caso.
 * `export :all`, crea un fichero de salida para cada caso, con los resultados 
 de la evaluación. Por defecto se usa TXT como formato de salida.
 * `export :format => :txt`, Ésta es la forma de definir los ficheros de salida
-que queremos crear y el formato de los mismos.
+que queremos crear y el formato de los mismos. Otros valores para 
+el formato de salida, pueden ser: `:txt` y `colored_text`.
 
-Otros valores para el formato de salida, pueden ser: `:txt` y `colored_text`.
-Actualmente en desarrolo están los formatos `:html`, `:xml`, y `:csv`.
+> Actualmente están en desarrolo los formatos `:html`, `:xml`, y `:csv`.
 
 ###send
 
