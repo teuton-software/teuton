@@ -1,5 +1,7 @@
 #SysadminGame
 
+![logo](../logo.png)
+
 #Introducción
 
 Esta es una herramienta Open Source para usar en una clase con ordenadores.
