@@ -53,12 +53,12 @@ de los hosts usados por nuestro script.
 > :global:
 >   :host1_username: root
 > :cases:
-> - :tt_members: Estudiante1
+> - :tt_members: Obiwan-Kenobi
 >   :host1_ip: 1.1.1.1
->   :host1_password: clave-root-para-estudiante1
-> - :tt_members: Estudiante2
+>   :host1_password: clave-root-para-obiwan
+> - :tt_members: Darth Varder
 >   :host1_ip: 2.2.2.2
->   :host1_password: clave-root-para-estudiante2
+>   :host1_password: clave-root-para-vader
 > ```
 
 El fichero de configuración anterior configura 2 casos (concursantes) 

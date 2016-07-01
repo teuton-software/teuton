@@ -41,8 +41,9 @@ Para ejecutar la actividad de ejemplo hacemos `./project docs/example/example-01
 > **Resultados** 
 > * Veremos un breve *informe en la pantalla*.
 > * los *ficheros de salida* en su versión extendida se guardan en el directorio `./var/example-01/out/`.
-> * Existen más actividades en el directorio `check`. Este es un buen directorio donde
-guardar los scripts que definen nuestras actividades.
+> * Existen más actividades en el directorio `check`. Este es un buen sitio donde
+guardar los scripts que vayamos creando para definir nuestras actividades.
+> * Periódicamente irán apareciendo nuevas actividades dentro del directorio `check`.
 
 #Documentación
 * [Instalación](./instalacion.md)

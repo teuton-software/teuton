@@ -35,6 +35,7 @@ a analizar la información más facilmente.
 ###goto
 
 ```
+    goto :host1, :exec => "id obiwan"
     goto :host1, :execute => "id david"
 ```
 
@@ -74,6 +75,7 @@ obtiene un resultado, que se guarda en `result`.
 ```
     expect result.eq(1)
     expect result.eq("obiwan")
+    expect result.eq("obiwan"), :weight => 2.0
 ``` 
 
 * Después de ejecutar un comando en una maquina determinada, obtenemos un resultado, que
@@ -114,6 +116,7 @@ dentro de cada una de las máquinas de cada caso.
 ```
     start do
       export
+      export :format => :colored_text
     end
 ```
 
