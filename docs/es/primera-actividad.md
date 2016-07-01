@@ -54,11 +54,9 @@ de los hosts usados por nuestro script.
 >   :host1_username: root
 > :cases:
 > - :tt_members: Estudiante1
->   :tt_emails: estudiante1@correo.es
 >   :host1_ip: 1.1.1.1
 >   :host1_password: clave-root-para-estudiante1
 > - :tt_members: Estudiante2
->   :tt_emails: estudiante2@correo.es
 >   :host1_ip: 2.2.2.2
 >   :host1_password: clave-root-para-estudiante2
 > ```
