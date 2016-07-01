@@ -58,8 +58,8 @@ obtiene un resultado, que se guarda en `result`.
     * `result.lt(VALUE)`, devuelve true si el resultado es menor que VALUE
     * `result.le(VALUE)`, devuelve true si el resultado es menor o igual que VALUE
     * `result.find!(VALUE)` o `result.grep!(VALUE)`, transforma el resultado, 
-    de modo que sólo quedan las líneas que contengan VALUE. VALUE puede ser la cadena
-    de texto (Por ejemplo, `"Hello!"`) para filtrar o una expresión regular(Por ejemplo: `/[Hi|Hello]/`.
+    de modo que sólo quedan las líneas que contengan VALUE. VALUE puede ser 
+    texto (Por ejemplo, `"Hello"`) o una expresión regular (Por ejemplo: `/[Hi|Hello]/`.
     * `result.not_find!(VALUE)` o `result.grep_v!(VALUE)`, transforma el resultado, de modo que sólo quedan las líneas que no contengan VALUE
     * `resutl.alterations`, muestra las transformaciones que se han realizado al resultado.
     * `result.restore!`, vuelve a restaurar el contenido del resultado a su valor original antes de las transformaciones.
