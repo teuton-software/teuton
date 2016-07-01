@@ -22,7 +22,9 @@ objetivos o elementos de evaluación.
 
 ###target
 
-`target "Escribe aquí la descripción del objetivo con tus propias palabras"`
+```
+    target "Escribe aquí la descripción del objetivo con tus propias palabras"
+```
 
 * Nos permite introducir una descripción del objetivo que vamos a evaluar,
 usando nuestras propias palabras, de modo que cualquiera pueda entender
@@ -32,7 +34,9 @@ a analizar la información más facilmente.
 
 ###goto
 
-`goto :host1, :execute => "id david"`
+```
+    goto :host1, :execute => "id david"
+```
 
 > Ya sé que a los programadores no les gusta la sentencia `goto`, pero ésta
 es diferente. Piensa en ella como si hablaras en inglés, no como programador.
@@ -68,8 +72,8 @@ obtiene un resultado, que se guarda en `result`.
 ###expect
 
 ```
-expect result.eq(1)
-expect result.eq("obiwan")
+    expect result.eq(1)
+    expect result.eq("obiwan")
 ``` 
 
 * Después de ejecutar un comando en una maquina determinada, obtenemos un resultado, que
