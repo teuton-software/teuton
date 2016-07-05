@@ -1,7 +1,3 @@
-#!/usr/bin/ruby
-# encoding: utf-8
-
-require_relative '../../lib/sysadmingame'
 
 =begin
  State       : In progress...
@@ -11,7 +7,7 @@ require_relative '../../lib/sysadmingame'
  Spanish URL : https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/add/ssh/README.md
 =end
 
-task "Ensure that very HOST is unique" do
+task "Ensuring that very HOST is unique" do
   goto :host1, :exec => "ifconfig| grep HWaddr| tr -s ' ' '%'| cut -d % -f 5"
   unique "MAC[host1]", result.value 
 
@@ -19,9 +15,9 @@ task "Ensure that very HOST is unique" do
   unique "MAC[host2]", result.value
 end
 
-task "Configure Debian host" do	
+task "Configuring Debian host" do	
 
-  target "Zona horaria <WET #{get(:year)}>"
+  target "Time zone <WET #{get(:year)}>"
   goto   :host1, :exec => "date | grep WET | grep #{get(:year)} | wc -l"
   expect result.equal(1)
 
@@ -29,17 +25,17 @@ task "Configure Debian host" do
   goto   :host1, :exec => "uname -a| grep Debian| grep 64| wc -l"
   expect result.equal(1)
 
-  target "Cheking hostname <"+get(:host1_hostname)+">"
+  target "Hostname => "+get(:host1_hostname)
   goto   :host1, :exec => "hostname -a"
   expect result.equal(get(:host1_hostname))
 	
-  target "Checking domainname <"+get(:lastname)+">"
+  target "Domainname => "+get(:lastname)
   goto   :host1, :exec =>  "hostname -d" 
   expect result.equal(get(:lastname))
 	
-  target "Checking username <"+get(:firstname)+">"
-  goto   :host1, :exec => "cat /etc/passwd|grep '"+get(:firstname)+"'|wc -l"
-  expect result.equal(1)
+  target "Username => "+get(:firstname)
+  goto   :host1, :exec => "cat /etc/passwd|"
+  expect result.grep!(get(:firstname)).count!.equal(1)
 
   target "Checking groupname <"+get(:groupname)+">"
   goto   :host1,  :exec => "cat /etc/group|grep '"+get(:groupname)+"'|wc -l"
@@ -58,7 +54,7 @@ task "Configure Debian SSH" do
   expect result.equal(2)
 
   goto :host1, :exec => "cat /home/#{get(:firstname)}/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
-  @filename1=tempfile
+  @filename1 = tempfile
   	
   target "Host2 hostname defined on Host1"
   goto :host1, :exec => "cat /etc/hosts| grep #{get(:host2_hostname)}| grep #{get(:host2_ip)}| wc -l"
