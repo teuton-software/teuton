@@ -54,6 +54,10 @@ class Laboratory
     puts "(%03d"%i+") target #{description}"
   end
 
+  def tempfile(pTempfile=nil)
+    return "tempfile"
+  end
+ 
   def goto(pHost=:localhost, pArgs={})
     result.reset
     h=pHost.to_s
