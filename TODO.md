@@ -7,7 +7,7 @@
     * Revise Spanish docs
     * Mejorar la documentación en español
 * DSL
-    * `advise "Some usefull information"` provide this information when studends demand help.
+    * `feedback or advise "Some usefull information"` provide this information when studends demand help.
     * `information`
 * Gamification
     * When students demand help they could recibe some advises. 
@@ -19,11 +19,13 @@
         1. Evaluate targets (current mode): `start :score=>:targets do ...`
         1. Evaluate task: `start :score=>:tasks do ...`
 
-##In future
+##In the future
 
 * Documentation
     * Improve english documentation
     * Make videos showing how to use this tool
+        * Download and installation
+        * Examples 01 to 05...
 * DSL
     * `export :format=>:html, :prefix => IAN`
     * `export :format=>:xml, :prefix => IAN`
@@ -31,7 +33,7 @@
     * `goto :hots1, :puppet => "Puppet instructions"`
     * `goto :hots1, :chef => "Chef instructions"`
     * `expect result.well_done?`
-    * `information { author "AUTHOR"; version "VERSION"; url "URL" }`
+    * `information { author: "AUTHOR", version: "VERSION", url: "URL" }`
     * `result.test("...")
     * `send :email_to => :members_emails`
 * Installation

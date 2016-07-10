@@ -16,21 +16,29 @@ class TestResult < Minitest::Test
 
     r.content=@content
     assert_equal true, r.grep!(filter).size!.eq(@content.size)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal true, r.grep!(filter).count!.eq(@content.size)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal true, r.find!(filter).size!.eq(@content.size)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal true, r.find!(filter).count!.eq(@content.size)
+    assert_equal "find!("+filter+") & count!", r.alterations
 
-    r.content=@content
+    r.restore!
     assert_equal false, r.grep!(filter).size!.eq(0)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal false, r.grep!(filter).count!.eq(0)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal false, r.find!(filter).size!.eq(0)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal false, r.find!(filter).count!.eq(0)
+    assert_equal "find!("+filter+") & count!", r.alterations
   end
 
   def test_neq
@@ -39,23 +47,56 @@ class TestResult < Minitest::Test
 
     r.content=@content
     assert_equal false, r.grep!(filter).size!.neq(@content.size)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal false, r.grep!(filter).count!.neq(@content.size)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal false, r.find!(filter).size!.neq(@content.size)
-    r.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal false, r.find!(filter).count!.neq(@content.size)
+    assert_equal "find!("+filter+") & count!", r.alterations
   end
 
+  def test_grep_array
+    filter1=["l","i","n","e"]
+    filter2=["l","i","n","e", "s"]
+    filter3=["l","i","n","e", "1"]
+    r=@result
+
+    r.content=@content
+    assert_equal true, r.grep!(filter1).size!.eq(@content.size)
+    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & count!", r.alterations
+    r.restore!
+    assert_equal true, r.find!(filter2).size!.neq(@content.size)
+    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(s) & count!", r.alterations
+    r.restore!
+    assert_equal true, r.find!(filter2).size!.eq(0)
+    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(s) & count!", r.alterations
+    r.restore!
+    assert_equal true, r.find!(filter3).size!.eq(1)
+    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(1) & count!", r.alterations
+    r.restore!
+    assert_equal true, r.find!(filter3).size!.eq(1)
+    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(1) & count!", r.alterations
+  end
+  
   def test_grep_string
     filter="line"
+    r=@result
+    r.content=@content
     assert_equal @result.grep!(filter).size!.value.to_i, @content.size
-    @result.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal @result.grep!(filter).count!.value.to_i, @content.size
-    @result.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal @result.find!(filter).size!.value.to_i, @content.size
-    @result.content=@content
+    assert_equal "find!("+filter+") & count!", r.alterations
+    r.restore!
     assert_equal @result.find!(filter).count!.value.to_i, @content.size
+    assert_equal "find!("+filter+") & count!", r.alterations
   end
     
   def test_grep_string_filter_1_item

@@ -96,20 +96,24 @@ class Result
 
 #TODO: Error line 102 undefined include? method for 0 Fixnum...
   def find!(pText)
-    @alterations << "find!(#{pText.to_s})"
-    return self if @content.size==0
-
-    if pText.class==String
+    if @content.size==0
+      @alterations << "find!(#{pText.to_s})"
+    elsif pText.class==String
+      @alterations << "find!(#{pText.to_s})"
       @content.select! { |i| i.include?(pText.to_s) }
     elsif pText.class==Regexp
+      @alterations << "find!(#{pText.to_s})"
       temp = @content.clone
       @content= temp.grep pText
+    elsif pText.class==Array
+      pText.each { |item| find!(item) }
     end
     
     self
   end
 
   alias_method :grep!, :find!
+
 
   def not_find!(pText)
     @alterations << "grep_v!(#{pText})"
