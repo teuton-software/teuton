@@ -51,7 +51,7 @@ module Project
   end
 
   def self.run(pathtofile)
-    $SCRIPTPATH=pathtofile   
+    $SCRIPTPATH=pathtofile # This must be fullpath to DSL script file
     require_relative 'sysadmingame'
     require_relative "../#{$SCRIPTPATH}"
   end

@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 require 'singleton'
 
@@ -11,7 +10,7 @@ class Application
   
   def initialize
     @name="sysadmin-game"
-    @version="0.19.0"
+    @version="0.20.0"
     @letter={ :good=>'.', :bad=>'F', :error=>'?', :none=>' ' }
     @output_basedir="var"
    	@debug = false
