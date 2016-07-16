@@ -12,7 +12,7 @@ module Utils
 
   def my_execute(psCmd)
    output=[]
-   return output if @debug
+   return output if Application.instance.debug
     begin
       text=`#{psCmd}`
       output=text.split("\n")
@@ -28,7 +28,7 @@ module Utils
   end
 	
   def verbose(psText)
-    return if !@verbose
+    return if !Application.instance.verbose
     print psText
   end
 end

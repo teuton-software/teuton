@@ -11,17 +11,13 @@ require_relative 'report'
 class Tool
   include Singleton
   include Utils
-  
-#  attr_reader :tasks
-	
+  	
   def initialize
 	@tasks=[]
 	@cases = []		
     @report = Report.new(0)
     @report.filename="resume"
-    app=Application.instance
-	@debug = app.debug
-	@verbose = app.verbose
+    @app=Application.instance
   end
 			
   def start(&block)
@@ -40,14 +36,13 @@ class Tool
 
 	#Load configurations from yaml file
 	configdata = YAML::load(File.open(pConfigFilename))
-	app=Application.instance
-	app.global = configdata[:global] || {}
-	app.global[:tt_testname]= app.global[:tt_testname] || File.basename($SCRIPTPATH,".rb")
-	app.global[:tt_sequence]=false if app.global[:tt_sequence].nil? 
+	@app.global = configdata[:global] || {}
+	@app.global[:tt_testname]= @app.global[:tt_testname] || File.basename($SCRIPTPATH,".rb")
+	@app.global[:tt_sequence]=false if @app.global[:tt_sequence].nil? 
 	@caseConfigList = configdata[:cases]
 
 	#Create out dir
-	@outdir = app.global[:tt_outdir] || File.join("var",app.global[:tt_testname],"out")
+	@outdir = @app.global[:tt_outdir] || File.join("var",@app.global[:tt_testname],"out")
 	ensure_dir @outdir
 	@report.output_dir = @outdir
 
@@ -56,7 +51,7 @@ class Tool
 
 	@caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) } # create cases
 	start_time = Time.now
-    if app.global[:tt_sequence] then
+    if @app.global[:tt_sequence] then
       verboseln "[INFO] Running in sequence (#{start_time.to_s})"
       @cases.each { |c| c.start } # Process every case in sequence
 	else
@@ -84,20 +79,11 @@ class Tool
 	threads.each { |t| t.join }
 
     # Build Hall of Fame
-    app=Application.instance
-    app.hall_of_fame = build_hall_of_fame
+    @app.hall_of_fame = build_hall_of_fame
 
 	close_main_report(start_time)
   end
 		
-  def is_debug?
-    @debug
-  end
-	
-  def is_verbose?
-    @verbose
-  end
-	
   def show(mode=:resume)
     if mode==:resume or mode==:all then
       @report.show
