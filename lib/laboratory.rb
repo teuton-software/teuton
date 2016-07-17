@@ -15,12 +15,12 @@ end
 class Laboratory
   attr_reader :result
   
-  def initialize(pathtofile)
+  def initialize(pScriptPath, pConfigPath)
     @path={}
-    @path[:script]   = pathtofile
-    @path[:dirname]  = File.dirname(pathtofile)
-    @path[:filename] = File.basename( pathtofile, ".rb")
-    @path[:config]   = File.join( @path[:dirname], @path[:filename]+".yaml" )
+    @path[:script]   = pScriptPath
+    @path[:dirname]  = File.dirname(pScriptPath)
+    @path[:filename] = File.basename( pScriptPath, ".rb")
+    @path[:config]   = pConfigPath
     
     @result = Result.new
     @targetid=0

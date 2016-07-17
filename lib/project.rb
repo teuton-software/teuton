@@ -43,41 +43,49 @@ module Project
     end
   end
   
-  def self.laboratory(pathtofile)
-    require_relative 'laboratory'
-    require_relative "../#{pathtofile}"
-    lab =Laboratory.new("../#{pathtofile}")
-    lab.whatihavetodo
-  end
-
-  def self.run(pathtofile)
+  def self.find_filenames_for(pathtofile)
     if pathtofile.nil? # Check param not null
       puts Rainbow("[ERROR] path-to-file not specified").color(:red)
       puts Rainbow("* Please, read help => ./project help").color(:yellow)
-      return
+      exit 1
     end
     
     if not File.exists?(pathtofile) # Check file exists
       puts Rainbow("[ERROR] ").red+Rainbow(pathtofile).bright.red+Rainbow(" dosn't exists").red
-      return
+      exit 1
     end
     
     # Define:
-    #   $SCRIPT_PATH, must contain fullpath to DSL script file
-    #   $CONFIG_PATH, must contain fullpath to YAML config file
+    #   lScriptPath, must contain fullpath to DSL script file
+    #   lConfigPath, must contain fullpath to YAML config file
 
     if File.directory?(pathtofile) then
-      $SCRIPT_PATH = File.join( pathtofile, "start.rb")
-      $CONFIG_PATH = File.join( pathtofile, "config.yaml")
-      $TESTNAME = pathtofile.split("/")[-1]
+      lScriptPath = File.join( pathtofile, "start.rb")
+      lConfigPath = File.join( pathtofile, "config.yaml")
+      lTestName = pathtofile.split("/")[-1]
     else
-      $SCRIPT_PATH=pathtofile # This must be fullpath to DSL script file
-      $CONFIG_PATH = File.join(File.dirname($SCRIPT_PATH),File.basename($SCRIPT_PATH,".rb")+".yaml")
-      $TESTNAME = File.basename($SCRIPT_PATH,".rb")
+      lScriptPath = pathtofile # This must be fullpath to DSL script file
+      lConfigPath = File.join(File.dirname( lScriptPath ),File.basename( lScriptPath, ".rb")+".yaml")
+      lTestName = File.basename( lScriptPath, ".rb")
     end
-    puts Rainbow("[INFO] SCRIPT_PATH => #{$SCRIPT_PATH}").blue
-    puts Rainbow("[INFO] CONFIG_PATH => #{$CONFIG_PATH}").blue
-    puts Rainbow("[INFO]    TESTNAME => #{$TESTNAME}").blue
+    puts Rainbow("[INFO] ScriptPath => #{lScriptPath}").blue
+    puts Rainbow("[INFO] ConfigPath => #{lConfigPath}").blue
+    puts Rainbow("[INFO]   TestName => #{lTestName}").blue
+
+    return lScriptPath, lConfigPath, lTestName
+  end
+
+  def self.laboratory(pathtofile)
+    lScriptPath, lConfigPath, lTestName = find_filenames_for(pathtofile)
+    
+    require_relative 'laboratory'
+    require_relative "../#{lScriptPath}"
+    lab =Laboratory.new("../#{lScriptPath}", "../#{lConfigPath}")
+    lab.whatihavetodo
+  end
+
+  def self.run(pathtofile)
+    $SCRIPT_PATH, $CONFIG_PATH, $TESTNAME = find_filenames_for(pathtofile)  
 
     require_relative 'sysadmingame'
     require_relative "../#{$SCRIPT_PATH}"
