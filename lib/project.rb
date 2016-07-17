@@ -51,9 +51,36 @@ module Project
   end
 
   def self.run(pathtofile)
-    $SCRIPTPATH=pathtofile # This must be fullpath to DSL script file
+    if pathtofile.nil? # Check param not null
+      puts Rainbow("[ERROR] path-to-file not specified").color(:red)
+      puts Rainbow("* Please, read help => ./project help").color(:yellow)
+      return
+    end
+    
+    if not File.exists?(pathtofile) # Check file exists
+      puts Rainbow("[ERROR] ").red+Rainbow(pathtofile).bright.red+Rainbow(" dosn't exists").red
+      return
+    end
+    
+    # Define:
+    #   $SCRIPT_PATH, must contain fullpath to DSL script file
+    #   $CONFIG_PATH, must contain fullpath to YAML config file
+
+    if File.directory?(pathtofile) then
+      $SCRIPT_PATH = File.join( pathtofile, "start.rb")
+      $CONFIG_PATH = File.join( pathtofile, "config.yaml")
+      $TESTNAME = pathtofile.split("/")[-1]
+    else
+      $SCRIPT_PATH=pathtofile # This must be fullpath to DSL script file
+      $CONFIG_PATH = File.join(File.dirname($SCRIPT_PATH),File.basename($SCRIPT_PATH,".rb")+".yaml")
+      $TESTNAME = File.basename($SCRIPT_PATH,".rb")
+    end
+    puts Rainbow("[INFO] SCRIPT_PATH => #{$SCRIPT_PATH}").blue
+    puts Rainbow("[INFO] CONFIG_PATH => #{$CONFIG_PATH}").blue
+    puts Rainbow("[INFO]    TESTNAME => #{$TESTNAME}").blue
+
     require_relative 'sysadmingame'
-    require_relative "../#{$SCRIPTPATH}"
+    require_relative "../#{$SCRIPT_PATH}"
   end
   
 end

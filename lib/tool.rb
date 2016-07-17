@@ -26,18 +26,14 @@ class Tool
   end
 
   def check_cases!
-    # Define/Search script filename and config filename
-    if $SCRIPTPATH.nil? 
-      $SCRIPTPATH=$0 
-    end
-    
-    pConfigFilename = File.join(File.dirname($SCRIPTPATH),File.basename($SCRIPTPATH,".rb")+".yaml")
-
+    pScriptFilename = $SCRIPT_PATH
+    pConfigFilename = $CONFIG_PATH
+    pTestname = $TESTNAME
 
 	#Load configurations from yaml file
 	configdata = YAML::load(File.open(pConfigFilename))
 	@app.global = configdata[:global] || {}
-	@app.global[:tt_testname]= @app.global[:tt_testname] || File.basename($SCRIPTPATH,".rb")
+	@app.global[:tt_testname]= @app.global[:tt_testname] || $TESTNAME
 	@app.global[:tt_sequence]=false if @app.global[:tt_sequence].nil? 
 	@caseConfigList = configdata[:cases]
 
