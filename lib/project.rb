@@ -62,7 +62,7 @@ module Project
     if File.directory?(pathtofile) then
       lScriptPath = File.join( pathtofile, "start.rb")
       lConfigPath = File.join( pathtofile, "config.yaml")
-      lTestName = pathtofile.split("/")[-1]
+      lTestName = pathtofile.split(File::SEPARATOR)[-1]
     else
       lScriptPath = pathtofile # This must be fullpath to DSL script file
       lConfigPath = File.join(File.dirname( lScriptPath ),File.basename( lScriptPath, ".rb")+".yaml")
