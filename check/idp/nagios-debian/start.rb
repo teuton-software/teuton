@@ -37,13 +37,13 @@ task "Register Information" do
 end
 
 
-require_relative 'nagios-debian/debian1-config-mv'
-require_relative 'nagios-debian/debian1-nagios-server'
-require_relative 'nagios-debian/debian2-config-mv'
-require_relative 'nagios-debian/debian2-agent'
-require_relative 'nagios-debian/windows1-config-mv'
-require_relative 'nagios-debian/windows1-agent'
-require_relative 'nagios-debian/debian1-monit'
+require_relative 'debian1-config-mv'
+require_relative 'debian1-nagios-server'
+require_relative 'debian2-config-mv'
+require_relative 'debian2-agent'
+require_relative 'windows1-config-mv'
+require_relative 'windows1-agent'
+require_relative 'debian1-monit'
 
 start do
   show
