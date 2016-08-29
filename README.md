@@ -1,8 +1,8 @@
 
 #SysadminGame
 
-DSL to write `Host Unit Tests`. Check if a group of real or virtual Machines
-satisfied a list of targets.
+DSL to write `Host Unit Tests`.
+Check if a group of real or virtual Machines satisfies a list of targets.
 
 ![logo](./docs/logo.png)
 
