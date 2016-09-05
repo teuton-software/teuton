@@ -16,7 +16,7 @@ Será el que use el profesor y/o juez de la competición.
    * `cd sysadmin-game`
    * Ejecutar `rake install_gems` para instalar las gemas necesarias en nuestro sistema.
 
-> Veamos de clonación usado comandos `git`:
+> Ejemplo de clonación usado comandos `git`:
 > ![git-clone](../images/git-clone.png)
 >
 > Comprobar las versiones de `ruby`, `rake` antes de instalar las gemas (Librerías):
