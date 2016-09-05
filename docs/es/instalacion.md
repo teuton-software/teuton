@@ -9,12 +9,21 @@ Será el que use el profesor y/o juez de la competición.
 
 * Software requerido en el host principal:
    * Software SSH cliente: Se usará para conectar con el resto de máquinas.
-   * `rake --version` =>10.4.2
    * `ruby -v` => 2.1.3p242
+   * `rake --version` =>10.4.2
 * Proceso de instalación:
    * Descargar este proyecto.
    * `cd sysadmin-game`
    * Ejecutar `rake install_gems` para instalar las gemas necesarias en nuestro sistema.
+
+> Veamos de clonación usado comandos `git`:
+> ![git-clone](../images/git-clone.png)
+>
+> Comprobar las versiones de `ruby`, `rake` antes de instalar las gemas (Librerías):
+> ![ruby-rake-gems](../images/ruby-rake-gems.png)
+>
+> Error que se produce cuando tenemos una versión incorrecta de `ruby`:
+> ![error-version](../images/error-version.png)
 
 ##Equipos remotos
 
