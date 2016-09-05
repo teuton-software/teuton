@@ -5,13 +5,13 @@ class Result
   def initialize
 	reset
   end
-		
+
   def reset
     @content_backup=[]
-	@content=[]
-	@value=nil
-	@expected=nil
-	@alterations=[]
+	  @content=[]
+	  @value=nil
+	  @expected=nil
+	  @alterations=[]
   end
 
   def restore!
@@ -20,12 +20,12 @@ class Result
     @content_backup = temp
     @content = temp.clone
   end
-    
+
   def value
-  
+
     @content[0]
   end
-  
+
   def alterations
     prefix=""
     if @alterations.size>0 then
@@ -37,26 +37,26 @@ class Result
   def debug
     my_screen_table = Terminal::Table.new do |st|
       if @content.class==Array then
-        st.add_row [ "count=#{@content.count}", "result.debug()" ] 
+        st.add_row [ "count=#{@content.count}", "result.debug()" ]
         st.add_separator
         i=0
         @content.each do |item|
-          st.add_row [ "Line_"+i.to_s  , item] 
+          st.add_row [ "Line_"+i.to_s  , item]
           i+=1
         end
       else
-        st.add_row [ "", "result.debug()" ] 
+        st.add_row [ "", "result.debug()" ]
         st.add_separator
-        st.add_row [ @content.class.to_s  , @content.to_s] 
+        st.add_row [ @content.class.to_s  , @content.to_s]
       end
     end
     puts "\n"+my_screen_table.to_s+"\n"
   end
-  
+
   def expected
     return @expected.to_s
   end
-  
+
   def eq(pValue)
     @expected=pValue
 
@@ -108,7 +108,7 @@ class Result
     elsif pText.class==Array
       pText.each { |item| find!(item) }
     end
-    
+
     self
   end
 
@@ -123,7 +123,7 @@ class Result
     self
   end
 
-  alias_method :grep_v!, :not_find! 
+  alias_method :grep_v!, :not_find!
 
   def count!
     @alterations << "count!"
@@ -135,7 +135,7 @@ class Result
     else
       @content=[ @content.to_i.to_s ]
     end
-    
+
     self
   end
 
@@ -146,7 +146,7 @@ class Result
     @expected="Include <#{pValue}> value"
     return @content[0].include? pValue
   end
-		
+
   def not_include?(pValue)
     @expected="Not include <#{pValue}> value"
 	return not(@content[0].include? pValue)
@@ -156,12 +156,12 @@ class Result
     @expected="Contain <#{pValue}> value"
     return @content.contain? pValue
   end
-  
+
   def content=(content)
     @content_backup = content.clone
     @content = content.clone
   end
-  
+
   def content
     return @content
   end
@@ -174,11 +174,11 @@ class Result
 	return false if @content.nil?
 	lfTarget=@content[0].to_f
 	lfDesv=(lfTarget.to_f*10.0)/100.0
-			 
-	return true if ((lfTarget-pfValue).abs.to_f <= lfDesv) 
-	return false 
+
+	return true if ((lfTarget-pfValue).abs.to_f <= lfDesv)
+	return false
   end
-		
+
   def empty
     @expected="Empty!"
 	return @content.empty
@@ -186,7 +186,7 @@ class Result
 
   alias_method :empty?, :empty
   alias_method :is_empty?, :empty
-	
+
   def ge(pValue)
     @expected="Greater or equal to #{pValue}"
 	return false if @content.nil? || @content[0].nil?
@@ -222,10 +222,10 @@ class Result
 
   alias_method :greater, :gt
   alias_method :greater_than, :gt
-	
+
   def le(pValue)
     @expected="Lesser or equal to #{pValue.to_s}"
-    
+
 	return false if @content.nil? || @content[0].nil?
     case pValue.class.to_s
     when 'Fixnum'
@@ -243,7 +243,7 @@ class Result
 
   def lt(pValue)
     @expected="Lesser than #{pValue.to_s}"
-    
+
 	return false if @content.nil? || @content[0].nil?
     case pValue.class.to_s
     when 'Fixnum'
@@ -259,5 +259,5 @@ class Result
   alias_method :lesser, :lt
   alias_method :smaller, :lt
   alias_method :lesser_than, :lt
-		
+
 end
