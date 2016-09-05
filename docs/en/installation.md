@@ -8,10 +8,11 @@ One hosts must controll the process. It's the hosts used by the teacher.
    * `ruby -v` => 2.1.3p242
    * `rake --version` =>10.4.2
 * Installation process:
+   * Install ruby (`apt-get install ruby` on Debian, `zypper in ruby` on OpenSUSE, etc)
+   * Install rake (`gem install rake`)
    * Download this project.
    * `cd sysadmin-game`
    * `rake install_gems`: to install required ruby gems on your system.
-
 
 > Example clone using `git` command:
 > ![git-clone](../images/git-clone.png)

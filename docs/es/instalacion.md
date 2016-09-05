@@ -12,6 +12,8 @@ Será el que use el profesor y/o juez de la competición.
    * `ruby -v` => 2.1.3p242
    * `rake --version` =>10.4.2
 * Proceso de instalación:
+   * Instalar ruby (`apt-get install ruby` en Debian, `zypper in ruby` en OpenSUSE, etc)
+   * Instalar rake (`gem install rake`)
    * Descargar este proyecto.
    * `cd sysadmin-game`
    * Ejecutar `rake install_gems` para instalar las gemas necesarias en nuestro sistema.
