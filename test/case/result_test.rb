@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
 require "minitest/autorun"
-require_relative "../lib/case/result"
+require_relative "../../lib/case/result"
 
-class TestResult < Minitest::Test
+class ResultTest < Minitest::Test
   def setup
     @result = Result.new
     @content = [ "line1","line2","line3" ]
@@ -81,7 +81,7 @@ class TestResult < Minitest::Test
     assert_equal true, r.find!(filter3).size!.eq(1)
     assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(1) & count!", r.alterations
   end
-  
+
   def test_grep_string
     filter="line"
     r=@result
@@ -98,7 +98,7 @@ class TestResult < Minitest::Test
     assert_equal @result.find!(filter).count!.value.to_i, @content.size
     assert_equal "find!("+filter+") & count!", r.alterations
   end
-    
+
   def test_grep_string_filter_1_item
     filter="line1"
     r= @result
@@ -106,7 +106,7 @@ class TestResult < Minitest::Test
     assert_equal "find!(line1)" , r.alterations
     assert_equal [ "line1" ] , r.content
     assert_equal 1, @result.content.size
-    
+
     assert_equal 1, r.grep!(filter).size!.value.to_i
     r.content=@content
     assert_equal 1, r.grep!(filter).count!.value.to_i
@@ -123,7 +123,7 @@ class TestResult < Minitest::Test
     assert_equal "find!(line9)" , r.alterations
     assert_equal [ ] , r.content
     assert_equal 0, @result.content.size
-    
+
     assert_equal 0, r.grep!(filter).size!.value.to_i
     r.content=@content
     assert_equal 0, r.grep!(filter).count!.value.to_i
@@ -143,8 +143,8 @@ class TestResult < Minitest::Test
     @result.content=@content
     assert_equal @result.find!(filter).count!.value.to_i, @content.size
   end
-  
-  def test_grep_regexp_filter_1_item  
+
+  def test_grep_regexp_filter_1_item
     filter=/line1/
     assert_equal 1, @result.grep!(filter).size!.value.to_i
     @result.content=@content
@@ -155,7 +155,7 @@ class TestResult < Minitest::Test
     assert_equal 1, @result.find!(filter).count!.value.to_i
   end
 
-  def test_grep_regexp_filter_0_item  
+  def test_grep_regexp_filter_0_item
     filter=/line9/
     assert_equal 0, @result.grep!(filter).size!.value.to_i
     @result.content=@content
@@ -165,19 +165,19 @@ class TestResult < Minitest::Test
     @result.content=@content
     assert_equal 0, @result.find!(filter).count!.value.to_i
   end
-  
+
   def test_reset
     assert_equal @content[0], @result.value
     @result.reset
-    assert_equal nil, @result.value 
+    assert_equal nil, @result.value
   end
 
   def test_restore!
-    assert_equal @content[0], @result.value 
+    assert_equal @content[0], @result.value
     @result.count!
     assert_equal 3, @result.value.to_i
     @result.restore!
-    assert_equal @content[0], @result.value     
+    assert_equal @content[0], @result.value
   end
 
 end
