@@ -6,12 +6,12 @@ require 'fileutils'
 require 'rainbow'
 
 module Project
-		
+
   def self.create(pathtofile)
-  
+
     projectname = File.basename(pathtofile)
     projectdir  = File.dirname(pathtofile)
-    
+
     puts "\n[INFO] Creating project <#{Rainbow(projectname).bright}>"
 
     # Directory
@@ -21,17 +21,17 @@ module Project
     else
       puts "* Exists directory!  => #{Rainbow(projectdir).color(:yellow)}"
     end
-    
-    scriptfilepath=pathtofile+".rb" 
+
+    scriptfilepath=pathtofile+".rb"
     copyfile("lib/config/lab.rb",scriptfilepath) # Ruby script
 
-    configfilepath=pathtofile+".yaml" 
+    configfilepath=pathtofile+".yaml"
     copyfile("lib/config/lab.yaml",configfilepath) # Configfile
-    
-    gitignorefilepath=projectdir+"/.gitignore" 
+
+    gitignorefilepath=projectdir+"/.gitignore"
     copyfile("lib/config/gitignore",gitignorefilepath) # gitignore
-    
-    puts "" 
+
+    puts ""
   end
 
   def self.copyfile(target,dest)
@@ -42,19 +42,19 @@ module Project
       puts "* Exists file!       => #{Rainbow(dest).color(:yellow)}"
     end
   end
-  
+
   def self.find_filenames_for(pathtofile)
     if pathtofile.nil? # Check param not null
       puts Rainbow("[ERROR] path-to-file not specified").color(:red)
       puts Rainbow("* Please, read help => ./project help").color(:yellow)
       exit 1
     end
-    
+
     if not File.exists?(pathtofile) # Check file exists
       puts Rainbow("[ERROR] ").red+Rainbow(pathtofile).bright.red+Rainbow(" dosn't exists").red
       exit 1
     end
-    
+
     # Define:
     #   lScriptPath, must contain fullpath to DSL script file
     #   lConfigPath, must contain fullpath to YAML config file
@@ -70,14 +70,14 @@ module Project
     end
     puts Rainbow("[INFO] ScriptPath => #{lScriptPath}").blue
     puts Rainbow("[INFO] ConfigPath => #{lConfigPath}").blue
-    puts Rainbow("[INFO]   TestName => #{lTestName}").blue
+    puts Rainbow("[INFO] TestName   => #{lTestName}").blue
 
     return lScriptPath, lConfigPath, lTestName
   end
 
   def self.laboratory(pathtofile)
     lScriptPath, lConfigPath, lTestName = find_filenames_for(pathtofile)
-    
+
     require_relative 'laboratory'
     require_relative "../#{lScriptPath}"
     lab =Laboratory.new("../#{lScriptPath}", "../#{lConfigPath}")
@@ -85,10 +85,10 @@ module Project
   end
 
   def self.run(pathtofile)
-    $SCRIPT_PATH, $CONFIG_PATH, $TESTNAME = find_filenames_for(pathtofile)  
+    $SCRIPT_PATH, $CONFIG_PATH, $TESTNAME = find_filenames_for(pathtofile)
 
     require_relative 'sysadmingame'
     require_relative "../#{$SCRIPT_PATH}"
   end
-  
+
 end
