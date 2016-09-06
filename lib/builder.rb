@@ -8,21 +8,21 @@
 =begin
  This methods create all files to build a sinatra application
  that shows the results of every student.
- 
+
 =end
 
 module Builder
 
   def build( app, pArgs={})
-	case app
-	when :gamelist
-	  build_game_list pArgs
-	end
+	  case app
+	  when :gamelist
+	    build_game_list pArgs
+	  end
   end
 
   def build_game_list(pArgs={})
     # build directories
-    ensure_dir File.join(@outdir, "public")		
+    ensure_dir File.join(@outdir, "public")
     ensure_dir File.join(@outdir, "views")
 
     # build script show_gamelist.rb
@@ -30,12 +30,12 @@ module Builder
     file = File.open( filename, 'w' )
     file.write("#!/usr/bin/ruby\n# encoding: utf-8\n\nrequire 'sinatra/base'\n\n")
     file.write("class GameList < Sinatra::Base\n")
-  
+
     file.write("  set :static, true\n")
     file.write("  set :public_folder, 'public'\n")
 
-    file.write("  set :bind, '#{pArgs[:ip].to_s}'\n") if !pArgs[:ip].nil? 
-    file.write("  set :port, '#{pArgs[:port].to_s}'\n") if !pArgs[:port].nil? 
+    file.write("  set :bind, '#{pArgs[:ip].to_s}'\n") if !pArgs[:ip].nil?
+    file.write("  set :port, '#{pArgs[:port].to_s}'\n") if !pArgs[:port].nil?
 
     file.write("  get '/' do\n    erb :index\n  end\n")
     file.write("end\n\n")
@@ -43,7 +43,7 @@ module Builder
 
     file.close
     File.chmod(0775, filename)
-		
+
     #build views/index.erb
     filename=File.join(@outdir, "views", "index.erb")
     file = File.open( filename, 'w' )
@@ -61,6 +61,5 @@ module Builder
     file.write("</tbody></table>")
     file.close
   end
-	
-end
 
+end
