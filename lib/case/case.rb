@@ -4,11 +4,11 @@ require 'net/ssh'
 require 'net/sftp'
 require 'net/telnet'
 
-require_relative 'application'
-require_relative 'case/config'
-require_relative 'case/dsl'
-require_relative 'case/result'
-require_relative 'utils'
+require_relative '../application'
+require_relative '../utils'
+require_relative 'config'
+require_relative 'dsl'
+require_relative 'result'
 
 #TODO split Case class into several classes: Case, Action?, Session?, RunCommand class
 
@@ -22,16 +22,16 @@ class Case
 
   def initialize(pConfig)
     @config = Case::Config.new( :local => pConfig, :global => Application.instance.global)
-    
+
     @tasks=Application.instance.tasks
     @id=@@id; @@id+=1
-				
+
     #Define Case Report
     @report = Report.new(@id)
     @report.filename=( @id<10 ? "case-0#{@id.to_s}" : "case-#{@id.to_s}" )
     @report.output_dir=File.join( "var", @config.global[:tt_testname], "out" )
     ensure_dir @report.output_dir
-		
+
     #Default configuration
     @config.local[:tt_skip] = @config.local[:tt_skip] || false
     @mntdir = File.join( "var", @config.get(:tt_testname), "mnt", @id.to_s )
@@ -47,18 +47,18 @@ class Case
 
     @debug=Application.instance.debug
     @verbose=Application.instance.verbose
-	
-    @action_counter=0		
+
+    @action_counter=0
     @action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
     @uniques=[]
-    @sessions={}	
+    @sessions={}
     tempfile :default
   end
-  
+
   def skip
     @config.get(:tt_skip)
   end
-  
+
   def start
     @skip=get(:tt_skip)||false
     if @skip==true then
@@ -69,8 +69,8 @@ class Case
     names=@id.to_s+"-*.tmp"
     r=`ls #{@tmpdir}/#{names} 2>/dev/null | wc -l`
     execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Delete previous temp files
-		
-    start_time = Time.now		
+
+    start_time = Time.now
     if get(:tt_sequence) then
       verboseln "Starting case <"+@config.get(:tt_members)+">"
       @tasks.each do |t|
@@ -81,7 +81,7 @@ class Case
       verboseln "\n"
     else
       @tasks.each do |t|
-        m="TASK: #{t[:name]}" 
+        m="TASK: #{t[:name]}"
         log("="*m.size)
         log(m)
         instance_eval &t[:block]
@@ -93,11 +93,11 @@ class Case
     @report.tail[:case_id]=@id
     @report.tail[:start_time_]=start_time
     @report.tail[:finish_time]=finish_time
-    @report.tail[:duration]=finish_time-start_time	
+    @report.tail[:duration]=finish_time-start_time
 
     @sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
   end
-  
+
   def close(uniques)
     fails=0
     @uniques.each do |key|
@@ -133,17 +133,17 @@ private
       lFile = File.open(psFilename,'r')
       lItem = lFile.readlines
       lFile.close
-			
+
       lItem.map! { |i| i.sub(/\n/,"") }
-			
+
       return lItem
     rescue
       return []
     end
   end
-	
+
   def run_local_cmd
-    @result.content = my_execute( @action[:command] )	
+    @result.content = my_execute( @action[:command] )
   end
 
   def run_remote_cmd(pHostname)
@@ -151,7 +151,7 @@ private
     protocol=@config.get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
     protocol=:ssh if protocol.nil?
     protocol=protocol.to_sym
-    
+
     case protocol
     when :ssh
       run_remote_cmd_ssh(pHostname)
@@ -161,25 +161,25 @@ private
       raise "Unkown remote protocol <#{protocol.to_s}>"
     end
   end
-  	
+
   def run_remote_cmd_ssh(pHostname)
-    app=Application.instance 		
+    app=Application.instance
     hostname=pHostname.to_s
     ip=@config.get((hostname+'_ip').to_sym)
     username=@config.get((hostname+'_username').to_sym)
     password=@config.get((hostname+'_password').to_sym)
     output=[]
-		
+
     begin
       if @sessions[hostname].nil?
         @sessions[hostname] = Net::SSH.start(ip, username, :password => password)
       end
-			
+
       if @sessions[hostname].class==Net::SSH::Connection::Session
         text=@sessions[hostname].exec!( @action[:command] )
         output = text.split("\n")
       end
-    
+
     rescue Errno::EHOSTUNREACH
       @sessions[hostname]=:nosession
       verbose app.letter[:error]
@@ -200,12 +200,12 @@ private
       verbose app.letter[:error]
       log( "[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+@action[:command], :error)
     end
-		
+
     @result.content=output
     @result.content.compact!
   end
 
-  def run_remote_cmd_telnet(pHostname) 	
+  def run_remote_cmd_telnet(pHostname)
     app=Application.instance
     hostname=pHostname.to_s
     ip=@config.get((hostname+'_ip').to_sym)
@@ -220,7 +220,7 @@ private
         text=""
         h.cmd(@action[:command]) {|i| text << i}
         output=text.split("\n")
-        h.close      
+        h.close
         @sessions[hostname] = :ok
       end
 

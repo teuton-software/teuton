@@ -4,7 +4,7 @@ require 'singleton'
 require 'yaml'
 
 require_relative 'application'
-require_relative 'case'
+require_relative 'case/case'
 require_relative 'utils'
 require_relative 'report'
 
