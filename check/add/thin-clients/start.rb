@@ -1,8 +1,6 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require_relative '../../lib/sysadmingame'
-
 =begin
  State       : In progress...
  Activity    : Thin Clients LTSP
@@ -20,15 +18,15 @@ task "Configure hostname" do
   goto :host1, :exec => "hostname -f"
   expect result.equal(get(:host1_hostname))
 
-  unique "hostname", result.value	
+  unique "hostname", result.value
   goto :host1, :exec => "blkid |grep sda1"
-  unique "UUID", result.value	
-  
+  unique "UUID", result.value
+
 end
 
 task "Create users" do
   users=[1,2,3]
-  
+
   users.each do |i|
     username=get(:apellido1)+i.to_s
 
@@ -47,7 +45,7 @@ task "Create users" do
 end
 
 task "Install sofware" do
-
+  packagename="tlsp"
   target "Package <#{packagename}> installed"
   goto :host1, :exec => "dpkg -l #{packagename}| grep ii| wc -l"
   expect result.equal(1)
@@ -62,22 +60,22 @@ end
 
 task "Run the services" do
   services=[ 'dhcpd', 'tftpd' ]
-  
+
   services.each do |service|
     target "Service <#{service}> running"
     goto :host1, :exec => "ps -ef| grep #{service}| grep -v color| wc -l"
     expect result.equal(1)
   end
-  
+
   filename='/etc/default/isc-dhcp-server'
   target "<#{filename}> content"
   goto :host1, :exec => "cat #{filename}|grep INTERFACES"
-  expect result.value.include? 'INTERFACES="eth1"'
+  expect result.grep!('INTERFACES="eth1"').equal(1)
 
   filename='/etc/default/tftpd-pha'
   target "<#{filename}> content"
   goto :host1, :exec => "cat #{filename}|grep TFTP_ADDRESS"
-  expect result.value.include? 'TFTP_ADDRESS="192.168.0.1:69"'
+  expect result.grep!('TFTP_ADDRESS="192.168.0.1:69"').equal(1)
 
 end
 
@@ -86,20 +84,20 @@ task "Run thin clients" do
 
   clients.each do |i|
     ip="192.168.0."+i.to_s
-	
+
 	target "Thin client #{ip} into ARP table"
 	goto :host1, :exec => "arp | grep #{ip}| wc -l"
 	expect result.equal(1)
 
 	target "Thin client #{ip} into LOG files"
 	goto :host1, :exec => "cat /var/log/syslog |grep dhcp |grep DHCPREQUEST |grep #{ip} |wc -l"
-	expect result.greater 1 
+	expect result.greater 1
 
 	target "Thin client #{ip} into LOG files"
 	goto :host1, :exec => "cat /var/log/syslog |grep dhcp |grep DHCPACK |grep #{ip} |wc -l"
-	expect result.greater 1 
+	expect result.greater 1
   end
-  	
+
   goto :host1, :exec => "ip link | grep ether"
   unique "LTSP MAC", result.value
 end
