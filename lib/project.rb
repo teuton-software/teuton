@@ -68,9 +68,9 @@ module Project
       lConfigPath = File.join(File.dirname( lScriptPath ),File.basename( lScriptPath, ".rb")+".yaml")
       lTestName = File.basename( lScriptPath, ".rb")
     end
-    puts Rainbow("[INFO] ScriptPath => #{lScriptPath}").blue
-    puts Rainbow("[INFO] ConfigPath => #{lConfigPath}").blue
-    puts Rainbow("[INFO] TestName   => #{lTestName}").blue
+    puts Rainbow("[INFO] ScriptPath => ").blue+Rainbow( lScriptPath ).blue.bright
+    puts Rainbow("[INFO] ConfigPath => ").blue+Rainbow( lConfigPath ).blue.bright
+    puts Rainbow("[INFO] TestName   => ").blue+Rainbow( lTestName   ).blue.bright
 
     return lScriptPath, lConfigPath, lTestName
   end
