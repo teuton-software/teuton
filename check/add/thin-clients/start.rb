@@ -14,6 +14,7 @@ task "Configure hostname" do
   goto :localhost, :exec => "nmap #{get(:host1_ip)} | grep ssh|wc -l"
   expect result.equal(1)
 
+  set :host1_hostname, get(:apellido1)+"."+get(:apellido2)
   target "Checking hostname <"+get(:host1_hostname)+">"
   goto :host1, :exec => "hostname -f"
   expect result.equal(get(:host1_hostname))
