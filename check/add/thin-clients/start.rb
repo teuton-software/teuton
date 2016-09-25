@@ -10,9 +10,9 @@
 
 task "Configure hostname" do
 
-  target "Checking SSH port <"+get(:host1_ip)+">"
-  goto :localhost, :exec => "nmap #{get(:host1_ip)} | grep ssh|wc -l"
-  expect result.equal(1)
+  target "Ensure SSH port <"+get(:host1_ip)+"> is open"
+  goto :localhost, :exec => "nmap #{get(:host1_ip)}"
+  expect result.grep!("ssh").count!.equal(1)
 
   set :host1_hostname, get(:apellido1)+"."+get(:apellido2)
   target "Checking hostname <"+get(:host1_hostname)+">"
@@ -31,21 +31,21 @@ task "Create users" do
   users.each do |i|
     username=get(:apellido1)+i.to_s
 
-	target "User <#{username}> exists"
-	goto :host1, :exec => "cat /etc/passwd | grep #{username} | wc -l"
-	expect result.equal(1)
+    target "User <#{username}> exists"
+	  goto :host1, :exec => "cat /etc/passwd | grep #{username} | wc -l"
+	  expect result.equal(1)
 
-	target "Users <#{username}> with not empty password "
-	goto :host1, :exec => "cat /etc/shadow | grep #{username}| cut -d : -f 2| wc -l"
-	expect result.equal(1)
+	  target "Users <#{username}> with not empty password "
+	  goto :host1, :exec => "cat /etc/shadow | grep #{username}| cut -d : -f 2| wc -l"
+	  expect result.equal(1)
 
-	target "User <#{username}> logged"
-	goto :host1, :exec => "last | grep #{username[0,8]} | wc -l"
-	expect result.not_equal(0)
+	  target "User <#{username}> logged"
+	  goto :host1, :exec => "last | grep #{username[0,8]} | wc -l"
+	  expect result.not_equal(0)
   end
 end
 
-task "Install sofware" do
+task "Installed sofware" do
   packagename="tlsp"
   target "Package <#{packagename}> installed"
   goto :host1, :exec => "dpkg -l #{packagename}| grep ii| wc -l"
@@ -86,17 +86,17 @@ task "Run thin clients" do
   clients.each do |i|
     ip="192.168.0."+i.to_s
 
-	target "Thin client #{ip} into ARP table"
-	goto :host1, :exec => "arp | grep #{ip}| wc -l"
-	expect result.equal(1)
+	  target "Thin client #{ip} into ARP table"
+	  goto :host1, :exec => "arp | grep #{ip}| wc -l"
+	  expect result.equal(1)
 
-	target "Thin client #{ip} into LOG files"
-	goto :host1, :exec => "cat /var/log/syslog |grep dhcp |grep DHCPREQUEST |grep #{ip} |wc -l"
-	expect result.greater 1
+	  target "Thin client #{ip} into LOG files"
+	  goto :host1, :exec => "cat /var/log/syslog |grep dhcp |grep DHCPREQUEST |grep #{ip} |wc -l"
+	  expect result.greater 1
 
-	target "Thin client #{ip} into LOG files"
-	goto :host1, :exec => "cat /var/log/syslog |grep dhcp |grep DHCPACK |grep #{ip} |wc -l"
-	expect result.greater 1
+	  target "Thin client #{ip} into LOG files"
+	  goto :host1, :exec => "cat /var/log/syslog |grep dhcp |grep DHCPACK |grep #{ip} |wc -l"
+	  expect result.greater 1
   end
 
   goto :host1, :exec => "ip link | grep ether"
@@ -116,7 +116,7 @@ end
 - :tt_members: david
   :host1_ip: 172.18.1.41
   :host1_password: password1
-  :host1_hostname: vargas.ruiz
   :apellido1: vargas
+  :apellido2: ruiz
 ...
 =end
