@@ -22,7 +22,6 @@ class Result
   end
 
   def value
-
     @content[0]
   end
 
