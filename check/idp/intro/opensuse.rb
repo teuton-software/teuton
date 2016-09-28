@@ -9,7 +9,7 @@ task "OpenSUSE external configurations" do
   expect result.eq(1)
 end
 
-task "OpenSUSE student configurations"
+task "OpenSUSE student configurations" do
   shortname = get(:apellido1).to_s + get(:number).to_s + "g"
   target "Checking hostname -a <"+shortname+">"
   goto :host2, :exec => "hostname -a"
