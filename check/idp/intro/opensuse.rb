@@ -9,15 +9,6 @@ task "OpenSUSE external configurations" do
   expect result.eq(1)
 end
 
-task "OpenSUSE Internal configurations" do
-  goto :host1, :exec => "blkid |grep sda1"
-  unique "UUID_sda1", result.value
-  goto :host1, :exec => "blkid |grep sda2"
-  unique "UUID_sda2", result.value
-  goto :host1, :exec => "blkid |grep sda6"
-
-end
-
 task "OpenSUSE student configurations"
   shortname = get(:apellido1).to_s + get(:number).to_s + "g"
   target "Checking hostname -a <"+shortname+">"
@@ -47,4 +38,35 @@ task "OpenSUSE student configurations"
   target "User <#{username}> logged"
   goto :host2, :exec => "last | grep #{username[0,8]} | wc -l"
   expect result.neq(0)
+
+  goto :host1, :exec => "blkid |grep sda1"
+  unique "UUID_sda1", result.value
+  goto :host1, :exec => "blkid |grep sda2"
+  unique "UUID_sda2", result.value
+  goto :host1, :exec => "blkid |grep sda6"
+end
+
+task "Windows network configurations" do
+  goto :host2, :exec => "ip a|grep ether"
+  mac= result.value
+  log    ("host2_MAC = #{mac}")
+  unique "MAC", mac
+
+  target "Gateway <#{get(:gateway_ip)}>"
+  goto   :host2, :exec => "route -n"
+  expect result.find!("UG").find!(get(:gateway_ip)).count!.eq 1
+
+  target "WWW routing OK"
+  goto   :host2, :exec => "ping 8.8.4.4 -c 1"
+  expect result.find!(" 0% packet loss,").count!.eq 1
+
+  target "DNS OK"
+  goto   :host2, :exec => "nslookup www.iespuertodelacruz.es"
+  expect result.find!("Address:").find!("88.198.18.148").count!.eq 1
+end
+
+task "Opensuse ping Windows" do
+  target "ping #{get(:host1_ip)}"
+  goto   :host2, :exec => "ping #{get(:host1_ip)}"
+  expect result.find!(" 0% packet loss,").count!.gt 1
 end
