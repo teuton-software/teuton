@@ -46,5 +46,5 @@ pero en otros casos cada estudiante puede necesitar más de una.
 remoto con perfil de administrador.
 
 > También podría tener instalado el servidor Telnet.
-> En tal caso se usará como usuario `sysadmingame`, que habrá que crear en cada
-máquina de alumno.
+> En tal caso se usará un usuario, que habrá que crear en cada
+máquina de alumno, miembro de los grupos `Administradores` y `TelnetClients`.
