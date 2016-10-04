@@ -1,10 +1,10 @@
 
 task "OpenSUSE external configurations" do
 
-  set :host2_ip, "172.19."+get(:number).to_s+".31"
+  set :host2_ip, "172.19."+get(:number).to_i.to_s+".31"
   set :host2_username, "root"
   set :host2_password, get(:host1_password).to_s
-  
+
   target "ping to <"+get(:host2_ip)+">"
   goto :localhost, :exec => "ping #{get(:host2_ip)} | grep errors|wc -l"
   expect result.eq(0)

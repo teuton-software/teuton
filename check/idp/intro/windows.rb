@@ -1,7 +1,7 @@
 
 task "Windows external configuration" do
 
-  #set :host1_ip, "192.168.#{get(:number)}.11"
+  set :host1_ip, "172.19.#{get(:number).to_i.to_s}.11"
 
   target "Conection with <#{get(:host1_ip)}>"
   goto   :localhost, :exec => "ping #{get(:host1_ip)} -c 1"
@@ -29,9 +29,9 @@ task "Windows Student configurations" do
   goto   :host1, :exec => "set"
   expect result.find!("COMPUTERNAME").find!(shortname.upcase).count!.eq 1
 
-  target "Windows1 WORKGROUP_NAME"
-  goto   :host1, :exec => "net config workstation"
-  expect result.find!("Dominio de estaci").find!("de trabajo").find!(get(:host1_domain).to_s.upcase).count!.eq 1
+#  target "Windows1 WORKGROUP_NAME"
+#  goto   :host1, :exec => "net config workstation"
+#  expect result.find!("Dominio de estaci").find!("de trabajo").find!(get(:host1_domain).to_s.upcase).count!.eq 1
 end
 
 task "Windows version" do
@@ -64,6 +64,8 @@ task "Windows network configurations" do
 end
 
 task "Windows ping Opensuse" do
+  set :host2_ip, "172.19."+get(:number).to_i.to_s+".31"
+
   target "ping #{get(:host2_ip)}"
   goto   :host1, :exec => "ping #{get(:host2_ip)}"
   expect result.find!("Respuesta").count!.gt 1
