@@ -62,11 +62,3 @@ task "Windows network configurations" do
   goto   :host1, :exec => "nslookup www.iespuertodelacruz.es"
   expect result.find!("Address:").find!("88.198.18.148").count!.eq 1
 end
-
-task "Windows ping Opensuse" do
-  set :host2_ip, "172.19."+get(:number).to_i.to_s+".31"
-
-  target "ping #{get(:host2_ip)}"
-  goto   :host1, :exec => "ping #{get(:host2_ip)}"
-  expect result.find!("Respuesta").count!.gt 1
-end

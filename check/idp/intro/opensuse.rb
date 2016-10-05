@@ -1,6 +1,5 @@
 
 task "OpenSUSE external configurations" do
-
   set :host2_ip, "172.19."+get(:number).to_i.to_s+".31"
   set :host2_username, "root"
   set :host2_password, get(:host1_password).to_s
@@ -68,10 +67,4 @@ task "Windows network configurations" do
   target "DNS OK"
   goto   :host2, :exec => "nslookup www.iespuertodelacruz.es"
   expect result.find!("Address:").find!("88.198.18.148").count!.eq 1
-end
-
-task "Opensuse ping Windows" do
-  target "ping #{get(:host1_ip)}"
-  goto   :host2, :exec => "ping #{get(:host1_ip)}"
-  expect result.find!(" 0% packet loss,").count!.gt 1
 end
