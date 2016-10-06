@@ -1,7 +1,9 @@
 #Instalación
 
-A continuación se indica el proceso de instalación y cuáles son los
+A continuación se indica el proceso de instalación general, y cuáles son los
 paquetes de software requeridos.
+
+* [HOWTO: instalación de Sysadmin-game en Debian 8.6 Jessie](./instalacion/howto-debian.md)
 
 ##1. Equipo principal o del profesor
 
