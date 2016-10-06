@@ -3,7 +3,7 @@
 A continuación se indica el proceso de instalación general, y cuáles son los
 paquetes de software requeridos.
 
-* [HOWTO: instalación de Sysadmin-game en Debian 8.6 Jessie](./instalacion/debian.md)
+* [HOWTO: instalación de Sysadmin-game en Debian 8.6 Jessie](./debian.md)
 
 ##1. Equipo principal o del profesor
 
@@ -26,14 +26,14 @@ Será el que use el profesor y/o juez de la competición.
 * Descargar este proyecto.
 
 > Ejemplo de clonación usado comandos `git`:
-> ![git-clone](../images/git-clone.png)
+> ![git-clone](../../images/git-clone.png)
 >
 
 * `cd sysadmin-game`
 * Ejecutar `rake install_gems` para instalar las gemas necesarias en nuestro sistema.
 
 > Error que se produce cuando tenemos una versión incorrecta de `ruby`:
-> ![error-version](../images/error-version.png)
+> ![error-version](../../images/error-version.png)
 
 
 ##2. Equipos remotos
