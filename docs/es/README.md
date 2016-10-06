@@ -56,7 +56,7 @@ guardar los scripts que vayamos creando para definir nuestras actividades.
 > * Periódicamente irán apareciendo nuevas actividades dentro del directorio `check`.
 
 #Documentación
-* [Instalación](./instalacion.md)
+* [Instalación](./instalacion/README.md)
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./palabras-clave-dsl.md)
