@@ -1,7 +1,7 @@
 
 task "Windows external configuration" do
 
-  set :host1_ip, "172.19.#{get(:number).to_i.to_s}.11"
+#  set :host1_ip, "172.19.#{get(:number).to_i.to_s}.11"
 
   target "Conection with <#{get(:host1_ip)}>"
   goto   :localhost, :exec => "ping #{get(:host1_ip)} -c 1"
@@ -29,9 +29,10 @@ task "Windows Student configurations" do
   goto   :host1, :exec => "set"
   expect result.find!("COMPUTERNAME").find!(shortname.upcase).count!.eq 1
 
-#  target "Windows1 WORKGROUP_NAME"
-#  goto   :host1, :exec => "net config workstation"
-#  expect result.find!("Dominio de estaci").find!("de trabajo").find!(get(:host1_domain).to_s.upcase).count!.eq 1
+  #WARINING: error de acceso denegado!
+  #target "Windows1 WORKGROUP_NAME"
+  #goto   :host1, :exec => "net config workstation"
+  #expect result.find!("Dominio de estaci").find!("de trabajo").find!(get(:host1_domain).to_s.upcase).count!.eq 1
 end
 
 task "Windows version" do
@@ -49,7 +50,8 @@ task "Windows network configurations" do
   mac=result.find!("Direcci").content[0]
   log    ("host1_MAC = #{mac}")
   unique "MAC", mac
-
+  #getmac command => MAC number
+  
   target "Gateway <#{get(:gateway_ip)}>"
   goto   :host1, :exec => "ipconfig"
   expect result.find!("enlace").find!(get(:gateway_ip)).count!.eq 1
