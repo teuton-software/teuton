@@ -5,8 +5,8 @@ require_relative "../../lib/case/config"
 
 class ConfigTest < Minitest::Test
   def setup
-    @global = { :dns => '8.8.4.4', :username => 'sysadmingame' }
-    @local = { :tt_members => 'Obiwan Kenobi', :username => 'obiwan' }
+    @global = { :dns => '8.8.4.4', :username => 'sysadmingame', :from => 'global' }
+    @local = { :tt_members => 'Obiwan Kenobi', :username => 'obiwan', :from => 'local' }
     @config = Case::Config.new( :local => @local, :global => @global)
   end
 
@@ -36,6 +36,12 @@ class ConfigTest < Minitest::Test
     assert_equal nil, @config.get(:say)
     @config.set(:say, "hello")
     assert_equal "hello", @config.get(:say)
+  end
+
+  def test_running_precedence
+    assert_equal 'local', @config.get(:from)
+    @config.set(:from, "running")
+    assert_equal "running", @config.get(:from)
   end
 
 end
