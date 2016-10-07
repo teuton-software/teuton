@@ -41,7 +41,13 @@ class ConfigTest < Minitest::Test
   def test_running_precedence
     assert_equal 'local', @config.get(:from)
     @config.set(:from, "running")
+    assert_equal "local", @config.get(:from)
+
+    @local[:from]=nil
     assert_equal "running", @config.get(:from)
+    @config.set(:from, nil)
+    assert_equal "global", @config.get(:from)
+
   end
 
 end
