@@ -1,7 +1,7 @@
 
 task "Windows external configuration" do
 
-#  set :host1_ip, "172.19.#{get(:number).to_i.to_s}.11"
+  set :host1_ip, "172.19.#{get(:number).to_i.to_s}.11"
 
   target "Conection with <#{get(:host1_ip)}>"
   goto   :localhost, :exec => "ping #{get(:host1_ip)} -c 1"
@@ -51,7 +51,7 @@ task "Windows network configurations" do
   log    ("host1_MAC = #{mac}")
   unique "MAC", mac
   #getmac command => MAC number
-  
+
   target "Gateway <#{get(:gateway_ip)}>"
   goto   :host1, :exec => "ipconfig"
   expect result.find!("enlace").find!(get(:gateway_ip)).count!.eq 1
