@@ -43,11 +43,10 @@ task "OpenSUSE student configurations" do
   goto :host2, :exec => "last | grep #{username[0,8]} | wc -l"
   expect result.neq(0)
 
-  goto :host1, :exec => "blkid |grep sda1"
+  goto :host2, :exec => "blkid |grep sda1"
   unique "UUID_sda1", result.value
-  goto :host1, :exec => "blkid |grep sda2"
+  goto :host2, :exec => "blkid |grep sda2"
   unique "UUID_sda2", result.value
-  goto :host1, :exec => "blkid |grep sda6"
 end
 
 task "Windows network configurations" do
