@@ -10,14 +10,14 @@ class Case
       @local   = pArgs[:local]  || {}
       @running = {}
 
-      #Set defaults values 
+      #Set defaults values
       @local[:tt_skip] = @local[:tt_skip] || false
     end
-    
+
     #Read param pOption from [running, config or global] Hash data
     def get(pOption)
-      return @running[pOption] unless @running[pOption].nil?
       return @local[pOption]   unless @local[pOption].nil?
+      return @running[pOption] unless @running[pOption].nil?
       return @global[pOption]  unless @global[pOption].nil?
       return nil
     end
@@ -27,5 +27,5 @@ class Case
     end
 
   end
-  
+
 end
