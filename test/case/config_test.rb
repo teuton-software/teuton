@@ -33,7 +33,7 @@ class ConfigTest < Minitest::Test
   end
 
   def test_running_get
-    assert_equal nil, @config.get(:say)
+    assert_equal "NODATA", @config.get(:say)
     @config.set(:say, "hello")
     assert_equal "hello", @config.get(:say)
   end
