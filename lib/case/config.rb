@@ -27,6 +27,9 @@ class Case
       @running[key]=value
     end
 
+    def unset( key )
+      @running[key]=nil
+    end
   end
 
 end
