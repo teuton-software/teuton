@@ -19,6 +19,7 @@ class Case
       return @local[pOption]   unless @local[pOption].nil?
       return @running[pOption] unless @running[pOption].nil?
       return @global[pOption]  unless @global[pOption].nil?
+      #return nil
       return "NODATA"
     end
 

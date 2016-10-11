@@ -149,7 +149,7 @@ private
   def run_remote_cmd(pHostname)
     hostname=pHostname.to_s
     protocol=@config.get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
-    protocol=:ssh if protocol.nil?
+    protocol=:ssh if protocol.nil? or protocol=="NODATA"
     protocol=protocol.to_sym
 
     case protocol
