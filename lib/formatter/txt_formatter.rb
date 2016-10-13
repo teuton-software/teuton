@@ -4,11 +4,11 @@ require 'terminal-table'
 require_relative 'base_formatter'
 
 class TXTFormatter < BaseFormatter
-	
+
   def initialize(pReport)
     super(pReport)
   end
-		
+
   def process
     tab="  "
     w "INITIAL CONFIGURATIONS\n"
@@ -24,11 +24,12 @@ class TXTFormatter < BaseFormatter
         color=:red
         if i[:check]
           lValue=i[:weight]
-          color=:green 
+          color=:green
         end
-        w tab+"%02d"%i[:id]+" ("+lValue.to_s+"/"+i[:weight].to_s+")\n"       
+        w tab+"%02d"%i[:id]+" ("+lValue.to_s+"/"+i[:weight].to_s+")\n"
         w tab+"\t\tDescription : #{i[:description].to_s}\n"
         w tab+"\t\tCommand     : #{i[:command].to_s}\n"
+				w tab+"\t\tDuration    : #{i[:duration].to_s}\n"
         w tab+"\t\tAlterations : #{i[:alterations].to_s}\n"
         w tab+"\t\tExpected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
         w tab+"\t\tResult      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
@@ -39,23 +40,22 @@ class TXTFormatter < BaseFormatter
 
     w "FINAL VALUES\n"
     my_screen_table = Terminal::Table.new do |st|
-      @tail.each do |key,value| 
-        st.add_row [ key.to_s, value.to_s] 
+      @tail.each do |key,value|
+        st.add_row [ key.to_s, value.to_s]
       end
     end
     w my_screen_table.to_s+"\n"
-    
+
     w "HALL OF FAME\n"
     app=Application.instance
     my_screen_table = Terminal::Table.new do |st|
-      app.hall_of_fame.each do |line| 
-        st.add_row [ line[0], line[1]] 
+      app.hall_of_fame.each do |line|
+        st.add_row [ line[0], line[1]]
       end
     end
     w my_screen_table.to_s+"\n"
 
     deinit
   end
-  
-end
 
+end

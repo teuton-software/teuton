@@ -42,6 +42,7 @@ module DSL
     command(pArgs[:exec]) if pArgs[:exec]
     tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
 
+    start_time = Time.now
     if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
       run_local_cmd
     else
@@ -55,6 +56,7 @@ module DSL
         run_remote_cmd pHostname
       end
     end
+    @action[:duration] = Time.now - start_time
   end
 
   alias_method :on, :goto
