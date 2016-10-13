@@ -49,7 +49,7 @@ task "OpenSUSE student configurations" do
   unique "UUID_sda2", result.value
 end
 
-task "Windows network configurations" do
+task "OpenSUSE network configurations" do
   goto :host2, :exec => "ip a|grep ether"
   mac= result.value
   log    ("host2_MAC = #{mac}")
@@ -60,7 +60,7 @@ task "Windows network configurations" do
   expect result.find!("UG").find!(get(:gateway_ip)).count!.eq 1
 
   target "WWW routing OK"
-  goto   :host2, :exec => "ping 8.8.4.4 -c 1"
+  goto   :host2, :exec => "ping 88.198.18.148 -c 1"
   expect result.find!(" 0% packet loss,").count!.eq 1
 
   target "DNS OK"

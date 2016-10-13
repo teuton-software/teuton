@@ -57,7 +57,7 @@ task "Windows network configurations" do
   expect result.find!("enlace").find!(get(:gateway_ip)).count!.eq 1
 
   target "WWW routing OK"
-  goto   :host1, :exec => "ping 8.8.4.4"
+  goto   :host1, :exec => "ping 88.198.18.148"
   expect result.find!("Respuesta").count!.gt 1
 
   target "DNS OK"
