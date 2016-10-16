@@ -56,7 +56,7 @@ module DSL
         run_remote_cmd pHostname
       end
     end
-    @action[:duration] = Time.now - start_time
+    @action[:duration] = (Time.now-start_time).round(3)
   end
 
   alias_method :on, :goto
