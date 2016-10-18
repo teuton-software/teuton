@@ -1,74 +1,16 @@
 
 #Palabras clave del DSL
 
-Para definir y ejecutar nuestra actividad/script de evaluación, 
-podemo usar las siguientes palabras clave del DSL *sysadmin-game*.
+Para definir y ejecutar nuestra actividad/script de evaluación,
+podemos usar las siguientes palabras clave del DSL *sysadmin-game*.
 
-##task
 
-```
-    task "nombre_de_la_tarea" do 
-      ... 
-    end
-```
-
-* Sirve para definir un grupo de objetivos o elementos de comprobación.
-* Como mínimo es obligatorio crear un `task` donde podremos definir nuestros
-objetivos o elementos de evaluación.
-* Podemos usar `task`, tantas veces como queramos. Sirve para:
-    * Agrupar objetivos que están relacionados por razones de claridad para nosotros.
-    * En el futuro, servirá para aumentar la velocidad de las evaluaciones, permitiendo
-    la ejecución de varias tareas de forma simultánea.
-
-###target
-
-```
-    target "Escribe aquí la descripción del objetivo con tus propias palabras"
-```
-
-* Nos permite introducir una descripción del objetivo que vamos a evaluar,
-usando nuestras propias palabras, de modo que cualquiera pueda entender
-fácilmente lo que estamos tratando de hacer.
-* Además, dicho texto aparecerá en los informes de salida, para ayudarnos
-a analizar la información más facilmente.
-
-###goto
-
-```
-    goto :host1, :exec => "id obiwan"
-    goto :host1, :execute => "id david"
-```
-
-> Ya sé que a los programadores no les gusta la sentencia `goto`, pero ésta
-es diferente. Piensa en ella como si hablaras en inglés, no como programador.
-
-* Con esta instrucción nos conectamos con la máquina remota  identificada por `host1`,
-y de ejecutamos el comando especificado dentro de ella.
-* `host1` es una etiqueta que identifica una máquina determinada. La definición
-concreta de dicha máquina (ip, username, password, protocol) vendrá en el fichero
-de configuración que acompaña al script.
-
-###result
-
-* Después de ejecutar un comando con `goto`, en una maquina remota, se
-obtiene un resultado, que se guarda en `result`.
-* Podemos leer el contenido de `result` o modificarlo.
-* Veamos ejemplos:
-    * `result.value`, devuelve la primera línea/valor del resultado.
-    * `result.content`, devuelve todas las líneas del resultado.
-    * `result.eq(VALUE)`, devuelve true si el resultado es igual a VALUE    
-    * `result.neq(VALUE)`, devuelve true si el resultado no es igual a VALUE
-    * `result.gt(VALUE)`, devuelve true si el resultado es mayor que VALUE
-    * `result.ge(VALUE)`, devuelve true si el resultado es mayor o igual que VALUE
-    * `result.lt(VALUE)`, devuelve true si el resultado es menor que VALUE
-    * `result.le(VALUE)`, devuelve true si el resultado es menor o igual que VALUE
-    * `result.find!(VALUE)` o `result.grep!(VALUE)`, transforma el resultado, 
-    de modo que sólo quedan las líneas que contengan VALUE. VALUE puede ser 
-    texto (Por ejemplo, `"Hello"`) o una expresión regular (Por ejemplo: `/[Hi|Hello]/`.
-    * `result.not_find!(VALUE)` o `result.grep_v!(VALUE)`, transforma el resultado, de modo que sólo quedan las líneas que no contengan VALUE
-    * `resutl.alterations`, muestra las transformaciones que se han realizado al resultado.
-    * `result.restore!`, vuelve a restaurar el contenido del resultado a su valor original antes de las transformaciones.
-    * `result.count!`, transforma el resultado, guardando el valor numérico del número de líneas actual.
+| DSL                  | Descripción |
+| :------------------- | :---------- |
+| [task](./task.md)    | Definir un grupo de objetivos o elementos de comprobación. |
+| [target](./target.md)| Describir el objetivo que vamos a evaluar. |
+| [goto](./goto.md)    | Ejecutar un comando en las máquinas remotas. |
+| [result](./result.md)| Contiene el resultado de la orden `goto`. |
 
 ###expect
 
@@ -76,7 +18,7 @@ obtiene un resultado, que se guarda en `result`.
     expect result.eq(1)
     expect result.eq("obiwan")
     expect result.eq("obiwan"), :weight => 2.0
-``` 
+```
 
 * Después de ejecutar un comando en una maquina determinada, obtenemos un resultado, que
 se guarda en `result`.
@@ -94,7 +36,7 @@ esperado. Esta información se guarda para incluirla en los informes finales.
 * Escribiremos esta instrucción al final de cada script, para indicar que debe comenzar el proceso
 de evaluación.
 * Las instrucciones `task` definen las pruebas que queremos realizar, pero la instrucción
-`start` es la que finalmente inicia la ejecución de las pruebas de evaluación 
+`start` es la que finalmente inicia la ejecución de las pruebas de evaluación
 dentro de cada una de las máquinas de cada caso.
 * Si no escribimos esta instrucción las pruebas no se van a ejecutar.
 
@@ -121,10 +63,10 @@ dentro de cada una de las máquinas de cada caso.
 ```
 
 * `export`, Esto es lo mismo que `export :all`
-* `export :all`, crea un fichero de salida para cada caso, con los resultados 
+* `export :all`, crea un fichero de salida para cada caso, con los resultados
 de la evaluación. Por defecto se usa TXT como formato de salida.
 * `export :format => :txt`, Ésta es la forma de definir los ficheros de salida
-que queremos crear y el formato de los mismos. Otros valores para 
+que queremos crear y el formato de los mismos. Otros valores para
 el formato de salida, pueden ser: `:txt` y `colored_text`.
 
 > Actualmente están en desarrolo los formatos `:html`, `:xml`, y `:csv`.
@@ -136,7 +78,7 @@ el formato de salida, pueden ser: `:txt` y `colored_text`.
       export
       send :copy_to => :host1
     end
-``` 
+```
 
 * La instrucción `send` se debe ejecutar después de haber generado los
 informes de salida. Esto es, después de un `export`.
