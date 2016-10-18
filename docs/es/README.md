@@ -59,5 +59,5 @@ guardar los scripts que vayamos creando para definir nuestras actividades.
 * [Instalación](./instalacion/README.md)
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
-* [Palabras clave del DSL](./palabras-clave-dsl.md)
+* [Palabras clave del DSL](./dsl/README.md)
 S
