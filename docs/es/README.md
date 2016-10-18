@@ -60,4 +60,4 @@ guardar los scripts que vayamos creando para definir nuestras actividades.
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./dsl/README.md)
-S
+
