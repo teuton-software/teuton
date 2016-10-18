@@ -36,9 +36,9 @@ comenzar el proceso de evaluación.
 dentro de cada una de las máquinas de cada caso.
 * Si no escribimos esta instrucción las pruebas no se van a ejecutar.
 
-#Instrucciones complementarias
+#Instrucciones para los informes
 
-Otras palabras clave del DSL
+Otras palabras clave del DSL.
 
 | DSL                  | Descripción |
 | :------------------- | :---------- |
