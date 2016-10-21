@@ -9,20 +9,20 @@ require_relative 'application'
 class Case
 
   class ExecManager
-  
+
     def initialize(parent)
       @parent = parent
 
       @debug=Tool.instance.is_debug?
       @verbose=Tool.instance.is_verbose?
-	
+
       @sessions={}
 
       @action=@parent.action
       @config=@parent.config
       @result=@parent.result
     end
-  
+
     #execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Delete previous temp files
 
     def read_filename(psFilename)
@@ -30,17 +30,18 @@ class Case
         lFile = File.open(psFilename,'r')
         lItem = lFile.readlines
         lFile.close
-			
+
         lItem.map! { |i| i.sub(/\n/,"") }
-			
+
         return lItem
       rescue
         return []
       end
     end
-	
+
     def run_local_cmd
-      @result.content = my_execute( @action[:command] )	
+      @action[:conn_type]=:localhost
+      @result.content = my_execute( @action[:command] )
     end
 
     def run_remote_cmd(pHostname)
@@ -48,7 +49,7 @@ class Case
       protocol=@config.get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
       protocol=:ssh if protocol.nil?
       protocol=protocol.to_sym
-    
+
       case protocol
       when :ssh
         run_remote_cmd_ssh(pHostname)
@@ -58,20 +59,21 @@ class Case
         raise "Unkown remote protocol <#{protocol.to_s}>"
       end
     end
-  	
+
     def run_remote_cmd_ssh(pHostname)
-      app=Application.instance 		
+      @action[:conn_type]=:ssh
+      app=Application.instance
       hostname=pHostname.to_s
       ip=@config.get((hostname+'_ip').to_sym)
       username=@config.get((hostname+'_username').to_sym)
       password=@config.get((hostname+'_password').to_sym)
       output=[]
-		
+
       begin
         if @sessions[hostname].nil?
           @sessions[hostname] = Net::SSH.start(ip, username, :password => password)
         end
-			
+
         if @sessions[hostname].class==Net::SSH::Connection::Session
           text=@sessions[hostname].exec!( @action[:command] )
           output = text.split("\n")
@@ -96,12 +98,13 @@ class Case
         verbose app.letter[:error]
         log( "[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+@action[:command], :error)
       end
-		
+
       @result.content=output
       @result.content.compact!
     end
 
-    def run_remote_cmd_telnet(pHostname) 	
+    def run_remote_cmd_telnet(pHostname)
+      @action[:conn_type]=:telnet
       app=Application.instance
       hostname=pHostname.to_s
       ip=@config.get((hostname+'_ip').to_sym)
@@ -116,7 +119,7 @@ class Case
           text=""
           h.cmd(@action[:command]) {|i| text << i}
           output=text.split("\n")
-          h.close      
+          h.close
           @sessions[hostname] = :ok
         end
       rescue Net::OpenTimeout
@@ -154,7 +157,7 @@ class Case
     def verboseln(psText)
       verbose(psText+"\n")
     end
-	
+
     def verbose(psText)
       return if !@verbose
       print psText
