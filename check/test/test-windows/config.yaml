@@ -1,0 +1,15 @@
+---
+:global:
+  :gateway_ip: 192.168.16.10
+  :host1_protocol: telnet
+  :host1_domain: curso1617
+  :host1_productname: "Windows 7 Professional"
+:cases:
+- :tt_members: Test Windows7
+  :tt_skip: false
+  :username: profesor
+  :lastname: vargas
+  :number: "16"
+  :host1_ip: 192.168.16.11
+  :host1_username: sysadmingame
+  :host1_password: profesor
