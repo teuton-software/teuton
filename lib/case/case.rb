@@ -143,6 +143,7 @@ private
   end
 
   def run_local_cmd
+    @action[:conn_type]=:local
     @result.content = my_execute( @action[:command] )
   end
 
@@ -163,6 +164,7 @@ private
   end
 
   def run_remote_cmd_ssh(pHostname)
+    @action[:conn_type]=:ssh
     app=Application.instance
     hostname=pHostname.to_s
     ip=@config.get((hostname+'_ip').to_sym)
@@ -206,6 +208,7 @@ private
   end
 
   def run_remote_cmd_telnet(pHostname)
+    @action[:conn_type]=:telnet
     app=Application.instance
     hostname=pHostname.to_s
     ip=@config.get((hostname+'_ip').to_sym)

@@ -46,10 +46,11 @@ module DSL
     if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
       run_local_cmd
     else
-      key=( (pHostname.to_s.split('_')[0])+'_ip' ).to_sym
-      ip=get( key )
+      #key=( (pHostname.to_s.split('_')[0])+'_ip' ).to_sym
+      #ip=get( key )
+      ip=get((pHostname.to_s+'_ip').to_sym)
       if ip.nil? then
-        log("IP nil!",:error)
+        log("#{pHostname} IP is nil!",:error)
       elsif ip.include?('127.0.0.') then
         run_local_cmd
       else

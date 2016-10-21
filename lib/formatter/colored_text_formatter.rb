@@ -30,7 +30,7 @@ class ColoredTextFormatter < BaseFormatter
         w tab+"%02d"%i[:id]+" ("+Rainbow(lValue.to_s+"/"+i[:weight].to_s).color(color)+")\n"
         w tab+"\t\t"+Rainbow("Description").bright+" : #{i[:description].to_s}\n"
         w tab+"\t\t"+Rainbow("Command    ").bright+" : #{i[:command].to_s}\n"
-				w tab+"\t\t"+Rainbow("Duration   ").bright+" : #{i[:duration].to_s}\n"
+				w tab+"\t\t"+Rainbow("Duration   ").bright+" : #{i[:duration].to_s} (#{i[:conn_type].to_s})\n"
         w tab+"\t\t"+Rainbow("Alterations").bright+" : #{i[:alterations].to_s}\n"
         w tab+"\t\t"+Rainbow("Expected   ").bright+" : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
         w tab+"\t\t"+Rainbow("Result     ").bright+" : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
