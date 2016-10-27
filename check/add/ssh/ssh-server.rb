@@ -1,29 +1,33 @@
 
 =begin
  State       : In progress...
- Course name : ADD1516
  Activity    : SSH conections
  MV OS       : GNU/Linux Debian 7
  Spanish URL : https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/add/ssh/README.md
 =end
 
-require_relative "opensuse"
-
-=begin
 task "Configure SSH Server" do
 
   target "Claves privada y pública en usuario <#{get(:firstname)}>"
-  goto   :host1, :exec => "vdir /home/#{get(:firstname)}/.ssh/id_*| wc -l"
+  goto   :host2, :exec => "vdir /home/#{get(:firstname)}/.ssh/id_*| wc -l"
   expect result.equal(2)
 
-  goto :host1, :exec => "cat /home/#{get(:firstname)}/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
+  goto   :host2, :exec => "cat /home/#{get(:firstname)}/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
   @filename1 = tempfile
 
-  target "Host2 hostname defined on Host1"
-  goto :host1, :exec => "cat /etc/hosts| grep #{get(:host2_hostname)}| grep #{get(:host2_ip)}| wc -l"
-  expect result.equal(1)
+  set(:client1_hostname, 'ssh-client'+get(:number).to_s+"a")
+	set(:client1_ip,       '172.18.'+get(:number).to_i.to_s+"32")
+	set(:client2_hostname, 'ssh-client'+get(:number).to_s+"b")
+	set(:client2_ip,        '172.18.'+get(:number).to_i.to_s+"11")
+
+	target "#{clienteNameA} hostname defined on SSH Server"
+  goto   :host2, :exec => "cat /etc/hosts"
+  expect result.find!(get(:client1_hostname)),find!(get(:client1_ip)).count!.equal(1)
 
 end
+
+
+=begin
 
 task "Configure OpenSUSE host" do
 
