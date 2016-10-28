@@ -8,58 +8,41 @@
 
 task "Configure SSH Server" do
 
-  target "Claves privada y pública en usuario <#{get(:firstname)}>"
-  goto   :host2, :exec => "vdir /home/#{get(:firstname)}/.ssh/id_*| wc -l"
-  expect result.equal(2)
+  target "authorized_keys en usuario4 <#{get(:lastname)}4>"
+  goto   :host2, :exec => "vdir /home/#{get(:lastname)}4/.ssh/authorized_keys| wc -l"
+  expect result.equal(1)
 
-  goto   :host2, :exec => "cat /home/#{get(:firstname)}/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
+  goto   :host2, :exec => "cat /home/#{get(:lastname)}4/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
   @filename1 = tempfile
 
   set(:client1_hostname, 'ssh-client'+get(:number).to_s+"a")
-	set(:client1_ip,       '172.18.'+get(:number).to_i.to_s+"32")
+	set(:client1_ip,       '172.18.'+get(:number).to_i.to_s+".32")
 	set(:client2_hostname, 'ssh-client'+get(:number).to_s+"b")
-	set(:client2_ip,        '172.18.'+get(:number).to_i.to_s+"11")
+	set(:client2_ip,        '172.18.'+get(:number).to_i.to_s+".11")
 
-	target "#{clienteNameA} hostname defined on SSH Server"
   goto   :host2, :exec => "cat /etc/hosts"
-  expect result.find!(get(:client1_hostname)),find!(get(:client1_ip)).count!.equal(1)
+	target "#{get(:client1_hostname)} hostname defined on SSH Server"
+  result.restore!
+  expect result.find!(get(:client1_hostname)).find!(get(:client1_ip)).count!.equal(1)
+  target "#{get(:client2_hostname)} hostname defined on SSH Server"
+  result.restore!
+  expect result.find!(get(:client2_hostname)).find!(get(:client2_ip)).count!.equal(1)
 
 end
 
+task "SSH Server users" do
+
+  usernames = [ get(:lastname)+"1", get(:lastname)+"2", get(:lastname)+"3", get(:lastname)+"4" ]
+
+  usernames.each do |username|
+    target "Exist username <"+username+">"
+    goto :host2, :exec => "id #{username}"
+    expect result.count!.equal(1)
+  end
+
+end
 
 =begin
-
-task "Configure OpenSUSE host" do
-
-  target "Zona horaria <WET #{get(:year)}>"
-  goto :host2, :exec => "date | grep WET | grep #{get(:year)} | wc -l"
-  expect result.equal(1)
-
-  target "OS OpenSuse 64 bits"
-  goto :host2, :exec => "uname -a| grep opensuse| grep x86_64| wc -l"
-  expect result.equal(1)
-
-  target "Value hostname == "+get(:host2_hostname)+" "
-  goto :host2, :exec => "hostname -a"
-  expect result.equal(get(:host2_hostname))
-
-  target "Value domainname == "+get(:lastname)+" "
-  goto :host2, :exec => "hostname -d"
-  expect result.equal(get(:lastname))
-
-  target "Exist username <"+get(:firstname)+">"
-  goto :host2, :exec => "cat /etc/passwd|grep '"+get(:firstname)+"'|wc -l"
-  expect result.equal(1)
-
-  target "Checking groupname <"+get(:groupname)+">"
-  goto :host1, :exec => "cat /etc/group|grep '"+get(:groupname)+"'|wc -l"
-  expect result.equal(1)
-
-  target "User maingroup == "+get(:groupname)+" "
-  goto :host1, :exec => "id "+get(:firstname)+"| tr -s ' ' ':'| cut -d : -f 2| grep "+get(:groupname)+"|wc -l"
-  expect result.equal(1)
-
-end
 
 task "Configure OpenSUSE SSH" do
 
@@ -80,27 +63,6 @@ task "Configure OpenSUSE SSH" do
 
 end
 
-task "Configure Debian VNC server" do
-
-  target "Tightvncserver installed on <#{get(:host1_ip)}>"
-  goto :host1, :exec => "dpkg -l tightvncserver| grep 'ii'| wc -l"
-  expect result.equal(1)
-
-  goto :localhost, :exec => "nmap -Pn #{get(:host1_ip)}", :tempfile => 'mv1_nmap.tmp'
-  filename = tempfile
-
-  #command "ps -ef| grep tightvnc| grep geometry| wc -l", :tempfile => 'tightvnc.tmp'
-  #vncserver :1
-
-  target "Services 'vnc' on <#{get(:host1_ip)}>"
-  goto :localhost, :exec => "cat #{filename}|grep 'vnc'| wc -l"
-  expect result.equal(1)
-
-  target "Services active on ip/port #{get(:host1_ip)}/6001"
-  goto :localhost, :exec => "cat #{filename} |grep '6001'| wc -l"
-  expect result.equal(1)
-
-end
 
 task "Do git clone into OpenSUSE host" do
 
@@ -122,30 +84,4 @@ task "Do git clone into OpenSUSE host" do
 
   log "Tests finished"
 end
-=end
-
-start do
-	show
-	export
-  send :copy_to => :host2
-end
-
-=begin
----
-:global:
-  :groupname: udremote
-  :host1_username: root
-  :host1_hostname: debian
-  :host2_username: root
-  :host2_hostname: opensuse
-  :year: '2015'
-:cases:
-- :tt_members: David Vargas
-  :firstname: david
-  :lastname: vargas
-  :host1_ip: 172.16.109.101
-  :host1_password: toor
-  :host2_ip: 172.16.109.201
-  :host2_password: toor
-...
 =end

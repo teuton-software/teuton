@@ -8,12 +8,13 @@
 =end
 
 require_relative "opensuse"
-#require_relative "ssh-server"
+require_relative "ssh-server"
+require_relative "ssh-client-a"
 
 start do
 	show
-	export
-  send :copy_to => :host2, :format => :colored_text
+	export :format => :colored_text
+  send   :copy_to => :host2
 end
 
 =begin
