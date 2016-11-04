@@ -23,8 +23,8 @@ Un equipo debe ser el host principal o controlador. Será el que use el profesor
 Software requerido en el host principal:
 
 * Software SSH cliente: Se usará para conectar con el resto de máquinas. > También se puede usar el cliente Telnet.
-* ruby -v => 2.1.3p242. El programa está desarrollado en ruby.
-* rake --version =>10.4.2. rake es como el make de ruby.
+* `ruby -v` => 2.1.3p242. El programa está desarrollado en ruby.
+* `rake --version` =>10.4.2. rake es como el make de ruby.
 * Descargar el proyecto Sysadmin-game.
 
 ##1.1 Ruby
