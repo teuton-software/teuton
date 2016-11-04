@@ -11,4 +11,4 @@ un poco. A continuación guías para el proceso de instalación:
 > EN CURSO
 >
 > * MV preparadas para descargar, con el software preinstalado.
->     * [Descargar MV](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse132-xfce.ova) VirtualBox SO OpenSUSE 13.2 XFCE 64 bits. Fecha 20161104.
+>     * [Descargar MV](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse132-xfce.ova) VirtualBox SO OpenSUSE 13.2 XFCE 64 bits. Fecha 20161104 (versión 0.21.0)

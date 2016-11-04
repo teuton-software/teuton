@@ -1,6 +1,22 @@
 #File: Rakefile
 #Usage: rake
 
+packages=['net-ssh', 'net-sftp', 'minitest', 'rainbow', 'terminal-table', 'pry-byebug' ]
+
+desc "Check installed gems "
+task :check_gems do
+  cmd=(`gem list`).split("\n")
+  names = cmd.map { |i| i.split(" ")[0]}
+  fails = []
+  packages.each { |i| fails << i unless names.include?(i) }
+
+  if fails.size==0
+    puts "Check OK!"
+  else
+    puts "Check FAILS!: "+fails.join(",")
+ end
+end
+
 #Define tasks
 desc "Clean temp files."
 task :clean do
@@ -8,27 +24,21 @@ task :clean do
 end
 
 desc "Debian installation"
-task :debian => [:debpackages, :install_gems, :create_auxdirs]
-
-desc "_install deb packages "
-task :debpackages do
-  system("apt-get install -y ssh")
+task :debian => [:install_gems, :create_auxdirs] do
+  names=[ 'ssh', 'make', 'gcc', 'ruby-dev' ]
+  names.each { |name| system("apt-get install -y #{name}") }
 end
 
 desc "OpenSUSE installation"
-task :opensuse => [:zypperpackages, :install_gems, :create_auxdirs]
-
-desc "_install rpm packages"
-task :zypperpackages do
-  names=[ 'openssh', 'rubygem-pry' ]
+task :opensuse => [:install_gems, :create_auxdirs] do
+  names=[ 'openssh', 'rubygem-pry', 'make', 'gcc', 'ruby-devel' ]
   names.each { |n| system("zypper --non-interactive in --auto-agree-with-licenses #{n}") }
 end
 
 desc "_install gems"
 task :install_gems do
-  #gem: pony?, pry-byebug?
-  names=['net-ssh', 'net-sftp', 'minitest', 'rainbow', 'terminal-table']
-  names.each { |n| system("gem install #{n}") }
+  #gem: pony?
+  packages.each { |n| system("gem install #{n}") }
 end
 
 desc "_creating auxiliar directories"
@@ -36,10 +46,3 @@ task :create_auxdirs do
   system("chmod +x ./check/demos/*.rb")
   system("mkdir -p var")
 end
-
-desc "Run Test"
-task :run_tests do
-  #OpenSUSE
-  system("rspec")
-end
-

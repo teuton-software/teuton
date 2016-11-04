@@ -26,12 +26,9 @@ Será el que use el profesor y/o juez de la competición.
 
 > Ejemplo de clonación usado comandos `git`:
 > ![git-clone](../../images/git-clone.png)
->
 
 * `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
-* `sudo zypper in make gcc ruby-devel`, ficheros para poder compilar el
-código fuente de algunas gemas.
-* `sudo rake install_gems` para instalar las gemas necesarias en nuestro sistema.
+* `sudo rake opensuse`, para instalar las gemas necesarias en nuestro sistema.
 
 > Error que se produce cuando tenemos una versión incorrecta de `ruby`:
 > ![error-version](../../images/error-version.png)
