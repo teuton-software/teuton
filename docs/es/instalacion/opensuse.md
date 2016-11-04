@@ -29,7 +29,7 @@ Será el que use el profesor y/o juez de la competición.
 >
 
 * `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
-* `sudo zypper in make ruby-devel`, ficheros para poder compilar el
+* `sudo zypper in make gcc ruby-devel`, ficheros para poder compilar el
 código fuente de algunas gemas.
 * `sudo rake install_gems` para instalar las gemas necesarias en nuestro sistema.
 
