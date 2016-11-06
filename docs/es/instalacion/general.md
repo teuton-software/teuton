@@ -12,30 +12,33 @@ Será el que use el profesor y/o juez de la competición.
 ###1.1 Software requerido en el host principal
 * Software SSH cliente: Se usará para conectar con el resto de máquinas.
 > También se puede usar el cliente Telnet.
-* `ruby -v` => 2.1.3p242. El programa está desarrollado en `ruby`.
-* `rake --version` =>10.4.2. `rake` es como el `make` de `ruby`.
+
+Instalar ruby
+* `ruby -v` => 2.1.3p242.
+* Se requiere porque el programa está desarrollado en `ruby`.
+Instalar rake
+* `sudo gem install rake`, para instalar
+* `rake --version`, comprobar la versión instalada (>= 10.4.2).
+* El programa `rake` es como el `make` pero en `ruby`.
 
 > Comprobar las versiones de `ruby`, `rake`:
 > ![ruby-rake-gems](../images/ruby-rake-gems.png)
 >
 
 ###1.2 Proceso de instalación en el host principal
-* Instalar ruby
-    * `sudo zypper in ruby` en OpenSUSE
-    * `sudo apt-get install ruby` en Debian
-* Instalar rake (`sudo gem install rake`)
-* Descargar este proyecto.
+* Descargar este proyecto. Tenemos dos formas de hacerlo:
+    * (a) `git clone https://github.com/dvarrui/sysadmin-game.git`
+    * (b) Descargando el zip.
 
 > Ejemplo de clonación usado comandos `git`:
 > ![git-clone](../../images/git-clone.png)
 >
 
-* `cd sysadmin-game`
+* `cd sysadmin-game`, entrar en la carpeta del proyecto.
 * Ejecutar `sudo rake install_gems` para instalar las gemas necesarias en nuestro sistema.
 
 > Error que se produce cuando tenemos una versión incorrecta de `ruby`:
 > ![error-version](../../images/error-version.png)
-
 
 ##2. Equipos remotos
 
