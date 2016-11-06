@@ -12,8 +12,8 @@
 
 ## Proceso de instalación en el host principal
 
-* No hay que instalar ruby porque viene por defecto.
-* No hay que instalar rake porque viene por defecto.
+> No hay que instalar ruby, ni rake porque vienen por defecto.
+
 * `sudo zypper in git`, para instalar git.
 * `git clone https://github.com/dvarrui/sysadmin-game.git`, para descargar este proyecto.
 
