@@ -4,7 +4,7 @@
 Dependiendo de la plataforma que tengamos el proceso de instalación puede variar
 un poco.
 
-A continuación guías para el proceso de instalación para varias plataformas, para
+A continuación proceso de instalación para
 * La máquina del profesor y
 * Las máquinas de los alumnos
 
