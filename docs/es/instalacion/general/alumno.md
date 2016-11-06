@@ -3,9 +3,9 @@
 
 > El profesor debe conocer el usuario/clave para poder conectarse de forma remota.
 
-## Software requerido en los equipos de los alumnos
+## SSH
 
-* El software de acceso remoto SSH server.
+* Instalar el software de acceso remoto SSH server.
 
 > El usuario del equipo principal debe conocer usuario/clave de cada equipo
 remoto con perfil de administrador.
