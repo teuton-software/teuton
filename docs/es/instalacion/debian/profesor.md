@@ -3,60 +3,69 @@
 Autor: Manuel Martínez Carbonell
 ```
 
-#HOWTO install Sysadmin-game in Debian 8.6 Jessie
+#Instalación en el equipo del profesor con Debian 8.6
 
 A continuación se indica el proceso de instalación y cuáles son los paquetes
 de software requeridos.
 
-El estado de mi máquina en el momento de la instalación de Sysadmin-game es el
-siguiente:
-* se trata de una máquina virtual (usando VirtualBox 5.0.26)
-* con un sistema operativo Debian 8.6 Jessie recién instalado, y
-* con las Guest Additions también instaladas.
+Antes de proceder con la instalación se recomienda leer el apartado final *"Posibles inconvenientes"*.
 
-Antes de proceder con la instalación se recomienda leer el apartado final “Posibles inconvenientes”.
+#1. Software requerido
 
-#1. Necesidades del equipo principal o del profesor
+* Software SSH cliente: Se usará para conectar con el resto de máquinas.
+> También se puede usar el cliente Telnet.
 
-Un equipo debe ser el host principal o controlador. Será el que use el profesor y/o juez de la competición.
-
-Software requerido en el host principal:
-
-* Software SSH cliente: Se usará para conectar con el resto de máquinas. > También se puede usar el cliente Telnet.
 * `ruby -v` => 2.1.3p242. El programa está desarrollado en ruby.
 * `rake --version` =>10.4.2. rake es como el make de ruby.
 * Descargar el proyecto Sysadmin-game.
 
-##1.1 Ruby
+#2. Instalación
 
-Ruby ya va por una versión posterior a la 2.1.3.
-[Descargar la versión de ruby](https://www.ruby-lang.org/en/news/2014/09/19/ruby-2-1-3-is-released/)
+* `sudo apt-get install ruby`, para instalar ruby.
+* `sudo gem install rake`para instalar rake.
+* `sudo apt-get install git`, para instalar git.
+* `git clone https://github.com/dvarrui/sysadmin-game.git`, para descargar este proyecto.
 
-> El proyecto está testado para ruby 2.1.3, por lo que entiendo también funcionará
-para versiones superiores
+> Ejemplo de clonación usado comandos `git`:
+> ![git-clone](../../../images/git-clone.png)
+
+* `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
+* `sudo rake debian`, para instalar las gemas necesarias en nuestro sistema.
+
+> Error que se produce cuando tenemos una versión incorrecta de `ruby`:
+> ![error-version](../../../images/error-version.png)
+
+* `./project -v`, para comprobar que está todo bien.
+
+¡Ya lo tenemos!
+
+
+#3. Otras formas de hacer las instalaciones
+
+##3.1 Instalar Ruby desde el código fuente
 
 A la hora de instalar Ruby tenemos varias opciones:
-* Usar el sistema de gestión de paquetes de la propia distribución (por ejemplo apt-get en Debian)
+* Usar el sistema de gestión de paquetes de la propia distribución.
 * Usar instaladores, manejadores para poder cambiar entre distintas versiones de Ruby en el sistema y,
 * Compilar el código fuente.
 
-* Enlace para obtener [más información sobre la instalación](https://www.ruby-lang.org/en/documentation/installation/)
+> Enlace para obtener [más información sobre la instalación](https://www.ruby-lang.org/en/documentation/installation/)
 
-##1.2 Compilación del código fuente
+En esta sección se muestra cómo hacerlo compilando el código fuente.
 
-En este HOWTO se ha optado por compilar el código fuente.
-
-> Recomendaría instalar desde el código fuente cuando la versión de ruby fuera
+> * El proyecto está testado para ruby 2.1.3, por lo debe funcionar para versiones superiores
+> * Recomendaría instalar desde el código fuente cuando la versión de ruby fuera
 menor a 2.1.3. En caso contrario con `apt-get install ruby` tenemos.
 
-Primero nos aseguramos de tener instaladas las siguientes librerías antes de continuar:
+* Primero nos aseguramos de tener instaladas las siguientes librerías antes de continuar:
 ```
 # apt-get install zlib1g-dev
 # apt-get install libssl-dev
 ```
-
-Luego descargamos la versión necesaria de Ruby, se descomprime el archivo.
-Dentro del directorio se ejecuta:
+* Luego descargamos la versión necesaria de Ruby, se descomprime el archivo.
+    * [Descargar ruby 2.1.3](https://www.ruby-lang.org/en/news/2014/09/19/ruby-2-1-3-is-released/)
+    * Ruby ya va por una versión posterior a la 2.1.3.
+* Dentro del directorio se ejecuta:
 ```
 $ ./configure
 $ make
@@ -71,9 +80,9 @@ $ make
 
 ![ruby-v.png](./images/ruby-v.png)
 
-##1.3 Instalación de rake
+##3.2 Instalación de rake
 
-* Puedes descargar la versión 10.4.2 de [rake](https://rubygems.org/gems/rake/versions/10.4.2?locale=es).
+* Puedes descargar la [versión 10.4.2 de rake](https://rubygems.org/gems/rake/versions/10.4.2?locale=es).
 * En el directorio donde hayas descargado rake se debe ejecutar: `# gem install rake -v 10.4.2`
 
 ![gem-install-rake.png](./images/gem-install-rake.png)
@@ -85,7 +94,7 @@ directamente desde los repositorios de internet, y no usa lo ficheros descargado
 
 ![rake-version.png](./images/rake-version.png)
 
-##1.4 Descargar el proyecto Sysadmin-game
+##3.3 Descargar el proyecto Sysadmin-game
 
 * Descargar y descomprimir el proyecto.
 * Entrar el directorio `sysadmin-game-master`.
@@ -101,24 +110,7 @@ directamente desde los repositorios de internet, y no usa lo ficheros descargado
 superior a 2.0
 > `net-ssh` es la gema que permite la conexión SSH entre las máquinas.
 
-#2. Equipos remotos
-
-Los equipos remotos serán cada uno de los equipos usados por los estudiantes
-para realizar la actividad. A veces cada estudiante sólo necesitará una máquina,
-pero en otros casos cada estudiante puede necesitar más de una. Cabe señalar
-que el host principal o controlador (equipo del profesor) debe tener conexión e
-n red con las equipos de los estudiantes.
-
-##2.1 Software requerido en cada equipo remoto o equipo de alumno:
-
-* El software de acceso remoto SSH server.
-* El usuario del equipo principal debe conocer usuario/clave de cada equipo remoto con perfil de administrador.
-
-> También podría tener instalado el servidor Telnet.
-> En tal caso se usará un usuario, que habrá que crear en cada máquina de alumno,
-miembro de los grupos Administradores y TelnetClients.
-
-#3. Posibles inconvenientes
+##3.4 Posibles inconvenientes
 
 Tras la instalación de Ruby, al intentar instalar rake puede que se produzca el siguiente error:
 

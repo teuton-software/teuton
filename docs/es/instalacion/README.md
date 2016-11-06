@@ -4,9 +4,27 @@
 Dependiendo de la plataforma que tengamos el proceso de instalación puede variar
 un poco. A continuación guías para el proceso de instalación:
 
-* [Proceso de instalación genérico para todas las plataformas](./general.md).
-* [Proceso de instalación para OpenSUSE 13.2](./opensuse.md).
-* [Proceso de instalación para Debian 8.6 Jessie](./debian.md)
+#Instalación en la máquina del profesor (principal)
+
+Un equipo debe ser el host principal o del profesor. Este equipo es el que
+inicia los test de comprobación hacia el resto de las máquinas.
+
+Proceso de instalación para la máquina del profesor:
+* [Información general para todas las plataformas](./general/profesor.md).
+* [OpenSUSE 13.2](./opensuse/profesor.md).
+* [Debian 8.6 Jessie](./debian/profesor.md)
+
+#Instalación en los máquinas de los alumnos
+
+Los equipos remotos serán cada uno de los equipos usados por los estudiantes
+para realizar la actividad. A veces cada estudiante sólo necesitará una máquina,
+pero en otros casos cada estudiante puede necesitar más de una.
+
+Proceso de instalación para las máquinas de los alumnos:
+* [Información general para todas las plataformas](./general/alumno.md).
+* [OpenSUSE 13.2](./opensuse/alumno.md).
+* [Debian 8.6 Jessie](./debian/alumno.md)
+
 
 #Máquina preinstalada
 
