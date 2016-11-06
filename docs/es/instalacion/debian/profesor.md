@@ -5,21 +5,14 @@ Autor: Manuel Martínez Carbonell
 
 #Instalación en el equipo del profesor con Debian 8.6
 
-A continuación se indica el proceso de instalación y cuáles son los paquetes
-de software requeridos.
-
-Antes de proceder con la instalación se recomienda leer el apartado final *"Posibles inconvenientes"*.
-
-#1. Software requerido
-
+El software requerido es el siguiente:
 * Software SSH cliente: Se usará para conectar con el resto de máquinas.
-> También se puede usar el cliente Telnet.
-
+(También se puede usar el cliente Telnet).
 * `ruby -v` => 2.1.3p242. El programa está desarrollado en ruby.
 * `rake --version` =>10.4.2. rake es como el make de ruby.
 * Descargar el proyecto Sysadmin-game.
 
-#2. Instalación
+#1. Instalación estándar
 
 * `sudo apt-get install ruby`, para instalar ruby.
 * `sudo gem install rake`para instalar rake.
@@ -40,9 +33,9 @@ Antes de proceder con la instalación se recomienda leer el apartado final *"Pos
 ¡Ya lo tenemos!
 
 
-#3. Otras formas de hacer las instalaciones
+#2. Instalación descargando las últimas versiones
 
-##3.1 Instalar Ruby desde el código fuente
+##2.1 Instalar Ruby
 
 A la hora de instalar Ruby tenemos varias opciones:
 * Usar el sistema de gestión de paquetes de la propia distribución.
@@ -80,7 +73,7 @@ $ make
 
 ![ruby-v.png](./images/ruby-v.png)
 
-##3.2 Instalación de rake
+##2.2 Instalación de rake
 
 * Puedes descargar la [versión 10.4.2 de rake](https://rubygems.org/gems/rake/versions/10.4.2?locale=es).
 * En el directorio donde hayas descargado rake se debe ejecutar: `# gem install rake -v 10.4.2`
@@ -94,7 +87,7 @@ directamente desde los repositorios de internet, y no usa lo ficheros descargado
 
 ![rake-version.png](./images/rake-version.png)
 
-##3.3 Descargar el proyecto Sysadmin-game
+##2.3 Descargar el proyecto Sysadmin-game
 
 * Descargar y descomprimir el proyecto.
 * Entrar el directorio `sysadmin-game-master`.
@@ -110,7 +103,7 @@ directamente desde los repositorios de internet, y no usa lo ficheros descargado
 superior a 2.0
 > `net-ssh` es la gema que permite la conexión SSH entre las máquinas.
 
-##3.4 Posibles inconvenientes
+##2.4 Posibles inconvenientes
 
 Tras la instalación de Ruby, al intentar instalar rake puede que se produzca el siguiente error:
 
