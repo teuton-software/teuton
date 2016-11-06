@@ -10,10 +10,6 @@
 * `ruby -v` => 2.1.3p242. El programa está desarrollado en `ruby`.
 * `rake --version` =>10.4.2. `rake` es como el `make` de `ruby`.
 
-> Comprobar las versiones de `ruby`, `rake`:
-> ![ruby-rake-gems](../../../images/ruby-rake-gems.png)
->
-
 ## Proceso de instalación en el host principal
 
 * No hay que instalar ruby porque viene por defecto.
@@ -26,8 +22,6 @@
 
 * `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
 * `sudo rake opensuse`, para instalar las gemas necesarias en nuestro sistema.
+* `./project -v`, para comprobar que está todo bien.
 
-> Error que se produce cuando tenemos una versión incorrecta de `ruby`:
-> ![error-version](../../../images/error-version.png)
-
-* `./project -v`, para comprobar que está todo bien. ¡Ya lo tenemos!
+¡Ya lo tenemos!
