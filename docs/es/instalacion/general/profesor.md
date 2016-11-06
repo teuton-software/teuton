@@ -4,6 +4,7 @@
 ## Software requerido en el host principal
 
 * Software SSH cliente: Se usará para conectar con el resto de máquinas.
+
 > También se puede usar el cliente Telnet si hace falta.
 
 Instalar ruby
