@@ -10,25 +10,23 @@ A continuación proceso de instalación para
 
 ##Máquina del profesor (Equipo principal)
 
-Un equipo debe ser el host principal o del profesor. Este equipo es el que
-inicia los test de comprobación hacia el resto de las máquinas.
+Un equipo debe ser el host principal o del profesor.
 
-Proceso de instalación para la máquina del profesor:
-* [Información general para todas las plataformas](./general/profesor.md).
-* [OpenSUSE 13.2](./opensuse/profesor.md).
-* [Debian 8.6 Jessie](./debian/profesor.md)
+Este equipo es el que inicia los test de comprobación hacia el resto de las máquinas.
 
-##máquinas de los alumnos (Equipos remotos)
+* [Proceso general de instalación](./general/profesor.md).
+* [Instalación en OpenSUSE 13.2](./opensuse/profesor.md).
+* [Instalacion en Debian 8.6 Jessie](./debian/profesor.md)
+
+##Máquinas de los alumnos (Equipos remotos)
 
 Los equipos remotos serán cada uno de los equipos usados por los estudiantes
 para realizar la actividad. A veces cada estudiante sólo necesitará una máquina,
 pero en otros casos cada estudiante puede necesitar más de una.
 
-Proceso de instalación para las máquinas de los alumnos:
-* [Información general para todas las plataformas](./general/alumno.md).
-* [OpenSUSE 13.2](./opensuse/alumno.md).
-* [Debian 8.6 Jessie](./debian/alumno.md)
-
+* [Proceso general de instalación](./general/alumno.md).
+* [Instalación en OpenSUSE 13.2](./opensuse/alumno.md).
+* [Instalación en Debian 8.6 Jessie](./debian/alumno.md)
 
 #Máquina preinstalada
 
