@@ -16,7 +16,7 @@ Instalar rake
 * `sudo gem install rake`, para instalar
 
 > Comprobar las versiones de `ruby`, `rake`:
-> ![ruby-rake-gems](../images/ruby-rake-gems.png)
+> ![ruby-rake-gems](../../../images/ruby-rake-gems.png)
 >
 
 ## Proceso de instalación SysadminGame
@@ -26,11 +26,11 @@ Tenemos dos formas de descargar el proyecto:
 * (b) Descargando el zip desde la página del [repositorio GitHub](https://github.com/dvarrui/sysadmin-game).
 
 > Ejemplo de clonación usado comandos `git`:
-> ![git-clone](../../images/git-clone.png)
+> ![git-clone](../../../images/git-clone.png)
 >
 
 * `cd sysadmin-game`, entrar en la carpeta del proyecto.
 * Ejecutar `sudo rake install_gems` para instalar las gemas necesarias en nuestro sistema.
 
 > Error que se produce cuando tenemos una versión incorrecta de `ruby`:
-> ![error-version](../../images/error-version.png)
+> ![error-version](../../../images/error-version.png)
