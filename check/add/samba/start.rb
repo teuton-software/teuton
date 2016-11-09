@@ -1,5 +1,6 @@
 
 require_relative 'opensuse'
+require_relative 'samba'
 
 start do
   show
