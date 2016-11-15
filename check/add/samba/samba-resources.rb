@@ -1,19 +1,26 @@
 
-task "Shares directories" do
-  sharename = get(:group1_share)
-  sharepath = File.join("/","srv","sea"+get(:number),sharename+".d")
+task "Resources" do
+  shares = []
+  shares << { :group => get(:share1_group), :resource => get(:share1_resource), :perm => get(:share1_perm) }
+  shares << { :group => get(:share2_group), :resource => get(:share2_resource), :perm => get(:share2_perm) }
 
-  target "Directory #{sharepath}> exist"
-  goto :host2, :exec => "file #{sharepath}"
+  basepath = File.join( "/", "srv", "samba"+get(:id) )
+  target "Directory #{basepath}> exist"
+  goto :server, :exec => "file #{basepath}"
   expect result.grep!("directory").count!.eq(1)
-end
 
-task "Samba configuration file" do
-  sharename = get(:group1_share)
-  sharepath = File.join("/","srv","sea"+get(:number),sharename+".d")
+  shares.each do |share|
+    resource = share[:resource]
+    perm     = share[:perm]
+    dirname  = resource+".d"
+    dirpath  = File.join( basepath, dirname)
 
-  target "Directory #{sharepath}> exist"
-  goto :host2, :exec => "cat #{sharepath}"
-  expect result.grep!("path").grep!("=").count!.eq(1)
+    target "Directory #{dirpath}> exist"
+    goto :server, :exec => "file #{dirpath}"
+    expect result.grep!("directory").count!.eq(1)
 
+    target "Permissions #{dirpath}> #{perm}"
+    goto :server, :exec => "vdir #{basepath}"
+    expect result.grep!(dirname).grep!(perm).count!.eq(1)
+  end
 end

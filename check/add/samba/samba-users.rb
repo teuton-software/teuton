@@ -1,46 +1,25 @@
 
-task "Members of group1" do
-  group_name = get(:group1_name)
-  group_users = get(:group1_users).split(",")
+task "Groups and users" do
+  shares = []
+  shares << { :group => get(:share1_group), :users => get(:share1_users) }
+  shares << { :group => get(:share2_group), :users => get(:share2_users) }
 
-  group_users.each do |username|
-    target "System User <#{username}> exists"
-    goto   :host2, :exec => "id #{username}"
-    expect result.count!.eq(1)
+  shares.each do |share|
+    group = share[:group]
+    users = share[:users].split(",")
 
-    target "User <#{username}> member of <#{group_name}>"
-    result.restore!
-    expect result.grep!(group_name).count!.eq(1)
+    users.each do |username|
+      target "System User <#{username}> exists"
+      goto   :server, :exec => "id #{username}"
+      expect result.grep!("uid=").count!.eq(1)
 
-    target "Samba User <#{username}> exists"
-    goto   :host2, :exec => "pdbedit -L"
-    expect result.grep!(username).count!.eq(1)
+      target "User <#{username}> member of <#{group}>"
+      result.restore!
+      expect result.grep!(group).count!.eq(1)
 
-    target "Valid user line"
-    goto   :host2, :exec => "cat /etc/samba/smb.conf"
-    expect result.grep!("valid user").grep!(username).count!.eq(1)
-  end
-end
-
-task "Members of group2" do
-  group_name = get(:group2_name)
-  group_users = get(:group2_users).split(",")
-
-  group_users.each do |username|
-    target "System User <#{username}> exists"
-    goto   :host2, :exec => "id #{username}"
-    expect result.count!.eq(1)
-
-    target "User <#{username}> member of <#{group_name}>"
-    result.restore!
-    expect result.grep!(group_name).count!.eq(1)
-
-    target "Samba User <#{username}> exists"
-    goto   :host2, :exec => "pdbedit -L"
-    expect result.grep!(username).count!.eq(1)
-
-    target "Valid user line"
-    goto   :host2, :exec => "cat /etc/samba/smb.conf"
-    expect result.grep!("valid user").grep!(group_name).count!.eq(1)
+      target "Samba User <#{username}> exists"
+      goto   :server, :exec => "pdbedit -L"
+      expect result.grep!(username).count!.eq(1)
+    end
   end
 end
