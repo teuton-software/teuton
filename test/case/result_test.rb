@@ -180,4 +180,57 @@ class ResultTest < Minitest::Test
     assert_equal @content[0], @result.value
   end
 
+  def test_since_string
+    r = @result
+    r.content = @content
+
+    filter = "line1"
+    assert_equal @result.since!(filter).count!.value.to_i, 3
+    assert_equal "since!("+filter+") & count!", r.alterations
+    r.restore!
+    assert_equal @result.since!(filter).content, [ "line1", "line2", "line3" ]
+    assert_equal "since!("+filter+")", r.alterations
+    r.restore!
+    filter = "line2"
+    assert_equal @result.since!(filter).count!.value.to_i, 2
+    assert_equal "since!("+filter+") & count!", r.alterations
+    r.restore!
+    assert_equal @result.since!(filter).content, [ "line2", "line3" ]
+    assert_equal "since!("+filter+")", r.alterations
+    r.restore!
+    filter = "line3"
+    assert_equal @result.since!(filter).count!.value.to_i, 1
+    assert_equal "since!("+filter+") & count!", r.alterations
+    r.restore!
+    assert_equal @result.since!(filter).content, [ "line3" ]
+    assert_equal "since!("+filter+")", r.alterations
+  end
+
+  def test_until_string
+    r=@result
+    r.content=@content
+
+    filter="line1"
+    assert_equal @result.until!(filter).count!.value.to_i, 0
+    assert_equal "until!("+filter+") & count!", r.alterations
+    r.restore!
+    assert_equal @result.until!(filter).content, []
+    assert_equal "until!("+filter+")", r.alterations
+    r.restore!
+    filter="line2"
+    assert_equal @result.until!(filter).count!.value.to_i, 1
+    assert_equal "until!("+filter+") & count!", r.alterations
+    r.restore!
+    assert_equal @result.until!(filter).content, [ "line1" ]
+    assert_equal "until!("+filter+")", r.alterations
+    r.restore!
+    filter="line3"
+    assert_equal @result.until!(filter).count!.value.to_i, 2
+    assert_equal "until!("+filter+") & count!", r.alterations
+    r.restore!
+    assert_equal @result.until!(filter).content, [ "line1", "line2" ]
+    assert_equal "until!("+filter+")", r.alterations
+    r.restore!
+  end
+
 end
