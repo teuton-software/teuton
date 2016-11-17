@@ -1,10 +1,10 @@
 #File: Rakefile
 #Usage: rake
 
-packages=['net-ssh', 'net-sftp', 'minitest', 'rainbow', 'terminal-table', 'pry-byebug' ]
+packages=['net-ssh', 'net-sftp', 'rainbow', 'terminal-table', 'minitest', 'pry-byebug' ]
 
-desc "Check installed gems "
-task :check_gems do
+desc "Check installation"
+task :check do
   cmd=(`gem list`).split("\n")
   names = cmd.map { |i| i.split(" ")[0]}
   fails = []
@@ -15,6 +15,7 @@ task :check_gems do
   else
     puts "Check FAILS!: "+fails.join(",")
  end
+ system("./test/suit.rb")
 end
 
 #Define tasks
@@ -24,24 +25,24 @@ task :clean do
 end
 
 desc "Debian installation"
-task :debian => [:install_gems, :create_auxdirs] do
+task :debian => [:gems, :create_auxdirs] do
   names=[ 'ssh', 'make', 'gcc', 'ruby-dev' ]
   names.each { |name| system("apt-get install -y #{name}") }
 end
 
 desc "OpenSUSE installation"
-task :opensuse => [:install_gems, :create_auxdirs] do
+task :opensuse => [:gems, :create_auxdirs] do
   names=[ 'openssh', 'rubygem-pry', 'make', 'gcc', 'ruby-devel' ]
   names.each { |n| system("zypper --non-interactive in --auto-agree-with-licenses #{n}") }
 end
 
-desc "_install gems"
-task :install_gems do
+desc "Install gems"
+task :gems do
   #gem: pony?
   packages.each { |n| system("gem install #{n}") }
 end
 
-desc "_creating auxiliar directories"
+desc "Creating auxiliar directories"
 task :create_auxdirs do
   system("chmod +x ./check/demos/*.rb")
   system("mkdir -p var")

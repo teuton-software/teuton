@@ -12,7 +12,7 @@ One hosts must controll the process. It's the hosts used by the teacher.
    * Install rake (`gem install rake`)
    * Download this project.
    * `cd sysadmin-game`
-   * `rake install_gems`: to install required ruby gems on your system.
+   * `rake gems`: to install required ruby gems on your system.
 
 > Example clone using `git` command:
 > ![git-clone](../images/git-clone.png)

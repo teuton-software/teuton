@@ -30,7 +30,7 @@ Tenemos dos formas de descargar el proyecto:
 >
 
 * `cd sysadmin-game`, entrar en la carpeta del proyecto.
-* Ejecutar `sudo rake install_gems` para instalar las gemas necesarias en nuestro sistema.
+* Ejecutar `sudo rake gems` para instalar las gemas necesarias en nuestro sistema.
 
 > Error que se produce cuando tenemos una versión incorrecta de `ruby`:
 > ![error-version](../../../images/error-version.png)
