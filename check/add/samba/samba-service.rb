@@ -1,9 +1,10 @@
 
 task "Service external" do
-  target "Samba ports on <"+get(:server_ip)+"> open"
+  target "Samba ports 139 on <"+get(:server_ip)+"> open"
   goto   :localhost, :exec => "nmap -Pn #{get(:server_ip)}"
   expect result.grep!("139/tcp").grep!("open").count!.eq(1)
 
+  target "Samba ports 445 on <"+get(:server_ip)+"> open"
   result.restore!
   expect result.grep!("445/tcp").grep!("open").count!.eq(1)
 
