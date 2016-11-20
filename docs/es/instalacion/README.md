@@ -18,17 +18,20 @@ Este equipo es el que inicia los test de comprobación hacia el resto de las má
 * [Instalación en OpenSUSE 13.2](./opensuse/profesor.md).
 * [Instalacion en Debian 8.6 Jessie](./debian/profesor.md)
 
-##Máquinas de los alumnos (Equipos remotos)
+## Máquinas de los alumnos (Equipos remotos)
 
 Los equipos remotos serán cada uno de los equipos usados por los estudiantes
 para realizar la actividad. A veces cada estudiante sólo necesitará una máquina,
 pero en otros casos cada estudiante puede necesitar más de una.
 
-* [Acceso remoto](./general/alumno.md).
-* [Acceso remoto en OpenSUSE 13.2](./opensuse/alumno.md).
-* [Acceso remoto en Debian 8.6 Jessie](./debian/alumno.md)
+* Sólo hay que instalar el acceso remoto SSH y/o Telnet.
+    * [Acceso remoto](./general/alumno.md).
+    * [Acceso remoto en OpenSUSE 13.2](./opensuse/alumno.md).
+    * [Acceso remoto en Debian 8.6 Jessie](./debian/alumno.md)
+* El usuario del equipo principal debe conocer usuario/clave de cada equipo
+remoto con perfil de administrador.
 
-#Máquina preinstalada
+# Máquina preinstalada
 
 Máquinas Virtuales para  descargar, con el software preinstalado.
 * Descargar [MV OpenSUSE](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse-noviembre16.ova)
