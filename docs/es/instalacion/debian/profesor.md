@@ -1,29 +1,33 @@
 
-```
-Autor: Manuel Martínez Carbonell
-```
+# Instalación en el equipo del profesor con Debian 8.6
 
-#Instalación en el equipo del profesor con Debian 8.6
+A continuación se muestra cómo realizar la instalación del programa
+*sysadmin-game* en la máquina principal o del profesor con el sistema
+operativo Debian 8.
 
-El software requerido es el siguiente:
-* Software SSH cliente: Se usará para conectar con el resto de máquinas.
-(También se puede usar el cliente Telnet).
-* `ruby -v` => 2.1.3p242. El programa está desarrollado en ruby.
-* `rake --version` =>10.4.2. rake es como el make de ruby.
-* Descargar el proyecto Sysadmin-game.
+Tenemos dos formas de hacerlo:
+1. Usar las versiones predeterminadas por nuestra instalación.
+1. Usar las versiones más avanzadas, compilando directamente el código fuente.
 
-#1. Instalación estándar
+---
 
-* `sudo apt-get install ruby`, para instalar ruby.
-* `sudo gem install rake`para instalar rake.
-* `sudo apt-get install git`, para instalar git.
+# 1. Instalación estándar
+
+> Cuando se muestre el comando precedido de `#` indica que debemos ejecutar
+el comando como usuario `root`.
+
+* `# apt-get install -y git`, para instalar git.
 * `git clone https://github.com/dvarrui/sysadmin-game.git`, para descargar este proyecto.
 
 > Ejemplo de clonación usado comandos `git`:
 > ![git-clone](../../../images/git-clone.png)
 
 * `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
-* `sudo rake debian`, para instalar las gemas necesarias en nuestro sistema.
+* `ruby -v`, para comprobar que la versión instalada >= 2.1.3.
+* `# apt-get install -y ruby`, para instalar ruby.
+* `rake --version` para comprobar que la versión instalada =>10.4.2.
+* `# gem install rake`para instalar rake.
+* `# rake debian`, para instalar las gemas necesarias en nuestro sistema.
 
 > Error que se produce cuando tenemos una versión incorrecta de `ruby`:
 > ![error-version](../../../images/error-version.png)
@@ -32,10 +36,15 @@ El software requerido es el siguiente:
 
 ¡Ya lo tenemos!
 
+---
 
-#2. Instalación descargando las últimas versiones
+# 2. Instalación descargando las últimas versiones
 
-##2.1 Instalar Ruby
+```
+Autor: Manuel Martínez Carbonell
+```
+
+## 2.1 Instalar Ruby
 
 A la hora de instalar Ruby tenemos varias opciones:
 * Usar el sistema de gestión de paquetes de la propia distribución.

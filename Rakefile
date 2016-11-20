@@ -25,13 +25,13 @@ task :clean do
 end
 
 desc "Debian installation"
-task :debian => [:gems, :create_auxdirs] do
+task :debian => [:gems] do
   names=[ 'ssh', 'make', 'gcc', 'ruby-dev' ]
   names.each { |name| system("apt-get install -y #{name}") }
 end
 
 desc "OpenSUSE installation"
-task :opensuse => [:gems, :create_auxdirs] do
+task :opensuse => [:gems] do
   names=[ 'openssh', 'rubygem-pry', 'make', 'gcc', 'ruby-devel' ]
   names.each { |n| system("zypper --non-interactive in --auto-agree-with-licenses #{n}") }
 end
