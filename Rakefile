@@ -11,11 +11,11 @@ task :check do
   packages.each { |i| fails << i unless names.include?(i) }
 
   if fails.size==0
-    puts "Check OK!"
+    puts "Check gems OK!"
   else
-    puts "Check FAILS!: "+fails.join(",")
+    puts "Check gems FAILS!: "+fails.join(",")
  end
- system("./test/suit.rb")
+ system('./tests/all.rb')
 end
 
 #Define tasks
