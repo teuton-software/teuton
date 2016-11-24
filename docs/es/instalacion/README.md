@@ -1,14 +1,13 @@
 
-#Instalación
+# Instalación
 
-Dependiendo de la plataforma que tengamos el proceso de instalación puede variar
-un poco.
-
-A continuación proceso de instalación para
+A continuación se explica el proceso de instalación para
 * La máquina del profesor y
 * Las máquinas de los alumnos
 
-##Máquina del profesor (Equipo principal)
+> Dependiendo de la plataforma que tengamos el proceso de instalación puede variar.
+
+## Máquina del profesor (Equipo principal)
 
 Un equipo debe ser el host principal o del profesor.
 
@@ -31,16 +30,30 @@ pero en otros casos cada estudiante puede necesitar más de una.
 * El usuario del equipo principal debe conocer usuario/clave de cada equipo
 remoto con perfil de administrador.
 
+---
+
 # Máquina preinstalada
 
 Máquinas Virtuales para  descargar, con el software preinstalado.
-* Descargar [MV OpenSUSE](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse-noviembre16.ova)
- con software preinstalado (Fichero de comprobación [MD5](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse-noviembre16.md5))
+* Descargar [MV OpenSUSE 31.2](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse-noviembre16.ova)
+ (Fichero de comprobación [MD5](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse-noviembre16.md5))
 
 ```
      Fecha 20161104 (versión 0.21.0)
      Fichero OVA de 1,8 GB
-     MV VirtualBox con SO OpenSUSE 13.2 (64bits) Desktop XFCE 64 bits.
+     MV VirtualBox con SO OpenSUSE 13.2 (64bits)
+     Desktop XFCE 64 bits.
      Usuarios/clave: root/profesor, profesor/profesor
-     Directorio /home/profesor/sysamdingame
+     Directorio /home/profesor/sysamdin-game
+```
+* Descargar [MV Debian 8.6](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-debian-noviembre16.ova)
+ (Fichero de comprobación [MD5](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-debian-noviembre16.md5))
+
+```
+     Fecha 20161120 (versión 0.21.0)
+     Fichero OVA de 1,4 GB
+     MV VirtualBox con SO Debian 8.6 (64bits)
+     Desktop XFCE 64 bits.
+     Usuarios/clave: root/profesor, profesor/profesor
+     Directorio /home/profesor/sysamdin-game
 ```
