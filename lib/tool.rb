@@ -8,15 +8,17 @@ require_relative 'case/case'
 require_relative 'utils'
 require_relative 'report'
 
+# This class does all the job
+# Organize the hole job, sending orders to others classes
 class Tool
   include Singleton
   include Utils
 
   def initialize
-	  @tasks=[]
+	  @tasks = []
     @cases = []
     @report = Report.new(0)
-    @report.filename="resume"
+    @report.filename = "resume"
     @app=Application.instance
   end
 
