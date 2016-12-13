@@ -1,9 +1,13 @@
 #File: Rakefile
 #Usage: rake
 
-packages=['net-ssh', 'net-sftp', 'rainbow', 'terminal-table', 'minitest', 'pry-byebug' ]
+packages=['net-ssh', 'net-sftp', 'rainbow', 'terminal-table', 'minitest', 'pry-byebug']
 
-desc "Check installation"
+desc 'Default'
+task default: :check do
+end
+
+desc 'Check installation'
 task :check do
   cmd=(`gem list`).split("\n")
   names = cmd.map { |i| i.split(" ")[0]}
@@ -14,8 +18,19 @@ task :check do
     puts "Check gems OK!"
   else
     puts "Check gems FAILS!: "+fails.join(",")
- end
- system('./tests/all.rb')
+  end
+
+  testfile = './tests/all.rb'
+  a = `cat #{testfile}|grep "_test"|wc -l`
+  b = `vdir -R tests/ |grep "_test.rb"|wc -l`
+  if a.to_i == b.to_i
+    puts "[ OK ] All ruby tests into #{testfile}"
+  else
+    puts "[FAIL] some ruby tests are not into #{testfile}"
+  end
+
+  puts "[INFO] Running #{testfile}"
+  system(testfile)
 end
 
 #Define tasks
