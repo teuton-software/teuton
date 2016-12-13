@@ -11,32 +11,9 @@ class Result
     reset
   end
 
-  def reset
-    @content_backup = []
-    @content        = []
-    @value          = nil
-    @expected       = nil
-    @alterations    = []
-  end
-
-  def restore!
-    temp = @content_backup.clone
-    reset
-    @content_backup = temp
-    @content        = temp.clone
-  end
-
-  def value
-    @content[0]
-  end
-
   def alterations
     return '' if @alterations.size.zero?
     @alterations.join(' & ')
-  end
-
-  def expected
-    @expected.to_s
   end
 
   def content=(content)
@@ -61,6 +38,29 @@ class Result
       end
     end
     puts '\n' + my_screen_table.to_s + '\n'
+  end
+
+  def expected
+    @expected.to_s
+  end
+
+  def reset
+    @content_backup = []
+    @content        = []
+    @value          = nil
+    @expected       = nil
+    @alterations    = []
+  end
+
+  def restore!
+    temp = @content_backup.clone
+    reset
+    @content_backup = temp
+    @content        = temp.clone
+  end
+
+  def value
+    @content[0]
   end
 
   # Return 'true' if the parameter value is near to the target value.
