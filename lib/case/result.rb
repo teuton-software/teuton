@@ -84,9 +84,7 @@ class Result
 
   # TODO: Error line 102 undefined include? method for 0 Fixnum...
   def find!(p_filter)
-    type = p_filter.class.to_s
-
-    case type
+    case p_filter.class.to_s
     when 'Array'
       p_filter.each { |item| find!(item) }
       return self
