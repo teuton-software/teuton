@@ -5,8 +5,8 @@ task "OpenSUSE external configurations" do
   set :host2_password, get(:host1_password).to_s
 
   target "ping to <"+get(:host2_ip)+">"
-  goto :localhost, :exec => "ping #{get(:host2_ip)} -c 1"
-  expect result.find!("100% packet loss").eq(0)
+  goto :localhost, :exec => "ping #{get(:host2_ip)} -c 2"
+  expect result.find!('64 bytes from').ge(1)
 
   target "SSH port 22 on <"+get(:host2_ip)+"> open"
   goto :localhost, :exec => "nmap #{get(:host2_ip)} -Pn | grep ssh|wc -l"
