@@ -1,4 +1,5 @@
 
+# This object contains data returned by remote execution
 class Result
   attr_reader :content
 
@@ -168,7 +169,7 @@ class Result
 
   # Return 'true' if the parameter value is near to the target value.
   # To get this we consider a 10% desviation or less, as an acceptable result.
-  def is_near_to?(p_fvalue)
+  def near_to?(p_fvalue)
     @expected = "Is near to #{p_fvalue}"
 
     return false if @content.nil?
