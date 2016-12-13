@@ -84,15 +84,17 @@ class Result
 
   # TODO: Error line 102 undefined include? method for 0 Fixnum...
   def find!(p_filter)
-    if p_filter.class == Array
+    type = p_filter.class.to_s
+
+    case type
+    when 'Array'
       p_filter.each { |item| find!(item) }
       return self
-    end
-
-    @alterations << "find!(#{p_filter})"
-    if p_filter.class == String
+    when 'String'
+      @alterations << "find!(#{p_filter})"
       @content.select! { |i| i.include?(p_filter.to_s) }
-    elsif p_filter.class == Regexp
+    when 'Regexp'
+      @alterations << "find!(#{p_filter})"
       temp = @content.clone
       @content = temp.grep p_filter
     end
