@@ -1,7 +1,8 @@
-#File: Rakefile
-#Usage: rake
+# File: Rakefile
+# Usage: rake
 
-packages=['net-ssh', 'net-sftp', 'rainbow', 'terminal-table', 'minitest', 'pry-byebug']
+packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
+packages += ['minitest', 'pry-byebug']
 
 desc 'Default'
 task default: :check do
@@ -9,15 +10,15 @@ end
 
 desc 'Check installation'
 task :check do
-  cmd=(`gem list`).split("\n")
-  names = cmd.map { |i| i.split(" ")[0]}
+  cmd = `gem list`.split("\n")
+  names = cmd.map { |i| i.split(' ')[0] }
   fails = []
   packages.each { |i| fails << i unless names.include?(i) }
 
-  if fails.size==0
-    puts "Check gems OK!"
+  if fails.size.zero?
+    puts 'Check gems OK!'
   else
-    puts "Check gems FAILS!: "+fails.join(",")
+    puts 'Check gems FAILS!: ' + fails.join(',')
   end
 
   testfile = './tests/all.rb'
@@ -33,32 +34,32 @@ task :check do
   system(testfile)
 end
 
-#Define tasks
-desc "Clean temp files."
+desc 'Clean temp files.'
 task :clean do
-  system("rm -rf var/*")
+  system('rm -rf var/*')
 end
 
-desc "Debian installation"
-task :debian => [:gems] do
-  names=[ 'ssh', 'make', 'gcc', 'ruby-dev' ]
+desc 'Debian installation'
+task debian: :gems do
+  names = ['ssh', 'make', 'gcc', 'ruby-dev']
   names.each { |name| system("apt-get install -y #{name}") }
 end
 
-desc "OpenSUSE installation"
-task :opensuse => [:gems] do
-  names=[ 'openssh', 'rubygem-pry', 'make', 'gcc', 'ruby-devel' ]
-  names.each { |n| system("zypper --non-interactive in --auto-agree-with-licenses #{n}") }
+desc 'OpenSUSE installation'
+task opensuse: :gems do
+  names = ['openssh', 'rubygem-pry', 'make', 'gcc', 'ruby-devel']
+  options = '--non-interactive --auto-agree-with-licenses'
+  names.each { |n| system("zypper #{options} install #{n}") }
 end
 
-desc "Install gems"
+desc 'Install gems'
 task :gems do
-  #gem: pony?
+  # TODO: use gem pony to send email
   packages.each { |n| system("gem install #{n}") }
 end
 
-desc "Creating auxiliar directories"
+desc 'Creating auxiliar directories'
 task :create_auxdirs do
-  system("chmod +x ./check/demos/*.rb")
-  system("mkdir -p var")
+  system('chmod +x ./check/demos/*.rb')
+  system('mkdir -p var')
 end
