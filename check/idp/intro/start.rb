@@ -5,7 +5,7 @@ Spanish Exercise URL:
 * https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/global/configuracion-aula109.md
 =end
 
-#require_relative 'windows'
+require_relative 'windows'
 require_relative 'opensuse'
 #require_relative 'debian'
 
