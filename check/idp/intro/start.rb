@@ -1,8 +1,8 @@
 
 =begin
 Spanish Exercise URL:
-* https://github.com/dvarrui/libro-de-actividades/tree/master/actividades/idp/instalacion/live-cd
-* https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/global/configuracion-aula109.md
+* https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/global/configuracion/windows.md
+* https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/global/configuracion/opensuse.md
 =end
 
 require_relative 'windows'
