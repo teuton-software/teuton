@@ -60,3 +60,19 @@ task "OpenSUSE - software" do
     expect result.grep_v!('i ').find!(programa).count!.ge(1), :weight => 5
   end
 end
+
+task "OpenSUSE - permisos" do
+  goto :host2, :exec => "vdir /home/mario"
+
+  dirname = 'casa.d'
+  perm = 'drwx------'
+  target "Directorio <#{dirname}> con permisos <#{perm}"
+  result.restore!
+  expect result.find!(dirname).find!(perm).count!.eq(1), :weight => 5
+
+  dirname = 'plataformas.d'
+  perm = 'drwxrwxrwx'
+  target "Directorio <#{dirname}> con permisos <#{perm}"
+  result.restore!
+  expect result.find!(dirname).find!(perm).count!.eq(1), :weight => 5
+end
