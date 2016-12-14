@@ -22,7 +22,8 @@ end
 task "Windows Student configurations" do
   target "User #{get(:username)} home dir"
   goto   :host1, :exec => "dir c:\\Users"
-  expect result.find!(get(:username)).count!.eq 1
+  #expect result.find!(get(:username)).count!.eq 1
+  expect result.find!(get(:username)[1,99]).count!.eq 1
 
   shortname = get(:apellido1).to_s+get(:number).to_s+"w"
   target "Windows COMPUTERNAME"
