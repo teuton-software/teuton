@@ -9,6 +9,7 @@ class Result
       return self
     when 'String'
       @alterations << "find!(#{p_filter})"
+      #Error controlar include? en 0 Fixnum...
       @content.select! { |i| i.include?(p_filter.to_s) }
     when 'Regexp'
       @alterations << "find!(#{p_filter})"
