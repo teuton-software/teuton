@@ -6,6 +6,7 @@ Spanish Exercise URL:
 =end
 
 require_relative 'windows'
+require_relative 'test-windows'
 require_relative 'opensuse'
 require_relative 'test-opensuse'
 
