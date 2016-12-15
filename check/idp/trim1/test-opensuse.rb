@@ -45,6 +45,16 @@ task "OpenSUSE - usuarios" do
   end
 end
 
+task "OpenSUSE - passwords" do
+  usuarios = ['mario', 'princesa', 'tortuga', 'seta']
+  goto :host2, :exec => "cat /etc/shadow"
+  usuarios.each do |usuario|
+    target "El usuario <#{usuario}> tiene password"
+    result.restore!
+    expect result.grep_v!('!').find!(usuario).count!.eq(1), :weight => 5
+  end
+end
+
 task "OpenSUSE - software" do
   programas = [ 'nano', 'tree' ]
   programas.each do |programa|
@@ -66,13 +76,13 @@ task "OpenSUSE - permisos" do
 
   dirname = 'casa.d'
   perm = 'drwx------'
-  target "Directorio <#{dirname}> con permisos <#{perm}"
+  target "Directorio <#{dirname}> con permisos <#{perm}>"
   result.restore!
   expect result.find!(dirname).find!(perm).count!.eq(1), :weight => 5
 
   dirname = 'plataformas.d'
   perm = 'drwxrwxrwx'
-  target "Directorio <#{dirname}> con permisos <#{perm}"
+  target "Directorio <#{dirname}> con permisos <#{perm}>"
   result.restore!
   expect result.find!(dirname).find!(perm).count!.eq(1), :weight => 5
 end
