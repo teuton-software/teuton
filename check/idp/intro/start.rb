@@ -6,12 +6,13 @@ Spanish Exercise URL:
 =end
 
 require_relative 'windows'
-require_relative 'opensuse'
+#require_relative 'opensuse'
+#require_relative 'windows-server'
 #require_relative 'debian'
 
 start do
   show
   export :format => :colored_text
-  send :copy_to => :host2
+#  send :copy_to => :host2
 #  send :copy_to => :host3
 end

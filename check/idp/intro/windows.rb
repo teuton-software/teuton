@@ -9,7 +9,7 @@ task "Windows external configuration" do
 
   goto   :localhost, :exec => "nmap -Pn #{get(:host1_ip)}" #Execute command once
 
-  ports=[ [ '23/tcp' , 'telnet'],
+  ports=[ [ '22/tcp' , 'ssh'],
           [ '139/tcp', 'netbios-ssn'] ]
 
   ports.each do |port|
