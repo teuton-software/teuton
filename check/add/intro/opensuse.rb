@@ -1,6 +1,5 @@
 
 task "OpenSUSE external configurations" do
-  set :host3_ip, "172.19."+get(:number).to_i.to_s+".31"
   set :host3_username, "root"
   set :host3_password, get(:host1_password).to_s
 
