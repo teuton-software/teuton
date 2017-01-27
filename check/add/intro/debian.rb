@@ -2,8 +2,8 @@
 task "Degian external configurations" do
   set :host3_ip, "172.19."+get(:number).to_i.to_s+".41"
   set :host3_username, "root"
-  set :host3_password, get(:host2_password).to_s
-  set :host3_domain, get(:host2_domain).to_s
+  set :host3_password, get(:host1_password).to_s
+  set :host3_domain, get(:host1_domain).to_s
 
   target "ping to <"+get(:host3_ip)+">"
   goto :localhost, :exec => "ping #{get(:host3_ip)} -c 1"
@@ -15,7 +15,7 @@ task "Degian external configurations" do
 end
 
 task "Debian student configurations" do
-  shortname = get(:apellido1).to_s + get(:number).to_s + "g"
+  shortname = get(:apellido1).to_s + get(:number).to_s + "h"
   target "Checking hostname -a <"+shortname+">"
   goto :host3, :exec => "hostname -a"
   expect result.equal?(shortname)
