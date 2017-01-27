@@ -6,8 +6,8 @@ Spanish Exercise URL:
 =end
 
 require_relative 'windows'
-#require_relative 'opensuse'
 #require_relative 'windows-server'
+#require_relative 'opensuse'
 #require_relative 'debian'
 
 start do
