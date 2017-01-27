@@ -1,7 +1,7 @@
 
 task "OpenSUSE external configurations" do
   set :host3_username, "root"
-  set :host3_password, get(:host1_password).to_s
+  set :host3_ip, "172.18." + get(:number).to_i.to_s + ".100"
 
   target "ping to <"+get(:host3_ip)+">"
   goto :localhost, :exec => "ping #{get(:host3_ip)} -c 2"
