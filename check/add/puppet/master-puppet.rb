@@ -5,17 +5,17 @@ task "Master check hostnames" do
 
   goto :master, :exec => "cat /etc/hosts"
 
-  target "Master: master info into /etc/hosts file"
+  target "master info into /etc/hosts file"
   result.restore!
-  expect result.find!(get(:master_ip)).find!('master').find!(get(:master_domain)).eq(1)
+  expect result.find!(get(:master_ip)).find!('master'+get(:number)).find!(get(:master_domain)).eq(1)
 
-  target "Master: client1 info into /etc/hosts file"
+  target "client1 info into /etc/hosts file"
   result.restore!
-  expect result.find!(get(:client1_ip)).find!('client1').find!(get(:client1_domain)).eq(1)
+  expect result.find!(get(:client1_ip)).find!('cli1alu'+get(:number)).find!(get(:client1_domain)).eq(1)
 
-  target "Master: client2 into /etc/hosts file"
+  target "client2 into /etc/hosts file"
   result.restore!
-  expect result.find!(get(:client2_ip)).find!('client2').find!(get(:client2_domain)).eq(1)
+  expect result.find!(get(:client2_ip)).find!('cli2alu'+get(:number)).find!(get(:client2_domain)).eq(1)
 end
 
 task "Master software" do

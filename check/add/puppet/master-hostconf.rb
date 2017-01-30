@@ -1,6 +1,5 @@
 
 task "OpenSUSE external configurations" do
-  set :master_username, "root"
   set :master_ip, "172.18." + get(:number).to_i.to_s + ".100"
 
   target "ping to <"+get(:master_ip)+">"

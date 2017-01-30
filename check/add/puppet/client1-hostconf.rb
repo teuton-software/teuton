@@ -1,7 +1,5 @@
 
 task "OpenSUSE external configurations" do
-  set :client1_username, "root"
-
   target "ping to <"+get(:client1_ip)+">"
   goto :localhost, :exec => "ping #{get(:client1_ip)} -c 2"
   expect result.find!('64 bytes from').ge(1)
