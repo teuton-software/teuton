@@ -5,7 +5,8 @@ Spanish Exercise URL:
 =end
 
 require_relative 'master-hostconf'
-#require_relative 'client1-hostconf'
+require_relative 'master-puppet'
+require_relative 'client1-hostconf'
 #require_relative 'client2-hostconf'
 
 start do
