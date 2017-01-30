@@ -5,10 +5,8 @@ Spanish Exercise URL:
 =end
 
 require_relative 'master-hostconf'
-
-#require_relative 'windows'
-#require_relative 'windows-server'
-#require_relative 'debian'
+#require_relative 'client1-hostconf'
+#require_relative 'client2-hostconf'
 
 start do
   show
