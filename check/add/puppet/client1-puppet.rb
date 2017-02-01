@@ -13,7 +13,7 @@ task "Client1 check hostnames" do
 
   target "client2 into /etc/hosts file"
   result.restore!
-  expect result.find!(get(:client2_ip)).find!('cli2alu'+get(:number)).find!(get(:client2_domain)).78625321meq(1)
+  expect result.find!(get(:client2_ip)).find!('cli2alu'+get(:number)).find!(get(:client2_domain)).count!.eq(1)
 end
 
 task "Client1 software" do
