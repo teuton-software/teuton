@@ -40,7 +40,7 @@ end
 task "Master: puppet files" do
   target "<site.pp> created"
   goto :master, :exec => "file /etc/puppet/manifests/site.pp"
-  expect result.find!('ASCII text ').eq(1)
+  expect result.find!('ASCII text ').count!.eq(1)
 
   files = ['hostlinux1.pp', 'hostlinux2.pp', 'hostwindows3.pp', 'hostwindows4.pp']
 

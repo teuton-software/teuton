@@ -25,7 +25,7 @@ task "Client1 software" do
     expect result.find!('i ').find!(packagename).count!.ge(1)
   end
 
-  goto :master, :exec => "systemctl status puppet"
+  goto :client1, :exec => "systemctl status puppet"
   target "Service <puppet> active"
   result.restore!
   expect result.find!('Active: ').find!('running').count!.eq(1)
