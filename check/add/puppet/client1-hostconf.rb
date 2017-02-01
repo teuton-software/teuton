@@ -1,5 +1,5 @@
 
-task "OpenSUSE external configurations" do
+task "Client1 OpenSUSE external configurations" do
   target "ping to <"+get(:client1_ip)+">"
   goto :localhost, :exec => "ping #{get(:client1_ip)} -c 2"
   expect result.find!('64 bytes from').ge(1)
@@ -9,7 +9,7 @@ task "OpenSUSE external configurations" do
   expect result.find!("ssh").count!.eq(1)
 end
 
-task "OpenSUSE student configurations" do
+task "Client1 OpenSUSE student configurations" do
   shortname = "cli1alu" + get(:number).to_s
   target "Checking hostname -a <"+shortname+">"
   goto :client1, :exec => "hostname -a"
@@ -45,7 +45,7 @@ task "OpenSUSE student configurations" do
   unique "client1_sda2", result.value
 end
 
-task "OpenSUSE network configurations" do
+task "Client1 OpenSUSE network configurations" do
   goto :client1, :exec => "ip a|grep ether"
   mac= result.value
   log    ("client1_MAC = #{mac}")

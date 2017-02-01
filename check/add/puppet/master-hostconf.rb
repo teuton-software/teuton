@@ -1,5 +1,5 @@
 
-task "OpenSUSE external configurations" do
+task "Master OpenSUSE external configurations" do
   set :master_ip, "172.18." + get(:number).to_i.to_s + ".100"
 
   target "ping to <"+get(:master_ip)+">"
@@ -11,7 +11,7 @@ task "OpenSUSE external configurations" do
   expect result.find!("ssh").count!.eq(1)
 end
 
-task "OpenSUSE student configurations" do
+task "Master OpenSUSE student configurations" do
   shortname = "master" + get(:number).to_s
   target "Checking hostname -a <"+shortname+">"
   goto :master, :exec => "hostname -a"
@@ -47,7 +47,7 @@ task "OpenSUSE student configurations" do
   unique "master_sda2", result.value
 end
 
-task "OpenSUSE network configurations" do
+task "Master OpenSUSE network configurations" do
   goto :master, :exec => "ip a|grep ether"
   mac= result.value
   log    ("master_MAC = #{mac}")
