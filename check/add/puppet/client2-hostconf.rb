@@ -1,13 +1,12 @@
 
 task "Windows external configuration" do
-
   target "Conection with <#{get(:client2_ip)}>"
   goto   :localhost, :exec => "ping #{get(:client2_ip)} -c 1"
   expect result.find!(", 0% packet loss").count!.eq 1
 
   goto   :localhost, :exec => "nmap -Pn #{get(:client2_ip)}" #Execute command once
 
-  ports=[ [ '22/tcp' , 'ssh'],
+  ports=[ [ '23/tcp' , 'telnet'],
           [ '139/tcp', 'netbios-ssn'] ]
 
   ports.each do |port|
