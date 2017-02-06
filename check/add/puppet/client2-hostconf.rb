@@ -40,7 +40,7 @@ task "Windows version" do
 
   target "Windows ProductName"
   goto   :client2, :exec => "reg query \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\" /t REG_SZ"
-  expect result.find!("ProductName").find!(get(:host1_productname)).count!.eq 1
+  expect result.find!("ProductName").find!(get(:client2_productname)).count!.eq 1
 end
 
 task "Windows network configurations" do
