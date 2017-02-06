@@ -1,6 +1,5 @@
 
 task "Client1 check hostnames" do
-
   goto :client1, :exec => "cat /etc/hosts"
 
   target "master info into /etc/hosts file"
