@@ -18,6 +18,6 @@ task "Client1: puppet actions" do
   groups.each do |groupname|
     target "Group <" + groupname + ">"
     result.restore!
-    expect result.find!(groupname+':').count!.eq(1)
+    expect result.find!(groupname+':').count!.ge(1)
   end
 end
