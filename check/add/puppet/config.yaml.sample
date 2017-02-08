@@ -1,0 +1,20 @@
+---
+:global:
+  :gateway_ip: 172.18.0.1
+  :master_username: root
+  :master_domain: curso1617
+  :client1_username: root
+  :client1_domain: curso1617
+  :client2_protocol: telnet
+  :client2_username: sysadmingame
+  :client2_domain: curso1617
+  :client2_productname: "Windows 7 Enterprise"
+:cases:
+- :tt_members: Nombre
+  :username: username
+  :apellido1: apellido1
+  :apellido2: apellido2
+  :number: "XX"
+  :master_password: clave
+  :client1_password: clave
+  :client2_password: clave
