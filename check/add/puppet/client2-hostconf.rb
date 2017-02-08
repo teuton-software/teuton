@@ -6,8 +6,8 @@ task "Windows external configuration" do
 
   goto   :localhost, :exec => "nmap -Pn #{get(:client2_ip)}" #Execute command once
 
-  ports=[ [ '23/tcp' , 'telnet'],
-          [ '139/tcp', 'netbios-ssn'] ]
+  ports=[ [ '23/tcp' , 'telnet'] ]
+#          [ '139/tcp', 'netbios-ssn'] ]
 
   ports.each do |port|
     target "windows #{get(:client2_ip)} port #{port[0]}"
