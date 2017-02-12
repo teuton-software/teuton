@@ -16,9 +16,9 @@ task :check do
   packages.each { |i| fails << i unless names.include?(i) }
 
   if fails.size.zero?
-    puts 'Check gems OK!'
+    puts '[ OK ] Installed gems!'
   else
-    puts 'Check gems FAILS!: ' + fails.join(',')
+    puts '[ERROR] Installed gems!: ' + fails.join(',')
   end
 
   testfile = './tests/all.rb'
