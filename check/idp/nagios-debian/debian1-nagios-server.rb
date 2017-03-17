@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 task "Configure Nagios Server" do
-  
+
   packages=['nagios3', 'nagios3-doc', 'nagios-nrpe-plugin']
 
   packages.each do |package|
@@ -22,18 +22,18 @@ task "Configure Nagios Server" do
     target "File <#{f}> exist"
     goto :debian1, :exec => "file #{f}| grep 'text' |wc -l"
     expect result.eq 1
-    
+
     pathtofiles << f
   end
 
   #grupos.XX.cfg
   f= pathtofiles.select { |i| i.include? 'grupos'}
   filepath=f[0]
-  
+
   target "<#{filepath}> content"
   goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name' |wc -l"
   expect result.eq 3
-  
+
   target "<#{filepath}> content"
   goto :debian1, :exec => "cat #{filepath}| grep 'hostgroup_name'|grep 'routers#{@student_number}' |wc -l"
   expect result.eq 1
@@ -49,11 +49,11 @@ task "Configure Nagios Server" do
   #grupo-de-routersXX.cfg
   f= pathtofiles.select { |i| i.include? 'grupo-de-routers'}
   filepath=f[0]
-  
+
   target "<#{filepath}> content"
   goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
   expect result.eq 2
-  
+
   target "<#{filepath}> content"
   goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep bender#{@student_number} |wc -l"
   expect result.eq 1
@@ -66,7 +66,7 @@ task "Configure Nagios Server" do
   target "<#{filepath}> content Router bender host_name"
   goto :debian1, :exec => "cat #{filepath}| grep 'host_name' | grep bender#{@student_number} |wc -l"
   expect result.eq 1
-  
+
   target "<#{filepath}> content Router caronte address"
   goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:caronte_ip)} |wc -l"
   expect result.eq 1
@@ -82,11 +82,11 @@ task "Configure Nagios Server" do
   #grupo-de-servidoresXX.cfg
   f= pathtofiles.select { |i| i.include? 'grupo-de-servidores'}
   filepath=f[0]
-  
+
   target "<#{filepath}> content: <define hosts> ???"
   goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
   expect result.eq 1
-  
+
   target "<#{filepath}> content: <host_name leela#{@student_number}>"
   goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep leela#{@student_number} |wc -l"
   expect result.eq 1
@@ -102,14 +102,14 @@ task "Configure Nagios Server" do
   #grupo-de-clientesXX.cfg
   f= pathtofiles.select { |i| i.include? 'grupo-de-clientes'}
   filepath=f[0]
-  
+
   target "<#{filepath}> content: <define host>"
   goto :debian1, :exec => "cat #{filepath}| grep 'define host' |wc -l"
   expect result.eq 2
-  
-  @short_hostname[2]="#{get(:lastname1)}#{@student_number}h"
+
+  @short_hostname[2]="#{get(:lastname1)}#{@student_number}e"
   @long_hostname[2]="#{@short_hostname[2]}.#{get(:domain)}}"
-  
+
   target "<#{filepath}> content: <host_name #{@short_hostname[2]}>"
   goto :debian1, :exec => "cat #{filepath}| grep 'host_name'| grep #{@short_hostname[2]} |wc -l"
   expect result.eq 1
@@ -128,7 +128,7 @@ task "Configure Nagios Server" do
   target "<#{filepath}> content: <address #{get(:windows1_ip)}>"
   goto :debian1, :exec => "cat #{filepath}| grep 'address'| grep #{get(:windows1_ip)} |wc -l"
   expect result.eq 1
-  
+
 end
 
 task "Debian1: Restart Nagios service" do
@@ -142,5 +142,5 @@ task "Debian1: Restart Nagios service" do
   goto   :debian1, :exec => "service nagios3 start"
   goto   :debian1, :exec => "service nagios3 status |grep Active|grep active|wc -l"
   expect result.eq(1), :weight => 5
-  
+
 end

@@ -20,7 +20,9 @@ task "Debian1: Monit configuration" do
   texts << [ "set alert"       , "@" ]
   texts << [ "set mail-format" , "{" ]
   texts << [ "from:"           , "@" ]
-  texts << [ "subject:"        , "$SERVICE $EVENT at $DATE" ]
+  texts << [ "subject:"        , "$SERVICE" ]
+  texts << [ "subject:"        , "$EVENT" ]
+  texts << [ "subject:"        , "at $DATE" ]
   texts << [ "message:"        , "Monit $ACTION $SERVICE at $DATE on $HOST: $DESCRIPTION." ]
   texts << [ "Yours sincerely,", "monit" ]
   texts << [ "set httpd port 2812", "and use address localhost" ]
@@ -37,11 +39,11 @@ task "Debian1: Monit configuration" do
   texts << [ "stop program"  , "service sshd stop" ]
   texts << [ "if failed port 22 protocol ssh then restart" ]
   texts << [ "if 5 restarts within 5 cycles then timeout" ]
-  
+
   texts.each do |text|
     target "<#{file}> must contain <#{text.join(" ")}> line"
     goto   :debian1, :exec => "cat #{file}"
-    
+
     text.each { |item| result.find!(item) }
     expect result.not_find!("#").count!.eq(1), :weight => 0.2
   end
