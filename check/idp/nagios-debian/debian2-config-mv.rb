@@ -9,8 +9,8 @@ task "Configure Host Debian2" do
   goto :localhost, :exec => "nmap #{get(:debian2_ip)} -Pn | grep ssh|wc -l"
   expect result.eq 1
 
-  @short_hostname[2]="#{get(:lastname1)}#{@student_number}h"
-  
+  @short_hostname[2]="#{get(:lastname1)}#{@student_number}e"
+
   target "Checking hostname -a <"+@short_hostname[2]+">"
   goto :debian2, :exec => "hostname -a"
   expect result.eq @short_hostname[2]
@@ -42,7 +42,7 @@ task "Configure Host Debian2" do
   expect result.gt 0
 
   goto :debian2, :exec => "blkid |grep sda1"
-  unique "debian2_sda1_UUID", result.value	
+  unique "debian2_sda1_UUID", result.value
 
   @uuid_debian2=result.value
 end
@@ -50,11 +50,11 @@ end
 task "¿ Debian1==Debian2 ?" do
   if @uuid_debian1!=@uuid_debian2 then
     log("UUID debian1 distinto de debian2",:warn)
-  end  
+  end
 end
 
 
-task "Ping from debian2 to *" do  
+task "Ping from debian2 to *" do
   target "ping debian2 to debian1_ip"
   goto :debian2, :exec => "ping #{get(:debian1_ip)} -c 1"
   expect result.grep!("64 bytes from").count!.eq 1
@@ -72,4 +72,3 @@ task "Ping from debian2 to *" do
   expect result.grep!("64 bytes from").count!.eq 1
 
 end
-

@@ -13,8 +13,8 @@ task "Configure host Debian1" do
   @student_number=get(:debian1_ip).split(".")[2]||"999"
   @student_number="0"+@student_number if @student_number.size==1
   @short_hostname=[]
-  @short_hostname[1]="#{get(:lastname1)}#{@student_number}g"
-  
+  @short_hostname[1]="#{get(:lastname1)}#{@student_number}d"
+
   target "Checking hostname -a <"+@short_hostname[1]+">"
   goto :debian1, :exec => "hostname -a"
   expect result.eq @short_hostname[1]
@@ -25,7 +25,7 @@ task "Configure host Debian1" do
 
   @long_hostname=[]
   @long_hostname[1]="#{@short_hostname[1]}.#{get(:domain)}"
-  
+
   target "Checking hostname -f <"+@long_hostname[1]+">"
   goto :debian1, :exec => "hostname -f"
   expect result.eq @long_hostname[1]
@@ -47,7 +47,7 @@ task "Configure host Debian1" do
   expect result.gt 0
 
   goto :debian1, :exec => "blkid |grep sda1"
-  unique "debian1_sda1_UUID", result.value	
+  unique "debian1_sda1_UUID", result.value
 
   @uuid_debian1=result.value
 end
@@ -55,8 +55,8 @@ end
 
 # encoding: utf-8
 
-task "Ping from debian1 to *" do  
-   
+task "Ping from debian1 to *" do
+
   target "ping debian1 to <#{get(:debian2_ip)}>"
   goto :debian1, :exec => "ping #{get(:debian2_ip)} -c 1| grep 'Destination Host Unreachable'|wc -l"
   expect result.eq 0
@@ -74,4 +74,3 @@ task "Ping from debian1 to *" do
   expect result.eq 0
 
 end
-

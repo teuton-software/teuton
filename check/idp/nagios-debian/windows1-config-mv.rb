@@ -8,7 +8,7 @@ task "Windows1 external configuration" do
   target "Conection with <#{get(:windows1_ip)}>"
   goto :localhost, :exec => "ping #{get(:windows1_ip)} -c 1"
   expect result.find!("Destination Host Unreachable").count!.eq 0
-  
+
   target "netbios-ssn service on #{get(:windows1_ip)}"
   goto :localhost, :exec => "nmap -Pn #{get(:windows1_ip)} | grep '139/tcp'| grep 'open'|wc -l"
   expect result.eq 1
@@ -47,7 +47,7 @@ task "Windows1 internal configurations" do
 
 end
 
-task "Ping from windows1 to *" do  
+task "Ping from windows1 to *" do
   target "ping windows1 to debian1_ip"
   goto :windows1, :exec => "ping #{get(:debian1_ip)}"
   expect result.find!("Respuesta").count!.gt 1
