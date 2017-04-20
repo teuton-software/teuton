@@ -2,7 +2,7 @@
 task "Set internal params..." do
 
   log "Setting internal params"
-  
+
   if get(:winserver_ip).nil?
     set(:winserver_ip,"99.99.99.99")
   end
@@ -10,10 +10,10 @@ task "Set internal params..." do
   student_number="0"+student_number if student_number.size==1
 
   set(:student_number, student_number)
-  
+
   short_hostname=[]
   long_hostname=[]
-  
+
   short_hostname[0]="#{get(:lastname1)}#{get(:student_number)}s"
   long_hostname[0]="#{short_hostname[0]}.#{get(:domain)}"
 
@@ -39,9 +39,9 @@ task "<winserver> external configuration" do
   target "Conection with <#{get(:winserver_ip)}>"
   goto :localhost, :exec => "ping #{get(:winserver_ip)} -c 1"
   expect result.find!("Destination Host Unreachable").count!.eq 0
-  
+
   ports=[
-          [ '23/tcp' , 'telnet'], 
+          [ '23/tcp' , 'telnet'],
           [ '53/tcp' , 'domain'],
           [ '139/tcp', 'netbios-ssn'],
           [ '389/tcp', 'ldap' ]
@@ -58,7 +58,7 @@ task "<winserver> external configuration" do
 end
 
 task "winserver internal configurations" do
-  
+
   goto   :winserver, :exec => "ipconfig /all"
   mac=result.find!("Direcci").content[0]
   log ("winserver_MAC = #{mac}")
@@ -72,9 +72,9 @@ task "winserver internal configurations" do
   goto   :winserver, :exec => "set"
   expect result.find!("COMPUTERNAME").find!(get(:winserver_sname).upcase).count!.eq 1
 
-  target "winserver enlace <#{get(:gateway_ip)}>"
+  target "winserver gateway <#{get(:gateway)}>"
   goto   :winserver, :exec => "ipconfig"
-  expect result.find!("enlace").find!(get(:gateway_ip)).count!.eq 1
+  expect result.find!("enlace").find!(get(:gateway)).count!.eq 1
 
   target "winserver router OK"
   goto   :winserver, :exec => "ping 8.8.4.4"
@@ -94,7 +94,7 @@ task "winserver internal configurations" do
 
 end
 
-task "Ping from winserver to *" do  
+task "Ping from winserver to *" do
   target "ping winserver to #{get(:wincli1_ip)}"
   goto   :winserver, :exec => "ping #{get(:wincli1_ip)}"
   expect result.find!("Respuesta").count!.gt 1

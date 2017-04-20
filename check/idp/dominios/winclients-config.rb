@@ -1,26 +1,26 @@
 
 task "<wincli[12]> external configuration" do
 
-  winclients=[ 
-           { :label      => 'wincli1', 
-             :goto       => :wincli1, 
-             :ip         => :wincli1_ip, 
+  winclients=[
+           { :label      => 'wincli1',
+             :goto       => :wincli1,
+             :ip         => :wincli1_ip,
              :short_name => get(:wincli1_sname).upcase } ,
-           { :label      => 'wincli2', 
-             :goto       => :wincli2, 
-             :ip         => :wincli2_ip, 
-             :short_name => get(:wincli2_sname).upcase } 
+           { :label      => 'wincli2',
+             :goto       => :wincli2,
+             :ip         => :wincli2_ip,
+             :short_name => get(:wincli2_sname).upcase }
           ]
-         
+
   winclients.each do |cli|
     target "Conection with <#{get(cli[:ip])}>"
     goto   :localhost, :exec => "ping #{get(cli[:ip])} -c 1"
     expect result.find!("Destination Host Unreachable").count!.eq 0
-  
+
     goto   :localhost, :exec => "nmap -Pn #{get(cli[:ip])}" #Execute command once
 
-    ports=[ [ '23/tcp' , 'telnet'], 
-            [ '139/tcp', 'netbios-ssn'] ]
+    ports=[ [ '23/tcp' , 'telnet'],
+            [ '135/tcp', 'msrpc' ] ]
 
     ports.each do |port|
       target "#{cli[:label]} #{get(cli[:ip])} port #{port[0]}"
@@ -28,24 +28,24 @@ task "<wincli[12]> external configuration" do
       expect result.grep!(port[0]).grep!("open").grep!(port[1]).count!.eq(1)
     end
   end
-  
+
 end
 
 task "<wincli[12]> internal configurations" do
-  
-  winclients=[ 
-           { :label       => 'wincli1', 
-             :goto        => :wincli1, 
-             :ip          => :wincli1_ip, 
+
+  winclients=[
+           { :label       => 'wincli1',
+             :goto        => :wincli1,
+             :ip          => :wincli1_ip,
              :sname       => get(:wincli1_sname).upcase,
              :productname => get(:wincli1_productname) } ,
-           { :label       => 'wincli2', 
-             :goto        => :wincli2, 
-             :ip          => :wincli2_ip, 
+           { :label       => 'wincli2',
+             :goto        => :wincli2,
+             :ip          => :wincli2_ip,
              :sname       => get(:wincli2_sname).upcase,
-             :productname => get(:wincli2_productname) } 
+             :productname => get(:wincli2_productname) }
          ]
-         
+
   winclients.each do |cli|
     goto cli[:goto], :exec => "ipconfig /all"
     mac=result.find!("Direcci").content[0]
@@ -60,9 +60,9 @@ task "<wincli[12]> internal configurations" do
     goto   cli[:goto], :exec => "set"
     expect result.find!("COMPUTERNAME").find!(cli[:sname]).count!.eq 1
 
-    target "#{cli[:label]} enlace <#{get(:gateway_ip)}>"
+    target "#{cli[:label]} enlace <#{get(:gateway)}>"
     goto   cli[:goto], :exec => "ipconfig"
-    expect result.find!("enlace").find!(get(:gateway_ip)).count!.eq 1
+    expect result.find!("enlace").find!(get(:gateway)).count!.eq 1
 
     target "#{cli[:label]} router OK"
     goto   cli[:goto], :exec => "ping 8.8.4.4"
@@ -80,10 +80,10 @@ task "<wincli[12]> internal configurations" do
     goto   cli[:goto], :exec => "reg query \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\" /t REG_SZ"
     expect result.find!("ProductName").find!(cli[:productname]).count!.eq 1
   end
-  
+
 end
 
-task "Ping from wincli1 to *" do  
+task "Ping from wincli1 to *" do
   target "ping wincli1 to #{get(:winserver_ip)}"
   goto   :wincli1, :exec => "ping #{get(:winserver_ip)}"
   expect result.find!("Respuesta").count!.gt 1
@@ -101,7 +101,7 @@ task "Ping from wincli1 to *" do
   expect result.find!("Respuesta").count!.gt 1
 end
 
-task "Ping from wincli2 to *" do  
+task "Ping from wincli2 to *" do
   target "ping wincli2 to #{get(:winserver_ip)}"
   goto   :wincli2, :exec => "ping #{get(:winserver_ip)}"
   expect result.find!("Respuesta").count!.gt 1
