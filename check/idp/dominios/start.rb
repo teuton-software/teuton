@@ -10,6 +10,6 @@ require_relative 'winserver-active-directory'
 
 start do
   show
-  export :format => :colored_text
-  #export
+  #export :format => :colored_text
+  export
 end
