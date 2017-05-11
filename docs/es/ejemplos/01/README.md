@@ -1,23 +1,23 @@
 
 
-#example-01
+# example-01
 
 
-##Objetivos
+## Objetivos
 * En este ejemplo, veremos como definir un objetivo evaluable.
 * Los objetivos son cada uno de los aspectos que medimos en los trabajos realizados.
 * Cada trabajo será realizado por un alumno o varios, nosotros los llamaremos casos.
 * Cada caso tiene un parámetro con la lista de sus miembros.
 
-##Requisitos
+## Requisitos
 
-* Script: [example-01.rb](../../../examples/example-01.rb) 
+* Script: [example-01.rb](../../../examples/example-01.rb)
 * Fichero de configuración: [example-01.yaml](../../../examples/example-01.yaml)
 * Descripción: *Comprueba si existe el usuario *obiwan* en la máquina *localhost*.*
 * Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en *localhost*.
 * SO localhost: GNU/Linux
 
-##Script
+## Script
 
 Vemos que en el script hay las siguientes intrucciones:
 * **target**: Texto que describe el objetivo que buscamos.
@@ -27,27 +27,27 @@ script es `id obiwan | wc -l`, el sistema operativo de *localhost* debe ser un G
 o en su defecto otro sistema operativo que entienda el comando a ejecutar.
 * **expect**: Evalua si el resultado es igual al valor esperado.
 
-##El fichero de configuración
+## El fichero de configuración
 
-El fichero de configuración no establece ninguna variable global, y 
+El fichero de configuración no establece ninguna variable global, y
 sólo contiene un caso. Este caso tiene los siguientes parámetros:
 
 * **tt_members**: Estos son los nombres de los miembros del grupo separados por comas.
 
-##Ejecución del script
+## Ejecución del script
 
-Para ejecutar el script hacemos `./project docs/examples/example-01.rb`, y 
+Para ejecutar el script hacemos `./project docs/examples/example-01.rb`, y
 veremos la siguiente [salida por pantalla](./resume.txt):
 
 En la sección *TARGETS HISTORY* vemos el resumen de todos los casos analizados
-con su evaluación final. En este ejemplo, sólo tenemos un caso (case_01) que 
-tiene como resultado final un 0%. Esto quiere decir que no se ha completado ninguno 
+con su evaluación final. En este ejemplo, sólo tenemos un caso (case_01) que
+tiene como resultado final un 0%. Esto quiere decir que no se ha completado ninguno
 de los objetivos previstos para dicho caso.
 
 > Cuando el valor final de la evaluación de cada caso es menor a 50% se aparecerá
 el símbolo '?'.
 
-##Informe de salida
+## Informe de salida
 
 Para tener información más detalla y averiguar lo que ha pasado en cada caso, debemos
 consultar el informe del mismo. Los informes se graban en `var/example-01/out`.
@@ -76,19 +76,18 @@ no modificaciones no serán tenidas en cuenta.
 * Duración de la prueba de evaluación para ese caso concreto.
 * `unique_fault`: En esta prueba no se usa. Lo veremos más adelante.
 * Cada objetivo tiene un peso en la fórmulara de evaluación. Realmente para calcular
-la nota final se usa una media ponderada de todos los objetivos. Por defecto 
+la nota final se usa una media ponderada de todos los objetivos. Por defecto
 todos tienen pero 1, a menos que indiquemos otro valor diferente (ya veremos un ejemplo).
 * `fail_counter`: Es la cantidad de objetivos fallados.
 * `grade`: Es la puntuación final en %. En este caso 0 %.
 
-##Recordatorio
+## Recordatorio
 
 Podemos crear tantos objetivos evaluables como queramos, usando las instrucciones
-`target`, `goto` y `expect`. Cuantas más pongamos, más exhaustiva será nuestra 
+`target`, `goto` y `expect`. Cuantas más pongamos, más exhaustiva será nuestra
 evaluación.
 
 Los objetivos deben ir siempre dentro de un bloque de tarea: `task "Task name" do ... end`.
 
 Si tenemos muchos objetivos podemos agruparlos en varias tareas `task`.
 Podemos tener tantas tareas y objetivos como necesitemos.
-
