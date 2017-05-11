@@ -1,8 +1,8 @@
-#SysadminGame
+# SysadminGame
 
 ![logo](../logo.png)
 
-#Introducción
+# Introducción
 
 Esta es una herramienta Open Source para usar en una clase con ordenadores
 (Laboratorio STEM). *Sysadmin-game* ayuda a los profesores a evaluar de forma
@@ -20,7 +20,7 @@ comentarios, sugerencias o colaboraciones para mejorar la herramientas.
 
 ¡Muchas gracias!
 
-#Descripción
+# Descripción
 
 Los pasos para trabajar con la herramienta son:
 
@@ -39,7 +39,7 @@ SSH y Telnet.
 > * Además el profesor debe tener usuario/clave para entrar en las máquinas de
 los alumnos.
 
-#Demostración rápida
+# Demostración rápida
 
 Cada actividad consiste de 2 ficheros. Echemos un vistazo al siguiente ejemplo:
 * `./docs/examples/example-01.rb`: Este es el script que define la actividad.
@@ -55,9 +55,8 @@ Para ejecutar la actividad de ejemplo hacemos `./project docs/example/example-01
 guardar los scripts que vayamos creando para definir nuestras actividades.
 > * Periódicamente irán apareciendo nuevas actividades dentro del directorio `check`.
 
-#Documentación
+# Documentación
 * [Instalación](./instalacion/README.md)
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./dsl/README.md)
-
