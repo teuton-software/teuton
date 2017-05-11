@@ -82,7 +82,7 @@ $ make
 
 ![ruby-v.png](./images/ruby-v.png)
 
-##2.2 Instalación de rake
+## 2.2 Instalación de rake
 
 * Puedes descargar la [versión 10.4.2 de rake](https://rubygems.org/gems/rake/versions/10.4.2?locale=es).
 * En el directorio donde hayas descargado rake se debe ejecutar: `# gem install rake -v 10.4.2`
@@ -96,7 +96,7 @@ directamente desde los repositorios de internet, y no usa lo ficheros descargado
 
 ![rake-version.png](./images/rake-version.png)
 
-##2.3 Descargar el proyecto Sysadmin-game
+## 2.3 Descargar el proyecto Sysadmin-game
 
 * Descargar y descomprimir el proyecto.
 * Entrar el directorio `sysadmin-game-master`.

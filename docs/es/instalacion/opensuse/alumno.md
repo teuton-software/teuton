@@ -1,5 +1,5 @@
 
-#Instalación en los equipos de los alumnos con OpenSUSE 13.2
+# Instalación en los equipos de los alumnos con OpenSUSE 13.2
 
 * Instalar el software de acceso remoto SSH server.
     * `Yast -> Instalación de Software -> OpenSSH` por el modo gráfico.

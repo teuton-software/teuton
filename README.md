@@ -1,12 +1,12 @@
 
-#SysadminGame
+# SysadminGame
 
 DSL to write `Host Unit Tests`.
 Check if a group of real or virtual Machines satisfies a list of targets.
 
 ![logo](./docs/logo.png)
 
-#Introduction
+# Introduction
 
 This is an Open Source tool, for use in computer laboratory.
 *sysadmin-game* helps teachers to evaluate remotely and automaticaly
@@ -27,7 +27,7 @@ collaborations to improve it.
 
 Thanks!
 
-#Quick demo
+# Quick demo
 
 Every sysadmin-game activity consists of 2 files. Let's look at this demo:
 * `./docs/examples/example-01.rb`: This is the script wich defines the activity.
@@ -42,7 +42,7 @@ Run this demo with `./project docs/example/example-01.rb`.
 > * There exists more activities into the `check` directory. This is a good place
 where save your own activity scripts.
 
-#Documentation
+# Documentation
 * [Installation](./docs/en/installation.md)
 * [Examples](./docs/en/examples.md)
 * [Create our first activity](./docs/en/first-activity.md)

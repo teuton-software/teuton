@@ -22,9 +22,9 @@
 
 * `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
 * `ruby -v`, para comprobar que la versión instalada >= 2.1.3.
-* `sudo zypper install ruby`, para instalar ruby.
+    * `sudo zypper install ruby`, para instalar ruby.
 * `rake --version` para comprobar que la versión instalada =>10.4.2.
-* `sudo gem install rake`para instalar rake.
+    * `sudo gem install rake`para instalar rake.
 * `sudo rake opensuse`, para instalar las gemas necesarias en nuestro sistema.
 * `./project -v`, para comprobar que está todo bien.
 
