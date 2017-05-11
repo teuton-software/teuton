@@ -1,5 +1,5 @@
 
-#Instalación general del equipo del profesor
+# Instalación general del equipo del profesor
 
 ## Software requerido en el host principal
 
