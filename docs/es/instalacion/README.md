@@ -35,7 +35,7 @@ remoto con perfil de administrador.
 # Máquina preinstalada
 
 Máquinas Virtuales para  descargar, con el software preinstalado.
-* Descargar [MV OpenSUSE 31.2](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse-noviembre16.ova)
+* Descargar [MV OpenSUSE 13.2](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse-noviembre16.ova)
  (Fichero de comprobación [MD5](http://dvarrui.webfactional.com/sysadmingame/sysadmingame-opensuse-noviembre16.md5))
 
 ```
