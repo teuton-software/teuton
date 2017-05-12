@@ -40,16 +40,18 @@ task :clean do
 end
 
 desc 'Debian installation'
-task debian: :gems do
+task debian: do
   names = ['ssh', 'make', 'gcc', 'ruby-dev']
   names.each { |name| system("apt-get install -y #{name}") }
+  packages.each { |n| system("gem install #{n}") }
 end
 
 desc 'OpenSUSE installation'
-task opensuse: :gems do
+task opensuse: do
   names = ['openssh', 'rubygem-pry', 'make', 'gcc', 'ruby-devel']
-  options = '--non-interactive --auto-agree-with-licenses'
+  options = '--non-interactive'
   names.each { |n| system("zypper #{options} install #{n}") }
+  packages.each { |n| system("gem install #{n}") }
 end
 
 desc 'Install gems'
