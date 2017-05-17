@@ -169,7 +169,7 @@ class ResultTest < Minitest::Test
   def test_reset
     assert_equal @content[0], @result.value
     @result.reset
-    assert_equal nil, @result.value
+    assert_nil @result.value
   end
 
   def test_restore!
