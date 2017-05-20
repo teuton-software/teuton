@@ -1,5 +1,5 @@
 
-###target
+# target
 
 ```
     target "Escribe aquí la descripción del objetivo con tus propias palabras"
@@ -10,4 +10,3 @@ usando nuestras propias palabras, de modo que cualquiera pueda entender
 fácilmente lo que estamos tratando de hacer.
 * Además, dicho texto aparecerá en los informes de salida, para ayudarnos
 a analizar la información más facilmente.
-

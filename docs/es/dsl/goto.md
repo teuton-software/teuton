@@ -1,5 +1,5 @@
 
-#goto
+# goto
 
 ```
     goto :host1, :exec => "id obiwan"
@@ -15,7 +15,7 @@ y de ejecutamos el comando especificado dentro de ella.
 concreta de dicha máquina (ip, username, password, protocol) vendrá en el fichero
 de configuración que acompaña al script.
 
-#Ejemplos
+# Ejemplos
 
 Ejecuta el comando `id obiwan` en la máquina remota `host1`
 * `goto :host1, :exec => "id obiwan"`

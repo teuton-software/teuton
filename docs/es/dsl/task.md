@@ -1,9 +1,9 @@
 
-##task
+# task
 
 ```
-    task "nombre_de_la_tarea" do 
-      ... 
+    task "nombre_de_la_tarea" do
+      ...
     end
 ```
 
@@ -14,4 +14,3 @@ objetivos o elementos de evaluación.
     * Agrupar objetivos que están relacionados por razones de claridad para nosotros.
     * En el futuro, servirá para aumentar la velocidad de las evaluaciones, permitiendo
     la ejecución de varias tareas de forma simultánea.
-

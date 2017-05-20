@@ -1,11 +1,11 @@
 
-#Palabras clave del DSL
+# Palabras clave del DSL
 
 Para definir y ejecutar nuestra actividad/script de evaluación,
 podemos usar las siguientes palabras clave del DSL *sysadmin-game*.
 
 
-#Instrucciones para definir
+# Instrucciones para definir
 
 Éstas son las principales palabras clave del DSL, fundamentalmente para
 definir elementos que se pueden evaluar.
@@ -18,7 +18,7 @@ definir elementos que se pueden evaluar.
 | [result](./result.md)| Contiene el resultado de la orden `goto`. |
 | [expect](./expect.md)| Evalua si el resultado obtenido coincide o no con el valor esperado. |
 
-#Instrucciones para ejecutar
+# Instrucciones para ejecutar
 
 La palabras clave del DSL para iniciar la ejecución de las tareas definidas
 es `start`, y se usa de la siguiente forma:
@@ -36,7 +36,7 @@ comenzar el proceso de evaluación.
 dentro de cada una de las máquinas de cada caso.
 * Si no escribimos esta instrucción las pruebas no se van a ejecutar.
 
-#Instrucciones para los informes
+# Instrucciones para los informes
 
 Otras palabras clave del DSL.
 

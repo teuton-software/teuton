@@ -1,5 +1,5 @@
 
-#export
+# export
 
 ```
     start do
@@ -17,7 +17,7 @@ el formato de salida, pueden ser: `:txt` y `colored_text`.
 > Actualmente están en desarrolo los formatos `:html`, `:xml`, y `:csv`.
 
 
-#Ejemplos
+# Ejemplos
 
 Ejecuta los test y crea informes en el formato por defecto.
 ```

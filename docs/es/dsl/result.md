@@ -1,11 +1,11 @@
 
-#result
+# result
 
 * Después de ejecutar un comando con `goto`, en una maquina remota, se
 obtiene un resultado, que se guarda en `result`.
 * Podemos leer el contenido de `result` o modificarlo.
 
-#Ejemplos
+# Ejemplos
 
 * `result.value`, devuelve la primera línea/valor del resultado.
 * `result.content`, devuelve todas las líneas del resultado.

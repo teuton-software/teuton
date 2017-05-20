@@ -1,12 +1,12 @@
 
-#send
+# send
 
 ```
     start do
       export
       send :copy_to => :host1
     end
-``` 
+```
 
 * La instrucción `send` se debe ejecutar después de haber generado los
 informes de salida. Esto es, después de un `export`.
@@ -24,4 +24,3 @@ el informe en el directorio "c:\Users\david" de cada equipo `host1`.
 * `send :copy_to => :host1, :prefix => "2016_"`, En este caso se copiará
 el informe en el directorio temporal de cada equipo `host1`, el archivo tendrá
 un nombre como `2016_case-XX.txt`.
-
