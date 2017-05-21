@@ -1,7 +1,7 @@
 
 # result
 
-* Después de ejecutar un comando con `goto`, en una maquina remota, se
+* Después de ejecutar un comando con `goto`, en una máquina remota, se
 obtiene un resultado, que se guarda en `result`.
 * Podemos leer el contenido de `result` o modificarlo.
 
