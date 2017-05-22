@@ -1,7 +1,7 @@
 # File: Rakefile
 # Usage: rake
 
-packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
+packages = ['rake', 'net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
 packages += ['minitest', 'pry-byebug']
 
 desc 'Default'
