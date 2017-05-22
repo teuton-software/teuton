@@ -8,12 +8,12 @@ Software SSH cliente
 * También se puede usar el cliente Telnet si hace falta.
 
 Instalar ruby
-* `ruby -v` => 2.1.3p242. Comprobamos nuestra versión actual de ruby.
 * Se requiere porque el programa está desarrollado en `ruby`.
+* `ruby -v` => 2.1.3p242. Comprobamos nuestra versión actual de ruby.
 
 Instalar rake
-* `rake --version`, comprobar la versión instalada (>= 10.4.2).
 * `sudo gem install rake`, para instalar
+* `rake --version`, comprobar la versión instalada (>= 10.4.2).
 
 > Comprobar las versiones de `ruby`, `rake`:
 > ![ruby-rake-gems](../../../images/ruby-rake-gems.png)

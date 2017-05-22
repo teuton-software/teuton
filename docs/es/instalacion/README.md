@@ -16,6 +16,7 @@ Este equipo es el que inicia los test de comprobación hacia el resto de las má
 * [Proceso general de instalación](./general/profesor.md).
 * [Instalación en OpenSUSE 13.2](./opensuse/profesor.md).
 * [Instalacion en Debian 8.6 Jessie](./debian/profesor.md)
+* Instalación en Ubuntu 16.4: Seguimos los mismos pasos que la instalación para Debian.
 
 ## Máquinas de los alumnos (Equipos remotos)
 

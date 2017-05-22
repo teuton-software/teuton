@@ -6,3 +6,6 @@
     * `zypper install openssh` por comandos.
 * El usuario del equipo principal (profesor) debe conocer un usuario/clave
 para poder entrar de forma remota a esta máquina.
+
+* Modificar el fichero `/etc/ssh/sshd_config` con `PermitRootLogin yes`.
+* Para reiniciar el servicio hacemos `systemctl restart sshd`.

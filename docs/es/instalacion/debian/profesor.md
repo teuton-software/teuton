@@ -23,16 +23,20 @@ el comando como usuario `root`.
 > ![git-clone](../../../images/git-clone.png)
 
 * `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
-* `ruby -v`, para comprobar que la versión instalada >= 2.1.3.
 * `# apt-get install -y ruby`, para instalar ruby.
-* `rake --version` para comprobar que la versión instalada =>10.4.2.
+    * `ruby -v`, para comprobar que la versión instalada >= 2.1.3.
 * `# gem install rake`para instalar rake.
+    * `rake --version` para comprobar que la versión instalada =>10.4.2.
+
+> Es importante que nos aseguremos de instalar rake como gema y no como paquete del sistema.
+
 * `# rake debian`, para instalar las gemas necesarias en nuestro sistema.
 
 > Error que se produce cuando tenemos una versión incorrecta de `ruby`:
 > ![error-version](../../../images/error-version.png)
 
-* `./project -v`, para comprobar que está todo bien.
+* `./project -v`, para comprobar se ejecuta el proyecto.
+* `rake check`, para comprobar que está todo bien instalado.
 
 ¡Ya lo tenemos!
 

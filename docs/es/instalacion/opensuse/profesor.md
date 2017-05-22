@@ -21,11 +21,12 @@
 > ![git-clone](../../../images/git-clone.png)
 
 * `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
-* `ruby -v`, para comprobar que la versión instalada >= 2.1.3.
-    * `sudo zypper install ruby`, para instalar ruby.
-* `rake --version` para comprobar que la versión instalada =>10.4.2.
-    * `sudo gem install rake`para instalar rake.
+* `sudo zypper install ruby`, para instalar ruby.
+    * `ruby -v`, para comprobar que la versión instalada >= 2.1.3.
+* `sudo gem install rake`para instalar rake.
+    * `rake --version` para comprobar que la versión instalada =>10.4.2.
 * `sudo rake opensuse`, para instalar las gemas necesarias en nuestro sistema.
-* `./project -v`, para comprobar que está todo bien.
+* `./project -v`, para comprobar se ejecuta el proyecto.
+* `rake check`, para comprobar que está todo bien instalado.
 
 ¡Ya lo tenemos!
