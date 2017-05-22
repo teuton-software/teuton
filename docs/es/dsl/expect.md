@@ -3,8 +3,8 @@
 
 ```
     expect result.eq(1)
-    expect result.eq("obiwan")
-    expect result.eq("obiwan"), :weight => 2.0
+    expect result.find!("obiwan").count!.eq(1)
+    expect result.find!("obiwan").find!("kenobi").count!.eq(1), :weight => 2.0
 ```
 
 * Después de ejecutar un comando en una máquina determinada, obtenemos un resultado, que
