@@ -36,9 +36,9 @@ elsif ['h', '-h', 'help', '--help'].include?(ARGV.first)
 elsif ['v', '-v', 'version', '--version'].include?(ARGV[0])
   show_version
 elsif ['c', '-c', 'create', '--create'].include?(ARGV[0])
-  Project::create(ARGV[1])
+  Project.create(ARGV[1])
 elsif ['l', '-l', 'lab', '--lab'].include?(ARGV[0])
   Project.laboratory(ARGV[1])
 else
-  Project::run(ARGV.first)
+  Project.run(ARGV.first)
 end
