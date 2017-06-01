@@ -5,7 +5,12 @@ class Result
   def find!(p_filter)
     case p_filter.class.to_s
     when 'Array'
-      p_filter.each { |item| find!(item) }
+      @alterations << "find!(#{p_filter.to_s})"
+      @content.select! do |line|
+        flag = false
+        p_filter.each { |filter| flag = flag || line.include?(filter.to_s) }
+        flag
+      end
       return self
     when 'String'
       @alterations << "find!(#{p_filter})"

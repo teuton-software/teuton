@@ -7,6 +7,7 @@ class ResultTest < Minitest::Test
   def setup
     @result = Result.new
     @content = [ "line1","line2","line3" ]
+    @content2 = [ "a12","b13","c23","d34" ]
     @result.content=@content
   end
 
@@ -60,26 +61,28 @@ class ResultTest < Minitest::Test
   end
 
   def test_grep_array
-    filter1=["l","i","n","e"]
-    filter2=["l","i","n","e", "s"]
-    filter3=["l","i","n","e", "1"]
+    filter1=["a"]
+    filter2=["a","2"]
+    filter3=["a","3","4","d"]
+    filter4=["a4"]
+    filter5=["e","5"]
     r=@result
 
-    r.content=@content
-    assert_equal true, r.grep!(filter1).size!.eq(@content.size)
-    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & count!", r.alterations
+    r.content=@content2
+    assert_equal true, r.grep!(filter1).size!.eq(1)
+    assert_equal "find!([\"a\"]) & count!", r.alterations
     r.restore!
-    assert_equal true, r.find!(filter2).size!.neq(@content.size)
-    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(s) & count!", r.alterations
+    assert_equal true, r.find!(filter2).size!.eq(2)
+    assert_equal "find!([\"a\", \"2\"]) & count!", r.alterations
     r.restore!
-    assert_equal true, r.find!(filter2).size!.eq(0)
-    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(s) & count!", r.alterations
+    assert_equal true, r.find!(filter3).size!.eq(4)
+    assert_equal "find!([\"a\", \"3\", \"4\", \"d\"]) & count!", r.alterations
     r.restore!
-    assert_equal true, r.find!(filter3).size!.eq(1)
-    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(1) & count!", r.alterations
+    assert_equal true, r.find!(filter4).size!.eq(0)
+    assert_equal "find!([\"a4\"]) & count!", r.alterations
     r.restore!
-    assert_equal true, r.find!(filter3).size!.eq(1)
-    assert_equal "find!(l) & find!(i) & find!(n) & find!(e) & find!(1) & count!", r.alterations
+    assert_equal true, r.find!(filter5).size!.eq(0)
+    assert_equal "find!([\"e\", \"5\"]) & count!", r.alterations
   end
 
   def test_grep_string
