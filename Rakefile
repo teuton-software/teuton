@@ -2,7 +2,7 @@
 # Usage: rake
 
 packages = ['rake', 'net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
-packages += ['minitest', 'pry-byebug']
+packages += ['minitest', 'pry-byebug', 'json']
 
 desc 'Default'
 task default: :check do
