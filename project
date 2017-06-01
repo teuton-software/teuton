@@ -3,9 +3,9 @@
 
 require 'pry-byebug'
 require 'rainbow'
-
 require_relative 'lib/application'
 require_relative 'lib/project'
+
 def show_help
   p = %{Usage:  #{$PROGRAM_NAME} OPTIONS
 Options:
