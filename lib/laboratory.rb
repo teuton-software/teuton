@@ -1,5 +1,6 @@
 
 require 'terminal-table'
+require 'yaml'
 require_relative 'application'
 require_relative 'case/result'
 
@@ -44,10 +45,41 @@ class Laboratory
     end
 
     show_stats
+    #revise_config_data
   end
 
   def revise_config_data
-    
+    script_vars = [ :tt_members ]
+    @hosts.each_key do |k|
+      if k.class == Symbol
+        script_vars << (k.to_s + '_ip').to_sym
+        script_vars << (k.to_s + '_username').to_sym
+        script_vars << (k.to_s + '_password').to_sym
+      else
+        script_vars << k.to_s + '_ip'
+        script_vars << k.to_s + '_username'
+        script_vars << k.to_s + '_password'
+      end
+    end
+    @gets.each_key { |k| script_vars << k }
+
+    ext = File.extname(@path[:config])
+    if ext == '.yaml'
+      config_vars = YAML::load(File.open(@path[:config]))
+      unless config_vars[:global].nil?
+        config_vars[:global].each_key { |k| script_vars.delete(k) }
+      end
+    end
+
+    config_vars[:cases].each_with_index do |item,index|
+      if item[:tt_skip].nil? or item[:tt_skip] == false
+        script_vars.each do |value|
+          if item[value].nil?
+            puts "[ERROR] Param <#{value}> nil for Case[#{index}]"
+          end
+        end
+      end
+    end
   end
 
   def target(description = 'empty')
@@ -63,8 +95,9 @@ class Laboratory
 
   def goto(host = :localhost, args = {})
     result.reset
-    h = host.to_s
-    h = ":#{h}" if host.class == Symbol
+    h = host
+#    h = host.to_s
+#    h = ":#{h}" if host.class == Symbol
 
     if @hosts[h]
       @hosts[h] += 1
@@ -86,9 +119,9 @@ class Laboratory
   def get(varname)
     @stats[:gets] += 1
 
-    v = varname.to_s
-    v = ":#{v}" if varname.class == Symbol
-
+#    v = varname.to_s
+#    v = ":#{v}" if varname.class == Symbol
+v = varname
     if @gets[v]
       @gets[v] += 1
     else

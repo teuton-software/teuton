@@ -95,7 +95,7 @@ module Project
 
     require_relative 'laboratory'
     require_relative "../#{script_path}"
-    lab = Laboratory.new("../#{script_path}", "../#{config_path}")
+    lab = Laboratory.new("../#{script_path}", config_path)
     lab.whatihavetodo
   end
 
