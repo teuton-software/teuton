@@ -11,11 +11,11 @@ module Project
     puts "\n[INFO] Creating project <#{Rainbow(projectname).bright}>"
 
     # Directory
-    if !Dir.exist? projectdir
+    if Dir.exist? projectdir
+      puts "* Exists directory!  => #{Rainbow(projectdir).color(:yellow)}"
+    else
       puts "* Creating directory => #{Rainbow(projectdir).color(:green)}"
       Dir.mkdir(projectdir)
-    else
-      puts "* Exists directory!  => #{Rainbow(projectdir).color(:yellow)}"
     end
 
     scriptfilepath = pathtofile + '.rb'
