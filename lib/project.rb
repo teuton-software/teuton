@@ -12,9 +12,9 @@ module Project
 
     # Directory
     if Dir.exist? projectdir
-      puts "* Exists directory!  => #{Rainbow(projectdir).color(:yellow)}"
+      puts "* Exists directory!  => #{Rainbow(projectdir).yellow}"
     else
-      puts "* Creating directory => #{Rainbow(projectdir).color(:green)}"
+      puts "* Creating directory => #{Rainbow(projectdir).green}"
       Dir.mkdir(projectdir)
     end
 
