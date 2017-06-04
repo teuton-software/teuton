@@ -1,37 +1,33 @@
-#!/usr/bin/ruby
-# encoding: utf-8
-#
 
 require 'fileutils'
 require 'rainbow'
 
+# Project functions invoked by CLI project tool
 module Project
-
   def self.create(pathtofile)
-
     projectname = File.basename(pathtofile)
     projectdir  = File.dirname(pathtofile)
 
     puts "\n[INFO] Creating project <#{Rainbow(projectname).bright}>"
 
     # Directory
-    if !Dir.exists? projectdir
+    if !Dir.exist? projectdir
       puts "* Creating directory => #{Rainbow(projectdir).color(:green)}"
       Dir.mkdir(projectdir)
     else
       puts "* Exists directory!  => #{Rainbow(projectdir).color(:yellow)}"
     end
 
-    scriptfilepath=pathtofile+".rb"
-    copyfile("lib/config/lab.rb",scriptfilepath) # Ruby script
+    scriptfilepath = pathtofile + '.rb'
+    copyfile('lib/config/lab.rb', scriptfilepath) # Ruby script
 
-    configfilepath=pathtofile+".yaml"
-    copyfile("lib/config/lab.yaml",configfilepath) # Configfile
+    configfilepath = pathtofile + '.yaml'
+    copyfile('lib/config/lab.yaml', configfilepath) # Configfile
 
-    gitignorefilepath=projectdir+"/.gitignore"
-    copyfile("lib/config/gitignore",gitignorefilepath) # gitignore
+    gitignorefilepath = projectdir + '/.gitignore'
+    copyfile('lib/config/gitignore', gitignorefilepath) # gitignore
 
-    puts ""
+    puts ''
   end
 
   def self.copyfile(target, dest)
@@ -50,8 +46,8 @@ module Project
       exit 1
     end
 
-    if not File.exists?(pathtofile) # Check file exists
-      puts Rainbow("[ERROR] ").red+Rainbow(pathtofile).bright.red+Rainbow(" dosn't exists").red
+    if !File.exist?(pathtofile) # Check file exists
+      puts Rainbow('[ERROR] ').red+Rainbow(pathtofile).bright.red+Rainbow(" dosn't exists").red
       exit 1
     end
 
@@ -59,18 +55,18 @@ module Project
     #   script_path, must contain fullpath to DSL script file
     #   config_path, must contain fullpath to YAML config file
 
-    if File.directory?(pathtofile) then
-      script_path = File.join( pathtofile, "start.rb")
-      config_path = File.join( pathtofile, "config.yaml")
+    if File.directory?(pathtofile)
+      script_path = File.join(pathtofile, 'start.rb')
+      config_path = File.join(pathtofile, 'config.yaml')
       test_name = pathtofile.split(File::SEPARATOR)[-1]
     else
       script_path = pathtofile # This must be fullpath to DSL script file
-      config_path = File.join(File.dirname(script_path), File.basename(script_path, ".rb") + ".yaml")
-      test_name = File.basename( script_path, ".rb")
+      config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.yaml')
+      test_name = File.basename(script_path, '.rb')
     end
-    puts Rainbow("[INFO] ScriptPath => ").blue+Rainbow( script_path ).blue.bright
-    puts Rainbow("[INFO] ConfigPath => ").blue+Rainbow( config_path ).blue.bright
-    puts Rainbow("[INFO] TestName   => ").blue+Rainbow( test_name   ).blue.bright
+    puts Rainbow('[INFO] ScriptPath => ').blue + Rainbow(script_path).blue.bright
+    puts Rainbow('[INFO] ConfigPath => ').blue + Rainbow(config_path).blue.bright
+    puts Rainbow('[INFO] TestName   => ').blue + Rainbow(test_name).blue.bright
 
     return script_path, config_path, test_name
   end
