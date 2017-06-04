@@ -40,7 +40,7 @@ class Tool
 	  @caseConfigList = configdata[:cases]
 
 	  #Create out dir
-	  @outdir = @app.global[:tt_outdir] || File.join("var",@app.global[:tt_testname],"out")
+	  @outdir = @app.global[:tt_outdir] || File.join('var',@app.global[:tt_testname],'out')
 	  ensure_dir @outdir
 	  @report.output_dir = @outdir
 
