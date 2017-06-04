@@ -9,16 +9,15 @@ class Application
   attr_accessor :global, :tasks, :hall_of_fame
 
   def initialize
-    @name="sysadmin-game"
-    @version="0.22.0"
-    @letter={ :good=>'.', :bad=>'F', :error=>'?', :none=>' ' }
-    @output_basedir="var"
+    @name = 'sysadmin-game'
+    @version = '0.22.0'
+    @letter = {good: '.', bad: 'F', error: '?', none: ' '}
+    @output_basedir = 'var'
    	@debug = false
 	  @verbose = true
 
-    @global={}
-    @tasks=[]
-    @hall_of_fame=[]
+    @global = {}
+    @tasks = []
+    @hall_of_fame = []
   end
-
 end
