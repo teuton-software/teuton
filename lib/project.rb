@@ -56,23 +56,23 @@ module Project
     end
 
     # Define:
-    #   lScriptPath, must contain fullpath to DSL script file
-    #   lConfigPath, must contain fullpath to YAML config file
+    #   script_path, must contain fullpath to DSL script file
+    #   config_path, must contain fullpath to YAML config file
 
     if File.directory?(pathtofile) then
-      lScriptPath = File.join( pathtofile, "start.rb")
-      lConfigPath = File.join( pathtofile, "config.yaml")
-      lTestName = pathtofile.split(File::SEPARATOR)[-1]
+      script_path = File.join( pathtofile, "start.rb")
+      config_path = File.join( pathtofile, "config.yaml")
+      test_name = pathtofile.split(File::SEPARATOR)[-1]
     else
-      lScriptPath = pathtofile # This must be fullpath to DSL script file
-      lConfigPath = File.join(File.dirname( lScriptPath ),File.basename( lScriptPath, ".rb")+".yaml")
-      lTestName = File.basename( lScriptPath, ".rb")
+      script_path = pathtofile # This must be fullpath to DSL script file
+      config_path = File.join(File.dirname(script_path), File.basename(script_path, ".rb") + ".yaml")
+      test_name = File.basename( script_path, ".rb")
     end
-    puts Rainbow("[INFO] ScriptPath => ").blue+Rainbow( lScriptPath ).blue.bright
-    puts Rainbow("[INFO] ConfigPath => ").blue+Rainbow( lConfigPath ).blue.bright
-    puts Rainbow("[INFO] TestName   => ").blue+Rainbow( lTestName   ).blue.bright
+    puts Rainbow("[INFO] ScriptPath => ").blue+Rainbow( script_path ).blue.bright
+    puts Rainbow("[INFO] ConfigPath => ").blue+Rainbow( config_path ).blue.bright
+    puts Rainbow("[INFO] TestName   => ").blue+Rainbow( test_name   ).blue.bright
 
-    return lScriptPath, lConfigPath, lTestName
+    return script_path, config_path, test_name
   end
 
   def self.laboratory(pathtofile)
@@ -80,7 +80,7 @@ module Project
 
     require_relative 'laboratory'
     require_relative "../#{script_path}"
-    lab =Laboratory.new("../#{script_path}", "../#{config_path}")
+    lab = Laboratory.new("../#{script_path}", "../#{config_path}")
     lab.whatihavetodo
   end
 
