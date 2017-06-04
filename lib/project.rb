@@ -68,6 +68,12 @@ module Project
     else
       # SIMPLE MODE: We use pathtofile as main RB file
       script_path = pathtofile # This must be fullpath to DSL script file
+      if File.extname(script_path) != '.rb'
+        print Rainbow('[ERROR] Script ').red
+        print Rainbow(script_path).bright.red
+        puts Rainbow(' must have rb extension').red
+        exit 1
+      end
       config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.json')
       unless File.exist? config_path
         config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.yaml')
