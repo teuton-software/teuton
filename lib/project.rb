@@ -34,7 +34,7 @@ module Project
     puts ""
   end
 
-  def self.copyfile(target,dest)
+  def self.copyfile(target, dest)
     if !File.exists? dest
       puts "* Creating file      => #{Rainbow(dest).color(:green)}"
       FileUtils.cp(target,dest)
@@ -76,11 +76,11 @@ module Project
   end
 
   def self.laboratory(pathtofile)
-    lScriptPath, lConfigPath, lTestName = find_filenames_for(pathtofile)
+    script_path, config_path, _test_name = find_filenames_for(pathtofile)
 
     require_relative 'laboratory'
-    require_relative "../#{lScriptPath}"
-    lab =Laboratory.new("../#{lScriptPath}", "../#{lConfigPath}")
+    require_relative "../#{script_path}"
+    lab =Laboratory.new("../#{script_path}", "../#{config_path}")
     lab.whatihavetodo
   end
 
@@ -90,5 +90,4 @@ module Project
     require_relative 'sysadmingame'
     require_relative "../#{$SCRIPT_PATH}"
   end
-
 end
