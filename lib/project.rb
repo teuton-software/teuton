@@ -31,23 +31,25 @@ module Project
   end
 
   def self.copyfile(target, dest)
-    if !File.exists? dest
-      puts "* Creating file      => #{Rainbow(dest).color(:green)}"
-      FileUtils.cp(target,dest)
+    if File.exist? dest
+      puts "* Exists file!       => #{Rainbow(dest).yellow}"
     else
-      puts "* Exists file!       => #{Rainbow(dest).color(:yellow)}"
+      puts "* Creating file      => #{Rainbow(dest).green}"
+      FileUtils.cp(target, dest)
     end
   end
 
   def self.find_filenames_for(pathtofile)
     if pathtofile.nil? # Check param not null
-      puts Rainbow("[ERROR] path-to-file not specified").color(:red)
-      puts Rainbow("* Please, read help => ./project help").color(:yellow)
+      puts Rainbow('[ERROR] path-to-file not specified').red
+      puts Rainbow('* Please, read help => ./project help').yellow
       exit 1
     end
 
-    if !File.exist?(pathtofile) # Check file exists
-      puts Rainbow('[ERROR] ').red+Rainbow(pathtofile).bright.red+Rainbow(" dosn't exists").red
+    unless File.exist?(pathtofile) # Check file exists
+      print Rainbow('[ERROR] ').red
+      print Rainbow(pathtofile).bright.red
+      puts Rainbow(" dosn't exists").red
       exit 1
     end
 
@@ -64,9 +66,12 @@ module Project
       config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.yaml')
       test_name = File.basename(script_path, '.rb')
     end
-    puts Rainbow('[INFO] ScriptPath => ').blue + Rainbow(script_path).blue.bright
-    puts Rainbow('[INFO] ConfigPath => ').blue + Rainbow(config_path).blue.bright
-    puts Rainbow('[INFO] TestName   => ').blue + Rainbow(test_name).blue.bright
+    print Rainbow('[INFO] ScriptPath => ').blue
+    puts Rainbow(script_path).blue.bright
+    print Rainbow('[INFO] ConfigPath => ').blue
+    puts Rainbow(config_path).blue.bright
+    print Rainbow('[INFO] TestName   => ').blue
+    puts Rainbow(test_name).blue.bright
 
     return script_path, config_path, test_name
   end
