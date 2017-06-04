@@ -46,6 +46,10 @@ class Laboratory
     show_stats
   end
 
+  def revise_config_data
+    
+  end
+
   def target(description = 'empty')
     @stats[:targets] += 1
     @targetid += 1
