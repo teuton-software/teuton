@@ -58,12 +58,20 @@ module Project
     #   config_path, must contain fullpath to YAML config file
 
     if File.directory?(pathtofile)
+      # COMPLEX MODE: We use start.rb as main RB file
       script_path = File.join(pathtofile, 'start.rb')
-      config_path = File.join(pathtofile, 'config.yaml')
+      config_path = File.join(pathtofile, 'config.json')
+      unless File.exist? config_path
+        config_path = File.join(pathtofile, 'config.yaml')
+      end
       test_name = pathtofile.split(File::SEPARATOR)[-1]
     else
+      # SIMPLE MODE: We use pathtofile as main RB file
       script_path = pathtofile # This must be fullpath to DSL script file
-      config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.yaml')
+      config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.json')
+      unless File.exist? config_path
+        config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.yaml')
+      end
       test_name = File.basename(script_path, '.rb')
     end
     print Rainbow('[INFO] ScriptPath => ').blue
