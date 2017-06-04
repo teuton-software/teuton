@@ -4,13 +4,14 @@ require_relative 'application'
 require_relative 'case/result'
 
 def task(name, &block)
-  Application.instance.tasks << { :name => name, :block => block }
+  Application.instance.tasks << { name: name, block: block }
 end
 
 def start(&block)
-  #don't do nothing
+  # don't do nothing
 end
 
+# Show objectives stats from RB script file
 class Laboratory
   attr_reader :result
 
@@ -39,70 +40,70 @@ class Laboratory
       my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
       puts my_screen_table
 
-      instance_eval &t[:block]
+      instance_eval(&t[:block])
     end
 
     show_stats
   end
 
-  def target(description='empty')
+  def target(description = 'empty')
     @stats[:targets] += 1
     @targetid += 1
     i = @targetid
     puts "(%03d"%i + ") target #{description}"
   end
 
-  def tempfile(pTempfile=nil)
-    return "tempfile"
+  def tempfile(_tempfile = nil)
+    'tempfile'
   end
 
-  def goto(pHost=:localhost, pArgs={})
+  def goto(host = :localhost, args = {})
     result.reset
-    h=pHost.to_s
-    h=":#{h}" if pHost.class==Symbol
+    h = host.to_s
+    h = ":#{h}" if host.class == Symbol
 
     if @hosts[h]
-      @hosts[h]+=1
+      @hosts[h] += 1
     else
-      @hosts[h]=1
+      @hosts[h] = 1
     end
-    puts "      goto   #{h} and #{pArgs.to_s}"
+    puts "      goto   #{h} and #{args}"
   end
 
-  def expect(pCond, pArgs={})
-    weight=1.0
-    weight=pArgs[:weight].to_f if pArgs[:weight]
-    puts "      alter  #{result.alterations}" if result.alterations.size>0
-    puts "      expect #{result.expected} (#{result.expected.class.to_s})"
-    puts "      weight #{weight.to_s}"
-    puts ""
+  def expect(_cond, args = {})
+    weight = 1.0
+    weight = args[:weight].to_f if args[:weight]
+    puts "      alter  #{result.alterations}" if result.alterations.size > 0
+    puts "      expect #{result.expected} (#{result.expected.class})"
+    puts "      weight #{weight}"
+    puts ''
   end
 
   def get(varname)
-    @stats[:gets]+=1
+    @stats[:gets] += 1
 
-    v=varname.to_s
-    v=":#{v}" if varname.class==Symbol
+    v = varname.to_s
+    v = ":#{v}" if varname.class == Symbol
 
     if @gets[v]
-      @gets[v]+=1
+      @gets[v] += 1
     else
-      @gets[v]=1
+      @gets[v] = 1
     end
 
-    return "get(#{v})"
+    "get(#{v})"
   end
 
-  def unique(key, value)
+  def unique(key, _value)
     @stats[:uniques] += 1
 
     puts "    ! Unique value for <#{key}>"
     puts ''
   end
 
-  def log(text='', type=:info)
+  def log(text = '', type = :info)
     @stats[:logs] += 1
-    puts "      log    [#{type.to_s}]: " + text.to_s
+    puts "      log    [#{type}]: " + text.to_s
   end
 
   def set(key, value)
