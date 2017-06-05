@@ -45,41 +45,7 @@ class Laboratory
     end
 
     show_stats
-    #revise_config_data
-  end
-
-  def revise_config_data
-    script_vars = [ :tt_members ]
-    @hosts.each_key do |k|
-      if k.class == Symbol
-        script_vars << (k.to_s + '_ip').to_sym
-        script_vars << (k.to_s + '_username').to_sym
-        script_vars << (k.to_s + '_password').to_sym
-      else
-        script_vars << k.to_s + '_ip'
-        script_vars << k.to_s + '_username'
-        script_vars << k.to_s + '_password'
-      end
-    end
-    @gets.each_key { |k| script_vars << k }
-
-    ext = File.extname(@path[:config])
-    if ext == '.yaml'
-      config_vars = YAML::load(File.open(@path[:config]))
-      unless config_vars[:global].nil?
-        config_vars[:global].each_key { |k| script_vars.delete(k) }
-      end
-    end
-
-    config_vars[:cases].each_with_index do |item,index|
-      if item[:tt_skip].nil? or item[:tt_skip] == false
-        script_vars.each do |value|
-          if item[value].nil?
-            puts "[ERROR] Param <#{value}> nil for Case[#{index}]"
-          end
-        end
-      end
-    end
+    revise_config_content
   end
 
   def target(description = 'empty')
@@ -95,16 +61,13 @@ class Laboratory
 
   def goto(host = :localhost, args = {})
     result.reset
-    h = host
-#    h = host.to_s
-#    h = ":#{h}" if host.class == Symbol
 
-    if @hosts[h]
-      @hosts[h] += 1
+    if @hosts[host]
+      @hosts[host] += 1
     else
-      @hosts[h] = 1
+      @hosts[host] = 1
     end
-    puts "      goto   #{h} and #{args}"
+    puts "      goto   #{host} and #{args}"
   end
 
   def expect(_cond, args = {})
@@ -177,5 +140,66 @@ class Laboratory
       end
     end
     puts my_screen_table.to_s + "\n"
+  end
+
+  private
+
+  def find_script_vars
+    script_vars = [:tt_members]
+    @hosts.each_key do |k|
+      if k.class == Symbol
+        script_vars << (k.to_s + '_ip').to_sym
+        script_vars << (k.to_s + '_username').to_sym
+        script_vars << (k.to_s + '_password').to_sym
+      else
+        script_vars << k.to_s + '_ip'
+        script_vars << k.to_s + '_username'
+        script_vars << k.to_s + '_password'
+      end
+    end
+    @gets.each_key { |k| script_vars << k }
+    script_vars
+  end
+
+  def recomended_config_content
+    print Rainbow('[WARN] File ').yellow
+    print Rainbow(@path[:config]).yellow.bright
+    puts Rainbow(' not found!').yellow
+    puts '[INFO] Recomended content:'
+    output = { global: nil, cases: [] }
+    output[:cases][0] = {}
+    script_vars = find_script_vars
+    script_vars.each { |i| output[:cases][0][i] = 'VALUE'}
+    puts YAML.dump(output)
+  end
+
+  def revise_config_content
+    puts '[INFO] Revise Config File content...'
+    unless File.exist?(@path[:config])
+      recomended_config_content
+      return
+    end
+
+    script_vars = find_script_vars
+    ext = File.extname(@path[:config])
+    if ext == '.yaml'
+      config_vars = YAML.load(File.open(@path[:config]))
+      unless config_vars[:global].nil?
+        config_vars[:global].each_key { |k| script_vars.delete(k) }
+      end
+    end
+
+    config_vars[:cases].each_with_index do |item, index|
+      next if item[:tt_skip] == true
+      script_vars.each do |value|
+        if item[value].nil?
+          print Rainbow('  * Define ').red
+          print Rainbow(value).red.bright
+          print Rainbow(' value for Case[').red
+          print Rainbow(index).red.bright
+          puts Rainbow('] or set tt_skip = true').red
+        end
+      end
+    end
   end
 end
