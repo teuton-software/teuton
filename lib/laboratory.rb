@@ -119,16 +119,13 @@ class Laboratory
   def get(varname)
     @stats[:gets] += 1
 
-#    v = varname.to_s
-#    v = ":#{v}" if varname.class == Symbol
-v = varname
-    if @gets[v]
-      @gets[v] += 1
+    if @gets[varname]
+      @gets[varname] += 1
     else
-      @gets[v] = 1
+      @gets[varname] = 1
     end
 
-    "get(#{v})"
+    "get(#{varname})"
   end
 
   def unique(key, _value)
