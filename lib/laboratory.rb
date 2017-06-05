@@ -147,6 +147,7 @@ class Laboratory
   def find_script_vars
     script_vars = [:tt_members]
     @hosts.each_key do |k|
+      next if k == :localhost
       if k.class == Symbol
         script_vars << (k.to_s + '_ip').to_sym
         script_vars << (k.to_s + '_username').to_sym
