@@ -1,35 +1,33 @@
 
+# Define Config class. Used by every Case.
 class Case
-
+  # This class manage configuration for only one case
   class Config
-
     attr_reader :global, :local, :running
 
-    def initialize(pArgs)
-      @global  = pArgs[:global] || Application.instance.global.clone
-      @local   = pArgs[:local]  || {}
+    def initialize(args)
+      @global  = args[:global] || Application.instance.global.clone
+      @local   = args[:local]  || {}
       @running = {}
 
-      #Set defaults values
+      # Set defaults values
       @local[:tt_skip] = @local[:tt_skip] || false
     end
 
-    #Read param pOption from [running, config or global] Hash data
-    def get(pOption)
-      return @local[pOption]   unless @local[pOption].nil?
-      return @running[pOption] unless @running[pOption].nil?
-      return @global[pOption]  unless @global[pOption].nil?
-      #return nil
-      return "NODATA"
+    # Read param Option from [running, config or global] Hash data
+    def get(option)
+      return @local[option]   unless @local[option].nil?
+      return @running[option] unless @running[option].nil?
+      return @global[option]  unless @global[option].nil?
+      'NODATA'
     end
 
-    def set( key, value)
-      @running[key]=value
+    def set(key, value)
+      @running[key] = value
     end
 
-    def unset( key )
-      @running[key]=nil
+    def unset(key)
+      @running[key] = nil
     end
   end
-
 end
