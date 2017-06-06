@@ -19,7 +19,7 @@ class Tool
     @cases = []
     @report = Report.new(0)
     @report.filename = "resume"
-    @app=Application.instance
+    @app = Application.instance
   end
 
   def start(&block)
@@ -121,26 +121,6 @@ class Tool
 
 private
 
-  def close_main_report(start_time)
-    finish_time=Time.now
-    @report.tail[:start_time]=start_time
-    @report.tail[:finish_time]=finish_time
-    @report.tail[:duration]=finish_time-start_time
-
-    verboseln "\n[INFO] Duration = #{(finish_time-start_time).to_s} (#{finish_time.to_s})"
-    verboseln "\n"
-    verboseln "="*@report.head[:tt_title].length
-
-    app=Application.instance
-	  @cases.each do |c|
-      lMembers=c.report.head[:tt_members] || 'noname'
-      lGrade=c.report.tail[:grade] || 0.0
-      lHelp=app.letter[:none]
-      lHelp=app.letter[:error] if lGrade<50.0
-	    @report.lines << "Case_"+"%02d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
-	  end
-  end
-
   def build_hall_of_fame
     celebrities={}
 
@@ -162,15 +142,34 @@ private
   def open_main_report(pConfigFilename)
     app=Application.instance
 
- 	  @report.head[:tt_title]="Executing [#{app.name}] (version #{app.version})"
-	  @report.head[:tt_scriptname]=$SCRIPTPATH
-	  @report.head[:tt_configfile]=pConfigFilename
+ 	  @report.head[:tt_title] = "Executing [#{app.name}] (version #{app.version})"
+	  @report.head[:tt_scriptname] = $SCRIPT_PATH
+	  @report.head[:tt_configfile] = pConfigFilename
 	  @report.head[:tt_debug]=true if @debug
 	  @report.head.merge!(app.global)
 
 	  my_execute('clear')
-	  verboseln "="*@report.head[:tt_title].length
+	  verboseln "=" * @report.head[:tt_title].length
     verboseln @report.head[:tt_title]
   end
 
+  def close_main_report(start_time)
+    finish_time=Time.now
+    @report.tail[:start_time]=start_time
+    @report.tail[:finish_time]=finish_time
+    @report.tail[:duration]=finish_time-start_time
+
+    verboseln "\n[INFO] Duration = #{(finish_time-start_time).to_s} (#{finish_time.to_s})"
+    verboseln "\n"
+    verboseln "="*@report.head[:tt_title].length
+
+    app=Application.instance
+	  @cases.each do |c|
+      lMembers=c.report.head[:tt_members] || 'noname'
+      lGrade=c.report.tail[:grade] || 0.0
+      lHelp=app.letter[:none]
+      lHelp=app.letter[:error] if lGrade<50.0
+	    @report.lines << "Case_"+"%02d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
+	  end
+  end
 end
