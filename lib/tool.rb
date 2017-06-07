@@ -28,14 +28,17 @@ class Tool
   end
 
   def check_cases!
-    pScriptFilename = $SCRIPT_PATH
-    pConfigFilename = $CONFIG_PATH
-    pTestname = $TESTNAME
+    #pScriptFilename = $SCRIPT_PATH
+    #pConfigFilename = $CONFIG_PATH
+    #pTestname = $TESTNAME
+    pScriptFilename = @app.script_path
+    pConfigFilename = @app.config_path
+    pTestname = @app.test_name
 
 	  #Load configurations from yaml file
 	  configdata = YAML::load(File.open(pConfigFilename))
 	  @app.global = configdata[:global] || {}
-    @app.global[:tt_testname]= @app.global[:tt_testname] || $TESTNAME
+    @app.global[:tt_testname]= @app.global[:tt_testname] || @app.test_name
 	  @app.global[:tt_sequence]=false if @app.global[:tt_sequence].nil?
 	  @caseConfigList = configdata[:cases]
 
@@ -142,7 +145,7 @@ class Tool
     app = Application.instance
 
     @report.head[:tt_title] = "Executing [#{app.name}] (version #{app.version})"
-    @report.head[:tt_scriptname] = $SCRIPT_PATH
+    @report.head[:tt_scriptname] = app.script_path
     @report.head[:tt_configfile] = p_config_filename
     @report.head[:tt_debug] = true if @debug
     @report.head.merge!(app.global)

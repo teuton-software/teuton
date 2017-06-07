@@ -101,9 +101,11 @@ module Project
   end
 
   def self.run(pathtofile)
-    $SCRIPT_PATH, $CONFIG_PATH, $TESTNAME = find_filenames_for(pathtofile)
+    #$SCRIPT_PATH, $CONFIG_PATH, $TESTNAME = find_filenames_for(pathtofile)
+    app = Application.instance
+    app.script_path, app.config_path, app.test_name = find_filenames_for(pathtofile)
 
     require_relative 'sysadmingame'
-    require_relative "../#{$SCRIPT_PATH}"
+    require_relative "../#{app.script_path}"
   end
 end
