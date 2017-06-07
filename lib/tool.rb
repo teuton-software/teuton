@@ -85,25 +85,23 @@ class Tool
 	  close_main_report(start_time)
   end
 
-  def show(mode=:resume)
-    if mode==:resume or mode==:all then
-      @report.show
-    end
-    if mode==:details or mode==:all then
-      @cases.each { |c| puts "____"; c.report.show }
-      puts "."
+  def show(mode = :resume)
+    @report.show if mode == :resume || mode == :all
+    if mode == :details || mode == :all
+      @cases.each { |c| puts '____'; c.report.show }
+      puts '.'
     end
   end
 
-  def export(pArgs={})
-    if pArgs.class != Hash
-      puts "[ERROR] export Argument = #{pArgs}, class = #{pArgs.class.to_s}"
+  def export(args={})
+    if args.class != Hash
+      puts "[ERROR] export Argument = #{args}, class = #{args.class}"
       raise 'export Arguments are incorrect'
     end
     # default :mode=>:all, :format=>:txt
-    format = pArgs[:format] || :txt
+    format = args[:format] || :txt
 
-    mode = pArgs[:mode] || :all
+    mode = args[:mode] || :all
     @report.export format if mode == :resume || mode == :all
 
     if mode == :details || mode == :all
