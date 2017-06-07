@@ -52,7 +52,7 @@ class Laboratory
     @stats[:targets] += 1
     @targetid += 1
     i = @targetid
-    puts "(%03d"%i + ") target #{description}"
+    puts "(%03d" % i + ") target #{description}"
   end
 
   def tempfile(_tempfile = nil)
@@ -73,7 +73,7 @@ class Laboratory
   def expect(_cond, args = {})
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
-    puts "      alter  #{result.alterations}" if result.alterations.size > 0
+    puts "      alter  #{result.alterations}" if !result.alterations.empty?
     puts "      expect #{result.expected} (#{result.expected.class})"
     puts "      weight #{weight}"
     puts ''
@@ -170,7 +170,7 @@ class Laboratory
     output = { global: nil, cases: [] }
     output[:cases][0] = {}
     script_vars = find_script_vars
-    script_vars.each { |i| output[:cases][0][i] = 'VALUE'}
+    script_vars.each { |i| output[:cases][0][i] = 'VALUE' }
     puts YAML.dump(output)
   end
 
@@ -193,13 +193,12 @@ class Laboratory
     config_vars[:cases].each_with_index do |item, index|
       next if item[:tt_skip] == true
       script_vars.each do |value|
-        if item[value].nil?
-          print Rainbow('  * Define ').red
-          print Rainbow(value).red.bright
-          print Rainbow(' value for Case[').red
-          print Rainbow(index).red.bright
-          puts Rainbow('] or set tt_skip = true').red
-        end
+        next unless item[value].nil?
+        print Rainbow('  * Define ').red
+        print Rainbow(value).red.bright
+        print Rainbow(' value for Case[').red
+        print Rainbow(index).red.bright
+        puts Rainbow('] or set tt_skip = true').red
       end
     end
   end
