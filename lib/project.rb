@@ -91,11 +91,12 @@ module Project
   end
 
   def self.laboratory(pathtofile)
-    script_path, config_path, _test_name = find_filenames_for(pathtofile)
+    app = Application.instance
+    app.script_path, app.config_path, app.test_name = find_filenames_for(pathtofile)
 
     require_relative 'laboratory'
-    require_relative "../#{script_path}"
-    lab = Laboratory.new("../#{script_path}", config_path)
+    require_relative "../#{app.script_path}"
+    lab = Laboratory.new("../#{app.script_path}", app.config_path)
     lab.whatihavetodo
   end
 
