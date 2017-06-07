@@ -1,16 +1,17 @@
 #!/usr/bin/ruby
 
-require "minitest/autorun"
-require_relative "../lib/application"
+require 'minitest/autorun'
+require_relative '../lib/application'
 
+# MiniTest Application Class
 class ApplicationTest < Minitest::Test
   def setup
     @app = Application.instance
   end
 
   def test_version
-    assert_equal "sysadmin-game", @app.name
-    assert_equal "0.22.1", @app.version
+    assert_equal 'sysadmin-game', @app.name
+    assert_equal '0.22.1', @app.version
   end
 
   def test_init_params
@@ -18,13 +19,12 @@ class ApplicationTest < Minitest::Test
     assert_equal 'F', @app.letter[:bad]
     assert_equal '?', @app.letter[:error]
     assert_equal ' ', @app.letter[:none]
-    assert_equal "var", @app.output_basedir
-    assert_equal false,@app.debug
+    assert_equal 'var', @app.output_basedir
+    assert_equal false, @app.debug
     assert_equal true, @app.verbose
 
-    assert_equal true, @app.global=={}
+    assert_equal true, @app.global == {}
     assert_equal [], @app.tasks
     assert_equal [], @app.hall_of_fame
   end
-
 end
