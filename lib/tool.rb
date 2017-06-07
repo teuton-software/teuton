@@ -93,83 +93,84 @@ class Tool
   end
 
   def export(pArgs={})
-    if pArgs.class!=Hash then
+    if pArgs.class != Hash
       puts "[ERROR] export Argument = #{pArgs}, class = #{pArgs.class.to_s}"
-      raise "export Arguments are incorrect"
+      raise 'export Arguments are incorrect'
     end
-    #default :mode=>:all, :format=>:txt
-    format=pArgs[:format] || :txt
+    # default :mode=>:all, :format=>:txt
+    format = pArgs[:format] || :txt
 
     mode = pArgs[:mode] || :all
-    if mode==:resume or mode==:all then
-      @report.export format
-    end
-    if mode==:details or mode==:all then
-      threads=[]
-      @cases.each { |c| threads << Thread.new{ c.report.export format } }
+    @report.export format if mode == :resume || mode == :all
+
+    if mode == :details || mode == :all
+      threads = []
+      @cases.each { |c| threads << Thread.new { c.report.export format } }
       threads.each { |t| t.join }
     end
   end
 
-  def send(pArgs={})
-    threads=[]
-    puts ""
-    puts "[INFO] Sending files..."
-    @cases.each { |c| threads << Thread.new{ c.send pArgs} }
+  def send(args = {})
+    threads = []
+    puts ''
+    puts '[INFO] Sending files...'
+    @cases.each { |c| threads << Thread.new { c.send args } }
     threads.each { |t| t.join }
   end
 
-private
+  private
 
   def build_hall_of_fame
-    celebrities={}
+    celebrities = {}
 
-	  @cases.each do |c|
-      grade=c.report.tail[:grade]
+    @cases.each do |c|
+      grade = c.report.tail[:grade]
       if celebrities[grade]
-        label = celebrities[grade]+"*"
+        label = celebrities[grade] + '*'
       else
-        label = "*"
+        label = '*'
       end
       celebrities[grade] = label unless c.skip
-	  end
+    end
 
-	  a=celebrities.sort_by { |key, value| key }
-	  list=a.reverse
-    return list
+    a = celebrities.sort_by { |key, _value| key }
+    list = a.reverse
+    list
   end
 
-  def open_main_report(pConfigFilename)
-    app=Application.instance
+  def open_main_report(p_config_filename)
+    app = Application.instance
 
- 	  @report.head[:tt_title] = "Executing [#{app.name}] (version #{app.version})"
-	  @report.head[:tt_scriptname] = $SCRIPT_PATH
-	  @report.head[:tt_configfile] = pConfigFilename
-	  @report.head[:tt_debug]=true if @debug
-	  @report.head.merge!(app.global)
+    @report.head[:tt_title] = "Executing [#{app.name}] (version #{app.version})"
+    @report.head[:tt_scriptname] = $SCRIPT_PATH
+    @report.head[:tt_configfile] = p_config_filename
+    @report.head[:tt_debug] = true if @debug
+    @report.head.merge!(app.global)
 
-	  my_execute('clear')
-	  verboseln "=" * @report.head[:tt_title].length
+    my_execute('clear')
+    verboseln '=' * @report.head[:tt_title].length
     verboseln @report.head[:tt_title]
   end
 
   def close_main_report(start_time)
-    finish_time=Time.now
-    @report.tail[:start_time]=start_time
-    @report.tail[:finish_time]=finish_time
-    @report.tail[:duration]=finish_time-start_time
+    finish_time = Time.now
+    @report.tail[:start_time] = start_time
+    @report.tail[:finish_time] = finish_time
+    @report.tail[:duration] = finish_time - start_time
 
-    verboseln "\n[INFO] Duration = #{(finish_time-start_time).to_s} (#{finish_time.to_s})"
+    verboseln "\n[INFO] Duration = #{(finish_time - start_time)} (#{finish_time})"
     verboseln "\n"
-    verboseln "="*@report.head[:tt_title].length
+    verboseln '=' * @report.head[:tt_title].length
 
-    app=Application.instance
-	  @cases.each do |c|
-      lMembers=c.report.head[:tt_members] || 'noname'
-      lGrade=c.report.tail[:grade] || 0.0
-      lHelp=app.letter[:none]
-      lHelp=app.letter[:error] if lGrade<50.0
-	    @report.lines << "Case_"+"%02d"%c.id.to_i+" => "+"%3d"%lGrade.to_f+" #{lHelp} #{lMembers}"
-	  end
+    app = Application.instance
+    @cases.each do |c|
+      l_members = c.report.head[:tt_members] || 'noname'
+      l_grade = c.report.tail[:grade] || 0.0
+      l_help = app.letter[:none]
+      l_help = app.letter[:error] if l_grade < 50.0
+      t = 'Case_' + "%02d" % c.id.to_i + ' => '
+      t = t + "%3d" % l_grade.to_f + " #{l_help} #{l_members}"
+      @report.lines << t
+    end
   end
 end
