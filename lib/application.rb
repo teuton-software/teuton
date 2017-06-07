@@ -7,7 +7,8 @@ class Application
   attr_reader   :name, :version, :letter, :output_basedir
   attr_reader   :debug, :verbose
   attr_accessor :global, :tasks, :hall_of_fame
-
+  attr_accessor :script_path, :config_path, :testname
+  
   def initialize
     @name = 'sysadmin-game'
     @version = '0.22.0'
