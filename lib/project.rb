@@ -60,9 +60,9 @@ module Project
     if File.directory?(pathtofile)
       # COMPLEX MODE: We use start.rb as main RB file
       script_path = File.join(pathtofile, 'start.rb')
-      config_path = File.join(pathtofile, 'config.json')
+      config_path = File.join(pathtofile, 'config.yaml')
       unless File.exist? config_path
-        config_path = File.join(pathtofile, 'config.yaml')
+        config_path = File.join(pathtofile, 'config.json')
       end
       test_name = pathtofile.split(File::SEPARATOR)[-1]
     else
@@ -101,7 +101,6 @@ module Project
   end
 
   def self.run(pathtofile)
-    #$SCRIPT_PATH, $CONFIG_PATH, $TESTNAME = find_filenames_for(pathtofile)
     app = Application.instance
     app.script_path, app.config_path, app.test_name = find_filenames_for(pathtofile)
 
