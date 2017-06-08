@@ -1,4 +1,6 @@
 
+require_relative 'application'
+
 module Utils
 
   # Create the directory if it dosn't exist.
@@ -26,7 +28,7 @@ module Utils
   def verboseln(psText)
     verbose(psText+"\n")
   end
-	
+
   def verbose(psText)
     return if !Application.instance.verbose
     print psText
