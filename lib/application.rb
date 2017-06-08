@@ -5,7 +5,8 @@ class Application
   include Singleton
 
   attr_reader   :name, :version, :letter, :output_basedir
-  attr_reader   :debug, :verbose
+  attr_reader   :debug
+  attr_accessor :verbose
   attr_accessor :global, :tasks, :hall_of_fame
   attr_accessor :script_path, :config_path, :test_name
 

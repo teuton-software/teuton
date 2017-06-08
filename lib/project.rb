@@ -1,6 +1,7 @@
 
 require 'fileutils'
 require 'rainbow'
+require_relative 'application'
 
 # Project functions invoked by CLI project tool
 module Project
@@ -60,9 +61,9 @@ module Project
     if File.directory?(pathtofile)
       # COMPLEX MODE: We use start.rb as main RB file
       script_path = File.join(pathtofile, 'start.rb')
-      config_path = File.join(pathtofile, 'config.yaml')
+      config_path = File.join(pathtofile, 'config.json')
       unless File.exist? config_path
-        config_path = File.join(pathtofile, 'config.json')
+        config_path = File.join(pathtofile, 'config.yaml')
       end
       test_name = pathtofile.split(File::SEPARATOR)[-1]
     else
@@ -80,12 +81,12 @@ module Project
       end
       test_name = File.basename(script_path, '.rb')
     end
-    print Rainbow('[INFO] ScriptPath => ').blue
-    puts Rainbow(script_path).blue.bright
-    print Rainbow('[INFO] ConfigPath => ').blue
-    puts Rainbow(config_path).blue.bright
-    print Rainbow('[INFO] TestName   => ').blue
-    puts Rainbow(test_name).blue.bright
+    verbose Rainbow('[INFO] ScriptPath => ').blue
+    verboseln Rainbow(script_path).blue.bright
+    verbose Rainbow('[INFO] ConfigPath => ').blue
+    verboseln Rainbow(config_path).blue.bright
+    verbose Rainbow('[INFO] TestName   => ').blue
+    verboseln Rainbow(test_name).blue.bright
 
     return script_path, config_path, test_name
   end
@@ -107,4 +108,14 @@ module Project
     require_relative 'sysadmingame'
     require_relative "../#{app.script_path}"
   end
+
+  def self.verboseln(psText)
+    verbose(psText+"\n")
+  end
+
+  def self.verbose(psText)
+    return if !Application.instance.verbose
+    print psText
+  end
+
 end
