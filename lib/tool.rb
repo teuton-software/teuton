@@ -18,7 +18,7 @@ class Tool
 	  @tasks = []
     @cases = []
     @report = Report.new(0)
-    @report.filename = "resume"
+    @report.filename = 'resume'
     @app = Application.instance
   end
 
@@ -28,15 +28,12 @@ class Tool
   end
 
   def check_cases!
-    #pScriptFilename = $SCRIPT_PATH
-    #pConfigFilename = $CONFIG_PATH
-    #pTestname = $TESTNAME
     pScriptFilename = @app.script_path
     pConfigFilename = @app.config_path
     pTestname = @app.test_name
 
-	  #Load configurations from yaml file
-	  configdata = YAML::load(File.open(pConfigFilename))
+	  # Load configurations from yaml file
+	  configdata = YAML.load(File.open(pConfigFilename))
 	  @app.global = configdata[:global] || {}
     @app.global[:tt_testname]= @app.global[:tt_testname] || @app.test_name
 	  @app.global[:tt_sequence]=false if @app.global[:tt_sequence].nil?
