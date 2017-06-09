@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 require 'singleton'
-require 'yaml'
 
 require_relative 'application'
+require_relative 'configfile_reader'
 require_relative 'case/case'
 require_relative 'utils'
 require_relative 'report'
@@ -33,7 +33,7 @@ class Tool
     pTestname = @app.test_name
 
 	  # Load configurations from yaml file
-	  configdata = YAML.load(File.open(pConfigFilename))
+    configdata = ConfigFileReader.read(pConfigFilename)
 	  @app.global = configdata[:global] || {}
     @app.global[:tt_testname]= @app.global[:tt_testname] || @app.test_name
 	  @app.global[:tt_sequence]=false if @app.global[:tt_sequence].nil?
