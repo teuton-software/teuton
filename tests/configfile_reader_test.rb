@@ -9,5 +9,19 @@ class ConfigFileReaderTest < Minitest::Test
     data = ConfigFileReader.read('tests/files/example-01.yaml')
     assert_equal nil, data[:global]
     assert_equal 1, data[:cases].size
+    assert_equal Hash, data[:cases][0].class
+    assert_equal 'student1', data[:cases][0][:tt_members]
+
+    data = ConfigFileReader.read('tests/files/example-03/config.yaml')
+    assert_equal nil, data[:global]
+    assert_equal 1, data[:cases].size
+    assert_equal Hash, data[:cases][0].class
+    assert_equal 'student1', data[:cases][0][:tt_members]
+
+    data = ConfigFileReader.read('tests/files/example-04.json')
+    assert_equal nil, data[:global]
+    assert_equal 1, data[:cases].size
+    assert_equal Hash, data[:cases][0].class
+    assert_equal 'student1', data[:cases][0][:tt_members]
   end
 end

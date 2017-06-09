@@ -1,4 +1,4 @@
----
-:global:
-:cases:
-- :tt_members: student1
+{
+  "global":null,
+  "cases":[{"tt_members":"student1"}]
+}
