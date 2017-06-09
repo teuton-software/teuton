@@ -1,7 +1,7 @@
 
 require 'terminal-table'
-require 'yaml'
 require_relative 'application'
+require_relative 'configfile_reader'
 require_relative 'case/result'
 
 def task(name, &block)
@@ -182,12 +182,9 @@ class Laboratory
     end
 
     script_vars = find_script_vars
-    ext = File.extname(@path[:config])
-    if ext == '.yaml'
-      config_vars = YAML.load(File.open(@path[:config]))
-      unless config_vars[:global].nil?
-        config_vars[:global].each_key { |k| script_vars.delete(k) }
-      end
+    config_vars = ConfigFileReader.read(@path[:config])
+    unless config_vars[:global].nil?
+      config_vars[:global].each_key { |k| script_vars.delete(k) }
     end
 
     config_vars[:cases].each_with_index do |item, index|
