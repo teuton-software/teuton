@@ -110,12 +110,11 @@ module Project
     require_relative "../#{app.script_path}"
   end
 
-  def self.verboseln(psText)
-    verbose(psText+"\n")
+  def self.verboseln(text)
+    verbose(text + "\n")
   end
 
-  def self.verbose(psText)
-    return if !Application.instance.verbose
-    print psText
+  def self.verbose(text)
+    print text if Application.instance.verbose
   end
 end

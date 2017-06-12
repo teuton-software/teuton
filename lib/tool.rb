@@ -28,15 +28,15 @@ class Tool
   end
 
   def check_cases!
-	  # Load configurations from yaml file
+    # Load configurations from yaml file
     configdata = ConfigFileReader.read(@app.config_path)
-	  @app.global = configdata[:global] || {}
+    @app.global = configdata[:global] || {}
     @app.global[:tt_testname] = @app.global[:tt_testname] || @app.test_name
-	  @app.global[:tt_sequence] = false if @app.global[:tt_sequence].nil?
+    @app.global[:tt_sequence] = false if @app.global[:tt_sequence].nil?
     @caseConfigList = configdata[:cases]
 
     # Create out dir
-    @outdir = @app.global[:tt_outdir] || File.join('var',@app.global[:tt_testname], 'out')
+    @outdir = @app.global[:tt_outdir] || File.join('var', @app.global[:tt_testname], 'out')
     ensure_dir @outdir
     @report.output_dir = @outdir
 
@@ -52,7 +52,7 @@ class Tool
     else
       verboseln "[INFO] Running in parallel (#{start_time})"
       threads = []
-      @cases.each { |c| threads << Thread.new{ c.start } } # Process cases run in parallel
+      @cases.each { |c| threads << Thread.new{ c.start } } # Running cases in parallel
       threads.each(&:join)
     end
 
@@ -82,7 +82,10 @@ class Tool
   def show(mode = :resume)
     @report.show if mode == :resume || mode == :all
     if mode == :details || mode == :all
-      @cases.each { |c| puts '____'; c.report.show }
+      @cases.each do |c|
+        puts '____'
+        c.report.show
+      end
       puts '.'
     end
   end
