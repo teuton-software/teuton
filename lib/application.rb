@@ -14,7 +14,7 @@ class Application
 
   def initialize
     @name = 'sysadmin-game'
-    @version = '0.22.1'
+    @version = '0.23.1'
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @output_basedir = 'var'
     @debug = false
@@ -79,6 +79,8 @@ class Application
     true
   end
 
+  private
+
   def myverboseln(text)
     myverbose(text + "\n")
   end
@@ -87,5 +89,4 @@ class Application
     return unless Application.instance.verbose
     print text
   end
-
 end
