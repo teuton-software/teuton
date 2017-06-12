@@ -15,7 +15,7 @@ class Tool
   include Utils
 
   def initialize
-	  @tasks = []
+    @tasks = []
     @cases = []
     @report = Report.new(0)
     @report.filename = 'resume'
@@ -28,53 +28,53 @@ class Tool
   end
 
   def check_cases!
-    pScriptFilename = @app.script_path
+    #pScriptFilename = @app.script_path
     pConfigFilename = @app.config_path
-    pTestname = @app.test_name
 
 	  # Load configurations from yaml file
-    configdata = ConfigFileReader.read(pConfigFilename)
+    configdata = ConfigFileReader.read(@app.config_path)
 	  @app.global = configdata[:global] || {}
-    @app.global[:tt_testname]= @app.global[:tt_testname] || @app.test_name
-	  @app.global[:tt_sequence]=false if @app.global[:tt_sequence].nil?
-	  @caseConfigList = configdata[:cases]
+    @app.global[:tt_testname] = @app.global[:tt_testname] || @app.test_name
+	  @app.global[:tt_sequence] = false if @app.global[:tt_sequence].nil?
+    @caseConfigList = configdata[:cases]
 
-	  #Create out dir
-	  @outdir = @app.global[:tt_outdir] || File.join('var',@app.global[:tt_testname],'out')
+    # Create out dir
+	  @outdir = @app.global[:tt_outdir] || File.join('var',@app.global[:tt_testname], 'out')
 	  ensure_dir @outdir
 	  @report.output_dir = @outdir
 
-	  #Fill report head
-    open_main_report(pConfigFilename)
+    # Fill report head
+    open_main_report(@app.config_path)
 
-	  @caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) } # create cases
-	  start_time = Time.now
-    if @app.global[:tt_sequence] then
-      verboseln "[INFO] Running in sequence (#{start_time.to_s})"
-      @cases.each { |c| c.start } # Process every case in sequence
-	  else
-      verboseln "[INFO] Running in parallel (#{start_time.to_s})"
-      threads=[]
-      @cases.each { |c| threads << Thread.new{c.start} } # Process cases run in parallel
-      threads.each { |t| t.join }
-	  end
+    # create cases
+    @caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) }
+    start_time = Time.now
+    if @app.global[:tt_sequence]
+      verboseln "[INFO] Running in sequence (#{start_time})"
+      @cases.each(&:start) # Process every case in sequence
+    else
+      verboseln "[INFO] Running in parallel (#{start_time})"
+      threads = []
+      @cases.each { |c| threads << Thread.new{ c.start } } # Process cases run in parallel
+      threads.each(&:join)
+    end
 
-	  # Collect "unique" values from all cases
-	  uniques={}
-	  @cases.each do |c|
+    # Collect "unique" values from all cases
+    uniques = {}
+    @cases.each do |c|
       c.uniques.each do |key|
-	      if uniques[key].nil? then
-		      uniques[key]=[ c.id ]
-	      else
-		      uniques[key] << c.id
-	      end
-	    end
-	  end
+        if uniques[key].nil?
+          uniques[key] = [c.id]
+        else
+          uniques[key] << c.id
+        end
+      end
+    end
 
-	  # Close reports for all cases
-	  threads=[]
-	  @cases.each { |c| threads << Thread.new{c.close uniques} }
-	  threads.each { |t| t.join }
+    # Close reports for all cases
+    threads = []
+    @cases.each { |c| threads << Thread.new { c.close uniques } }
+    threads.each(&:join)
 
     # Build Hall of Fame
     @app.hall_of_fame = build_hall_of_fame
