@@ -79,7 +79,7 @@ class Tool
     # Build Hall of Fame
     @app.hall_of_fame = build_hall_of_fame
 
-	  close_main_report(start_time)
+    close_main_report(start_time)
   end
 
   def show(mode = :resume)
@@ -90,7 +90,7 @@ class Tool
     end
   end
 
-  def export(args={})
+  def export(args = {})
     if args.class != Hash
       puts "[ERROR] export Argument = #{args}, class = #{args.class}"
       raise 'export Arguments are incorrect'
@@ -101,10 +101,10 @@ class Tool
     mode = args[:mode] || :all
     @report.export format if mode == :resume || mode == :all
 
-    if mode == :details || mode == :all
+    if (mode == :details || mode == :all)
       threads = []
       @cases.each { |c| threads << Thread.new { c.report.export format } }
-      threads.each { |t| t.join }
+      threads.each(&:join)
     end
   end
 
@@ -113,7 +113,7 @@ class Tool
     puts ''
     puts '[INFO] Sending files...'
     @cases.each { |c| threads << Thread.new { c.send args } }
-    threads.each { |t| t.join }
+    threads.each(&:join)
   end
 
   private
