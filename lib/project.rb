@@ -93,9 +93,13 @@ module Project
         puts Rainbow(' must have rb extension').red
         exit 1
       end
-      config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.json')
+      dirname = File.dirname(script_path)
+      filename = File.basename(script_path, '.rb') + '.json'
+      config_path = File.join(dirname, filename)
       unless File.exist? config_path
-        config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.yaml')
+        dirname = File.dirname(script_path)
+        filename = File.basename(script_path, '.rb') + '.yaml'
+        config_path = File.join(dirname, filename)
       end
       test_name = File.basename(script_path, '.rb')
     end
