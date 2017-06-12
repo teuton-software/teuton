@@ -99,7 +99,7 @@ class Case
   end
 
   def close(uniques)
-    fails=0
+    fails = 0
     @uniques.each do |key|
       if uniques[key].include?(id) and uniques[key].count>1 then
         fails+=1
@@ -193,14 +193,14 @@ private
     rescue Net::SSH::HostKeyMismatch
       @sessions[hostname]=:nosession
       verbose app.letter[:error]
-      log( "SSH::HostKeyMismatch!", :error)
-      log( "* The destination server's fingerprint is not matching what is in your local known_hosts file.",:error)
-      log( "* Remove the existing entry in your local known_hosts file", :error)
-      log( "* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' -R #{ip}", :error)
+      log('SSH::HostKeyMismatch!', :error)
+      log("* The destination server's fingerprint is not matching what is in your local known_hosts file.",:error)
+      log('* Remove the existing entry in your local known_hosts file', :error)
+      log("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' -R #{ip}", :error)
     rescue Exception => e
-      @sessions[hostname]=:nosession
+      @sessions[hostname] = :nosession
       verbose app.letter[:error]
-      log( "[#{e.class.to_s}] SSH on <#{username}@#{ip}> exec: "+@action[:command], :error)
+      log( "[#{e.class}] SSH on <#{username}@#{ip}> exec: " + @action[:command], :error)
     end
 
     @result.content=output
@@ -208,20 +208,20 @@ private
   end
 
   def run_remote_cmd_telnet(pHostname)
-    @action[:conn_type]=:telnet
-    app=Application.instance
-    hostname=pHostname.to_s
-    ip=@config.get((hostname+'_ip').to_sym)
-    username=@config.get((hostname+'_username').to_sym)
-    password=@config.get((hostname+'_password').to_sym)
-    output=[]
+    @action[:conn_type] = :telnet
+    app = Application.instance
+    hostname = pHostname.to_s
+    ip = @config.get((hostname+'_ip').to_sym)
+    username = @config.get((hostname+'_username').to_sym)
+    password = @config.get((hostname+'_password').to_sym)
+    output = []
 
     begin
-      if @sessions[hostname].nil? or @sessions[hostname]==:ok
-        h = Net::Telnet::new( { "Host"=>ip, "Timeout"=>30, "Prompt"=>/sysadmingame/ })
-        h.login( username, password)
-        text=""
-        h.cmd(@action[:command]) {|i| text << i}
+      if @sessions[hostname].nil? || @sessions[hostname] == :ok
+        h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 30, 'Prompt' => /sysadmingame/ })
+        h.login(username, password)
+        text = ''
+        h.cmd(@action[:command]) { |i| text << i }
         output=text.split("\n")
         h.close
         @sessions[hostname] = :ok
@@ -230,20 +230,19 @@ private
     rescue Net::OpenTimeout
       @sessions[hostname] = :nosession
       verbose app.letter[:error]
-      log( " ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
-      log( " └── Revise host IP!", :warn)
+      log(" ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
+      log(' └── Revise host IP!', :warn)
     rescue Net::ReadTimeout
       @sessions[hostname] = :nosession
       verbose app.letter[:error]
-      log( " ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
+      log(" ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue Exception => e
       @sessions[hostname] = :nosession
       verbose app.letter[:error]
-      log( " ExceptionType=<#{e.class.to_s}> doing telnet on <#{username}@#{ip}> exec: "+@action[:command], :error)
-      log( " └── username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
+      log(" ExceptionType=<#{e.class}> doing telnet on <#{username}@#{ip}> exec: " + @action[:command], :error)
+      log(" └── username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end
 
-    @result.content=output
+    @result.content = output
   end
-
 end
