@@ -5,6 +5,7 @@ require_relative 'application'
 
 # Project functions invoked by CLI project tool
 module Project
+
   def self.create(pathtofile)
     projectname = File.basename(pathtofile)
     projectdir  = File.dirname(pathtofile)
@@ -117,5 +118,4 @@ module Project
     return if !Application.instance.verbose
     print psText
   end
-
 end
