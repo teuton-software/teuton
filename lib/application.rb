@@ -1,6 +1,7 @@
 
 require 'singleton'
 
+# This Singleton contains application params
 class Application
   include Singleton
 
@@ -13,10 +14,10 @@ class Application
   def initialize
     @name = 'sysadmin-game'
     @version = '0.22.1'
-    @letter = {good: '.', bad: 'F', error: '?', none: ' '}
+    @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @output_basedir = 'var'
-   	@debug = false
-	  @verbose = true
+    @debug = false
+    @verbose = true
 
     @global = {}
     @tasks = []
