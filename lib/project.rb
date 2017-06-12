@@ -5,7 +5,6 @@ require_relative 'application'
 
 # Project functions invoked by CLI project tool
 module Project
-
   def self.create(pathtofile)
     projectname = File.basename(pathtofile)
     projectdir  = File.dirname(pathtofile)
@@ -41,60 +40,9 @@ module Project
     end
   end
 
-  def self.find_filenames_for(pathtofile)
-    if pathtofile.nil? # Check param not null
-      puts Rainbow('[ERROR] path-to-file not specified').red
-      puts Rainbow('* Please, read help => ./project help').yellow
-      exit 1
-    end
-
-    unless File.exist?(pathtofile) # Check file exists
-      print Rainbow('[ERROR] ').red
-      print Rainbow(pathtofile).bright.red
-      puts Rainbow(" dosn't exists").red
-      exit 1
-    end
-
-    # Define:
-    #   script_path, must contain fullpath to DSL script file
-    #   config_path, must contain fullpath to YAML config file
-
-    if File.directory?(pathtofile)
-      # COMPLEX MODE: We use start.rb as main RB file
-      script_path = File.join(pathtofile, 'start.rb')
-      config_path = File.join(pathtofile, 'config.json')
-      unless File.exist? config_path
-        config_path = File.join(pathtofile, 'config.yaml')
-      end
-      test_name = pathtofile.split(File::SEPARATOR)[-1]
-    else
-      # SIMPLE MODE: We use pathtofile as main RB file
-      script_path = pathtofile # This must be fullpath to DSL script file
-      if File.extname(script_path) != '.rb'
-        print Rainbow('[ERROR] Script ').red
-        print Rainbow(script_path).bright.red
-        puts Rainbow(' must have rb extension').red
-        exit 1
-      end
-      config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.json')
-      unless File.exist? config_path
-        config_path = File.join(File.dirname(script_path), File.basename(script_path, '.rb') + '.yaml')
-      end
-      test_name = File.basename(script_path, '.rb')
-    end
-    verbose Rainbow('[INFO] ScriptPath => ').blue
-    verboseln Rainbow(script_path).blue.bright
-    verbose Rainbow('[INFO] ConfigPath => ').blue
-    verboseln Rainbow(config_path).blue.bright
-    verbose Rainbow('[INFO] TestName   => ').blue
-    verboseln Rainbow(test_name).blue.bright
-
-    return script_path, config_path, test_name
-  end
-
   def self.laboratory(pathtofile)
     app = Application.instance
-    app.script_path, app.config_path, app.test_name = find_filenames_for(pathtofile)
+    app.find_filenames_for(pathtofile)
 
     require_relative 'laboratory'
     require_relative "../#{app.script_path}"
@@ -104,17 +52,9 @@ module Project
 
   def self.run(pathtofile)
     app = Application.instance
-    app.script_path, app.config_path, app.test_name = find_filenames_for(pathtofile)
+    app.find_filenames_for(pathtofile)
 
     require_relative 'sysadmingame'
     require_relative "../#{app.script_path}"
-  end
-
-  def self.verboseln(text)
-    verbose(text + "\n")
-  end
-
-  def self.verbose(text)
-    print text if Application.instance.verbose
   end
 end
