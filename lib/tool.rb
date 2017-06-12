@@ -24,13 +24,10 @@ class Tool
 
   def start(&block)
     check_cases!
-    instance_eval &block
+    instance_eval(&block)
   end
 
   def check_cases!
-    #pScriptFilename = @app.script_path
-    pConfigFilename = @app.config_path
-
 	  # Load configurations from yaml file
     configdata = ConfigFileReader.read(@app.config_path)
 	  @app.global = configdata[:global] || {}
@@ -39,9 +36,9 @@ class Tool
     @caseConfigList = configdata[:cases]
 
     # Create out dir
-	  @outdir = @app.global[:tt_outdir] || File.join('var',@app.global[:tt_testname], 'out')
-	  ensure_dir @outdir
-	  @report.output_dir = @outdir
+    @outdir = @app.global[:tt_outdir] || File.join('var',@app.global[:tt_testname], 'out')
+    ensure_dir @outdir
+    @report.output_dir = @outdir
 
     # Fill report head
     open_main_report(@app.config_path)
@@ -101,7 +98,7 @@ class Tool
     mode = args[:mode] || :all
     @report.export format if mode == :resume || mode == :all
 
-    if (mode == :details || mode == :all)
+    if mode == :details || mode == :all
       threads = []
       @cases.each { |c| threads << Thread.new { c.report.export format } }
       threads.each(&:join)
@@ -166,8 +163,10 @@ class Tool
       l_grade = c.report.tail[:grade] || 0.0
       l_help = app.letter[:none]
       l_help = app.letter[:error] if l_grade < 50.0
-      t = 'Case_' + "%02d" % c.id.to_i + ' => '
-      t = t + "%3d" % l_grade.to_f + " #{l_help} #{l_members}"
+      # t = 'Case_' + "%02d" % c.id.to_i + ' => '
+      t = format('Case_%02d => ', c.id.to_i)
+      # t = t + "%3d" % l_grade.to_f + " #{l_help} #{l_members}"
+      t += format('%3d %s %s', l_grade.to_f, l_help, l_members)
       @report.lines << t
     end
   end
