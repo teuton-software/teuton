@@ -1,36 +1,36 @@
 
 require_relative 'application'
 
+# Define general use methods
 module Utils
-
   # Create the directory if it dosn't exist.
   def ensure_dir(dirname)
-    if !Dir.exists?(dirname) then
+    unless Dir.exist?(dirname)
       FileUtils.mkdir_p(dirname)
       return false
     end
-    return true
+    true
   end
 
-  def my_execute(psCmd)
-   output=[]
-   return output if Application.instance.debug
+  def my_execute(cmd)
+    output = []
+    return output if Application.instance.debug
     begin
-      text=`#{psCmd}`
-      output=text.split("\n")
+      text = `#{cmd}`
+      output = text.split("\n")
     rescue
-      verbose "!"
-      log ("Local exec: "+psCmd) #, :error)
+      verbose '!'
+      log('Local exec: ' + cmd)
     end
-    return output
+    output
   end
 
-  def verboseln(psText)
-    verbose(psText+"\n")
+  def verboseln(text)
+    verbose(text + "\n")
   end
 
-  def verbose(psText)
-    return if !Application.instance.verbose
-    print psText
+  def verbose(text)
+    return unless Application.instance.verbose
+    print text
   end
 end
