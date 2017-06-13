@@ -56,6 +56,6 @@ where save your own activity scripts.
 * [Installation](./docs/en/installation.md)
 * [Examples](./docs/en/examples.md)
 * [Create your first activity](./docs/en/first-activity.md)
-* [DSL Key words](./docs/en/dsl-key-words.md)
+* [DSL Key words](./docs/en/dsl/README.md)
 * [TO-DO list](./TODO.md)
 * ES - [Spanish documentation](./docs/es/README.md)

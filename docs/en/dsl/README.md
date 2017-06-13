@@ -1,8 +1,45 @@
 
-#DSL key words
+# DSL key words
 
 To define and run our activity test we use the next DSL key words:
 
+## Define instructions
+
+These are the main DSL key words, usefull to define items to be evaluated.
+
+| DSL                  | Description |
+| :------------------- | :---------- |
+| [task](./task.md)    | Define a group of targets. |
+| [target](./target.md)| Define a target. This is the item to be checked. |
+| [goto](./goto.md)    | Execute command into remote host. |
+| [result](./result.md)| Contain the output of previous `goto` order. |
+| [expect](./expect.md)| Check the obtained result with the expected value. |
+
+## Execution instructions
+
+`start`is the DSL key word that starts execution of all defined tasks. Example:
+
+```
+    start do
+      ...
+    end
+```
+
+* We write this instruction at the end of the rb script, to indicate that it's the moemnt to start the evaluation process.
+* The `task` instructions define the test we want to do, but `start` instruction is used to start execution of all the tasks/targets into every remote hosts of every case.
+* If you don't write this instruccion, your tests will never be executed.
+
+# Report instructions
+
+Other DSL key word related with reports and information.
+
+| DSL                  | Descripción |
+| :------------------- | :---------- |
+| [show](./show.md)    | Show the results on screen. |
+| [export](./export.md)| Make reports with the results of every evaluation. |
+| [send](./send.md)    | Send copy of report file to remote host. |
+
+---
 
 ##check
 
@@ -10,7 +47,7 @@ To define and run our activity test we use the next DSL key words:
 
 ##desc, description
 * `desc "Write text description for your action"`
-* Describe the action or the target with your own words, so every one 
+* Describe the action or the target with your own words, so every one
 could easily understand what we are trying to do.
 
 ##goto, on
