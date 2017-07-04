@@ -21,7 +21,7 @@ task :check do
     puts '[ERROR] Installed gems!: ' + fails.join(',')
   end
 
-  testfile = './tests/all.rb'
+  testfile = File.join('.', 'tests', 'all.rb')
   a = `cat #{testfile}|grep "_test"|wc -l`
   b = `vdir -R tests/ |grep "_test.rb"|wc -l`
   if a.to_i == b.to_i
