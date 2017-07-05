@@ -70,7 +70,7 @@ task :update do
 end
 
 def install_gems(list)
-  fails = filter_installed_gems(list)
+  fails = filter_uninstalled_gems(list)
   fails.each { |name| system("gem install #{name}") }
 end
 
