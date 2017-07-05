@@ -63,7 +63,6 @@ end
 
 desc 'Install gems'
 task :gems do
-  # TODO: use gem pony to send email
   install_gems packages
 end
 
