@@ -1,6 +1,7 @@
 # File: Rakefile
 # Usage: rake
 require 'fileutils'
+require_relative 'lib/application'
 
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
 packages += ['minitest', 'pry-byebug', 'thor', 'json']
@@ -11,6 +12,7 @@ end
 
 desc 'Check installation'
 task :check do
+  puts "[INFO] Version #{Application.instance.version}"
   cmd = `gem list`.split("\n")
   names = cmd.map { |i| i.split(' ')[0] }
   fails = []
