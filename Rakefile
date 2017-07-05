@@ -69,3 +69,9 @@ task :create_auxdirs do
   system('chmod +x ./check/demos/*.rb')
   system('mkdir -p var')
 end
+
+desc 'Update project'
+task :update do
+  system('git pull')
+  packages.each { |n| system("gem install #{n}") }
+end
