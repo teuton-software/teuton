@@ -50,7 +50,7 @@ desc 'Debian installation'
 task :debian do
   names = ['ssh', 'make', 'gcc', 'ruby-dev']
   names.each { |name| system("apt-get install -y #{name}") }
-  packages.each { |n| system("gem install #{n}") }
+  install_gems packages
 end
 
 desc 'OpenSUSE installation'
@@ -58,17 +58,21 @@ task :opensuse do
   names = ['openssh', 'ruby2.1-rubygem-pry', 'make', 'gcc', 'ruby-devel']
   options = '--non-interactive'
   names.each { |n| system("zypper #{options} install #{n}") }
-  packages.each { |n| system("gem install #{n}") }
+  install_gems packages
 end
 
 desc 'Install gems'
 task :gems do
   # TODO: use gem pony to send email
-  packages.each { |n| system("gem install #{n}") }
+  install_gems packages
 end
 
 desc 'Update project'
 task :update do
   system('git pull')
+  install_gems packages
+end
+
+def install_gems(packages)
   packages.each { |n| system("gem install #{n}") }
 end
