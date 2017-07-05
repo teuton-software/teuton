@@ -13,10 +13,7 @@ end
 desc 'Check installation'
 task :check do
   puts "[INFO] Version #{Application.instance.version}"
-  cmd = `gem list`.split("\n")
-  names = cmd.map { |i| i.split(' ')[0] }
-  fails = []
-  packages.each { |i| fails << i unless names.include?(i) }
+  fails = remove_installed_gems(packages)
 
   if fails.size.zero?
     puts '[ OK ] Gems installed OK!'
@@ -72,6 +69,15 @@ task :update do
   install_gems packages
 end
 
-def install_gems(packages)
-  packages.each { |n| system("gem install #{n}") }
+def install_gems(list)
+  fails = filter_installed_gems(list)
+  fails.each { |name| system("gem install #{name}") }
+end
+
+def remove_installed_gems(list)
+  cmd = `gem list`.split("\n")
+  names = cmd.map { |i| i.split(' ')[0] }
+  fails = []
+  list.each { |i| fails << i unless names.include?(i) }
+  fails
 end
