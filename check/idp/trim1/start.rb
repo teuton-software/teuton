@@ -13,5 +13,5 @@ require_relative 'test-opensuse'
 start do
   show
   export :format => :colored_text
-  send :copy_to => :host2
+#  send :copy_to => :host2
 end
