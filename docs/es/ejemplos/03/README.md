@@ -83,11 +83,12 @@ ellos.
 En este ejemplo no tenemos definidas variables globales de configuración.
 Para cada caso se definen los parámetros `tt_members` y `username`.
 * **username**: Este parámetro tiene diferente valor para cada caso, de modo
-que cuando se ejecuta la accción de comprobación, ésta será diferente en cada
+que cuando se ejecuta la acción de comprobación, ésta será diferente en cada
 caso.
 * Consulta el fichero de configuración de este ejemplo.
 
 ## Ejecución del script
+
 Ejecutamos el script con `./project docs/examples/example-03.rb` y vemos la siguiente
 [salida por pantalla](./resume.txt).
 
