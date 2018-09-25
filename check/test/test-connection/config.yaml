@@ -1,0 +1,13 @@
+---
+:global:
+  :host_ip: 192.168.1.114
+:cases:
+- :tt_members: Test Connections
+  :host1_username: root
+  :host1_password: profesor
+  :host2_username: profesor
+  :host2_password: profesor
+  :host3_username: root
+  :host3_password: profesor
+  :host4_username: profesor
+  :host4_password: profesor
