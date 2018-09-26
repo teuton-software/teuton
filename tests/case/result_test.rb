@@ -8,7 +8,7 @@ class ResultTest < Minitest::Test
     @result = Result.new
     @content = [ "line1","line2","line3" ]
     @content2 = [ "a12","b13","c23","d34" ]
-    @result.content=@content
+    @result.content = @content
   end
 
   def test_eq
@@ -40,6 +40,9 @@ class ResultTest < Minitest::Test
     r.restore!
     assert_equal false, r.find!(filter).count!.eq(0)
     assert_equal "find!("+filter+") & count!", r.alterations
+
+    r.restore!
+    assert_equal true, r.eq("line1")
   end
 
   def test_neq

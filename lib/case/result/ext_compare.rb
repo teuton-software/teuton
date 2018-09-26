@@ -9,6 +9,8 @@ class Result
       l_value = @content[0].to_i
     when 'Float'
       l_value = @content[0].to_f
+    when 'String'
+      l_value = @content[0].to_s
     else
       l_value = @content[0]
     end
