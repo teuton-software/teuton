@@ -11,7 +11,7 @@ class ApplicationTest < Minitest::Test
 
   def test_version
     assert_equal 'sysadmin-game', @app.name
-    assert_equal '1.0.0', @app.version
+    assert_equal '1.0.1', @app.version
   end
 
   def test_init_params
