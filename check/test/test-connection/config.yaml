@@ -1,6 +1,6 @@
 ---
 :global:
-  :host_ip: 192.168.1.114
+  :host_ip: 172.19.99.241
 :cases:
 - :tt_members: Test Connections
   :host1_username: root
@@ -9,5 +9,7 @@
   :host2_password: profesor
   :host3_username: root
   :host3_password: profesor
+  :host3_protocol: telnet
   :host4_username: profesor
   :host4_password: profesor
+  :host4_protocol: telnet
