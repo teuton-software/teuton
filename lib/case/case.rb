@@ -212,7 +212,7 @@ private
     app = Application.instance
     hostname = pHostname.to_s
     ip = @config.get((hostname+'_ip').to_sym)
-    username = @config.get((hostname+'_username').to_sym)
+    username = @config.get((hostname+'_username').to_sym) || 'sysadmingame' #NODATA is returned
     password = @config.get((hostname+'_password').to_sym)
     output = []
 
