@@ -1,6 +1,6 @@
 ---
 :global:
-  :host_ip: 172.19.99.241
+  :host_ip: 192.168.1.106
 :cases:
 - :tt_members: Test Connections
   :host1_username: root
