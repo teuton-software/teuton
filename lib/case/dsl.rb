@@ -19,7 +19,6 @@ module DSL
   end
 
   def set( key, value)
-    #@running_config[key]=value
     @config.set(key,value)
   end
 
