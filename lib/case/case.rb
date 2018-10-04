@@ -178,7 +178,7 @@ private
       end
 
       if @sessions[hostname].class==Net::SSH::Connection::Session
-        text=@sessions[hostname].exec!( @action[:command] )
+        text = @sessions[hostname].exec!( @action[:command].to_s )
         output = text.split("\n")
       end
 
