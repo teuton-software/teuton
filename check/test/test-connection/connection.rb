@@ -43,10 +43,10 @@ task "Windows connections" do
 
   target "win3 Telnet with <#{get(:win3_username)}> "
   goto   :win3, :exec => "whoami"
-  expect result.find!(get(:win3_username)).count!.eq 1
+  expect result.find!(get(:win3_username)[1,40]).count!.eq 2
 
   target "win4 Telnet with <#{get(:win4_username)}> "
   goto   :win4, :exec => "whoami"
-  expect result.find!(get(:win4_username)).count!.eq 1
+  expect result.find!(get(:win4_username)[1,40]).count!.eq 2
 
 end

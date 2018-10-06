@@ -9,7 +9,7 @@ require 'net/telnet'
 # * username
 # * password
 # * cmd (Command to be executed)
-def test_telnet_connection_to(params = {})
+def telnet_to(params = {})
   hostname = params[:hostname]
   ip = params[:ip]
   username = params[:username]
@@ -40,7 +40,22 @@ def test_telnet_connection_to(params = {})
   puts "Output  : " + output.to_s
 end
 
-ip = '192.168.1.106'
-test_telnet_connection_to(:ip => ip, :username => 'root', :password => 'profesor', :cmd => 'pwd')
-test_telnet_connection_to(:ip => ip, :username => 'profesor', :password => 'profesor', :cmd => 'pwd')
-test_telnet_connection_to(:ip => ip, :username => 'sysadmingame', :password => 'profesor', :cmd => 'pwd')
+def connect_to_debian9
+  ip = '192.168.1.106'
+  telnet_to(:ip => ip, :username => 'root', :password => 'profesor', :cmd => 'whoami')
+  telnet_to(:ip => ip, :username => 'profesor', :password => 'profesor', :cmd => 'whoami')
+end
+
+def connect_to_win2008
+  ip = '192.168.1.115'
+  telnet_to(:ip => ip, :username => 'Administrador', :password => 'profesorFP2018', :cmd => 'whoami')
+  telnet_to(:ip => ip, :username => 'profesor', :password => 'sayonaraBABY2018', :cmd => 'whoami')
+end
+
+def connect_to_win2012
+  ip = '192.168.1.114'
+  telnet_to(:ip => ip, :username => 'Administrador', :password => 'profesorFP2018', :cmd => 'whoami')
+  telnet_to(:ip => ip, :username => 'profesor', :password => 'sayonaraBABY2018', :cmd => 'whoami')
+end
+
+connect_to_win2012
