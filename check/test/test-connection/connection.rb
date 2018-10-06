@@ -33,12 +33,14 @@ task "Windows connections" do
 
   target "win1 SSH with <#{get(:win1_username)}> "
   goto   :win1, :exec => 'get-windowsfeature -name rds-rd-server > salida.txt'
+  result.debug
   goto   :win1, :exec => 'cat salida.txt'
   result.debug
   expect result.find!("Available").count!.eq 1
 
   target "win2 SSH with <#{get(:win2_username)}> "
-  goto   :win2, :exec => "whoami"
+  goto   :win2, :exec => 'whoami'
+  result.debug
   expect result.find!(get(:win2_username)).count!.eq 1
 
   target "win3 Telnet with <#{get(:win3_username)}> "
