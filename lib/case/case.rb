@@ -218,10 +218,9 @@ private
 
     begin
       if @sessions[hostname].nil? || @sessions[hostname] == :ok
-        #h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 40, 'Prompt' => Regexp.new(username) })
+        #h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 10, 'Prompt' => /[$%#>]\s?\z/n })
         h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 10, 'Prompt' => Regexp.new(username[1,40]) })
 
-          #'Prompt' => /[$%#>]\s?\z/n })
         h.login(username, password)
         text = ''
         h.cmd(@action[:command]) { |i| text << i }
