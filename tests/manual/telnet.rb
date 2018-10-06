@@ -1,6 +1,14 @@
-
+#!/usr/bin/ruby
+# load gem to use telnet tool
 require 'net/telnet'
 
+# This method open telnet connection with remote host and execute command.
+# Params
+# * hostname
+# * ip
+# * username
+# * password
+# * cmd (Command to be executed)
 def test_telnet_connection_to(params = {})
   hostname = params[:hostname]
   ip = params[:ip]
@@ -12,7 +20,8 @@ def test_telnet_connection_to(params = {})
   puts "\nTesting : " + params.to_s
 
   begin
-      h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 40, 'Prompt' => Regexp.new(username) })
+      #h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 10, 'Prompt' => Regexp.new(username) })
+      h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 10, 'Prompt' => /[$%#>]\s?\z/n })
       h.login(username, password)
       text = ''
       h.cmd(cmd) { |i| text << i }
@@ -31,6 +40,7 @@ def test_telnet_connection_to(params = {})
   puts "Output  : " + output.to_s
 end
 
-test_telnet_connection_to(:ip => '192.168.1.100', :username => 'root', :password => 'profesor', :cmd => 'pwd')
-test_telnet_connection_to(:ip => '192.168.1.106', :username => 'profesor', :password => 'profesor', :cmd => 'pwd')
-test_telnet_connection_to(:ip => '192.168.1.106', :username => 'sysadmingame', :password => 'sysadmingame', :cmd => 'pwd')
+ip = '192.168.1.106'
+test_telnet_connection_to(:ip => ip, :username => 'root', :password => 'profesor', :cmd => 'pwd')
+test_telnet_connection_to(:ip => ip, :username => 'profesor', :password => 'profesor', :cmd => 'pwd')
+test_telnet_connection_to(:ip => ip, :username => 'sysadmingame', :password => 'profesor', :cmd => 'pwd')
