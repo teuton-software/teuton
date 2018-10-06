@@ -32,7 +32,9 @@ task "Windows connections" do
   set(:win4_ip, get(:windows_ip))
 
   target "win1 SSH with <#{get(:win1_username)}> "
-  goto   :win1, :exec => 'get-windowsfeature -name rds-rd-server'
+  goto   :win1, :exec => 'get-windowsfeature -name rds-rd-server > salida.txt'
+  goto   :win1, :exec => 'cat salida.txt'
+  result.debug
   expect result.find!("Available").count!.eq 1
 
   target "win2 SSH with <#{get(:win2_username)}> "

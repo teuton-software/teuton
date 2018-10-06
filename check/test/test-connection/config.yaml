@@ -1,7 +1,7 @@
 ---
 :global:
-  :linux_ip: 192.168.1.106
-  :windows_ip: 192.168.1.114
+  :linux_ip: 172.19.99.38
+  :windows_ip: 172.19.99.37
 :cases:
 - :tt_members: Test Connections
   :host1_username: root
