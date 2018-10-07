@@ -60,7 +60,7 @@ Display Name                                            Name
     [ ] Host de sesi�n de Escritorio remoto             RDS-RD-Server          
 ```
 
-* Usando el programa -> ERROR!
+* Usando el programa -> OK (Comando whoami)
 
 ```
 david@camaleon:~/proy/tools/sysadmin-game> ./tests/manual/ssh.rb
@@ -68,11 +68,19 @@ david@camaleon:~/proy/tools/sysadmin-game> ./tests/manual/ssh.rb
 Testing : {:ip=>"192.168.1.114", :username=>"Administrador", :password=>"profesorFP2018", :cmd=>"whoami"}
 Output  : ["vargas42s12\\administrador\r"]
 
+```
+
+* Usando el programa -> ERROR!!!! (Comando get-windowsfeature) La salida está vacía.
+
+```
+david@camaleon:~/proy/tools/sysadmin-game> ./tests/manual/ssh.rb
+
 Testing : {:ip=>"192.168.1.114", :username=>"Administrador", :password=>"profesorFP2018", :cmd=>"get-windowsfeature -name rds-rd-server"}
 [ArgumentError] SSH on <Administrador@192.168.1.114> exec: get-windowsfeature -name rds-rd-server
 Output  : []
 
 ```
+
 ---
 
 # Problema
