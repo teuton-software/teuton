@@ -35,6 +35,7 @@ def ssh_to(params = {})
     puts("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' -R #{ip}")
   rescue Exception => e
     puts( "[#{e.class}] SSH on <#{username}@#{ip}> exec: " + cmd)
+    puts e
   end
 
   puts "Output  : " + output.to_s
