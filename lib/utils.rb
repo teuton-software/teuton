@@ -12,15 +12,21 @@ module Utils
     true
   end
 
-  def my_execute(cmd)
+  def my_execute(cmd, encoding='UTF-8')
     output = []
     return output if Application.instance.debug
     begin
       text = `#{cmd}`
+      unless encoding == 'UTF-8'
+        ec = Encoding::Converter.new(encoding.to_s, 'UTF-8')
+        text = ec.convert(text)
+        puts "Enconding..."+text
+      end
       output = text.split("\n")
-    rescue
+    rescue Exception => e
       verbose '!'
-      log('Local exec: ' + cmd)
+      puts e
+      puts('Local exec: ' + cmd)
     end
     output
   end

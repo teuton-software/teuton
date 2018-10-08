@@ -4,12 +4,12 @@ module DSL
 
   def target(pDescription=nil)
     return @action[:description] if pDescription.nil?
-    @action[:description]=pDescription
+    @action[:description] = pDescription
   end
   alias_method :desc, :target
 
   def command(pCommand, pArgs={})
-    @action[:command]=pCommand
+    @action[:command] = pCommand
     tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
   end
 
@@ -40,10 +40,11 @@ module DSL
     command(pArgs[:execute]) if pArgs[:execute]
     command(pArgs[:exec]) if pArgs[:exec]
     tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
+    @action[:encoding] = pArgs[:encoding] || 'UTF-8'
 
     start_time = Time.now
     if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
-      run_local_cmd
+      run_local_cmd()
     else
       #key=( (pHostname.to_s.split('_')[0])+'_ip' ).to_sym
       #ip=get( key )

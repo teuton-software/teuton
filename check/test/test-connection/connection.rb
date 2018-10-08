@@ -33,13 +33,14 @@ task "Windows connections" do
 
   target "win1 SSH with <#{get(:win1_username)}> "
   comando = 'sshpass -p '+get(:win1_password)+' ssh '+get(:win1_username)+'@'+get(:win1_ip)+ ' '
-  comando += 'get-windowsfeature -name rds-rd-server'
-  goto   :localhost, :exec => comando
+  comando += 'get-windowsfeature -name rds-rd-server > /tmp/salida.txt'
+  system(comando)
+  goto   :localhost, :exec => 'cat /tmp/salida.txt', :encoding => 'ISO-8859-1'
+  result.debug
   expect result.find!("Available").count!.eq 1
 
   target "win2 SSH with <#{get(:win2_username)}> "
   goto   :win2, :exec => 'whoami'
-  result.debug
   expect result.find!(get(:win2_username)).count!.eq 1
 
   target "win3 Telnet with <#{get(:win3_username)}> "

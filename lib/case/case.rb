@@ -142,9 +142,9 @@ private
     end
   end
 
-  def run_local_cmd
+  def run_local_cmd()
     @action[:conn_type]=:local
-    @result.content = my_execute( @action[:command] )
+    @result.content = my_execute( @action[:command], @action[:encoding] )
   end
 
   def run_remote_cmd(pHostname)
@@ -170,6 +170,7 @@ private
     ip=@config.get((hostname+'_ip').to_sym)
     username=@config.get((hostname+'_username').to_sym)
     password=@config.get((hostname+'_password').to_sym)
+    text = ''
     output=[]
 
     begin
@@ -179,7 +180,6 @@ private
 
       if @sessions[hostname].class==Net::SSH::Connection::Session
         text = @sessions[hostname].exec!( @action[:command].to_s )
-        output = text.split("\n")
       end
 
     rescue Errno::EHOSTUNREACH
@@ -203,7 +203,14 @@ private
       log( "[#{e.class}] SSH on <#{username}@#{ip}> exec: " + @action[:command], :error)
     end
 
-    @result.content=output
+    unless @action[:encoding] == 'UTF-8'
+      ec = Encoding::Converter.new(@action[:encoding].to_s, 'UTF-8')
+      text = ec.convert(text)
+      puts "Enconding..."+text
+    end
+
+    output = text.split("\n")
+    @result.content = output
     @result.content.compact!
   end
 
