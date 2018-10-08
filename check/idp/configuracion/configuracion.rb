@@ -1,17 +1,28 @@
 # encoding: utf-8
 
 =begin
- Course name : IDP1516
- Activity    : Commands 01
- MV OS       : GNU/Linux Debian 7
+ Course name : IDP
+ Activity    : Configuración
+ MV OS       : GNU/Linux Debian
 =end
 
-task :hostname_configurations do
+task 'network_configuration' do
+
+  target "gateway configuration"
+  goto  :host1, :exec => "ping 8.8.4.4 -c 1"
+  expect result.find!("64 bytes from 8.8.4.4").count!.eq(1)
+
+  target "DNS configuration"
+  goto  :host1, :exec => "host www.nba.com"
+  expect result.find!("has address").count!.gt(0)
+end
+
+task 'hostname_configurations' do
   target "Checking SSH port <"+get(:host1_ip)+">"
   goto  :localhost, :exec => "nmap #{get(:host1_ip)} | grep ssh|wc -l"
   expect result.eq(1)
 
-  my_hostname="#{get(:lastname1)}.#{get(:dominio)}"
+  my_hostname="#{get(:lastname1)}#{get(:number)}d.#{get(:dominio)}"
   target "Checking hostname <"+my_hostname+">"
   goto  :host1, :exec => "hostname -f"
   expect result.equal?(my_hostname)
@@ -21,12 +32,12 @@ task :hostname_configurations do
   unique "UUID", result.value
 end
 
-task :user_definitions do
-  username=get(:usersname)
+task 'user_definitions' do
+  username=get(:firstname)
 
   target "User <#{username}> exists"
-  goto  :host1, :exec => "cat /etc/passwd | grep '#{username}:' | wc -l"
-  expect result.eq(1)
+  goto  :host1, :exec => "cat /etc/passwd"
+  expect result.find!(username).count!.eq(1)
 
   target "Users <#{username}> with not empty password "
   goto  :host1, :exec => "cat /etc/shadow | grep '#{username}:' | cut -d : -f 2| wc -l"
