@@ -148,10 +148,10 @@ private
   end
 
   def run_remote_cmd(pHostname)
-    hostname=pHostname.to_s
-    protocol=@config.get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
-    protocol=:ssh if protocol.nil? or protocol=="NODATA"
-    protocol=protocol.to_sym
+    hostname = pHostname.to_s
+    protocol = @config.get((hostname+'_protocol').to_sym) if @config.get((hostname+'_protocol').to_sym)
+    protocol = :ssh if protocol.nil? or protocol=='NODATA'
+    protocol = protocol.to_sym
 
     case protocol
     when :ssh
@@ -164,14 +164,13 @@ private
   end
 
   def run_remote_cmd_ssh(pHostname)
-    @action[:conn_type]=:ssh
-    app=Application.instance
-    hostname=pHostname.to_s
-    ip=@config.get((hostname+'_ip').to_sym)
-    username=@config.get((hostname+'_username').to_sym)
-    password=@config.get((hostname+'_password').to_sym)
+    @action[:conn_type] = :ssh
+    app = Application.instance
+    hostname = pHostname.to_s
+    ip = @config.get((hostname+'_ip').to_sym)
+    username = @config.get((hostname+'_username').to_sym)
+    password = @config.get((hostname+'_password').to_sym)
     text = ''
-    output=[]
 
     begin
       if @sessions[hostname].nil?
@@ -203,13 +202,8 @@ private
       log( "[#{e.class}] SSH on <#{username}@#{ip}> exec: " + @action[:command], :error)
     end
 
-    unless @action[:encoding] == 'UTF-8'
-      ec = Encoding::Converter.new(@action[:encoding].to_s, 'UTF-8')
-      text = ec.convert(text)
-      puts "Enconding..."+text
-    end
+    output = encode_and_split(@action[:encoding],text)
 
-    output = text.split("\n")
     @result.content = output
     @result.content.compact!
   end
@@ -221,7 +215,7 @@ private
     ip = @config.get((hostname+'_ip').to_sym)
     username = @config.get((hostname+'_username').to_sym)
     password = @config.get((hostname+'_password').to_sym)
-    output = []
+    text = ''
 
     begin
       if @sessions[hostname].nil? || @sessions[hostname] == :ok
@@ -231,7 +225,6 @@ private
         h.login(username, password)
         text = ''
         h.cmd(@action[:command]) { |i| text << i }
-        output=text.split("\n")
         h.close
         @sessions[hostname] = :ok
       end
@@ -252,6 +245,7 @@ private
       log(" └── username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end
 
+    output = encode_and_split(@action[:encoding], text)
     @result.content = output
   end
 end

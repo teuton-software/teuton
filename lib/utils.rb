@@ -12,23 +12,25 @@ module Utils
     true
   end
 
+  def encode_and_split(encoding, text)
+    unless encoding == 'UTF-8'
+      ec = Encoding::Converter.new(encoding.to_s, 'UTF-8')
+      text = ec.convert(text)
+    end
+
+    return text.split("\n")
+  end
+
   def my_execute(cmd, encoding='UTF-8')
-    output = []
+    text = ''
     return output if Application.instance.debug
     begin
       text = `#{cmd}`
-      unless encoding == 'UTF-8'
-        ec = Encoding::Converter.new(encoding.to_s, 'UTF-8')
-        text = ec.convert(text)
-        puts "Enconding..."+text
-      end
-      output = text.split("\n")
     rescue Exception => e
       verbose '!'
-      puts e
-      puts('Local exec: ' + cmd)
+      puts("[ERROR] #{e}: Local exec: #{cmd}")
     end
-    output
+    output = encode_and_split(encoding, text)
   end
 
   def verboseln(text)

@@ -32,12 +32,9 @@ task "Windows connections" do
   set(:win4_ip, get(:windows_ip))
 
   target "win1 SSH with <#{get(:win1_username)}> "
-  comando = 'sshpass -p '+get(:win1_password)+' ssh '+get(:win1_username)+'@'+get(:win1_ip)+ ' '
-  comando += 'get-windowsfeature -name rds-rd-server > /tmp/salida.txt'
-  system(comando)
-  goto   :localhost, :exec => 'cat /tmp/salida.txt', :encoding => 'ISO-8859-1'
+  goto   :win1, :exec => 'get-windowsfeature -name rds-rd-server', :encoding => 'ISO-8859-1'
   result.debug
-  expect result.find!("Available").count!.eq 1
+  expect result.find!("[ ]").count!.eq 1
 
   target "win2 SSH with <#{get(:win2_username)}> "
   goto   :win2, :exec => 'whoami'
