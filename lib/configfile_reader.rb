@@ -1,3 +1,4 @@
+# encoding: UTF-8
 
 require 'yaml'
 require 'json'
@@ -6,12 +7,21 @@ require 'json'
 module ConfigFileReader
   def self.read(filepath)
     if File.extname(filepath) == '.yaml'
-      data = YAML.load(File.open(filepath))
+      begin
+        data = YAML.load(File.open(filepath))
+      rescue Exception => e
+        puts "\n"
+        puts '='*80
+        puts "[ERROR] ConfigFileReader#read <#{filepath}>"
+        puts '        I suggest to revise file format!'
+        puts '='*80
+        raise "[ERROR] ConfigFileReader <#{e}>"
+      end
       return data
     elsif File.extname(filepath) == '.json'
       data = JSON.parse(File.read(filepath), :symbolize_names => true)
       return data
     end
-    raise "[ERROR] #{filepath} dosn't exist!"
+      raise "[ERROR] #{filepath} dosn't exist!"
   end
 end
