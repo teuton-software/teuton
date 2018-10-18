@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require_relative 'configuracion'
+require_relative 'debian'
 
 start do
 	show :resume
