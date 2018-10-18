@@ -4,7 +4,8 @@ require_relative 'debian'
 
 start do
 	show :resume
-	export :all
+	export :format => :colored_text
+	send :copy_to => :host1
 end
 
 =begin

@@ -92,8 +92,9 @@ class Tool
 
   def export(args = {})
     if args.class != Hash
-      puts "[ERROR] export Argument = #{args}, class = #{args.class}"
-      raise 'export Arguments are incorrect'
+      puts "[ERROR] tool#export: Argument = <#{args}>, class = #{args.class}"
+      puts '        Use: export :format => :colored_text'
+      raise '[ERROR] tool#export: Arguments are incorrect'
     end
     # default :mode=>:all, :format=>:txt
     format = args[:format] || :txt
