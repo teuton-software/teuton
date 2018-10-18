@@ -6,6 +6,12 @@
  MV OS       : GNU/Linux Debian
 =end
 
+task 'General' do
+  target "Checking SSH port <"+get(:host1_ip)+">"
+  goto  :localhost, :exec => "nmap -Pn #{get(:host1_ip)}"
+  expect result.find!('ssh').find!('open').count!.eq(1)
+end
+
 task 'user_definitions' do
   username=get(:firstname)
 
@@ -23,10 +29,6 @@ task 'user_definitions' do
 end
 
 task 'hostname_configurations' do
-  target "Checking SSH port <"+get(:host1_ip)+">"
-  goto  :localhost, :exec => "nmap #{get(:host1_ip)}"
-  expect result.find!('ssh').find!('open').eq(1)
-
   my_hostname="#{get(:lastname1)}#{get(:number)}d.#{get(:dominio)}"
 
   target "Checking hostname <"+my_hostname+">"
