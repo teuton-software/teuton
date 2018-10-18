@@ -7,9 +7,9 @@
  Spanish URL : https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/add/ssh/README.md
 =end
 
-require_relative "opensuse"
-require_relative "ssh-server"
-require_relative "ssh-client-a"
+require_relative "opensuse-conf"
+require_relative "ssh-server-g"
+require_relative "ssh-client-g"
 
 start do
 	show

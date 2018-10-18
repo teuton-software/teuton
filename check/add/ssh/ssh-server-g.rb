@@ -15,9 +15,9 @@ task "Configure SSH Server" do
   goto   :host2, :exec => "cat /home/#{get(:lastname)}4/.ssh/id_rsa.pub", :tempfile => "mv1_idrsapub.tmp"
   @filename1 = tempfile
 
-  set(:client1_hostname, 'ssh-client'+get(:number).to_s+"a")
+  set(:client1_hostname, 'ssh-client'+get(:number).to_s+"g")
 	set(:client1_ip,       '172.18.'+get(:number).to_i.to_s+".32")
-	set(:client2_hostname, 'ssh-client'+get(:number).to_s+"b")
+	set(:client2_hostname, 'ssh-client'+get(:number).to_s+"w")
 	set(:client2_ip,        '172.18.'+get(:number).to_i.to_s+".11")
 
   goto   :host2, :exec => "cat /etc/hosts"
