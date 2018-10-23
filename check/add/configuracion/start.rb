@@ -1,10 +1,11 @@
 # encoding: utf-8
 
-require_relative 'debian'
+require_relative 'opensuse'
+require_relative 'ssh'
 
 start do
 	show :resume
-	export :format => :txt
+	export :format => :colored_text
 	send :copy_to => :host1
 end
 
@@ -12,10 +13,12 @@ end
 ---
 :global:
   :host1_username: root
+  :dominio: curso1819
 :cases:
 - :tt_members: david
-  :host1_ip: 172.19.2.30
-  :host1_password: 45454545a
+  :number: '42'
+  :host1_ip: 172.18.42.31
+  :host1_password: profesor
   :firstname: david
   :lastname1: vargas
   :lastname2: ruiz
