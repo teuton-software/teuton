@@ -1,11 +1,10 @@
 # encoding: utf-8
 
-require_relative 'opensuse'
-require_relative 'ssh'
+require_relative 'debian'
 
 start do
 	show :resume
-	export :format => :colored_text
+	export :format => :txt
 	send :copy_to => :host1
 end
 
