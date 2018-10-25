@@ -1,0 +1,5 @@
+---
+:global:
+:cases:
+- :username: david
+  :groupname: vboxusers
