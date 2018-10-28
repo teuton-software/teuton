@@ -13,7 +13,7 @@ class Application
 
   def initialize
     @name = 'sysadmin-game'
-    @version = '1.0.4'
+    @version = '1.2.0'
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @output_basedir = 'var'
     @debug = false

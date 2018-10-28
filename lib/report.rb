@@ -55,13 +55,32 @@ class Report
   end
 
   def show
-    tab = '  '
+    show_initial_configurations
+    show_targets_history
+    show_final_values
+    show_hall_of_fame
+  end
+
+  def export(format = :txt)
+    @format = format
+    filepath = File.join(@output_dir, @filename + '.' + @format.to_s)
+
+    @formatter = FormatterFactory.get(self, @format, filepath)
+    @formatter.process
+  end
+
+  private
+
+  def show_initial_configurations
     puts 'INITIAL CONFIGURATIONS'
     my_screen_table = Terminal::Table.new do |st|
       @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
     puts my_screen_table.to_s
+  end
 
+  def show_targets_history
+    tab = '  '
     puts 'TARGETS HISTORY'
     @lines.each do |i|
       if i.class.to_s == 'Hash'
@@ -73,6 +92,9 @@ class Report
         puts tab + '-  ' + i.to_s
       end
     end
+  end
+
+  def show_final_values
     puts 'FINAL VALUES'
     my_screen_table = Terminal::Table.new do |st|
       @tail.each do |key, value|
@@ -80,22 +102,17 @@ class Report
       end
     end
     puts my_screen_table.to_s
+  end
 
-    puts 'HALL OF FAME'
+  def show_hall_of_fame
     app = Application.instance
+    return if app.hall_of_fame.count < 2
+    puts 'HALL OF FAME'
     my_screen_table = Terminal::Table.new do |st|
       app.hall_of_fame.each do |line|
         st.add_row [line[0], line[1]]
       end
     end
     puts my_screen_table.to_s
-  end
-
-  def export(format = :txt)
-    @format = format
-    filepath = File.join(@output_dir, @filename + '.' + @format.to_s)
-
-    @formatter = FormatterFactory.get(self, @format, filepath)
-    @formatter.process
   end
 end
