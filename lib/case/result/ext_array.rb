@@ -38,5 +38,6 @@ class Result
 
   alias length!    count!
   alias size!      count!
+  alias count      count!
   alias empty?     empty
 end
