@@ -70,6 +70,11 @@ class Laboratory
     puts "      goto   #{host} and #{args}"
   end
 
+  def run(command, args = {})
+    args[:exec] = command
+    goto( :localhost, args)
+  end
+
   def expect(_cond, args = {})
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
