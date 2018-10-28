@@ -12,10 +12,3 @@ start do
   show
   export
 end
-
-=begin
----
-:global:
-  :username: david
-:cases:
-=end

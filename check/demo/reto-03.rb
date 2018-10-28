@@ -2,6 +2,9 @@
 
 task "Target 03" do
 
+  set(:username, 'david')
+  set(:groupname, 'vboxusers')
+
   target "Create user <"+get(:username)+">"
   run "id #{get(:username)}"
   expect result.count!.equal?(1)
@@ -13,7 +16,7 @@ task "Target 03" do
   home = "/home/" + get(:username)
 
   target "User home is <" + home + ">"
-  run "cat /etc/password"
+  run "cat /etc/passwd"
   expect result.grep!(home).grep!(get(:username)).count!.equal?(1)
 end
 
@@ -21,10 +24,3 @@ start do
   show
   export
 end
-
-=begin
----
-:global:
-  :username: david
-:cases:
-=end
