@@ -1,5 +1,6 @@
 ---
 :global:
 :cases:
-- :username: david
+- :tt_members: Local Player
+  :username: david
   :groupname: vboxusers
