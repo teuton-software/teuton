@@ -4,7 +4,8 @@ require 'fileutils'
 require_relative 'lib/application'
 
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
-packages += ['minitest', 'pry-byebug', 'thor', 'json']
+packages += ['thor', 'json', 'minitest']
+#packages += ['pry-byebug']
 
 desc 'Default'
 task default: :check do
