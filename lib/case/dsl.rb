@@ -60,6 +60,11 @@ module DSL
 
   alias_method :on, :goto
 
+  def run(command, args={} )
+    args[:exec] = command.to_s
+    goto( :localhost, args)
+  end
+
   #expect <condition>, :weight => <value>
   def expect(pCond, pArgs={})
     weight(pArgs[:weight])

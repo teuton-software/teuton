@@ -55,7 +55,14 @@ module Project
     find_filenames_for(pathtofile)
 
     require_relative 'sysadmingame'
-    require_relative "../#{app.script_path}"
+    begin
+      require_relative "../#{app.script_path}"
+    rescue SyntaxError => e
+      puts e.to_s
+      puts "="*50
+      puts "[ERROR] SyntaxError into file ../#{app.script_path}"
+      puts "="*50
+    end
   end
 
   def self.find_filenames_for(pathtofile)
