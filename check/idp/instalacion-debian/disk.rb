@@ -2,8 +2,8 @@
 task :disk_size do
   size='10G'
   target "Disk sda size <#{size}>"
-  goto  :host1, :exec => "lsblk |grep disk| grep sda| grep #{size}| wc -l"
-  expect result.eq(1)
+  goto  :host1, :exec => "lsblk |grep disk| grep sda| grep #{size}"
+  expect result.count.eq(1)
 end
 
 task :partitions_size_and_type do
@@ -15,8 +15,8 @@ task :partitions_size_and_type do
 
   partitions.each_pair do |key,value|
     target "Partition #{key} mounted on <#{value[0]}>"
-    goto  :host1, :exec => "lsblk |grep part| grep #{key}| grep #{value[0]}| wc -l"
-    expect result.eq(1)
+    goto  :host1, :exec => "lsblk"
+    expect result.find!("part").find!(key).find!(value[0]).count.eq(1)
 
     target "Partition #{key} size <#{value[1]}>"
     goto  :host1, :exec => "lsblk |grep part| grep #{key}| tr -s ' ' ':'| cut -d ':' -f 5"
@@ -25,10 +25,10 @@ task :partitions_size_and_type do
 
   partitions=[ ['/dev/disk', '/', 'ext4'], ['/dev/disk', '/', 'ext4']  ]
 
-  partitions.each do |p|    
+  partitions.each do |p|
     target "Partition #{p[1]} type <#{p[2]}>"
-    goto  :host1, :exec => "df -hT | grep #{p[0]} | grep #{p[1]}| grep #{p[2]}|wc -l"
-    expect result.eq(1)
+    goto  :host1, :exec => "df -hT | grep #{p[0]} | grep #{p[1]}| grep #{p[2]}"
+    expect result.count.eq(1)
   end
 
 end
