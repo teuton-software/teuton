@@ -4,7 +4,7 @@ require_relative 'opensuse'
 require_relative 'ssh'
 
 start do
-	#show :resume
+	show
 	export :format => :txt
 	send :copy_to => :host1
 end
