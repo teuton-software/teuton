@@ -24,12 +24,4 @@ task :hostname_configurations do
   goto :host2, :exec => "hostname -f"
   expect result.equal?(_hostname)
 
-  goto :host2, :exec => "blkid |grep sda1"
-  unique "UUID_sda1", result.value
-  goto :host2, :exec => "blkid |grep sda2"
-  unique "UUID_sda2", result.value
-  goto :host2, :exec => "blkid |grep sda6"
-  unique "UUID_sda6", result.value
-  goto :host2, :exec => "blkid |grep sda7"
-  unique "UUID_sda7", result.value
 end
