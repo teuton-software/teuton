@@ -12,6 +12,6 @@ task 'user_definitions' do
   expect result.count!.eq(1)
 
   target "User <#{username}> logged"
-  goto  :host1, :exec => "last | grep #{username[0,8]} | wc -l"
-  expect result.neq(0)
+  goto  :host1, :exec => "last | grep #{username[0,8]}"
+  expect result.count!.neq(0)
 end
