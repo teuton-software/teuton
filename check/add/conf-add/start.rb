@@ -1,7 +1,9 @@
 # encoding: utf-8
 
-require_relative 'opensuse'
-require_relative 'ssh'
+require_relative '../lib/opensuse_general'
+require_relative '../lib/opensuse_user'
+require_relative '../lib/opensuse_network'
+require_relative '../lib/opensuse_ssh_hostname'
 
 start do
 	show
