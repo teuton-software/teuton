@@ -6,7 +6,10 @@
  MV OS       : GNU/Linux Debian
 =end
 
-require_relative 'debian'
+require_relative '../lib/debian_general'
+require_relative '../lib/gnulinux_user'
+require_relative '../lib/debian_hostname'
+require_relative '../lib/debian_network'
 require_relative 'disk'
 
 start do
