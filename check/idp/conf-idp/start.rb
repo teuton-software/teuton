@@ -1,12 +1,16 @@
 # encoding: utf-8
 
-require_relative 'debian'
+require_relative '../lib/debian_general'
+require_relative '../lib/debian_user'
+require_relative '../lib/debian_hostname'
+require_relative '../lib/debian_network'
 
 start do
 	show :resume
 	export :format => :colored_text
 	send :copy_to => :host1
 end
+
 
 =begin
 ---
@@ -21,5 +25,4 @@ end
   :firstname: david
   :lastname1: vargas
   :lastname2: ruiz
-
 =end
