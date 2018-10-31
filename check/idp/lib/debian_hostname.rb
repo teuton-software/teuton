@@ -1,5 +1,5 @@
 
-task 'hostname_configurations' do
+task 'Debian HOSTNAME configurations' do
   my_hostname="#{get(:lastname1)}#{get(:number)}d.#{get(:dominio)}"
 
   target "Checking hostname <"+my_hostname+">"
