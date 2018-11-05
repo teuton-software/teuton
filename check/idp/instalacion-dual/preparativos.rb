@@ -3,9 +3,6 @@ task "Settings" do
   set(:linux1_ip, get(:suse1_ip))
   set(:linux1_username, get(:suse1_username))
   set(:linux1_password, get(:suse1_password))
-
-  hostname="#{get(:lastname1)}#{get(:number)}g.#{get(:dominio)}1"
-  set(:suse1_hostname, hostname)
   set(:linux1_hostname, get(:suse1_hostname))
 end
 

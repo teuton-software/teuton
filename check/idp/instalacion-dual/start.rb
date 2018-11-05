@@ -1,9 +1,12 @@
 
+require_relative '../lib/opensuse_settings'
 require_relative 'preparativos'
+
 require_relative '../lib/gnulinux_network'
 require_relative '../lib/gnulinux_user'
 require_relative '../lib/opensuse_hostname'
 require_relative 'disk_and_partitions'
+
 
 start do
 	show
