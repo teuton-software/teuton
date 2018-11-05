@@ -5,7 +5,7 @@ task "Settings" do
   set(:linux1_password, get(:suse1_password))
 end
 
-tak "Ensure UNIQUE values" do
+task "Ensure UNIQUE values" do
   goto :suse1, :exec => "blkid |grep sda1"
   unique "UUID_sda1", result.value
   goto :suse1, :exec => "blkid |grep sda2"
