@@ -6,7 +6,7 @@ task 'Opensuse HOSTNAME configurations' do
   expect result.equal?(get(:suse1_hostname))
 
   unique "hostname", result.value
-  goto  :suse1, :exec => "blkid |grep sda1"
+  goto  :suse1, :exec => "hostname -f"
   unique "UUID", result.value
 
 end

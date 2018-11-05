@@ -1,12 +1,11 @@
 
 task 'Debian HOSTNAME configurations' do
-  my_hostname="#{get(:lastname1)}#{get(:number)}d1.#{get(:dominio)}"
 
-  target "Checking hostname <"+my_hostname+">"
+  target "Checking hostname <" + get(:debian1_hostname) + ">"
   goto  :debian1, :exec => "hostname -f"
-  expect result.equal?(my_hostname)
+  expect result.equal?(get(:debian1_hostname))
 
   unique "hostname", result.value
-  goto  :debian1, :exec => "blkid |grep sda1"
+  goto  :debian1, :exec => "hostname -f"
   unique "UUID", result.value
 end
