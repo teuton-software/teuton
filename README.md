@@ -1,8 +1,10 @@
 
-# SysadminGame
+# TEUTON Software (SysadminGame)
 
-DSL to write `Host Unit Tests`.
-Check if a group of real or virtual Machines satisfies a list of targets.
+`TEUTON tests tons of goals on tons of machines`
+
+DSL to write test units form machines.
+Check if a group of real/virtual Machines satisfies a list of targets.
 
 ![logo](./docs/logo.png)
 
