@@ -1,13 +1,15 @@
 # encoding: utf-8
 
 =begin
- Course name : IDP
- Activity    : Instalación personalizada de Debian
- MV OS       : GNU/Linux Debian
+ URL      : https://github.com/dvarrui/libro-de-actividades/blob/master/actividades/idp/permisos/permisos-acl-debian.md
+ Activity : ACL en Debian
+ MV OS    : GNU/Linux Debian
+ Course   : IDP
 =end
 
 require_relative '../lib/debian_settings'
 require_relative '../lib/debian_general'
+require_relative '../lib/debian_hostname'
 
 task "ACL Settings" do
 	set(:linux1_ip, get(:debian1_ip))
@@ -17,8 +19,7 @@ task "ACL Settings" do
 end
 
 require_relative '../lib/gnulinux_user'
-require_relative '../lib/debian_hostname'
-require_relative '../lib/debian_network'
+require_relative '../lib/gnulinux_network'
 
 
 start do

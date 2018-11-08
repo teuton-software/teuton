@@ -8,4 +8,5 @@ task 'Debian HOSTNAME configurations' do
   unique "hostname", result.value
   goto  :debian1, :exec => "hostname -f"
   unique "UUID", result.value
+  
 end
