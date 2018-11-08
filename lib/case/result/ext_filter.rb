@@ -59,5 +59,9 @@ class Result
   end
 
   alias grep!      find!
+  alias grep       find!
+  alias find       find!
   alias grep_v!    not_find!
+  alias grep_v     not_find!
+  alias not_find   not_find!
 end

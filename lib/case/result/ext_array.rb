@@ -36,8 +36,11 @@ class Result
     @content.empty
   end
 
-  alias length!    count!
-  alias size!      count!
   alias count      count!
+  alias length!    count!
+  alias length     count!
+  alias len        count!
+  alias size!      count!
+  alias size       count!
   alias empty?     empty
 end
