@@ -1,6 +1,7 @@
 # encoding: utf-8
 
-task 'user_definitions' do
+task 'GNULinux user definitions' do
+
   username=get(:firstname)
 
   target "User <#{username}> exists"

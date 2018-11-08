@@ -14,13 +14,12 @@ require_relative '../lib/debian_hostname'
 task "ACL Settings" do
 	set(:linux1_ip, get(:debian1_ip))
 	set(:linux1_username, get(:debian1_username))
-	set(:linux1_passwd, get(:debian1_passwd))
+	set(:linux1_password, get(:debian1_password))
   set(:linux1_hostname, get(:debian1_hostname))
 end
 
 require_relative '../lib/gnulinux_user'
 require_relative '../lib/gnulinux_network'
-
 
 start do
 	show
