@@ -21,22 +21,25 @@ end
 require_relative '../lib/gnulinux_user'
 require_relative '../lib/gnulinux_network'
 
+require_relative 'discos'
+require_relative 'usuariosygrupos'
+
 start do
 	show
-	export
+	export :format => :colored_text
+	send :copy_to => :debian1
 end
 
 =begin
 ---
----
 :global:
-  :host1_username: root
+  :debian1_username: root
   :dominio: curso1819
 :cases:
 - :tt_members: david
   :number: '03'
   :debian1_ip: 172.18.3.41
-  :debian1_password: profesor
+  :debian1_password: clave
   :firstname: david
   :lastname1: vargas
   :lastname2: ruiz
