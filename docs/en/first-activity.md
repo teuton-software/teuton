@@ -26,8 +26,8 @@ Let's see an example:
 ```
 task "task_name" do
 	target "Checking user david"
-	goto   :host1, :exec => "id david |wc -l"
-	expect result.equal(1)
+	goto   :host1, :exec => "id david"
+	expect result.grep("david").count.equal(1)
 end
 ```
 
@@ -38,12 +38,13 @@ The above example checks if 'david' user exists, on *host1* system.
 > * `target "Checking user <david>"`, Describe the action or the target
 with our words, so every one could easily understand what we are trying
 to check.
-> * `goto :host1, :exec => "id david|wc -l"`: Execute the command
+> * `goto :host1, :exec => "id david"`: Execute the command
 into the target host.
-> * `expect result.equal(1)`: At the end we need to check the obtained
-result with our expectations.
+> * `expect result.grep("david").count.equal(1)`: At the end we need to check the obtained result with our expectations.
 
-##STEP 3: Personalize Configfile
+---
+
+## STEP 3: Personalize Configfile
 
 We need a YAML configuration file (`check/foo/demo.yaml`), with
 the params and hosts used by our script.
@@ -61,11 +62,14 @@ the params and hosts used by our script.
 >   :host1_ip: 2.2.2.2
 >   :host1_password: password4student2
 > ```
+>
 > The above file configures 2 diferents cases with their own params. The script
 > use this information when execute every case.
 
-##STEP 4: run the script
+---
 
-`/project check/foo/demo.rb`
+## STEP 4: run the script
+
+`/teuton check/foo/demo.rb`
 
 That's all!

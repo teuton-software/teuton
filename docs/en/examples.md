@@ -1,5 +1,5 @@
 
-#Examples
+# Examples
 
 
 |Script   | Config file | Description |
@@ -9,8 +9,9 @@
 |[example-03.rb](../examples/example-03.rb) | [example-03.yaml](../examples/example-03.yaml) | Test several targets for every case into diferents hosts |
 |[example-04.rb](../examples/example-04.rb) | [example-04.yaml](../examples/example-04.yaml) | Test several targets for every case into diferents hosts |
 
+---
 
-##example-01
+## example-01
 Test if exist user *obiwan* into localhost.
 
 * **desc**: Text describing the target
@@ -24,7 +25,7 @@ defines only one case. This case has this special params:
 * **tt_emails**: The emails of the members of this group, separated by comma. This
   will be used to send email to every student with their results.
 
-##example-02
+## example-02
 Test if exist specific username for every case into localhost:  
 
 * **get**: Get the value for every case from the configuration YAML file. This
@@ -36,7 +37,7 @@ the next params: tt_members, tt_emails and username.
 * **username**: this param has diferent value for every case so when we execute
 every check this actions gets the value associated to every case.
 
-##example-03
+## example-03
 Test several targets for every case into diferent hosts.
 
 In this example we notice that the `goto` action is not executed into localhost,
@@ -55,4 +56,3 @@ Besides the config file has others parameters for every case.
 Notice that host1 it is diferent machine depending every case. So we can define
 diferents machines for every student. But in our activity script,we call it with the
 same name (host1).
-

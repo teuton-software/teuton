@@ -17,13 +17,16 @@ Installation process:
     * Downloading it or
     * Cloning with git `git clone https://github.com/dvarrui/teuton.git`
 * `cd teuton`
-    * `rake opensuse`: for OpenSUSE installation
-    * `rake debian`: for Debian installation
-    * `rake gems`: to install required ruby gems on your system.
+
+Choose between:
+* `rake opensuse`: for OpenSUSE installation
+* `rake debian`: for Debian installation
+* `rake gems`: to install required ruby gems on your system.
 
 ---
 
 ## Remote hosts
+
 The remote hosts are every host used by the students to perform the activity.
 Sometimes every student needs only one, but in other activities every student
 must need more.

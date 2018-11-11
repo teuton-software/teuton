@@ -39,6 +39,8 @@ SSH.
 > * `expect result.equal(1)`: Después de ejecutar el comando necesitamos
 comprobar si el resultado obtenido coincide con el valor esperado.
 
+---
+
 ## PASO 3: Personalizar el fichero de configuración
 
 Como paso final, necesitamos un fichero de configuración en formato YAML
@@ -63,8 +65,10 @@ de los hosts usados por nuestro script.
 El fichero de configuración anterior configura 2 casos (concursantes)
 con sus propios parámetros. El script usa esta información cuando ejecuta cada caso.
 
+---
+
 ## PASO 4: Ejecutar el script
 
-`./project check/foo/demo.rb`
+`./teuton check/foo/demo.rb`
 
 ¡Eso es todo!
