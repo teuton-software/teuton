@@ -11,15 +11,17 @@ Check if a group of real/virtual Machines satisfies a list of targets.
 # Introduction
 
 This is an Open Source tool, for use with computers in classroom (STEM laboratory).
-*sysadmin-game* helps teachers to evaluate remotely and automaticaly
+This tool helps teachers to evaluate remotely and automaticaly
 the workclass done by the students into their machines.
 
-I'm using *SysadminGame* with my students. It's OK, but it could be improved
+I'm using this application with my students. It's OK, but it could be improved
 (as everythieng of course). I would like other users (interested in sysadmin
 and teaching) to know it, and receive comments, suggestions or
 collaborations to improve it.
 
 Thanks!
+
+---
 
 # Description
 
@@ -37,6 +39,8 @@ and creates reports of every student.
 > * Now we can use SSH and Telnet protocol.
 > * The teacher must has an user/password to use into students machines.
 
+---
+
 # Quick demo
 
 Every SysadminGame activity consists of 2 files. Let's look at this demo:
@@ -53,6 +57,8 @@ Run this demo with:
 > * The extended *output files* are saved into `./var/example-01/out/` directory.
 > * There exists more activities into the `check` directory. This is a good place
 where save your own activity scripts.
+
+---
 
 # Documentation
 
