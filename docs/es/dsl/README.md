@@ -14,7 +14,8 @@ definir elementos que se pueden evaluar.
 | :------------------- | :---------- |
 | [task](./task.md)    | Definir un grupo de objetivos o elementos de comprobación. |
 | [target](./target.md)| Describir el objetivo que vamos a evaluar. |
-| [goto](./goto.md)    | Ejecutar un comando en las máquinas remotas. |
+| [goto](./goto.md)    | Ejecutar un comando en las máquinas remotas o en local. |
+| [run](./run.md)    | Ejecutar un comando en la máquina local. |
 | [result](./result.md)| Contiene el resultado de la orden `goto`. |
 | [expect](./expect.md)| Evalua si el resultado obtenido coincide o no con el valor esperado. |
 

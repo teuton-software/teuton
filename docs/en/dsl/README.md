@@ -12,6 +12,7 @@ These are the main DSL key words, usefull to define items to be evaluated.
 | [task](./task.md)    | Define a group of items to check. |
 | [target](./target.md)| Define a target. This is the item to be checked. |
 | [goto](./goto.md)    | Execute command into remote host. |
+| [run](./run.md)      | Execute command into localhost. |
 | [result](./result.md)| Contain the output of previous `goto` order. |
 | [expect](./expect.md)| Check the obtained result with the expected value. |
 
