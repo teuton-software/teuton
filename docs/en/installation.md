@@ -13,20 +13,13 @@ Software required on the teacher host:
 Installation process:
 * Install ruby (`apt-get install ruby` on Debian, `zypper in ruby` on OpenSUSE, etc)
 * Install rake (`gem install rake`)
-* Download this project.
+* Get the project by:
+    * Downloading it or
+    * Cloning with git `git clone https://github.com/dvarrui/teuton.git`
 * `cd teuton`
     * `rake opensuse`: for OpenSUSE installation
     * `rake debian`: for Debian installation
     * `rake gems`: to install required ruby gems on your system.
-
-> Example clone using `git` command:
-> ![git-clone](../images/git-clone.png)
->
-> Test `ruby`, `rake` versions, before gems (libraries) installation:
-> ![ruby-rake-gems](../images/ruby-rake-gems.png)
->
-> Error happens when we haven't `ruby` version >= 2.0:
-> ![error-version](../images/error-version.png)
 
 ---
 
