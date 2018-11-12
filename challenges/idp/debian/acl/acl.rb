@@ -1,17 +1,40 @@
 
-task "ACL permisos" do
+task "ACL permisos <endor>" do
 
-  dir1 = 'mnt/starwars/endor'
-  dir2 = 'mnt/starwars/xwing'
+  dir = 'mnt/starwars/endor'
+  permisos = [ 'user::rwx', 'user:han:rwx', 'user:luke:r-r',
+    'group::---', 'group:troopers:rwx', 'mask::rwx', 'other::---']
 
-  permisos1 = [ 'user::rwx']
+  target "Comprobar propietario de #{dir}"
+  goto :debian1, :exec => "stat #{dir}"
+  expect result.grep("Uid").grep("root").count.eq 1
 
-  goto :debian1, :exec => "getfacl #{dir1}"
+  goto :debian1, :exec => "getfacl #{dir}"
 
-  permisos1.each do |line|
-    target "Comprobar getfacl de <#{dir1}>"
-    result.restore!
+  permisos.each do |line|
+    target "Comprobar que getfacl #{dir} incluye <#{line}>"
     expect result.grep(line).count.eq 1
+    result.restore!
+  end
+
+end
+
+task "ACL permisos <xwing>" do
+
+  dir = 'mnt/starwars/xwing'
+  permisos = [ 'user::rwx', 'user:han:rwx', 'user:luke:r-r',
+    'group::---', 'mask::rwx', 'other::---']
+
+  target "Comprobar propietario de #{dir}"
+  goto :debian1, :exec => "stat #{dir}"
+  expect result.grep("Uid").grep("root").count.eq 1
+
+  goto :debian1, :exec => "getfacl #{dir}"
+
+  permisos.each do |line|
+    target "Comprobar que getfacl #{dir} incluye <#{line}"
+    expect result.grep(line).count.eq 1
+    result.restore!
   end
 
 end
