@@ -2,7 +2,7 @@
 task "ACL permisos <endor>" do
 
   dir = '/mnt/starwars/endor'
-  permisos = [ 'user::rwx', 'user:han:rwx', 'user:luke:r-x',
+  permisos = [ 'user::rwx', 'user:luke:r-x',
     'group::---', 'group:troopers:rwx', 'mask::rwx', 'other::---']
 
   target "Comprobar propietario de #{dir}"
