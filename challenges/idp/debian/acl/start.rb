@@ -23,6 +23,7 @@ require_relative '../../lib/gnulinux_network'
 
 require_relative 'discos'
 require_relative 'usuariosygrupos'
+require_relative 'acl'
 
 start do
 	show
