@@ -1,5 +1,10 @@
 # TEUTOn Software (SysadminGame)
 
+```
+TEUTON son unidades de pruebas para máquinas.
+TEUTON comprueba tonaladas de objetivos en toneladas de máquinas.
+```
+
 Es un DSL para escribir `Unidades de Prueba para Equipos`. Comprueba si un grupo de máquinas satisface una lista de objetivos.
 
 ![logo](../logo.png)

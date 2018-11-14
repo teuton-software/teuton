@@ -1,7 +1,10 @@
 
 # TEUTON Software (SysadminGame)
 
-`TEUTON tests tons of goals on tons of machines`
+```
+TEUTON are test units for machines.
+TEUTON tests tons of goals on tons of machines.
+```
 
 DSL to write test units form machines.
 Check if a group of real/virtual Machines satisfies a list of targets.
