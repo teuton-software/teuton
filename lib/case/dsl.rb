@@ -7,6 +7,7 @@ module DSL
     @action[:description] = pDescription
   end
   alias_method :desc, :target
+  alias_method :goal, :target
 
   def command(pCommand, pArgs={})
     @action[:command] = pCommand
