@@ -12,8 +12,8 @@ class Application
   attr_accessor :script_path, :config_path, :test_name
 
   def initialize
-    @name = 'sysadmin-game'
-    @version = '1.5.0'
+    @name = 'teuton'
+    @version = '1.6.0'
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @output_basedir = 'var'
     @debug = false
