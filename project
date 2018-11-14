@@ -1,78 +1,10 @@
 #!/usr/bin/ruby
 # encoding: utf-8
 
-require 'thor'
-
-require 'pry-byebug'
-require 'rainbow'
-require_relative 'lib/application'
-require_relative 'lib/project'
-
-# Command Line User Interface
-class ProjectCLI < Thor
-  map ['h', '-h', '--help'] => 'help'
-
-  map ['v', '-v', '--version'] => 'version'
-  desc 'version', 'Show the program version'
-  def version
-    app = Application.instance
-    print Rainbow(app.name).bright.blue
-    puts  ' (version ' + Rainbow(app.version).green + ')'
-  end
-
-  map ['c', '-c', '--create'] => 'create'
-  desc 'create PROJECTNAME', 'Create files for a new project'
-  long_desc <<-LONGDESC
-  Create files for a new project, called "foo".
-
-  Example: #{$PROGRAM_NAME} create check/demo/foo
-
-LONGDESC
-  def create(path_to_new_dir)
-    Project.create(path_to_new_dir)
-  end
-
-  map ['l', '-l', '--lab'] => 'lab'
-  desc 'lab PATH/TO/FILE/FOO.rb', 'Show laboratory script objectives on screen'
-  long_desc <<-LONGDESC
-
-  SIMPLE MODE: Show laboratory check/demo/foo.rb objectives.
-
-  Example: #{$PROGRAM_NAME} lab check/demo/foo.rb
-
-  COMPLEX MODE: Show laboratory check/demo/foo/start.rb objectives.
-
-  Example: #{$PROGRAM_NAME} lab check/demo/foo
-
-LONGDESC
-  def lab(path_to_rb_file)
-    Project.laboratory(path_to_rb_file)
-  end
-
-  map ['s', '-s', '--start'] => 'start'
-  desc 'start PATH/TO/FILE/FOO.rb', 'Run tests from script file'
-  long_desc <<-LONGDESC
-
-  SIMPLE MODE: Run tests from check/demo/foo.rb.
-
-  Example: #{$PROGRAM_NAME} start check/demo/foo.rb
-
-  COMPLEX MODE: Run tests from check/demo/foo/start.rb.
-
-  Example: #{$PROGRAM_NAME} start check/demo/foo
-
-LONGDESC
-  def start(path_to_rb_file)
-    Project.run(path_to_rb_file)
-  end
-
-  def method_missing(m, *_args, &_block)
-    start(m.to_s)
-  end
-
-  def respond_to_missing?(method_name, include_private = false)
-    super
-  end
-end
-
-ProjectCLI.start(ARGV)
+puts "\n"
+puts "I'm sorry! This executable has been DEPRECATED.\n"
+puts "Please, from now on do this way...\n\n"
+puts "\t./teuton " + ARGV.join(' ').to_s
+puts "\n"
+puts "Thank you!"
+puts "TEUTON\n\n"
