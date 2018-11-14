@@ -1,36 +1,16 @@
 # encoding: utf-8
 
-module Extern
+module Puppet
 
-
-  #Run command from the host identify as pHostname
-  #goto :host1, :execute => "command"
-  def puppet(pHostname=:localhost, pArgs={})
-    @result.reset
-    command(pArgs[:execute]) if pArgs[:execute]
-    command(pArgs[:exec]) if pArgs[:exec]
-    tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
-    @action[:encoding] = pArgs[:encoding] || 'UTF-8'
-
-    start_time = Time.now
-    if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
-      run_local_cmd()
-    else
-      ip = get((pHostname.to_s+'_ip').to_sym)
-      if ip.nil? then
-        log("#{pHostname} IP is nil!",:error)
-      elsif ip.include?('127.0.0.') then
-        run_local_cmd
-      else
-        run_remote_cmd pHostname
-      end
-    end
-    @action[:duration] = (Time.now-start_time).round(3)
-  end
-
-  def manual(command, args={} )
-    args[:exec] = command.to_s
-    goto( :localhost, args)
+  def self.exist_user?(username, args={})
+    output = {}
+    output[:target] = "Extern Puppet: exists user <#{username}>"
+    hostname = 'localhost'
+    hostname = args[:on] if args[:on]
+    command = "jajaja"
+    output[:goto] = "goto #{hostname}, :exec => #{command}"
+    output[:expect] = "expect result.grep(#{username}).count.eq 1"
+    output
   end
 
 end
