@@ -55,11 +55,11 @@ LONGDESC
 
   SIMPLE MODE: Run tests from check/demo/foo.rb.
 
-  Example: #{$PROGRAM_NAME} start check/demo/foo.rb
+  Example: #{$PROGRAM_NAME} start challenges/demo/foo.rb
 
-  COMPLEX MODE: Run tests from check/demo/foo/start.rb.
+  COMPLEX MODE: Run tests from challenges/demo/foo/start.rb.
 
-  Example: #{$PROGRAM_NAME} start check/demo/foo
+  Example: #{$PROGRAM_NAME} start challenges/demo/foo
 
 LONGDESC
   def start(path_to_rb_file)
