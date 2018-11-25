@@ -3,6 +3,7 @@ require 'terminal-table'
 require_relative 'application'
 require_relative 'configfile_reader'
 require_relative 'case/result'
+require 'pry-byebug'
 
 def task(name, &block)
   Application.instance.tasks << { name: name, block: block }
@@ -195,7 +196,10 @@ class Laboratory
     config_vars[:cases].each_with_index do |item, index|
       next if item[:tt_skip] == true
       script_vars.each do |value|
+#        binding.pry
         next unless item[value].nil?
+        next unless @sets[':'+(value).to_s].nil?
+#        next unless item[value].nil?
         print Rainbow('  * Define ').red
         print Rainbow(value).red.bright
         print Rainbow(' value for Case[').red
