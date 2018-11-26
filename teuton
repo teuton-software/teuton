@@ -32,6 +32,18 @@ LONGDESC
     Project.create(path_to_new_dir)
   end
 
+  map ['ccf', '-ccf', '--create-config-file'] => 'create-config-file'
+  desc 'create-config-file PROJECTNAME', 'Create YAML config file from script file'
+  long_desc <<-LONGDESC
+  Create YAML config file from script file called "foo".
+
+  Example: #{$PROGRAM_NAME} create-config-file check/demo/foo.rb
+
+LONGDESC
+  def create_config_file(path_to_rb_file)
+    puts "Project.create_config_file(#{path_to_rb_file})"
+  end
+
   map ['l', '-l', '--lab'] => 'lab'
   desc 'lab PATH/TO/FILE/FOO.rb', 'Show laboratory script objectives on screen'
   long_desc <<-LONGDESC
