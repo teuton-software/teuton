@@ -3,7 +3,7 @@
 
 require 'thor'
 
-require 'pry-byebug'
+#require 'pry-byebug'
 require 'rainbow'
 require_relative 'lib/application'
 require_relative 'lib/project'

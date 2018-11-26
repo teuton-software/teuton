@@ -3,7 +3,7 @@ require 'terminal-table'
 require_relative 'application'
 require_relative 'configfile_reader'
 require_relative 'case/result'
-require 'pry-byebug'
+#require 'pry-byebug'
 
 def task(name, &block)
   Application.instance.tasks << { name: name, block: block }
