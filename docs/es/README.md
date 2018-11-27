@@ -2,28 +2,36 @@
 
 ```
 TEUTON son unidades de pruebas para máquinas.
-TEUTON comprueba tonaladas de objetivos en toneladas de máquinas.
+TEUTON comprueba toneladas de objetivos en toneladas de máquinas.
 ```
 
 Es un DSL para escribir `Unidades de Prueba para Equipos`. Comprueba si un grupo de máquinas satisface una lista de objetivos.
 
 ![logo](../logo.png)
 
+---
+
 # Introducción
 
-Esta es una herramienta Open Source para usar en una clase con ordenadores
+**Modo aula**
+
+Es una herramienta Software Libre que podemos usar en una clase con ordenadores
 (Laboratorio STEM). *Teuton* ayuda a los profesores a evaluar de forma
 remota y automática el trabajo de clase realizado por los alumnos en sus máquinas.
+
+**Modo concurso**
 
 También es útil para usar en concursos o competiciones de administración
 de sistemas. Donde los concursantes compiten haciendo su trabajo en máquinas
 reales y/o virtuales y al finalizar los jueces ejecutan *Teuton*
-para evaluarlas y puntuar a cada concursante.
+para evaluarlas y puntuar a cada concursante. Estoy usando *Teuton* con mis estudiantes.
 
-Estoy usando *Teuton* con mis estudiantes. Está bien, pero se puede
-mejorar (como todo en la vida). Me gustaría que otros usuarios (interesados
-en la administración de sistemas y en la educación) la conozcan, y recibir
-comentarios, sugerencias o colaboraciones para mejorar la herramientas.
+**Modo retos**
+
+Además se puede instalar el local y usarla para hacer retos en nuestra propia máquina.
+
+**Teuton** está bien, pero se puede mejorar (como todo en la vida).
+Me gustaría que otros usuarios (interesados en sistemas y en la educación) la conozcan, y recibir comentarios, sugerencias o colaboraciones para mejorar la herramientas.
 
 ¡Muchas gracias!
 
@@ -31,7 +39,7 @@ comentarios, sugerencias o colaboraciones para mejorar la herramientas.
 
 # Descripción
 
-Los pasos para trabajar con la herramienta son:
+Los pasos para trabajar en el modo aula son:
 
 1. **El profesor define una actividad práctica** para el grupo de estudiantes.
 Esto es una lista de objetivos a cumplir, y cómo comprobar dichos objetivos.
@@ -73,6 +81,7 @@ guardar los scripts que vayamos creando para definir nuestras actividades.
 
 * [Vídeos](./videos.md)
 * [Instalación](./instalacion/README.md)
+* [Comando Teuton](./comando.md)
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./dsl/README.md)

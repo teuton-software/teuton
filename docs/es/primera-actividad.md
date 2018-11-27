@@ -3,6 +3,8 @@
 
 ¿Cómo crear nuestra propia actividad de evaluación en tres pasos?
 
+---
+
 ## PASO 1: Crear los ficheros base
 
 Podemos crear los ficheros manualmente o bien ejecutar `./project create check/foo/demo`.
@@ -13,6 +15,8 @@ Este comando nos crea:
 * `check/foo/.gitignore`: Para prevenir la subida de ficheros YAML al repositorio Git.
 
 > También podemos crear manualmente estos ficheros.
+
+---
 
 ## PASO 2: Personalizar los objetivos
 
