@@ -67,7 +67,7 @@ Run this demo with:
 
 # Documentation
 
-* [Videos](./doc/en/videos.md)
+* [Videos](./docs/en/videos.md)
 * [Installation](./docs/en/installation.md)
 * [Examples](./docs/en/examples.md)
 * [Create your first activity](./docs/en/first-activity.md)

@@ -79,7 +79,7 @@ guardar los scripts que vayamos creando para definir nuestras actividades.
 
 # Documentación
 
-* [Vídeos](./videos.md)
+* [Vídeos](./doc/en/videos.md)
 * [Instalación](./instalacion/README.md)
 * [Comando Teuton](./comando.md)
 * [Ejemplos](./ejemplos/README.md)
