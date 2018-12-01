@@ -76,3 +76,10 @@ Run this demo with:
 
 Other languages:
 * ES - [Spanish documentation](./docs/es/README.md)
+
+---
+
+# Contact
+
+* **Email**: `teuton.software@protonmail.com`
+* **Twitter**: `@teuton`
