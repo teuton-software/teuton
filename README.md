@@ -82,4 +82,3 @@ Other languages:
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`
-* **Twitter**: `@teuton`
