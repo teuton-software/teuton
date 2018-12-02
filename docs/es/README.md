@@ -67,8 +67,8 @@ Cada actividad consiste de 2 ficheros. Echemos un vistazo al siguiente ejemplo:
 
 | Fichero | Descripción |
 | ------- | ----------- |
-| [./docs/examples/example-01.rb](./docs/examples/example-01.rb) | Script que define la actividad o el reto |
-| [./docs/examples/example-01.yaml](./docs/examples/example-01.yaml) | Fichero que contiene las configuraciones para cada máquina de cada estudiante (casos) |
+| [./docs/examples/example-01.rb](../examples/example-01.rb) | Script que define la actividad o el reto |
+| [./docs/examples/example-01.yaml](../examples/example-01.yaml) | Fichero que contiene las configuraciones para cada máquina de cada estudiante (casos) |
 
 Para ejecutar la actividad de ejemplo con [Teuton](./comando.md) haremos:
 
