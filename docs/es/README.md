@@ -6,7 +6,9 @@ TEUTON son unidades de pruebas para máquinas.
 TEUTON comprueba toneladas de objetivos en toneladas de máquinas.
 ```
 
-Es un DSL para escribir `Unidades de Prueba para Equipos`. Comprueba si un grupo de máquinas satisface una lista de objetivos.
+Es un DSL para escribir `Unidades de Prueba para todo`. Por ejemplo,
+sirve para comprobar si un grupo de máquinas satisface una lista de objetivos
+o requisitos.
 
 ![logo](../logo.png)
 
@@ -65,8 +67,8 @@ Cada actividad consiste de 2 ficheros. Echemos un vistazo al siguiente ejemplo:
 
 | Fichero | Descripción |
 | ------- | ----------- |
-| `./docs/examples/example-01.rb` | Script que define la actividad o el reto |
-| `./docs/examples/example-01.yaml` | Fichero que contiene las configuraciones para cada máquina de cada estudiante (casos) |
+| [./docs/examples/example-01.rb](./docs/examples/example-01.rb) | Script que define la actividad o el reto |
+| [./docs/examples/example-01.yaml](./docs/examples/example-01.yaml) | Fichero que contiene las configuraciones para cada máquina de cada estudiante (casos) |
 
 Para ejecutar la actividad de ejemplo con [Teuton](./comando.md) haremos:
 

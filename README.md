@@ -1,5 +1,7 @@
 
-# TEUTON Software (SysadminGame)
+# TEUTON Software
+
+(SysadminGame was his older name)
 
 ```
 TEUTON are test units for machines (everything).
