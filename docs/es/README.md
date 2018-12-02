@@ -1,4 +1,5 @@
-# TEUTOn Software (SysadminGame)
+# TEUTON Software
+(Antes se llamaba SysadminGame)
 
 ```
 TEUTON son unidades de pruebas para máquinas.
@@ -13,20 +14,20 @@ Es un DSL para escribir `Unidades de Prueba para Equipos`. Comprueba si un grupo
 
 # Introducción
 
-**Modo aula**
+*Modo aula*
 
 Es una herramienta Software Libre que podemos usar en una clase con ordenadores
 (Laboratorio STEM). *Teuton* ayuda a los profesores a evaluar de forma
 remota y automática el trabajo de clase realizado por los alumnos en sus máquinas.
 
-**Modo concurso**
+*Modo concurso*
 
 También es útil para usar en concursos o competiciones de administración
 de sistemas. Donde los concursantes compiten haciendo su trabajo en máquinas
 reales y/o virtuales y al finalizar los jueces ejecutan *Teuton*
 para evaluarlas y puntuar a cada concursante. Estoy usando *Teuton* con mis estudiantes.
 
-**Modo retos**
+*Modo retos*
 
 Además se puede instalar el local y usarla para hacer retos en nuestra propia máquina.
 
@@ -61,19 +62,25 @@ los alumnos.
 # Demostración rápida
 
 Cada actividad consiste de 2 ficheros. Echemos un vistazo al siguiente ejemplo:
-* `./docs/examples/example-01.rb`: Este es el script que define la actividad.
-* `./docs/examples/example-01.yaml`: Este fichero contiene las configuraciones para cada máquina de cada estudiante (casos).
 
-Para ejecutar la actividad de ejemplo hacemos:
-* `./project docs/example/example-01.rb` o también podemos hacer
-* `./project start docs/example/example-01.rb`.
+| Fichero | Descripción |
+| ------- | ----------- |
+| `./docs/examples/example-01.rb` | Script que define la actividad o el reto |
+| `./docs/examples/example-01.yaml` | Fichero que contiene las configuraciones para cada máquina de cada estudiante (casos) |
+
+Para ejecutar la actividad de ejemplo con [Teuton](./comando.md) haremos:
+
+`./teuton docs/example/example-01.rb`
+
+Pero también son válidas estas otras:
+* `./teuton start docs/example/example-01.rb`
+* `ruby teuton docs/example/example-01.rb`
 
 > **Resultados**
 > * Veremos un breve *informe en la pantalla*.
 > * los *ficheros de salida* en su versión extendida se guardan en el directorio `./var/example-01/out/`.
-> * Existen más actividades en el directorio `check`. Este es un buen sitio donde
-guardar los scripts que vayamos creando para definir nuestras actividades.
-> * Periódicamente irán apareciendo nuevas actividades dentro del directorio `check`.
+> * Existen más actividades en el directorio `challenges`. Este es un buen sitio donde guardar los scripts que vayamos creando para definir nuestras actividades.
+> * Periódicamente irán apareciendo nuevas actividades dentro del directorio `challenges`.
 
 ---
 
@@ -85,3 +92,10 @@ guardar los scripts que vayamos creando para definir nuestras actividades.
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./dsl/README.md)
+
+---
+
+# Contacto
+
+* **Correo**: `teuton.software@protonmail.com`
+* **Twitter**: `@SoftwareTeuton`

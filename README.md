@@ -15,9 +15,21 @@ Easily check if a group of real/virtual machines satisfies a list of targets/goa
 
 # Introduction
 
-This is an Free Software tool, we use with computers in classroom (STEM laboratory).
-This tool helps teachers to evaluate remotely and automaticaly
+*Classroom mode*
+
+This is an Free Software tool, we use with computers in classroom (STEM laboratory). This tool helps teachers to evaluate remotely and automaticaly
 the workclass done by the students into their machines.
+
+*Conquest mode*
+
+Also is usefull for sysadmins conquest or compettions. Where every
+participant complete goals and targets on their own real/virtual
+machiones. At the end the judges only have to run TEUTON and inmediately
+(Well, perhaps after a few seconds) will get the results of every one.
+
+*Challenge mode*
+
+So you can do a local installation and use TEUTON to complete challenges on our local machine.
 
 I'm using this application with my students. It's OK, but it could be improved
 (as everythieng of course). I would like other users (interested in sysadmin
@@ -30,7 +42,7 @@ Thanks!
 
 # Description
 
-Steps to use this tool:
+Steps to use this tool in *Classroom mode*:
 
 1. **The teacher defines a practice activity** for the group of students.
 This is a list of required targets/goals and the way to check it.
@@ -54,7 +66,7 @@ Every TEUTON challenge/activity consists of 2 files. Let's look at this demo:
 * `./docs/examples/example-01.rb`: This defines the activity (DSL script).
 * `./docs/examples/example-01.yaml`: This file configure every student machine (cases).
 
-Run this demo with:
+Run this demo with [Teuton](./docs/en/command.md) with:
 * `./teuton docs/example/example-01.rb`, or
 * `./teuton start docs/example/example-01.rb`.
 
@@ -69,6 +81,7 @@ Run this demo with:
 
 * [Videos](./docs/en/videos.md)
 * [Installation](./docs/en/installation.md)
+* [Teuton command](./docs/en/command.md)
 * [Examples](./docs/en/examples.md)
 * [Create your first activity](./docs/en/first-activity.md)
 * [DSL Key words](./docs/en/dsl/README.md)
