@@ -181,7 +181,7 @@ class Laboratory
   end
 
   def revise_config_content
-    puts '[INFO] Revise Config File content...'
+    puts '[INFO] Reading Config File content...'
     unless File.exist?(@path[:config])
       recomended_config_content
       return
