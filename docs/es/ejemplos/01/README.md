@@ -4,10 +4,13 @@
 
 
 ## Objetivos
+
 * En este ejemplo, veremos como definir un objetivo evaluable.
 * Los objetivos son cada uno de los aspectos que medimos en los trabajos realizados.
 * Cada trabajo será realizado por un alumno o varios, nosotros los llamaremos casos.
 * Cada caso tiene un parámetro con la lista de sus miembros.
+
+---
 
 ## Requisitos
 
@@ -21,11 +24,11 @@
 
 Vemos que en el script hay las siguientes intrucciones:
 * **target**: Texto que describe el objetivo que buscamos.
-* **goto**: Moverse a la máquina *localhost*, y ejecutar el comando. Hay que hacer notar
-que en este caso el comando se ejecutará en *localhost*, y puesto que el comando del
-script es `id obiwan | wc -l`, el sistema operativo de *localhost* debe ser un GNU/Linux,
+* **goto**: Moverse a la máquina *localhost*, y ejecutar el comando. Hay que hacer notar que en este caso el comando se ejecutará en *localhost*, y puesto que el comando del script es `id obiwan | wc -l`, el sistema operativo de *localhost* debe ser un GNU/Linux,
 o en su defecto otro sistema operativo que entienda el comando a ejecutar.
 * **expect**: Evalua si el resultado es igual al valor esperado.
+
+---
 
 ## El fichero de configuración
 
@@ -34,9 +37,11 @@ sólo contiene un caso. Este caso tiene los siguientes parámetros:
 
 * **tt_members**: Estos son los nombres de los miembros del grupo separados por comas.
 
+---
+
 ## Ejecución del script
 
-Para ejecutar el script hacemos `./project docs/examples/example-01.rb`, y
+Para ejecutar el script hacemos `./teuton docs/examples/example-01.rb`, y
 veremos la siguiente [salida por pantalla](./resume.txt):
 
 En la sección *TARGETS HISTORY* vemos el resumen de todos los casos analizados
@@ -46,6 +51,8 @@ de los objetivos previstos para dicho caso.
 
 > Cuando el valor final de la evaluación de cada caso es menor a 50% se aparecerá
 el símbolo '?'.
+
+---
 
 ## Informe de salida
 
