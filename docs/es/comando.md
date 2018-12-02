@@ -85,6 +85,8 @@ teuton>
 
 ---
 
+# Otras opciones 
+
 | Comando          | Descripción                     |
 | ---------------- | ------------------------------- |
 | ./teuton         | Muestra la ayuda del programa   |
