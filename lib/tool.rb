@@ -29,7 +29,45 @@ class Tool
     instance_eval(&block)
   end
 
-private
+  def show(mode = :resume)
+    @report.show if mode == :resume || mode == :all
+    if mode == :details || mode == :all
+      @cases.each do |c|
+        puts '____'
+        c.report.show
+      end
+      puts '.'
+    end
+  end
+
+  def export(args = {})
+    if args.class != Hash
+      puts "[ERROR] tool#export: Argument = <#{args}>, class = #{args.class}"
+      puts '        Use: export :format => :colored_text'
+      raise '[ERROR] tool#export: Arguments are incorrect'
+    end
+    # default :mode=>:all, :format=>:txt
+    format = args[:format] || :txt
+
+    mode = args[:mode] || :all
+    @report.export format if mode == :resume || mode == :all
+
+    if mode == :details || mode == :all
+      threads = []
+      @cases.each { |c| threads << Thread.new { c.report.export format } }
+      threads.each(&:join)
+    end
+  end
+
+  def send(args = {})
+    threads = []
+    puts ''
+    puts '[INFO] Sending files...'
+    @cases.each { |c| threads << Thread.new { c.send args } }
+    threads.each(&:join)
+  end
+
+  private
 
   def check_cases!
     # Load configurations from yaml file
@@ -82,46 +120,6 @@ private
 
     close_main_report(start_time)
   end
-
-  def show(mode = :resume)
-    @report.show if mode == :resume || mode == :all
-    if mode == :details || mode == :all
-      @cases.each do |c|
-        puts '____'
-        c.report.show
-      end
-      puts '.'
-    end
-  end
-
-  def export(args = {})
-    if args.class != Hash
-      puts "[ERROR] tool#export: Argument = <#{args}>, class = #{args.class}"
-      puts '        Use: export :format => :colored_text'
-      raise '[ERROR] tool#export: Arguments are incorrect'
-    end
-    # default :mode=>:all, :format=>:txt
-    format = args[:format] || :txt
-
-    mode = args[:mode] || :all
-    @report.export format if mode == :resume || mode == :all
-
-    if mode == :details || mode == :all
-      threads = []
-      @cases.each { |c| threads << Thread.new { c.report.export format } }
-      threads.each(&:join)
-    end
-  end
-
-  def send(args = {})
-    threads = []
-    puts ''
-    puts '[INFO] Sending files...'
-    @cases.each { |c| threads << Thread.new { c.send args } }
-    threads.each(&:join)
-  end
-
-  private
 
   def build_hall_of_fame
     celebrities = {}
