@@ -30,6 +30,7 @@ class Laboratory
     @gets = {}
     @sets = {}
     @hosts = {}
+    @requests = []
   end
 
   def whatihavetodo
@@ -47,6 +48,7 @@ class Laboratory
 
     show_stats
     revise_config_content
+    show_requests
   end
 
   def target(description = 'empty')
@@ -54,6 +56,10 @@ class Laboratory
     @targetid += 1
     i = @targetid
     puts "(%03d" % i + ") target #{description}"
+  end
+
+  def request(text)
+    @requests << text.to_s
   end
 
   def tempfile(_tempfile = nil)
@@ -196,10 +202,8 @@ class Laboratory
     config_vars[:cases].each_with_index do |item, index|
       next if item[:tt_skip] == true
       script_vars.each do |value|
-#        binding.pry
         next unless item[value].nil?
         next unless @sets[':'+(value).to_s].nil?
-#        next unless item[value].nil?
         print Rainbow('  * Define ').red
         print Rainbow(value).red.bright
         print Rainbow(' value for Case[').red
@@ -208,4 +212,12 @@ class Laboratory
       end
     end
   end
+
+  def show_requests
+    puts '[INFO] Showing REQUEST lines...'
+    @requests.each_with_index do |index, line|
+      puts " [#{index.to_s}] #{line}"
+    end
+  end
+
 end
