@@ -4,6 +4,13 @@ require 'rainbow'
 require_relative 'application'
 
 # Project functions invoked by CLI project tool
+# * create
+# * copyfile
+# * laboratory
+# * run
+# * find_filenames_for
+# * verboseln
+# * verbose
 module Project
   def self.create(pathtofile)
     projectname = File.basename(pathtofile)

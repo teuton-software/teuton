@@ -10,6 +10,8 @@ require_relative 'report'
 
 # This class does all the job
 # Organize the hole job, sending orders to others classes
+# * initialize
+# * start
 class Tool
   include Singleton
   include Utils
@@ -26,6 +28,8 @@ class Tool
     check_cases!
     instance_eval(&block)
   end
+
+private
 
   def check_cases!
     # Load configurations from yaml file
