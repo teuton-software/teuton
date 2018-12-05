@@ -113,6 +113,7 @@ class Laboratory
     @verbose = true
     process_content
     show_stats
+    show_config
   end
 
   def show_stats
@@ -156,12 +157,13 @@ class Laboratory
     process_content
     @verbose = true
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['REQUEST lines']
+      st.add_row ['Lines', 'REQUEST description']
+      st.add_separator
+      @requests.each_with_index do |line, index|
+        st.add_row ["%03d" % index, line ]
+      end
     end
     verboseln my_screen_table
-    @requests.each_with_index do |line, index|
-      verboseln "  (%02d" % index + ") #{line}"
-    end
   end
 
   private
