@@ -48,16 +48,18 @@ LONGDESC
   desc 'lab PATH/TO/FILE/FOO.rb', 'Show laboratory script objectives on screen'
   option :r, :type => :boolean
   option :c, :type => :boolean
-  option :a, :type => :boolean
   long_desc <<-LONGDESC
 
-  Show laboratory information from <path/to/foo.rb>
 
-  Example: #{$PROGRAM_NAME} lab path/to/foo.rb
+  #{$PROGRAM_NAME} lab path/to/foo.rb
+  , Show DSL information from <path/to/foo.rb>
 
-  Show only requests information from  <path/to/foo.rb>
+  #{$PROGRAM_NAME} lab path/to/foo.rb -c
+  , Revise config information from <path/to/foo.yaml>
 
-  Example: #{$PROGRAM_NAME} lab -sr path/to/foo.rb
+  #{$PROGRAM_NAME} lab path/to/foo.rb -r
+  , Show only requests information from  <path/to/foo.rb>
+
 
 LONGDESC
   def lab(path_to_rb_file)
