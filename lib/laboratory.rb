@@ -16,6 +16,7 @@ end
 # Show objectives stats from RB script file
 class Laboratory
   attr_reader :result
+  attr_accessor :verbose
 
   def initialize(script_path, config_path)
     @path = {}
@@ -31,31 +32,14 @@ class Laboratory
     @sets = {}
     @hosts = {}
     @requests = []
-  end
-
-  def whatihavetodo
-    @tasks = Application.instance.tasks
-    puts ''
-    @tasks.each do |t|
-      @stats[:tasks] += 1
-
-      msg = "TASK: #{t[:name]}"
-      my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
-      puts my_screen_table
-
-      instance_eval(&t[:block])
-    end
-
-    show_stats
-    revise_config_content
-    show_requests
+    @verbose = true
   end
 
   def target(description = 'empty')
     @stats[:targets] += 1
     @targetid += 1
     i = @targetid
-    puts "(%03d" % i + ") target #{description}"
+    verboseln "(%03d" % i + ") target #{description}"
   end
 
   def request(text)
@@ -74,7 +58,7 @@ class Laboratory
     else
       @hosts[host] = 1
     end
-    puts "      goto   #{host} and #{args}"
+    verboseln "      goto   #{host} and #{args}"
   end
 
   def run(command, args = {})
@@ -85,10 +69,10 @@ class Laboratory
   def expect(_cond, args = {})
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
-    puts "      alter  #{result.alterations}" if !result.alterations.empty?
-    puts "      expect #{result.expected} (#{result.expected.class})"
-    puts "      weight #{weight}"
-    puts ''
+    verboseln "      alter  #{result.alterations}" if !result.alterations.empty?
+    verboseln "      expect #{result.expected} (#{result.expected.class})"
+    verboseln "      weight #{weight}"
+    verboseln ''
   end
 
   def get(varname)
@@ -106,13 +90,13 @@ class Laboratory
   def unique(key, _value)
     @stats[:uniques] += 1
 
-    puts "    ! Unique value for <#{key}>"
-    puts ''
+    verboseln "    ! Unique value for <#{key}>"
+    verboseln ''
   end
 
   def log(text = '', type = :info)
     @stats[:logs] += 1
-    puts "      log    [#{type}]: " + text.to_s
+    verboseln "      log    [#{type}]: " + text.to_s
   end
 
   def set(key, value)
@@ -123,6 +107,12 @@ class Laboratory
 
     @sets[key] = value
     "set(#{key},#{value})"
+  end
+
+  def show_dsl
+    @verbose = true
+    process_content
+    show_stats
   end
 
   def show_stats
@@ -151,10 +141,52 @@ class Laboratory
         @sets.each_pair { |k, v| st.add_row [" * #{k}", v.to_s] }
       end
     end
-    puts my_screen_table.to_s + "\n"
+    verboseln my_screen_table.to_s + "\n"
+  end
+
+  def show_config
+    @verbose = false
+    process_content
+    @verbose = true
+    revise_config_content
+  end
+
+  def show_requests
+    @verbose = false
+    process_content
+    @verbose = true
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row ['REQUEST lines']
+    end
+    verboseln my_screen_table
+    @requests.each_with_index do |line, index|
+      verboseln "  (%02d" % index + ") #{line}"
+    end
   end
 
   private
+
+  def verbose(text)
+    print text if @verbose
+  end
+
+  def verboseln(text)
+    puts text if @verbose
+  end
+
+  def process_content
+    @tasks = Application.instance.tasks
+    verboseln ''
+    @tasks.each do |t|
+      @stats[:tasks] += 1
+
+      msg = "TASK: #{t[:name]}"
+      my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
+      verboseln my_screen_table
+
+      instance_eval(&t[:block])
+    end
+  end
 
   def find_script_vars
     script_vars = [:tt_members]
@@ -175,19 +207,24 @@ class Laboratory
   end
 
   def recomended_config_content
-    print Rainbow('[WARN] File ').yellow
-    print Rainbow(@path[:config]).yellow.bright
-    puts Rainbow(' not found!').yellow
-    puts '[INFO] Recomended content:'
+    verbose Rainbow('[WARN] File ').yellow
+    verbose Rainbow(@path[:config]).yellow.bright
+    verboseln Rainbow(' not found!').yellow
+    verboseln '[INFO] Recomended content:'
     output = { global: nil, cases: [] }
     output[:cases][0] = {}
     script_vars = find_script_vars
     script_vars.each { |i| output[:cases][0][i] = 'VALUE' }
-    puts YAML.dump(output)
+    verboseln YAML.dump(output)
   end
 
   def revise_config_content
-    puts '[INFO] Reading Config File content...'
+    @verbose = true
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row ['Revising CONFIG file']
+    end
+    verboseln my_screen_table
+
     unless File.exist?(@path[:config])
       recomended_config_content
       return
@@ -204,20 +241,12 @@ class Laboratory
       script_vars.each do |value|
         next unless item[value].nil?
         next unless @sets[':'+(value).to_s].nil?
-        print Rainbow('  * Define ').red
-        print Rainbow(value).red.bright
-        print Rainbow(' value for Case[').red
-        print Rainbow(index).red.bright
-        puts Rainbow('] or set tt_skip = true').red
+        verbose Rainbow('  * Define ').red
+        verbose Rainbow(value).red.bright
+        verbose Rainbow(' value for Case[').red
+        verbose Rainbow(index).red.bright
+        verboseln Rainbow('] or set tt_skip = true').red
       end
     end
   end
-
-  def show_requests
-    puts '[INFO] Showing REQUEST lines...'
-    @requests.each_with_index do |index, line|
-      puts " [#{index.to_s}] #{line}"
-    end
-  end
-
 end

@@ -2,12 +2,16 @@
 
 module DSL
 
-  def target(pDescription=nil)
-    return @action[:description] if pDescription.nil?
-    @action[:description] = pDescription
+  def target(text=nil)
+    return @action[:description] if text.nil?
+    @action[:description] = text
   end
   alias_method :desc, :target
   alias_method :goal, :target
+
+  def request(text)
+    # do nothing
+  end
 
   def command(pCommand, pArgs={})
     @action[:command] = pCommand
