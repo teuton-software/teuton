@@ -1,4 +1,5 @@
 task "Settings" do
+
   username = get(:username)
   password = get(:password)
   set(:mv1_username, username)
@@ -7,14 +8,15 @@ task "Settings" do
   set(:mv1_password, password)
   set(:mv2_password, password)
   set(:mv3_password, password)
+
 end
 
 task "NFS" do
 
-  goal "Instalar el servicio NFS en MV1"
+  target "Instalar el servicio NFS en MV1"
   goto :mv1, :exec => "systemctl status nfs-kernel-server"
   goto :mv1, :exec => "echo $?"
-  expect result.equal("0")
+  expect result.grep("0").equal(1)
 
 end
 
