@@ -13,11 +13,13 @@ end
 
 task "NFS" do
 
+  target "Usuario <add>"
+  goto :mv1, :exec => "id add"
+  expect result.grep!("sudo").count!.equal(1)
+
   target "Instalar el servicio NFS en MV1"
   goto :mv1, :exec => "systemctl status nfs-kernel-server"
-#  goto :mv1, :exec => "echo \$?"
-#  result.debug
-  expect result.grep("active").count.equal(1)
+  expect result.grep!("active").count!.equal(1)
 
 end
 
