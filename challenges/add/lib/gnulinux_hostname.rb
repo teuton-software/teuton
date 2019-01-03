@@ -1,12 +1,12 @@
 
-task 'Opensuse HOSTNAME configurations' do
+task 'GNU/Linux HOSTNAME configurations' do
 
-  target "Checking hostname <" + get(:suse1_hostname) + ">"
-  goto  :suse1, :exec => "hostname -f"
-  expect result.equal?(get(:suse1_hostname))
+  target "Checking hostname <" + get(:linux1_hostname) + ">"
+  goto  :linux1, :exec => "hostname -f"
+  expect result.equal?(get(:linux1_hostname))
 
   unique "hostname", result.value
-  goto  :suse1, :exec => "hostname -f"
+  goto  :linux1, :exec => "hostname -f"
   unique "UUID", result.value
 
 end
