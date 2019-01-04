@@ -104,7 +104,7 @@ class Case
     @uniques.each do |key|
       if uniques[key].include?(id) and uniques[key].count>1 then
         fails+=1
-        log("Unique:", :error)
+        log("UNIQUE:", :error)
         begin
           log("   ├── Value     => #{key.to_s}", :error)
          rescue Exception => e
