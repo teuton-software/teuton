@@ -3,6 +3,7 @@
 require 'net/ssh'
 require 'net/sftp'
 require 'net/telnet'
+require 'pry-byebug'
 
 require_relative '../application'
 require_relative '../utils'
@@ -168,8 +169,8 @@ private
     app = Application.instance
     hostname = pHostname.to_s
     ip = @config.get((hostname+'_ip').to_sym)
-    username = @config.get((hostname+'_username').to_s.to_sym)
-    password = @config.get((hostname+'_password').to_s.to_sym)
+    username = @config.get((hostname+'_username').to_sym).to_s
+    password = @config.get((hostname+'_password').to_sym).to_s
     text = ''
 
     begin
@@ -213,8 +214,8 @@ private
     app = Application.instance
     hostname = pHostname.to_s
     ip = @config.get((hostname+'_ip').to_sym)
-    username = @config.get((hostname+'_username').to_s.to_sym)
-    password = @config.get((hostname+'_password').to_s.to_sym)
+    username = @config.get((hostname+'_username').to_sym).to_s
+    password = @config.get((hostname+'_password').to_sym).to_s
     text = ''
 
     begin
