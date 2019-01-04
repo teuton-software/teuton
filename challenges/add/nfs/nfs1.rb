@@ -1,4 +1,4 @@
-group "Settings" do
+group "NFS Settings" do
   username = get(:username)
   password = get(:password)
 

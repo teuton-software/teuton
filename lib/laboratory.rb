@@ -47,7 +47,7 @@ class Laboratory
   end
 
   alias_method :goal, :target
-  
+
   def request(text)
     @requests << text.to_s
   end
@@ -129,7 +129,7 @@ class Laboratory
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ['DSL Stats', 'Count']
       st.add_separator
-      st.add_row ['Tasks', @stats[:tasks]]
+      st.add_row ['Groups', @stats[:tasks]]
       st.add_row ['Targets', @stats[:targets]]
       st.add_row ['Goto', @stats[:hosts]]
       @hosts.each_pair { |k, v| st.add_row [" * #{k}", v] }
@@ -188,7 +188,7 @@ class Laboratory
     @tasks.each do |t|
       @stats[:tasks] += 1
 
-      msg = "TASK: #{t[:name]}"
+      msg = "GROUPS: #{t[:name]}"
       my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
       verboseln my_screen_table
 
