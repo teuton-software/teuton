@@ -1,12 +1,13 @@
 ---
 :global:
-  :username: add
-  :password: 1234
-  :mv1_hostname: servidor-linux
-  :mv1_ip: 192.168.1.44
-  :mv2_hostname: cliente-linux
-  :mv2_ip: 192.168.1.45
-  :mv3_hostname: cliente-win
-  :mv3_ip: 192.168.1.46
+  :hostname1: servidor-linux
+  :hostname2: cliente-linux
+  :hostname3: cliente-win
 :cases:
 - :tt_members: alumno
+  :number: "01"
+  :username: add
+  :password: 1234
+  :mv1_ip: 192.168.1.44
+  :mv2_ip: 192.168.1.45
+  :mv3_ip: 192.168.1.46
