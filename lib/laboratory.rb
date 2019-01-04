@@ -5,8 +5,12 @@ require_relative 'configfile_reader'
 require_relative 'case/result'
 #require 'pry-byebug'
 
-def task(name, &block)
+def group(name, &block)
   Application.instance.tasks << { name: name, block: block }
+end
+
+def task(name, &block)
+  group(name, &block)
 end
 
 def start(&block)
@@ -42,6 +46,8 @@ class Laboratory
     verboseln "(%03d" % i + ") target #{description}"
   end
 
+  alias_method :goal, :target
+  
   def request(text)
     @requests << text.to_s
   end
