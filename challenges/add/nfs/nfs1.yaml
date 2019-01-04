@@ -14,7 +14,7 @@
 - :tt_members: Alumno de David
   :number: "02"
   :username: profesor
-  :password: profesor
+  :password: "1234"
   :mv1_ip: 192.168.1.110
   :mv2_ip: 192.168.1.111
   :mv3_ip: 192.168.1.112

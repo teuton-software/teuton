@@ -1,4 +1,4 @@
-task "Settings" do
+group "Settings" do
   username = get(:username)
   password = get(:password)
 
@@ -18,14 +18,14 @@ task "Settings" do
   set(:mv3_hostname, hostname)
 end
 
-task "NFS Activity" do
-  target "Servicio NFS activo en MV1 (Fran)"
+group "NFS Activity" do
+  goal "Servicio NFS activo en MV1 (Fran)"
   # info: install nks-kernel-server
   goto :mv1, :exec => "systemctl status nfs-kernel-server"
   goto :mv1, :exec => "echo $?"
   expect result.equal("0")
 
-  target "Servicio NFS activo en la MV1 (David)"
+  goal "Servicio NFS activo en la MV1 (David)"
   # info: install nks-kernel-server
   goto :mv1, :exec => "systemctl status nfs-kernel-server"
   expect result.grep!("active").count!.equal(1)
