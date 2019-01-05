@@ -28,7 +28,6 @@ En `castillo` instalaremos un servidor Web, donde pondremos descargar:
     * El fichero rb serán las instrucciones para verificar el reto.
 * `Aventuras`
     * Las aventuras serán un conjunto organizado de retos.
-    * Cada aventura requerirá descargar unas determinadas `aldeas` y `retos`.
 
 ---
 
