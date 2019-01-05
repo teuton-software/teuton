@@ -42,14 +42,13 @@ El profesor elegirá una aventura, inscribirá a sus alumnos y dará comienzo el
 
 # Los alumnos
 
-1. Los alumnos empiezan la aventura descargando la `aldea` que necesitan.
-2. Leen el primer reto (`reto01`).
-3. Entran en la MV `aldea`.
-    * Realizan el `reto01` dentro de la `aldea`.
-    * Descargan el `reto01.rb`.
-    * Ejecutan `teuton`. Los resultados de envían automáticamente desde la `aldea` hasta el `castillo`
-4. Los alumnos pueden consultar su puntuación y la clasificación desde la web del `castillo`.
-5. Si no les gusta el resultado pueden volver al punto 3 y repetirlo.
-6. Leen el siguiente reto (`reto01`)
-7. Continúan el paso 3 pero con el nuevo reto.
-8. Así hasta que se acabe el tiempo o que se acaben los retos.
+1. Los alumnos empiezan descargando la `aldea` que necesitan.
+2. Entran en la MV `aldea`.
+3. Descargan también la `aventura` escogida (conjunto organizado de retos)
+4. Empezamos con reto = `reto01`.
+5. Leen la descripción/información del reto.
+6. Realizan el reto dentro de la `aldea`.
+7. Ejecutan `teuton` para el reto actual. Los resultados de envían automáticamente desde la `aldea` hasta el `castillo`
+8. Los alumnos pueden consultar su puntuación y la clasificación desde la web del `castillo`. Si no les gusta el resultado pueden volver al punto 5 y repetirlo.
+9. reto = reto + 1
+10. Ir al paso 5. Así hasta que se acabe el tiempo o que se acaben los retos.
