@@ -43,10 +43,11 @@ En `castillo` instalaremos un servidor Web, donde pondremos descargar:
 1. Los alumnos empiezan descargando la `aldea` que necesitan.
 2. Entran en la MV `aldea`.
 3. Descargan también la `aventura` escogida (conjunto organizado de retos)
-4. Empezamos con reto = `reto01`.
-5. Leen la descripción/información del reto.
-6. Realizan el reto dentro de la `aldea`.
-7. Ejecutan `teuton` para el reto actual. Los resultados de envían automáticamente desde la `aldea` hasta el `castillo`
-8. Los alumnos pueden consultar su puntuación y la clasificación desde la web del `castillo`. Si no les gusta el resultado pueden volver al punto 5 y repetirlo.
-9. reto = reto + 1
-10. Ir al paso 5. Así hasta que se acabe el tiempo o que se acaben los retos.
+4. reto = 1
+5. Resolvemos el reto
+    * Leen la descripción/información del reto.
+    * Realizan el reto dentro de la `aldea`.
+    * Ejecutan `teuton` para el reto actual. Los resultados de envían automáticamente desde la `aldea` hasta el `castillo`
+6. Los alumnos pueden consultar su puntuación y la clasificación desde la web del `castillo`. Si no les gusta el resultado pueden volver al punto 5 y repetirlo.
+7. reto = reto + 1
+8. Ir al paso 5. Así hasta que se acabe el tiempo o que se acaben los retos.
