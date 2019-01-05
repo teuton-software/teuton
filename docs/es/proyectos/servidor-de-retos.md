@@ -33,9 +33,8 @@ En `castillo` instalaremos un servidor Web, donde pondremos descargar:
 
 # El profesor
 
-El profesor tendrá el aula preparada con ordenadores para cada alumno y con el Virtual Box instalado.
-
-El profesor elegirá una aventura, inscribirá a sus alumnos y dará comienzo el juego.
+* Tendrá el aula preparada con ordenadores para cada alumno y con el Virtual Box instalado.
+* Elegirá una aventura donde inscribirá a sus alumnos y dará comienzo el juego.
 
 ---
 
