@@ -75,8 +75,13 @@ Para ejecutar la actividad de ejemplo con [Teuton](./comando.md) haremos:
 `./teuton docs/example/example-01.rb`
 
 Pero también son válidas estas otras:
-* `./teuton start docs/example/example-01.rb`
-* `ruby teuton docs/example/example-01.rb`
+
+| Ejecutar la demo con Teuton | Descripción |
+| --------------------------- | ----------- |
+| `./teuton docs/example/example-01.rb | GNU/Linux modo corto |
+| `./teuton start docs/example/example-01.rb | GNU/Linux modo largo |
+| `ruby teuton docs/example/example-01.rb` | Windows modo corto |
+| `ruby teuton start docs/example/example-01.rb` | Windows modo largo |
 
 > **Resultados**
 > * Veremos un breve *informe en la pantalla*.
@@ -94,6 +99,7 @@ Pero también son válidas estas otras:
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./dsl/README.md)
+* [Proyecto](./proyectos/servidor-de-retos.md): Montar un servidor de retos
 
 ---
 
