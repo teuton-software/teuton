@@ -35,7 +35,7 @@ el comando como usuario `root`.
 > Error que se produce cuando tenemos una versión incorrecta de `ruby`:
 > ![error-version](../../../images/error-version.png)
 
-* `./project -v`, para comprobar se ejecuta el proyecto.
+* `./teuton -v`, para comprobar se ejecuta el proyecto.
 * `rake check`, para comprobar que está todo bien instalado.
 
 ¡Ya lo tenemos!
