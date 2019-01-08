@@ -17,12 +17,12 @@ Tenemos dos formas de hacerlo:
 el comando como usuario `root`.
 
 * `# apt-get install -y git`, para instalar git.
-* `git clone https://github.com/dvarrui/sysadmin-game.git`, para descargar este proyecto.
+* `git clone https://github.com/dvarrui/teuton.git`, para descargar este proyecto.
 
 > Ejemplo de clonación usado comandos `git`:
 > ![git-clone](../../../images/git-clone.png)
 
-* `cd sysadmin-game`, entrar dentro de la carpeta del proyecto.
+* `cd teuton`, entrar dentro de la carpeta del proyecto.
 * `# apt-get install -y ruby`, para instalar ruby.
     * `ruby -v`, para comprobar que la versión instalada >= 2.1.3.
 * `# gem install rake`para instalar rake.
