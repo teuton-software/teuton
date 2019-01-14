@@ -46,6 +46,7 @@ end
 
 desc 'Debian installation'
 task :debian do
+  system('git clone https://github.com/dvarrui/teuton-challenges ')
   names = ['ssh', 'make', 'gcc', 'ruby-dev']
   names.each { |name| system("apt-get install -y #{name}") }
   install_gems packages
@@ -53,6 +54,7 @@ end
 
 desc 'OpenSUSE installation'
 task :opensuse do
+  system('git clone https://github.com/dvarrui/teuton-challenges')
   names = ['openssh', 'ruby2.1-rubygem-pry', 'make', 'gcc', 'ruby-devel']
   options = '--non-interactive'
   names.each { |n| system("zypper #{options} install #{n}") }
@@ -68,9 +70,9 @@ desc 'Update project'
 task :update do
   system('git pull')
   system('cd challenges && git pull')
-#  system('cd challenges && git clone https://github.com/dvarrui/teuton-challenges ')
   install_gems packages
 end
+
 
 def install_gems(list)
   fails = filter_uninstalled_gems(list)
