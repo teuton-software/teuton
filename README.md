@@ -1,7 +1,7 @@
 
 # TEUTON Software
 
-(SysadminGame was his older name)
+_(SysadminGame was his older name)_
 
 ```
 TEUTON are test units for machines (everything).
@@ -69,13 +69,8 @@ Every TEUTON challenge/activity consists of 2 files. Let's look at this demo:
 * `./docs/examples/example-01.yaml`: This file configure every student machine (cases).
 
 Run this demo with [Teuton](./docs/en/command.md) with:
+`ruby teuton docs/example/example-01.rb`
 
-| Run demo with Teuton | Description |
-| -------------------- | ----------- |
-| `./teuton docs/example/example-01.rb` | GNU/Linux short mode |
-| `./teuton start docs/example/example-01.rb` | GNU/Linux long mode |
-| `ruby teuton docs\example\example-01.rb` | Windows short mode |
-| `ruby teuton start docs\example\example-01.rb` | Windows long mode |
 
 > **Results**
 > * You will see a brief *report on the screen* during execution.

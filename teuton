@@ -66,25 +66,25 @@ LONGDESC
     Project.laboratory(path_to_rb_file, options)
   end
 
-  map ['s', '-s', '--start'] => 'start'
-  desc 'start PATH/TO/FILE/FOO.rb', 'Run tests from script file'
+  map ['p', '-p', 'play', '--play'] => 'play'
+  desc 'run PATH/TO/FILE/FOO.rb', 'Run activity script file'
   long_desc <<-LONGDESC
 
   SIMPLE MODE: Run tests from check/demo/foo.rb.
 
-  Example: #{$PROGRAM_NAME} start challenges/demo/foo.rb
+  Example: #{$PROGRAM_NAME} challenges/demo/foo.rb
 
   COMPLEX MODE: Run tests from challenges/demo/foo/start.rb.
 
-  Example: #{$PROGRAM_NAME} start challenges/demo/foo
+  Example: #{$PROGRAM_NAME} challenges/demo/foo
 
 LONGDESC
-  def start(path_to_rb_file)
+  def play(path_to_rb_file)
     Project.run(path_to_rb_file)
   end
 
   def method_missing(m, *_args, &_block)
-    start(m.to_s)
+    play(m.to_s)
   end
 
   def respond_to_missing?(method_name, include_private = false)

@@ -1,4 +1,5 @@
 
-* David Vargas (dvarrui@gmail.com)
-* Manuel Martínez Carbonell
+* David Vargas (dvarrui@protonmail.com)
 * Francisco Vargas Ruiz
+* Albérica
+* Manuel Martínez Carbonell
