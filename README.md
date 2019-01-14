@@ -33,9 +33,7 @@ machiones. At the end the judges only have to run TEUTON and inmediately
 
 So you can do a local installation and use TEUTON to complete challenges on our local machine.
 
-I'm using this application with my students. It's OK, but it could be improved
-(as everythieng of course). I would like other users (interested in sysadmin
-and teaching) to know it, and receive comments, suggestions or
+I'm using this application with my students. It's OK, but it could be improved (as everythieng of course). I would like other users (interested in sysadmin and teaching) to know it, and receive comments, suggestions or
 collaborations to improve it.
 
 Thanks!
@@ -77,7 +75,7 @@ Run this demo with [Teuton](./docs/en/command.md) with:
 > **Results**
 > * You will see a brief *report on the screen* during execution.
 > * The extended *output files* are saved into `./var/example-01/out/` directory.
-> * There exists more activities into the `challenges` directory. This is a good place where save your own challenge/activity scripts.
+> * There exists more activities into the `dvarrui/teuton-challenges` GitHub repository. This is a good place where save your own TEUTON challenges.
 
 ---
 

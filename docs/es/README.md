@@ -1,5 +1,6 @@
 # TEUTON Software
-(Antes se llamaba SysadminGame)
+
+_(Antes se llamaba SysadminGame)_
 
 ```
 TEUTON son unidades de pruebas para máquinas.
@@ -7,8 +8,7 @@ TEUTON comprueba toneladas de objetivos en toneladas de máquinas.
 ```
 
 Es un DSL para escribir `Unidades de Prueba para todo`. Por ejemplo,
-sirve para comprobar si un grupo de máquinas satisface una lista de objetivos
-o requisitos.
+sirve para comprobar si un grupo de máquinas satisface una lista de objetivos o requisitos.
 
 ![logo](../logo.png)
 
@@ -52,12 +52,10 @@ Virtual y/o Real.
 evalúa los trabajos y crea informes para cada estudiante.
 
 > **NOTA**
-> * Las máquinas de los alumnos deben estar accesibles de forma remota por la
-máquina del profesor.
+> * Las máquinas de los alumnos deben estar accesibles de forma remota por la máquina del profesor.
 > * Actualmente se pueden usar los protocolos de acceso remoto
 SSH y Telnet.
-> * Además el profesor debe tener usuario/clave para entrar en las máquinas de
-los alumnos.
+> * Además el profesor debe tener usuario/clave para entrar en las máquinas de los alumnos.
 
 ---
 
@@ -79,15 +77,14 @@ Pero también son válidas estas otras:
 | Ejecutar la demo con Teuton | Descripción |
 | --------------------------- | ----------- |
 | `./teuton docs/example/example-01.rb | GNU/Linux modo corto |
-| `./teuton start docs/example/example-01.rb | GNU/Linux modo largo |
+| `./teuton play docs/example/example-01.rb | GNU/Linux modo largo |
 | `ruby teuton docs/example/example-01.rb` | Windows modo corto |
-| `ruby teuton start docs/example/example-01.rb` | Windows modo largo |
+| `ruby teuton play docs/example/example-01.rb` | Windows modo largo |
 
 > **Resultados**
 > * Veremos un breve *informe en la pantalla*.
 > * los *ficheros de salida* en su versión extendida se guardan en el directorio `./var/example-01/out/`.
-> * Existen más actividades en el directorio `challenges`. Este es un buen sitio donde guardar los scripts que vayamos creando para definir nuestras actividades.
-> * Periódicamente irán apareciendo nuevas actividades dentro del directorio `challenges`.
+> * Existen más actividades en el repositorio de GitHub `dvarrui/teuton-challenges`. Este es un buen sitio donde guardar los scripts que vayamos creando para definir nuestras actividades. Periódicamente irán apareciendo nuevos retos.
 
 ---
 
