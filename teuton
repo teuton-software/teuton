@@ -2,35 +2,17 @@
 # encoding: utf-8
 
 require 'thor'
-
-#require 'pry-byebug'
 require 'rainbow'
+#require 'pry-byebug'
 require_relative 'lib/application'
 require_relative 'lib/project'
+require_relative 'lib/command/version'
+require_relative 'lib/command/create'
 
 # Command Line User Interface
 class ProjectCLI < Thor
+
   map ['h', '-h', '--help'] => 'help'
-
-  map ['v', '-v', '--version'] => 'version'
-  desc 'version', 'Show the program version'
-  def version
-    app = Application.instance
-    print Rainbow(app.name).bright.blue
-    puts  ' (version ' + Rainbow(app.version).green + ')'
-  end
-
-  map ['c', '-c', '--create'] => 'create'
-  desc 'create PROJECTNAME', 'Create files for a new project'
-  long_desc <<-LONGDESC
-  Create files for a new project, called "foo".
-
-  Example: #{$PROGRAM_NAME} create check/demo/foo
-
-LONGDESC
-  def create(path_to_new_dir)
-    Project.create(path_to_new_dir)
-  end
 
   map ['ccf', '-ccf', '--create-config-file'] => 'create-config-file'
   desc 'create-config-file PROJECTNAME', 'Create YAML config file from script file'
