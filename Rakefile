@@ -67,6 +67,8 @@ end
 desc 'Update project'
 task :update do
   system('git pull')
+  system('cd challenges && git pull')
+#  system('cd challenges && git clone https://github.com/dvarrui/teuton-challenges ')
   install_gems packages
 end
 
