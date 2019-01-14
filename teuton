@@ -7,6 +7,7 @@ require 'rainbow'
 require_relative 'lib/application'
 require_relative 'lib/project'
 require_relative 'lib/command/create'
+require_relative 'lib/command/play'
 require_relative 'lib/command/test'
 require_relative 'lib/command/version'
 
@@ -14,23 +15,6 @@ require_relative 'lib/command/version'
 class ProjectCLI < Thor
 
   map ['h', '-h', '--help'] => 'help'
-
-  map ['p', '-p', 'play', '--play'] => 'play'
-  desc 'run PATH/TO/FILE/FOO.rb', 'Run activity script file'
-  long_desc <<-LONGDESC
-
-  SIMPLE MODE: Run tests from check/demo/foo.rb.
-
-  Example: #{$PROGRAM_NAME} challenges/demo/foo.rb
-
-  COMPLEX MODE: Run tests from challenges/demo/foo/start.rb.
-
-  Example: #{$PROGRAM_NAME} challenges/demo/foo
-
-LONGDESC
-  def play(path_to_rb_file)
-    Project.run(path_to_rb_file)
-  end
 
   def method_missing(m, *_args, &_block)
     play(m.to_s)
