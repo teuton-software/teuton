@@ -6,35 +6,14 @@ require 'rainbow'
 #require 'pry-byebug'
 require_relative 'lib/application'
 require_relative 'lib/project'
-require_relative 'lib/command/version'
 require_relative 'lib/command/create'
+require_relative 'lib/command/test'
+require_relative 'lib/command/version'
 
 # Command Line User Interface
 class ProjectCLI < Thor
 
   map ['h', '-h', '--help'] => 'help'
-
-  map ['l', '-l', '--lab'] => 'lab'
-  desc 'lab PATH/TO/FILE/FOO.rb', 'Show laboratory script objectives on screen'
-  option :r, :type => :boolean
-  option :c, :type => :boolean
-  long_desc <<-LONGDESC
-
-
-  #{$PROGRAM_NAME} lab path/to/foo.rb
-  , Show DSL information from <path/to/foo.rb>
-
-  #{$PROGRAM_NAME} lab path/to/foo.rb -c
-  , Revise config information from <path/to/foo.yaml>
-
-  #{$PROGRAM_NAME} lab path/to/foo.rb -r
-  , Show only requests information from  <path/to/foo.rb>
-
-
-LONGDESC
-  def lab(path_to_rb_file)
-    Project.laboratory(path_to_rb_file, options)
-  end
 
   map ['p', '-p', 'play', '--play'] => 'play'
   desc 'run PATH/TO/FILE/FOO.rb', 'Run activity script file'
