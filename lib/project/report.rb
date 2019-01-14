@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 require 'terminal-table'
-require_relative 'application'
-require_relative 'formatter/formatter_factory'
+require_relative '../application'
+require_relative '../formatter/formatter_factory'
 
 =begin
  This class maintain the results of every case, in a structured way.

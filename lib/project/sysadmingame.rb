@@ -1,6 +1,6 @@
 
 require_relative '../application'
-require_relative '../tool'
+require_relative 'tool'
 
 def group(name, &block)
   Application.instance.tasks << { name: name, block: block }
