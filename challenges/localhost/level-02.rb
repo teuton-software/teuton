@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-task "Target 02" do
+group "Target 02" do
 
   target "Create user <"+get(:username)+">"
   request "Debes crear el usuario <NOMBREALUMNO>"

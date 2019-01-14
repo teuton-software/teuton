@@ -1,5 +1,5 @@
 
-task "Target: Grupo" do
+group "Target: Grupo" do
 
   target "Exist group <"+get(:groupname)+">"
   run "cat /etc/group"

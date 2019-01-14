@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-task "Target 03" do
+group "Target 03" do
 
   username = "david"
   groupname = "users"

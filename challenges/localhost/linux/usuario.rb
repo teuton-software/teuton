@@ -1,5 +1,5 @@
 
-task "Target: Usuario" do
+group "Target: Usuario" do
 
   target "Create user <"+get(:username)+">"
   run "id #{get(:username)}"
