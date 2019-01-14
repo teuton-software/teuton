@@ -24,11 +24,10 @@ class Tool
     @app = Application.instance
   end
 
-  def start(&block)
+  def play(&block)
     check_cases!
     instance_eval(&block)
   end
-  alias_method :play, :start
 
   def show(mode = :resume)
     @report.show if mode == :resume || mode == :all
