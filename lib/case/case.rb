@@ -3,7 +3,7 @@
 require 'net/ssh'
 require 'net/sftp'
 require 'net/telnet'
-require 'pry-byebug'
+#require 'pry-byebug'
 
 require_relative '../application'
 require_relative '../utils'
@@ -11,7 +11,8 @@ require_relative 'config'
 require_relative 'dsl'
 require_relative 'result'
 
-#TODO split Case class into several classes: Case, Action?, Session?, RunCommand class
+#TODO split Case class into several classes:
+# * Case, Action?, Session?, RunCommand class
 
 class Case
   include DSL
@@ -98,6 +99,7 @@ class Case
 
     @sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
   end
+  alias_method :play, :start
 
   def close(uniques)
     fails = 0

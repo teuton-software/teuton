@@ -10,6 +10,7 @@ def group(name, &block)
   task(name, &block)
 end
 
-def start(&block)
+def play(&block)
   Tool.instance.start(&block)
 end
+alias start play
