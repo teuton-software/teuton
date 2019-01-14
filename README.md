@@ -46,7 +46,7 @@ Thanks!
 
 Steps to use this tool in *Classroom mode*:
 
-1. **The teacher defines a practice activity** for the group of students.
+1. **The teacher defines a TEUTON activity** for the group of students.
 This is a list of required targets/goals and the way to check it.
 1. **Every student does the classwork** into their own Virtual/Real Machines.
 1. **The teacher runs TEUTON tool**. The tool automaticaly evaluates
@@ -56,21 +56,23 @@ Nice!
 
 > NOTE
 >
-> * The student's machines must be remote conection from teacher computer.
+> * The student's machines must be configured as remote conection from teacher computer.
 > * For now we could use SSH and Telnet protocol.
-> * The teacher must has an user/password to get into students machines.
+> * The teacher must known user/password to get into students machines.
 
 ---
 
 # Quick demo
 
 Every TEUTON challenge/activity consists of 2 files. Let's look at this demo:
-* `./docs/examples/example-01.rb`: This defines the activity (DSL script).
-* `./docs/examples/example-01.yaml`: This file configure every student machine (cases).
+
+| File                          | Description |
+| ----------------------------- | ----------- |
+| docs/examples/example-01.rb   | Defines TEUTON activity (DSL) |
+| docs/examples/example-01.yaml | Configuration file with every student machine |
 
 Run this demo with [Teuton](./docs/en/command.md) with:
 `ruby teuton docs/example/example-01.rb`
-
 
 > **Results**
 > * You will see a brief *report on the screen* during execution.
@@ -83,9 +85,9 @@ Run this demo with [Teuton](./docs/en/command.md) with:
 
 * [Videos](./docs/en/videos.md)
 * [Installation](./docs/en/installation.md)
-* [Teuton command](./docs/en/command.md)
+* [Teuton command list](./docs/en/command.md)
 * [Examples](./docs/en/examples.md)
-* [Create your first activity](./docs/en/first-activity.md)
+* [How to create your first activity](./docs/en/first-activity.md)
 * [DSL Key words](./docs/en/dsl/README.md)
 * [TO-DO list](./TODO.md)
 

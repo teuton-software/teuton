@@ -1,5 +1,5 @@
 
-class ProjectCLI < Thor
+class Teuton < Thor
 
   map ['v', '-v', '--version'] => 'version'
   desc 'version', 'Show the program version'

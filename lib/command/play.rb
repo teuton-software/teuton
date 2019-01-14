@@ -1,5 +1,5 @@
 
-class ProjectCLI < Thor
+class Teuton < Thor
 
   map ['p', '-p', 'play', '--play'] => 'play'
   desc 'play PATH/TO/FILE/FOO.rb', 'Run activity script file'

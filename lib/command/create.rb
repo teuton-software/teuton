@@ -1,5 +1,5 @@
 
-class ProjectCLI < Thor
+class Teuton < Thor
 
   map ['c', '-c', '--create'] => 'create'
   desc 'create PATH/TO/DIR/PROJECTNAME', 'Create files for a new project'

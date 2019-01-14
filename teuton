@@ -12,7 +12,7 @@ require_relative 'lib/command/test'
 require_relative 'lib/command/version'
 
 # Command Line User Interface
-class ProjectCLI < Thor
+class Teuton < Thor
 
   map ['h', '-h', '--help'] => 'help'
 
@@ -25,4 +25,4 @@ class ProjectCLI < Thor
   end
 end
 
-ProjectCLI.start(ARGV)
+Teuton.start(ARGV)
