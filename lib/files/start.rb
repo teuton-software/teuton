@@ -1,5 +1,5 @@
 
-task "TASK NAME" do
+group "GROUP NAME" do
 
   target "TARGET DESCRIPTION"
   goto :localhost, :exec => "COMMAND"
@@ -7,7 +7,7 @@ task "TASK NAME" do
 
 end
 
-start do
+play do
   show
   export
 end

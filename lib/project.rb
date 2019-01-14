@@ -12,38 +12,46 @@ require_relative 'application'
 # * verboseln
 # * verbose
 module Project
-  def self.create(pathtofile)
-    projectname = File.basename(pathtofile)
-    projectdir  = File.dirname(pathtofile)
+  def self.create(pathtodir)
+    projectdir  = pathtodir
+    projectname = File.basename(pathtodir)
 
     puts "\n[INFO] Creating project <#{Rainbow(projectname).bright}>"
 
     # Directory
     if Dir.exist? projectdir
-      puts "* Exists directory!  => #{Rainbow(projectdir).yellow}"
+      puts "* Exists dir!        => #{Rainbow(projectdir).yellow}"
     else
-      puts "* Creating directory => #{Rainbow(projectdir).green}"
-      Dir.mkdir(projectdir)
+      begin
+        Dir.mkdir(projectdir)
+        puts "* Creating dir        => #{Rainbow(projectdir).green}"
+      rescue Exception => e
+        puts "* Creating dir  ERROR => #{Rainbow(projectdir).red}"
+      end
     end
 
-    scriptfilepath = pathtofile + '.rb'
-    copyfile('lib/config/lab.rb', scriptfilepath) # Ruby script
+    scriptfilepath = projectdir + '/start.rb'
+    copyfile('lib/files/start.rb', scriptfilepath) # Ruby script
 
-    configfilepath = pathtofile + '.yaml'
-    copyfile('lib/config/lab.yaml', configfilepath) # Configfile
+    configfilepath = projectdir + '/config.yaml'
+    copyfile('lib/files/config.yaml', configfilepath) # Configfile
 
     gitignorefilepath = projectdir + '/.gitignore'
-    copyfile('lib/config/gitignore', gitignorefilepath) # gitignore
+    copyfile('lib/files/gitignore', gitignorefilepath) # gitignore
 
     puts ''
   end
 
   def self.copyfile(target, dest)
     if File.exist? dest
-      puts "* Exists file!       => #{Rainbow(dest).yellow}"
+      puts "* Exists file!        => #{Rainbow(dest).yellow}"
     else
-      puts "* Creating file      => #{Rainbow(dest).green}"
-      FileUtils.cp(target, dest)
+      begin
+        FileUtils.cp(target, dest)
+        puts "* Creating file       => #{Rainbow(dest).green}"
+      rescue Exception => e
+        puts "* Creating file ERROR => #{Rainbow(dest).red}"
+      end
     end
   end
 
