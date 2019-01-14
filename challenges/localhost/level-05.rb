@@ -3,7 +3,7 @@
 require_relative 'linux/usuario'
 require_relative 'linux/grupo'
 
-start do
+play do
   show
   export
 end

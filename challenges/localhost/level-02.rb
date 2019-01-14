@@ -14,7 +14,7 @@ task "Target 02" do
 
 end
 
-start do
+play do
 #  show
   export
 end

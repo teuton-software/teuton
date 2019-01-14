@@ -9,7 +9,7 @@ task "Target 01" do
 
 end
 
-start do
+play do
   show
   export
 end

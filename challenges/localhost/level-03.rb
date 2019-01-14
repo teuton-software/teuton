@@ -23,7 +23,7 @@ task "Target 03" do
   expect result.grep!(home).grep!(username).count!.equal?(1)
 end
 
-start do
+play do
   show
   export
 end
