@@ -69,7 +69,7 @@ end
 desc 'Update project'
 task :update do
   system('git pull')
-  system('cd challenges && git pull')
+  system('cd teuton-challenges && git pull')
   install_gems packages
 end
 
