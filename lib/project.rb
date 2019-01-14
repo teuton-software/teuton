@@ -51,7 +51,7 @@ module Project
     app = Application.instance
     find_filenames_for(pathtofile)
 
-    require_relative 'laboratory'
+    require_relative 'project/laboratory'
     require_relative "../#{app.script_path}"
     lab = Laboratory.new("../#{app.script_path}", app.config_path)
     lab.show_requests if options[:r]
