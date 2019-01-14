@@ -1,13 +1,8 @@
 
-require_relative 'application'
-require_relative 'tool'
-
-#def task(name, &block)
-#  Application.instance.tasks << { name: name, block: block }
-#end
+require_relative '../application'
+require_relative '../tool'
 
 def group(name, &block)
-#  task(name, &block)
   Application.instance.tasks << { name: name, block: block }
 end
 alias task group

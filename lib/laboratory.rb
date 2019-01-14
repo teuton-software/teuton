@@ -8,14 +8,12 @@ require_relative 'case/result'
 def group(name, &block)
   Application.instance.tasks << { name: name, block: block }
 end
-
-def task(name, &block)
-  group(name, &block)
-end
+alias task group
 
 def start(&block)
   # don't do nothing
 end
+alias play start
 
 # Show objectives stats from RB script file
 class Laboratory
