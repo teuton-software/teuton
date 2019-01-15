@@ -48,7 +48,7 @@ desc 'Get challenges from git repository'
 task :get_challenges do
   repo_name = 'teuton-challenges'
   system("git clone https://github.com/dvarrui/#{repo_name}")
-  system("mv #{repo-name} challenges")
+  system("mv #{repo_name} challenges")
 end
 
 desc 'Debian installation'
