@@ -6,11 +6,11 @@
 Para ejecutar una actividad lo haremos de cualquiera de las siguientes formas:
 
 ```
-./teuton docs/example/example-01.rb           # RECOMMENDED: Use this!
+./teuton docs/example/example-01.rb          # RECOMMENDED: Use this!
 
-./teuton start docs/example/example-01.rb     # Long way
-ruby teuton docs/example/example-01.rb        # Windows way
-ruby teuton start docs/example/example-01.rb  # Windows long way
+./teuton play docs/example/example-01.rb     # Long way
+ruby teuton docs/example/example-01.rb       # Windows way
+ruby teuton play docs/example/example-01.rb  # Windows long way
 ```
 
 ---
@@ -18,16 +18,13 @@ ruby teuton start docs/example/example-01.rb  # Windows long way
 ## Sin parámetros
 
 ```
-teuton> ./teuton
+> ./teuton
 Commands:
-  teuton create PROJECTNAME              # Create files for a new project
-  teuton create-config-file PROJECTNAME  # Create YAML config file from script file
+  teuton create PATH/TO/DIR/PROJECTNAME  # Create files for a new project
   teuton help [COMMAND]                  # Describe available commands or one specific command
-  teuton lab PATH/TO/FILE/FOO.rb         # Show laboratory script objectives on screen
-  teuton start PATH/TO/FILE/FOO.rb       # Run tests from script file
+  teuton play PATH/TO/FILE/FOO.rb        # Run activity script file
+  teuton test PATH/TO/FILE/FOO.rb        # Show laboratory script objectives on screen
   teuton version                         # Show the program version
-
-teuton>
 ```
 
 ---
@@ -35,14 +32,15 @@ teuton>
 ## Comprobar un reto sin ejecutarlo
 
 ```
-./teuton lab docs/examples/example-01.rb
+> ./teuton test docs/examples/example-01.rb
+
 [INFO] ScriptPath => docs/examples/example-01.rb
 [INFO] ConfigPath => docs/examples/example-01.yaml
 [INFO] TestName   => example-01
 
-+---------------------------------------------+
-| TASK: Create user obiwan using several ways |
-+---------------------------------------------+
++-----------------------------------------------+
+| GROUPS: Create user obiwan using several ways |
++-----------------------------------------------+
 (001) target Way 1: Checking user <obiwan> using commands
       goto   localhost and {:exec=>"id obiwan| wc -l"}
       expect 1 (String)
@@ -69,7 +67,7 @@ teuton>
 +--------------+-------+
 | DSL Stats    | Count |
 +--------------+-------+
-| Tasks        | 1     |
+| Groups       | 1     |
 | Targets      | 4     |
 | Goto         | 4     |
 |  * localhost | 4     |
@@ -79,15 +77,19 @@ teuton>
 | Gets         | 0     |
 | Sets         | 0     |
 +--------------+-------+
-[INFO] Reading Config File content...
-teuton>
++----------------------+
+| Revising CONFIG file |
++----------------------+
 ```
 
 ---
 
-# Otras opciones 
+# Otras opciones
 
 | Comando          | Descripción                     |
 | ---------------- | ------------------------------- |
 | ./teuton         | Muestra la ayuda del programa   |
 | ./teuton version | Muestra la versión del programa |
+| ./teuton play    | Ejecutar un reto  |
+| ./teuton test    | Comprobar un reto |
+| ./teuton create  | Crear un esqueleto para un nuevo reto |

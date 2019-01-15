@@ -1,15 +1,15 @@
 
 # Instalación
 
-A continuación se explica el proceso de instalación para
-* La máquina del profesor y
-* Las máquinas de los alumnos
-
-> Dependiendo de la plataforma que tengamos el proceso de instalación puede variar.
+A continuación se explica el proceso de instalación:
+* Instalar Teuton  (En la máquina del profesor)
+* Instalar Servidor SSH (En las máquinas de los alumnos)
 
 ---
 
 # Máquina del profesor (Equipo principal)
+
+> Dependiendo de la plataforma que tengamos el proceso de instalación puede variar.
 
 Un equipo debe ser el host principal o del profesor.
 
@@ -24,9 +24,10 @@ Este equipo es el que inicia los test de comprobación hacia el resto de las má
 
 # Máquinas de los alumnos (Equipos remotos)
 
+> Dependiendo de la plataforma que tengamos el proceso de instalación puede variar.
+
 Los equipos remotos serán cada uno de los equipos usados por los estudiantes
-para realizar la actividad. A veces cada estudiante sólo necesitará una máquina,
-pero en otros casos cada estudiante puede necesitar más de una.
+para realizar la actividad. A veces cada estudiante sólo necesitará una máquina, pero en otros casos cada estudiante puede necesitar más de una.
 
 * Sólo hay que instalar el acceso remoto SSH y/o Telnet.
     * [Acceso remoto](./general/alumno.md).

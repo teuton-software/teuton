@@ -1,17 +1,17 @@
 
 # Creating our first activity
 
-How to create our own activity test, in four steps:
+How to create our own challenge, in four steps:
 
 ---
 
 ## STEP 1: Create skeleton files
 
-You can create the files manually, or run `./project create check/foo/demo`.
+You can create the files manually, or run `./teuton create check/foo`.
 
 This command will create:
-* `check/foo/demo.rb`: Script
-* `check/foo/demo.yaml`: YAML Config file.
+* `check/foo/start.rb`: Script
+* `check/foo/config.yaml`: YAML Config file.
 * `check/foo/.gitignore`: To prevent upload YAML and JSON files to Git repository.
 
 > Also, manually, you can create this files.
@@ -25,9 +25,11 @@ Let's see an example:
 
 ```
 task "task_name" do
+
 	target "Checking user david"
 	goto   :host1, :exec => "id david"
 	expect result.grep("david").count.equal(1)
+
 end
 ```
 
@@ -46,7 +48,7 @@ into the target host.
 
 ## STEP 3: Personalize Configfile
 
-We need a YAML configuration file (`check/foo/demo.yaml`), with
+We need a YAML configuration file (`check/foo/config.yaml`), with
 the params and hosts used by our script.
 
 > Let's see an example:
@@ -70,6 +72,6 @@ the params and hosts used by our script.
 
 ## STEP 4: run the script
 
-`/teuton check/foo/demo.rb`
+`/teuton check/foo/start.rb`
 
-That's all!
+_That's all!_
