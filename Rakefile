@@ -44,9 +44,15 @@ task :clean do
   FileUtils.rm_rf(Dir.glob(File.join('.', 'var', '*')))
 end
 
+desc 'Get challenges from git repository'
+task :get_challenges do
+  repo_name = 'teuton-challenges'
+  system("git clone https://github.com/dvarrui/#{repo_name}")
+  system("mv #{repo-name} challenges")
+end
+
 desc 'Debian installation'
 task :debian do
-  system('git clone https://github.com/dvarrui/teuton-challenges ')
   names = ['ssh', 'make', 'gcc', 'ruby-dev']
   names.each { |name| system("apt-get install -y #{name}") }
   install_gems packages
@@ -54,7 +60,6 @@ end
 
 desc 'OpenSUSE installation'
 task :opensuse do
-  system('git clone https://github.com/dvarrui/teuton-challenges')
   names = ['openssh', 'ruby2.1-rubygem-pry', 'make', 'gcc', 'ruby-devel']
   options = '--non-interactive'
   names.each { |n| system("zypper #{options} install #{n}") }
