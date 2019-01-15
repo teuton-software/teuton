@@ -2,7 +2,6 @@
 
 # example-01
 
-
 ## Objetivos
 
 * En este ejemplo, veremos como definir un objetivo evaluable.
