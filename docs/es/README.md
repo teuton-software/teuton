@@ -25,8 +25,7 @@ remota y automática el trabajo de clase realizado por los alumnos en sus máqui
 *Modo concurso*
 
 También es útil para usar en concursos o competiciones de administración
-de sistemas. Donde los concursantes compiten haciendo su trabajo en máquinas
-reales y/o virtuales y al finalizar los jueces ejecutan *Teuton*
+de sistemas. Donde los concursantes compiten haciendo su trabajo en máquinas reales y/o virtuales y al finalizar los jueces ejecutan *Teuton*
 para evaluarlas y puntuar a cada concursante. Estoy usando *Teuton* con mis estudiantes.
 
 *Modo retos*

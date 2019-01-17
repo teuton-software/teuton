@@ -1,9 +1,11 @@
 
 # Instalación
 
-A continuación se explica el proceso de instalación:
-* Instalar Teuton  (En la máquina del profesor)
-* Instalar Servidor SSH (En las máquinas de los alumnos)
+Para usar *Teuton* hay distintos [modos](../modos.md).
+Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
+
+* [Instalación de Nodo-T o nodo teutón](./nodo-t.md): Es un host que tiene instalado el software Teutón.
+* [Instalación de Nodo-S o nodo SSH](./nodo-s.md): Es un host que tiene instalado el servidor SSH.
 
 ---
 
