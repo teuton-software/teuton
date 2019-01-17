@@ -8,7 +8,7 @@
   Teacher host (localhost) must have GNU/Linux OS.
 =end
 
-task "Create user obiwan using several ways" do
+group "Create user obiwan using several ways" do
 
   target "Way 1: Checking user <obiwan> using commands"
   goto :localhost, :exec => "id obiwan| wc -l"
@@ -27,7 +27,7 @@ task "Create user obiwan using several ways" do
   expect result.find!(/obiwan|obi-wan/).count!.eq 1
 end
 
-start do
+play do
   show
   export
 end

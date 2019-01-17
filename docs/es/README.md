@@ -14,71 +14,35 @@ sirve para comprobar si un grupo de máquinas satisface una lista de objetivos o
 
 ---
 
-# Introducción
-
-*Modo aula*
-
-Es una herramienta Software Libre que podemos usar en una clase con ordenadores
-(Laboratorio STEM). *Teuton* ayuda a los profesores a evaluar de forma
-remota y automática el trabajo de clase realizado por los alumnos en sus máquinas.
-
-*Modo concurso*
-
-También es útil para usar en concursos o competiciones de administración
-de sistemas. Donde los concursantes compiten haciendo su trabajo en máquinas reales y/o virtuales y al finalizar los jueces ejecutan *Teuton*
-para evaluarlas y puntuar a cada concursante. Estoy usando *Teuton* con mis estudiantes.
-
-*Modo retos*
-
-Además se puede instalar el local y usarla para hacer retos en nuestra propia máquina.
-
-**Teuton** está bien, pero se puede mejorar (como todo en la vida).
-Me gustaría que otros usuarios (interesados en sistemas y en la educación) la conozcan, y recibir comentarios, sugerencias o colaboraciones para mejorar la herramientas.
-
-¡Muchas gracias!
-
----
-
 # Descripción
 
 Los pasos para trabajar en el modo aula son:
 
-1. **El profesor define una actividad práctica** para el grupo de estudiantes.
-Esto es una lista de objetivos a cumplir, y cómo comprobar dichos objetivos.
-1. **Cada estudiante realiza el trabajo de clase** en su propia máquina
-Virtual y/o Real.
-1. **El profesor ejecuta la herramienta**. La herramienta automáticamente
-evalúa los trabajos y crea informes para cada estudiante.
+1. **El EVALUADOR define un test o actividad práctica** para un grupo de máquinas. Esto es una lista de objetivos a cumplir, y cómo comprobar dichos objetivos.
+1. **Cada CONCURSANTE realiza el trabajo para cumplir los objetivos del test** en su propia máquina Virtual y/o Real.
+1. **El EVALUADOR ejecuta la herramienta**. La herramienta automáticamente
+evalúa los trabajos y crea informe individuales por máquina y resumen global.
 
 > **NOTA**
-> * Las máquinas de los alumnos deben estar accesibles de forma remota por la máquina del profesor.
+> * Las máquinas evaluadas deben estar accesibles de forma remota por la máquina del evaluador.
 > * Actualmente se pueden usar los protocolos de acceso remoto
 SSH y Telnet.
-> * Además el profesor debe tener usuario/clave para entrar en las máquinas de los alumnos.
+> * Además el evaluador debe tener usuario/clave para entrar en las máquinas remotas.
 
 ---
 
 # Demostración rápida
 
-Cada actividad consiste de 2 ficheros. Echemos un vistazo al siguiente ejemplo:
+Cada test/reto/actividad consiste de 2 ficheros. Echemos un vistazo al siguiente ejemplo:
 
 | Fichero | Descripción |
 | ------- | ----------- |
-| [./docs/examples/example-01.rb](../examples/example-01.rb) | Script que define la actividad o el reto |
-| [./docs/examples/example-01.yaml](../examples/example-01.yaml) | Fichero que contiene las configuraciones para cada máquina de cada estudiante (casos) |
+| [./docs/examples/example-01.rb](../examples/example-01.rb) | Script que define el test/reto|
+| [./docs/examples/example-01.yaml](../examples/example-01.yaml) | Fichero que contiene las configuraciones para cada máquina evaluada (casos) |
 
-Para ejecutar la actividad de ejemplo con [Teuton](./comando.md) haremos:
+Para ejecutar el test/reto de ejemplo con [Teuton](./comando.md) haremos:
 
-`./teuton docs/example/example-01.rb`
-
-Pero también son válidas estas otras:
-
-| Ejecutar la demo con Teuton | Descripción |
-| --------------------------- | ----------- |
-| `./teuton docs/example/example-01.rb | GNU/Linux modo corto |
-| `./teuton play docs/example/example-01.rb | GNU/Linux modo largo |
-| `ruby teuton docs/example/example-01.rb` | Windows modo corto |
-| `ruby teuton play docs/example/example-01.rb` | Windows modo largo |
+`./teuton play docs/example/example-01.rb`
 
 > **Resultados**
 > * Veremos un breve *informe en la pantalla*.
@@ -104,3 +68,8 @@ Pero también son válidas estas otras:
 
 * **Correo**: `teuton.software@protonmail.com`
 * **Twitter**: `@SoftwareTeuton`
+
+**Teuton** está bien, pero se puede mejorar (como todo en la vida).
+Me gustaría que otros usuarios (interesados en sistemas, unidades de prueba y/o en educación) la conozcan, y recibir comentarios, sugerencias o colaboraciones para mejorar la herramientas.
+
+¡Muchas gracias!
