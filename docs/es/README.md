@@ -90,8 +90,9 @@ Pero también son válidas estas otras:
 # Documentación
 
 * [Vídeos](./videos.md)
-* [Instalación](./modos.md)
-* [Comando Teuton](./comando.md)
+* [Modos de uso](./modos.md)
+* [Instalación](./instalar.md)
+* [Comando principal Teuton](./comando.md)
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./dsl/README.md)

@@ -1,11 +1,9 @@
 
-# Instalación y Modos de uso
+# Modos de uso
 
 Hay distintas formas de usar *Teuton*, o modos de uso.
-Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
-
-* [Instalación de Nodo-T o nodo teutón](./instalar/nodo-t/): Es un host que tiene instalado el software Teutón.
-* [Instalación de Nodo-S o nodo SSH](./instalar/nodo-s/): Es un host que tiene instalado el servidor SSH.
+Pero cada modo hay dos tipos de nodos.
+Estas son:
 
 ---
 

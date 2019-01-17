@@ -1,7 +1,7 @@
 
 # Instalación
 
-Para usar *Teuton* hay distintos [modos](../modos.md).
+Para usar *Teuton* hay distintos [modos](./modos.md).
 Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
 
 * **Instalación de Nodo-T o nodo teutón**: Es un host que tiene instalado el software Teutón.
