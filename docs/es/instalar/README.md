@@ -4,8 +4,8 @@
 Para usar *Teuton* hay distintos [modos](../modos.md).
 Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
 
-* [Instalación de Nodo-T o nodo teutón](./nodo-t.md): Es un host que tiene instalado el software Teutón.
-* [Instalación de Nodo-S o nodo SSH](./nodo-s.md): Es un host que tiene instalado el servidor SSH.
+* [Instalación de Nodo-T o nodo teutón](./nodo-t/README.md): Es un host que tiene instalado el software Teutón.
+* [Instalación de Nodo-S o nodo SSH](./nodo-s/README.md): Es un host que tiene instalado el servidor SSH.
 
 ---
 

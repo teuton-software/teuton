@@ -1,5 +1,10 @@
 
-# Instalación general del equipo del profesor
+# Instalación del NODO-T
+
+A continuación se explica el proceso de intalación manual.
+Puede consultar también:
+* Instalación [NODO-T en Debian](./debian.md)
+* Instalación [NODO-T en OpenSUSE](./opensuse.md)
 
 ## Software requerido en el host principal
 
@@ -21,8 +26,10 @@ Instalar rake
 
 Tenemos dos formas de descargar el proyecto:
 * (a) `git clone https://github.com/dvarrui/teuton.git`
-* (b) Descargando el zip desde la página del [repositorio GitHub](https://github.com/dvarrui/teuton-game).
+* (b) Descargando el zip desde la página del [repositorio GitHub](https://github.com/dvarrui/teuton).
 
 Instalar las gemas:
 * `cd teuton`, entrar en la carpeta del proyecto.
 * Ejecutar `sudo rake gems` para instalar las gemas necesarias en nuestro sistema.
+* Ejecutar `sudo rake get_challenges` para descargar algunos retos de prueba.
+* Ejecutar `rake` para comprobar que todo está correcto.
