@@ -18,9 +18,7 @@ task :check do
   puts "[INFO] Version #{Application.instance.version}"
   fails = filter_uninstalled_gems(packages)
 
-  if fails.size.zero?
-    puts '[ OK ] Gems installed OK!'
-  else
+  unless fails.size.zero?
     puts '[ERROR] Gems to install!: ' + fails.join(',')
   end
 
@@ -31,9 +29,7 @@ task :check do
   d = File.join('.', 'tests', '**', '*_test.rb')
   e = Dir.glob(d)
 
-  if b.size == e.size
-    puts "[ OK ] All ruby tests are executed by #{testfile}"
-  else
+  unless b.size == e.size
     puts "[FAIL] Some ruby tests are not executed by #{testfile}"
   end
 
