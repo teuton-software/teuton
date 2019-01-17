@@ -6,6 +6,8 @@ require_relative 'lib/application'
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
 packages += ['thor', 'json', 'minitest']
 #packages += ['pry-byebug']
+challenges_repo = 'teuton-challenges'
+challenges_dir = 'challenges'
 
 desc 'Default'
 task default: :check do
@@ -44,13 +46,6 @@ task :clean do
   FileUtils.rm_rf(Dir.glob(File.join('.', 'var', '*')))
 end
 
-desc 'Get challenges from git repository'
-task :get_challenges do
-  repo_name = 'teuton-challenges'
-  system("git clone https://github.com/dvarrui/#{repo_name}")
-  system("mv #{repo_name} challenges")
-end
-
 desc 'Debian installation'
 task :debian do
   names = ['ssh', 'make', 'gcc', 'ruby-dev']
@@ -73,15 +68,28 @@ end
 
 desc 'Update project'
 task :update do
+  puts "[INFO] Pulling <teuton> repo..."
   system('git pull')
-  system('cd teuton-challenges && git pull')
+  puts "[INFO] Pulling <#{challenges_repo}> repo..."
+  system("cd #{challenges_dir}; git pull")
   install_gems packages
 end
 
+desc 'Get challenges from git repository'
+task :get_challenges do
+  puts "[INFO] getting challenges from repo..."
+  system("git clone https://github.com/dvarrui/#{challenges_repo}")
+  system("mv #{challenges_repo} #{challenges_dir}")
+end
 
 def install_gems(list)
   fails = filter_uninstalled_gems(list)
-  fails.each { |name| system("gem install #{name}") }
+  if fails.size > 0
+    puts "[INFO] Installing gems..."
+    fails.each { |name| system("gem install #{name}") }
+  else
+    puts "[ OK ] Gems installed"
+  end
 end
 
 def filter_uninstalled_gems(list)
