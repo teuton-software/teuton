@@ -89,8 +89,8 @@ Pero también son válidas estas otras:
 
 # Documentación
 
-* [Vídeos](./doc/en/videos.md)
-* [Instalación](./instalacion/README.md)
+* [Vídeos](./videos.md)
+* [Instalación](./modos.md)
 * [Comando Teuton](./comando.md)
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
