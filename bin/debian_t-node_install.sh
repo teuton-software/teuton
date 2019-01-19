@@ -12,6 +12,7 @@ git clone https://github.com/dvarrui/teuton.git
 echo "[INFO] Checking..."
 cd teuton
 ./teuton version
+rake get_challenges
 rake
 
 echo "[INFO] Finish!"
