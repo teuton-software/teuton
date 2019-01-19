@@ -3,15 +3,14 @@
 CONFIGFILE="/etc/ssh/sshd_config"
 BACKUPFILE="$CONFIGFILE.bak"
 
-echo "[INFO] Debian S-NODE installation"
-echo "[INFO] Installation..."
+echo "[INFO] DEBIAN S-NODE installation"
+echo "[INFO] Installing PACKAGES..."
 apt in -y openssh-server
-systemctl enable openssh-server
 
-echo "[INFO] Configuration..."
-
+echo "[INFO] Configuring..."
 cp $CONFIGFILE $BACKUPFILE
 sed 's/^#PermitRootLogin yes/PermitRootLogin yes/g' $BACKUPFILE > $CONFIGFILE
 systemctl restart openssh-server
+systemctl enable openssh-server
 
 echo "[INFO] Finish!"

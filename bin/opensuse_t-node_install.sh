@@ -1,9 +1,8 @@
 #!/bin/bash
 
-echo "[INFO] DEBIAN T-NODE installation"
+echo "[INFO] OPENSUSE T-NODE installation"
 echo "[INFO] Installing PACKAGES..."
-apt in -y git
-apt in -y ruby irb
+zypper in -y git
 gem install rake
 
 echo "[INFO] Cloning git REPO..."
