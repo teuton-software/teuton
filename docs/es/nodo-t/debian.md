@@ -2,7 +2,7 @@
 # Instalación del NODO-T para Debian
 
 Instalar y configurar Debian como nodo-T:
-* Descagar [fichero](../../../bin/debian_t-node_install.sh).
+* Descargar [fichero](../../../bin/debian_t-node_install.sh).
 * Ejecutar `sudo debian_t-node_install.sh`
 
 ---

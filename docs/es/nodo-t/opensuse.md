@@ -2,7 +2,7 @@
 # Instalación del NODO-T en OpenSUSE
 
 Instalar y configurar OpenSUSE como nodo-T:
-* Descagar [fichero](../../../bin/opensuse_t-node_install.sh).
+* Descargar [fichero](../../../bin/opensuse_t-node_install.sh).
 * Ejecutar `sudo opensuse_t-node_install.sh`
 
 ---
