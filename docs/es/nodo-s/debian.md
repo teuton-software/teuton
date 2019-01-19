@@ -1,9 +1,9 @@
 
 # Instalación del NODO-S en Debian
 
-Para instalar y configurar Debian como nodo-S podemos usar el siguiente script del directorio `bin`:
-
-`opensuse_s-node_install.sh`
+Instalar y configurar Debian como nodo-S:
+* Descagar [fichero](../../../bin/debian_s-node_install.sh).
+* Ejecutar `sudo debian_s-node_install.sh`
 
 ---
 

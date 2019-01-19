@@ -1,9 +1,9 @@
 
 # Instalación del NODO-S en OpenSUSE
 
-Para instalar y configurar OpenSUSE como nodo-S podemos usar el siguiente script del directorio `bin`:
-
-`opensuse_s-node_install.sh`
+Instalar y configurar OpenSUSE como nodo-S:
+* Descagar [fichero](../../../bin/opensuse_s-node_install.sh).
+* Ejecutar `sudo opensuse_s-node_install.sh`
 
 ---
 
