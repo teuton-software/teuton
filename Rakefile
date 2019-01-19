@@ -71,10 +71,17 @@ task :update do
   install_gems packages
 end
 
-desc 'Get challenges from git repository'
+desc 'Get challenges from repository (user)'
 task :get_challenges do
   puts "[INFO] getting challenges from repo..."
-  system("git clone https://github.com/dvarrui/#{challenges_repo}")
+  system("git clone https://github.com/dvarrui/#{challenges_repo}.git")
+  system("mv #{challenges_repo} #{challenges_dir}")
+end
+
+desc 'Get challenges from repository (dev)'
+task :get_challenges_dev do
+  puts "[INFO] getting challenges from repo..."
+  system("git clone git@github.com:dvarrui/#{challenges_repo}.git")
   system("mv #{challenges_repo} #{challenges_dir}")
 end
 
