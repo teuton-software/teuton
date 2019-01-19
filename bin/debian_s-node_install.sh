@@ -13,3 +13,5 @@ echo "[INFO] Configuration..."
 cp $CONFIGFILE $BACKUPFILE
 sed 's/^#PermitRootLogin yes/PermitRootLogin yes/g' $BACKUPFILE > $CONFIGFILE
 systemctl restart openssh-server
+
+echo "[INFO] Finish!"
