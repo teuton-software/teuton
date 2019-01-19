@@ -1,6 +1,14 @@
 
 # Instalación del NODO-T en OpenSUSE 13.2
 
+Para instalar y configurar OpenSUSE como nodo-T podemos usar el siguiente script del directorio `bin`:
+
+`opensuse_t-node_install.sh`
+
+---
+
+# Explicación
+
 ## Software requerido
 
 * Software SSH cliente: Se usará para conectar con el resto de máquinas (También se podría usar el cliente Telnet).
@@ -19,7 +27,7 @@
 > ![git-clone](../../../images/git-clone.png)
 
 * `cd teuton`, entrar dentro de la carpeta del proyecto.
-* `sudo zypper install ruby`, para instalar ruby.
+* Ruby ya debe estar instalado por defecto.
     * `ruby -v`, para comprobar que la versión instalada >= 2.1.3.
 * `sudo gem install rake`para instalar rake.
     * `rake --version` para comprobar que la versión instalada =>10.4.2.

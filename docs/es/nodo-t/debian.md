@@ -1,6 +1,14 @@
 
 # Instalación del NODO-T para Debian 8
 
+Para instalar y configurar Debian como nodo-T podemos usar el siguiente script del directorio `bin`:
+
+`debian_t-node_install.sh`
+
+---
+
+# Explicación
+
 A continuación se muestra cómo realizar la instalación del programa
 *teuton* en una máquina con el sistema operativo Debian 8.
 
