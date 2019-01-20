@@ -13,49 +13,32 @@ Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
 
 ## NODO-T: Instalación para OpenSUSE
 
-Instalar y configurar OpenSUSE como nodo-T:
-* Descargar [fichero](../../../bin/opensuse_t-node_install.sh).
-    * `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_t-node_install.sh`
+* Descargar [fichero](../../../bin/opensuse_t-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_t-node_install.sh`
 * Ejecutar `sudo opensuse_t-node_install.sh`
 
 ## NODO-T: Instalación para Debian
 
-Instalar y configurar Debian como nodo-T:
-* Descargar [fichero](../../../bin/debian_t-node_install.sh).
-    * `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_t-node_install.sh`
+* Descargar [fichero](../../../bin/debian_t-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_t-node_install.sh`
 * Ejecutar `sudo debian_t-node_install.sh`
 
 ## NODO-T: Instalación en Windows
 
 * Instalar Git.
 * Instalar Ruby.
-* Descargar [fichero](../../../bin/windows_t-node_install.sh).
-    * `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/windows_t-node_install.sh`
+* Descargar [fichero](../../../bin/windows_t-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/windows_t-node_install.sh`
 * Ejecutar `windows_t-node_install.bat`
 
 ## NODO-T: Instalación manual
 
-**Instalar git**
-
-**Instalar ruby:**
-* Se requiere porque el programa está desarrollado en ruby.
-* ruby -v => 2.1.3p242. Comprobamos nuestra versión actual de ruby.
-
-**Instalar rake**
-* gem install rake, para instalar
-* rake --version, comprobar la versión instalada (>= 10.4.2).
-
-**Decargar el proyecto**
-(a) git clone https://github.com/dvarrui/teuton.git
-(b) Descargando el zip desde la página del repositorio GitHub.
-
-**Instalar las gemas**
-* cd teuton, entrar en la carpeta del proyecto.
-* Ejecutar sudo rake gems para instalar las gemas necesarias en nuestro sistema.
-
-**Descargar los retos de ejemplo**
-* Ejecutar sudo rake get_challenges para descargar algunos retos de prueba.
-* Ejecutar rake para comprobar que todo está correcto.
+| Id | Paso             | Descripción |
+| -- | ---------------- | ----------- |
+| 1  | Instalar git     | |
+| 2  | Instalar ruby    | Se requiere porque el programa está desarrollado en ruby. Ejecutar `ruby -v` (2.1.3p242) para comprobar la versión actual de ruby) |
+| 3  | Instalar rake | gem install rake. Para comprobar la versión hacer `rake --version` (>= 10.4.2) |
+| 4  | Descargar el proyecto | (a) `git clone https://github.com/dvarrui/teuton.git` (b) Descargando el zip desde la página del repositorio GitHub |
+| 5  | Instalar las gemas | `cd teuton`, entrar en la carpeta del proyecto, y rjecutar `rake gems` para instalar las gemas necesarias en nuestro sistema |
+| 6  | Descargar los retos de ejemplo | `rake get_challenges` |
+| 7  | Comprobación final | `rake` |
 
 ---
 
@@ -68,15 +51,13 @@ Esto es, cómo instalar el servidor SSH.
 ## NODO-S: Instalación para OpenSUSE
 
 Instalar y configurar OpenSUSE como nodo-S:
-* Descargar [fichero](../../../bin/opensuse_s-node_install.sh).
-    * `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_s-node_install.sh`
+* Descargar [fichero](../../../bin/opensuse_s-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_s-node_install.sh`
 * Ejecutar `sudo opensuse_s-node_install.sh`
 
 ## NODO-S: Instalación para Debian
 
 Instalar y configurar Debian como nodo-S:
-* Descargar [fichero](../../../bin/debian_s-node_install.sh).
-    * `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_s-node_install.sh`
+* Descargar [fichero](../../../bin/debian_s-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_s-node_install.sh`
 * Ejecutar `sudo debian_s-node_install.sh`
 
 ## NODO-S: Configuración en Windows
