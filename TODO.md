@@ -16,7 +16,9 @@ Documentation
 * Revise Spanish docs (ES - Mejorar la documentación en español)
 * Revise English documents. Update english version with changes done into spanish version.
 * Make videos showing how to use this tool
-    * Video about download and installi this tool
+    * Video about download and install this tool
+    * Test installation scripts
+    * Vídeo with Windows installation.
     * Video using examples 01 to 05...
 * Write a special documentation for novice
 
@@ -55,7 +57,7 @@ Create 2 evaluation modes:
 
 Installation process
 * Use Bundler to install gems instead of rake.
-* It will be usefull use sysadming-game as gem? And install it with `gem install sysadmin-game`.
+* It will be usefull use sysadming-game as gem? And install it with `gem install teuton`.
 * Vagrant: test how to use vagrant machines as case hosts.
 
 Reports
