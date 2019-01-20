@@ -23,8 +23,8 @@ Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
 
 ## NODO-T: Instalación en Windows
 
-* Instalar Git.
-* Instalar Ruby.
+* Instalar Git (https://git-scm.com/download/win).
+* Instalar Ruby (https://rubyinstaller.org/).
 * Descargar [fichero](../../../bin/windows_t-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/windows_t-node_install.sh`
 * Ejecutar `windows_t-node_install.bat`
 
@@ -32,7 +32,7 @@ Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
 
 | Id | Paso             | Descripción |
 | -- | ---------------- | ----------- |
-| 1  | Instalar git     | |
+| 1  | Instalar git     |  |
 | 2  | Instalar ruby    | Se requiere porque el programa está desarrollado en ruby. Ejecutar `ruby -v` (2.1.3p242) para comprobar la versión actual de ruby) |
 | 3  | Instalar rake | gem install rake. Para comprobar la versión hacer `rake --version` (>= 10.4.2) |
 | 4  | Descargar el proyecto | (a) `git clone https://github.com/dvarrui/teuton.git` (b) Descargando el zip desde la página del repositorio GitHub |
