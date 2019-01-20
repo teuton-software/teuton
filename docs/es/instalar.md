@@ -61,12 +61,33 @@ Instalar y configurar Debian como nodo-T:
 
 # Instalación del NODO-S
 
-* Instalar el software de acceso remoto SSH server en la máquina.
+Esto es, cómo instalar el servidor SSH.
 
-> El usuario del NODO-T debe conocer usuario/clave de cada equipo
-remoto con perfil de administrador.
+> El usuario del NODO-T debe conocer usuario/clave del NODO-S.
 
-Puede consultar también:
-* Configuración [NODO-S en OpenSUSE](./nodo-s/opensuse.md)
-* Configuración [NODO-S en Debian](./nodo-s/debian.md)
-* Configuración [NODO-S en Windows](./nodo-s/opensuse.md)
+## NODO-S: Instalación para OpenSUSE
+
+Instalar y configurar OpenSUSE como nodo-S:
+* Descargar [fichero](../../../bin/opensuse_s-node_install.sh).
+    * `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_s-node_install.sh`
+* Ejecutar `sudo opensuse_s-node_install.sh`
+
+## NODO-S: Instalación para Debian
+
+Instalar y configurar Debian como nodo-S:
+* Descargar [fichero](../../../bin/debian_s-node_install.sh).
+    * `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_s-node_install.sh`
+* Ejecutar `sudo debian_s-node_install.sh`
+
+## NODO-S: Configuración en Windows
+
+**Instalar SSH en Windows**
+
+`EN CONSTRUCCIÓN!!!`
+
+**Instalar cliente Telnet en Windows (No recomendado)**
+
+* Ir a `Caracteristicas -> Servidor Telnet`.
+* Asegurarse de que el servicio está iniciado. Ia a `Administrar el equipo -> Servicios -> Servidor Telnet`.
+* En el caso de los SSOO Windows hay que crear un usuario, en cada
+máquina de alumno, miembro de los grupos `Administradores` y `TelnetClients`.
