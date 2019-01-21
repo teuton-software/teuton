@@ -1,4 +1,5 @@
 #!/bin/bash
+# version: 20190121
 
 echo "[INFO] DEBIAN T-NODE installation"
 echo "[INFO] Installing PACKAGES..."

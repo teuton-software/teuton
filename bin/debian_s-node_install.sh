@@ -1,4 +1,5 @@
 #!/bin/bash
+# version: 20190121
 
 CONFIGFILE="/etc/ssh/sshd_config"
 BACKUPFILE="$CONFIGFILE.bak"

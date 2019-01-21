@@ -1,4 +1,5 @@
 #!/bin/bash
+# version: 20190121
 
 echo "[INFO] OPENSUSE T-NODE installation"
 echo "[INFO] Installing PACKAGES..."
