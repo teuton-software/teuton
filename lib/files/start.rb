@@ -1,8 +1,8 @@
 
 group "GROUP NAME" do
 
-  target "TARGET DESCRIPTION"
-  goto :localhost, :exec => "COMMAND"
+  target "TARGET-1 DESCRIPTION"
+  goto :localhost, :exec => "COMMAND-1"
   expect result.equal(1)
 
 end

@@ -11,3 +11,7 @@ def play(&block)
   Tool.instance.play(&block)
 end
 alias start play
+
+def use(filename)
+  
+end
