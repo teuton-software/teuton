@@ -29,4 +29,18 @@ module Project
 
     puts ''
   end
+
+  def self.copyfile(target, dest)
+    if File.exist? dest
+      puts "* Exists file!        => #{Rainbow(dest).yellow}"
+    else
+      begin
+        FileUtils.cp(target, dest)
+        puts "* Creating file       => #{Rainbow(dest).green}"
+      rescue Exception => e
+        puts "* Creating file ERROR => #{Rainbow(dest).red}"
+      end
+    end
+  end
+
 end
