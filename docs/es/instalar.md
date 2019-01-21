@@ -65,13 +65,5 @@ Descargar [fichero](../../bin/debian_s-node_install.sh) y ejecutarlo:
 
 ## NODO-S: Configuración en Windows
 
-**Instalar SSH en Windows**
-
-`EN CONSTRUCCIÓN!!!`
-
-**Instalar cliente Telnet en Windows (No recomendado)**
-
-* Ir a `Caracteristicas -> Servidor Telnet`.
-* Asegurarse de que el servicio está iniciado. Ia a `Administrar el equipo -> Servicios -> Servidor Telnet`.
-* En el caso de los SSOO Windows hay que crear un usuario, en cada
-máquina de alumno, miembro de los grupos `Administradores` y `TelnetClients`.
+* [Instalar Servidor SSH en Windows](./windows/ssh.md)
+* [Instalar Servidor Telnet en Windows](./windows/telnet.md) NO recomendado.
