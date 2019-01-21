@@ -13,5 +13,10 @@ end
 alias start play
 
 def use(filename)
-  
+  app = Application.instance
+  puts "__FILE__    " + __FILE__
+  puts "filename    " + filename
+  puts "script_path " + app.script_path
+  puts "config_path " + app.config_path
+  puts "test_name   " + app.test_name
 end
