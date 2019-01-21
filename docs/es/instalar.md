@@ -13,18 +13,23 @@ Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
 
 ## NODO-T: Instalación para OpenSUSE
 
-* Descargar [fichero](../../bin/opensuse_t-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_t-node_install.sh | sh`
+Descargar [fichero](../../bin/opensuse_t-node_install.sh) y ejecutarlo:
+
+`curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_t-node_install.sh | sh`
 
 ## NODO-T: Instalación para Debian
 
-* Descargar [fichero](../../bin/debian_t-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_t-node_install.sh | sh`
+Descargar [fichero](../../bin/debian_t-node_install.sh) y ejecutarlo:
+
+`curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_t-node_install.sh | sh`
 
 ## NODO-T: Instalación en Windows
 
 * Instalar Git (https://git-scm.com/download/win).
 * Instalar Ruby (https://rubyinstaller.org/).
-* Descargar [fichero](../../bin/windows_t-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/windows_t-node_install.bat > windows_t-node_install.bat`
-* Ejecutar `windows_t-node_install.bat`
+* Descargar [fichero](../../bin/windows_t-node_install.sh) y ejecutarlo:
+
+`curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/windows_t-node_install.bat > windows_t-node_install.bat`
 
 ## NODO-T: Instalación manual
 
@@ -48,13 +53,15 @@ Esto es, cómo instalar el servidor SSH.
 
 ## NODO-S: Instalación para OpenSUSE
 
-Instalar y configurar OpenSUSE como nodo-S:
-* Descargar [fichero](../../bin/opensuse_s-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_s-node_install.sh | sh`
+Descargar [fichero](../../bin/opensuse_s-node_install.sh) y ejecutarlo:
+
+`curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/opensuse_s-node_install.sh | sh`
 
 ## NODO-S: Instalación para Debian
 
-Instalar y configurar Debian como nodo-S:
-* Descargar [fichero](../../bin/debian_s-node_install.sh): `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_s-node_install.sh | sh`
+Descargar [fichero](../../bin/debian_s-node_install.sh) y ejecutarlo:
+
+`curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/debian_s-node_install.sh | sh`
 
 ## NODO-S: Configuración en Windows
 
