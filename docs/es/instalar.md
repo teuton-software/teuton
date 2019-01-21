@@ -36,7 +36,7 @@ Descargar [fichero](../../bin/debian_t-node_install.sh) y ejecutarlo:
 | Id | Paso             | Descripción |
 | -- | ---------------- | ----------- |
 | 1  | Instalar git     |  |
-| 2  | Instalar ruby    | Se requiere porque el programa está desarrollado en ruby. Ejecutar `ruby -v` (2.1.3p242) para comprobar la versión actual de ruby) |
+| 2  | Instalar ruby    | Se requiere porque el programa está desarrollado en ruby. Ejecutar `ruby -v` (2.1.3p242) para comprobar la versión actual de ruby. |
 | 3  | Instalar rake | gem install rake. Para comprobar la versión hacer `rake --version` (>= 10.4.2) |
 | 4  | Descargar el proyecto | (a) `git clone https://github.com/dvarrui/teuton.git` (b) Descargando el zip desde la página del repositorio GitHub |
 | 5  | Instalar las gemas | `cd teuton`, entrar en la carpeta del proyecto, y rjecutar `rake gems` para instalar las gemas necesarias en nuestro sistema |
