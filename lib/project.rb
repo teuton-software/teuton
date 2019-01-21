@@ -71,7 +71,8 @@ module Project
     app = Application.instance
     find_filenames_for(pathtofile)
 
-    require_relative 'project/sysadmingame'
+#    require_relative 'project/sysadmingame'
+    require_relative 'project/dsl'
     begin
       require_relative "../#{app.script_path}"
     rescue SyntaxError => e
