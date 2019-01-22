@@ -51,7 +51,7 @@ end
 
 desc 'OpenSUSE installation'
 task :opensuse do
-  names = ['openssh', 'ruby2.1-rubygem-pry', 'make', 'gcc', 'ruby-devel']
+  names = ['openssh', 'ruby2.5-rubygem-pry', 'make', 'gcc', 'ruby-devel']
   options = '--non-interactive'
   names.each { |n| system("zypper #{options} install #{n}") }
   install_gems packages
