@@ -15,6 +15,6 @@ cd teuton
 rake opensuse
 rake get_challenges
 rake
-./teuton version
 
 echo "[INFO] Finish!"
+./teuton version
