@@ -4,7 +4,7 @@
 echo "[INFO] OPENSUSE T-NODE installation"
 echo "[INFO] Installing PACKAGES..."
 zypper refresh
-zypper in -y git
+zypper install -y git
 gem install rake
 
 echo "[INFO] Cloning git REPO..."
