@@ -3,6 +3,7 @@
 
 echo "[INFO] OPENSUSE T-NODE installation"
 echo "[INFO] Installing PACKAGES..."
+zypper refresh
 zypper in -y git
 gem install rake
 
