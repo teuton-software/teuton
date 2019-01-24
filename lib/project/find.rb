@@ -1,7 +1,8 @@
 
 module Project
 
-  def self.find_filenames_for(pathtofile)
+  def self.find_filenames_for(relpathtofile)
+    pathtofile = File.join(Application.instance.running_basedir, relpathtofile)
     if pathtofile.nil? # Check param not null
       puts Rainbow('[ERROR] path-to-file not specified').red
       puts Rainbow('* Please, read help => ./project help').yellow
