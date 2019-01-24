@@ -13,7 +13,7 @@ class Application
 
   def initialize
     @name = 'teuton'
-    @version = '1.12.0'
+    @version = '1.12.1'
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @output_basedir = 'var'
     @debug = false
