@@ -14,6 +14,14 @@ Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
 * `curl https://raw.githubusercontent.com/dvarrui/teuton/master/bin/windows_t-node_install.bat > windows_t-node_install.bat`, para dsercargar el instalador.
 * `windows_t-node_install.bat`, para ejecutar el instalador.
 
+> **Recuerda**
+>
+> Para ejecutar un test de TEUTON (Por ejemplo el test challenges/demo) hacemos lo siguiente:
+> * `cd teuton`
+> * `ruby teuton challenges/demo`
+>
+> Los informes se guardan en `var/demo/out`.
+
 ---
 
 # NODO-S: Configuración en Windows

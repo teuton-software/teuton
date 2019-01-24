@@ -21,6 +21,14 @@ Pero cada modo hay dos tipos de nodos o instalaciones. Estas son:
 | 6  | Descargar los retos de ejemplo | `rake get_challenges` |
 | 7  | Comprobación final | `rake` |
 
+> **Recuerda**
+>
+> Para ejecutar un test de TEUTON (Por ejemplo el test challenges/demo) hacemos lo siguiente:
+> * `cd teuton`
+> * `ruby teuton challenges/demo`
+>
+> Los informes se guardan en `var/demo/out`.
+
 ---
 
 # NODO-S: Instalación manual
