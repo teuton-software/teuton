@@ -7,6 +7,7 @@ $TeutonPath = $env:ProgramFiles + "\teuton"
 $TeutonUrl = "https://github.com/dvarrui/teuton.git"
 $ChallengesUrl = "https://github.com/dvarrui/teuton-challenges.git"
 $CurrentLocation = Get-Location
+$ChallengesPath = $CurrentLocation + "\teuton-challenges"
 
 Write-Host "[INFO] WINDOWS T-NODE installation"
 
@@ -26,8 +27,8 @@ If (Get-ChildItem $TeutonPath -ErrorAction SilentlyContinue) {
 }
 git clone $TeutonUrl $TeutonPath -q
 
-Write-Host "[INFO] Installing challenges in $CurrentLocation"
-If (Get-ChildItem $CurrentLocation\teuton-challenges -ErrorAction SilentlyContinue) {
+Write-Host "[INFO] Installing challenges in $ChallengesPath"
+If (Get-ChildItem $ChallengesPath -ErrorAction SilentlyContinue) {
     Write-Host "- teuton-challenges repo already exists at current location ... [skipping]"
 } Else {
     git clone $ChallengesUrl -q
