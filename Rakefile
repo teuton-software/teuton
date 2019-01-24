@@ -69,6 +69,7 @@ task :update do
   puts "[INFO] Pulling <#{challenges_repo}> repo..."
   system("cd #{challenges_dir}; git pull")
   install_gems packages
+  system('ruby teuton version')
 end
 
 desc 'Get challenges from repository (user)'
