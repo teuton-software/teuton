@@ -25,4 +25,5 @@ class Teuton < Thor
   end
 end
 
+Application.instance.running_basedir = Dir.getwd
 Teuton.start(ARGV)
