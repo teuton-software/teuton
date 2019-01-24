@@ -13,8 +13,8 @@
 
 ## Requisitos
 
-* Script: [example-01.rb](../../../examples/example-01.rb)
-* Fichero de configuración: [example-01.yaml](../../../examples/example-01.yaml)
+* Script: [example-01.rb](.https://github.com/dvarrui/teuton-challenges/tree/master/docs/examples/example-01.rb)
+* Fichero de configuración: [example-01.yaml](https://github.com/dvarrui/teuton-challenges/tree/master/docs/examples/example-01.yaml)
 * Descripción: *Comprueba si existe el usuario *obiwan* en la máquina *localhost*.*
 * Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en *localhost*.
 * SO localhost: GNU/Linux

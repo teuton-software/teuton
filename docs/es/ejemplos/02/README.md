@@ -12,8 +12,8 @@
 
 ## Requisitos
 
-* Script: [example-02.rb](../../../examples/example-02.rb)
-* Fichero de configuración: [example-02.yaml](../../../examples/example-02.yaml)
+* Script: [example-02.rb](https://github.com/dvarrui/teuton-challenges/tree/master/docs/examples/example-02.rb)
+* Fichero de configuración: [example-02.yaml](https://github.com/dvarrui/teuton-challenges/tree/master/docs/examples/example-02.yaml)
 * Descripción: *Personalizar cada caso usando el fichero de configuración.*
 * Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en *localhost*.
 

@@ -16,8 +16,8 @@
 * En este ejemplo, vamos necesitar varias máquinas:
     (a) la del profesor y
     (b) varias de estudiantes para ser evaluadas.
-* Script: [example-03.rb](../../../examples/example-03.rb)
-* Fichero de configuración: [example-03.yaml](../../../examples/example-03.yaml)
+* Script: [example-03.rb](https://github.com/dvarrui/teuton-challenges/tree/master/docs/examples/example-03.rb)
+* Fichero de configuración: [example-03.yaml](https://github.com/dvarrui/teuton-challenges/tree/master/docs/examples/example-03.yaml)
 * Descripción: Evalua varios casos entrando en *máquinas remotas*.
 * Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en las *máquinas remotas*.
 *localhost* puede ser cualquier otro sistema operativo.

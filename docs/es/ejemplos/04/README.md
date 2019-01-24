@@ -14,8 +14,8 @@
 * En este ejemplo, vamos necesitar varias máquinas:
     (a) la del profesor y
     (b) varias de estudiantes.
-* Script: [example-04.rb](../../../examples/example-04.rb)
-* Fichero de configuración: [example-04.yaml](../../../examples/example-04.yaml)
+* Script: [example-04.rb](https://github.com/dvarrui/teuton-challenges/tree/master/docs/examples/example-04.rb)
+* Fichero de configuración: [example-04.yaml](https://github.com/dvarrui/teuton-challenges/tree/master/docs/examples/example-04.yaml)
 * Descripción: Evalua varios casos entrando en *máquinas remotas*, dejando
 copia del informe en el directorio temporal de la *máquina remota*.
 * Requisitos: En este ejemplo se ejecutan comandos de GNU/Linux en las *máquinas remotas*.
