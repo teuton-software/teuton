@@ -1,2 +1,2 @@
 @echo off
-ruby %~dp0\teuton %*
+ruby "%~dp0\teuton" %*
