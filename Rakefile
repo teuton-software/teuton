@@ -5,7 +5,10 @@ require_relative 'lib/application'
 
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
 packages += ['thor', 'json', 'minitest']
-#packages += ['pry-byebug']
+
+# INFO
+# * gems     -> packages += ['pry-byebug']
+# * OpenSUSE -> 'ruby2.5-rubygem-pry',
 
 desc 'Default'
 task default: :check do
@@ -45,14 +48,16 @@ task :debian do
   names = ['ssh', 'make', 'gcc', 'ruby-dev']
   names.each { |name| system("apt-get install -y #{name}") }
   install_gems packages
+  create_symbolic_link
 end
 
 desc 'OpenSUSE installation'
 task :opensuse do
-  names = ['openssh', 'ruby2.5-rubygem-pry', 'make', 'gcc', 'ruby-devel']
+  names = ['openssh', 'make', 'gcc', 'ruby-devel']
   options = '--non-interactive'
   names.each { |n| system("zypper #{options} install #{n}") }
   install_gems packages
+  create_symbolic_link
 end
 
 desc 'Install gems'
@@ -91,4 +96,10 @@ def filter_uninstalled_gems(list)
   fails = []
   list.each { |i| fails << i unless names.include?(i) }
   fails
+end
+
+def create_symbolic_link
+  puts "[INFO] Creating symbolic link into /usr/local/bin"
+  basedir = File.dirname(__FILE__)
+  system("ln -s #{basedir}/teuton /usr/local/bin/teuton")
 end
