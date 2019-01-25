@@ -50,7 +50,7 @@ module Project
     target = File.join(projectdir, '.gitignore')
     copyfile(source, target) # gitignore
 
-    # Directory
+    # md Directory
     project_md_dir = File.join(projectdir,'md')
     create_dir project_md_dir
 
