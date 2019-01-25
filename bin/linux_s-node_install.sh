@@ -33,11 +33,9 @@ systemctl restart sshd
 systemctl enable sshd 2> /dev/null
 
 echo "[INFO] Creating teuton user"
-read -s -p "Enter teuton user password: " pass
-echo
 useradd -m -s /bin/bash teuton
-echo teuton:$pass | chpasswd
 [ $distro = "opensuse" ] && usermod -aG wheel teuton
 [ $distro = "debian" ] && usermod -aG sudo teuton
 
 echo "[INFO] Finish!"
+echo "[INFO] You have to set teuton user password manually (e.g.: sudo passwd teuton)"
