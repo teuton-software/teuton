@@ -24,10 +24,10 @@ fi
 
 echo "[INFO] Installing PACKAGES..."
 [ $distro = "opensuse" ] && zypper install -y openssh
-[ $distro = "debian" ] && apt install -y openssh-server
+[ $distro = "debian" ] && apt install -y openssh-server sudo
 
 echo "[INFO] Configuring SSH service..."
-cp $CONFIGFILE $BACKUPFILE
+[ ! -f $BACKUPFILE ] && cp $CONFIGFILE $BACKUPFILE
 sed 's/^#PermitRootLogin .*$/PermitRootLogin yes/g' $BACKUPFILE > $CONFIGFILE
 systemctl restart sshd
 systemctl enable sshd 2> /dev/null
