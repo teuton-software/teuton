@@ -1,5 +1,5 @@
 #!/bin/bash
-# version: 20190121
+# version: 20190125
 
 echo "[INFO] OPENSUSE T-NODE installation"
 echo "[INFO] Installing PACKAGES..."
@@ -13,7 +13,6 @@ git clone https://github.com/dvarrui/teuton.git
 echo "[INFO] Checking..."
 cd teuton
 rake opensuse
-rake get_challenges
 rake
 
 echo "[INFO] Finish!"

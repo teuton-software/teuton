@@ -6,8 +6,6 @@ require_relative 'lib/application'
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
 packages += ['thor', 'json', 'minitest']
 #packages += ['pry-byebug']
-challenges_repo = 'teuton-challenges'
-challenges_dir = 'challenges'
 
 desc 'Default'
 task default: :check do
@@ -66,24 +64,15 @@ desc 'Update project'
 task :update do
   puts "[INFO] Pulling <teuton> repo..."
   system('git pull')
-  puts "[INFO] Pulling <#{challenges_repo}> repo..."
-  system("cd #{challenges_dir}; git pull")
   install_gems packages
   system('ruby teuton version')
 end
 
-desc 'Get challenges from repository (user)'
-task :get_challenges do
-  puts "[INFO] getting challenges from repo..."
-  system("git clone https://github.com/dvarrui/#{challenges_repo}.git")
-  system("mv #{challenges_repo} #{challenges_dir}")
-end
-
-desc 'Get challenges from repository (dev)'
-task :get_challenges_dev do
-  puts "[INFO] getting challenges from repo..."
-  system("git clone git@github.com:dvarrui/#{challenges_repo}.git")
-  system("mv #{challenges_repo} #{challenges_dir}")
+desc 'If your want sample TEUTON challenges'
+task :challenges do
+  puts "[INFO] If your want sample TEUTON challenges, do this:"
+  puts "       cd PAHT/TO/YOUR/DOCUMENTS"
+  puts "       git clone https://github.com/dvarrui/teuton-challenges.git"
 end
 
 def install_gems(list)

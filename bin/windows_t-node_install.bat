@@ -1,7 +1,7 @@
 @echo off
 
 REM Windows T-NODE installation
-REM version: 20190122
+REM version: 20190125
 
 echo [INFO] WINDOWS T-NODE installation
 echo [INFO] Installing PACKAGES...
@@ -21,7 +21,6 @@ git clone https://github.com/dvarrui/teuton.git
 echo [INFO] Checking...
 cd teuton
 call rake gems
-call rake get_challenges
 call rake
 
 echo [INFO] Finish!

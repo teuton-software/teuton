@@ -11,7 +11,7 @@ class ApplicationTest < Minitest::Test
 
   def test_version
     assert_equal 'teuton', @app.name
-    assert_equal '1.13.0', @app.version
+    assert_equal '1.13.1', @app.version
   end
 
   def test_init_params
