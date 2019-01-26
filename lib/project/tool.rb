@@ -6,7 +6,7 @@ require_relative '../application'
 require_relative '../configfile_reader'
 require_relative '../case/case'
 require_relative '../utils'
-require_relative 'report'
+require_relative '../report'
 
 # This class does all the job
 # Organize the hole job, sending orders to others classes
