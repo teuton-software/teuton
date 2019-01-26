@@ -28,16 +28,20 @@ class CaseManager
     verboseln '=' * @report.head[:tt_title].length
 
     app = Application.instance
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row [ 'Case ID', '% Completed', 'Members']
+    end
     @cases.each do |c|
       l_members = c.report.head[:tt_members] || 'noname'
       l_grade = c.report.tail[:grade] || 0.0
       l_help = app.letter[:none]
       l_help = app.letter[:error] if l_grade < 50.0
-      # t = 'Case_' + "%02d" % c.id.to_i + ' => '
-      t = format('Case_%02d => ', c.id.to_i)
-      # t = t + "%3d" % l_grade.to_f + " #{l_help} #{l_members}"
-      t += format('%3d %s %s', l_grade.to_f, l_help, l_members)
-      @report.lines << t
+
+      t1 = format('Case_%02d', c.id.to_i)
+      t2 = format('%3d%s %s', l_grade.to_f, '%',l_help)
+      t3 = format('%s', l_members)
+      my_screen_table.add_row [ t1, t2, t3]
     end
+    @report.lines << my_screen_table.to_s+"\n"
   end
 end

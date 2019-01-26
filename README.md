@@ -8,8 +8,7 @@ TEUTON are test units for machines (everything).
 TEUTON tests tons of goals on tons of machines.
 ```
 
-DSL to write test units for machines (and everything).
-Easily check if a group of real/virtual machines satisfies a list of targets/goals.
+Write test units for machines (and everything). Easily check if a group of real/virtual machines satisfies a list of targets/goals.
 
 ![logo](./docs/logo.png)
 

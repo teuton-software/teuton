@@ -15,9 +15,9 @@ class TXTFormatter < BaseFormatter
     my_screen_table = Terminal::Table.new do |st|
       @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
-    w my_screen_table.to_s+"\n"
+    w my_screen_table.to_s+"\n\n"
 
-    w "TARGETS HISTORY\n"
+    w "HISTORY\n"
     @lines.each do |i|
       if i.class.to_s=='Hash' then
         lValue=0.0
@@ -34,7 +34,8 @@ class TXTFormatter < BaseFormatter
         w tab+"\t\tExpected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
         w tab+"\t\tResult      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
       else
-        w tab+"- "+i.to_s+"\n"
+#        w tab+"- "+i.to_s+"\n"
+        w(i.to_s + "\n\n")
       end
     end
 
