@@ -22,8 +22,6 @@ module Project
     find_filenames_for(pathtofile)
 
     require_relative 'project/laboratory'
-#    require_relative "../#{app.script_path}"
-#    lab = Laboratory.new("../#{app.script_path}", app.config_path)
     require_relative app.script_path
     lab = Laboratory.new(app.script_path, app.config_path)
     lab.show_requests if options[:r]
@@ -37,12 +35,10 @@ module Project
 
     require_relative 'project/dsl'
     begin
-#      require_relative "../#{app.script_path}"
       require_relative app.script_path
     rescue SyntaxError => e
       puts e.to_s
       puts "="*50
-#      puts "[ERROR] SyntaxError into file ../#{app.script_path}"
       puts "[ERROR] SyntaxError into file #{app.script_path}"
       puts "="*50
     end
