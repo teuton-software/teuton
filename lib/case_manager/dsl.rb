@@ -12,6 +12,7 @@ def play(&block)
 end
 alias start play
 
+# Development
 def use(filename)
   app = Application.instance
   puts "__FILE__    " + __FILE__
