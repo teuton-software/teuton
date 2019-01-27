@@ -10,7 +10,7 @@ Remove-NetFirewallRule -DisplayName "SSH TCP port 22" | Out-Null
 
 Write-Host "[INFO] Stopping and disabling ssh service"
 Stop-Service sshd
-Disable-Service sshd 
+Set-Service sshd -StartupType Disabled
 
 Write-Host "[INFO] Removing OpenSSH as a service"
 & "$env:ProgramFiles\OpenSSH-Win64\uninstall-sshd.ps1" | Out-Null
