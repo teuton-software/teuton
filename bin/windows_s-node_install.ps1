@@ -1,6 +1,6 @@
 <#
 Windows S-NODE installation
-version: 20190124
+version: 20190127
 #>
 
 Write-Host "[INFO] WINDOWS S-NODE installation"
@@ -23,11 +23,5 @@ $FirewallRuleName = "SSH TCP port 22"
 If (!(Get-NetFirewallRule -DisplayName $FirewallRuleName -ErrorAction SilentlyContinue)) {
     New-NetFirewallRule -DisplayName $FirewallRuleName -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('22') | Out-Null
 }
-
-Write-Host "[INFO] Creating teuton user"
-$password = Read-Host -Prompt "Enter teuton user password"
-net user teuton $password /fullname:"Teuton" /comment:"Teuton user for remote testing" /expires:never /passwordchg:no /add
-wmic useraccount WHERE "Name='teuton'" set PasswordExpires=false
-net localgroup Administradores teuton /add
 
 Write-Host "[INFO] Finish!"
