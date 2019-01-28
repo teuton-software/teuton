@@ -49,6 +49,7 @@ task :debian do
   names.each { |name| system("apt-get install -y #{name}") }
   install_gems packages
   create_symbolic_link
+  chown_files
 end
 
 desc 'OpenSUSE installation'
@@ -58,6 +59,7 @@ task :opensuse do
   names.each { |n| system("zypper #{options} install #{n}") }
   install_gems packages
   create_symbolic_link
+  chown_files
 end
 
 desc 'Install gems'
@@ -98,8 +100,19 @@ def filter_uninstalled_gems(list)
   fails
 end
 
+def chown_files
+  user = `who`.split(' ')[0]
+  system("chown -R #{user} ../teuton")
+
+  reponame = 'teuton-challenges'
+  puts "[INFO] Downloading <#{reponame}> repo..."
+  system("cd /home/#{user} && git clone https://github.com/dvarrui/#{reponame}.git")
+  system("chown -R #{user} /home/#{user}/#{reponame}")
+  puts "[INFO] Examples into /home/#{user}/#{reponame}"
+end
+
 def create_symbolic_link
   puts "[INFO] Creating symbolic link into /usr/local/bin"
   basedir = File.dirname(__FILE__)
-  system("ln -s #{basedir}/teuton /usr/local/bin/teuton")
+  system("ln -s #{basedir}/asker /usr/local/bin/asker")
 end
