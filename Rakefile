@@ -50,6 +50,7 @@ task :debian do
   install_gems packages
   create_symbolic_link
 #  chown_files
+  system("rake challenges")
 end
 
 desc 'OpenSUSE installation'
@@ -60,6 +61,7 @@ task :opensuse do
   install_gems packages
   create_symbolic_link
 #  chown_files
+  system("rake challenges")
 end
 
 desc 'Install gems'
@@ -78,8 +80,10 @@ end
 desc 'If your want sample TEUTON challenges'
 task :challenges do
   puts "[INFO] If your want sample TEUTON challenges, do this:"
+  puts ""
   puts "       cd PAHT/TO/YOUR/DOCUMENTS"
   puts "       git clone https://github.com/dvarrui/teuton-challenges.git"
+  puts ""
 end
 
 def install_gems(list)
