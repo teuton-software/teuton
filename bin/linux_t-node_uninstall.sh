@@ -13,9 +13,9 @@ function exists_binary() {
 echo "[INFO] GNU/Linux T-NODE uninstallation"
 
 echo "[INFO] Checking distro..."
-exists_binary zypper && distro=opensuse
-exists_binary apt    && distro=debian
-[ "$distro" = "" ]   &&	echo "Unsupported distribution ... exiting!" && exit 1
+[ "$distro" = "" ] && exists_binary zypper && distro=opensuse
+[ "$distro" = "" ] && exists_binary apt    && distro=debian
+[ "$distro" = "" ] && echo "Unsupported distribution ... exiting!" && exit 1
 echo "- $distro distribution found"
 
 echo "[INFO] Uninstalling PACKAGES..."
