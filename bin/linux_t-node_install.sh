@@ -35,4 +35,4 @@ rake $distro
 rake
 
 echo "[INFO] Finish!"
-teuton version
+/usr/local/bin/teuton version
