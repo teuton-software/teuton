@@ -1,17 +1,17 @@
 
 class Teuton < Thor
 
-  map ['--update'] => 'update'
-  desc 'update', 'Update local files from git repo'
+  map ['--pull'] => 'pull'
+  desc 'pull', 'Pull remote files fromgit repo to current local dir'
   long_desc  <<-LONGDESC
   Execute "git pull".
 
   Example:
 
-  #{$PROGRAM_NAME} update
+  #{$PROGRAM_NAME} pull
 
 LONGDESC
-  def update
+  def pull
     system("git pull")
   end
 
