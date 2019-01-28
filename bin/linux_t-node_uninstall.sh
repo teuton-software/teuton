@@ -23,6 +23,7 @@ echo "[INFO] Uninstalling PACKAGES..."
 [ $distro = "opensuse" ] && zypper remove -y git
 
 echo "[INFO] Uninstalling teuton..."
+rm -rf /usr/local/bin/teuton
 rm -rf $teutonPath
 
 echo "[INFO] Finish!"
