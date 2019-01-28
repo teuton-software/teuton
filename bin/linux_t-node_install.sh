@@ -5,7 +5,7 @@
 [ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
 
 teutonPath=/opt/teuton
-teutolUrl=https://github.com/dvarrui/teuton.git
+teutonUrl=https://github.com/dvarrui/teuton.git
 
 function exists_binary() {
 	which $1 > /dev/null
