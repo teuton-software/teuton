@@ -1,5 +1,5 @@
 #!/bin/bash
-# GNU/Linux S-Node Installation
+# GNU/Linux S-Node Uninstallation
 # version: 20190124
 
 [ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
@@ -11,7 +11,7 @@ function exists_binary() {
 CONFIGFILE="/etc/ssh/sshd_config"
 BACKUPFILE="$CONFIGFILE.bak"
 
-echo "[INFO] GNU/Linux S-NODE installation"
+echo "[INFO] GNU/Linux S-NODE uninstallation"
 
 echo "[INFO] Checking distro..."
 [ "$distro" = "" ] && exists_binary zypper && distro=opensuse
@@ -19,14 +19,13 @@ echo "[INFO] Checking distro..."
 [ "$distro" = "" ] && echo "Unsupported distribution ... exiting!" && exit 1
 echo "- $distro distribution found"
 
-echo "[INFO] Installing PACKAGES..."
-[ $distro = "opensuse" ] && zypper install -y openssh
-[ $distro = "debian" ] && apt install -y openssh-server sudo
+echo "[INFO] Removing SSH service..."
+mv $BACKUPFILE $CONFIGFILE
+systemctl stop sshd
+systemctl disable sshd 2> /dev/null
 
-echo "[INFO] Configuring SSH service..."
-[ ! -f $BACKUPFILE ] && cp $CONFIGFILE $BACKUPFILE
-sed 's/^#PermitRootLogin .*$/PermitRootLogin yes/g' $BACKUPFILE > $CONFIGFILE
-systemctl restart sshd
-systemctl enable sshd 2> /dev/null
+echo "[INFO] Uninstalling PACKAGES..."
+[ $distro = "opensuse" ] && zypper remove -y openssh
+[ $distro = "debian" ] && apt remove -y openssh-server sudo
 
 echo "[INFO] Finish!"
