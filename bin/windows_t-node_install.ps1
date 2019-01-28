@@ -15,6 +15,10 @@ If (!(Get-Command choco.exe -ErrorAction SilentlyContinue)) {
 choco install -y git
 choco install -y ruby
 
+$env:ChocolateyInstall = Convert-Path "$((Get-Command choco).path)\..\.."
+Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+refreshenv
+
 Write-Host "[INFO] Rake gem installation"
 gem install rake -f
 
