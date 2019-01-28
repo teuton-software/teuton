@@ -6,10 +6,12 @@ require 'rainbow'
 #require 'pry-byebug'
 require_relative 'lib/application'
 require_relative 'lib/project'
+require_relative 'lib/command/challenges'
 require_relative 'lib/command/clean'
 require_relative 'lib/command/create'
 require_relative 'lib/command/play'
 require_relative 'lib/command/test'
+require_relative 'lib/command/update'
 require_relative 'lib/command/version'
 
 # Command Line User Interface
