@@ -16,5 +16,6 @@ LONGDESC
     puts "[INFO] Downloading <teuton-challenges> repo..."
 #    system("cd #{current_dir} && git clone https://github.com/dvarrui/teuton-challenges.git")
     system("git clone https://github.com/dvarrui/teuton-challenges.git")
+    puts "[INFO] Your files are into <#{Rainbow("teuton-challenges").bright}> directory..."
   end
 end
