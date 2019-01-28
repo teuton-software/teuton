@@ -49,7 +49,7 @@ task :debian do
   names.each { |name| system("apt-get install -y #{name}") }
   install_gems packages
   create_symbolic_link
-  chown_files
+#  chown_files
 end
 
 desc 'OpenSUSE installation'
@@ -59,7 +59,7 @@ task :opensuse do
   names.each { |n| system("zypper #{options} install #{n}") }
   install_gems packages
   create_symbolic_link
-  chown_files
+#  chown_files
 end
 
 desc 'Install gems'
