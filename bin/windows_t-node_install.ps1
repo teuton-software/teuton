@@ -37,4 +37,4 @@ rake gems
 rake
 
 Write-Host "[INFO] Finish!"
-teuton version
+$TeutonPath\teuton version
