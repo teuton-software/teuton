@@ -50,6 +50,7 @@ task :debian do
   install_gems packages
   create_symbolic_link
 #  chown_files
+  system("rake challenges")
 end
 
 desc 'OpenSUSE installation'
@@ -60,6 +61,7 @@ task :opensuse do
   install_gems packages
   create_symbolic_link
 #  chown_files
+  system("rake challenges")
 end
 
 desc 'Install gems'
