@@ -32,9 +32,13 @@ If (!$CurrentPath.Contains($TeutonPath)) {
 }
 
 Write-Host "[INFO] Configuring..."
+Push-Location
 cd $TeutonPath
 rake gems
 rake
+Pop-Location
+
+refreshenv
 
 Write-Host "[INFO] Finish!"
-.\teuton version
+teuton version
