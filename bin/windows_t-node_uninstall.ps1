@@ -1,6 +1,6 @@
 <#
 Windows T-NODE uninstallation
-version: 20190127
+version: 20190129
 #>
 
 $TeutonPath = $env:ProgramFiles + "\teuton"
@@ -19,7 +19,7 @@ Remove-Item -Force -Recurse $TeutonPath
 Write-Host "[INFO] Removing teuton from system environment PATH variable"
 $CurrentPath = [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine)
 If (!$CurrentPath.Contains($TeutonPath)) {
-    [Environment]::SetEnvironmentVariable("Path", $CurrentPath.Replace($TeutonLocation, ""), [EnvironmentVariableTarget]::Machine)
+    [Environment]::SetEnvironmentVariable("Path", $CurrentPath.Replace($TeutonPath, ""), [EnvironmentVariableTarget]::Machine)
 }
 
 Write-Host "[INFO] Finish!"

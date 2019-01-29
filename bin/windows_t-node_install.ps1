@@ -1,6 +1,6 @@
 <#
 Windows T-NODE installation
-version: 20190127
+version: 20190129
 #>
 
 $TeutonPath = $env:ProgramFiles + "\teuton"
