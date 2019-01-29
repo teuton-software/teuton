@@ -28,7 +28,7 @@ git clone $TeutonUrl $TeutonPath -q
 Write-Host "[INFO] Adding teuton to system environment PATH variable"
 $CurrentPath = [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine)
 If (!$CurrentPath.Contains($TeutonPath)) {
-    [Environment]::SetEnvironmentVariable("Path", $CurrentPath + ";$TeutonLocation", [EnvironmentVariableTarget]::Machine)
+    [Environment]::SetEnvironmentVariable("Path", $CurrentPath + ";$TeutonPath", [EnvironmentVariableTarget]::Machine)
 }
 
 Write-Host "[INFO] Configuring..."
