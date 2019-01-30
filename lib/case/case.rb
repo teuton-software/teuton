@@ -8,7 +8,8 @@ require 'net/telnet'
 require_relative '../application'
 require_relative '../utils'
 require_relative 'config'
-require_relative 'dsl'
+require_relative 'dsl/main'
+require_relative 'dsl/send'
 require_relative 'result'
 
 #TODO split Case class into several classes:

@@ -45,7 +45,8 @@ class CaseManager
     threads = []
     puts ''
     puts '[INFO] Sending files...'
-    @cases.each { |c| threads << Thread.new { c.send args } }
+    puts args.to_s
+    @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
   end
 
