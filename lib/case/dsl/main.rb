@@ -37,62 +37,6 @@ module DSL
       end
   end
 
-  #Run command from the host identify as pHostname
-  #goto :host1, :execute => "command"
-  def goto(pHostname=:localhost, pArgs={})
-    @result.reset
-    command(pArgs[:execute]) if pArgs[:execute]
-    command(pArgs[:exec]) if pArgs[:exec]
-    tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
-    @action[:encoding] = pArgs[:encoding] || 'UTF-8'
-
-    start_time = Time.now
-    if pHostname==:localhost || pHostname=='localhost' || pHostname.to_s.include?('127.0.0.') then
-      run_local_cmd()
-    else
-      ip = get((pHostname.to_s+'_ip').to_sym)
-      if ip.nil? then
-        log("#{pHostname} IP is nil!",:error)
-      elsif ip.include?('127.0.0.') then
-        run_local_cmd
-      else
-        run_remote_cmd pHostname
-      end
-    end
-    @action[:duration] = (Time.now-start_time).round(3)
-  end
-
-  alias_method :on, :goto
-
-  def run(command, args={} )
-    args[:exec] = command.to_s
-    goto( :localhost, args)
-  end
-
-  #expect <condition>, :weight => <value>
-  def expect(pCond, pArgs={})
-    weight(pArgs[:weight])
-    lWeight= @action[:weight]
-
-    @action_counter+=1
-    @action[:id]=@action_counter
-    @action[:weight]=lWeight
-    @action[:check]=pCond
-    @action[:result]=@result.value
-
-    @action[:alterations]=@result.alterations
-    @action[:expected]=@result.expected
-    @action[:expected]=pArgs[:expected] if pArgs[:expected]
-
-    @report.lines << @action.clone
-    weight(1.0)
-
-    app=Application.instance
-    c=app.letter[:bad]
-    c=app.letter[:good] if pCond
-    verbose c
-  end
-
   def log(pText="", pType=:info)
     s=""
     s=Rainbow("WARN!:").color(:yellow)+" " if pType==:warn
