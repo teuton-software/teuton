@@ -42,4 +42,4 @@ refreshenv
 
 Write-Host "[INFO] Finish!"
 teuton version
-return $?
+exit $LastExitCode
