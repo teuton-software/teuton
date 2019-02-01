@@ -23,3 +23,4 @@ If (!$CurrentPath.Contains($TeutonPath)) {
 }
 
 Write-Host "[INFO] Finish!"
+if ($(teuton version)) { exit 1 } else { exit 0 }
