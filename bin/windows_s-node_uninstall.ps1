@@ -22,3 +22,4 @@ If (!(Get-Command choco.exe -ErrorAction SilentlyContinue)) {
 choco uninstall openssh -y --remove-dependencies
 
 Write-Host "[INFO] Finish!"
+if (Get-Service sshd -ErrorAction SilentlyContinue) { exit 1 } else { exit 0 }

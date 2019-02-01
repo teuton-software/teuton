@@ -41,5 +41,4 @@ Pop-Location
 refreshenv
 
 Write-Host "[INFO] Finish!"
-teuton version
-exit $LastExitCode
+if ($(teuton version)) { exit 0 } else { exit 1 }
