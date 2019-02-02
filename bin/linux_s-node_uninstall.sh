@@ -11,21 +11,21 @@ function exists_binary() {
 CONFIGFILE="/etc/ssh/sshd_config"
 BACKUPFILE="$CONFIGFILE.bak"
 
-echo "[INFO] GNU/Linux S-NODE uninstallation"
+echo "[0/4.INFO] GNU/Linux S-NODE uninstallation"
 
-echo "[INFO] Checking distro..."
+echo "[1/4.INFO] Checking distro..."
 [ "$distro" = "" ] && exists_binary zypper && distro=opensuse
 [ "$distro" = "" ] && exists_binary apt    && distro=debian
 [ "$distro" = "" ] && echo "Unsupported distribution ... exiting!" && exit 1
 echo "- $distro distribution found"
 
-echo "[INFO] Removing SSH service..."
+echo "[2/4.INFO] Removing SSH service..."
 mv $BACKUPFILE $CONFIGFILE
 systemctl stop sshd
 systemctl disable sshd 2> /dev/null
 
-echo "[INFO] Uninstalling PACKAGES..."
+echo "[3/4.INFO] Uninstalling PACKAGES..."
 [ $distro = "opensuse" ] && zypper remove -y openssh
 [ $distro = "debian" ] && apt remove -y openssh-server sudo
 
-echo "[INFO] Finish!"
+echo "[4/4.INFO] Finish!"

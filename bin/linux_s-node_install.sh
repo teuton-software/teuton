@@ -11,22 +11,22 @@ function exists_binary() {
 CONFIGFILE="/etc/ssh/sshd_config"
 BACKUPFILE="$CONFIGFILE.bak"
 
-echo "[INFO] GNU/Linux S-NODE installation"
+echo "[0/4.INFO] GNU/Linux S-NODE installation"
 
-echo "[INFO] Checking distro..."
+echo "[1/4.INFO] Checking distro..."
 [ "$distro" = "" ] && exists_binary zypper && distro=opensuse
 [ "$distro" = "" ] && exists_binary apt    && distro=debian
 [ "$distro" = "" ] && echo "Unsupported distribution ... exiting!" && exit 1
 echo "- $distro distribution found"
 
-echo "[INFO] Installing PACKAGES..."
+echo "[2/4.INFO] Installing PACKAGES..."
 [ $distro = "opensuse" ] && zypper install -y openssh
 [ $distro = "debian" ] && apt install -y openssh-server sudo
 
-echo "[INFO] Configuring SSH service..."
+echo "[3/4.INFO] Configuring SSH service..."
 [ ! -f $BACKUPFILE ] && cp $CONFIGFILE $BACKUPFILE
 sed 's/^#PermitRootLogin .*$/PermitRootLogin yes/g' $BACKUPFILE > $CONFIGFILE
 systemctl restart sshd
 systemctl enable sshd 2> /dev/null
 
-echo "[INFO] Finish!"
+echo "[4/4.INFO] Finish!"
