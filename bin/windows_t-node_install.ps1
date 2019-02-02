@@ -41,4 +41,4 @@ Pop-Location
 refreshenv
 
 Write-Host "[INFO] Finish!"
-if ($(teuton version)) { exit 0 } else { exit 1 }
+& "$TeutonPath\teuton" version

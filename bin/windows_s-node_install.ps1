@@ -25,4 +25,3 @@ If (!(Get-NetFirewallRule -DisplayName $FirewallRuleName -ErrorAction SilentlyCo
 }
 
 Write-Host "[INFO] Finish!"
-if (Get-Service sshd -ErrorAction SilentlyContinue) { exit 0 } else { exit 1 }

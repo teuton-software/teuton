@@ -27,4 +27,3 @@ rm -rf /usr/local/bin/teuton
 rm -rf $teutonPath
 
 echo "[INFO] Finish!"
-[ ! $(which teuton) ]
