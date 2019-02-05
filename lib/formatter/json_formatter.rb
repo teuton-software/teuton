@@ -3,7 +3,7 @@
 require 'terminal-table'
 require_relative 'base_formatter'
 
-class YAMLFormatter < BaseFormatter
+class JSONFormatter < BaseFormatter
 
   def initialize(pReport)
     super(pReport)
@@ -55,7 +55,7 @@ class YAMLFormatter < BaseFormatter
     @data[:body] = body
     @data[:tail] = tail
     @data[:fame] = fame
-    w @data.to_s # Write data into ouput file
+    w @data.to_json # Write data into ouput file
     deinit
   end
 

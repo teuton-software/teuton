@@ -3,6 +3,7 @@
 require_relative 'colored_text_formatter'
 require_relative 'csv_formatter'
 require_relative 'html_formatter'
+require_relative 'json_formatter'
 require_relative 'txt_formatter'
 require_relative 'yaml_formatter'
 require_relative 'xml_formatter'
@@ -17,6 +18,8 @@ module FormatterFactory
       f=CSVFormatter.new(pReport)
     when :html
       f=HTMLFormatter.new(pReport)
+    when :json
+      f=JSONFormatter.new(pReport)
     when :txt
       f=TXTFormatter.new(pReport)
 		when :yaml
