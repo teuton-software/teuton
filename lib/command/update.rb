@@ -26,6 +26,7 @@ LONGDESC
 
 LONGDESC
   def upgrade
-    system("cd /opt/teuton && git pull")
+    dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
+    system("cd #{dir} && git pull")
   end
 end
