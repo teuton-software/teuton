@@ -3,7 +3,6 @@
 require_relative 'lib/application'
 require_relative 'lib/rake_function/check.rb'
 require_relative 'lib/rake_function/install.rb'
-require_relative 'lib/rake_function/update.rb'
 
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
 packages += ['thor', 'json', 'minitest']
