@@ -7,18 +7,13 @@ require_relative 'lib/rake_function/install.rb'
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
 packages += ['thor', 'json', 'minitest']
 
-desc 'Default'
+desc 'Default: check'
 task :default => :check do
 end
 
 desc 'Check installation'
 task :check do
   RakeFunction.check(packages)
-end
-
-desc 'If your want sample TEUTON challenges'
-task :challenges do
-  RakeFunction.challenges
 end
 
 desc 'Debian installation'
@@ -39,11 +34,6 @@ end
 desc 'OpenSUSE installation'
 task :opensuse do
   RakeFunction.opensuse(packages)
-end
-
-desc 'Update project'
-task :update do
-  RakeFunction.update(packages)
 end
 
 def create_symbolic_link
