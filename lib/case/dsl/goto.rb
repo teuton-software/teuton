@@ -2,6 +2,11 @@
 
 module DSL
 
+  def command(pCommand, pArgs={})
+    @action[:command] = pCommand
+    tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
+  end
+
   #Run command from the host identify as pHostname
   #goto :host1, :execute => "command"
   def goto(pHostname=:localhost, pArgs={})
@@ -32,11 +37,6 @@ module DSL
   def run(command, args={} )
     args[:exec] = command.to_s
     goto( :localhost, args)
-  end
-
-  def command(pCommand, pArgs={})
-    @action[:command] = pCommand
-    tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
   end
 
 end

@@ -9,11 +9,6 @@ require_relative '../application'
 require_relative '../utils'
 require_relative 'config'
 require_relative 'dsl/main'
-require_relative 'dsl/expect'
-require_relative 'dsl/getset'
-require_relative 'dsl/goto'
-require_relative 'dsl/send'
-require_relative 'dsl/target'
 require_relative 'result'
 
 #TODO split Case class into several classes:

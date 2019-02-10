@@ -1,26 +1,12 @@
 # encoding: utf-8
 
+require_relative 'expect'
+require_relative 'getset'
+require_relative 'goto'
+require_relative 'send'
+require_relative 'target'
+
 module DSL
-
-  def request(text)
-    # do nothing
-  end
-
-  def command(pCommand, pArgs={})
-    @action[:command] = pCommand
-    tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
-  end
-
-  #Set weight value for the action
-  def weight(pValue=nil)
-    if pValue.nil? then
-      return @action[:weight]
-    elsif pValue==:default then
-      @action[:weight]=1.0
-    else
-      @action[:weight]=pValue.to_f
-      end
-  end
 
   def log(pText="", pType=:info)
     s=""

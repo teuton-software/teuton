@@ -26,4 +26,15 @@ module DSL
     verbose c
   end
 
+  #Set weight value for the action
+  def weight(pValue=nil)
+    if pValue.nil? then
+      return @action[:weight]
+    elsif pValue==:default then
+      @action[:weight]=1.0
+    else
+      @action[:weight]=pValue.to_f
+      end
+  end
+
 end
