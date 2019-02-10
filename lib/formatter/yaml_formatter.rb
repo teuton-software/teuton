@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-require 'terminal-table'
 require_relative 'base_formatter'
 
 class YAMLFormatter < BaseFormatter
@@ -11,6 +10,12 @@ class YAMLFormatter < BaseFormatter
   end
 
   def process
+    build_data
+    w @data.to_s # Write data into ouput file
+    deinit
+  end
+
+  def build_data
     head = {}
     head[:title] = "INITIAL CONFIGURATIONS"
     @head.each { |key,value| head[key]=value.to_s }
@@ -55,8 +60,6 @@ class YAMLFormatter < BaseFormatter
     @data[:body] = body
     @data[:tail] = tail
     @data[:fame] = fame
-    w @data.to_s # Write data into ouput file
-    deinit
   end
 
 end
