@@ -50,8 +50,8 @@ class CaseManager
     threads.each(&:join)
 
     # Build Hall of Fame
+    @app.options[:case_number] = @cases.size
     @app.hall_of_fame = build_hall_of_fame
-
     close_main_report(start_time)
   end
 end

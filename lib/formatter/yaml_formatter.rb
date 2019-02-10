@@ -16,10 +16,20 @@ class YAMLFormatter < BaseFormatter
   end
 
   def build_data
+    build_initial_data
+    build_history_data
+    build_final_data
+    build_hof_data
+  end
+
+  def build_initial_data
     head = {}
     head[:title] = "INITIAL CONFIGURATIONS"
     @head.each { |key,value| head[key]=value.to_s }
+    @data[:head] = head
+  end
 
+  def build_history_data
     body = {}
     body[:title] = "HISTORY"
     body[:lines] = []
@@ -45,20 +55,24 @@ class YAMLFormatter < BaseFormatter
       end
       body[:lines] << line
     end
+    @data[:body] = bady
+  end
 
+  def build_tail_data
     tail = {}
     tail[:title] = "FINAL VALUES"
     @tail.each { |key,value| tail[key] = value.to_s }
+    @data[:tail] = tail
+  end
+
+  def build_hof_data
+    app=Application.instance
+    return if app.options[:case_number]<3
 
     fame = {}
     fame[:title] = "HALL OF FAME"
     app=Application.instance
     app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
-
-    # Compose data ouput
-    @data[:head] = head
-    @data[:body] = body
-    @data[:tail] = tail
     @data[:fame] = fame
   end
 

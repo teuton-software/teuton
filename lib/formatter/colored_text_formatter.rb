@@ -12,11 +12,25 @@ class ColoredTextFormatter < BaseFormatter
 
   def process
     tab="  "
+    process_initial
+    process_history
+    process_final
+    process_hof
+    deinit
+  end
+
+  private
+
+  def process_initial
     w Rainbow("INITIAL CONFIGURATIONS").bg(:blue)+"\n"
     my_screen_table = Terminal::Table.new do |st|
       @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
     w my_screen_table.to_s+"\n\n"
+  end
+
+  def process_history
+    tab="  "
 
     w Rainbow("HISTORY").bg(:blue)+"\n"
     @lines.each do |i|
@@ -38,7 +52,9 @@ class ColoredTextFormatter < BaseFormatter
         w(i.to_s+"\n")
       end
     end
+  end
 
+  def process_final
     w Rainbow("FINAL VALUES").bg(:blue)+"\n"
     my_screen_table = Terminal::Table.new do |st|
       @tail.each do |key,value|
@@ -54,9 +70,13 @@ class ColoredTextFormatter < BaseFormatter
       end
     end
     w my_screen_table.to_s+"\n\n"
+  end
+
+  def process_hof
+    app=Application.instance
+    return if app.options[:case_number]<3
 
     w Rainbow("HALL OF FAME").bg(:blue)+"\n"
-    app=Application.instance
     my_screen_table = Terminal::Table.new do |st|
       app.hall_of_fame.each do |line|
         mycolor=:green
@@ -71,8 +91,7 @@ class ColoredTextFormatter < BaseFormatter
       end
     end
     w my_screen_table.to_s+"\n"
-
-    deinit
   end
+
 
 end

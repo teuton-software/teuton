@@ -10,13 +10,25 @@ class TXTFormatter < BaseFormatter
   end
 
   def process
-    tab="  "
+    process_initial
+    process_history
+    process_final
+    process_hof
+    deinit
+  end
+
+  private
+
+  def process_initial
     w "INITIAL CONFIGURATIONS\n"
     my_screen_table = Terminal::Table.new do |st|
       @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
     w my_screen_table.to_s+"\n\n"
+  end
 
+  def process_history
+    tab="  "
     w "HISTORY\n"
     @lines.each do |i|
       if i.class.to_s=='Hash' then
@@ -38,7 +50,9 @@ class TXTFormatter < BaseFormatter
         w(i.to_s + "\n\n")
       end
     end
+  end
 
+  def process_final
     w "FINAL VALUES\n"
     my_screen_table = Terminal::Table.new do |st|
       @tail.each do |key,value|
@@ -46,6 +60,11 @@ class TXTFormatter < BaseFormatter
       end
     end
     w my_screen_table.to_s+"\n"
+  end
+
+  def process_hof
+    app=Application.instance
+    return if app.options[:case_number]<3
 
     w "HALL OF FAME\n"
     app=Application.instance
