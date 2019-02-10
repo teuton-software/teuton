@@ -6,7 +6,8 @@ require 'net/telnet'
 
 class Case
 
-  private 
+  private
+  
   def run_local_cmd()
     @action[:conn_type]=:local
     @result.content = my_execute( @action[:command], @action[:encoding] )
