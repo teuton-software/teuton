@@ -18,13 +18,12 @@ class Report
   attr_reader :format
 
   def initialize(id)
-    @id=id
-    @output_dir=Application.instance.output_basedir
-
-    @head={}
-    @lines=[]
-    @tail={}
-    @history=''
+    @id = id
+    @output_dir = Application.instance.output_basedir
+    @head    = {}
+    @lines   = []
+    @tail    = {}
+    @history = ''
   end
 
   def export(format = :txt)

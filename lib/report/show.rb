@@ -23,14 +23,18 @@ class Report
   def show_targets_history
     tab = '  '
     puts 'CASE RESULTS'
-    @lines.each do |i|
-      if i.class.to_s == 'Hash'
-        value = 0.0
-        value = i[:weight] if i[:check]
-        print tab + "%03d" % i[:id] + ' (' + "%2d.2f" % value.to_f + '/'
-        puts "%2d.2f" % i[:weight].to_f + ') ' + i[:description]
-      else
-        puts tab + '-  ' + i.to_s
+    if @lines.size==1
+      puts @lines[0]
+    else
+      @lines.each do |i|
+        if i.class.to_s == 'Hash'
+          value = 0.0
+          value = i[:weight] if i[:check]
+          print tab + "%03d" % i[:id] + ' (' + "%2d.2f" % value.to_f + '/'
+          puts "%2d.2f" % i[:weight].to_f + ') ' + i[:description]
+        else
+          puts tab + '-  ' + i.to_s
+        end
       end
     end
   end

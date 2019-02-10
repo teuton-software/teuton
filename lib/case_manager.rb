@@ -16,7 +16,7 @@ require_relative 'case_manager/show'
 # This class does all the job
 # Organize the hole job, sending orders to others classes
 # * initialize
-# * start
+# * play (Old name was start)
 # Split into several files:
 # * case_manager/check_cases
 # * case_manager/export
