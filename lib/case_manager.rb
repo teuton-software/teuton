@@ -4,7 +4,7 @@ require 'singleton'
 
 require_relative 'application'
 require_relative 'configfile_reader'
-require_relative 'case/case'
+require_relative 'case'
 require_relative 'utils'
 require_relative 'report'
 require_relative 'case_manager/check_cases'
