@@ -3,24 +3,21 @@ class Teuton < Thor
 
   map ['p', '-p', 'play', '--play'] => 'play'
   option :export, :type => :string
-  desc 'play PATH/TO/FILE/FOO.rb', 'Run activity script file'
+  desc '[play] [--export=FORMAT] DIRECTORY', 'Run challenge from directory'
   long_desc <<-LONGDESC
 
-Let's see some examples.
+This function execute challenge from specified directory.
 
-  teuton demo/foo.rb => Run challenge from <demo/foo.rb>
+By default, it will be shown progress information on the screen.
 
-  teuton demo/foo       => Run challenge from <demo/foo/start.rb>.
+Available EXPORT FORMATS: txt, colored_text, json, yaml.
 
-  teuton play demo/foo.rb => Run challenge from <demo/foo.rb>
-
-  teuton play demo/foo    => Run challenge from <demo/foo/start.rb>.
-
-  teuton play --export=json demo/foo.rb => Export json format files
-
-  teuton play --export=json demo/foo    => Export json format files
-
- Export formats availables: txt, colored_text, yaml, json.
+Let's see some examples: teuton foo (Run challenge from <foo/start.rb>),
+teuton play foo (Run challenge from <foo/start.rb>),
+teuton play --export=json foo (Run challenge and export using json format),
+teuton foo/demo.rb (Run challenge from <foo/demo.rb>),
+teuton play foo/demo.rb (Run challenge from <foo/demo.rb>),
+teuton play --export=json foo/demo.rb (Export json format files)
 
 LONGDESC
   def play(path_to_rb_file)
