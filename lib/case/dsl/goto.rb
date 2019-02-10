@@ -34,4 +34,9 @@ module DSL
     goto( :localhost, args)
   end
 
+  def command(pCommand, pArgs={})
+    @action[:command] = pCommand
+    tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
+  end
+
 end

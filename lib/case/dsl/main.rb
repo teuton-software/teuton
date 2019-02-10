@@ -2,12 +2,6 @@
 
 module DSL
 
-  def target(text=nil)
-    return @action[:description] if text.nil?
-    @action[:description] = text
-  end
-  alias_method :goal, :target
-
   def request(text)
     # do nothing
   end
@@ -15,15 +9,6 @@ module DSL
   def command(pCommand, pArgs={})
     @action[:command] = pCommand
     tempfile(pArgs[:tempfile]) if pArgs[:tempfile]
-  end
-
-  #Read param pOption from [running, config or global] Hash data
-  def get(pOption)
-    @config.get(pOption)
-  end
-
-  def set( key, value)
-    @config.set(key,value)
   end
 
   #Set weight value for the action
@@ -52,31 +37,4 @@ module DSL
     @uniques << k
   end
 
-  def tempfile(pTempfile=nil)
-    ext='.tmp'
-    pre=@id.to_s+"-"
-    if pTempfile.nil? then
-      return @action[:tempfile]
-    elsif pTempfile==:default
-      @action[:tempfile]=File.join(@tmpdir, pre+'tt_local'+ext)
-      @action[:remote_tempfile]=File.join(@remote_tmpdir, pre+'tt_remote'+ext)
-    else
-      @action[:tempfile]=File.join(@tmpdir, pre+pTempfile+ext)
-      @action[:remote_tempfile]=File.join(@remote_tmpdir, pre+pTempfile+ext)
-    end
-
-	return @action[:tempfile]
-  end
-
-  def tempdir
-    @tmpdir
-  end
-
-  def remote_tempfile
-    return @action[:remote_tempfile]
-  end
-
-  def remote_tempdir
-    @remote_tmpdir
-  end
 end

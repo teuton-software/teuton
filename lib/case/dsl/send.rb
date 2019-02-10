@@ -38,4 +38,32 @@ module DSL
     end
   end
 
+  def tempfile(pTempfile=nil)
+    ext='.tmp'
+    pre=@id.to_s+"-"
+    if pTempfile.nil? then
+      return @action[:tempfile]
+    elsif pTempfile==:default
+      @action[:tempfile]=File.join(@tmpdir, pre+'tt_local'+ext)
+      @action[:remote_tempfile]=File.join(@remote_tmpdir, pre+'tt_remote'+ext)
+    else
+      @action[:tempfile]=File.join(@tmpdir, pre+pTempfile+ext)
+      @action[:remote_tempfile]=File.join(@remote_tmpdir, pre+pTempfile+ext)
+    end
+
+  	return @action[:tempfile]
+  end
+
+  def tempdir
+    @tmpdir
+  end
+
+  def remote_tempfile
+    return @action[:remote_tempfile]
+  end
+
+  def remote_tempdir
+    @remote_tmpdir
+  end
+
 end
