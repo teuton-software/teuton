@@ -29,7 +29,7 @@ module Project
     lab.show_dsl unless (options[:r] or options[:c])
   end
 
-  def self.run(pathtofile)
+  def self.play(pathtofile)
     app = Application.instance
     find_filenames_for(pathtofile)
 

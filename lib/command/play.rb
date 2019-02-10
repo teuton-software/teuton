@@ -15,6 +15,6 @@ class Teuton < Thor
 
 LONGDESC
   def play(path_to_rb_file)
-    Project.run(path_to_rb_file)
+    Project.play(path_to_rb_file)
   end
 end
