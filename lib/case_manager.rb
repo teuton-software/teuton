@@ -39,6 +39,10 @@ class CaseManager
   def play(&block)
     check_cases!
     instance_eval(&block)
+    # Run export if user pass option command "--export=json"
+    unless @app.options['export'].nil?
+      export(:format => @app.options['export'].to_sym)
+    end
   end
 
   def send(args = {})

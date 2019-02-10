@@ -24,7 +24,7 @@ Let's see some examples.
 
 LONGDESC
   def play(path_to_rb_file)
-    format = options[:export] || Application.instance.default[:format]
-    Project.play(path_to_rb_file, format.to_sym)
+    Application.instance.options.merge! options
+    Project.play(path_to_rb_file)
   end
 end

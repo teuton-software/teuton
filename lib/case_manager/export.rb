@@ -8,8 +8,7 @@ class CaseManager
       raise '[ERROR] tool#export: Arguments are incorrect'
     end
     # default :mode=>:all, :format=>:txt
-    format = args[:format] || :txt
-
+    format = args[:format] || Application.instance.default[:format]
     mode = args[:mode] || :all
     @report.export format if mode == :resume || mode == :all
 
