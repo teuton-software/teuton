@@ -46,7 +46,6 @@ class TXTFormatter < BaseFormatter
         w tab+"\t\tExpected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
         w tab+"\t\tResult      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
       else
-#        w tab+"- "+i.to_s+"\n"
         w(i.to_s + "\n\n")
       end
     end

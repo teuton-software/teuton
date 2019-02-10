@@ -66,12 +66,11 @@ class YAMLFormatter < BaseFormatter
   end
 
   def build_hof_data
-    app=Application.instance
+    app = Application.instance
     return if app.options[:case_number]<3
 
     fame = {}
     fame[:title] = "HALL OF FAME"
-    app=Application.instance
     app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
     @data[:fame] = fame
   end

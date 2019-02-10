@@ -11,7 +11,6 @@ class ColoredTextFormatter < BaseFormatter
   end
 
   def process
-    tab="  "
     process_initial
     process_history
     process_final
