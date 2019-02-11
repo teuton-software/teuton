@@ -7,11 +7,12 @@ require_relative '../lib/application'
 class ApplicationTest < Minitest::Test
   def setup
     @app = Application.instance
+    @app.reset
   end
 
   def test_version
     assert_equal 'teuton', @app.name
-    assert_equal '1.15.1', @app.version
+    assert_equal '1.15.2', @app.version
   end
 
   def test_init_params
