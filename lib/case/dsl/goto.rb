@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'net/ssh'
+
 module DSL
 
   def command(pCommand, pArgs={})
