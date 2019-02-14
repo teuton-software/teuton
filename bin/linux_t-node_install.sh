@@ -15,12 +15,12 @@ echo "[0/6.INFO] GNU/Linux T-NODE installation"
 
 echo "[1/6.INFO] Checking distro..."
 [ "$distro" = "" ] && exists_binary zypper && distro=opensuse
-[ "$distro" = "" ] && exists_binary apt && distro=debian
+[ "$distro" = "" ] && exists_binary apt-get && distro=debian
 [ "$distro" = "" ] && echo "Unsupported distribution ... exiting!" && exit 1
 echo "- $distro distribution found"
 
 echo "[2/6.INFO] Installing PACKAGES..."
-[ $distro = "debian" ] && apt update && apt install -y git ruby irb
+[ $distro = "debian" ] && apt-get update && apt-get install -y git ruby irb
 [ $distro = "opensuse" ] && zypper refresh && zypper install -y git
 
 echo "[3/6.INFO] Rake gem installation"
