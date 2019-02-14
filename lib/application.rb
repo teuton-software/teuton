@@ -20,7 +20,7 @@ class Application
 
   def reset
     @name = 'teuton'
-    @version = '1.15.2'
+    @version = '19.02.1'
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @output_basedir = 'var'
     @debug = false

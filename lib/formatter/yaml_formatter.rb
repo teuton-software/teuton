@@ -55,10 +55,10 @@ class YAMLFormatter < BaseFormatter
       end
       body[:lines] << line
     end
-    @data[:body] = bady
+    @data[:body] = body
   end
 
-  def build_tail_data
+  def build_final_data
     tail = {}
     tail[:title] = "FINAL VALUES"
     @tail.each { |key,value| tail[key] = value.to_s }
