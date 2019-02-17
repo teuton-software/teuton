@@ -5,7 +5,7 @@ module RakeFunction
     names.each { |name| system("apt-get install -y #{name}") }
     install_gems packages
     create_symbolic_link
-    system("rake challenges")
+#    system("rake challenges")
   end
 
   # INFO
@@ -18,7 +18,7 @@ module RakeFunction
     names.each { |n| system("zypper #{options} install #{n}") }
     install_gems packages
     create_symbolic_link
-    system("rake challenges")
+#    system("rake challenges")
   end
 
   def self.install_gems(list)
