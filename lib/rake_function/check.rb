@@ -1,13 +1,17 @@
-
+# Method RakeFunction#check
 module RakeFunction
-  def self.check(packages)
+  def self.check(gems)
     puts "[INFO] Version #{Application.instance.version}"
-    fails = filter_uninstalled_gems(packages)
+    check_gems gems
+    check_tests
+  end
 
-    unless fails.size.zero?
-      puts '[ERROR] Gems to install!: ' + fails.join(',')
-    end
+  def self.check_gems(gems)
+    fails = filter_uninstalled_gems(gems)
+    puts "[ERROR] Gems to install!: #{fails.join(',')}" unless fails == []
+  end
 
+  def self.check_tests
     testfile = File.join('.', 'tests', 'all.rb')
     a = File.read(testfile).split("\n")
     b = a.select { |i| i.include? '_test' }
@@ -30,5 +34,4 @@ module RakeFunction
     list.each { |i| fails << i unless names.include?(i) }
     fails
   end
-
 end

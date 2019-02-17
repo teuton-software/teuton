@@ -5,10 +5,10 @@ require_relative 'lib/rake_function/check.rb'
 require_relative 'lib/rake_function/install.rb'
 
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
-packages += ['thor', 'json', 'minitest', 'rubocop']
+packages += %w[thor json minitest rubocop]
 
 desc 'Default: check'
-task :default => :check do
+task default: :check do
 end
 
 desc 'Check installation'
@@ -37,7 +37,7 @@ task :opensuse do
 end
 
 def create_symbolic_link
-  puts "[INFO] Creating symbolic link into /usr/local/bin"
+  puts '[INFO] Creating symbolic link into /usr/local/bin'
   basedir = File.dirname(__FILE__)
   system("ln -s #{basedir}/teuton /usr/local/bin/teuton")
 end
