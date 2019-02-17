@@ -1,14 +1,13 @@
 #!/usr/bin/ruby
-# encoding: utf-8
 
 require 'thor'
 require 'rainbow'
-#require 'pry-byebug'
+# require 'pry-byebug'
 require_relative 'lib/application'
 require_relative 'lib/project'
-require_relative 'lib/command/challenges'
 require_relative 'lib/command/clean'
 require_relative 'lib/command/create'
+require_relative 'lib/command/download'
 require_relative 'lib/command/play'
 require_relative 'lib/command/test'
 require_relative 'lib/command/update'
@@ -16,11 +15,10 @@ require_relative 'lib/command/version'
 
 # Command Line User Interface
 class Teuton < Thor
-
   map ['h', '-h', '--help'] => 'help'
 
-  def method_missing(m, *_args, &_block)
-    play(m.to_s)
+  def method_missing(method, *_args, &_block)
+    play(method.to_s)
   end
 
   def respond_to_missing?(method_name, include_private = false)
@@ -28,5 +26,4 @@ class Teuton < Thor
   end
 end
 
-Application.instance.running_basedir = Dir.getwd
 Teuton.start(ARGV)

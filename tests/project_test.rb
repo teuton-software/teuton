@@ -10,7 +10,6 @@ class ProjectTest < Minitest::Test
     app = Application.instance
     app.verbose = false
     # Simple mode, files exists
-    app.running_basedir = Dir.getwd
     basedir = app.running_basedir
 
     Project.find_filenames_for('tests/files/example-01.rb')
