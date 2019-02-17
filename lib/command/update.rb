@@ -13,6 +13,12 @@ class Teuton < Thor
 LONGDESC
   def update
     dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
-    system("cd #{dir} && git pull")
+    ok = system("cd #{dir} && git pull")
+    if ok
+      puts Rainbow('[ OK ] teuton update').green.bright
+    else
+      puts Rainbow('[FAIL] teuton update').red.bright
+      exit(1)
+    end
   end
 end
