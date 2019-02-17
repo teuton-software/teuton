@@ -5,7 +5,7 @@ require_relative 'lib/rake_function/check.rb'
 require_relative 'lib/rake_function/install.rb'
 
 packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
-packages += ['thor', 'json', 'minitest']
+packages += ['thor', 'json', 'minitest', 'rubocop']
 
 desc 'Default: check'
 task :default => :check do
