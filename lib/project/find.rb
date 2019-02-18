@@ -1,6 +1,5 @@
-
+# Project#find
 module Project
-
   def self.find_filenames_for(relpathtofile)
     pathtofile = File.join(Application.instance.running_basedir, relpathtofile)
     if pathtofile.nil? # Check param not null
@@ -66,7 +65,6 @@ module Project
   end
 
   def self.verbose(text)
-    return unless Application.instance.verbose
-    print text
+    print text if Application.instance.verbose
   end
 end

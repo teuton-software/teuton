@@ -1,9 +1,8 @@
-
 require 'terminal-table'
 require_relative '../application'
 require_relative '../configfile_reader'
 require_relative '../case/result'
-#require 'pry-byebug'
+# require 'pry-byebug'
 
 def group(name, &block)
   Application.instance.tasks << { name: name, block: block }
@@ -18,7 +17,6 @@ alias play start
 # Show objectives stats from RB script file
 class Laboratory
   attr_reader :result
-  attr_accessor :verbose
 
   def initialize(script_path, config_path)
     @path = {}
@@ -34,7 +32,7 @@ class Laboratory
     @sets = {}
     @hosts = {}
     @requests = []
-    @verbose = true
+    @verbose = Application.instance.verbose
   end
 
   def target(description = 'empty')
@@ -43,8 +41,7 @@ class Laboratory
     i = @targetid
     verboseln "(%03d" % i + ") target #{description}"
   end
-
-  alias_method :goal, :target
+  alias :goal :target
 
   def request(text)
     @requests << text.to_s
@@ -67,7 +64,7 @@ class Laboratory
 
   def run(command, args = {})
     args[:exec] = command
-    goto( :localhost, args)
+    goto(:localhost, args)
   end
 
   def expect(_cond, args = {})
@@ -138,7 +135,7 @@ class Laboratory
       st.add_row ['Gets', @stats[:gets]]
       if @gets.count > 0
         list = @gets.sort_by { |_k, v| v }
-        list.reverse.each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
+        list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
       end
 
       st.add_row ['Sets', @stats[:sets]]
@@ -164,7 +161,7 @@ class Laboratory
       st.add_row ['Lines', 'REQUEST description']
       st.add_separator
       @requests.each_with_index do |line, index|
-        st.add_row ["%03d" % index, line ]
+        st.add_row ["%03d" % index, line]
       end
     end
     verboseln my_screen_table
@@ -198,6 +195,7 @@ class Laboratory
     script_vars = [:tt_members]
     @hosts.each_key do |k|
       next if k == :localhost
+
       if k.class == Symbol
         script_vars << (k.to_s + '_ip').to_sym
         script_vars << (k.to_s + '_username').to_sym
@@ -244,9 +242,12 @@ class Laboratory
 
     config_vars[:cases].each_with_index do |item, index|
       next if item[:tt_skip] == true
+
       script_vars.each do |value|
         next unless item[value].nil?
-        next unless @sets[':'+(value).to_s].nil?
+
+        next unless @sets[':' + value.to_s].nil?
+
         verbose Rainbow('  * Define ').red
         verbose Rainbow(value).red.bright
         verbose Rainbow(' value for Case[').red
