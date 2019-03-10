@@ -86,7 +86,6 @@ Run this demo with [Teuton](./docs/en/command.md) with:
 * [Examples](./docs/en/examples.md)
 * [How to create your first activity](./docs/en/first-activity.md)
 * [DSL Key words](./docs/en/dsl/README.md)
-* [TO-DO list](./TODO.md)
 
 Other languages:
 * ES - [Spanish documentation](./docs/es/README.md)
