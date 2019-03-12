@@ -2,7 +2,7 @@
 # MacOSX T-Node Installation
 # version: 20190312
 
-teutonPath=/usr/local/opt/teuton
+teutonPath=/opt/teuton
 teutonUrl=https://github.com/dvarrui/teuton.git
 
 function exists_binary() {
