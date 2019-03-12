@@ -38,6 +38,7 @@ cd $teutonPath
 rake gems
 rake
 ln -s $teutonPath/teuton /usr/local/bin/teuton
+echo "chruby ruby" >> ~/.bash_profile
 
 echo "[6/6.INFO] Finish!"
 teuton version
