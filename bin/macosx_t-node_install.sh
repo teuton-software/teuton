@@ -21,8 +21,9 @@ exists_binary chruby || brew install chruby
 if chruby | grep -vq ruby
 then
 	ruby-install ruby
-	echo "ruby" > ~/.ruby-version
 fi
+
+echo "ruby" > ~/.ruby-version
 
 if grep -qv "source /usr/local/opt/chruby/share/chruby/chruby.sh" ~/.bash_profile
 then
@@ -43,7 +44,6 @@ cd $teutonPath
 rake gems
 rake
 ln -s $teutonPath/teuton /usr/local/bin/teuton
-echo "chruby ruby" >> ~/.bash_profile
 
 echo "[6/6.INFO] Finish!"
 teuton version
