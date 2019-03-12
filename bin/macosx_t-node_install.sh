@@ -21,8 +21,11 @@ exists_binary chruby || brew install chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
-ruby-install ruby 2.6.1
-chruby 2.6.1
+if chruby | grep -vq ruby
+then
+	ruby-install ruby
+fi
+chruby ruby
 
 echo "[3/6.INFO] Rake gem installation"
 gem install rake
