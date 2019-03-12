@@ -1,4 +1,5 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
+
 # load gem to use ssh tool
 require 'net/ssh'
 

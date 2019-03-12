@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # This method open ssh connection with remote host and execute command.
 # Params

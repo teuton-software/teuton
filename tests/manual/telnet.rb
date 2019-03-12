@@ -1,4 +1,5 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
+
 # load gem to use telnet tool
 require 'net/telnet'
 
