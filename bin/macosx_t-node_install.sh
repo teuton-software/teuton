@@ -18,14 +18,19 @@ echo "[2/6.INFO] Installing PACKAGES..."
 exists_binary git || brew install git
 exists_binary chruby || brew install chruby
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
 if chruby | grep -vq ruby
 then
 	ruby-install ruby
+	echo "ruby" > ~/.ruby-version
 fi
-chruby ruby
+
+if grep -qv "source /usr/local/opt/chruby/share/chruby/chruby.sh" ~/.bash_profile
+then
+	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
+	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
+fi
+
+source ~/.bash_profile
 
 echo "[3/6.INFO] Rake gem installation"
 gem install rake
