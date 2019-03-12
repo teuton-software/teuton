@@ -13,7 +13,7 @@ echo "[0/2.INFO] MacOSX S-NODE uninstallation"
 echo "[1/2.INFO] Disabling SSH server..."
 if ssh_enabled 
 then
-	echo yes | systemsetup -setremotelogin off
+	echo yes | systemsetup -setremotelogin off > /dev/null
 fi
 
 echo "[2/2.INFO] Finish!"
