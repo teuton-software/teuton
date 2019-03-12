@@ -2,7 +2,7 @@
 # MacOSX T-Node Installation
 # version: 20190312
 
-teutonPath=/opt/teuton
+teutonPath=/usr/local/opt/teuton
 teutonUrl=https://github.com/dvarrui/teuton.git
 
 function exists_binary() {
@@ -37,6 +37,7 @@ echo "[5/6.INFO] Configuring..."
 cd $teutonPath
 rake gems
 rake
+ln -s $teutonPath/teuton /usr/local/bin/teuton
 
 echo "[6/6.INFO] Finish!"
-/usr/local/bin/teuton version
+teuton version
