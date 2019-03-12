@@ -10,8 +10,8 @@ echo "[2/4.INFO] Uninstalling PACKAGES..."
 brew uninstall git
 brew uninstall chruby
 
-sed -i '/^source \/usr\/local\/opt\/chruby\/share\/chruby\/chruby.sh$/d' ~/.bash_profile
-sed -i '/^source \/usr\/local\/opt\/chruby\/share\/chruby\/auto.sh$/d' ~/.bash_profile
+sed -i "" '/^source \/usr\/local\/opt\/chruby\/share\/chruby\/chruby.sh$/d' ~/.bash_profile
+sed -i "" '/^source \/usr\/local\/opt\/chruby\/share\/chruby\/auto.sh$/d' ~/.bash_profile
 rm -rf ~/.ruby_version
 
 echo "[3/4.INFO] Uninstalling teuton..."
