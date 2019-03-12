@@ -11,6 +11,9 @@ function ssh_enabled() {
 echo "[0/2.INFO] MacOSX S-NODE uninstallation"
 
 echo "[1/2.INFO] Disabling SSH server..."
-ssh_enabled && $( echo yes | systemsetup -setremotelogin off )
+if ssh_enabled 
+then
+	echo yes | systemsetup -setremotelogin off
+fi
 
 echo "[2/2.INFO] Finish!"
