@@ -31,7 +31,7 @@ then
 	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
 fi
 
-source ~/.bash_profile
+chruby ruby
 
 echo "[3/6.INFO] Rake gem installation"
 gem install rake
