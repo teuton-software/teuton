@@ -18,6 +18,8 @@ echo "[2/6.INFO] Installing PACKAGES..."
 exists_binary git || brew install git
 exists_binary chruby || brew install chruby
 
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+
 if chruby | grep -vq ruby
 then
 	ruby-install ruby
