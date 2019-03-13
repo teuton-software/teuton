@@ -27,7 +27,7 @@ fi
 
 echo "ruby" > ~/.ruby-version
 
-if grep -qv "source /usr/local/opt/chruby/share/chruby/chruby.sh" ~/.bash_profile
+if cat ~/.bash_profile | grep -vq "^source .*/chruby.sh$" 
 then
 	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
 	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
