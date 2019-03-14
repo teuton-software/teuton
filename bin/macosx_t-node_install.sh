@@ -35,8 +35,6 @@ fi
 
 echo "Running ~/.bash_profile script" && source ~/.bash_profile
 
-source $chrubyPath/chruby.sh
-
 $(chruby | grep -q ruby) || ( echo "Installing ruby..." && ruby-install ruby )
 
 echo "Switching to new ruby version" && chruby ruby
