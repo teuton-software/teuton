@@ -53,3 +53,4 @@ env PATH=$PATH /bin/bash -c "cd $teutonPath && rake gems && rake"
 
 echo "[6/6.INFO] Finish!"
 teuton version
+echo "[WARNING] Close current BASH and run a new one in order to have teuton working or run 'source ~/.bash_profile'."
