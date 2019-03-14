@@ -21,13 +21,7 @@ exists_binary ruby-install || brew install ruby-install
 
 echo "ruby" > ~/.ruby-version
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
-$(chruby | grep -q ruby) || ruby-install ruby
-
 [ ! -f ~/.bash_profile ] && touch ~/.bash_profile
-
 if cat ~/.bash_profile | grep -q "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" 
 then
 	echo "Don't adding commands to ~/.bash_profile"
@@ -36,6 +30,10 @@ else
 	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
 	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
 fi
+
+$(chruby | grep -q ruby) || ruby-install ruby
+
+. ~/.bash_profile
 
 chruby ruby
 
