@@ -53,22 +53,7 @@ Para ejecutar el test/reto de ejemplo con [Teuton](./comando.md) haremos:
 
 # Documentación
 
-* [Vídeos](./videos.md)
-* [Modos de uso](./modos.md)
-* [Instalación](./instalar.md)
-* [Comando principal Teuton](./comando.md)
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./dsl/README.md)
 
----
-
-# Contacto
-
-* **Correo**: `teuton.software@protonmail.com`
-* **Twitter**: `@SoftwareTeuton`
-
-**Teuton** está bien, pero se puede mejorar (como todo en la vida).
-Me gustaría que otros usuarios (interesados en sistemas, unidades de prueba y/o en educación) la conozcan, y recibir comentarios, sugerencias o colaboraciones para mejorar la herramientas.
-
-¡Muchas gracias!
