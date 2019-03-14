@@ -24,15 +24,15 @@ echo "ruby" > ~/.ruby-version
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
-if chruby | grep -vq ruby
-then
-	ruby-install ruby
-fi
+$(chruby | grep -q ruby) || ruby-install ruby
 
 [ ! -f ~/.bash_profile ] && touch ~/.bash_profile
 
-if cat ~/.bash_profile | grep -vq "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" 
+if cat ~/.bash_profile | grep -q "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" 
 then
+	echo "Don't adding commands to ~/.bash_profile"
+else
+	echo "Adding commands to ~/.bash_profile"
 	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
 	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
 fi
