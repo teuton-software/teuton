@@ -9,10 +9,14 @@ function exists_binary() {
 	which $1 > /dev/null
 }
 
+function install_brew() {
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+
 echo "[0/6.INFO] MacOSX T-NODE installation"
 
 echo "[1/6.INFO] Installing BREW..."
-exists_binary brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+exists_binary brew || install_brew
 
 echo "[2/6.INFO] Installing PACKAGES..."
 exists_binary git || brew install git
