@@ -23,18 +23,19 @@ exists_binary ruby-install || brew install ruby-install
 
 [ ! -f ~/.bash_profile ] && echo "Creating ~/.bash_profile file" && touch ~/.bash_profile
 
-if cat ~/.bash_profile | grep -q "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" 
+chrubyPath=/usr/local/opt/chruby/share/chruby/
+if cat ~/.bash_profile | grep -q "^source ${chrubyPath}/chruby.sh$" 
 then
 	echo "chruby.sh and auto.sh scripts already added to ~/.bash_profile"
 else
 	echo "Adding chruby.sh and auto.sh scripts to ~/.bash_profile"
-	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
-	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
+	echo "source $chrubyPath/chruby.sh" >> ~/.bash_profile
+	echo "source $chrubyPath/auto.sh" >> ~/.bash_profile
 fi
 
-echo "Running ~/.bash_profile script" && . ~/.bash_profile
+echo "Running ~/.bash_profile script" && source ~/.bash_profile
 
-$(chruby | grep -q ruby) || echo "Installing ruby..." && ruby-install ruby
+$(chruby | grep -q ruby) || ( echo "Installing ruby..." && ruby-install ruby )
 
 echo "Switching to new ruby version" && chruby ruby
 
