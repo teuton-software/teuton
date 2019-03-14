@@ -43,6 +43,7 @@ echo "[3/6.INFO] Rake gem installation"
 gem install rake
 
 echo "[4/6.INFO] Installing teuton..."
+[ -d $teutonPath ] && rm -fr $teutonPath
 git clone $teutonUrl $teutonPath -q
 
 echo "[5/6.INFO] Configuring..."
