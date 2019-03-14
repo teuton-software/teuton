@@ -31,9 +31,9 @@ else
 	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
 fi
 
-$(chruby | grep -q ruby) || ruby-install ruby
-
 . ~/.bash_profile
+
+$(chruby | grep -q ruby) || ruby-install ruby
 
 chruby ruby
 
