@@ -19,25 +19,24 @@ exists_binary git || brew install git
 exists_binary chruby || brew install chruby 
 exists_binary ruby-install || brew install ruby-install
 
-echo "ruby" > ~/.ruby-version
+[ ! -f ~/.ruby-version ] && echo "Creating ~/.ruby-version file" && echo "ruby" > ~/.ruby-version
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
-$(chruby | grep -q ruby) || ruby-install ruby
-
-[ ! -f ~/.bash_profile ] && touch ~/.bash_profile
+[ ! -f ~/.bash_profile ] && echo "Creating ~/.bash_profile file" && touch ~/.bash_profile
 
 if cat ~/.bash_profile | grep -q "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" 
 then
-	echo "Don't adding commands to ~/.bash_profile"
+	echo "chruby.sh and auto.sh scripts already added to ~/.bash_profile"
 else
-	echo "Adding commands to ~/.bash_profile"
+	echo "Adding chruby.sh and auto.sh scripts to ~/.bash_profile"
 	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
 	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
 fi
 
-chruby ruby
+echo "Running ~/.bash_profile script" && . ~/.bash_profile
+
+$(chruby | grep -q ruby) || echo "Installing ruby..." && ruby-install ruby
+
+echo "Switching to new ruby version" && chruby ruby
 
 echo "[3/6.INFO] Rake gem installation"
 gem install rake
@@ -49,7 +48,7 @@ echo "[5/6.INFO] Configuring..."
 cd $teutonPath
 rake gems
 rake
-ln -s $teutonPath/teuton /usr/local/bin/teuton
+echo "Creating symlink to $teutonPath/teuton in /usr/local/bin/teuton" && ln -s $teutonPath/teuton /usr/local/bin/teuton
 
 echo "[6/6.INFO] Finish!"
 teuton version
