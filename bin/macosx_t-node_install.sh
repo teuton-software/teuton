@@ -33,7 +33,7 @@ else
 	echo "source $chrubyPath/auto.sh" >> ~/.bash_profile
 fi
 
-echo "Running ~/.bash_profile script" && source ~/.bash_profile
+echo "Running ~/.bash_profile script" && source ~/.bash_profile && . ~/.bash_profile
 
 $(chruby | grep -q ruby) || ( echo "Installing ruby..." && ruby-install ruby )
 
