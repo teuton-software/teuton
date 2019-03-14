@@ -16,7 +16,8 @@ exists_binary brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubuserconte
 
 echo "[2/6.INFO] Installing PACKAGES..."
 exists_binary git || brew install git
-exists_binary chruby || brew install chruby
+exists_binary chruby || brew install chruby 
+exists_binary ruby-install || brew install ruby-install
 
 echo "ruby" > ~/.ruby-version
 
@@ -30,7 +31,7 @@ fi
 
 [ ! -f ~/.bash_profile ] && touch ~/.bash_profile
 
-if grep -vq "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" ~/.bash_profile
+if cat ~/.bash_profile | grep -vq "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" 
 then
 	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
 	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
