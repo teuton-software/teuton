@@ -18,16 +18,21 @@ echo "[2/6.INFO] Installing PACKAGES..."
 exists_binary git || brew install git
 exists_binary chruby || brew install chruby
 
+echo "ruby" > ~/.ruby-version
+
 source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 if chruby | grep -vq ruby
 then
 	ruby-install ruby
 fi
 
-echo "ruby" > ~/.ruby-version
-echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
-echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
+[ ! -f ~/.bash_profile ] && touch ~/.bash_profile
+if grep -vq "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" ~/.bash_profile
+	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
+	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
+fi
 
 chruby ruby
 
