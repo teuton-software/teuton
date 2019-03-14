@@ -33,9 +33,9 @@ else
 	echo "source $chrubyPath/auto.sh" >> ~/.bash_profile
 fi
 
-echo "Running ~/.bash_profile script" && source ~/.bash_profile && . ~/.bash_profile
+echo "Running ~/.bash_profile script" && source ~/.bash_profile
+
 source $chrubyPath/chruby.sh
-source $chrubyPath/chmod.sh
 
 $(chruby | grep -q ruby) || ( echo "Installing ruby..." && ruby-install ruby )
 
@@ -48,10 +48,8 @@ echo "[4/6.INFO] Installing teuton..."
 git clone $teutonUrl $teutonPath -q
 
 echo "[5/6.INFO] Configuring..."
-cd $teutonPath
-rake gems
-rake
-echo "Creating symlink to $teutonPath/teuton in /usr/local/bin/teuton" && ln -s $teutonPath/teuton /usr/local/bin/teuton
+env PATH=$PATH /bin/bash -c "cd $teutonPath && rake gems && rake"
+[ ! -L /usr/local/bin/teuton ] && echo "Creating symlink to $teutonPath/teuton in /usr/local/bin/teuton" && ln -s $teutonPath/teuton /usr/local/bin/teuton
 
 echo "[6/6.INFO] Finish!"
 teuton version
