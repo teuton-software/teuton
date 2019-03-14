@@ -29,7 +29,9 @@ then
 fi
 
 [ ! -f ~/.bash_profile ] && touch ~/.bash_profile
+
 if grep -vq "^source /usr/local/opt/chruby/share/chruby/chruby.sh$" ~/.bash_profile
+then
 	echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bash_profile
 	echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bash_profile
 fi
