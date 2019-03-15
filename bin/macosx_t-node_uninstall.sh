@@ -9,6 +9,7 @@ echo "[0/3.INFO] MacOSX T-NODE uninstallation"
 echo "[1/3.INFO] Uninstalling PACKAGES..."
 brew uninstall git
 brew uninstall chruby
+brew uninstall ruby-install
 
 sed -i "" '/^source \/usr\/local\/opt\/chruby\/share\/chruby\/chruby.sh$/d' ~/.bash_profile
 sed -i "" '/^source \/usr\/local\/opt\/chruby\/share\/chruby\/auto.sh$/d' ~/.bash_profile
