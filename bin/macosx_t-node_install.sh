@@ -4,6 +4,7 @@
 
 teutonPath=/usr/local/opt/teuton
 teutonUrl=https://github.com/dvarrui/teuton.git
+teutonLink=/usr/local/bin/teuton
 
 function exists_binary() {
 	which $1 > /dev/null
@@ -12,43 +13,44 @@ function exists_binary() {
 echo "[0/6.INFO] MacOSX T-NODE installation"
 
 echo "[1/6.INFO] Checking if BREW is installed..."
-exists_binary brew || echo "[ERROR] Brew must be installed to install T-Node" && exit 1
+exists_binary brew || ( echo "[ERROR] Brew must be installed to install T-Node" && exit 1 )
 
 echo "[2/6.INFO] Installing PACKAGES..."
 exists_binary git || brew install git
 exists_binary rbenv || brew install rbenv
 
-[ ! -f ~/.ruby-version ] && echo "Creating ~/.ruby-version file" && echo "ruby" > ~/.ruby-version
-
 [ ! -f ~/.bash_profile ] && echo "Creating ~/.bash_profile file" && touch ~/.bash_profile
 
-chrubyPath=/usr/local/opt/chruby/share/chruby/
-if cat ~/.bash_profile | grep -q "^source ${chrubyPath}/chruby.sh$" 
+rbenvInit='eval "$(rbenv init -)"'
+if cat ~/.bash_profile | grep -q "^${rbenvInit}$" 
 then
-	echo "chruby.sh and auto.sh scripts already added to ~/.bash_profile"
+	echo "rbenv already configured in ~/.bash_profile"
 else
-	echo "Adding chruby.sh and auto.sh scripts to ~/.bash_profile"
-	echo "source $chrubyPath/chruby.sh" >> ~/.bash_profile
-	echo "source $chrubyPath/auto.sh" >> ~/.bash_profile
+	echo "Adding rbenv config in ~/.bash_profile"
+	echo ${rbenvInit} >> ~/.bash_profile
 fi
 
-echo "Running ~/.bash_profile script" && source ~/.bash_profile
+rbenv init
 
-source $chrubyPath/chruby.sh
-$(chruby | grep -q ruby) || ( echo "Installing ruby..." && ruby-install ruby )
+rbenv install 2.6.2
+[ ! -f ~/.ruby-version ] && echo "Creating ~/.ruby-version file" && echo "2.6.2" > ~/.ruby-version
 
-echo "Switching to new ruby version" && chruby ruby
+echo "Switching to new ruby version" && rbenv global 2.6.2
+
+source ~/.bash_profile
 
 echo "[3/6.INFO] Rake gem installation"
-env PATH=$PATH /bin/bash -c "gem install rake"
+gem install rake
 
 echo "[4/6.INFO] Installing teuton..."
 [ -d $teutonPath ] && rm -fr $teutonPath
 git clone $teutonUrl $teutonPath -q
 
 echo "[5/6.INFO] Configuring..."
-env PATH=$PATH /bin/bash -c "cd $teutonPath && rake gems && rake"
-[ ! -L /usr/local/bin/teuton ] && echo "Creating symlink to $teutonPath/teuton in /usr/local/bin/teuton" && ln -s $teutonPath/teuton /usr/local/bin/teuton
+cd $teutonPath
+rake gems
+rake
+[ ! -L $teutonLink ] && echo "Creating symlink to $teutonPath/teuton in $teutonLink" && ln -s $teutonPath/teuton $teutonLink
 
 echo "[6/6.INFO] Finish!"
 teuton version
