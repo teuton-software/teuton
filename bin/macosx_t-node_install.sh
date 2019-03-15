@@ -45,7 +45,7 @@ $(chruby | grep -q ruby) || ( echo "Installing ruby..." && ruby-install ruby )
 echo "Switching to new ruby version" && chruby ruby
 
 echo "[3/6.INFO] Rake gem installation"
-gem install rake
+env PATH=$PATH /bin/bash -c "gem install rake"
 
 echo "[4/6.INFO] Installing teuton..."
 [ -d $teutonPath ] && rm -fr $teutonPath
