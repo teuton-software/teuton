@@ -17,7 +17,9 @@ module RakeFunction
   def self.opensuse(packages)
     names = ['openssh', 'make', 'gcc', 'ruby-devel']
     options = '--non-interactive'
-    names.each { |n| system("zypper #{options} install #{n}") }
+    names.each do |n|
+      system("zypper #{options} install #{n}")
+    end
     install_gems packages
     create_symbolic_link
   end
@@ -26,7 +28,9 @@ module RakeFunction
     fails = filter_uninstalled_gems(list)
     if !fails.empty?
       puts '[INFO] Installing gems...'
-      fails.each { |name| system("gem install #{name}") }
+      fails.each do |name|
+        system("gem install #{name} --no-ri")
+      end
     else
       puts '[ OK ] Gems installed'
     end
