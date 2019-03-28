@@ -24,7 +24,7 @@ echo "[2/6.INFO] Installing PACKAGES..."
 [ $distro = "opensuse" ] && zypper refresh && zypper install -y git
 
 echo "[3/6.INFO] Rake gem installation"
-gem install rake
+gem install rake --no-ri
 
 echo "[4/6.INFO] Installing teuton..."
 git clone $teutonUrl $teutonPath -q
