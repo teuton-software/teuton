@@ -2,7 +2,7 @@
 class Teuton < Thor
 
   map ['t', '-t', '--test'] => 'test'
-  desc 'test PATH/TO/FILE/FOO.rb', 'Show laboratory script objectives on screen'
+  desc 'test PATH/TO/FILE/FOO.rb', 'Check challenge contents'
   option :r, :type => :boolean
   option :c, :type => :boolean
   long_desc <<-LONGDESC
