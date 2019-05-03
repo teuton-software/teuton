@@ -73,7 +73,8 @@ Every TEUTON challenge/activity consists of 2 files. Let's look at this [demo](h
 
 # Documentation
 
-* [Videos](./docs/en/videos.md)
+* [Let's go to the Wiki for more information](https://github.com/teuton-software/teuton/wiki)
+
 * [Installation](./docs/en/installation.md)
 * [Teuton command list](./docs/en/command.md)
 * [Examples](./docs/en/examples.md)

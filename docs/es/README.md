@@ -56,4 +56,3 @@ Para ejecutar el test/reto de ejemplo con [Teuton](./comando.md) haremos:
 * [Ejemplos](./ejemplos/README.md)
 * [Creando la primera actividad](./primera-actividad.md)
 * [Palabras clave del DSL](./dsl/README.md)
-
