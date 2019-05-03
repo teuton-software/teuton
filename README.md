@@ -1,8 +1,6 @@
 
 # TEUTON Software
 
-_(SysadminGame was his older name)_
-
 ```
 TEUTON are test units for machines (everything).
 TEUTON tests tons of goals on tons of machines.
@@ -57,31 +55,23 @@ Every TEUTON challenge/activity consists of 2 files. Let's look at this [demo](h
 
 | File                          | Description |
 | ----------------------------- | ----------- |
-| [docs/examples/example-01.rb](https://github.com/dvarrui/teuton-challenges/blob/master/docs/examples/example-01.rb)   | Defines TEUTON activity (DSL) |
-| [docs/examples/example-01.yaml](https://github.com/dvarrui/teuton-challenges/blob/master/docs/examples/example-01.yaml) | Configuration file with every student machine |
+| [docs/examples/example-01.rb](docs/examples/example-01.rb)   | Defines TEUTON activity (DSL) |
+| [docs/examples/example-01.yaml](docs/examples/example-01.yaml) | Configuration file with every student machine |
 
-**Run this demo** with [Teuton](./docs/en/command.md) command:
+**Run demo** with Teuton command:
 
 `teuton docs/example/example-01.rb`
 
 **Results**
 * You will see a brief *report on the screen* during execution.
 * The extended *output files* are saved into `var/example-01/out/` directory.
-* There exists more activities into [teuton-challenges](https://github.com/dvarrui/teuton-challenges) GitHub repository. This is a good place where save your own TEUTON challenges.
+* There exists more activities into [teuton-challenges](https://github.com/teuton-software/teuton-challenges) GitHub repository. This is a good place where save your own TEUTON challenges.
 
 ---
 
 # Documentation
 
-* [Let's go to the Wiki for more information](https://github.com/teuton-software/teuton/wiki)
-
-* [Installation](./docs/en/installation.md)
-* [Examples](./docs/en/examples.md)
-* [HOWTO to create your first activity](./docs/en/first-activity.md)
-* [Key words reference](./docs/en/dsl/README.md)
-
-Other languages:
-* ES - [Spanish documentation](./docs/es/README.md)
+* [Let's read the Wiki for more information](https://github.com/teuton-software/teuton/wiki)
 
 ---
 
