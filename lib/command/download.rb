@@ -6,7 +6,7 @@ class Teuton < Thor
   - Download Teuton challenges from git repo.
 
   - Same as:
-    git clone https://github.com/dvarrui/teuton-challenges.git
+    git clone https://github.com/teuton-software/teuton-challenges.git
 
   Example:
 
@@ -16,7 +16,7 @@ class Teuton < Thor
   def download
     repo = 'teuton-challenges'
     puts "[INFO] Downloading <#{repo}> repo..."
-    system("git clone https://github.com/dvarrui/#{repo}.git")
+    system("git clone https://github.com/teuton-software/#{repo}.git")
     puts "[INFO] Your files are into <#{Rainbow(repo).bright}> directory..."
   end
 end
