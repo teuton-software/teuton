@@ -10,7 +10,7 @@ TEUTON tests tons of goals on tons of machines.
 
 Software for:
 * Write test units for machines (and everything).
-Check a group of real/virtual machines to satisfied a list of targets/goals.
+* Check a group of real/virtual machines to satisfied a list of targets/goals.
 
 Features:
 * Execute Test Units that checks remote hosts or localhost.
