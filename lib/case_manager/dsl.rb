@@ -14,6 +14,7 @@ alias start play
 
 # Development
 def use(filename)
+  raise 'UNDER DEVELOPMENT!!!'
   app = Application.instance
   puts "__FILE__    " + __FILE__
   puts "filename    " + filename

@@ -5,10 +5,7 @@ require_relative 'application'
 # * test
 # * play
 # * create: copyfile, create_dir, create_dirs, create
-# * run
-# * find_filenames_for
-# * verboseln
-# * verbose
+# * find: find_filenames_for, verbose, verboseln
 
 require_relative 'project/create.rb'
 require_relative 'project/find.rb'
