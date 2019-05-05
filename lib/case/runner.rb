@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 require 'net/ssh'
 require 'net/sftp'
@@ -7,7 +6,7 @@ require 'net/telnet'
 class Case
 
   private
-  
+
   def run_local_cmd()
     @action[:conn_type]=:local
     @result.content = my_execute( @action[:command], @action[:encoding] )
