@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'thor'
-require 'rainbow'
 # require 'pry-byebug'
 require_relative 'lib/application'
 require_relative 'lib/project'

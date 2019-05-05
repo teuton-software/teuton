@@ -1,4 +1,6 @@
+require 'rainbow'
 
+# Class method Teuton#update
 class Teuton < Thor
 
   map ['--update'] => 'update'

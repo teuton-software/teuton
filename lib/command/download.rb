@@ -1,3 +1,5 @@
+require 'rainbow'
+
 # Class method Teuton#download
 class Teuton < Thor
   map ['-dc', '--dc', '--download'] => 'download'

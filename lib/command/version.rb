@@ -1,4 +1,6 @@
+require 'rainbow'
 
+# Class method Teuton#version
 class Teuton < Thor
 
   map ['v', '-v', '--version'] => 'version'
