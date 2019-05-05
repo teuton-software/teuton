@@ -6,9 +6,23 @@ require_relative 'result/ext_filter'
 # This object contains data returned by remote execution
 class Result
   attr_reader :content
+  attr_writer :ok
 
   def initialize
     reset
+  end
+
+  def reset
+    @content_backup = []
+    @content        = []
+    @ok             = false
+    @value          = nil
+    @expected       = nil
+    @alterations    = []
+  end
+
+  def ok?
+    @ok
   end
 
   def alterations
@@ -42,14 +56,6 @@ class Result
 
   def expected
     @expected.to_s
-  end
-
-  def reset
-    @content_backup = []
-    @content        = []
-    @value          = nil
-    @expected       = nil
-    @alterations    = []
   end
 
   def restore!

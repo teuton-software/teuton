@@ -239,4 +239,12 @@ class ResultTest < Minitest::Test
     r.restore!
   end
 
+  def test_ok
+    r=@result
+    assert_equal false, r.ok?
+    r.ok=true
+    assert_equal true, r.ok?
+    r.reset
+    assert_equal false, r.ok?
+  end
 end
