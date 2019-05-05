@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 require 'singleton'
 
@@ -16,7 +15,7 @@ require_relative 'case_manager/show'
 # This class does all the job
 # Organize the hole job, sending orders to others classes
 # * initialize
-# * play (Old name was start)
+# * play
 # Split into several files:
 # * case_manager/check_cases
 # * case_manager/export
@@ -29,19 +28,19 @@ class CaseManager
   include Utils
 
   def initialize
-    @tasks = []
+    #@tasks = []
     @cases = []
     @report = Report.new(0)
     @report.filename = 'resume'
-    @app = Application.instance
   end
 
   def play(&block)
     check_cases!
     instance_eval(&block)
     # Run export if user pass option command "--export=json"
-    unless @app.options['export'].nil?
-      export(:format => @app.options['export'].to_sym)
+    app = Application.instance
+    unless app.options['export'].nil?
+      export(:format => app.options['export'].to_sym)
     end
   end
 
