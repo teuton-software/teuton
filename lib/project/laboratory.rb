@@ -6,7 +6,7 @@ require_relative '../configfile_reader'
 require_relative '../case/result'
 
 def group(name, &block)
-  Application.instance.tasks << { name: name, block: block }
+  Application.instance.groups << { name: name, block: block }
 end
 alias task group
 
@@ -28,7 +28,7 @@ class Laboratory
 
     @result = Result.new
     @targetid = 0
-    @stats = { tasks: 0, targets: 0, uniques: 0, gets: 0, logs: 0, sets: 0 }
+    @stats = { groups: 0, targets: 0, uniques: 0, gets: 0, logs: 0, sets: 0 }
     @gets = {}
     @sets = {}
     @hosts = {}
@@ -125,7 +125,7 @@ class Laboratory
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ['DSL Stats', 'Count']
       st.add_separator
-      st.add_row ['Groups', @stats[:tasks]]
+      st.add_row ['Groups', @stats[:groups]]
       st.add_row ['Targets', @stats[:targets]]
       st.add_row ['Goto', @stats[:hosts]]
       @hosts.each_pair { |k, v| st.add_row [" * #{k}", v] }
@@ -179,10 +179,10 @@ class Laboratory
   end
 
   def process_content
-    @tasks = Application.instance.tasks
+    groups = Application.instance.groups
     verboseln ''
-    @tasks.each do |t|
-      @stats[:tasks] += 1
+    groups.each do |t|
+      @stats[:groups] += 1
 
       msg = "GROUPS: #{t[:name]}"
       my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }

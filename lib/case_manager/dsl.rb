@@ -3,7 +3,7 @@ require_relative '../application'
 require_relative '../case_manager'
 
 def group(name, &block)
-  Application.instance.tasks << { name: name, block: block }
+  Application.instance.groups << { name: name, block: block }
 end
 alias task group
 

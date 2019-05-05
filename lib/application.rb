@@ -9,7 +9,7 @@ class Application
   attr_reader   :running_basedir
   attr_accessor :verbose
   attr_accessor :options
-  attr_accessor :global, :tasks, :hall_of_fame
+  attr_accessor :global, :groups, :hall_of_fame
   attr_accessor :script_path, :config_path, :test_name
 
   def initialize
@@ -26,7 +26,7 @@ class Application
     @verbose = true
 
     @global = {}
-    @tasks = []
+    @groups = []
     @hall_of_fame = []
   end
 
