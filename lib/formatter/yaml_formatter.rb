@@ -43,7 +43,9 @@ class YAMLFormatter < BaseFormatter
         end
 
         line = {}
-        line[:id]          = "%02d"%i[:id]+" ("+lValue.to_s+"/"+i[:weight].to_s+")"
+        line[:target_id]   = "%02d"%i[:id]
+        line[:score]       = lValue.to_s
+        line[:weight]      = i[:weight].to_s
         line[:description] = i[:description].to_s
         line[:command]     = i[:command].to_s
         line[:duration]    = i[:duration].to_s
