@@ -1,3 +1,5 @@
+require 'rainbow'
+
 # Project#find
 module Project
   def self.find_filenames_for(relpathtofile)

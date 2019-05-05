@@ -1,12 +1,10 @@
 
-require 'fileutils'
-require 'rainbow'
 require_relative 'application'
 
 # Project functions invoked by CLI project tool
-# * create
-# * copyfile
-# * laboratory
+# * test
+# * play
+# * create: copyfile, create_dir, create_dirs, create
 # * run
 # * find_filenames_for
 # * verboseln

@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'rainbow'
 
 # Project#create
 module Project
@@ -26,6 +27,10 @@ module Project
         puts "* Create dir  ERROR => #{Rainbow(dirpath).red}"
       end
     end
+  end
+
+  def self.create_dirs(*args)
+    args.each { |arg| create_dir arg }
   end
 
   def self.create(projectdir)
@@ -57,7 +62,4 @@ module Project
     puts ''
   end
 
-  def self.create_dirs(*args)
-    args.each { |arg| create_dir arg }
-  end
 end

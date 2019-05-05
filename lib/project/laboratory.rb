@@ -1,4 +1,5 @@
 require 'terminal-table'
+require 'rainbow'
 require_relative '../application'
 require_relative '../configfile_reader'
 require_relative '../case/result'
