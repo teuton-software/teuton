@@ -13,9 +13,9 @@ class CaseManager
     @caseConfigList = configdata[:cases]
 
     # Create out dir
-    @outdir = app.global[:tt_outdir] || File.join('var', app.global[:tt_testname], 'out')
-    ensure_dir @outdir
-    @report.output_dir = @outdir
+    outdir = app.global[:tt_outdir] || File.join('var', app.global[:tt_testname], 'out')
+    ensure_dir outdir
+    @report.output_dir = outdir
 
     # Fill report head
     open_main_report(app.config_path)
