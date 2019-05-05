@@ -20,6 +20,6 @@ class Teuton < Thor
 
 LONGDESC
   def test(path_to_rb_file)
-    Project.laboratory(path_to_rb_file, options)
+    Project.test(path_to_rb_file, options)
   end
 end

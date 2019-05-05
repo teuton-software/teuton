@@ -41,9 +41,6 @@ Add new features to DSL
 * `result.test("...")`
 * `send :email_to => :members_emails`
 
-Configuration
-* Use YAML or JSON as configuration format file.
-
 Gamification
 * When students demand help they could recibe some advises.
 * Define a loop of executions of our activity. For example:

@@ -17,7 +17,7 @@ require_relative 'project/find.rb'
 
 module Project
 
-  def self.laboratory(pathtofile, options)
+  def self.test(pathtofile, options)
     app = Application.instance
     find_filenames_for(pathtofile)
 
