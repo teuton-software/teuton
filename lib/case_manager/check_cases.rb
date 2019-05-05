@@ -10,7 +10,6 @@ class CaseManager
     app.global = configdata[:global] || {}
     app.global[:tt_testname] = app.global[:tt_testname] || app.test_name
     app.global[:tt_sequence] = false if app.global[:tt_sequence].nil?
-    @caseConfigList = configdata[:cases]
 
     # Create out dir
     outdir = app.global[:tt_outdir] || File.join('var', app.global[:tt_testname], 'out')
@@ -21,15 +20,18 @@ class CaseManager
     open_main_report(app.config_path)
 
     # create cases
-    @caseConfigList.each { |lCaseConfig| @cases << Case.new(lCaseConfig) }
+    configdata[:cases].each { |config| @cases << Case.new(config) }
+    # run cases
     start_time = Time.now
     if app.global[:tt_sequence]
       verboseln "[INFO] Running in sequence (#{start_time})"
-      @cases.each(&:start) # Process every case in sequence
+      # Process every case in sequence
+      @cases.each(&:start)
     else
       verboseln "[INFO] Running in parallel (#{start_time})"
       threads = []
-      @cases.each { |c| threads << Thread.new{ c.start } } # Running cases in parallel
+      # Running cases in parallel
+      @cases.each { |c| threads << Thread.new{ c.start } }
       threads.each(&:join)
     end
 
@@ -51,8 +53,8 @@ class CaseManager
     threads.each(&:join)
 
     # Build Hall of Fame
-    app.options[:case_number] = @cases.size
-    app.hall_of_fame = build_hall_of_fame
+    build_hall_of_fame
+
     close_main_report(start_time)
   end
 end

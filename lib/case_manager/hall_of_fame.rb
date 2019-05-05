@@ -1,4 +1,6 @@
 
+require_relative '../application'
+
 class CaseManager
 
   private
@@ -18,6 +20,10 @@ class CaseManager
 
     a = celebrities.sort_by { |key, _value| key }
     list = a.reverse
-    list
+
+    app = Application.instance
+    app.options[:case_number] = @cases.size
+    app.hall_of_fame = list
+
   end
 end
