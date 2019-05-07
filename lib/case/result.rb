@@ -3,7 +3,7 @@ require_relative 'result/ext_array'
 require_relative 'result/ext_compare'
 require_relative 'result/ext_filter'
 
-# This object contains data returned by remote execution
+# This object contains data returned by remote/local execution
 class Result
   attr_reader :content
   attr_writer :ok

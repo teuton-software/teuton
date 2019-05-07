@@ -18,7 +18,7 @@ class Case
   def initialize(pConfig)
     @config = Case::Config.new( :local => pConfig, :global => Application.instance.global)
 
-    @tasks=Application.instance.groups
+    @groups=Application.instance.groups
     @id=@@id; @@id+=1
 
     #Define Case Report

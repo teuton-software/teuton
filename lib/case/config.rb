@@ -1,3 +1,4 @@
+require_relative '../application'
 
 # Define Config class. Used by every Case.
 class Case

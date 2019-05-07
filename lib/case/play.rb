@@ -15,14 +15,14 @@ class Case
     start_time = Time.now
     if get(:tt_sequence) then
       verboseln "Starting case <"+@config.get(:tt_members)+">"
-      @tasks.each do |t|
+      @groups.each do |t|
         verbose "* Processing <"+t[:name].to_s+"> "
         instance_eval &t[:block]
         verbose "\n"
       end
       verboseln "\n"
     else
-      @tasks.each do |t|
+      @groups.each do |t|
         m="GROUP: #{t[:name]}"
         log("="*m.size)
         log(m)
