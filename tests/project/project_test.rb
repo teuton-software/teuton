@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'minitest/autorun'
-require_relative '../lib/project'
-require_relative '../lib/application'
+require_relative '../../lib/project/project'
+require_relative '../../lib/application'
 
 # MiniTest for Project Class
 class ProjectTest < Minitest::Test

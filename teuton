@@ -3,7 +3,7 @@
 require 'thor'
 # require 'pry-byebug'
 require_relative 'lib/application'
-require_relative 'lib/project'
+require_relative 'lib/project/project'
 require_relative 'lib/command/create'
 require_relative 'lib/command/download'
 require_relative 'lib/command/play'

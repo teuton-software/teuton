@@ -2,7 +2,7 @@ require 'terminal-table'
 require 'rainbow'
 
 require_relative '../application'
-require_relative '../case/result'
+require_relative '../case_manager/case/result'
 require_relative 'configfile_reader'
 
 def group(name, &block)

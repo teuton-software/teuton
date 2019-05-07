@@ -1,5 +1,5 @@
 
-require_relative 'application'
+require_relative '../application'
 
 # Project functions invoked by CLI project tool
 # * test
@@ -7,8 +7,8 @@ require_relative 'application'
 # * create: copyfile, create_dir, create_dirs, create
 # * find: find_filenames_for, verbose, verboseln
 
-require_relative 'project/create.rb'
-require_relative 'project/find.rb'
+require_relative 'create.rb'
+require_relative 'find.rb'
 
 module Project
 
@@ -16,7 +16,7 @@ module Project
     app = Application.instance
     find_filenames_for(pathtofile)
 
-    require_relative 'project/laboratory'
+    require_relative 'laboratory'
     require_relative app.script_path
     lab = Laboratory.new(app.script_path, app.config_path)
     lab.show_requests if options[:r]
@@ -28,7 +28,7 @@ module Project
     app = Application.instance
     find_filenames_for(pathtofile)
 
-    require_relative 'case_manager/dsl'
+    require_relative '../case_manager/dsl'
     begin
       require_relative app.script_path
     rescue SyntaxError => e
