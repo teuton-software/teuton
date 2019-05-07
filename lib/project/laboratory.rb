@@ -2,8 +2,8 @@ require 'terminal-table'
 require 'rainbow'
 
 require_relative '../application'
-require_relative '../configfile_reader'
 require_relative '../case/result'
+require_relative 'configfile_reader'
 
 def group(name, &block)
   Application.instance.groups << { name: name, block: block }

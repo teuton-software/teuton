@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'minitest/autorun'
-require_relative '../lib/configfile_reader'
+require_relative '../../lib/project/configfile_reader'
 
 # MiniTest for ConfigFileReader Class
 class ConfigFileReaderTest < Minitest::Test
