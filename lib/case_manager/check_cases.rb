@@ -26,12 +26,12 @@ class CaseManager
     if app.global[:tt_sequence]
       verboseln "[INFO] Running in sequence (#{start_time})"
       # Process every case in sequence
-      @cases.each(&:start)
+      @cases.each(&:play)
     else
       verboseln "[INFO] Running in parallel (#{start_time})"
       threads = []
       # Running cases in parallel
-      @cases.each { |c| threads << Thread.new{ c.start } }
+      @cases.each { |c| threads << Thread.new{ c.play } }
       threads.each(&:join)
     end
 

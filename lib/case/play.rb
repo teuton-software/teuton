@@ -1,7 +1,7 @@
 
 class Case
 
-  def start
+  def play
     @skip=get(:tt_skip)||false
     if @skip==true then
       verbose "Skipping case <#{@config.get(:tt_members)}>\n"
@@ -39,6 +39,6 @@ class Case
 
     @sessions.each_value { |s| s.close if s.class==Net::SSH::Connection::Session }
   end
-  alias_method :play, :start
+  alias_method :start, :play
 
 end
