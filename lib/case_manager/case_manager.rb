@@ -1,16 +1,16 @@
 
 require 'singleton'
 
-require_relative 'application'
-require_relative 'report/report'
-require_relative 'project/configfile_reader'
-require_relative 'case_manager/case'
-require_relative 'case_manager/check_cases'
-require_relative 'case_manager/export'
-require_relative 'case_manager/hall_of_fame'
-require_relative 'case_manager/report'
-require_relative 'case_manager/show'
-require_relative 'case_manager/utils'
+require_relative '../application'
+require_relative '../report/report'
+require_relative '../project/configfile_reader'
+require_relative 'case'
+require_relative 'check_cases'
+require_relative 'export'
+require_relative 'hall_of_fame'
+require_relative 'report'
+require_relative 'show'
+require_relative 'utils'
 
 # This class does all the job
 # Organize the hole job, sending orders to others classes

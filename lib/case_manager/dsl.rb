@@ -1,6 +1,6 @@
 
 require_relative '../application'
-require_relative '../case_manager'
+require_relative 'case_manager'
 
 def group(name, &block)
   Application.instance.groups << { name: name, block: block }
