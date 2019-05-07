@@ -1,8 +1,8 @@
 
-require_relative 'application'
-require_relative 'case_manager/utils'
+require_relative '../application'
+require_relative '../report'
+require_relative 'utils'
 require_relative 'case/main'
-require_relative 'report'
 
 #TODO split Case class into several classes:
 # * Case, Action?, Session?, RunCommand class

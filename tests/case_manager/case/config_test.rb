@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 require "minitest/autorun"
-require_relative "../../lib/case/config"
+require_relative "../../../lib/case_manager/case/config"
 
 class ConfigTest < Minitest::Test
   def setup
