@@ -1,9 +1,9 @@
 
 require 'terminal-table'
-require_relative 'application'
-require_relative 'formatter/formatter_factory'
-require_relative 'report/show'
-require_relative 'report/close'
+require_relative '../application'
+require_relative '../formatter/formatter_factory'
+require_relative 'show'
+require_relative 'close'
 
 =begin
  This class maintain the results of every case, in a structured way.

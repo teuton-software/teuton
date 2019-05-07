@@ -2,7 +2,7 @@
 require 'singleton'
 
 require_relative 'application'
-require_relative 'report'
+require_relative 'report/report'
 require_relative 'project/configfile_reader'
 require_relative 'case_manager/case'
 require_relative 'case_manager/check_cases'
