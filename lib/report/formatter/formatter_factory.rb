@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 require_relative 'colored_text_formatter'
 require_relative 'csv_formatter'

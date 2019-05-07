@@ -1,7 +1,7 @@
 
 require 'terminal-table'
 require_relative '../application'
-require_relative '../formatter/formatter_factory'
+require_relative 'formatter/formatter_factory'
 require_relative 'show'
 require_relative 'close'
 

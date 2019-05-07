@@ -1,21 +1,19 @@
-#!/usr/bin/ruby
-# encoding: utf-8
 
 require_relative 'base_formatter'
 
 class XMLFormatter < BaseFormatter
-	
+
 	def initialize(pReport)
 		super(pReport)
 	end
-		
+
 	def process
 		tab="  "
 		w "<tt-checker version='0.2'>\n"
 		w tab+"<head>\n"
 		@head.each { |key,value| w tab*2+"<"+key.to_s+">"+value.to_s+"</"+key.to_s+">\n" }
-		w tab+"</head>\n"		
-		
+		w tab+"</head>\n"
+
 		w tab+"<lines>\n"
 		@lines.each do |i|
 			if i.class.to_s=='Hash' then
@@ -33,7 +31,7 @@ class XMLFormatter < BaseFormatter
 			end
 		end
 		w tab+"</lines>\n"
-		
+
 		w tab+"<tail>\n"
 		@tail.each { |key,value| w tab*2+"<"+key.to_s+">"+value.to_s+"</"+key.to_s+">\n" }
 		w tab+"</tail>\n"

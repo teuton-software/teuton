@@ -1,14 +1,12 @@
-#!/usr/bin/ruby
-# encoding: utf-8
 
 require_relative 'base_formatter'
-	
+
 class HTMLFormatter < BaseFormatter
-	
+
   def initialize(pReport)
     super(pReport)
   end
-	
+
   def process
     puts "<html>"
     puts "<head><title>Checking Machines</title></head>"
@@ -16,7 +14,7 @@ class HTMLFormatter < BaseFormatter
     puts "<header><h1><a name=\"index\">Checking Machines v0.4</a></h1>"
     puts '<ul>'
     @head.each do |key,value|
-      puts "<li><b>"+key.to_s+": </b>"+value.to_s+"</li>" if key!=:title 
+      puts "<li><b>"+key.to_s+": </b>"+value.to_s+"</li>" if key!=:title
     end
     puts '</ul>'
     puts "<table border=1 >"
@@ -38,7 +36,7 @@ class HTMLFormatter < BaseFormatter
       counter+=1
       process_datagroup(i,counter)
     end
-			
+
     puts '<ul>'
     @tail.each do |key,value|
       puts "<li><b>"+key.to_s+": </b>"+value.to_s+"</li>"
@@ -54,15 +52,15 @@ class HTMLFormatter < BaseFormatter
     puts "<tbody><tr>"
     puts "<td><ul>"
     pGroup.head.each do |key,value|
-      puts "<li><b>"+key.to_s+"</b>= "+value.to_s+"</li>" if key!=:members 
+      puts "<li><b>"+key.to_s+"</b>= "+value.to_s+"</li>" if key!=:members
     end
     puts "</ul></td>"
     puts '<td><ul>'
-    pGroup.tail.each do |key,value| 
+    pGroup.tail.each do |key,value|
       puts "<li><b>"+key.to_s+"</b>= "+value.to_s+"</li>"
     end
     puts '</ul></td>'
-		
+
     puts '</tr></tbdody></table>'
     puts '<h3>Test log</h3>'
     puts '<ul>'
@@ -79,6 +77,5 @@ class HTMLFormatter < BaseFormatter
     end
     puts '</ul>'
   end
-  
-end
 
+end
