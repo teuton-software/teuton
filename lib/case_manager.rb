@@ -3,7 +3,6 @@ require 'singleton'
 
 require_relative 'application'
 require_relative 'case'
-require_relative 'utils'
 require_relative 'report'
 require_relative 'project/configfile_reader'
 require_relative 'case_manager/check_cases'
@@ -11,6 +10,7 @@ require_relative 'case_manager/export'
 require_relative 'case_manager/hall_of_fame'
 require_relative 'case_manager/report'
 require_relative 'case_manager/show'
+require_relative 'case_manager/utils'
 
 # This class does all the job
 # Organize the hole job, sending orders to others classes

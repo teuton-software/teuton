@@ -1,6 +1,6 @@
 
 require_relative 'application'
-require_relative 'utils'
+require_relative 'case_manager/utils'
 require_relative 'case/main'
 require_relative 'report'
 

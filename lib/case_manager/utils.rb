@@ -1,5 +1,5 @@
 
-require_relative 'application'
+require_relative '../application'
 
 # Define general use methods
 module Utils
