@@ -5,6 +5,7 @@ class CaseManager
 
   def check_cases!
     app = Application.instance
+    
     # Load configurations from yaml file
     configdata = ConfigFileReader.read(app.config_path)
     app.global = configdata[:global] || {}

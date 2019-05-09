@@ -4,8 +4,8 @@ require_relative 'base_formatter'
 
 class TXTFormatter < BaseFormatter
 
-  def initialize(pReport)
-    super(pReport)
+  def initialize(report)
+    super(report)
   end
 
   def process

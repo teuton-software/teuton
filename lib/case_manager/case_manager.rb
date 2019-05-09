@@ -28,7 +28,6 @@ class CaseManager
   include Utils
 
   def initialize
-    #@tasks = []
     @cases = []
     @report = Report.new(0)
     @report.filename = 'resume'

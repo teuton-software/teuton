@@ -9,24 +9,24 @@ require_relative 'xml_formatter'
 
 module FormatterFactory
 
-  def FormatterFactory.get(pReport, pFormat, pFilename)
-    case pFormat
+  def FormatterFactory.get(report, format, filename)
+    case format
 		when :colored_text
-      f=ColoredTextFormatter.new(pReport)
+      f = ColoredTextFormatter.new(report)
     when :csv
-      f=CSVFormatter.new(pReport)
+      f = CSVFormatter.new(report)
     when :html
-      f=HTMLFormatter.new(pReport)
+      f = HTMLFormatter.new(report)
     when :json
-      f=JSONFormatter.new(pReport)
+      f = JSONFormatter.new(report)
     when :txt
-      f=TXTFormatter.new(pReport)
+      f = TXTFormatter.new(report)
 		when :yaml
-      f=YAMLFormatter.new(pReport)
+      f = YAMLFormatter.new(report)
     when :xml
-      f=XMLFormatter.new(pReport)
+      f = XMLFormatter.new(report)
     end
-    f.init(pFilename)
+    f.init(filename)
     return f
   end
 end

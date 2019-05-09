@@ -14,7 +14,6 @@ class CaseTest < Minitest::Test
 
   def test_initialize
     assert_equal 1, @case.id
-    assert_equal '01', @case.id_to_s
     assert_equal 0, @case.action[:id]
     assert_equal 1.0, @case.action[:weight]
     assert_equal 'No description!', @case.action[:description]

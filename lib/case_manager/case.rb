@@ -25,7 +25,6 @@ class Case
 
     # Define Case Report
     @report = Report.new(@id)
-    @report.filename = "case-#{id_to_s}"
     @report.output_dir = File.join('var', @config.global[:tt_testname], 'out')
     ensure_dir @report.output_dir
 
@@ -53,12 +52,6 @@ class Case
 
   def skip
     @config.get(:tt_skip)
-  end
-
-  def id_to_s
-    return @id.to_s if @id > 9
-
-    '0' + @id.to_s
   end
 
   private

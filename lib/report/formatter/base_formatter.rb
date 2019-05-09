@@ -3,20 +3,20 @@ require 'terminal-table'
 
 class BaseFormatter
 
-  def initialize(pReport)
-    @head = pReport.head
-    @lines = pReport.lines
-    @tail = pReport.tail
+  def initialize(report)
+    @head = report.head
+    @lines = report.lines
+    @tail = report.tail
   end
 
-  def init(pFilename)
-    @filename=pFilename
+  def init(filename)
+    @filename = filename
     @file = File.open(@filename,'w')
   end
 
-  def w(pText)
+  def w(text)
     #write into output file
-    @file.write pText.to_s
+    @file.write text.to_s
   end
 
   def process

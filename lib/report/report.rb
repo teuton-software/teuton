@@ -12,18 +12,19 @@ require_relative 'close'
 =end
 
 class Report
-  attr_accessor :id, :output_dir, :filename
+  attr_accessor :id, :filename, :output_dir
   attr_accessor :head, :lines, :tail
   attr_reader :history
   attr_reader :format
 
-  def initialize(id)
+  def initialize(id=0)
     @id = id
+    @filename = "case-#{id_to_s}"
     @output_dir = Application.instance.output_basedir
     @head    = {}
     @lines   = []
     @tail    = {}
-    @history = ''
+    @history = '' # Used by ??? (revise this!)
   end
 
   def export(format = :txt)
@@ -32,5 +33,13 @@ class Report
 
     @formatter = FormatterFactory.get(self, @format, filepath)
     @formatter.process
+  end
+
+  private
+
+  def id_to_s
+    return @id.to_s if @id > 9
+
+    '0' + @id.to_s
   end
 end
