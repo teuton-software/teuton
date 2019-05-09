@@ -6,7 +6,7 @@ require_relative '../../../../lib/case_manager/case/case_model/target_model'
 # MiniTest TargetModel Class
 class TargetModelTest < Minitest::Test
   def setup
-    @tm1 = CaseModel::TargetModel.new('target1_desc')
+    @tm1 = CaseModel::TargetModel.new()
     @tm2 = CaseModel::TargetModel.new('target2_desc', :asset => 'README.md')
     @tm2.hostname = 'target2_hostname'
     @tm2.command = 'target2_command'
@@ -21,7 +21,7 @@ class TargetModelTest < Minitest::Test
   end
 
   def test_target_model1
-    assert_equal 'target1_desc', @tm1.description
+    assert_equal 'No description!', @tm1.description
     assert_nil @tm1.asset
     assert_equal '', @tm1.hostname
     assert_equal '', @tm1.command

@@ -31,10 +31,12 @@ class CaseModelTest < Minitest::Test
 
   def test_case_model1
     assert_equal 0, @cm1.groups.size
+    assert_equal 0, @cm1.targets_counter
   end
 
   def test_case_model2
     assert_equal 2, @cm2.groups.size
+    assert_equal 2, @cm2.targets_counter
   end
 
   def test_case_model2_group1

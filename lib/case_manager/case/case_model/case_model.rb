@@ -19,4 +19,9 @@ class CaseModel
     @current_group
   end
 
+  def targets_counter
+    counter = 0
+    @groups.each { |g| counter += g.targets.size }
+    counter
+  end
 end

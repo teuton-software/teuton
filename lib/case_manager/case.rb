@@ -1,52 +1,53 @@
-
 require_relative '../application'
 require_relative '../report/report'
 require_relative 'utils'
 require_relative 'case/main'
 
-#TODO split Case class into several classes:
+# TODO: split Case class into several classes:
 # * Case, Action?, Session?, RunCommand class
 
+# Case class
 class Case
   include DSL
   include Utils
 
   attr_accessor :result, :action
   attr_reader :id, :config, :report, :uniques
-  @@id=1
+  @@id = 1
 
-  def initialize(pConfig)
-    @config = Case::Config.new( :local => pConfig, :global => Application.instance.global)
+  def initialize(p_config)
+    app = Application.instance
+    @config = Case::Config.new(local: p_config, global: app.global)
 
-    @groups=Application.instance.groups
-    @id=@@id; @@id+=1
+    @groups = app.groups
+    @id = @@id
+    @@id += 1
 
-    #Define Case Report
+    # Define Case Report
     @report = Report.new(@id)
-    @report.filename=( @id<10 ? "case-0#{@id.to_s}" : "case-#{@id.to_s}" )
-    @report.output_dir=File.join( 'var', @config.global[:tt_testname], 'out' )
+    @report.filename = "case-#{id_to_s}"
+    @report.output_dir = File.join('var', @config.global[:tt_testname], 'out')
     ensure_dir @report.output_dir
 
-    #Default configuration
+    # Default configuration
     @config.local[:tt_skip] = @config.local[:tt_skip] || false
-    @mntdir = File.join( 'var', @config.get(:tt_testname), 'mnt', @id.to_s )
-    @tmpdir = File.join( 'var', @config.get(:tt_testname), 'tmp' )
-    @remote_tmpdir = File.join( '/', 'tmp' )
+    @mntdir = File.join('var', @config.get(:tt_testname), 'mnt', @id.to_s)
+    @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp')
+    @remote_tmpdir = File.join('/', 'tmp')
 
     ensure_dir @mntdir
     ensure_dir @tmpdir
 
-    @unique_values={}
+    @unique_values = {}
     @result = Result.new
-    @result.reset
 
-    @debug=Application.instance.debug
-    @verbose=Application.instance.verbose
+    @debug = Application.instance.debug
+    @verbose = Application.instance.verbose
 
-    @action_counter=0
-    @action={ :id => 0, :weight => 1.0, :description => 'Empty description!'}
-    @uniques=[]
-    @sessions={}
+    @action_counter = 0
+    @action = { id: 0, weight: 1.0, description: 'No description!' }
+    @uniques = []
+    @sessions = {}
     tempfile :default
   end
 
@@ -55,24 +56,24 @@ class Case
   end
 
   def id_to_s
-    return id.to_s if id>9
-    return "0"+id.to_s
+    return @id.to_s if @id > 9
+
+    '0' + @id.to_s
   end
 
-private
+  private
 
-  def read_filename(psFilename)
+  def read_filename(filename)
     begin
-      lFile = File.open(psFilename,'r')
-      lItem = lFile.readlines
-      lFile.close
+      file = File.open(filename, 'r')
+      item = file.readlines
+      file.close
 
-      lItem.map! { |i| i.sub(/\n/,"") }
+      item.map! { |i| i.sub(/\n/, '') }
 
-      return lItem
+      return item
     rescue
       return []
     end
   end
-
 end

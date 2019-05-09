@@ -5,7 +5,7 @@ class CaseModel
     attr_accessor :hostname, :command, :encoding, :duration
     attr_accessor :id, :weight, :check, :result, :alterations, :expected
 
-    def initialize(description, args={})
+    def initialize(description='No description!', args={})
       # target
       @description = description
       @asset = args[:asset]
@@ -18,7 +18,7 @@ class CaseModel
 
       # expect
       @id = 0
-      @weight = 1
+      @weight = 1.0
       @check = false
       @result = ''
       @alterations = ''
