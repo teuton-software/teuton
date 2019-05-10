@@ -1,18 +1,13 @@
 # DSL#target
 module DSL
-  def target(text = :none, args = {})
+  def target(input = :none)
     # Without params this method only return data
-    return @action[:description] if text == :none and args == {}
+    return @action[:description] if input == :none
 
     # With params this method modify internal data
-    @action[:description] = text.to_s
-    if args[:asset]
-      @action[:asset] = args[:asset]
-      if text == :none
-        @action[:description] = "(asset => #{args[:asset]})"
-      end
-    end
+    @action[:description] = input if input.class == String
+    @action[:description] = input[:asset].to_s if input.class == Hash
+    @action[:description]
   end
-  alias_method :goal, :target
-
+  alias goal target
 end

@@ -10,6 +10,7 @@ class RubocopTest < Minitest::Test
 #    @files << 'lib/case_manager/case/dsl/expect.rb'
     @files << 'lib/case_manager/case/dsl/getset.rb'
     @files << 'lib/case_manager/case/dsl/log.rb'
+    @files << 'lib/case_manager/case/dsl/target.rb'
   end
 
   def test_rubocop
