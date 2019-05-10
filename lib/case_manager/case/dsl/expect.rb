@@ -1,39 +1,35 @@
-
+# DSL#expect, DSL#weight
 module DSL
+  # expect <condition>, :weight => <value>
+  def expect(cond, args = {})
+    weight(args[:weight])
 
-  #expect <condition>, :weight => <value>
-  def expect(pCond, pArgs={})
-    weight(pArgs[:weight])
-    lWeight= @action[:weight]
+    @action_counter += 1
+    @action[:id] = @action_counter
+    @action[:check] = cond
+    @action[:result] = @result.value
 
-    @action_counter+=1
-    @action[:id]=@action_counter
-    @action[:weight]=lWeight
-    @action[:check]=pCond
-    @action[:result]=@result.value
-
-    @action[:alterations]=@result.alterations
-    @action[:expected]=@result.expected
-    @action[:expected]=pArgs[:expected] if pArgs[:expected]
+    @action[:alterations] = @result.alterations
+    @action[:expected] = @result.expected
+    @action[:expected] = args[:expected] if args[:expected]
 
     @report.lines << @action.clone
     weight(1.0)
 
-    app=Application.instance
-    c=app.letter[:bad]
-    c=app.letter[:good] if pCond
+    app = Application.instance
+    c = app.letter[:bad]
+    c = app.letter[:good] if cond
     verbose c
   end
 
-  #Set weight value for the action
-  def weight(pValue=nil)
-    if pValue.nil? then
-      return @action[:weight]
-    elsif pValue==:default then
-      @action[:weight]=1.0
+  # Set weight value for the action
+  def weight(value = nil)
+    if value.nil?
+      @action[:weight]
+    elsif value == :default
+      @action[:weight] = 1.0
     else
-      @action[:weight]=pValue.to_f
-      end
+      @action[:weight] = value.to_f
+    end
   end
-
 end

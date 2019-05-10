@@ -1,9 +1,8 @@
-
+# DSL#target
 module DSL
-
-  def target(text=:none, args={})
+  def target(text = :none, args = {})
     # Without params this method only return data
-    return @action[:description] if text == :none and args=={}
+    return @action[:description] if text == :none and args == {}
 
     # With params this method modify internal data
     @action[:description] = text.to_s

@@ -1,13 +1,10 @@
-
+# DSL#log
 module DSL
-
-  def log(pText="", pType=:info)
-    s=""
-    s=Rainbow("WARN!:").color(:yellow)+" " if pType==:warn
-    s=Rainbow("ERROR:").bg(:red)+" " if pType==:error
-    @report.lines << s+pText.to_s
+  def log(text = '', type = :info)
+    s = ''
+    s = Rainbow('WARN!:').color(:yellow) + ' ' if type == :warn
+    s = Rainbow('ERROR:').bg(:red) + ' ' if type == :error
+    @report.lines << s + text.to_s
   end
-
-  alias_method :msg, :log
-
+  alias msg log
 end

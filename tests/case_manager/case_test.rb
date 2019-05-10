@@ -22,4 +22,11 @@ class CaseTest < Minitest::Test
     assert_equal File.join('var','demo','out'), @case.report.output_dir
   end
 
+  def test_weigth
+    assert_equal 1.0, @case.weight
+    @case.weight(2.5)
+    assert_equal 2.5, @case.weight
+    @case.weight(:default)
+    assert_equal 1.0, @case.weight
+  end
 end
