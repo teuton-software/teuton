@@ -16,7 +16,10 @@ module DSL
       username = get((host + '_username').to_sym).to_s
       password = get((host + '_password').to_sym).to_s
 
-      filename = "case-#{id_to_s}.#{format}"
+      id = '0' + @id.to_s
+      id = @id.to_s if @id > 9
+
+      filename = "case-#{id}.#{format}"
       localfilepath = File.join(tempdir, '../out/', filename)
       if args[:prefix]
         filename = args[:prefix].to_s + filename
