@@ -8,38 +8,33 @@ module DSL
   def send(args = {})
     return if get(:tt_skip)
 
-    format = @report.format
-    if args[:copy_to]
+    return unless args[:copy_to]
 
-      host = args[:copy_to].to_s
-      ip = get((host + '_ip').to_sym)
-      username = get((host + '_username').to_sym).to_s
-      password = get((host + '_password').to_sym).to_s
+    host = args[:copy_to].to_s
+    ip = get((host + '_ip').to_sym)
+    username = get((host + '_username').to_sym).to_s
+    password = get((host + '_password').to_sym).to_s
 
-      id = '0' + @id.to_s
-      id = @id.to_s if @id > 9
+    filename = @report.filename + '.' + @report.format.to_s
+    localfilepath = File.join(tempdir, '../out/', filename)
+    if args[:prefix]
+      filename = args[:prefix].to_s + filename
+    end
 
-      filename = "case-#{id}.#{format}"
-      localfilepath = File.join(tempdir, '../out/', filename)
-      if args[:prefix]
-        filename = args[:prefix].to_s + filename
+    if args[:remote_dir]
+      remotefilepath = File.join(args[:remote_dir], filename)
+    else
+      remotefilepath = File.join(remote_tempdir, filename)
+    end
+
+    # Upload a file or directory to the remote host
+    begin
+      Net::SFTP.start(ip, username, password: password) do |sftp|
+        sftp.upload!(localfilepath, remotefilepath)
       end
-
-      if args[:remote_dir]
-        remotefilepath = File.join(args[:remote_dir], filename)
-      else
-        remotefilepath = File.join(remote_tempdir, filename)
-      end
-
-      # upload a file or directory to the remote host
-      begin
-        Net::SFTP.start(ip, username, password: password) do |sftp|
-          sftp.upload!(localfilepath, remotefilepath)
-        end
-        verboseln("=> [ OK  ] #{get(:tt_members)}: <#{remotefilepath}>")
-      rescue
-        verboseln("=> [ERROR] #{get(:tt_members)}: scp <#{localfilepath}> => <#{remotefilepath}>")
-      end
+      verboseln("=> [ OK  ] #{get(:tt_members)}: <#{remotefilepath}>")
+    rescue
+      verboseln("=> [ERROR] #{get(:tt_members)}: scp <#{localfilepath}> => <#{remotefilepath}>")
     end
   end
 

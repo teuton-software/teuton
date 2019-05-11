@@ -19,7 +19,9 @@ class Report
 
   def initialize(id=0)
     @id = id
-    @filename = "case-#{id_to_s}"
+    number = '0' + @id.to_s
+    number = @id.to_s if @id > 9
+    @filename = "case-#{number}"
     @output_dir = Application.instance.output_basedir
     @head    = {}
     @lines   = []
@@ -33,13 +35,5 @@ class Report
 
     @formatter = FormatterFactory.get(self, @format, filepath)
     @formatter.process
-  end
-
-  private
-
-  def id_to_s
-    return @id.to_s if @id > 9
-
-    '0' + @id.to_s
   end
 end
