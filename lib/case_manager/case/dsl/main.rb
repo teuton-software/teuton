@@ -1,4 +1,3 @@
-
 require_relative 'expect'
 require_relative 'getset'
 require_relative 'goto'

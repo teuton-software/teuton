@@ -40,4 +40,25 @@ class CaseTest < Minitest::Test
     @case.weight(:default)
     assert_equal 1.0, @case.weight
   end
+
+  def test_temfile
+    assert_equal 'var/demo/tmp', @case.tempdir
+    assert_equal "var/demo/tmp/#{@case.id}-tt_local.tmp", @case.tempfile
+    assert_equal '/tmp', @case.remote_tempdir
+    assert_equal "/tmp/#{@case.id}-tt_remote.tmp", @case.remote_tempfile
+    @case.tempfile 'othername'
+    assert_equal 'var/demo/tmp', @case.tempdir
+    assert_equal "var/demo/tmp/#{@case.id}-othername.tmp", @case.tempfile
+    assert_equal '/tmp', @case.remote_tempdir
+    assert_equal "/tmp/#{@case.id}-othername.tmp", @case.remote_tempfile
+    @case.tempfile :default
+    assert_equal 'var/demo/tmp', @case.tempdir
+    assert_equal "var/demo/tmp/#{@case.id}-tt_local.tmp", @case.tempfile
+    assert_equal '/tmp', @case.remote_tempdir
+    assert_equal "/tmp/#{@case.id}-tt_remote.tmp", @case.remote_tempfile
+  end
+
+  def test_skip
+    assert_equal false, @case.skip
+  end
 end

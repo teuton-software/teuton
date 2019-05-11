@@ -1,33 +1,36 @@
-
+# Case->DSL#
+# * send
+# * tempfile
+# * tempdir
+# * remote_tempdir
+# * remote_tempfile
 module DSL
-
-  def send(pArgs={})
+  def send(args = {})
     return if get(:tt_skip)
 
-    format=@report.format
+    format = @report.format
+    if args[:copy_to]
 
-    if pArgs[:copy_to] then
+      host = args[:copy_to].to_s
+      ip = get((host + '_ip').to_sym)
+      username = get((host + '_username').to_sym).to_s
+      password = get((host + '_password').to_sym).to_s
 
-      host=pArgs[:copy_to].to_s
-      ip=get((host+'_ip').to_sym)
-      username = get((host+'_username').to_sym).to_s
-      password = get((host+'_password').to_sym).to_s
-
-      filename="case-#{id_to_s}.#{format}"
-      localfilepath=File.join(tempdir,"../out/",filename)
-      if pArgs[:prefix]
-        filename=pArgs[:prefix].to_s+filename
+      filename = "case-#{id_to_s}.#{format}"
+      localfilepath = File.join(tempdir, '../out/', filename)
+      if args[:prefix]
+        filename = args[:prefix].to_s + filename
       end
 
-      if pArgs[:remote_dir]
-        remotefilepath=File.join(pArgs[:remote_dir],filename)
+      if args[:remote_dir]
+        remotefilepath = File.join(args[:remote_dir], filename)
       else
-        remotefilepath=File.join(remote_tempdir,filename)
+        remotefilepath = File.join(remote_tempdir, filename)
       end
 
       # upload a file or directory to the remote host
       begin
-        Net::SFTP.start(ip, username, :password => password) do |sftp|
+        Net::SFTP.start(ip, username, password: password) do |sftp|
           sftp.upload!(localfilepath, remotefilepath)
         end
         verboseln("=> [ OK  ] #{get(:tt_members)}: <#{remotefilepath}>")
@@ -37,20 +40,22 @@ module DSL
     end
   end
 
-  def tempfile(pTempfile=nil)
-    ext='.tmp'
-    pre=@id.to_s+"-"
-    if pTempfile.nil? then
-      return @action[:tempfile]
-    elsif pTempfile==:default
-      @action[:tempfile]=File.join(@tmpdir, pre+'tt_local'+ext)
-      @action[:remote_tempfile]=File.join(@remote_tmpdir, pre+'tt_remote'+ext)
-    else
-      @action[:tempfile]=File.join(@tmpdir, pre+pTempfile+ext)
-      @action[:remote_tempfile]=File.join(@remote_tmpdir, pre+pTempfile+ext)
-    end
+  def tempfile(input = nil)
+    return @action[:tempfile] if input.nil?
 
-  	return @action[:tempfile]
+    localname = @id.to_s + '-tt_local.tmp'
+    remotename = @id.to_s + '-tt_remote.tmp'
+    if input == :default
+      localname = @id.to_s + '-tt_local.tmp'
+      remotename = @id.to_s + '-tt_remote.tmp'
+    else
+      localname = @id.to_s + "-#{input}.tmp"
+      remotename = @id.to_s + "-#{input}.tmp"
+    end
+    @action[:tempfile] = File.join(@tmpdir, localname)
+    @action[:remote_tempfile] = File.join(@remote_tmpdir, remotename)
+
+    @action[:tempfile]
   end
 
   def tempdir
@@ -58,11 +63,10 @@ module DSL
   end
 
   def remote_tempfile
-    return @action[:remote_tempfile]
+    @action[:remote_tempfile]
   end
 
   def remote_tempdir
     @remote_tmpdir
   end
-
 end

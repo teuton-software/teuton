@@ -9,8 +9,12 @@ class RubocopTest < Minitest::Test
     @files << 'lib/case_manager/case/dsl/deprecated.rb'
 #    @files << 'lib/case_manager/case/dsl/expect.rb'
     @files << 'lib/case_manager/case/dsl/getset.rb'
+#    @files << 'lib/case_manager/case/dsl/goto.rb'
     @files << 'lib/case_manager/case/dsl/log.rb'
+    @files << 'lib/case_manager/case/dsl/main.rb'
+#    @files << 'lib/case_manager/case/dsl/send.rb'
     @files << 'lib/case_manager/case/dsl/target.rb'
+    @files << 'lib/case_manager/case/dsl/unique.rb'
   end
 
   def test_rubocop
