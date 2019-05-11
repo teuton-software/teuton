@@ -17,9 +17,7 @@ module DSL
 
     filename = @report.filename + '.' + @report.format.to_s
     localfilepath = File.join(tempdir, '../out/', filename)
-    if args[:prefix]
-      filename = args[:prefix].to_s + filename
-    end
+    filename = args[:prefix].to_s + filename if args[:prefix]
 
     if args[:remote_dir]
       remotefilepath = File.join(args[:remote_dir], filename)
