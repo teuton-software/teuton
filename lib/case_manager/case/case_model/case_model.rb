@@ -1,6 +1,6 @@
-
 require_relative 'group_model'
 
+# Case::CaseModel class => save case internal data
 class CaseModel
   attr_reader :groups
 
