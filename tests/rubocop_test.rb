@@ -8,6 +8,7 @@ class RubocopTest < Minitest::Test
     @files1 = []
     @files1 << 'lib/case_manager/case/case_model/case_model.rb'
     @files1 << 'lib/case_manager/case/case_model/group_model.rb'
+    @files1 << 'lib/case_manager/case/case_model/target_model.rb'
 
     @files2 = []
     @files2 << 'lib/case_manager/case/dsl/deprecated.rb'
