@@ -13,6 +13,7 @@ alias start play
 
 # Development
 def use(filename)
+  @use = @use || []
   filename += '.rb'
   puts "[INFO] use #{filename}"
   app = Application.instance
@@ -20,9 +21,6 @@ def use(filename)
 
   rbfiles = File.join(rootbase, "**", filename)
   files = Dir.glob(rbfiles)
-  files.sort.each do |f|
-    if f.include?(filename)
-      puts f
-    end
-  end
+  files.sort.each { |f| @use << f if f.include?(filename) }
+  @use
 end
