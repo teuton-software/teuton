@@ -29,7 +29,8 @@ module RakeFunction
     if !fails.empty?
       puts '[INFO] Installing gems...'
       fails.each do |name|
-        system("gem install #{name} --no-ri")
+        #system("gem install #{name} --no-ri")
+        system("gem install #{name}")
       end
     else
       puts '[ OK ] Gems installed'
