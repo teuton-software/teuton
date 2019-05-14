@@ -1,4 +1,3 @@
-
 require_relative '../application'
 require_relative 'case_manager'
 
@@ -14,11 +13,16 @@ alias start play
 
 # Development
 def use(filename)
-  raise 'UNDER DEVELOPMENT!!!'
+  filename += '.rb'
+  puts "[INFO] use #{filename}"
   app = Application.instance
-  puts "__FILE__    " + __FILE__
-  puts "filename    " + filename
-  puts "script_path " + app.script_path
-  puts "config_path " + app.config_path
-  puts "test_name   " + app.test_name
+  rootbase = File.dirname(app.script_path)
+
+  rbfiles = File.join(rootbase, "**", filename)
+  files = Dir.glob(rbfiles)
+  files.sort.each do |f|
+    if f.include?(filename)
+      puts f
+    end
+  end
 end
