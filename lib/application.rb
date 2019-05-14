@@ -4,12 +4,12 @@ require 'singleton'
 class Application
   include Singleton
 
-  attr_reader   :version, :letter, :output_basedir
+  attr_reader   :version, :letter
+  attr_reader   :running_basedir, :output_basedir
   attr_reader   :default
-  attr_reader   :running_basedir
-  attr_accessor :verbose
   attr_accessor :options
-  attr_accessor :global, :groups, :hall_of_fame
+  attr_accessor :verbose
+  attr_accessor :global, :groups, :uses, :hall_of_fame
   attr_accessor :script_path, :config_path, :test_name
 
   def initialize
@@ -27,6 +27,7 @@ class Application
 
     @global = {}
     @groups = []
+    @uses = []
     @hall_of_fame = []
   end
 

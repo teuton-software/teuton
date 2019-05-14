@@ -20,6 +20,9 @@ class RubocopTest < Minitest::Test
 #    @files << 'lib/case_manager/case/dsl/send.rb'
     @files2 << 'lib/case_manager/case/dsl/target.rb'
     @files2 << 'lib/case_manager/case/dsl/unique.rb'
+
+    @files3 = []
+    @files3 << 'lib/project/laboratory.rb'
   end
 
   def test_rubocop_case_model
@@ -32,6 +35,14 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_case_dsl
     @files2.each do |file|
+      output = `rubocop #{file}`
+      lines = output.split("\n")
+      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+    end
+  end
+
+  def test_rubocop_laboratoy
+    @files3.each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
       assert_equal true, lines.any?(/file inspected, no offenses detected/)
