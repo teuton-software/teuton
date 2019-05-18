@@ -19,7 +19,7 @@ class CaseTest < Minitest::Test
     assert_equal [], @case.uniques
     id = @case.id
     assert_equal "case-0#{@case.id}", @case.report.filename
-    assert_equal File.join('var','demo','out'), @case.report.output_dir
+    assert_equal File.join('var', 'demo'), @case.report.output_dir
   end
 
   def test_target
@@ -48,20 +48,21 @@ class CaseTest < Minitest::Test
   end
 
   def test_temfile
-    assert_equal 'var/demo/tmp', @case.tempdir
-    assert_equal "var/demo/tmp/#{@case.id}-tt_local.tmp", @case.tempfile
+    id = @case.id
+    assert_equal "var/demo/tmp/#{@case.id}", @case.tempdir
+    assert_equal "var/demo/tmp/#{@case.id}/teuton.tmp", @case.tempfile
     assert_equal '/tmp', @case.remote_tempdir
-    assert_equal "/tmp/#{@case.id}-tt_remote.tmp", @case.remote_tempfile
+    assert_equal '/tmp/teuton.tmp', @case.remote_tempfile
     @case.tempfile 'othername'
-    assert_equal 'var/demo/tmp', @case.tempdir
-    assert_equal "var/demo/tmp/#{@case.id}-othername.tmp", @case.tempfile
+    assert_equal "var/demo/tmp/#{@case.id}", @case.tempdir
+    assert_equal "var/demo/tmp/#{@case.id}/othername", @case.tempfile
     assert_equal '/tmp', @case.remote_tempdir
-    assert_equal "/tmp/#{@case.id}-othername.tmp", @case.remote_tempfile
+    assert_equal '/tmp/othername', @case.remote_tempfile
     @case.tempfile :default
-    assert_equal 'var/demo/tmp', @case.tempdir
-    assert_equal "var/demo/tmp/#{@case.id}-tt_local.tmp", @case.tempfile
+    assert_equal "var/demo/tmp/#{@case.id}", @case.tempdir
+    assert_equal "var/demo/tmp/#{@case.id}/teuton.tmp", @case.tempfile
     assert_equal '/tmp', @case.remote_tempdir
-    assert_equal "/tmp/#{@case.id}-tt_remote.tmp", @case.remote_tempfile
+    assert_equal '/tmp/teuton.tmp', @case.remote_tempfile
   end
 
   def test_skip

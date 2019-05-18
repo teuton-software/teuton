@@ -16,7 +16,7 @@ module DSL
     password = get((host + '_password').to_sym).to_s
 
     filename = @report.filename + '.' + @report.format.to_s
-    localfilepath = File.join(tempdir, '../out/', filename)
+    localfilepath = File.join(tempdir, '..', filename)
     filename = args[:prefix].to_s + filename if args[:prefix]
 
     if args[:remote_dir]
@@ -39,17 +39,11 @@ module DSL
   def tempfile(input = nil)
     return @action[:tempfile] if input.nil?
 
-    localname = @id.to_s + '-tt_local.tmp'
-    remotename = @id.to_s + '-tt_remote.tmp'
-    if input == :default
-      localname = @id.to_s + '-tt_local.tmp'
-      remotename = @id.to_s + '-tt_remote.tmp'
-    else
-      localname = @id.to_s + "-#{input}.tmp"
-      remotename = @id.to_s + "-#{input}.tmp"
-    end
-    @action[:tempfile] = File.join(@tmpdir, localname)
-    @action[:remote_tempfile] = File.join(@remote_tmpdir, remotename)
+    name = input
+    name = 'teuton.tmp' if input == :default
+
+    @action[:tempfile] = File.join(@tmpdir, name)
+    @action[:remote_tempfile] = File.join(@remote_tmpdir, name)
 
     @action[:tempfile]
   end

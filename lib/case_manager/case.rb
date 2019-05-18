@@ -27,16 +27,16 @@ class Case
 
     # Define Case Report
     @report = Report.new(@id)
-    @report.output_dir = File.join('var', @config.global[:tt_testname], 'out')
+    @report.output_dir = File.join('var', @config.global[:tt_testname])
     ensure_dir @report.output_dir
 
     # Default configuration
     @config.local[:tt_skip] = @config.local[:tt_skip] || false
-    @mntdir = File.join('var', @config.get(:tt_testname), 'mnt', @id.to_s)
-    @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp')
+    #@mntdir = File.join('var', @config.get(:tt_testname), 'mnt', @id.to_s)
+    @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp', @id.to_s)
     @remote_tmpdir = File.join('/', 'tmp')
 
-    ensure_dir @mntdir
+    #ensure_dir @mntdir
     ensure_dir @tmpdir
 
     @unique_values = {}
