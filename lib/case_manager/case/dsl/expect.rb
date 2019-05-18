@@ -1,14 +1,17 @@
 # DSL#expect, DSL#weight
 module DSL
   # expect <condition>, :weight => <value>
-  def expect2(cond, args = {})
-    unless cond.class == TrueClass || cond.class = FalseClass
-      puts "expect2 with text"
+  def expect(input, args = {})
+    if input.class == TrueClass || input.class == FalseClass
+      expect2(input, args)
+    elsif input.class == String || input.class == Regexp
+      expect2 result.find(input).count.eq(1)
+    else
+      puts "[ERROR] expect #{input} (#{input.class})"
     end
-    expect(cond, args)
   end
 
-  def expect(cond, args = {})
+  def expect2(cond, args = {})
     weight(args[:weight])
 
     @action_counter += 1
