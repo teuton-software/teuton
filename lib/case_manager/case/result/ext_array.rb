@@ -2,8 +2,8 @@
 
 # This is an extension of Result class
 class Result
-  def count!
-    @alterations << 'count!'
+  def count
+    @alterations << 'count'
 
     if @content.class == Array
       @content = [@content.count]
@@ -36,11 +36,9 @@ class Result
     @content.empty
   end
 
-  alias count      count!
-  alias length!    count!
-  alias length     count!
-  alias len        count!
-  alias size!      count!
-  alias size       count!
+  alias count!     count
+  alias length     count
+  alias len        count
+  alias size       count
   alias empty?     empty
 end
