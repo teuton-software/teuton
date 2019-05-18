@@ -23,14 +23,20 @@ class CaseTest < Minitest::Test
   end
 
   def test_target
-    @case.target
-    assert_equal 'No description!', @case.target
-    assert_equal 'No description!', @case.goal
-    @case.target 'Target 1 description'
-    assert_equal 'Target 1 description', @case.target
-    assert_equal 'Target 1 description', @case.goal
-    @case.target asset: 'assets/README.md'
-    assert_equal 'assets/README.md', @case.target
+    assert_equal 'No description!', @case.action[:description]
+    assert_equal 1.0, @case.weight
+
+    @case.target 'Target 1 description A', weight: 2.5
+    assert_equal 'Target 1 description A', @case.action[:description]
+    assert_equal 2.5, @case.weight
+
+    @case.goal 'Target 1 description B'
+    assert_equal 'Target 1 description B', @case.action[:description]
+    assert_equal 1.0, @case.weight
+
+    @case.target 'Target 1 description C', asset: 'assets/README.md', weight: 3.3
+    assert_equal 'assets/README.md', @case.action[:asset]
+    assert_equal 3.3, @case.weight
   end
 
   def test_weigth

@@ -1,6 +1,13 @@
 # DSL#expect, DSL#weight
 module DSL
   # expect <condition>, :weight => <value>
+  def expect2(cond, args = {})
+    unless cond.class == TrueClass || cond.class = FalseClass
+      puts "expect2 with text"
+    end
+    expect(cond, args)
+  end
+
   def expect(cond, args = {})
     weight(args[:weight])
 
