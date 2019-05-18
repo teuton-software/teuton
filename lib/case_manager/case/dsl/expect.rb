@@ -4,7 +4,7 @@ module DSL
   def expect(input, args = {})
     if input.class == TrueClass || input.class == FalseClass
       expect2(input, args)
-    elsif input.class == String || input.class == Regexp
+    elsif input.class == String || input.class == Regexp || input.class == Array
       expect2 result.find(input).count.eq(1)
     else
       puts "[ERROR] expect #{input} (#{input.class})"
