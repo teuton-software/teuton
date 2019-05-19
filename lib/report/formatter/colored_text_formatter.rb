@@ -20,7 +20,7 @@ class ColoredTextFormatter < BaseFormatter
   private
 
   def process_initial
-    w Rainbow("INITIAL CONFIGURATIONS").bg(:blue)+"\n"
+    w Rainbow("CONFIGURATIONS").bg(:blue)+"\n"
     my_screen_table = Terminal::Table.new do |st|
       @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
@@ -30,9 +30,9 @@ class ColoredTextFormatter < BaseFormatter
   def process_history
     tab="  "
 
-    w Rainbow("HISTORY").bg(:blue)+"\n"
+    w Rainbow('TEST').bg(:blue)+"\n"
     @lines.each do |i|
-      if i.class.to_s=='Hash' then
+      if i.class.to_s=='Hash'
         lValue=0.0
         color=:red
         if i[:check]
@@ -53,7 +53,7 @@ class ColoredTextFormatter < BaseFormatter
   end
 
   def process_final
-    w Rainbow("FINAL VALUES").bg(:blue)+"\n"
+    w Rainbow('RESULTS').bg(:blue)+"\n"
     my_screen_table = Terminal::Table.new do |st|
       @tail.each do |key,value|
         if key.to_s=='grade'

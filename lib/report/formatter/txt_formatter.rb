@@ -19,7 +19,7 @@ class TXTFormatter < BaseFormatter
   private
 
   def process_initial
-    w "INITIAL CONFIGURATIONS\n"
+    w "CONFIGURATIONS\n"
     my_screen_table = Terminal::Table.new do |st|
       @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
@@ -28,7 +28,7 @@ class TXTFormatter < BaseFormatter
 
   def process_history
     tab="  "
-    w "HISTORY\n"
+    w "TEST\n"
     @lines.each do |i|
       if i.class.to_s=='Hash' then
         lValue=0.0
@@ -51,7 +51,7 @@ class TXTFormatter < BaseFormatter
   end
 
   def process_final
-    w "FINAL VALUES\n"
+    w "RESULTS\n"
     my_screen_table = Terminal::Table.new do |st|
       @tail.each do |key,value|
         st.add_row [ key.to_s, value.to_s]
