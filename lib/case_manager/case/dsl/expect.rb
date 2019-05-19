@@ -1,17 +1,31 @@
 # DSL#expect, DSL#weight
 module DSL
-  def expect_none(*input)
-    expect2 result.find(*input).count.eq(0)
+  def expect_none(input)
+    if input.class == Array
+      input.each { |i| result.find(i) }
+    else
+      result.find(input)
+    end
+    expect2 result.count.eq(0)
   end
 
-  def expect_one(*input)
-    expect2 result.find(*input).count.eq(1)
+  def expect_one(input)
+    if input.class == Array
+      input.each { |i| result.find(i) }
+    else
+      result.find(input)
+    end
+    expect2 result.count.eq(1)
   end
 
-  def expect_any(*input)
-    expect2 result.find(*input).count.gt(0)
+  def expect_any(input)
+    if input.class == Array
+      input.each { |i| result.find(i) }
+    else
+      result.find(input)
+    end
+    expect2 result.count.gt(0)
   end
-
 
   # expect <condition>, :weight => <value>
   def expect(input, args = {})
