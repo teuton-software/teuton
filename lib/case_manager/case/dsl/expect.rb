@@ -1,15 +1,29 @@
 # DSL#expect, DSL#weight
 module DSL
+  def expect_none(*input)
+    expect2 result.find(*input).count.eq(0)
+  end
+
+  def expect_one(*input)
+    expect2 result.find(*input).count.eq(1)
+  end
+
+  def expect_any(*input)
+    expect2 result.find(*input).count.gt(0)
+  end
+
+
   # expect <condition>, :weight => <value>
   def expect(input, args = {})
     if input.class == TrueClass || input.class == FalseClass
       expect2(input, args)
     elsif input.class == String || input.class == Regexp || input.class == Array
-      expect2 result.find(input).count.eq(1)
+      expect_any input
     else
       puts "[ERROR] expect #{input} (#{input.class})"
     end
   end
+
 
   def expect2(cond, args = {})
     weight(args[:weight])
