@@ -23,14 +23,14 @@ class YAMLFormatter < BaseFormatter
 
   def build_initial_data
     head = {}
-    head[:title] = "INITIAL CONFIGURATIONS"
+    head[:title] = "CONFIGURATION"
     @head.each { |key,value| head[key]=value.to_s }
-    @data[:initial_config] = head
+    @data[:config] = head
   end
 
   def build_history_data
     body = {}
-    body[:title] = "HISTORY"
+    body[:title] = "TEST"
     body[:logs] = []
     body[:targets] = []
 
@@ -57,14 +57,14 @@ class YAMLFormatter < BaseFormatter
         body[:logs] << i.to_s
       end
     end
-    @data[:history] = body
+    @data[:test] = body
   end
 
   def build_final_data
     tail = {}
-    tail[:title] = "FINAL VALUES"
+    tail[:title] = 'RESULTS'
     @tail.each { |key,value| tail[key] = value.to_s }
-    @data[:final_values] = tail
+    @data[:results] = tail
   end
 
   def build_hof_data
@@ -72,7 +72,7 @@ class YAMLFormatter < BaseFormatter
     return if app.options[:case_number]<3
 
     fame = {}
-    fame[:title] = "HALL OF FAME"
+    fame[:title] = 'HALL OF FAME'
     app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
     @data[:hall_of_fame] = fame
   end
