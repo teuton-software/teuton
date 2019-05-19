@@ -57,7 +57,7 @@ class YAMLFormatter < BaseFormatter
         body[:logs] << i.to_s
       end
     end
-    @data[:body] = body
+    @data[:history] = body
   end
 
   def build_final_data
