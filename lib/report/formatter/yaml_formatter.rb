@@ -25,36 +25,37 @@ class YAMLFormatter < BaseFormatter
     head = {}
     head[:title] = "INITIAL CONFIGURATIONS"
     @head.each { |key,value| head[key]=value.to_s }
-    @data[:head] = head
+    @data[:initial_config] = head
   end
 
   def build_history_data
     body = {}
     body[:title] = "HISTORY"
-    body[:lines] = []
+    body[:logs] = []
+    body[:targets] = []
 
     @lines.each do |i|
-      line = ""
-      if i.class.to_s=='Hash' then
+      line = ''
+      if i.class.to_s=='Hash'
         lValue=0.0
         if i[:check]
           lValue=i[:weight]
         end
 
-        line = {}
-        line[:target_id]   = "%02d"%i[:id]
-        line[:score]       = lValue.to_s
-        line[:weight]      = i[:weight].to_s
-        line[:description] = i[:description].to_s
-        line[:command]     = i[:command].to_s
-        line[:duration]    = i[:duration].to_s
-        line[:alterations] = i[:alterations].to_s
-        line[:expected]    = i[:expected].to_s
-        line[:result]      = i[:result].to_s
+        target = {}
+        target[:target_id]   = "%02d"%i[:id]
+        target[:score]       = lValue.to_s
+        target[:weight]      = i[:weight].to_s
+        target[:description] = i[:description].to_s
+        target[:command]     = i[:command].to_s
+        target[:duration]    = i[:duration].to_s
+        target[:alterations] = i[:alterations].to_s
+        target[:expected]    = i[:expected].to_s
+        target[:result]      = i[:result].to_s
+        body[:targets] << target
       else
-        line = i.to_s
+        body[:logs] << i.to_s
       end
-      body[:lines] << line
     end
     @data[:body] = body
   end
@@ -63,7 +64,7 @@ class YAMLFormatter < BaseFormatter
     tail = {}
     tail[:title] = "FINAL VALUES"
     @tail.each { |key,value| tail[key] = value.to_s }
-    @data[:tail] = tail
+    @data[:final_values] = tail
   end
 
   def build_hof_data
@@ -73,7 +74,7 @@ class YAMLFormatter < BaseFormatter
     fame = {}
     fame[:title] = "HALL OF FAME"
     app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
-    @data[:fame] = fame
+    @data[:hall_of_fame] = fame
   end
 
 end
