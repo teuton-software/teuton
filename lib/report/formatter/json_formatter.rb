@@ -1,7 +1,7 @@
 
-require_relative 'yaml_formatter'
+require_relative 'array_formatter'
 
-class JSONFormatter < YAMLFormatter
+class JSONFormatter < ArrayFormatter
 
   def initialize(pReport)
     super(pReport)
