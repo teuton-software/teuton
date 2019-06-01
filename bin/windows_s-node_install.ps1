@@ -3,6 +3,11 @@ Windows S-NODE installation
 version: 20190127
 #>
 
+If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotMatch "S-1-5-32-544") {
+    Write-Error -Category PermissionDenied "Must be run as administrator"
+    Exit 1
+}
+
 Write-Host "[0/5.INFO] WINDOWS S-NODE installation"
 
 Write-Host "[1/5.INFO] Installing PACKAGES..."

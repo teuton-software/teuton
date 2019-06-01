@@ -3,6 +3,11 @@ Windows T-NODE installation
 version: 20190129
 #>
 
+If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotMatch "S-1-5-32-544") {
+    Write-Error -Category PermissionDenied "Must be run as administrator"
+    Exit 1
+}
+
 $TeutonPath = $env:ProgramFiles + "\teuton"
 $TeutonUrl = "https://github.com/dvarrui/teuton.git"
 
