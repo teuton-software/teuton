@@ -29,8 +29,12 @@ class ArrayFormatter < BaseFormatter
 
   def build_history_data
     body = {}
+    groups = []
+    group = {}
+
     body[:logs] = []
-    body[:targets] = []
+    group[:title] = 'Group name'
+    group[:targets] = []
 
     @lines.each do |i|
       line = ''
@@ -50,11 +54,14 @@ class ArrayFormatter < BaseFormatter
         target[:alterations] = i[:alterations]
         target[:expected]    = i[:expected]
         target[:result]      = i[:result]
-        body[:targets] << target
+        group[:targets] << target
       else
         body[:logs] << i.to_s
       end
     end
+
+    groups << group
+    body[:groups] = groups
     @data[:test] = body
   end
 
