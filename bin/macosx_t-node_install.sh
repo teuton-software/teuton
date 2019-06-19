@@ -3,7 +3,7 @@
 # version: 20190312
 
 teutonPath=/usr/local/opt/teuton
-teutonUrl=https://github.com/dvarrui/teuton.git
+teutonUrl=https://github.com/teuton-software/teuton.git
 teutonLink=/usr/local/bin/teuton
 
 function exists_binary() {

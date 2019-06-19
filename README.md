@@ -6,6 +6,7 @@
 ```
 TEUTON are test units for machines (everything).
 TEUTON tests tons of goals on tons of machines.
+Test your infraestructure as code.
 ```
 
 Software for:

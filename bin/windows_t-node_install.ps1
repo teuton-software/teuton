@@ -9,7 +9,7 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotMatch "
 }
 
 $TeutonPath = $env:ProgramFiles + "\teuton"
-$TeutonUrl = "https://github.com/dvarrui/teuton.git"
+$TeutonUrl = "https://github.com/teuton-software/teuton.git"
 
 Write-Host "[0/6.INFO] WINDOWS T-NODE installation"
 
