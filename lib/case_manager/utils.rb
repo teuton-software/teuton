@@ -13,6 +13,10 @@ module Utils
   end
 
   def encode_and_split(encoding, text)
+
+    text = text.encode("UTF-8")
+    return text.split("\n")
+
     unless encoding == 'UTF-8'
       ec = Encoding::Converter.new(encoding.to_s, 'UTF-8')
       begin
