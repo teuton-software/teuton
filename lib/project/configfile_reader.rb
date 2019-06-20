@@ -18,7 +18,7 @@ module ConfigFileReader
         puts '='*80
         puts "[ERROR] ConfigFileReader#read <#{filepath}>"
         puts '        I suggest to revise file format!'
-        puts '        '+e.message
+        puts '        ' + e.message
         puts '='*80
         raise "[ERROR] ConfigFileReader <#{e}>"
       end
