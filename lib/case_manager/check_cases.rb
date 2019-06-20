@@ -31,11 +31,9 @@ class CaseManager
     else
       verboseln "[INFO] Running in parallel (#{start_time})"
       threads = []
-      puts "Fran1"
       # Running cases in parallel
       @cases.each { |c| threads << Thread.new{ c.play } }
       threads.each(&:join)
-      puts "Fran2"
     end
 
     # Collect "unique" values from all cases
