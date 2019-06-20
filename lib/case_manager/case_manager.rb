@@ -35,15 +35,12 @@ class CaseManager
 
   def play(&block)
     check_cases!
-    puts "[Fran1]"
     instance_eval(&block)
-    puts "[Fran2]"
     # Run export if user pass option command "--export=json"
     app = Application.instance
     unless app.options['export'].nil? # Accept "export" param
       export(:format => app.options['export'].to_sym)
     end
-    puts "[Fran3]"
     unless app.options['configfile'].nil? # Accept "configfile" param
       export(:format => app.options['configfile'].to_sym)
     end
