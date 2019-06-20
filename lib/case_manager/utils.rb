@@ -14,7 +14,7 @@ module Utils
 
   def encode_and_split(encoding, text)
 
-    text = text.force_encoding("UTF-8")
+    text = text.encode("UTF-8", :invalid => :replace)
     return text.split("\n")
 
     unless encoding == 'UTF-8'
