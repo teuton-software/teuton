@@ -3,7 +3,7 @@ Windows S-NODE uninstallation
 version: 20190127
 #>
 
-If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotMatch "S-1-5-32-544") {
+If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContains "S-1-5-32-544") {
     $Host.UI.WriteErrorLine("Must be run as administrator")
     Exit 1
 }
