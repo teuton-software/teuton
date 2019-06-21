@@ -38,8 +38,11 @@ class CaseManager
     instance_eval(&block)
     # Run export if user pass option command "--export=json"
     app = Application.instance
-    unless app.options['export'].nil?
+    unless app.options['export'].nil? # Accept "export" param
       export(:format => app.options['export'].to_sym)
+    end
+    unless app.options['configfile'].nil? # Accept "configfile" param
+      export(:format => app.options['configfile'].to_sym)
     end
   end
 

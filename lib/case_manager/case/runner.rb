@@ -110,7 +110,7 @@ class Case
       log(" └── username=<#{username}>, password=<#{password}>, ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end
 
-    output = encode_and_split(@action[:encoding], text)
-    @result.content = output
+    #output = encode_and_split(@action[:encoding], text)
+    @result.content = text.encode('UTF-8', :invalid => :replace).split("\n")
   end
 end

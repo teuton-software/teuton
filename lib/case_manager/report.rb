@@ -12,7 +12,6 @@ class CaseManager
     @report.head[:tt_debug] = true if @debug
     @report.head.merge!(app.global)
 
-    my_execute('clear')
     verboseln '=' * @report.head[:tt_title].length
     verboseln @report.head[:tt_title]
   end

@@ -23,16 +23,18 @@ class ArrayFormatter < BaseFormatter
 
   def build_initial_data
     head = {}
-    head[:title] = 'CONFIGURATION'
     @head.each { |key,value| head[key] = value }
     @data[:config] = head
   end
 
   def build_history_data
     body = {}
-    body[:title] = "TEST"
+    groups = []
+    group = {}
+
     body[:logs] = []
-    body[:targets] = []
+    group[:title] = 'Group name'
+    group[:targets] = []
 
     @lines.each do |i|
       line = ''
@@ -52,17 +54,19 @@ class ArrayFormatter < BaseFormatter
         target[:alterations] = i[:alterations]
         target[:expected]    = i[:expected]
         target[:result]      = i[:result]
-        body[:targets] << target
+        group[:targets] << target
       else
         body[:logs] << i.to_s
       end
     end
+
+    groups << group
+    body[:groups] = groups
     @data[:test] = body
   end
 
   def build_final_data
     tail = {}
-    tail[:title] = 'RESULTS'
     @tail.each { |key,value| tail[key] = value }
     @data[:results] = tail
   end
@@ -72,7 +76,6 @@ class ArrayFormatter < BaseFormatter
     return if app.options[:case_number]<3
 
     fame = {}
-    fame[:title] = 'HALL OF FAME'
     app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
     @data[:hall_of_fame] = fame
   end

@@ -2,15 +2,16 @@
 class Case
 
   def play
-    @skip=get(:tt_skip)||false
-    if @skip==true then
+    @skip = get(:tt_skip)||false
+    if @skip == true
       verbose "Skipping case <#{@config.get(:tt_members)}>\n"
       return false
     end
 
-    names=@id.to_s+"-*.tmp"
-    r=`ls #{@tmpdir}/#{names} 2>/dev/null | wc -l`
-    execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Delete previous temp files
+    names = @id.to_s+"-*.tmp"
+    #FIXTHIS
+    #r=`ls #{@tmpdir}/#{names} 2>/dev/null | wc -l`
+    #execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0 #Delete previous temp files
 
     start_time = Time.now
     if get(:tt_sequence) then

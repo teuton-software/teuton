@@ -16,7 +16,7 @@ module DSL
     password = get((host + '_password').to_sym).to_s
 
     filename = @report.filename + '.' + @report.format.to_s
-    localfilepath = File.join(tempdir, '..', filename)
+    localfilepath = File.join(@report.output_dir, filename)
     filename = args[:prefix].to_s + filename if args[:prefix]
 
     if args[:remote_dir]
