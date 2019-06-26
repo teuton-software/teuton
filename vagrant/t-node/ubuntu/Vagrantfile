@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.define "teuton-t-node" do |i|
-    i.vm.box = "opensuse/openSUSE-15.0-x86_64"
+    i.vm.box = "ubuntu/bionic64"
     i.vm.hostname = "t-node"
     i.vm.network "public_network"
 #    i.vm.network :forwarded_port, guest: 22, host: 1600
@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
     wget -qO- https://raw.githubusercontent.com/dvarrui/teuton/master/bin/linux_t-node_install.sh | bash
   SHELL
     i.vm.provider "virtualbox" do |v|
-      v.name = 'teuton-t-node'
+      v.name = 'teuton-t-node-ubuntu'
       v.memory = 2048
     end
   end
