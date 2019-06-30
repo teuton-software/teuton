@@ -1,7 +1,7 @@
 
-![logo](./docs/logo.png)
-
 # TEUTON Software
+
+![logo](./docs/logo.png)
 
 Test your infraestructure as code.
 
