@@ -1,9 +1,9 @@
 
 # TEUTON Software
 
-![logo](./docs/logo.png)
-
 Test your infraestructure as code.
+
+![logo](./docs/logo.png)
 
 ```
 TEUTON are test units for machines (everything).
