@@ -13,19 +13,18 @@ module Utils
   end
 
   def encode_and_split(encoding, text)
-
-    text = text.encode('UTF-8', :invalid => :replace)
-    return text.split("\n")
-
-    unless encoding == 'UTF-8'
-      ec = Encoding::Converter.new(encoding.to_s, 'UTF-8')
-      begin
-        text = ec.convert(text)
-      rescue Exception => e
-        verbose '!'
-        puts "[ERROR] #{e}: Declare text encoding..."
-        puts "        goto :host, :exec => 'command', :encoding => 'ISO-8859-1'"
-      end
+    if encoding == :default || encoding == 'UTF-8'
+      # Convert text to UTF-8 deleting unknown chars
+      return text.encode('UTF-8', :invalid => :replace).split("\n")
+    end
+    # Convert text to UTF-8 when we know encoding
+    ec = Encoding::Converter.new(encoding.to_s, 'UTF-8')
+    begin
+      text = ec.convert(text)
+    rescue Exception => e
+      verbose '!'
+      puts "[ERROR] #{e}: Declare text encoding..."
+      puts "        goto :host, :exec => 'command', :encoding => 'ISO-8859-1'"
     end
 
     return text.split("\n")
