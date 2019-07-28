@@ -42,7 +42,7 @@ class ArrayFormatter < BaseFormatter
         value = 0.0
         value = i[:weight] if i[:check]
 
-        if group[:title] != i[:groupname]
+        if i[:groupname] != group[:title]
           groups << group unless group[:title].nil? # Add currentgroup
           # Create new group
           group = Hash.new
