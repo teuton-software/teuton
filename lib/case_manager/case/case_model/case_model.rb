@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'group_model'
 
 # Case::CaseModel class => save case internal data

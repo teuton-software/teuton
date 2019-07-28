@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # DSL#target
 module DSL
   def target(desc, args = {})

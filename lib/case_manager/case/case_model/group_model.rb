@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'target_model'
 
 class CaseModel

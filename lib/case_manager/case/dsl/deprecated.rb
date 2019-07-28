@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # DSL#request, DSL#target2
 module DSL
   def request(text)

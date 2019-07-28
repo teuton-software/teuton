@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Case#DSL#unique
 module DSL
   def unique(key, value)

@@ -23,6 +23,11 @@ class RubocopTest < Minitest::Test
 
     @files3 = []
     @files3 << 'lib/project/laboratory.rb'
+
+    @files4 = []
+#    @files4 << 'lib/report/formatter/array_formatter.rb'
+    @files4 << 'lib/report/formatter/json_formatter.rb'
+    @files4 << 'lib/report/formatter/yaml_formatter.rb'
   end
 
   def test_rubocop_case_model
@@ -43,6 +48,14 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_laboratoy
     @files3.each do |file|
+      output = `rubocop #{file}`
+      lines = output.split("\n")
+      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+    end
+  end
+
+  def test_rubocop_report
+    @files4.each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
       assert_equal true, lines.any?(/file inspected, no offenses detected/)

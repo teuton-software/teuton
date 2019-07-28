@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # DSL#log
 module DSL
   def log(text = '', type = :info)

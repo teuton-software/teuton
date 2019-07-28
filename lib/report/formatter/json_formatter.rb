@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 
 require_relative 'array_formatter'
 
+# JSONFormatter class
 class JSONFormatter < ArrayFormatter
-
-  def initialize(pReport)
-    super(pReport)
+  def initialize(report)
+    super(report)
     @data = {}
   end
 
@@ -13,5 +14,4 @@ class JSONFormatter < ArrayFormatter
     w @data.to_json # Write data into ouput file
     deinit
   end
-
 end

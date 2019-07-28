@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CaseModel
   # Case::CaseModel::TargetModel => save internal target data
   class TargetModel
