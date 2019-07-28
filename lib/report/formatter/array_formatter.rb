@@ -34,7 +34,7 @@ class ArrayFormatter < BaseFormatter
     group = {}
 
     body[:logs] = []
-    group[:title] = 'Group name'
+    group[:title] = nil
     group[:targets] = []
 
     @lines.each do |i|
@@ -42,8 +42,14 @@ class ArrayFormatter < BaseFormatter
         value = 0.0
         value = i[:weight] if i[:check]
 
+        if group[:title] != i[:groupname]
+          groups << group unless group[:title].nil? # Add currentgroup
+          # Create new group
+          group[:title] = i[:groupname]
+          group[:targets] = []
+        end
+
         target = {}
-        target[:groupname]   = i[:groupname]
         target[:target_id]   = format('%02d', i[:id])
         target[:score]       = value
         target[:weight]      = i[:weight]
@@ -55,11 +61,11 @@ class ArrayFormatter < BaseFormatter
         target[:result]      = i[:result]
         group[:targets] << target
       else
-        body[:logs] << i.to_s
+        body[:logs] << i.to_s # Add log line
       end
     end
 
-    groups << group
+    groups << group # Adding the last group
     body[:groups] = groups
     @data[:test] = body
   end
