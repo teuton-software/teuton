@@ -16,6 +16,7 @@ class CaseTest < Minitest::Test
     assert_equal 0, @case.action[:id]
     assert_equal 1.0, @case.action[:weight]
     assert_equal 'No description!', @case.action[:description]
+    assert_nil @case.action[:group]
     assert_equal [], @case.uniques
     id = @case.id
     assert_equal "case-0#{@case.id}", @case.report.filename

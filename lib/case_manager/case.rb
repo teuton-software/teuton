@@ -20,8 +20,8 @@ class Case
   def initialize(config)
     app = Application.instance
     @config = Case::Config.new(local: config, global: app.global)
-
     @groups = app.groups
+
     @id = @@id
     @@id += 1
 
@@ -33,7 +33,7 @@ class Case
     # Default configuration
     @config.local[:tt_skip] = @config.local[:tt_skip] || false
     @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp', @id.to_s)
-    #ensure_dir @tmpdir # REVISE: When we will need this? Samba?
+    # ensure_dir @tmpdir # REVISE: When we will need this? Samba?
     @remote_tmpdir = File.join('/', 'tmp')
 
     @unique_values = {}
@@ -43,7 +43,11 @@ class Case
     @verbose = Application.instance.verbose
 
     @action_counter = 0
-    @action = { id: 0, weight: 1.0, description: 'No description!' }
+    @action = { id: 0,
+                weight: 1.0,
+                description: 'No description!',
+                group: nil
+              }
     @uniques = []
     @sessions = {}
     tempfile :default
