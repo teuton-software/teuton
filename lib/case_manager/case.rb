@@ -13,13 +13,13 @@ class Case
   include Utils
 
   attr_accessor :result
-  attr_accessor :action # why not reader only???
+  attr_accessor :action # TODO: why not reader only???
   attr_reader :id, :config, :report, :uniques
   @@id = 1
 
-  def initialize(p_config)
+  def initialize(config)
     app = Application.instance
-    @config = Case::Config.new(local: p_config, global: app.global)
+    @config = Case::Config.new(local: config, global: app.global)
 
     @groups = app.groups
     @id = @@id
@@ -32,9 +32,8 @@ class Case
 
     # Default configuration
     @config.local[:tt_skip] = @config.local[:tt_skip] || false
-    #@mntdir = File.join('var', @config.get(:tt_testname), 'mnt', @id.to_s)
     @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp', @id.to_s)
-    #ensure_dir @tmpdir
+    #ensure_dir @tmpdir # REVISE: When we will need this? Samba?
     @remote_tmpdir = File.join('/', 'tmp')
 
     @unique_values = {}

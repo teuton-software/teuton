@@ -27,7 +27,7 @@ class Application
 
     @global = {}
     @groups = []
-    @uses = []
+    @uses = [] # TODO
     @hall_of_fame = []
   end
 

@@ -22,6 +22,19 @@ class CaseTest < Minitest::Test
     assert_equal File.join('var', 'demo'), @case.report.output_dir
   end
 
+  def test_config
+    params = { :p1 => 1, :p2 => "p2" }
+    c = Case.new(params)
+    assert_equal params[:p1], c.config.get(:p1)
+    assert_equal params[:p2], c.config.get(:p2)
+    assert_equal params[:p1], c.config.local[:p1]
+    assert_equal params[:p2], c.config.local[:p2]
+
+    assert_equal 0, c.config.running.size
+    assert_equal params.size, c.config.local.size
+    assert_equal @app.global.size, c.config.global.size
+  end
+
   def test_target
     assert_equal 'No description!', @case.action[:description]
     assert_equal 1.0, @case.weight
