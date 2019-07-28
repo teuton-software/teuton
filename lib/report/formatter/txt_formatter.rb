@@ -1,58 +1,69 @@
+# frozen_string_literal: true
 
 require 'terminal-table'
-require_relative 'base_formatter'
+require_relative 'array_formatter'
 
-class TXTFormatter < BaseFormatter
+# TXTFormatter class
+class TXTFormatter < ArrayFormatter
   def initialize(report)
     super(report)
+    @data = {}
   end
 
   def process
-    process_initial
-    process_history
-    process_final
+    build_data
+    process_config
+    process_test
+    process_results
     process_hof
     deinit
   end
 
   private
 
-  def process_initial
+  def process_config
     w "CONFIGURATIONS\n"
     my_screen_table = Terminal::Table.new do |st|
-      @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
+      @data[:config].each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
     w my_screen_table.to_s+"\n\n"
   end
 
-  def process_history
-    tab="  "
-    w "TEST\n"
-    @lines.each do |i|
-      if i.class.to_s=='Hash' then
-        lValue=0.0
-        color=:red
-        if i[:check]
-          lValue=i[:weight]
-          color=:green
-        end
-        w tab+"%02d"%i[:id]+" ("+lValue.to_s+"/"+i[:weight].to_s+")\n"
-        w tab+"\t\tDescription : #{i[:description].to_s}\n"
-        w tab+"\t\tCommand     : #{i[:command].to_s}\n"
-				w tab+"\t\tDuration    : #{i[:duration].to_s} (#{i[:conn_type].to_s})\n"
-        w tab+"\t\tAlterations : #{i[:alterations].to_s}\n"
-        w tab+"\t\tExpected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
-        w tab+"\t\tResult      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
-      else
-        w(i.to_s + "\n\n")
-      end
+  def process_test
+    tab = '  '
+    tab = '' if @data[:test][:logs].count == 1
+
+    w "LOGS\n"
+    @data[:test][:logs].each do |line|
+      w tab + line + "\n"
+    end
+
+    if @data[:test][:groups].count > 0
+      w "\nGROUPS\n"
+      @data[:test][:groups].each { |g| process_group g }
     end
   end
 
-  def process_final
-    w "RESULTS\n"
+  def process_group(group)
+    tab = '  '
+    w tab + group[:title] + "\n"
+    group[:targets].each do |i|
+      value = 0.0
+      value = i[:weight] if i[:check]
+      w tab*2+format("%02d", i[:target_id])+" ("+value.to_s+"/"+i[:weight].to_s+")\n"
+      w tab*4+"Description : #{i[:description].to_s}\n"
+      w tab*4+"Command     : #{i[:command].to_s}\n"
+			w tab*4+"Duration    : #{i[:duration].to_s} (#{i[:conn_type].to_s})\n"
+      w tab*4+"Alterations : #{i[:alterations].to_s}\n"
+      w tab*4+"Expected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
+      w tab*4+"Result      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
+    end
+  end
+
+  def process_results
+    w "\nRESULTS\n"
     my_screen_table = Terminal::Table.new do |st|
-      @tail.each do |key,value|
+      @data[:results].each do |key,value|
         st.add_row [ key.to_s, value.to_s]
       end
     end
@@ -60,17 +71,13 @@ class TXTFormatter < BaseFormatter
   end
 
   def process_hof
-    app = Application.instance
-    return if app.options[:case_number]<3
-
-    w "HALL OF FAME\n"
-    app = Application.instance
+    w "\nHALL OF FAME\n"
     my_screen_table = Terminal::Table.new do |st|
-      app.hall_of_fame.each do |line|
+      @data[:hall_of_fame].each do |line|
         st.add_row [ line[0], line[1]]
       end
     end
-    w my_screen_table.to_s+"\n"
+    w my_screen_table.to_s + "\n"
 
     deinit
   end

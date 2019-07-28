@@ -5,7 +5,7 @@ require_relative 'csv_formatter'
 require_relative 'html_formatter'
 require_relative 'json_formatter'
 require_relative 'txt_formatter'
-require_relative 'txt2_formatter'
+require_relative 'txt0_formatter'
 require_relative 'yaml_formatter'
 require_relative 'xml_formatter'
 
@@ -23,8 +23,8 @@ module FormatterFactory
       f = JSONFormatter.new(report)
     when :txt
       f = TXTFormatter.new(report)
-    when :txt2
-      f = TXT2Formatter.new(report)
+    when :txt0
+      f = TXT0Formatter.new(report)
     when :yaml
       f = YAMLFormatter.new(report)
     when :xml

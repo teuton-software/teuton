@@ -79,10 +79,10 @@ class ArrayFormatter < BaseFormatter
 
   def build_hof_data
     app = Application.instance
-    return if app.options[:case_number] < 3
-
     fame = {}
-    app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
+    if app.options[:case_number] > 2
+      app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
+    end
     @data[:hall_of_fame] = fame
   end
 end
