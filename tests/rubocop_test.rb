@@ -26,6 +26,7 @@ class RubocopTest < Minitest::Test
 
     @files4 = []
 #    @files4 << 'lib/report/formatter/array_formatter.rb'
+    @files4 << 'lib/report/formatter/base_formatter.rb'
     @files4 << 'lib/report/formatter/json_formatter.rb'
     @files4 << 'lib/report/formatter/yaml_formatter.rb'
   end

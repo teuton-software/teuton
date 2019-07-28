@@ -1,8 +1,7 @@
+# frozen_string_literal: true
 
-require 'terminal-table'
-
+# BaseFormatter class
 class BaseFormatter
-
   def initialize(report)
     @head = report.head
     @lines = report.lines
@@ -11,16 +10,15 @@ class BaseFormatter
 
   def init(filename)
     @filename = filename
-    @file = File.open(@filename,'w')
+    @file = File.open(@filename, 'w')
   end
 
   def w(text)
-    #write into output file
-    @file.write text.to_s
+    @file.write text.to_s # write into output file
   end
 
   def process
-    raise "Empty method!"
+    raise 'Empty method!'
   end
 
   def deinit

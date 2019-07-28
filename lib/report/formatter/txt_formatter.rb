@@ -3,7 +3,6 @@ require 'terminal-table'
 require_relative 'base_formatter'
 
 class TXTFormatter < BaseFormatter
-
   def initialize(report)
     super(report)
   end
@@ -61,11 +60,11 @@ class TXTFormatter < BaseFormatter
   end
 
   def process_hof
-    app=Application.instance
+    app = Application.instance
     return if app.options[:case_number]<3
 
     w "HALL OF FAME\n"
-    app=Application.instance
+    app = Application.instance
     my_screen_table = Terminal::Table.new do |st|
       app.hall_of_fame.each do |line|
         st.add_row [ line[0], line[1]]

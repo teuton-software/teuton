@@ -1,17 +1,19 @@
+# frozen_string_literal: true
 
 require_relative 'colored_text_formatter'
 require_relative 'csv_formatter'
 require_relative 'html_formatter'
 require_relative 'json_formatter'
 require_relative 'txt_formatter'
+require_relative 'txt2_formatter'
 require_relative 'yaml_formatter'
 require_relative 'xml_formatter'
 
+# FormaterFactory module
 module FormatterFactory
-
-  def FormatterFactory.get(report, format, filename)
+  def self.get(report, format, filename)
     case format
-		when :colored_text
+    when :colored_text
       f = ColoredTextFormatter.new(report)
     when :csv
       f = CSVFormatter.new(report)
@@ -21,12 +23,14 @@ module FormatterFactory
       f = JSONFormatter.new(report)
     when :txt
       f = TXTFormatter.new(report)
-		when :yaml
+    when :txt2
+      f = TXT2Formatter.new(report)
+    when :yaml
       f = YAMLFormatter.new(report)
     when :xml
       f = XMLFormatter.new(report)
     end
     f.init(filename)
-    return f
+    f
   end
 end

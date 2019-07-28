@@ -66,7 +66,7 @@ class ArrayFormatter < BaseFormatter
       end
     end
 
-    groups << group # Adding the last group
+    groups << group unless group[:title].nil? # Add group
     body[:groups] = groups
     @data[:test] = body
   end
