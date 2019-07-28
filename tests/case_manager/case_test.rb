@@ -31,6 +31,8 @@ class CaseTest < Minitest::Test
     assert_equal params[:p2], c.config.local[:p2]
 
     assert_equal 0, c.config.running.size
+    c.config.set(:p3, 'p3')
+    assert_equal 1, c.config.running.size
     assert_equal params.size, c.config.local.size
     assert_equal @app.global.size, c.config.global.size
   end
