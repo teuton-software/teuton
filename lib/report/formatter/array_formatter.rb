@@ -45,6 +45,7 @@ class ArrayFormatter < BaseFormatter
         if group[:title] != i[:groupname]
           groups << group unless group[:title].nil? # Add currentgroup
           # Create new group
+          group = Hash.new
           group[:title] = i[:groupname]
           group[:targets] = []
         end
