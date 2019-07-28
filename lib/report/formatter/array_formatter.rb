@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 
 require_relative 'base_formatter'
 
+# ArrayFormatter class: format report data into an array
 class ArrayFormatter < BaseFormatter
-
-  def initialize(pReport)
-    super(pReport)
+  def initialize(report)
+    super(report)
     @data = {}
   end
 
@@ -23,7 +24,7 @@ class ArrayFormatter < BaseFormatter
 
   def build_initial_data
     head = {}
-    @head.each { |key,value| head[key] = value }
+    @head.each { |key, value| head[key] = value }
     @data[:config] = head
   end
 
@@ -37,16 +38,14 @@ class ArrayFormatter < BaseFormatter
     group[:targets] = []
 
     @lines.each do |i|
-      line = ''
-      if i.class.to_s=='Hash'
-        lValue=0.0
-        if i[:check]
-          lValue=i[:weight]
-        end
+      if i.class.to_s == 'Hash'
+        value = 0.0
+        value = i[:weight] if i[:check]
 
         target = {}
-        target[:target_id]   = "%02d"%i[:id]
-        target[:score]       = lValue
+        target[:groupname]   = i[:groupname]
+        target[:target_id]   = format('%02d', i[:id])
+        target[:score]       = value
         target[:weight]      = i[:weight]
         target[:description] = i[:description]
         target[:command]     = i[:command]
@@ -67,17 +66,16 @@ class ArrayFormatter < BaseFormatter
 
   def build_final_data
     tail = {}
-    @tail.each { |key,value| tail[key] = value }
+    @tail.each { |key, value| tail[key] = value }
     @data[:results] = tail
   end
 
   def build_hof_data
     app = Application.instance
-    return if app.options[:case_number]<3
+    return if app.options[:case_number] < 3
 
     fame = {}
     app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
     @data[:hall_of_fame] = fame
   end
-
 end

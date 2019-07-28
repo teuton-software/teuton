@@ -1,4 +1,12 @@
-# DSL#expect, DSL#weight
+# frozen_string_literal: true
+
+# DSL module:
+# * expect_none
+# * expect_one
+# * expect_any
+# * expect
+# * expect2
+# * weight
 module DSL
   def expect_none(input)
     if input.class == Array
@@ -37,7 +45,6 @@ module DSL
       puts "[ERROR] expect #{input} (#{input.class})"
     end
   end
-
 
   def expect2(cond, args = {})
     weight(args[:weight])

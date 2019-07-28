@@ -46,10 +46,10 @@ class Case
     @action = { id: 0,
                 weight: 1.0,
                 description: 'No description!',
-                group: nil
+                groupname: nil
               }
     @uniques = []
-    @sessions = {}
+    @sessions = {} # Store opened sessions for this case
     tempfile :default
   end
 
