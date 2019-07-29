@@ -42,7 +42,7 @@ class TXTFormatter < ArrayFormatter
       @data[:test][:logs].each { |line| w ". #{line}\n" }
     end
 
-    if @data[:test][:groups].count > 0
+    if @data[:test][:groups].size > 0
       w "\n#{Rainbow("GROUPS").bg(:blue)}\n"
       @data[:test][:groups].each { |g| process_group g }
     end
