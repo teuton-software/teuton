@@ -24,9 +24,9 @@ class Case
       verboseln "\n"
     else # Play in parallel
       @groups.each do |t|
-        m = "GROUP: #{t[:name]}" # REMOVE this when update report
-        log('=' * m.size)
-        log(m)
+        # m = "GROUP: #{t[:name]}" # REMOVE this when update report
+        # log('=' * m.size)
+        # log(m)
         @action[:groupname] = t[:name]
         instance_eval(&t[:block])
       end

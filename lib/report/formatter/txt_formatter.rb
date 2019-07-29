@@ -37,12 +37,9 @@ class TXTFormatter < ArrayFormatter
   end
 
   def process_test
-    tab = '  '
-    tab = '' if @data[:test][:logs].count == 1
-
-    w "#{Rainbow("LOGS").bg(:blue)}\n"
-    @data[:test][:logs].each do |line|
-      w tab + line + "\n"
+    if @data[:test][:logs].size > 0
+      w "#{Rainbow("LOGS").bg(:blue)}\n"
+      @data[:test][:logs].each { |line| w ". #{line}\n" }
     end
 
     if @data[:test][:groups].count > 0
