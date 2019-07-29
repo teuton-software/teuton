@@ -14,7 +14,8 @@ module FormatterFactory
   def self.get(report, format, filename)
     case format
     when :colored_text
-      f = ColoredTextFormatter.new(report)
+#      f = ColoredTextFormatter.new(report)
+      f = TXTFormatter.new(report,true)
     when :csv
       f = CSVFormatter.new(report)
     when :html
@@ -22,7 +23,7 @@ module FormatterFactory
     when :json
       f = JSONFormatter.new(report)
     when :txt
-      f = TXTFormatter.new(report)
+      f = TXTFormatter.new(report,true)
     when :txt0
       f = TXT0Formatter.new(report)
     when :yaml

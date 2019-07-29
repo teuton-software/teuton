@@ -1,28 +1,35 @@
 # frozen_string_literal: true
 
 require 'terminal-table'
+require 'rainbow'
 require_relative 'array_formatter'
 
 # TXTFormatter class
 class TXTFormatter < ArrayFormatter
-  def initialize(report)
+  def initialize(report, color=false)
+    @color = color
     super(report)
     @data = {}
   end
 
   def process
+    rainbow_state = Rainbow.enabled
+    Rainbow.enabled = @color
+
     build_data
     process_config
     process_test
     process_results
     process_hof
     deinit
+
+    Rainbow.enabled = rainbow_state
   end
 
   private
 
   def process_config
-    w "CONFIGURATIONS\n"
+    w "#{Rainbow("CONFIGURATIONS").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:config].each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
@@ -33,24 +40,29 @@ class TXTFormatter < ArrayFormatter
     tab = '  '
     tab = '' if @data[:test][:logs].count == 1
 
-    w "LOGS\n"
+    w "#{Rainbow("LOGS").bg(:blue)}\n"
     @data[:test][:logs].each do |line|
       w tab + line + "\n"
     end
 
     if @data[:test][:groups].count > 0
-      w "\nGROUPS\n"
+      w "\n#{Rainbow("GROUPS").bg(:blue)}\n"
       @data[:test][:groups].each { |g| process_group g }
     end
   end
 
   def process_group(group)
     tab = '  '
-    w '- ' + group[:title] + "\n"
+    w "- #{Rainbow(group[:title]).blue.bright}\n"
     group[:targets].each do |i|
       value = 0.0
-      value = i[:weight] if i[:check]
-      w tab*2+format("%02d", i[:target_id])+" ("+value.to_s+"/"+i[:weight].to_s+")\n"
+      color = :red
+      if i[:check]
+        value = i[:weight]
+        color = :green
+      end
+      w tab*2+format("%02d", i[:target_id])
+      w " (#{Rainbow(value.to_s+"/"+i[:weight].to_s).color(color)})\n"
       w tab*4+"Description : #{i[:description].to_s}\n"
       w tab*4+"Command     : #{i[:command].to_s}\n"
 			w tab*4+"Duration    : #{i[:duration].to_s} (#{i[:conn_type].to_s})\n"
@@ -61,7 +73,7 @@ class TXTFormatter < ArrayFormatter
   end
 
   def process_results
-    w "\nRESULTS\n"
+    w "\n#{Rainbow("RESULTS").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:results].each do |key,value|
         st.add_row [ key.to_s, value.to_s]
@@ -71,10 +83,20 @@ class TXTFormatter < ArrayFormatter
   end
 
   def process_hof
-    w "\nHALL OF FAME\n"
+    return if @data[:hall_of_fame].size == 0
+
+    w "\n#{Rainbow("HALL OF FAME").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:hall_of_fame].each do |line|
-        st.add_row [ line[0], line[1]]
+        mycolor = :green
+        mycolor = :red if line[0] < 50
+        text1 = Rainbow(line[0]).color(mycolor)
+        text2 = Rainbow(line[1]).color(mycolor)
+        if line[0] == @data[:results][:grade]
+          text1 = text1.bright
+          text2 = text2.bright
+        end
+        st.add_row [text1, text2]
       end
     end
     w my_screen_table.to_s + "\n"
