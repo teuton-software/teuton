@@ -46,7 +46,7 @@ class TXTFormatter < ArrayFormatter
 
   def process_group(group)
     tab = '  '
-    w tab + group[:title] + "\n"
+    w '- ' + group[:title] + "\n"
     group[:targets].each do |i|
       value = 0.0
       value = i[:weight] if i[:check]
