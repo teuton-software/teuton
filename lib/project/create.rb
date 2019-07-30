@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'fileutils'
 require 'rainbow'
 
@@ -61,5 +63,4 @@ module Project
     copyfile(source, target) # README.md
     puts ''
   end
-
 end
