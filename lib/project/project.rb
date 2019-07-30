@@ -15,7 +15,7 @@ module Project
     require_relative 'laboratory' # Define DSL keywords
     require_relative app.script_path
     lab = Laboratory.new(app.script_path, app.config_path)
-    lab.show_requests if options[:r]
+    # lab.show_requests if options[:r]
     lab.show_config if options[:c]
     lab.show_dsl unless options[:r] || options[:c]
   end
