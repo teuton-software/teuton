@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require_relative 'result/ext_array'
 require_relative 'result/ext_compare'
@@ -27,6 +28,7 @@ class Result
 
   def alterations
     return '' if @alterations.size.zero?
+
     @alterations.join(' & ')
   end
 
@@ -38,20 +40,28 @@ class Result
   def debug
     my_screen_table = Terminal::Table.new do |st|
       if @content.class == Array
-        st.add_row ["count=#{@content.count}", 'result.debug()']
-        st.add_separator
-        i = 0
-        @content.each do |item|
-          st.add_row ['Line_' + i.to_s, item]
-          i += 1
-        end
+        debug_array(st)
       else
-        st.add_row ['', 'result.debug()']
-        st.add_separator
-        st.add_row [@content.class.to_s, @content.to_s]
+        debug_no_array(st)
       end
     end
     puts '\n' + my_screen_table.to_s + '\n'
+  end
+
+  def debug_array(mst)
+    mst.add_row ["count=#{@content.count}", 'result.debug()']
+    mst.add_separator
+    i = 0
+    @content.each do |item|
+      mst.add_row ['Line_' + i.to_s, item]
+      i += 1
+    end
+  end
+
+  def debug_no_array(mst)
+    mst.add_row ['', 'result.debug()']
+    mst.add_separator
+    mst.add_row [@content.class.to_s, @content.to_s]
   end
 
   def expected
@@ -71,14 +81,14 @@ class Result
 
   # Return 'true' if the parameter value is near to the target value.
   # To get this we consider a 10% desviation or less, as an acceptable result.
-  def near_to?(p_fvalue)
-    @expected = "Is near to #{p_fvalue}"
-
+  def near_to?(value)
+    @expected = "Is near to #{value}"
     return false if @content.nil?
-    l_ftarget = @content[0].to_f
-    l_fdesv   = (l_ftarget.to_f * 10.0) / 100.0
 
-    return true if (l_ftarget - p_fvalue).abs.to_f <= l_fdesv
+    target = @content[0].to_f
+    desv   = (target.to_f * 10.0) / 100.0
+    return true if (target - value).abs.to_f <= desv
+
     false
   end
 end
