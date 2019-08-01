@@ -86,9 +86,10 @@ class Result
     return false if @content.nil?
 
     target = @content[0].to_f
-    desv   = (target.to_f * 10.0) / 100.0
-    return true if (target - value).abs.to_f <= desv
+    desv   = (target * 10.0) / 100.0
+    return true if (target - value.to_f).abs.to_f <= desv
 
     false
   end
+  alias near? near_to?
 end

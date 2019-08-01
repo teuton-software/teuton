@@ -14,7 +14,7 @@ class Laboratory
     @stats[:targets] += 1
     @targetid += 1
     i = @targetid
-    verboseln '(%03d' % i + ") target     #{desc}"
+    verboseln '(%03d' % i + ") target      #{desc}"
   end
   alias goal target
 
@@ -34,7 +34,7 @@ class Laboratory
     else
       @hosts[host] = 1
     end
-    verboseln "      goto       #{host} and #{args}"
+    verboseln "      goto        #{host} and #{args}"
   end
 
   def run(command, args = {})
@@ -49,17 +49,25 @@ class Laboratory
     end
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
-    verboseln "      alter      #{result.alterations}" unless result.alterations.empty?
-    verboseln "      expect     #{result.expected} (#{result.expected.class})"
-    verboseln "      weight     #{weight}"
+    verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
+    verboseln "      expect      #{result.expected} (#{result.expected.class})"
+    verboseln "      weight      #{weight}"
     verboseln ''
   end
 
   def expect_one(_cond, args = {})
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
-    verboseln "      expect_one #{_cond.to_s} (#{_cond.class})"
-    verboseln "      weight     #{weight}"
+    verboseln "      expect_one  #{_cond.to_s} (#{_cond.class})"
+    verboseln "      weight      #{weight}"
+    verboseln ''
+  end
+
+  def expect_none(_cond, args = {})
+    weight = 1.0
+    weight = args[:weight].to_f if args[:weight]
+    verboseln "      expect_none #{_cond.to_s} (#{_cond.class})"
+    verboseln "      weight      #{weight}"
     verboseln ''
   end
 
