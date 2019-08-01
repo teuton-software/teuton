@@ -3,6 +3,7 @@
 require_relative '../application'
 require_relative 'create.rb'
 require_relative 'find.rb'
+require_relative 'laboratory/laboratory'
 
 # Project functions invoked by CLI project tool
 # * test
@@ -12,7 +13,7 @@ require_relative 'find.rb'
 module Project
   def self.test(pathtofile, options)
     find_filenames_for(pathtofile)
-    require_dsl_and_script('laboratory') # Define DSL keywords
+    require_dsl_and_script('laboratory/laboratory') # Define DSL keywords
 
     app = Application.instance
     lab = Laboratory.new(app.script_path, app.config_path)

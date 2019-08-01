@@ -3,11 +3,11 @@
 require 'terminal-table'
 require 'rainbow'
 
-require_relative '../application'
-require_relative '../case_manager/case/result'
-require_relative 'configfile_reader'
-require_relative 'laboratory/show'
-require_relative 'laboratory/dsl'
+require_relative '../../application'
+require_relative '../../case_manager/case/result'
+require_relative '../configfile_reader'
+require_relative 'show'
+require_relative 'dsl'
 
 def group(name, &block)
   Application.instance.groups << { name: name, block: block }
@@ -21,6 +21,7 @@ alias play start
 
 def use(filename)
   Application.instance.uses << filename
+  raise '[WARN] Deprecated!'
 end
 
 # Show objectives stats from RB script file

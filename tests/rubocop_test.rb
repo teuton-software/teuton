@@ -7,7 +7,7 @@ class RubocopTest < Minitest::Test
   def setup
     @files = {}
     @files[:project] = []
-    @files[:project] << 'lib/project/laboratory.rb'
+    @files[:project] << 'lib/project/laboratory/laboratory.rb'
     @files[:project] << 'lib/project/project.rb'
 
     @files[:case] = []
