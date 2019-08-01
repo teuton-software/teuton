@@ -2,9 +2,14 @@
 
 # DSL#get and DSL#set
 module DSL
-  # Read param pOption from [running, config or global] Hash data
+  # Read param option from [running, config or global] Hash data
   def get(option)
     @config.get(option)
+  end
+
+  def gett(option)
+    value = get(option)
+    "#{value} (#{option})"
   end
 
   def set(key, value)

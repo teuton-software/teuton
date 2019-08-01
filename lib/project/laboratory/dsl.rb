@@ -83,6 +83,11 @@ class Laboratory
     "get(#{varname})"
   end
 
+  def gett(option)
+    value = get(option)
+    value
+  end
+
   def unique(key, _value)
     @stats[:uniques] += 1
 
