@@ -1,21 +1,12 @@
+# frozen_string_literal: true
+
 require 'rainbow'
 
 # Project#find
 module Project
   def self.find_filenames_for(relpathtofile)
     pathtofile = File.join(Application.instance.running_basedir, relpathtofile)
-    if pathtofile.nil? # Check param not null
-      puts Rainbow('[ERROR] path-to-file not specified').red
-      puts Rainbow('* Please, read help => ./project help').yellow
-      exit 1
-    end
-
-    unless File.exist?(pathtofile) # Check file exists
-      print Rainbow('[ERROR] ').red
-      print Rainbow(pathtofile).bright.red
-      puts Rainbow(" dosn't exists").red
-      exit 1
-    end
+    check_path pathtofile
 
     # Define:
     #   script_path, must contain fullpath to DSL script file
@@ -60,6 +51,21 @@ module Project
     app.config_path = config_path
     app.test_name = test_name
     true
+  end
+
+  def self.check_path(pathtofile)
+    if pathtofile.nil? # Check param not null
+      puts Rainbow('[ERROR] path-to-file not specified').red
+      puts Rainbow('* Please, read help => teuton help').yellow
+      exit 1
+    end
+
+    return if File.exist?(pathtofile) # Check file exists
+
+    print Rainbow('[ERROR] ').red
+    print Rainbow(pathtofile).bright.red
+    puts Rainbow(" dosn't exists").red
+    exit 1
   end
 
   def self.verboseln(text)
