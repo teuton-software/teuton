@@ -1,25 +1,17 @@
+# frozen_string_literal: true
 
 # This is an extension of Result class
 class Result
   # TODO: Error line 102 undefined include? method for 0 Fixnum...
-  def find(p_filter)
-    case p_filter.class.to_s
+  def find(filter)
+    case filter.class.to_s
     when 'Array'
-      @alterations << "find(#{p_filter.to_s})"
-      @content.select! do |line|
-        flag = false
-        p_filter.each { |filter| flag = flag || line.include?(filter.to_s) }
-        flag
-      end
+      find_when_array(filter)
       return self
     when 'String'
-      @alterations << "find(#{p_filter})"
-      #Error controlar include? en 0 Fixnum...
-      @content.select! { |i| i.include?(p_filter.to_s) }
+      find_when_string(filter)
     when 'Regexp'
-      @alterations << "find(#{p_filter})"
-      temp = @content.clone
-      @content = temp.grep p_filter
+      find_when_regexp(filter)
     end
     self
   end
@@ -32,26 +24,28 @@ class Result
     self
   end
 
-  def since(p_filter)
-    @alterations << "since(#{p_filter})"
+  def since(filter)
+    @alterations << "since(#{filter})"
     return self if @content.size.zero?
-    if p_filter.class == String
+
+    if filter.class == String
       flag = false
       @content.select! do |i|
-        flag = true if i.include?(p_filter.to_s)
+        flag = true if i.include?(filter.to_s)
         flag
       end
     end
     self
   end
 
-  def until(p_filter)
-    @alterations << "until(#{p_filter})"
+  def until(filter)
+    @alterations << "until(#{filter})"
     return self if @content.size.zero?
-    if p_filter.class == String
+
+    if filter.class == String
       flag = true
       @content.select! do |i|
-        flag = false if i.include?(p_filter.to_s)
+        flag = false if i.include?(filter.to_s)
         flag
       end
     end
@@ -60,4 +54,30 @@ class Result
 
   alias grep       find
   alias grep_v     not_find
+
+  private
+
+  def find_when_array(filter)
+    @alterations << "find(#{filter})"
+    @content.select! do |line|
+      flag = false
+      filter.each { |i| flag ||= line.include?(i.to_s) }
+      flag
+    end
+    self
+  end
+
+  def find_when_string(filter)
+    @alterations << "find(#{filter})"
+    # Error controlar include? en 0 Fixnum...
+    @content.select! { |i| i.include?(filter.to_s) }
+    self
+  end
+
+  def find_when_regexp(filter)
+    @alterations << "find(#{filter})"
+    temp = @content.clone
+    @content = temp.grep filter
+    self
+  end
 end

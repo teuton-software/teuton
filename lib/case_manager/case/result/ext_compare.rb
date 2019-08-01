@@ -1,34 +1,35 @@
+# frozen_string_literal: true
 
 # This is an extension of Result class
 class Result
-  def eq(p_value)
-    @expected = p_value
+  def eq(external)
+    @expected = external
 
-    case p_value.class.to_s
+    case external.class.to_s
     when 'Fixnum'
-      l_value = @content[0].to_i
+      internal = @content[0].to_i
     when 'Float'
-      l_value = @content[0].to_f
+      internal = @content[0].to_f
     when 'String'
-      l_value = @content[0].to_s
+      internal = @content[0].to_s
     else
-      l_value = @content[0]
+      internal = @content[0]
     end
-    l_value == p_value
+    internal == external
   end
 
-  def neq(p_value)
-    @expected = "Not equal to #{p_value}"
+  def neq(external)
+    @expected = "Not equal to #{external}"
 
-    case p_value.class.to_s
+    case external.class.to_s
     when 'Fixnum'
-      l_value = @content[0].to_i
+      internal = @content[0].to_i
     when 'Float'
-      l_value = @content[0].to_f
+      internal = @content[0].to_f
     else
-      l_value = @content[0]
+      internal = @content[0]
     end
-    l_value != p_value
+    internal != external
   end
 
   def ge(p_value)
@@ -63,6 +64,7 @@ class Result
     @expected = "Lesser or equal to #{p_value}"
 
     return false if @content.nil? || @content[0].nil?
+
     l_value = @content[0]
     case p_value.class.to_s
     when 'Fixnum'

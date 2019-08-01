@@ -12,6 +12,9 @@ class RubocopTest < Minitest::Test
 
     @files[:case] = []
     @files[:case] << 'lib/case_manager/case/result.rb'
+    @files[:case] << 'lib/case_manager/case/result/ext_array.rb'
+#    @files[:case] << 'lib/case_manager/case/result/ext_compare.rb'
+    @files[:case] << 'lib/case_manager/case/result/ext_filter.rb'
 
     @files[:case_model] = []
     @files[:case_model] << 'lib/case_manager/case/case_model/case_model.rb'

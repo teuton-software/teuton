@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 # This is an extension of Result class
 class Result
@@ -7,6 +7,7 @@ class Result
 
     if @content.class == Array
       @content = [@content.count]
+      self
     elsif @content.nil?
       @content = ['0']
     else
@@ -16,19 +17,19 @@ class Result
     self
   end
 
-  def include?(p_value)
-    @expected = "Include <#{p_value}> value"
-    @content[0].include?(p_value)
+  def include?(value)
+    @expected = "Include <#{value}> value"
+    @content[0].include?(value)
   end
 
-  def not_include?(p_value)
-    @expected = "Not include <#{p_value}> value"
-    !@content[0].include?(p_value)
+  def not_include?(value)
+    @expected = "Not include <#{value}> value"
+    !@content[0].include?(value)
   end
 
-  def contain?(p_value)
-    @expected = "Contain <#{p_value}> value"
-    @content.contain? p_value
+  def contain?(value)
+    @expected = "Contain <#{value}> value"
+    @content.contain? value
   end
 
   def empty
