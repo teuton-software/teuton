@@ -2,6 +2,7 @@ require 'terminal-table'
 require 'rainbow'
 
 require_relative '../../application'
+require_relative '../configfile_reader'
 
 # Laboratory
 # * show_dsl

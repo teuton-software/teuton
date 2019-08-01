@@ -27,6 +27,11 @@ module Project
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
 
+  def self.readme(pathtofile)
+    find_filenames_for(pathtofile)
+    require_dsl_and_script('readme/readme') # Define DSL keywords
+  end
+
   def self.require_dsl_and_script(dslpath)
     app = Application.instance
     require_relative dslpath
