@@ -11,11 +11,10 @@ require_relative 'find.rb'
 # * find: find_filenames_for, verbose, verboseln
 module Project
   def self.test(pathtofile, options)
-    app = Application.instance
     find_filenames_for(pathtofile)
+    require_dsl_and_script('laboratory') # Define DSL keywords
 
-    require_relative 'laboratory' # Define DSL keywords
-    require_relative app.script_path
+    app = Application.instance
     lab = Laboratory.new(app.script_path, app.config_path)
     # lab.show_requests if options[:r]
     lab.show_config if options[:c]
@@ -23,10 +22,13 @@ module Project
   end
 
   def self.play(pathtofile)
-    app = Application.instance
     find_filenames_for(pathtofile)
+    require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
+  end
 
-    require_relative '../case_manager/dsl' # Define DSL keywords
+  def self.require_dsl_and_script(dslpath)
+    app = Application.instance
+    require_relative dslpath
     begin
       require_relative app.script_path
     rescue SyntaxError => e
