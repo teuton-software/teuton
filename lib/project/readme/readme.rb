@@ -35,12 +35,15 @@ class Readme
     @data[:logs] = []
     @data[:groups] = []
     @data[:play] = []
-    @data[:actions] = []
     @action = nil
   end
 
   def process_content
-    Application.instance.groups.each { |g| instance_eval(&g[:block]) }
+    Application.instance.groups.each do |g|
+      @current = { name: g[:name], actions: []}
+      @data[:groups] << @current
+      instance_eval(&g[:block])
+    end
   end
 
   def show
@@ -51,10 +54,16 @@ class Readme
     puts '```'
     puts '---'
     puts '# README.md'
-    puts @data[:groups]
-    @data[:actions].each do |i|
-      puts "Action"
-      puts " * #{i[:host]}: #{i[:target]}"
+    @data[:groups].each do |group|
+      puts "\n## #{group[:name]}"
+      host = nil
+      group[:actions].each do |i|
+        if i[:host] != host
+          host = group[:actions][0][:host]
+          puts "Ir a #{host.upcase} y hacer lo siguiente:"
+        end
+        puts "* #{i[:target]}"
+      end
     end
   end
 end

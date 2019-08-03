@@ -39,13 +39,6 @@ module Project
       end
       test_name = File.basename(script_path, '.rb')
     end
-    verbose Rainbow('[INFO] ScriptPath => ').blue
-    verboseln Rainbow(script_path).blue.bright
-    verbose Rainbow('[INFO] ConfigPath => ').blue
-    verboseln Rainbow(config_path).blue.bright
-    verbose Rainbow('[INFO] TestName   => ').blue
-    verboseln Rainbow(test_name).blue.bright
-
     app = Application.instance
     app.script_path = script_path
     app.config_path = config_path
@@ -66,6 +59,17 @@ module Project
     print Rainbow(pathtofile).bright.red
     puts Rainbow(" dosn't exists").red
     exit 1
+  end
+
+  def self.puts_input_info_on_screen
+    app = Application.instance
+
+    verbose Rainbow('[INFO] ScriptPath => ').blue
+    verboseln Rainbow(app.script_path).blue.bright
+    verbose Rainbow('[INFO] ConfigPath => ').blue
+    verboseln Rainbow(app.config_path).blue.bright
+    verbose Rainbow('[INFO] TestName   => ').blue
+    verboseln Rainbow(app.test_name).blue.bright
   end
 
   def self.verboseln(text)

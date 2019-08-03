@@ -25,7 +25,7 @@ class Readme
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
     @action[:weight] = weight
-    @data[:actions] << @action
+    @current[:actions] << @action
     result.reset
   end
   alias expect_any expect

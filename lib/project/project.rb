@@ -12,6 +12,7 @@ require_relative 'find.rb'
 module Project
   def self.test(pathtofile, options)
     find_filenames_for(pathtofile)
+    puts_input_info_on_screen
     require_dsl_and_script('laboratory/laboratory') # Define DSL keywords
 
     app = Application.instance
@@ -23,6 +24,7 @@ module Project
 
   def self.play(pathtofile)
     find_filenames_for(pathtofile)
+    puts_input_info_on_screen
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
 
