@@ -31,6 +31,7 @@ module Project
   def self.readme(pathtofile)
     find_filenames_for(pathtofile)
     require_dsl_and_script('readme/readme') # Define DSL keywords
+    
     app = Application.instance
     readme = Readme.new(app.script_path, app.config_path)
     readme.show

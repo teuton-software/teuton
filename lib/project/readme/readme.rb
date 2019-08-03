@@ -55,12 +55,12 @@ class Readme
     puts '---'
     puts '# README.md'
     @data[:groups].each do |group|
-      puts "\n## #{group[:name]}"
+      puts "\n## #{group[:name]}\n\n"
       host = nil
       group[:actions].each do |i|
         if i[:host] != host
           host = group[:actions][0][:host]
-          puts "Ir a #{host.upcase} y hacer lo siguiente:"
+          puts "Go to host #{host.upcase}, and do next:"
         end
         puts "* #{i[:target]}"
       end
