@@ -3,7 +3,6 @@
 require_relative '../application'
 require_relative 'create.rb'
 require_relative 'find.rb'
-require_relative 'laboratory/laboratory'
 
 # Project functions invoked by CLI project tool
 # * test
@@ -32,7 +31,7 @@ module Project
     require_dsl_and_script('readme/readme') # Define DSL keywords
     app = Application.instance
     readme = Readme.new(app.script_path, app.config_path)
-    puts readme.data
+    readme.show
   end
 
   def self.require_dsl_and_script(dslpath)

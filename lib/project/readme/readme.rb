@@ -32,9 +32,29 @@ class Readme
     @verbose = Application.instance.verbose
     @result = Result.new
     @data = {}
+    @data[:logs] = []
     @data[:groups] = []
     @data[:play] = []
-    @current_group = []
-    @current = {}
+    @data[:actions] = []
+    @action = nil
+  end
+
+  def process_content
+    Application.instance.groups.each { |g| instance_eval(&g[:block]) }
+  end
+
+  def show
+    process_content
+    app = Application.instance
+    puts '```'
+    puts "Test name : #{app.test_name}"
+    puts '```'
+    puts '---'
+    puts '# README.md'
+    puts @data[:groups]
+    @data[:actions].each do |i|
+      puts "Action"
+      puts " * #{i[:host]}: #{i[:target]}"
+    end
   end
 end

@@ -7,14 +7,13 @@
 # * log
 class Readme
   def target(desc, args = {})
-    @current_group << @current
-    @current = {}
-    @current[:target] = desc
+    @action = { target: desc }
   end
   alias goal target
 
   def goto(host = :localhost, args = {})
-    @current[:goto] = "#{host} and #{args}"
+    @action[:host] = host
+    @action[:exec] = args[:exec]
   end
 
   def run(command, args = {})
@@ -22,36 +21,34 @@ class Readme
     goto(:localhost, args)
   end
 
-  def expect(_cond, args = {})
-    if _cond.class == String or _cond.class == Array
-      expect_one _cond, args
-      return
-    end
-    @current[:expect] = "any #{_cond.to_s} (#{_cond.class})"
+  def expect(cond, args = {})
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
-    @current[:weight] = weight
+    @action[:weight] = weight
+    @data[:actions] << @action
+    result.reset
+  end
+  alias expect_any expect
+  alias expect_none expect
+  alias expect_one expect
+
+  def get(value)
+    value.to_s.upcase
   end
 
-  def expect_one(_cond, args = {})
-    @current[:expect] =  "one  #{_cond.to_s} (#{_cond.class})"
-    weight = 1.0
-    weight = args[:weight].to_f if args[:weight]
-    @current[:weight] = weight
+  def gett(option)
+    "VALUE (#{option})"
   end
 
-  def expect_none(_cond, args = {})
-    @current[:expect] = "none #{_cond.to_s} (#{_cond.class})"
-    weight = 1.0
-    weight = args[:weight].to_f if args[:weight]
-    @current[:weight] = weight
+  def set(key, value)
+    # don't do nothing
   end
 
-  def unique(key, _value)
+  def unique(key, value)
     # don't do nothing
   end
 
   def log(text = '', type = :info)
-    @current_group[:logs] << "[#{type}]: " + text.to_s
+    @data[:logs] << "[#{type}]: " + text.to_s
   end
 end
