@@ -36,6 +36,7 @@ class Readme
     @data[:groups] = []
     @data[:play] = []
     @action = nil
+    @getter = []
   end
 
   def process_content
@@ -53,7 +54,11 @@ class Readme
     puts "Test name : #{app.test_name}"
     puts '```'
     puts '---'
-    puts '# README.md'
+    puts "# README.md\n\n"
+    puts 'Params configured for every pupil:'
+    @getter.uniq.sort.each do |i|
+      puts "* #{i}"
+    end
     @data[:groups].each do |group|
       puts "\n## #{group[:name]}\n\n"
       host = nil

@@ -12,6 +12,11 @@ class Readme
   alias goal target
 
   def goto(host = :localhost, args = {})
+    unless host == :localhost
+      @getter << "#{host.to_s}_ip".to_sym
+      @getter << "#{host.to_s}_username".to_sym
+      @getter << "#{host.to_s}_password".to_sym
+    end
     @action[:host] = host
     @action[:exec] = args[:exec]
   end
@@ -33,14 +38,17 @@ class Readme
   alias expect_one expect
 
   def get(value)
+    @getter << value
     value.to_s.upcase
   end
 
-  def gett(option)
-    "VALUE (#{option})"
+  def gett(value)
+    @getter << value
+    "VALUE (#{value})"
   end
 
   def set(key, value)
+    @getter.delete(key)
     # don't do nothing
   end
 
