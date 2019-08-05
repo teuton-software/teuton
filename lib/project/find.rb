@@ -37,9 +37,9 @@ module Project
     app.test_name = test_name
   end
 
-  def self.find_filenames_from_rb(pathtofile)
-    # SIMPLE MODE: We use pathtofile as main RB file
-    script_path = pathtofile # This must be fullpath to DSL script file
+  def self.find_filenames_from_rb(script_path)
+    # SIMPLE MODE: We use script_path as main RB file
+    # This must be fullpath to DSL script file
     if File.extname(script_path) != '.rb'
       print Rainbow('[ERROR] Script ').red
       print Rainbow(script_path).bright.red
@@ -50,7 +50,6 @@ module Project
     filename = File.basename(script_path, '.rb') + '.json'
     config_path = File.join(dirname, filename)
     unless File.exist? config_path
-      dirname = File.dirname(script_path)
       filename = File.basename(script_path, '.rb') + '.yaml'
       config_path = File.join(dirname, filename)
     end
