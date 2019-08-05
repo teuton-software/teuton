@@ -3,7 +3,7 @@
 require 'yaml'
 require 'json'
 
-# Functions that read dato from ConfigFile using formats YAML and JSON
+# Functions that read data from ConfigFile using formats YAML and JSON
 module ConfigFileReader
   def self.read(filepath)
     unless File.exist?(filepath)
