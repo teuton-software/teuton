@@ -8,7 +8,9 @@ class RubocopTest < Minitest::Test
     @files = {}
     @files[:project] = []
     @files[:project] << 'lib/project/laboratory/laboratory.rb'
+    @files[:project] << 'lib/project/create.rb'
     @files[:project] << 'lib/project/project.rb'
+#    @files[:project] << 'lib/project/find.rb'
 
     @files[:case] = []
     @files[:case] << 'lib/case_manager/case/result.rb'
