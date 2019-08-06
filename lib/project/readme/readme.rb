@@ -52,6 +52,7 @@ class Readme
     app = Application.instance
     puts '```'
     puts "Test name : #{app.test_name}"
+    puts "Date      : #{Time.now}"
     puts '```'
     puts '---'
     puts "# README.md\n\n"
