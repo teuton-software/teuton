@@ -8,6 +8,16 @@ require_relative '../../case_manager/case/result'
 require_relative 'show'
 require_relative 'dsl'
 
+def use(filename)
+  filename += '.rb'
+  app = Application.instance
+  rbfiles = File.join(app.project_path, "**", filename)
+  files = Dir.glob(rbfiles)
+  use = []
+  files.sort.each { |f| use << f if f.include?(filename) }
+  require_relative use[0]
+end
+
 def group(name, &block)
   Application.instance.groups << { name: name, block: block }
 end
@@ -17,11 +27,6 @@ def start(&block)
   # don't do nothing
 end
 alias play start
-
-def use(filename)
-  Application.instance.uses << filename
-  raise '[WARN] Deprecated!'
-end
 
 # Show objectives stats from RB script file
 class Laboratory
