@@ -82,7 +82,7 @@ class Laboratory
     groups.each do |t|
       @stats[:groups] += 1
 
-      msg = "GROUPS: #{t[:name]}"
+      msg = "GROUP: #{t[:name]}"
       my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
       verboseln my_screen_table
 
