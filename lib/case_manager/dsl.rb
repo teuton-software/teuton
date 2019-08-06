@@ -17,10 +17,11 @@ def use(filename)
   filename += '.rb'
   puts "[INFO] use #{filename}"
   app = Application.instance
+  puts app.running_basedir
   rootbase = File.dirname(app.script_path)
 
   rbfiles = File.join(rootbase, "**", filename)
   files = Dir.glob(rbfiles)
   files.sort.each { |f| @use << f if f.include?(filename) }
-  @use
+  require_relative @use[0]
 end

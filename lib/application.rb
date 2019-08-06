@@ -10,7 +10,7 @@ class Application
   attr_accessor :options
   attr_accessor :verbose
   attr_accessor :global, :groups, :uses, :hall_of_fame
-  attr_accessor :script_path, :config_path, :test_name
+  attr_accessor :project_path, :script_path, :config_path, :test_name
 
   def initialize
     reset

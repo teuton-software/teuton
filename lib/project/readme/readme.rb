@@ -56,7 +56,7 @@ class Readme
     puts '```'
     puts '---'
     puts "# README.md\n\n"
-    puts 'Params configured for every pupil:'
+    puts 'Params configured for every case:'
     @getter.uniq.sort.each do |i|
       puts "* #{i}"
     end

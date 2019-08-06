@@ -32,6 +32,7 @@ module Project
     test_name = pathtodir.split(File::SEPARATOR)[-1]
 
     app = Application.instance
+    app.project_path = pathtodir
     app.script_path = script_path
     app.config_path = config_path
     app.test_name = test_name
@@ -56,6 +57,7 @@ module Project
     test_name = File.basename(script_path, '.rb')
 
     app = Application.instance
+    app.project_path = File.dirname(script_path)
     app.script_path = script_path
     app.config_path = config_path
     app.test_name = test_name

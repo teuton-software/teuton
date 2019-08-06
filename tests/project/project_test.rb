@@ -13,10 +13,12 @@ class ProjectTest < Minitest::Test
     basedir = app.running_basedir
 
     Project.find_filenames_for('tests/files/example-01.rb')
-    a = File.join(basedir,'tests/files/example-01.rb')
-    b = File.join(basedir,'tests/files/example-01.yaml')
-    assert_equal a, app.script_path
-    assert_equal b, app.config_path
+    a = File.join(basedir, 'tests/files')
+    b = File.join(basedir, 'tests/files/example-01.rb')
+    c = File.join(basedir, 'tests/files/example-01.yaml')
+    assert_equal a, app.project_path
+    assert_equal b, app.script_path
+    assert_equal c, app.config_path
     assert_equal 'example-01', app.test_name
 
     # Complex mode, dir empty
