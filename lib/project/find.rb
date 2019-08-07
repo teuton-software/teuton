@@ -25,6 +25,12 @@ module Project
   def self.find_filenames_from_directory(pathtodir)
     # COMPLEX MODE: We use start.rb as main RB file
     script_path = File.join(pathtodir, 'start.rb')
+    unless File.exist? script_path
+      print Rainbow('[ERROR] File ').red
+      print Rainbow(script_path).bright.red
+      puts Rainbow(" not found!").red
+      exit 1
+    end
     config_path = File.join(pathtodir, 'config.json')
     unless File.exist? config_path
       config_path = File.join(pathtodir, 'config.yaml')

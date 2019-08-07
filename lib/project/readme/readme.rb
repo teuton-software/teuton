@@ -65,11 +65,13 @@ class Readme
     puts "Date      : #{Time.now}"
     puts '```'
     puts '---'
-    puts "# README.md\n\n"
-    puts 'Params configured for every case:'
-    @getter.uniq.sort.each do |i|
-      puts "* #{i}"
+    puts "# README.md\n"
+
+    if @getter.size >0
+      puts "\nParams configured for every case:"
+      @getter.uniq.sort.each { |i| puts "* #{i}" }
     end
+
     @data[:groups].each do |group|
       puts "\n## #{group[:name]}\n\n"
       host = nil
