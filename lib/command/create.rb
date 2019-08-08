@@ -1,3 +1,5 @@
+require_relative '../project/project_creator.rb'
+
 # Teuton#create
 class Teuton < Thor
   map ['c', '-c', '--create'] => 'create'
@@ -11,6 +13,6 @@ class Teuton < Thor
 
   LONGDESC
   def create(path_to_new_dir)
-    Project.create(path_to_new_dir)
+    ProjectCreator.create(path_to_new_dir)
   end
 end

@@ -10,7 +10,7 @@ require 'rainbow'
 # * create_dir
 # * create_dirs
 # * copyfile
-module Project
+module ProjectCreator
   def self.create(project_dir)
     project_name = File.basename(project_dir)
     puts "\n[INFO] Creating #{Rainbow(project_name).bright} project skeleton"

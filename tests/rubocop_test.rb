@@ -10,7 +10,7 @@ class RubocopTest < Minitest::Test
     @files[:project] << 'lib/project/laboratory/laboratory.rb'
     @files[:project] << 'lib/project/readme/dsl.rb'
 #    @files[:project] << 'lib/project/readme/readme.rb'
-    @files[:project] << 'lib/project/create.rb'
+    @files[:project] << 'lib/project/project_creator.rb'
     @files[:project] << 'lib/project/project.rb'
 #    @files[:project] << 'lib/project/name_file_finder.rb'
 

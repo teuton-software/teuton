@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../application'
-require_relative 'create.rb'
 require_relative 'name_file_finder.rb'
 
 # Project functions invoked by CLI project tool
