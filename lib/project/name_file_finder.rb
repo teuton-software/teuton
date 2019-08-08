@@ -28,7 +28,7 @@ module NameFileFinder
     unless File.exist? script_path
       print Rainbow('[ERROR] File ').red
       print Rainbow(script_path).bright.red
-      puts Rainbow(" not found!").red
+      puts Rainbow(' not found!').red
       exit 1
     end
     config_path = File.join(pathtodir, 'config.json')
