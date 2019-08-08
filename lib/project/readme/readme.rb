@@ -7,7 +7,7 @@ require_relative 'dsl'
 def use(filename)
   filename += '.rb'
   app = Application.instance
-  rbfiles = File.join(app.project_path, "**", filename)
+  rbfiles = File.join(app.project_path, '**', filename)
   files = Dir.glob(rbfiles)
   use = []
   files.sort.each { |f| use << f if f.include?(filename) }
@@ -51,7 +51,7 @@ class Readme
 
   def process_content
     Application.instance.groups.each do |g|
-      @current = { name: g[:name], actions: []}
+      @current = { name: g[:name], actions: [] }
       @data[:groups] << @current
       instance_eval(&g[:block])
     end
@@ -59,6 +59,25 @@ class Readme
 
   def show
     process_content
+    show_head
+
+    @data[:groups].each do |group|
+      puts "\n## #{group[:name]}\n\n"
+      host = nil
+      group[:actions].each_with_index do |item, index|
+        if item[:host].nil? && index.positive?
+          item[:host] = group[:actions][0][:host]
+        end
+        if host.nil? || item[:host] != host
+          host = item[:host]
+          puts "Go to host #{host.upcase}, and do next:"
+        end
+        puts "* #{item[:target]}"
+      end
+    end
+  end
+
+  def show_head
     app = Application.instance
     puts '```'
     puts "Test name : #{app.test_name}"
@@ -67,21 +86,9 @@ class Readme
     puts '---'
     puts "# README.md\n"
 
-    if @getter.size >0
+    unless @getter.empty?
       puts "\nParams configured for every case:"
       @getter.uniq.sort.each { |i| puts "* #{i}" }
-    end
-
-    @data[:groups].each do |group|
-      puts "\n## #{group[:name]}\n\n"
-      host = nil
-      group[:actions].each do |i|
-        if i[:host] != host
-          host = group[:actions][0][:host]
-          puts "Go to host #{host.upcase}, and do next:"
-        end
-        puts "* #{i[:target]}"
-      end
     end
   end
 end

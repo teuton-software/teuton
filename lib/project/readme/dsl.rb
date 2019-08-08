@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Readme
 # * target
 # * goto
@@ -6,16 +8,16 @@
 # * unique
 # * log
 class Readme
-  def target(desc, args = {})
+  def target(desc, _args = {})
     @action = { target: desc }
   end
   alias goal target
 
   def goto(host = :localhost, args = {})
     unless host == :localhost
-      @getter << "#{host.to_s}_ip".to_sym
-      @getter << "#{host.to_s}_username".to_sym
-      @getter << "#{host.to_s}_password".to_sym
+      @getter << "#{host}_ip".to_sym
+      @getter << "#{host}_username".to_sym
+      @getter << "#{host}_password".to_sym
     end
     @action[:host] = host
     @action[:exec] = args[:exec]
@@ -26,7 +28,7 @@ class Readme
     goto(:localhost, args)
   end
 
-  def expect(cond, args = {})
+  def expect(_cond, args = {})
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
     @action[:weight] = weight
@@ -47,12 +49,11 @@ class Readme
     "VALUE (#{value})"
   end
 
-  def set(key, value)
+  def set(key, _value)
     @getter.delete(key)
-    # don't do nothing
   end
 
-  def unique(key, value)
+  def unique(_key, _value)
     # don't do nothing
   end
 
