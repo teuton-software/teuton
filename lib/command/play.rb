@@ -9,7 +9,7 @@ class Teuton < Thor
 This function execute challenge from specified directory.
 By default, show progress on the screen.
 
-Available EXPORT FORMATS are: txt, colored_text, json, yaml.
+Available output format are: txt, colored_text, json, yaml.
 
 Let's see others options:
 (1) teuton foo (Run challenge from foo/start.rb),

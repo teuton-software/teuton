@@ -31,6 +31,7 @@ module NameFileFinder
       puts Rainbow(' not found!').red
       exit 1
     end
+    
     config_path = File.join(pathtodir, 'config.json')
     unless File.exist? config_path
       config_path = File.join(pathtodir, 'config.yaml')
