@@ -2,7 +2,7 @@
 
 require_relative '../application'
 require_relative 'create.rb'
-require_relative 'find.rb'
+require_relative 'name_file_finder.rb'
 
 # Project functions invoked by CLI project tool
 # * test
@@ -11,8 +11,8 @@ require_relative 'find.rb'
 # * find: find_filenames_for, verbose, verboseln
 module Project
   def self.test(pathtofile, options)
-    find_filenames_for(pathtofile)
-    puts_input_info_on_screen
+    NameFileFinder.find_filenames_for(pathtofile)
+    NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('laboratory/laboratory') # Define DSL keywords
 
     app = Application.instance
@@ -23,15 +23,15 @@ module Project
   end
 
   def self.play(pathtofile)
-    find_filenames_for(pathtofile)
-    puts_input_info_on_screen
+    NameFileFinder.find_filenames_for(pathtofile)
+    NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
 
   def self.readme(pathtofile)
-    find_filenames_for(pathtofile)
+    NameFileFinder.find_filenames_for(pathtofile)
     require_dsl_and_script('readme/readme') # Define DSL keywords
-    
+
     app = Application.instance
     readme = Readme.new(app.script_path, app.config_path)
     readme.show

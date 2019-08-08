@@ -1,17 +1,17 @@
 #!/usr/bin/env ruby
 
 require 'minitest/autorun'
-require_relative '../../lib/project/project'
+require_relative '../../lib/project/name_file_finder'
 require_relative '../../lib/application'
 
 # MiniTest for Project Class
-class ProjectTest < Minitest::Test
+class NameFileFinderTest < Minitest::Test
   def test_simple_mode_find_filenames_for
     app = Application.instance
     app.verbose = false
 
     # Simple mode, files exists
-    Project.find_filenames_for('tests/files/example-01.rb')
+    NameFileFinder.find_filenames_for('tests/files/example-01.rb')
     basedir = app.running_basedir
     a = File.join(basedir, 'tests/files')
     b = File.join(basedir, 'tests/files/example-01.rb')
@@ -22,7 +22,7 @@ class ProjectTest < Minitest::Test
     assert_equal 'example-01', app.test_name
 
     # Simple mode, files exists with JSON
-    Project.find_filenames_for('tests/files/example-04.rb')
+    NameFileFinder.find_filenames_for('tests/files/example-04.rb')
     basedir = app.running_basedir
     a = File.join(basedir, 'tests/files')
     b = File.join(basedir,'tests/files/example-04.rb')
@@ -39,7 +39,7 @@ class ProjectTest < Minitest::Test
     app.verbose = false
 
     # Complex mode, dir empty
-    Project.find_filenames_for('tests/files/example-02')
+    NameFileFinder.find_filenames_for('tests/files/example-02')
     basedir = app.running_basedir
     a = File.join(basedir, 'tests/files/example-02')
     b = File.join(basedir,'tests/files/example-02/start.rb')
@@ -50,7 +50,7 @@ class ProjectTest < Minitest::Test
     assert_equal 'example-02', app.test_name
 
     # Complex mode, files exists
-    Project.find_filenames_for('tests/files/example-03')
+    NameFileFinder.find_filenames_for('tests/files/example-03')
     basedir = app.running_basedir
     a = File.join(basedir, 'tests/files/example-03')
     b = File.join(basedir,'tests/files/example-03/start.rb')
@@ -61,7 +61,7 @@ class ProjectTest < Minitest::Test
     assert_equal 'example-03', app.test_name
 
     # Complex mode, files exists with JSON
-    Project.find_filenames_for('tests/files/example-05')
+    NameFileFinder.find_filenames_for('tests/files/example-05')
     basedir = app.running_basedir
     a = File.join(basedir, 'tests/files/example-05')
     b = File.join(basedir,'tests/files/example-05/start.rb')

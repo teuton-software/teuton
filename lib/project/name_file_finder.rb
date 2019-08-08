@@ -4,7 +4,7 @@ require 'rainbow'
 require_relative '../application'
 
 # Project#find
-module Project
+module NameFileFinder
   def self.find_filenames_for(relpathtofile)
     pathtofile = File.join(Application.instance.running_basedir, relpathtofile)
 
