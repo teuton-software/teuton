@@ -72,7 +72,10 @@ class Readme
           host = item[:host]
           puts "Go to host #{host.upcase}, and do next:"
         end
-        puts "* #{item[:target]}"
+
+        weight = ''
+        weight = "(x#{item[:weight]}) " if item[:weight] != 1.0
+        puts "* #{weight}#{item[:target]}"
       end
     end
   end

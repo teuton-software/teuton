@@ -8,8 +8,11 @@
 # * unique
 # * log
 class Readme
-  def target(desc, _args = {})
+  def target(desc, args = {})
     @action = { target: desc }
+    weight = 1.0
+    weight = args[:weight].to_f if args[:weight]
+    @action[:weight] = weight
   end
   alias goal target
 
@@ -29,9 +32,6 @@ class Readme
   end
 
   def expect(_cond, args = {})
-    weight = 1.0
-    weight = args[:weight].to_f if args[:weight]
-    @action[:weight] = weight
     @current[:actions] << @action
     result.reset
   end
