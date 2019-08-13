@@ -20,6 +20,10 @@ class RubocopTest < Minitest::Test
 #    @files[:case] << 'lib/case_manager/case/result/ext_compare.rb'
     @files[:case] << 'lib/case_manager/case/result/ext_filter.rb'
 
+    @files[:case_manager] = []
+    @files[:case_manager] << 'lib/case_manager/main.rb'
+    @files[:case_manager] << 'lib/case_manager/utils.rb'
+
     @files[:case_model] = []
     @files[:case_model] << 'lib/case_manager/case/case_model/case_model.rb'
     @files[:case_model] << 'lib/case_manager/case/case_model/group_model.rb'
@@ -63,6 +67,14 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_case
     @files[:case].each do |file|
+      output = `rubocop #{file}`
+      lines = output.split("\n")
+      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+    end
+  end
+
+  def test_rubocop_case_manager
+    @files[:case_manager].each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
       assert_equal true, lines.any?(/file inspected, no offenses detected/)
