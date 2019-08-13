@@ -3,7 +3,8 @@ class Teuton < Thor
 
   map ['p', '-p', 'play', '--play'] => 'play'
   option :export, :type => :string
-  desc '[play] [--export=FORMAT] DIRECTORY', 'Run challenge from directory'
+  option :cname, :type => :string
+  desc '[play] [--export=FORMAT] [--cname=CONFIGNAME] DIRECTORY', 'Run challenge from directory'
   long_desc <<-LONGDESC
 
 This function execute challenge from specified directory.
@@ -21,7 +22,6 @@ Let's see others options:
 
 LONGDESC
   def play(path_to_rb_file)
-    Application.instance.options.merge! options
-    Project.play(path_to_rb_file)
+    Project.play(path_to_rb_file, options)
   end
 end

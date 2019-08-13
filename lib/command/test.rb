@@ -2,8 +2,9 @@
 class Teuton < Thor
 
   map ['t', '-t', '--test'] => 'test'
-  desc 'test PATH/TO/PROJECT/DIR', 'Check challenge contents'
   option :c, :type => :boolean
+  option :cname, :type => :string
+  desc 'test [--cname=CONFIGNAME] PATH/TO/PROJECT/DIR', 'Check challenge contents'
   long_desc <<-LONGDESC
 
   teuton test path/to/foo.rb

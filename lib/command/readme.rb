@@ -11,6 +11,6 @@ class Teuton < Thor
 
 LONGDESC
   def readme(path_to_rb_file)
-    Project.readme(path_to_rb_file)
+    Project.readme(path_to_rb_file, options)
   end
 end

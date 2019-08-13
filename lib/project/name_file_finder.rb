@@ -31,18 +31,21 @@ module NameFileFinder
       puts Rainbow(' not found!').red
       exit 1
     end
-    
-    config_path = File.join(pathtodir, 'config.json')
-    unless File.exist? config_path
-      config_path = File.join(pathtodir, 'config.yaml')
-    end
-    test_name = pathtodir.split(File::SEPARATOR)[-1]
 
+    config_name = 'config'
     app = Application.instance
+    # Config name file is introduced by cname arg option from teuton command
+    config_name = app.options['cname'] unless app.options['cname'].nil?
+
+    config_path = File.join(pathtodir, "#{config_name}.json")
+    unless File.exist? config_path
+      config_path = File.join(pathtodir, "#{config_name}.yaml")
+    end
+
     app.project_path = pathtodir
     app.script_path = script_path
     app.config_path = config_path
-    app.test_name = test_name
+    app.test_name = pathtodir.split(File::SEPARATOR)[-1]
   end
 
   def self.find_filenames_from_rb(script_path)
@@ -61,13 +64,12 @@ module NameFileFinder
       filename = File.basename(script_path, '.rb') + '.yaml'
       config_path = File.join(dirname, filename)
     end
-    test_name = File.basename(script_path, '.rb')
 
     app = Application.instance
     app.project_path = File.dirname(script_path)
     app.script_path = script_path
     app.config_path = config_path
-    app.test_name = test_name
+    app.test_name = File.basename(script_path, '.rb')
   end
 
   def self.puts_input_info_on_screen

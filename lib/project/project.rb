@@ -10,6 +10,7 @@ require_relative 'name_file_finder.rb'
 # * find: find_filenames_for, verbose, verboseln
 module Project
   def self.test(pathtofile, options)
+    Application.instance.options.merge! options
     NameFileFinder.find_filenames_for(pathtofile)
     NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('laboratory/laboratory') # Define DSL keywords
@@ -21,13 +22,15 @@ module Project
     lab.show_dsl unless options[:r] || options[:c]
   end
 
-  def self.play(pathtofile)
+  def self.play(pathtofile, options)
+    Application.instance.options.merge! options
     NameFileFinder.find_filenames_for(pathtofile)
     NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
 
-  def self.readme(pathtofile)
+  def self.readme(pathtofile, options)
+    Application.instance.options.merge! options
     NameFileFinder.find_filenames_for(pathtofile)
     require_dsl_and_script('readme/readme') # Define DSL keywords
 
