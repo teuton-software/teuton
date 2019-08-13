@@ -5,6 +5,7 @@ class Teuton < Thor
   map ['p', '-p', 'play', '--play'] => 'play'
   option :export, type: :string
   option :cname, type: :string
+  option :cpath, type: :string
   desc '[play] [--export=FORMAT] DIRECTORY',
        'Run challenge from directory'
   long_desc <<-LONGDESC
@@ -23,10 +24,6 @@ class Teuton < Thor
   (4) teuton play --cname=demo foo, run challenge from foo/start.rb with foo/demo.yaml config file.
 
   (5) teuton foo/demo.rb, Run challenge from foo/demo.rb with foo/demo.yaml config file.
-
-  (6) teuton play foo/demo.rb, same as (4).
-
-  (6) teuton play --export=json foo/demo.rb, same as (4) but export json format.
 
   LONGDESC
   def play(path_to_rb_file)

@@ -32,20 +32,25 @@ module NameFileFinder
       exit 1
     end
 
-    config_name = 'config'
     app = Application.instance
-    # Config name file is introduced by cname arg option from teuton command
-    config_name = app.options['cname'] unless app.options['cname'].nil?
-
-    config_path = File.join(pathtodir, "#{config_name}.json")
-    unless File.exist? config_path
-      config_path = File.join(pathtodir, "#{config_name}.yaml")
-    end
-
     app.project_path = pathtodir
     app.script_path = script_path
-    app.config_path = config_path
     app.test_name = pathtodir.split(File::SEPARATOR)[-1]
+
+    config_path = ''
+    if app.options['cpath'].nil?
+      config_name = 'config'
+      # Config name file is introduced by cname arg option from teuton command
+      config_name = app.options['cname'] unless app.options['cname'].nil?
+      config_path = File.join(pathtodir, "#{config_name}.json")
+      unless File.exist? config_path
+        config_path = File.join(pathtodir, "#{config_name}.yaml")
+      end
+    else
+      # Config path file is introduced by cpath arg option from teuton command
+      config_path = app.options['cpath']
+    end
+    app.config_path = config_path
   end
 
   def self.find_filenames_from_rb(script_path)
@@ -59,8 +64,8 @@ module NameFileFinder
     end
     dirname = File.dirname(script_path)
 
-    config_name = File.basename(script_path, '.rb')
     app = Application.instance
+    config_name = File.basename(script_path, '.rb')
     # Config name file is introduced by cname arg option from teuton command
     config_name = app.options['cname'] unless app.options['cname'].nil?
 

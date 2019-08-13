@@ -5,7 +5,8 @@ class Teuton < Thor
   map ['t', '-t', '--test'] => 'test'
   option :c, type: :boolean
   option :cname, type: :string
-  desc 'test PATH/TO/PROJECT/DIR',
+  option :cpath, type: :string
+  desc 'test DIRECTORY',
        'Test or check challenge contents'
   long_desc <<-LONGDESC
 
