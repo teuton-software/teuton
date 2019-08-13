@@ -62,23 +62,27 @@ module NameFileFinder
       puts Rainbow(' must have rb extension').red
       exit 1
     end
-    dirname = File.dirname(script_path)
-
-    app = Application.instance
-    config_name = File.basename(script_path, '.rb')
-    # Config name file is introduced by cname arg option from teuton command
-    config_name = app.options['cname'] unless app.options['cname'].nil?
-
-    config_path = File.join(dirname, config_name + '.json')
-    unless File.exist? config_path
-      config_path = File.join(dirname, config_name + '.yaml')
-    end
 
     app = Application.instance
     app.project_path = File.dirname(script_path)
     app.script_path = script_path
-    app.config_path = config_path
     app.test_name = File.basename(script_path, '.rb')
+
+    config_path = ''
+    if app.options['cpath'].nil?
+      config_name = File.basename(script_path, '.rb')
+      # Config name file is introduced by cname arg option from teuton command
+      config_name = app.options['cname'] unless app.options['cname'].nil?
+
+      config_path = File.join(app.project_path, config_name + '.json')
+      unless File.exist? config_path
+        config_path = File.join(app.project_path, config_name + '.yaml')
+      end
+    else
+      # Config path file is introduced by cpath arg option from teuton command
+      config_path = app.options['cpath']
+    end
+    app.config_path = config_path
   end
 
   def self.puts_input_info_on_screen
