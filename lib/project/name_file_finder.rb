@@ -58,11 +58,15 @@ module NameFileFinder
       exit 1
     end
     dirname = File.dirname(script_path)
-    filename = File.basename(script_path, '.rb') + '.json'
-    config_path = File.join(dirname, filename)
+
+    config_name = File.basename(script_path, '.rb')
+    app = Application.instance
+    # Config name file is introduced by cname arg option from teuton command
+    config_name = app.options['cname'] unless app.options['cname'].nil?
+
+    config_path = File.join(dirname, config_name + '.json')
     unless File.exist? config_path
-      filename = File.basename(script_path, '.rb') + '.yaml'
-      config_path = File.join(dirname, filename)
+      config_path = File.join(dirname, config_name + '.yaml')
     end
 
     app = Application.instance
