@@ -36,6 +36,16 @@ class RubocopTest < Minitest::Test
     @files[:case_dsl] << 'lib/case_manager/case/dsl/target.rb'
     @files[:case_dsl] << 'lib/case_manager/case/dsl/unique.rb'
 
+    @files[:command] = []
+    @files[:command] << 'lib/command/main.rb'
+    @files[:command] << 'lib/command/create.rb'
+    @files[:command] << 'lib/command/download.rb'
+    @files[:command] << 'lib/command/play.rb'
+    @files[:command] << 'lib/command/readme.rb'
+    @files[:command] << 'lib/command/test.rb'
+    @files[:command] << 'lib/command/update.rb'
+    @files[:command] << 'lib/command/version.rb'
+
     @files[:report] = []
 #    @files4 << 'lib/report/formatter/array_formatter.rb'
     @files[:report] << 'lib/report/formatter/base_formatter.rb'
@@ -69,6 +79,14 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_case_dsl
     @files[:case_dsl].each do |file|
+      output = `rubocop #{file}`
+      lines = output.split("\n")
+      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+    end
+  end
+
+  def test_rubocop_command
+    @files[:report].each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
       assert_equal true, lines.any?(/file inspected, no offenses detected/)
