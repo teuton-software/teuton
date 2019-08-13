@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'minitest/autorun'
-require_relative '../../lib/case_manager/case'
+require_relative '../../../lib/case_manager/case/case'
 
 # MiniTest Case Class
 class CaseTest < Minitest::Test

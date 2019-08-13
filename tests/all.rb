@@ -3,7 +3,7 @@
 require 'minitest/autorun'
 
 require_relative 'application_test'
-require_relative 'case_manager/case_test'
+require_relative 'case_manager/case/case_test'
 require_relative 'case_manager/case/config_test'
 require_relative 'case_manager/case/result_test'
 require_relative 'case_manager/case/case_model/target_model_test'

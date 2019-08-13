@@ -1,8 +1,8 @@
-require_relative '../application'
-require_relative '../report/report'
-require_relative 'utils'
-require_relative 'case/main'
-require_relative 'case/case_model/case_model'
+require_relative '../../application'
+require_relative '../../report/report'
+require_relative '../utils'
+require_relative 'main'
+require_relative 'case_model/case_model'
 
 # TODO: split Case class into several classes:
 # * Case, Action?, Session?, RunCommand class

@@ -5,15 +5,27 @@ class Teuton < Thor
   map ['t', '-t', '--test'] => 'test'
   option :c, type: :boolean
   option :cname, type: :string
-  desc 'test [--cname=CONFIGNAME] PATH/TO/PROJECT/DIR',
-       'Check challenge contents'
+  desc 'test PATH/TO/PROJECT/DIR',
+       'Test or check challenge contents'
   long_desc <<-LONGDESC
 
-  teuton test path/to/foo.rb
-  , Test content of file <path/to/foo.rb>
+  (1) teuton test path/to/dir/foo
+  , Test content of start.rb and config.yaml files.
 
-  teuton test path/to/foo.rb -c
-  , Only test CONFIG information from <path/to/foo.yaml>
+  (2) teuton test path/to/dir/foo -c
+  , Only test CONFIG information from config.yaml.
+
+  (3) teuton test path/to/dir/foo --cname=demo
+  , Test content of start.rb and demo.yaml files.
+
+  (4) teuton test path/to/file/foo.rb
+  , Test content of foo.rb and foo.yaml files.
+
+  (5) teuton test path/to/file/foo.rb -c
+  , Only test CONFIG information from foo.yaml.
+
+  (6) teuton test path/to/file/foo.rb --cname=demo
+  , Test content of foo.rb and demo.yaml files.
 
   LONGDESC
   def test(path_to_rb_file)

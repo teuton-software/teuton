@@ -5,21 +5,29 @@ class Teuton < Thor
   map ['p', '-p', 'play', '--play'] => 'play'
   option :export, type: :string
   option :cname, type: :string
-  desc '[play] [--export=FORMAT] [--cname=CONFIGNAME] DIRECTORY',
+  desc '[play] [--export=FORMAT] DIRECTORY',
        'Run challenge from directory'
   long_desc <<-LONGDESC
   This function execute challenge from specified directory.
   By default, show progress on the screen.
 
-  Available output format are: txt, colored_text, json, yaml.
-
   Let's see others options:
-  (1) teuton foo (Run challenge from foo/start.rb),
-  (2) teuton play foo (Run challenge from foo/start.rb),
-  (3) teuton play --export=json foo (Run challenge and export using json format),
-  (4) teuton foo/demo.rb (Run challenge from foo/demo.rb),
-  (5) teuton play foo/demo.rb (Run challenge from foo/demo.rb),
-  (6) teuton play --export=json foo/demo.rb (Export json format files)
+
+  (1) teuton foo, run challenge from foo/start.rb with foo/config.yaml config file.
+
+  (2) teuton play foo, same as (1).
+
+  (3) teuton play --export=json foo, run challenge and export using json format.
+  Others output formats availables are: txt, colored_text, json, yaml.
+
+  (4) teuton play --cname=demo foo, run challenge from foo/start.rb with foo/demo.yaml config file.
+
+  (5) teuton foo/demo.rb, Run challenge from foo/demo.rb with foo/demo.yaml config file.
+
+  (6) teuton play foo/demo.rb, same as (4).
+
+  (6) teuton play --export=json foo/demo.rb, same as (4) but export json format.
+
   LONGDESC
   def play(path_to_rb_file)
     Project.play(path_to_rb_file, options)
