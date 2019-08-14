@@ -1,35 +1,34 @@
+# frozen_string_literal: true
 
 # Close Show methods for Report class.
-
 class Report
-
   def close
     app = Application.instance
-    lMax = 0.0
-    lGood = 0.0
-    lFail = 0.0
-    lFailCounter = 0
+    max = 0.0
+    good = 0.0
+    fail = 0.0
+    fail_counter = 0
     @lines.each do |i|
       if i.class.to_s == 'Hash'
-        lMax += i[:weight] if i[:weight]>0
+        max += i[:weight] if i[:weight].positive?
         if i[:check]
-          lGood += i[:weight]
+          good += i[:weight]
           @history += app.letter[:good]
         else
-          lFail += i[:weight]
-          lFailCounter += 1
+          fail += i[:weight]
+          fail_counter += 1
           @history += app.letter[:bad]
         end
       end
     end
-    @tail[:max_weight] = lMax
-    @tail[:good_weight] = lGood
-    @tail[:fail_weight] = lFail
-    @tail[:fail_counter] = lFailCounter
+    @tail[:max_weight] = max
+    @tail[:good_weight] = good
+    @tail[:fail_weight] = fail
+    @tail[:fail_counter] = fail_counter
 
-    i = lGood.to_f / lMax.to_f
+    i = good.to_f / max.to_f
     i = 0 if i.nan?
     @tail[:grade] = (100.0 * i).round
-    @tail[:grade] = 0 if @tail[:unique_fault]>0
+    @tail[:grade] = 0 if @tail[:unique_fault].positive?
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../application'
 require_relative '../../report/report'
 require_relative '../utils'
@@ -46,8 +48,7 @@ class Case
     @action = { id: 0,
                 weight: 1.0,
                 description: 'No description!',
-                groupname: nil
-              }
+                groupname: nil }
     @uniques = []
     @sessions = {} # Store opened sessions for this case
     tempfile :default
@@ -68,7 +69,7 @@ class Case
       item.map! { |i| i.sub(/\n/, '') }
 
       return item
-    rescue
+    rescue StandardError
       return []
     end
   end
