@@ -3,7 +3,7 @@
 # Teuton#readme
 class Teuton < Thor
   map ['r', '-r', '--readme'] => 'readme'
-  desc 'readme PATH/TO/PROJECT/DIR',
+  desc 'readme DIRECTORY',
        'Create README.md file from challenge contents'
   long_desc <<-LONGDESC
 

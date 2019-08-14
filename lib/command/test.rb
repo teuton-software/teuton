@@ -6,7 +6,7 @@ class Teuton < Thor
   option :c, type: :boolean
   option :cname, type: :string
   option :cpath, type: :string
-  desc 'test DIRECTORY',
+  desc 'test [OPTIONS] DIRECTORY',
        'Test or check challenge contents'
   long_desc <<-LONGDESC
 

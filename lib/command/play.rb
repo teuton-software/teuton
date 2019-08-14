@@ -6,7 +6,8 @@ class Teuton < Thor
   option :export, type: :string
   option :cname, type: :string
   option :cpath, type: :string
-  desc '[play] [--export=FORMAT] DIRECTORY',
+  option :case, type: :string
+  desc '[play] [OPTIONS] DIRECTORY',
        'Run challenge from directory'
   long_desc <<-LONGDESC
   This function execute challenge from specified directory.

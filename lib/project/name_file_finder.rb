@@ -37,6 +37,13 @@ module NameFileFinder
     app.script_path = script_path
     app.test_name = pathtodir.split(File::SEPARATOR)[-1]
 
+    find_configfilename_from_directory(pathtodir)
+  end
+
+  def self.find_configfilename_from_directory(pathtodir)
+    # COMPLEX MODE: We use config.yaml by default
+    app = Application.instance
+
     config_path = ''
     if app.options['cpath'].nil?
       config_name = 'config'
@@ -67,6 +74,14 @@ module NameFileFinder
     app.project_path = File.dirname(script_path)
     app.script_path = script_path
     app.test_name = File.basename(script_path, '.rb')
+
+    find_configfilenames_from_rb(script_path)
+  end
+
+  def self.find_configfilenames_from_rb(script_path)
+    # SIMPLE MODE: We use script_path as main RB file
+    # This must be fullpath to DSL script file
+    app = Application.instance
 
     config_path = ''
     if app.options['cpath'].nil?
