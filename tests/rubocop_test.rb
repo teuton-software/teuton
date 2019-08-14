@@ -15,6 +15,7 @@ class RubocopTest < Minitest::Test
 
     @files[:case_manager] = []
     @files[:case_manager] << 'lib/case_manager/main.rb'
+    @files[:case_manager] << 'lib/case_manager/show.rb'
     @files[:case_manager] << 'lib/case_manager/utils.rb'
 
     @files[:case_model] = []

@@ -28,19 +28,19 @@ class CaseManager
 
     app = Application.instance
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row [ 'Case ID', '% Completed', 'Members']
+      st.add_row ['CASE ID', '% COMPLETED', 'MEMBERS']
     end
     @cases.each do |c|
-      l_members = c.report.head[:tt_members] || 'noname'
-      l_grade = c.report.tail[:grade] || 0.0
+      l_members = c.members # c.report.head[:tt_members] || 'noname'
+      l_grade = c.grade # c.report.tail[:grade] || 0.0
       l_help = app.letter[:none]
       l_help = app.letter[:error] if l_grade < 50.0
 
       t1 = format('Case_%02d', c.id.to_i)
-      t2 = format('%3d%s %s', l_grade.to_f, '%',l_help)
+      t2 = format('%3d%s %s', l_grade.to_f, '%', l_help)
       t3 = format('%s', l_members)
-      my_screen_table.add_row [ t1, t2, t3]
+      my_screen_table.add_row [t1, t2, t3]
     end
-    @report.lines << my_screen_table.to_s+"\n"
+    @report.lines << my_screen_table.to_s + "\n"
   end
 end

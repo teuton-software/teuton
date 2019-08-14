@@ -9,7 +9,7 @@ class CaseManager
     celebrities = {}
 
     @cases.each do |c|
-      grade = c.report.tail[:grade]
+      grade = c.grade # report.tail[:grade]
       if celebrities[grade]
         label = celebrities[grade] + '*'
       else
@@ -24,6 +24,5 @@ class CaseManager
     app = Application.instance
     app.options[:case_number] = @cases.size
     app.hall_of_fame = list
-
   end
 end

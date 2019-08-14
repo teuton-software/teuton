@@ -18,9 +18,9 @@ class CaseTest < Minitest::Test
     assert_equal 'No description!', @case.action[:description]
     assert_nil @case.action[:groupname]
     assert_equal [], @case.uniques
-    id = @case.id
-    assert_equal "case-0#{@case.id}", @case.report.filename
-    assert_equal File.join('var', 'demo'), @case.report.output_dir
+    #id = @case.id
+    #assert_equal "case-0#{@case.id}", @case.report.filename
+    #assert_equal File.join('var', 'demo'), @case.report.output_dir
   end
 
   def test_config

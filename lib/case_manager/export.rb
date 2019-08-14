@@ -14,7 +14,7 @@ class CaseManager
 
     if mode == :details || mode == :all
       threads = []
-      @cases.each { |c| threads << Thread.new { c.report.export format } }
+      @cases.each { |c| threads << Thread.new { c.export format } }
       threads.each(&:join)
     end
   end

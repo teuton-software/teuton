@@ -16,7 +16,8 @@ class Case
 
   attr_accessor :result
   attr_accessor :action # TODO: why not reader only???
-  attr_reader :id, :config, :report, :uniques
+  attr_reader :id, :config, :uniques
+  # attr_reader :report
   @@id = 1
 
   def initialize(config)
@@ -56,6 +57,24 @@ class Case
 
   def skip
     @config.get(:tt_skip)
+  end
+
+  def grade
+    return 0.0 if skip
+    @report.tail[:grade]
+  end
+
+  def members
+    return @report.head[:tt_members] || 'noname'
+  end
+
+  def export(format)
+    return if skip
+    @report.export format
+  end
+
+  def show
+    @report.show
   end
 
   private

@@ -39,7 +39,11 @@ class TXTFormatter < ArrayFormatter
   def process_test
     if @data[:test][:logs].size > 0
       w "#{Rainbow("LOGS").bg(:blue)}\n"
-      @data[:test][:logs].each { |line| w ". #{line}\n" }
+      if @data[:test][:logs].size == 1
+        w "#{@data[:test][:logs][0]}\n"
+      else
+        @data[:test][:logs].each { |line| w ". #{line}\n" }
+      end
     end
 
     if @data[:test][:groups].size > 0
@@ -58,7 +62,7 @@ class TXTFormatter < ArrayFormatter
         value = i[:weight]
         color = :green
       end
-      w tab*2+format("%02d", i[:target_id])
+      w tab*2 + format("%02d", i[:target_id])
       w " (#{Rainbow(value.to_s+"/"+i[:weight].to_s).color(color)})\n"
       w tab*4+"Description : #{i[:description].to_s}\n"
       w tab*4+"Command     : #{i[:command].to_s}\n"
@@ -100,5 +104,4 @@ class TXTFormatter < ArrayFormatter
 
     deinit
   end
-
 end
