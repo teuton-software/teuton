@@ -6,13 +6,6 @@ require 'minitest/autorun'
 class RubocopTest < Minitest::Test
   def setup
     @files = {}
-    @files[:project] = []
-    @files[:project] << 'lib/project/laboratory/laboratory.rb'
-    @files[:project] << 'lib/project/readme/dsl.rb'
-#    @files[:project] << 'lib/project/readme/readme.rb'
-    @files[:project] << 'lib/project/project_creator.rb'
-    @files[:project] << 'lib/project/project.rb'
-#    @files[:project] << 'lib/project/name_file_finder.rb'
 
     @files[:case] = []
     @files[:case] << 'lib/case_manager/case/result.rb'
@@ -50,19 +43,20 @@ class RubocopTest < Minitest::Test
     @files[:command] << 'lib/command/update.rb'
     @files[:command] << 'lib/command/version.rb'
 
+    @files[:project] = []
+    @files[:project] << 'lib/project/laboratory/laboratory.rb'
+    @files[:project] << 'lib/project/readme/dsl.rb'
+#    @files[:project] << 'lib/project/readme/readme.rb'
+#    @files[:project] << 'lib/project/config_file_reader.rb'
+#    @files[:project] << 'lib/project/name_file_finder.rb'
+    @files[:project] << 'lib/project/project_creator.rb'
+    @files[:project] << 'lib/project/project.rb'
+
     @files[:report] = []
 #    @files4 << 'lib/report/formatter/array_formatter.rb'
     @files[:report] << 'lib/report/formatter/base_formatter.rb'
     @files[:report] << 'lib/report/formatter/json_formatter.rb'
     @files[:report] << 'lib/report/formatter/yaml_formatter.rb'
-  end
-
-  def test_rubocop_project
-    @files[:case_model].each do |file|
-      output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
-    end
   end
 
   def test_rubocop_case
@@ -99,6 +93,14 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_command
     @files[:report].each do |file|
+      output = `rubocop #{file}`
+      lines = output.split("\n")
+      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+    end
+  end
+
+  def test_rubocop_project
+    @files[:case_model].each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
       assert_equal true, lines.any?(/file inspected, no offenses detected/)
