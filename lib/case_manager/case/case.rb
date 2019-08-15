@@ -41,7 +41,6 @@ class Case
       @skip = true
       @skip = false if app.options['case'].include? @id
     end
-    puts "#{@id} #{@skip} #{app.options}"
 
     @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp', @id.to_s)
     # ensure_dir @tmpdir # REVISE: When we will need this? Samba?
