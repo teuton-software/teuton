@@ -3,7 +3,8 @@
 require 'rainbow'
 require_relative '../application'
 
-# Project#find
+# Project:
+# * find_filenames_for, verbose, verboseln
 module NameFileFinder
   def self.find_filenames_for(relpathtofile)
     pathtofile = File.join(Application.instance.running_basedir, relpathtofile)

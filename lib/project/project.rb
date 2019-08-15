@@ -6,8 +6,9 @@ require_relative 'name_file_finder.rb'
 # Project functions invoked by CLI project tool
 # * test
 # * play
-# * create: copyfile, create_dir, create_dirs, create
-# * find: find_filenames_for, verbose, verboseln
+# * process_input_case_option
+# * readme
+# * require_dsl_and_script
 module Project
   def self.test(pathtofile, options)
     Application.instance.options.merge! options
@@ -24,9 +25,20 @@ module Project
 
   def self.play(pathtofile, options)
     Application.instance.options.merge! options
+    process_input_case_option
     NameFileFinder.find_filenames_for(pathtofile)
     NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
+  end
+
+  def self.process_input_case_option
+    options = Application.instance.options
+    if options['case'].nil?
+      options['case'] = :all
+    else
+      a = options['case'].split(',')
+      options['case'] = a.collect! { |i| i.to_i }
+    end
   end
 
   def self.readme(pathtofile, options)
