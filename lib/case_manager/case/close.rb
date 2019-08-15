@@ -1,6 +1,5 @@
 
 class Case
-
   def close(uniques)
     fails = 0
     @uniques.each do |key|
@@ -23,5 +22,4 @@ class Case
     @report.tail[:unique_fault]=fails
     @report.close
   end
-
 end

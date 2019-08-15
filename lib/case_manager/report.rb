@@ -28,17 +28,25 @@ class CaseManager
 
     app = Application.instance
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE ID', '% COMPLETED', 'MEMBERS']
+#      st.add_row [Rainbow('CASE ID').bright,
+#                  Rainbow('COMPLETED').bright,
+#                  Rainbow('MEMBERS').bright]
+      st.add_row ['CASE ID',
+                  'COMPLETED',
+                  'MEMBERS']
     end
     @cases.each do |c|
-      l_members = c.members # c.report.head[:tt_members] || 'noname'
-      l_grade = c.grade # c.report.tail[:grade] || 0.0
-      l_help = app.letter[:none]
-      l_help = app.letter[:error] if l_grade < 50.0
-
-      t1 = format('Case_%02d', c.id.to_i)
-      t2 = format('%3d%s %s', l_grade.to_f, '%', l_help)
-      t3 = format('%s', l_members)
+      t1 = format('case_%02d', c.id.to_i)
+      if c.grade < 50.0
+        help = app.letter[:error]
+        # t2 = Rainbow(format('%3d%s %s', c.grade.to_f, '%', help)).red.bright
+        t2 = format('%3d%s %s', c.grade.to_f, '%', help)
+      else
+        help = app.letter[:none]
+        # t2 = Rainbow(format('%3d%s %s', c.grade.to_f, '%', help)).green.bright
+        t2 = format('%3d%s %s', c.grade.to_f, '%', help)
+      end
+      t3 = format('%s', c.members)
       my_screen_table.add_row [t1, t2, t3]
     end
     @report.lines << my_screen_table.to_s + "\n"

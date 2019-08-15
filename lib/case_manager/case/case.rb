@@ -65,7 +65,8 @@ class Case
   end
 
   def members
-    return @report.head[:tt_members] || 'noname'
+    return "-" if skip
+    @report.head[:tt_members] || 'noname'
   end
 
   def export(format)
