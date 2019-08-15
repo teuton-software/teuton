@@ -79,7 +79,7 @@ class Case
   end
 
   def export(format)
-    return if skip
+    return if skip?
     @report.export format
   end
 

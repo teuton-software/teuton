@@ -8,7 +8,7 @@
 # * remote_tempfile
 module DSL
   def send(args = {})
-    return if get(:tt_skip)
+    return if skip?
 
     return unless args[:copy_to]
 

@@ -1,6 +1,6 @@
 
+# CaseManager#export 
 class CaseManager
-
   def export(args = {})
     if args.class != Hash
       puts "[ERROR] tool#export: Argument = <#{args}>, class = #{args.class}"
