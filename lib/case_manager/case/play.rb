@@ -2,8 +2,7 @@
 # * play method
 class Case
   def play
-    @skip = get(:tt_skip) || false
-    if @skip == true
+    if skip?
       verbose "Skipping case <#{@config.get(:tt_members)}>\n"
       return false
     end

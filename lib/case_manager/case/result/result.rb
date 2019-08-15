@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'result/ext_array'
-require_relative 'result/ext_compare'
-require_relative 'result/ext_filter'
+require_relative 'ext_array'
+require_relative 'ext_compare'
+require_relative 'ext_filter'
 
 # This object contains data returned by remote/local execution
 class Result

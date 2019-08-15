@@ -4,6 +4,7 @@ require_relative '../../application'
 require_relative '../../report/report'
 require_relative '../utils'
 require_relative 'main'
+require_relative 'result/result'
 require_relative 'case_model/case_model'
 
 # TODO: split Case class into several classes:
@@ -34,7 +35,14 @@ class Case
     ensure_dir @report.output_dir
 
     # Default configuration
-    @config.local[:tt_skip] = @config.local[:tt_skip] || false
+    @skip = false
+    @skip = get(:tt_skip) unless get(:tt_skip) == 'NODATA'
+    unless app.options['case'].nil?
+      @skip = true
+      @skip = false if app.options['case'].include? @id
+    end
+    puts "#{@id} #{@skip} #{app.options}"
+
     @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp', @id.to_s)
     # ensure_dir @tmpdir # REVISE: When we will need this? Samba?
     @remote_tmpdir = File.join('/', 'tmp')
@@ -56,8 +64,9 @@ class Case
   end
 
   def skip
-    @config.get(:tt_skip)
+    @skip
   end
+  alias skip? skip
 
   def grade
     return 0.0 if skip

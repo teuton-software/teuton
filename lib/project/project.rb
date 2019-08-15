@@ -33,9 +33,7 @@ module Project
 
   def self.process_input_case_option
     options = Application.instance.options
-    if options['case'].nil?
-      options['case'] = :all
-    else
+    unless options['case'].nil?
       a = options['case'].split(',')
       options['case'] = a.collect! { |i| i.to_i }
     end

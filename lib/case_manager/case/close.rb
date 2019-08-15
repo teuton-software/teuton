@@ -4,7 +4,7 @@ class Case
     fails = 0
     @uniques.each do |key|
       if uniques[key].include?(id) and uniques[key].count>1 then
-        fails+=1
+        fails += 1
         log("UNIQUE:", :error)
         begin
           log("   ├── Value     => #{key.to_s}", :error)
