@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../application'
-require_relative '../../case_manager/case/result'
+require_relative '../../case_manager/case/result/result'
 require_relative 'dsl'
 
 def use(filename)

@@ -22,7 +22,7 @@ class Application
     @running_basedir = Dir.getwd
     @output_basedir = 'var'
     @default = { name: 'teuton', format: :txt, debug: false }
-    @options = {}
+    @options = { 'lang' => 'en' }
     @verbose = true
 
     @global = {}
