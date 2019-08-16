@@ -3,6 +3,7 @@
 require_relative '../../application'
 require_relative '../../case_manager/case/result/result'
 require_relative 'dsl'
+require_relative 'lang'
 
 def use(filename)
   filename += '.rb'
@@ -70,7 +71,7 @@ class Readme
         end
         if host.nil? || item[:host] != host
           host = item[:host]
-          puts "Go to host #{host.upcase}, and do next:"
+          puts format(Lang::get(:goto), host.upcase)
         end
 
         weight = ''
@@ -83,14 +84,14 @@ class Readme
   def show_head
     app = Application.instance
     puts '```'
-    puts "Test name : #{app.test_name}"
-    puts "Date      : #{Time.now}"
+    puts format(Lang::get(:testname), app.test_name)
+    puts format(Lang::get(:date), Time.now)
     puts '```'
     puts '---'
     puts "# README.md\n"
 
     unless @getter.empty?
-      puts "\nParams configured for every case:"
+      puts Lang::get(:params)
       @getter.uniq.sort.each { |i| puts "* #{i}" }
     end
   end

@@ -8,9 +8,14 @@ class Teuton < Thor
        'Create README.md file from challenge contents'
   long_desc <<-LONGDESC
 
-  teuton readme path/to/foo
-  , Create README.md from <path/to/foo/start.rb>
+  (1) teuton readme foo
+  , Create README.md from foo/start.rb.
 
+  (2) teuton readme foo/demo.rb
+  , Create README.md from foo/demo.rb.
+
+  By default lang=es, but It's available lang=en too.
+  
   LONGDESC
   def readme(path_to_rb_file)
     Project.readme(path_to_rb_file, options)
