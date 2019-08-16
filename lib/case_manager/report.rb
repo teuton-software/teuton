@@ -36,16 +36,19 @@ class CaseManager
                   'MEMBERS']
     end
     @cases.each do |c|
+      if c.skip?
+        my_screen_table.add_row ['-', '-', '-']
+        next
+      end
       t1 = format('case_%02d', c.id.to_i)
       if c.grade < 50.0
         help = app.letter[:error]
         # t2 = Rainbow(format('%3d%s %s', c.grade.to_f, '%', help)).red.bright
-        t2 = format('%3d%s %s', c.grade.to_f, '%', help)
       else
         help = app.letter[:none]
         # t2 = Rainbow(format('%3d%s %s', c.grade.to_f, '%', help)).green.bright
-        t2 = format('%3d%s %s', c.grade.to_f, '%', help)
       end
+      t2 = format('%3d%s %s', c.grade.to_f, '%', help)
       t3 = format('%s', c.members)
       my_screen_table.add_row [t1, t2, t3]
     end
