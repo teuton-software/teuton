@@ -1,7 +1,8 @@
 
 # TEUTON Software
 
-Test your infraestructure as code.
+_Create Unit Test for your infrastructure.
+Test your infraestructure as code._
 
 ![logo](./docs/logo.png)
 
