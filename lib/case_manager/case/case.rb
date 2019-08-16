@@ -11,6 +11,13 @@ require_relative 'case_model/case_model'
 # * Case, Action?, Session?, RunCommand class
 
 # Case class
+# * initialize
+# * skip
+# * grade
+# * members
+# * export
+# * show
+# * read_filename ???
 class Case
   include DSL
   include Utils
@@ -18,7 +25,6 @@ class Case
   attr_accessor :result
   attr_accessor :action # TODO: why not reader only???
   attr_reader :id, :config, :uniques
-  # attr_reader :report
   @@id = 1
 
   def initialize(config)
