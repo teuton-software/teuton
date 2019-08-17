@@ -15,7 +15,7 @@ class Teuton < Thor
   , Create README.md from foo/demo.rb.
 
   By default lang=es, but It's available lang=en too.
-  
+
   LONGDESC
   def readme(path_to_rb_file)
     Project.readme(path_to_rb_file, options)

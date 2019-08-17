@@ -93,7 +93,7 @@ class RubocopTest < Minitest::Test
   end
 
   def test_rubocop_command
-    @files[:report].each do |file|
+    @files[:command].each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
       assert_equal true, lines.any?(/file inspected, no offenses detected/)
