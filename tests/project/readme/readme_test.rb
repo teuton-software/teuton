@@ -13,7 +13,7 @@ class ReadmeTest < Minitest::Test
   def test_dsl
     dsl = [ :expect, :goal, :goto, :log , :target, :unique ]
 
-    pathtofile = 'test/files/example-01.rb'
+    pathtofile = 'tests/files/example-01.rb'
     options = {}
     app = Application.instance
     NameFileFinder.find_filenames_for(pathtofile)
@@ -21,10 +21,8 @@ class ReadmeTest < Minitest::Test
     dsl.each { |i| assert_equal true, readme.methods.include?(i) }
   end
 
-  def test_data
-    return
-    # TO FIX !!!
-    pathtofile = 'test/files/example-02'
+  def test_example01
+    pathtofile = 'tests/files/example-01.rb'
 
     app = Application.instance
     NameFileFinder.find_filenames_for(pathtofile)
@@ -34,6 +32,10 @@ class ReadmeTest < Minitest::Test
     data = { logs: [], groups: [], play: [] }
     assert_equal data, readme.data
     readme.process_content
-    puts "=> #{readme.data}"
+    assert_equal [], readme.data[:logs]
+    assert_equal 1, readme.data[:groups].count
+    assert_equal 'group name 1', readme.data[:groups][0][:name]
+    assert_equal 4, readme.data[:groups][0][:actions].count
+    assert_equal 0, readme.data[:play].count
   end
 end

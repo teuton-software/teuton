@@ -1,28 +1,19 @@
 
-=begin
-  Test if exist user <obiwan> into localhost
-  * target : Describe the target
-  * goto   : Move to localhost, and execute the command
-  * expect : Check if the results are equal to expected value
+group "group name 1" do
 
-  Teacher host (localhost) must have GNU/Linux OS.
-=end
-
-group "Create user obiwan" do
-
-  target "Checking user <obiwan> using commands"
-  goto :localhost, :exec => "id obiwan| wc -l"
-  expect result.equal(1)
-
-  target "Checking user <obiwan> using count! method"
+  target "target 1"
   goto :localhost, :exec => "id obiwan"
+  expect_one "obiwan"
+
+  target "target 2"
+  goto :localhost, :exec => "id yoda"
   expect result.count.eq 1
 
-  target "Checking user <obiwan> using find! and count! methods with String arg"
+  target "target 3"
   goto :localhost, :exec => "cat /etc/passwd"
-  expect result.find("obiwan").count.eq 1
+  expect result.find("vader").count.eq 1
 
-  target "Checking user <obiwan, obi-wan> using find! and count! methods with Regexp arg"
+  target "target 4"
   goto :localhost, :exec => "cat /etc/passwd"
   expect result.find(/obiwan|obi-wan/).count.eq 1
 end
