@@ -12,7 +12,6 @@ module NameFileFinder
     # Define:
     #   script_path, must contain fullpath to DSL script file
     #   config_path, must contain fullpath to YAML config file
-
     if File.directory?(pathtofile)
       # COMPLEX MODE: We use start.rb as main RB file
       find_filenames_from_directory(pathtofile)
