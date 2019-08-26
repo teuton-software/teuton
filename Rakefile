@@ -1,5 +1,5 @@
-# File: Rakefile
-# Usage: rake
+# frozen_string_literal: true
+
 require_relative 'lib/application'
 require_relative 'lib/rake_function/check.rb'
 require_relative 'lib/rake_function/install.rb'

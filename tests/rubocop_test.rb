@@ -54,6 +54,7 @@ class RubocopTest < Minitest::Test
     @files[:project] << 'lib/project/project.rb'
 
     @files[:rake_functions] = []
+    @files[:rake_functions] << 'Rakefile'
     @files[:rake_functions] << 'lib/rake_function/check.rb'
     @files[:rake_functions] << 'lib/rake_function/install.rb'
 
