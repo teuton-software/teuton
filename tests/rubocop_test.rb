@@ -53,6 +53,10 @@ class RubocopTest < Minitest::Test
     @files[:project] << 'lib/project/project_creator.rb'
     @files[:project] << 'lib/project/project.rb'
 
+    @files[:rake_functions] = []
+    @files[:rake_functions] << 'lib/rake_function/check.rb'
+    @files[:rake_functions] << 'lib/rake_function/install.rb'
+
     @files[:report] = []
 #    @files4 << 'lib/report/formatter/array_formatter.rb'
     @files[:report] << 'lib/report/formatter/base_formatter.rb'
@@ -102,6 +106,14 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_project
     @files[:case_model].each do |file|
+      output = `rubocop #{file}`
+      lines = output.split("\n")
+      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+    end
+  end
+
+  def test_rubocop_rake_functions
+    @files[:rake_functions].each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
       assert_equal true, lines.any?(/file inspected, no offenses detected/)

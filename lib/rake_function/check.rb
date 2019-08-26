@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Method RakeFunction#check
 module RakeFunction
   def self.check(gems)

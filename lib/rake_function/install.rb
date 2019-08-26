@@ -1,36 +1,33 @@
+# frozen_string_literal: true
+
 # Methods Module RakeFunction
-# * debian
 # * opensuse
+# * debian
 # * install_gems
 module RakeFunction
-  def self.debian(packages)
-    names = ['ssh', 'make', 'gcc', 'ruby-dev']
-    names.each { |name| system("apt-get install -y #{name}") }
-    install_gems packages
-    create_symbolic_link
-  end
-
-  # INFO
-  # * gems     -> packages += ['pry-byebug']
-  # * OpenSUSE -> 'ruby2.5-rubygem-pry',
-
   def self.opensuse(packages)
     names = ['openssh', 'make', 'gcc', 'ruby-devel']
     options = '--non-interactive'
     names.each do |n|
       system("zypper #{options} install #{n}")
     end
-    install_gems packages
+    install_gems packages, '--no-ri'
     create_symbolic_link
   end
 
-  def self.install_gems(list)
+  def self.debian(packages)
+    names = ['ssh', 'make', 'gcc', 'ruby-dev']
+    names.each { |name| system("apt-get install -y #{name}") }
+    install_gems packages, '--no-ri'
+    create_symbolic_link
+  end
+
+  def self.install_gems(list, options = '')
     fails = filter_uninstalled_gems(list)
     if !fails.empty?
-      puts '[INFO] Installing gems...'
+      puts "[INFO] Installing gems (options = #{options})..."
       fails.each do |name|
-        #system("gem install #{name} --no-ri")
-        system("gem install #{name}")
+        system("gem install #{name} #{options}")
       end
     else
       puts '[ OK ] Gems installed'

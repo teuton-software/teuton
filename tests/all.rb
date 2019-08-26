@@ -12,4 +12,4 @@ require_relative 'case_manager/case/case_model/case_model_test'
 require_relative 'project/readme/readme_test'
 require_relative 'project/configfile_reader_test'
 require_relative 'project/name_file_finder_test'
-# require_relative 'rubocop_test'
+# require_relative 'rubocop_test' # Duration: 60 seg. Require rubocop
