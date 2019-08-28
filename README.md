@@ -26,7 +26,7 @@ Features:
 
 # Documentation
 
-* Let's read the [Wiki for more information](https://github.com/teuton-software/teuton/wiki)
+* Read the [Wiki for more information](https://github.com/teuton-software/teuton/wiki)
 
 ---
 
