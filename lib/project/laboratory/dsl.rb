@@ -91,7 +91,7 @@ class Laboratory
   def unique(key, _value)
     @stats[:uniques] += 1
 
-    verboseln "    ! Unique     value for <#{key}>"
+    verboseln "    ! Unique      value for <#{key}>"
     verboseln ''
   end
 
