@@ -52,6 +52,7 @@ class ArrayFormatter < BaseFormatter
 
         target = {}
         target[:target_id]   = format('%02d', i[:id])
+        target[:check]       = i[:check]
         target[:score]       = value
         target[:weight]      = i[:weight]
         target[:description] = i[:description]
