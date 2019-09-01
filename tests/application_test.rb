@@ -12,7 +12,7 @@ class ApplicationTest < Minitest::Test
 
   def test_version
     assert_equal 'teuton', @app.name
-    assert_equal '2.0.6', @app.version
+    assert_equal '2.1.0', @app.version
   end
 
   def test_init_params
