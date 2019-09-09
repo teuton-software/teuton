@@ -5,6 +5,7 @@ require_relative '../application'
 require_relative '../report/report'
 require_relative '../project/configfile_reader'
 require_relative 'case/case'
+require_relative 'export_manager'
 require_relative 'main'
 require_relative 'utils'
 
@@ -42,6 +43,15 @@ class CaseManager
     end
   end
 
+  def export(args = {})
+    if args.class != Hash
+      puts "[ERROR] CaseManager#export: Argument = <#{args}>, class = #{args.class}"
+      puts '        Usage: export :format => :colored_text'
+      raise '[ERROR] CaseManager#export: Argument error!'
+    end
+    ExportManager.run(@report, @cases, args)
+  end
+
   def send(args = {})
     threads = []
     puts ''
@@ -50,5 +60,4 @@ class CaseManager
     @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
   end
-
 end

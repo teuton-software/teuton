@@ -74,6 +74,7 @@ class Result
     @content_backup = temp
     @content        = temp.clone
   end
+  alias restore restore!
 
   def value
     @content[0]

@@ -19,10 +19,10 @@ module FormatterFactory
       f = HTMLFormatter.new(report)
     when :json
       f = JSONFormatter.new(report)
+    when :resumed_txt
+      f = TXTFormatter.new(report,false)
     when :txt
       f = TXTFormatter.new(report,false)
-    when :txt0
-      f = TXT0Formatter.new(report)
     when :yaml
       f = YAMLFormatter.new(report)
     when :xml
