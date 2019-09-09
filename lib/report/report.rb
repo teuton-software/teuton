@@ -26,13 +26,23 @@ class Report
     @head    = {}
     @lines   = []
     @tail    = {}
-    @history = '' # Used by ??? (revise this!)
+    # @history save 1 letter for every target.
+    # For example: "..F." means: good, good, fail and good
+    # I will use this in the future stats manager.
+    @history = ''
   end
 
   def export(format = :txt)
     @format = format
     filepath = File.join(@output_dir, @filename + '.' + @format.to_s)
 
+    @formatter = FormatterFactory.get(self, @format, filepath)
+    @formatter.process
+  end
+
+  def export_resume(format = :txt)
+    filepath = File.join(@output_dir, @filename + '.' + format.to_s)
+    @format = "resume_#{format.to_s}".to_sym
     @formatter = FormatterFactory.get(self, @format, filepath)
     @formatter.process
   end

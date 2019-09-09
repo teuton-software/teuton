@@ -23,35 +23,19 @@ class CaseManager
     @report.tail[:duration] = finish_time - start_time
 
     verboseln "\n[INFO] Duration = #{(finish_time - start_time)} (#{finish_time})"
-    verboseln "\n"
     verboseln '=' * @report.head[:tt_title].length
 
     app = Application.instance
-    my_screen_table = Terminal::Table.new do |st|
-#      st.add_row [Rainbow('CASE ID').bright,
-#                  Rainbow('COMPLETED').bright,
-#                  Rainbow('MEMBERS').bright]
-      st.add_row ['CASE ID',
-                  'COMPLETED',
-                  'MEMBERS']
-    end
     @cases.each do |c|
+      line = {}
       if c.skip?
-        my_screen_table.add_row ['-', '-', '-']
-        next
+        line = { id: '-', grade: '-', letter: ' ', members: '-' }
       end
-      t1 = format('case_%02d', c.id.to_i)
-      if c.grade < 50.0
-        help = app.letter[:error]
-        # t2 = Rainbow(format('%3d%s %s', c.grade.to_f, '%', help)).red.bright
-      else
-        help = app.letter[:none]
-        # t2 = Rainbow(format('%3d%s %s', c.grade.to_f, '%', help)).green.bright
-      end
-      t2 = format('%3d%s %s', c.grade.to_f, '%', help)
-      t3 = format('%s', c.members)
-      my_screen_table.add_row [t1, t2, t3]
+      line[:id] = format('case_%02d', c.id.to_i)
+      line[:letter] = app.letter[:error] if c.grade < 50.0
+      line[:grade] = format('%3d', c.grade.to_f)
+      line[:members] = c.members
+      @report.lines << line
     end
-    @report.lines << my_screen_table.to_s + "\n"
   end
 end

@@ -9,7 +9,7 @@ module ExportManager
     format = args[:format] || Application.instance.default[:format]
     mode = args[:mode] || :all
     # Export resume report
-    main_report.export format if %i[resume all].include? mode
+    main_report.export_resume format if %i[resume all].include? mode
     return unless %i[details all].include? mode
 
     threads = []

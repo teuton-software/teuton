@@ -5,7 +5,11 @@ class Report
 
   def show
     show_initial_configurations
-    show_targets_history
+    if @filename.to_s.include? "resume"
+      puts "show resume"
+    else
+      show_targets_history
+    end
     show_final_values
     show_hall_of_fame
   end
