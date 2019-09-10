@@ -46,7 +46,7 @@ class Readme
     @data[:logs] = []
     @data[:groups] = []
     @data[:play] = []
-    @action = nil
+    @action = {}
     @getter = []
   end
 
