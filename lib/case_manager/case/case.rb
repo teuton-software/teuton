@@ -79,7 +79,7 @@ class Case
   end
 
   def members
-    return "-" if skip
+    return '-' if skip
     @report.head[:tt_members] || 'noname'
   end
 
@@ -90,6 +90,10 @@ class Case
 
   def show
     @report.show
+  end
+
+  def filename
+    @report.filename
   end
 
   private
