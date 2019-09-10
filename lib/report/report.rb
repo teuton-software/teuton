@@ -37,15 +37,19 @@ class Report
     filepath = File.join(@output_dir, @filename + '.' \
              + FormatterFactory.ext(@format))
 
-    @formatter = FormatterFactory.get(self, @format, filepath)
-    @formatter.process
+    formatter = FormatterFactory.get(self, @format, filepath)
+    formatter.process
   end
 
   def export_resume(format = :txt)
     @format = "resume_#{format.to_s}".to_sym
     filepath = File.join(@output_dir, @filename + '.' \
              + FormatterFactory.ext(@format))
-    @formatter = FormatterFactory.get(self, @format, filepath)
-    @formatter.process
+    formatter = FormatterFactory.get(self, @format, filepath)
+    formatter.process
+
+    filepath = File.join(@output_dir, 'moodle.csv')
+    formatter = FormatterFactory.get(self, :moodle_csv, filepath)
+    formatter.process
   end
 end

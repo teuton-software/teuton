@@ -33,8 +33,10 @@ class CaseManager
       end
       line[:id] = format('case_%02d', c.id.to_i)
       line[:letter] = app.letter[:error] if c.grade < 50.0
-      line[:grade] = format('  %3d', c.grade.to_f)
+      line[:grade] = c.grade.to_f #format('  %3d', c.grade.to_f)
       line[:members] = c.members
+      line[:moodle_id] = line[:id]
+      line[:moodle_feedback] = "\"Revise file #{line[:id]}\""
       @report.lines << line
     end
   end

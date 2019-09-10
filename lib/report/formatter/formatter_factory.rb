@@ -3,10 +3,11 @@
 require_relative 'csv_formatter'
 require_relative 'html_formatter'
 require_relative 'json_formatter'
-require_relative 'txt_formatter'
-require_relative 'yaml_formatter'
-require_relative 'xml_formatter'
+require_relative 'moodle_csv_formatter'
 require_relative 'resume_txt_formatter'
+require_relative 'txt_formatter'
+require_relative 'xml_formatter'
+require_relative 'yaml_formatter'
 
 # FormaterFactory module
 module FormatterFactory
@@ -20,6 +21,8 @@ module FormatterFactory
       f = HTMLFormatter.new(report)
     when :json
       f = JSONFormatter.new(report)
+    when :moodle_csv
+      f = MoodleCSVFormatter.new(report)
     when :resume_txt
       f = ResumeTXTFormatter.new(report, false)
     when :resume_colored_text
@@ -44,7 +47,7 @@ module FormatterFactory
     data[:cvs] = 'csv'
     data[:resume_csv] = 'csv'
     return format.to_s if data[format].nil?
-    
+
     data[format]
   end
 end

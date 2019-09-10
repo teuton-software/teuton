@@ -97,7 +97,5 @@ class TXTFormatter < ArrayFormatter
       end
     end
     w my_screen_table.to_s + "\n"
-
-    deinit
   end
 end

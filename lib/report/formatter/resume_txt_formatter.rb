@@ -42,7 +42,10 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     my_screen_table = Terminal::Table.new do |st|
       st.add_row [ 'CASE ID', 'GRADE', 'STATUS', 'MEMBERS' ]
       @data[:cases].each do |line|
-        st.add_row [ line[:id], line[:grade], line[:letter], line[:members] ]
+        st.add_row [ line[:id],
+                     format('  %3d', line[:grade]),
+                     line[:letter],
+                     line[:members] ]
       end
     end
     w my_screen_table.to_s+"\n"
@@ -76,7 +79,5 @@ class ResumeTXTFormatter < ResumeArrayFormatter
       end
     end
     w my_screen_table.to_s + "\n"
-
-    deinit
   end
 end
