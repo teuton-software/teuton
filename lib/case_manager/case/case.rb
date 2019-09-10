@@ -93,7 +93,7 @@ class Case
   end
 
   def filename
-    @report.filename
+    @report.filename #+ '.' + @report.format.to_s
   end
 
   private
@@ -103,9 +103,7 @@ class Case
       file = File.open(filename, 'r')
       item = file.readlines
       file.close
-
       item.map! { |i| i.sub(/\n/, '') }
-
       return item
     rescue StandardError
       return []

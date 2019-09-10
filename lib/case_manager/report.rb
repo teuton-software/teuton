@@ -35,8 +35,8 @@ class CaseManager
       line[:letter] = app.letter[:error] if c.grade < 50.0
       line[:grade] = c.grade.to_f #format('  %3d', c.grade.to_f)
       line[:members] = c.members
-      line[:moodle_id] = c.get(:tt_moodle_id) || line[:id]
-      line[:moodle_feedback] = "\"Revise file #{c.filename}\""
+      line[:moodle_id] = c.get(:tt_moodle_id)
+      line[:moodle_feedback] = "\"Filename: #{c.filename}. Date: #{Time.now}\""
       @report.lines << line
     end
   end
