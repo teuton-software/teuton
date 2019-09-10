@@ -34,15 +34,17 @@ class Report
 
   def export(format = :txt)
     @format = format
-    filepath = File.join(@output_dir, @filename + '.' + @format.to_s)
+    filepath = File.join(@output_dir, @filename + '.' \
+             + FormatterFactory.ext(@format))
 
     @formatter = FormatterFactory.get(self, @format, filepath)
     @formatter.process
   end
 
   def export_resume(format = :txt)
-    filepath = File.join(@output_dir, @filename + '.' + format.to_s)
     @format = "resume_#{format.to_s}".to_sym
+    filepath = File.join(@output_dir, @filename + '.' \
+             + FormatterFactory.ext(@format))
     @formatter = FormatterFactory.get(self, @format, filepath)
     @formatter.process
   end

@@ -34,4 +34,17 @@ module FormatterFactory
     f.init(filename)
     f
   end
+
+  def self.ext(format)
+    data = {}
+    data[:txt] = 'txt'
+    data[:colored_text] = 'txt'
+    data[:resume_txt] = 'txt'
+    data[:resume_colored_text] = 'txt'
+    data[:cvs] = 'csv'
+    data[:resume_csv] = 'csv'
+    return format.to_s if data[format].nil?
+    
+    data[format]
+  end
 end
