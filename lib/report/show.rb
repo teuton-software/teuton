@@ -6,7 +6,7 @@ class Report
   def show
     show_initial_configurations
     if @filename.to_s.include? "resume"
-      puts "show resume"
+      show_resume
     else
       show_targets_history
     end
@@ -20,6 +20,17 @@ class Report
     puts 'INITIAL CONFIGURATIONS'
     my_screen_table = Terminal::Table.new do |st|
       @head.each { |key,value| st.add_row [ key.to_s, value.to_s] }
+    end
+    puts my_screen_table.to_s
+  end
+
+  def show_resume
+    puts 'CASE RESULTS'
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row [ 'CASE ID', 'GRADE', 'STATUS', 'MEMBERS' ]
+      @lines.each do |line|
+        st.add_row [ line[:id], line[:grade], line[:letter], line[:members] ]
+      end
     end
     puts my_screen_table.to_s
   end

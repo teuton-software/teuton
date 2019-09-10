@@ -6,7 +6,7 @@ require_relative 'json_formatter'
 require_relative 'txt_formatter'
 require_relative 'yaml_formatter'
 require_relative 'xml_formatter'
-require_relative 'resume_array_formatter'
+require_relative 'resume_txt_formatter'
 
 # FormaterFactory module
 module FormatterFactory
@@ -21,7 +21,9 @@ module FormatterFactory
     when :json
       f = JSONFormatter.new(report)
     when :resume_txt
-      f = ResumeArrayFormatter.new(report)
+      f = ResumeTXTFormatter.new(report, false)
+    when :resume_colored_text
+      f = ResumeTXTFormatter.new(report, true)
     when :txt
       f = TXTFormatter.new(report,false)
     when :yaml

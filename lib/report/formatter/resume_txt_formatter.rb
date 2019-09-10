@@ -2,10 +2,10 @@
 
 require 'terminal-table'
 require 'rainbow'
-require_relative 'array_formatter'
+require_relative 'resume_array_formatter'
 
 # TXTFormatter class
-class TXTFormatter < ArrayFormatter
+class ResumeTXTFormatter < ResumeArrayFormatter
   def initialize(report, color=false)
     @color = color
     super(report)
@@ -18,7 +18,7 @@ class TXTFormatter < ArrayFormatter
 
     build_data
     process_config
-    process_test
+    process_cases
     process_results
     process_hof
     deinit
@@ -36,37 +36,16 @@ class TXTFormatter < ArrayFormatter
     w my_screen_table.to_s+"\n\n"
   end
 
-  def process_test
-    if @data[:test][:logs].size > 0
-      w "#{Rainbow("LOGS").bg(:blue)}\n"
-      if @data[:test][:logs].size == 1
-        w "#{@data[:test][:logs][0]}\n"
-      else
-        @data[:test][:logs].each { |line| w ". #{line}\n" }
+  def process_cases
+    w "#{Rainbow('CASE RESULTS').bg(:blue)}\n"
+
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row [ 'CASE ID', 'GRADE', 'STATUS', 'MEMBERS' ]
+      @data[:cases].each do |line|
+        st.add_row [ line[:id], line[:grade], line[:letter], line[:members] ]
       end
     end
-
-    if @data[:test][:groups].size > 0
-      w "\n#{Rainbow("GROUPS").bg(:blue)}\n"
-      @data[:test][:groups].each { |g| process_group g }
-    end
-  end
-
-  def process_group(group)
-    tab = '  '
-    w "- #{Rainbow(group[:title]).blue.bright}\n"
-    group[:targets].each do |i|
-      color = :red
-      color = :green if i[:check]
-      w tab*2 + format("%02d", i[:target_id])
-      w " (#{Rainbow(i[:score].to_s+"/"+i[:weight].to_s).color(color)})\n"
-      w tab*4+"Description : #{i[:description].to_s}\n"
-      w tab*4+"Command     : #{i[:command].to_s}\n"
-			w tab*4+"Duration    : #{i[:duration].to_s} (#{i[:conn_type].to_s})\n"
-      w tab*4+"Alterations : #{i[:alterations].to_s}\n"
-      w tab*4+"Expected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
-      w tab*4+"Result      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
-    end
+    w my_screen_table.to_s+"\n"
   end
 
   def process_results

@@ -33,7 +33,7 @@ class CaseManager
       end
       line[:id] = format('case_%02d', c.id.to_i)
       line[:letter] = app.letter[:error] if c.grade < 50.0
-      line[:grade] = format('%3d', c.grade.to_f)
+      line[:grade] = format('  %3d', c.grade.to_f)
       line[:members] = c.members
       @report.lines << line
     end
