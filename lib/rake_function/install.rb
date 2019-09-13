@@ -6,7 +6,7 @@
 # * install_gems
 module RakeFunction
   def self.opensuse(packages)
-    names = ['openssh', 'make', 'gcc', 'ruby-devel']
+    names = %w[openssh make gcc ruby-devel]
     options = '--non-interactive'
     names.each do |n|
       system("zypper #{options} install #{n}")
@@ -16,7 +16,7 @@ module RakeFunction
   end
 
   def self.debian(packages)
-    names = ['ssh', 'make', 'gcc', 'ruby-dev']
+    names = %w[ssh make gcc ruby-dev]
     names.each { |name| system("apt-get install -y #{name}") }
     install_gems packages, '--no-ri'
     create_symbolic_link

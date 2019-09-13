@@ -11,6 +11,7 @@ module ConfigFileReader
   def self.read(filepath)
     unless File.exist?(filepath)
       data = {}
+      data[:global] = {}
       data[:cases] = [{ tt_members: 'anonymous' }]
       return data
     end
@@ -31,11 +32,15 @@ module ConfigFileReader
       puts "        #{e.message}\n" + ('=' * 80)
       raise "[ERROR] ConfigFileReader <#{e}>"
     end
+    data[:global] = data[:global] || {}
+    data[:cases] = data[:cases] || []
     data
   end
 
   def self.read_json(filepath)
     data = JSON.parse(File.read(filepath), symbolize_names: true)
+    data[:global] = data[:global] || {}
+    data[:cases] = data[:cases] || []
     data
   end
 end

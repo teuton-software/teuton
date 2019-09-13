@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../application'
+require_relative '../configfile_reader'
 require_relative '../../case_manager/case/result/result'
 require_relative 'dsl'
 require_relative 'lang'
@@ -65,6 +66,8 @@ class Readme
     show_head
 
     @data[:groups].each do |group|
+      next if group[:actions].empty?
+
       puts "\n## #{group[:name]}\n\n"
       previous_host = nil
       group[:actions].each_with_index do |item, index|
@@ -85,6 +88,7 @@ class Readme
 
   def show_head
     app = Application.instance
+    configdata = ConfigFileReader.read(app.config_path)
     puts '```'
     puts format(Lang::get(:testname), app.test_name)
     puts format(Lang::get(:date), Time.now)
@@ -106,7 +110,9 @@ class Readme
       i = 0
       puts "```"
       while i < @getter.size
-        puts format(" - %-30s - %-30s", @getter[i], @getter[i+1])
+        col1 = @getter[i]
+        col2 = @getter[i+1]
+        puts format(" - %-30s - %-30s", col1, col2)
         i+=2
       end
       puts "```"

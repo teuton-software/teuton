@@ -4,7 +4,7 @@ require_relative 'lib/application'
 require_relative 'lib/rake_function/check.rb'
 require_relative 'lib/rake_function/install.rb'
 
-packages = ['net-ssh', 'net-sftp', 'rainbow', 'terminal-table']
+packages = %w[net-ssh net-sftp rainbow terminal-table]
 packages += %w[thor json minitest]
 
 desc 'Default: check'
