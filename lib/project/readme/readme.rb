@@ -70,7 +70,7 @@ class Readme
           item[:host] = group[:actions][0][:host]
         end
         if host.nil? || item[:host] != host
-          host = item[:host]
+          host = item[:host] || 'NILL!'
           puts format(Lang::get(:goto), host.upcase)
         end
 
