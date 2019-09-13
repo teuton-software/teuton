@@ -48,12 +48,14 @@ class Readme
     @data[:play] = []
     @action = {}
     @getter = []
+    @required_hosts = []
   end
 
   def process_content
     Application.instance.groups.each do |g|
       @current = { name: g[:name], actions: [] }
       @data[:groups] << @current
+      reset_action
       instance_eval(&g[:block])
     end
   end
@@ -64,14 +66,14 @@ class Readme
 
     @data[:groups].each do |group|
       puts "\n## #{group[:name]}\n\n"
-      host = nil
+      previous_host = nil
       group[:actions].each_with_index do |item, index|
         if item[:host].nil? && index.positive?
           item[:host] = group[:actions][0][:host]
         end
-        if host.nil? || item[:host] != host
-          host = item[:host] || 'NILL!'
-          puts format(Lang::get(:goto), host.upcase)
+        if previous_host.nil? || item[:host] != previous_host
+          previous_host = item[:host] || 'null'
+          puts format(Lang::get(:goto), previous_host.upcase)
         end
 
         weight = ''
@@ -89,6 +91,13 @@ class Readme
     puts '```'
     puts '---'
     puts "# README.md\n"
+
+    unless @required_hosts.empty?
+      puts Lang::get(:hosts)
+      @required_hosts.uniq.sort.each_with_index do |i, index|
+        puts "[#{index+1}] #{i}"
+      end
+    end
 
     unless @getter.empty?
       puts Lang::get(:params)

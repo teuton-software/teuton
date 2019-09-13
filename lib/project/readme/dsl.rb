@@ -8,8 +8,13 @@
 # * unique
 # * log
 class Readme
+  def reset_action
+    @action = {}
+  end
+
   def target(desc, args = {})
-    @action = { target: desc }
+    previous_host = @action[:host]
+    @action = { target: desc, host: previous_host }
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
     @action[:weight] = weight
@@ -18,12 +23,10 @@ class Readme
 
   def goto(host = :localhost, args = {})
     unless host == :localhost
-      @getter << "#{host}_ip".to_sym
-      @getter << "#{host}_username".to_sym
-      @getter << "#{host}_password".to_sym
+      @required_hosts << host.to_s
     end
     @action[:host] = host
-    @action[:exec] = args[:exec]
+    @action[:exec] = args[:exec] || 'noexec'
   end
 
   def run(command, args = {})
