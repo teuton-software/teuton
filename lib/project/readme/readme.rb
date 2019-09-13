@@ -41,14 +41,18 @@ class Readme
   end
 
   def reset
-    @verbose = Application.instance.verbose
+    app = Application.instance
+    @config = ConfigFileReader.read(app.config_path)
+    @verbose = app.verbose
     @result = Result.new
     @data = {}
     @data[:logs] = []
     @data[:groups] = []
     @data[:play] = []
     @action = {}
-    @getter = []
+    @setted_params = []
+    @cases_params = []
+    @global_params = {}
     @required_hosts = []
   end
 
@@ -88,7 +92,6 @@ class Readme
 
   def show_head
     app = Application.instance
-    configdata = ConfigFileReader.read(app.config_path)
     puts '```'
     puts format(Lang::get(:testname), app.test_name)
     puts format(Lang::get(:date), Time.now)
@@ -103,19 +106,10 @@ class Readme
       end
     end
 
-    unless @getter.empty?
-      @getter.uniq!.sort!
+    unless @cases_params.empty?
+      @cases_params.uniq!.sort!
       puts Lang::get(:params)
-      resto = (@getter.size % 2 == 1)
-      i = 0
-      puts "```"
-      while i < @getter.size
-        col1 = @getter[i]
-        col2 = @getter[i+1]
-        puts format(" - %-30s - %-30s", col1, col2)
-        i+=2
-      end
-      puts "```"
+      @cases_params.uniq.each { |i| puts format('* %s', i) }
     end
   end
 end

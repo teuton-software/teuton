@@ -16,7 +16,7 @@ module Lang
       testname: 'Nombre del reto   : %s',
       date:     'Fecha             : %s',
       version:  'Versión de Teuton : %s',
-      params: "\nParámetros de configuración de cada caso:",
+      params:   "\nParámetros de configuración de cada caso:",
       hosts: "\nMáquinas que se necesitan:",
       goto: 'Ir a la máquina %s, y hacer lo siguiente:'
     }

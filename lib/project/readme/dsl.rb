@@ -43,17 +43,26 @@ class Readme
   alias expect_one expect
 
   def get(value)
-    @getter << value
+    unless @config[:global][value].nil?
+      @global_params[value] = @config[:global][value]
+      return @config[:global][value]
+    end
+
+    return value.to_s.upcase if @setted_params.include? value
+
+    @cases_params << value
     value.to_s.upcase
   end
 
   def gett(value)
-    @getter << value
-    "VALUE (#{value})"
+    return "VALUE (#{value})" if @cases_params.include? value
+    return "VALUE (#{value})" if @setted_params.include? value
+
+    get(value)
   end
 
   def set(key, _value)
-    @getter.delete(key)
+    @setted_params << key
   end
 
   def unique(_key, _value)
