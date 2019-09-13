@@ -95,13 +95,21 @@ class Readme
     unless @required_hosts.empty?
       puts Lang::get(:hosts)
       @required_hosts.uniq.sort.each_with_index do |i, index|
-        puts "[#{index+1}] #{i}"
+        puts "#{index+1}. #{i}"
       end
     end
 
     unless @getter.empty?
+      @getter.uniq!.sort!
       puts Lang::get(:params)
-      @getter.uniq.sort.each { |i| puts "* #{i}" }
+      resto = (@getter.size % 2 == 1)
+      i = 0
+      puts "```"
+      while i < @getter.size
+        puts format(" - %-30s - %-30s", @getter[i], @getter[i+1])
+        i+=2
+      end
+      puts "```"
     end
   end
 end
