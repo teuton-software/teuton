@@ -23,7 +23,29 @@ class Readme
 
   def goto(host = :localhost, args = {})
     unless host == :localhost
-      @required_hosts << host.to_s
+      b = {}
+      a = "#{host}_ip".to_sym
+      if @config[:global][a].nil? && (not @setted_params.include?(a))
+        @cases_params << a
+      end
+      b[:ip] = @config[:global][a] if @config[:global][a]
+      b[:ip] = @setted_params[a] if @setted_params[a]
+
+      a = "#{host}_username".to_sym
+      if @config[:global][a].nil? && (not @setted_params.include?(a))
+        @cases_params << a
+      end
+      b[:username] = @config[:global][a] if @config[:global][a]
+      b[:username] = @setted_params[a] if @setted_params[a]
+
+      a = "#{host}_password".to_sym
+      if @config[:global][a].nil? && (not @setted_params.include?(a))
+        @cases_params << a
+      end
+      b[:password] = @config[:global][a] if @config[:global][a]
+      b[:password] = @setted_params[a] if @setted_params[a]
+
+      @required_hosts[host.to_s] = b
     end
     @action[:host] = host
     @action[:exec] = args[:exec] || 'noexec'
@@ -55,14 +77,14 @@ class Readme
   end
 
   def gett(value)
+    a = get(value)
     return "VALUE (#{value})" if @cases_params.include? value
-    return "VALUE (#{value})" if @setted_params.include? value
-
-    get(value)
+    return "VALUE (#{value})" if @setted_params[value]
+    "#{a} (#{value})" if @global_params.include? value
   end
 
-  def set(key, _value)
-    @setted_params << key
+  def set(key, value)
+    @setted_params[key] = value
   end
 
   def unique(_key, _value)

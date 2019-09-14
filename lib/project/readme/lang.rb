@@ -5,20 +5,22 @@ module Lang
   def self.get(key)
     lang = {}
     lang['en'] = {
+      version:  'Teuton version : %s',
       testname: 'Challenge name : %s',
       date:     'Date           : %s',
-      version:  'Teuton version : %s',
-      params:   "\nParams configured for every case:",
+      params:   "\nRequired configuration params:",
       hosts:    "\nRequired hosts:",
-      goto:     'Go to %s host, and do next:'
+      goto:     'Go to %s host, and do next:',
+      global:   "\nGlobal parameters that can be modified:"
     }
     lang['es'] = {
+      version:  'Versión de Teuton : %s',
       testname: 'Nombre del reto   : %s',
       date:     'Fecha             : %s',
-      version:  'Versión de Teuton : %s',
-      params:   "\nParámetros de configuración de cada caso:",
+      params:   "\nParámetros de configuración necesarios:",
       hosts: "\nMáquinas que se necesitan:",
-      goto: 'Ir a la máquina %s, y hacer lo siguiente:'
+      goto: 'Ir a la máquina %s, y hacer lo siguiente:',
+      global:   "\nParámetros globales que pueden ser modificados:"
     }
     locale = Application.instance.options['lang'].downcase
     lang[locale][key]

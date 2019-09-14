@@ -50,10 +50,10 @@ class Readme
     @data[:groups] = []
     @data[:play] = []
     @action = {}
-    @setted_params = []
+    @setted_params = {}
     @cases_params = []
     @global_params = {}
-    @required_hosts = []
+    @required_hosts = {}
   end
 
   def process_content
@@ -68,7 +68,11 @@ class Readme
   def show
     process_content
     show_head
+    show_content
+    show_tail
+  end
 
+  def show_content
     @data[:groups].each do |group|
       next if group[:actions].empty?
 
@@ -95,15 +99,21 @@ class Readme
     puts '```'
     puts format(Lang::get(:testname), app.test_name)
     puts format(Lang::get(:date), Time.now)
+    puts format(Lang::get(:version), app.version)
     puts '```'
     puts '---'
     puts "# README.md\n"
 
+    i = 1
     unless @required_hosts.empty?
       puts Lang::get(:hosts)
-      @required_hosts.uniq.sort.each_with_index do |i, index|
-        puts "#{index+1}. #{i}"
+      @required_hosts.each_pair do |k, v|
+        print "#{i}. #{k.upcase} <- "
+        v.each_pair { |k2,v2| print "#{k2}=#{v2} " }
+        print "\n"
+        i += 1
       end
+      puts "\n> NOTE: SSH Service installation is required on every host."
     end
 
     unless @cases_params.empty?
@@ -111,5 +121,15 @@ class Readme
       puts Lang::get(:params)
       @cases_params.uniq.each { |i| puts format('* %s', i) }
     end
+  end
+
+  def show_tail
+    return if @global_params.empty?
+
+    app = Application.instance
+    puts "\n---"
+    puts "# ANEXO"
+    puts Lang::get(:global)
+    @global_params.each_pair { |k,v| puts format('* %-15s = %s', k, v) }
   end
 end
