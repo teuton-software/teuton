@@ -95,7 +95,7 @@ class Readme
         weight = ''
         weight = "(x#{item[:weight]}) " if item[:weight] != 1.0
         puts "* #{weight}#{item[:target]}"
-        puts "  #{item[:readme]}" if item[:readme]
+        puts "    * #{item[:readme]}" if item[:readme]
       end
     end
   end
@@ -113,10 +113,13 @@ class Readme
     i = 1
     unless @required_hosts.empty?
       puts Lang::get(:hosts)
+      puts "\n"
+      puts '| ID | Host | Configuration |'
+      puts '| -- | ---- | ------------- |'
       @required_hosts.each_pair do |k, v|
-        print "#{i}. #{k.upcase} <- "
-        v.each_pair { |k2,v2| print "#{k2}=#{v2} " }
-        print "\n"
+        c = []
+        v.each_pair { |k2,v2| c << "#{k2}=#{v2}" }
+        puts "|#{i}|#{k.upcase}|#{c.join(', ')}|"
         i += 1
       end
       puts "\n> NOTE: SSH Service installation is required on every host."
@@ -126,6 +129,9 @@ class Readme
       @cases_params.uniq!.sort!
       puts Lang::get(:params)
       @cases_params.uniq.each { |i| puts format('* %s', i) }
+      puts "\n> NOTE:"
+      puts "> * Teuton software must known this information."
+      puts "> * Save them into challenge config file."
     end
   end
 
@@ -135,7 +141,17 @@ class Readme
     app = Application.instance
     puts "\n---"
     puts "# ANEXO"
+    puts "\n\#\# Global params"
     puts Lang::get(:global)
-    @global_params.each_pair { |k,v| puts format('* %-15s = %s', k, v) }
+    puts "\n"
+    puts '| Global param | Value |'
+    puts '| ------------ | ----- |'
+    @global_params.each_pair { |k,v| puts "|#{k}|#{v}|" }
+    puts "\n\#\# Created params"
+    puts Lang::get(:created)
+    puts "\n"
+    puts '| Created params | Value |'
+    puts '| -------------- | ----- |'
+    @setted_params.each_pair { |k,v| puts "|#{k}|#{v}|" }
   end
 end

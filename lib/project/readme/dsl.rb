@@ -84,9 +84,9 @@ class Readme
 
   def gett(value)
     a = get(value)
-    return "VALUE (#{value})" if @cases_params.include? value
-    return "VALUE (#{value})" if @setted_params[value]
-    "#{a} (#{value})" if @global_params.include? value
+    return "[#{value}](\#required-params)" if @cases_params.include? value
+    return "[#{value}](\#created-params)" if @setted_params[value]
+    "[#{a}](\#global-params)" if @global_params.include? value
   end
 
   def set(key, value)
