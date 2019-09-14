@@ -8,13 +8,19 @@
 # * unique
 # * log
 class Readme
-  def reset_action
-    @action = {}
+  def readme(text)
+    if @action == {}
+      # It's a group readme
+      @current[:readme] = text
+    else
+      # It's a target readme
+      @action[:readme] = text
+    end
   end
 
   def target(desc, args = {})
     previous_host = @action[:host]
-    @action = { target: desc, host: previous_host }
+    @action = { target: desc, host: previous_host, readme: nil }
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
     @action[:weight] = weight

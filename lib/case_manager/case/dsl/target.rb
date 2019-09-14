@@ -2,6 +2,10 @@
 
 # DSL#target
 module DSL
+  def readme(_text)
+    # Usefull for "teuton reamde" action.
+  end
+
   def target(desc, args = {})
     weight(1.0)
     @action[:description] = desc.to_s

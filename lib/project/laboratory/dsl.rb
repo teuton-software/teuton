@@ -10,6 +10,10 @@
 # * log
 # * set
 class Laboratory
+  def readme(_text)
+    # Usefull for "teuton reamde" action.
+  end
+
   def target(desc, args = {})
     @stats[:targets] += 1
     @targetid += 1
