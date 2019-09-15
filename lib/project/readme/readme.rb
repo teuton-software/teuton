@@ -107,7 +107,6 @@ class Readme
     puts format(Lang::get(:date), Time.now)
     puts format(Lang::get(:version), app.version)
     puts '```'
-    puts '---'
     puts "# README.md\n"
 
     i = 1
