@@ -4,6 +4,7 @@ require_relative 'csv_formatter'
 require_relative 'html_formatter'
 require_relative 'json_formatter'
 require_relative 'moodle_csv_formatter'
+require_relative 'resume_json_formatter'
 require_relative 'resume_txt_formatter'
 require_relative 'txt_formatter'
 require_relative 'xml_formatter'
@@ -28,7 +29,7 @@ module FormatterFactory
     when :resume_colored_text
       f = ResumeTXTFormatter.new(report, true)
     when :resume_json
-      f = TXTFormatter.new(report, false)
+      f = ResumeJSONFormatter.new(report)
     when :txt
       f = TXTFormatter.new(report,false)
     when :yaml

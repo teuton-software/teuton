@@ -1,6 +1,5 @@
-# frozen_string_literal: true
 
-require_relative 'array_formatter'
+require_relative 'resume_array_formatter'
 
 # JSONFormatter class
 class ResumeJSONFormatter < ResumeArrayFormatter
