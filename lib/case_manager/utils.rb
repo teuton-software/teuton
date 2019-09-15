@@ -36,11 +36,13 @@ module Utils
 
     begin
       text = `#{cmd}`
+      exitstatus = $?.exitstatus
     rescue StandardError => e # rescue Exception => e
       verbose '!'
       puts("[ERROR] #{e}: Local exec: #{cmd}")
     end
-    encode_and_split(encoding, text)
+    content = encode_and_split(encoding, text)
+    {exitstatus: exitstatus, content: content}
   end
 
   def verboseln(text)

@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 
 require 'singleton'
-
 require_relative '../application'
 require_relative '../report/report'
 require_relative '../project/configfile_reader'
@@ -19,7 +19,6 @@ require_relative 'utils'
 # * case_manager/hall_of_fame
 # * case_manager/report
 # * case_manager/show
-
 class CaseManager
   include Singleton
   include Utils
@@ -34,18 +33,17 @@ class CaseManager
     check_cases!
     instance_eval(&block)
     # Run export if user pass option command "--export=json"
-    app = Application.instance
-    unless app.options['export'].nil? # Accept "export" param
-      export(:format => app.options['export'].to_sym)
-    end
-    unless app.options['configfile'].nil? # Accept "configfile" param
-      export(:format => app.options['configfile'].to_sym)
-    end
+    i = Application.instance.options['export']
+    export(format: i.to_sym) unless i.nil?
+    # Accept "configfile" param REVISE There exists?
+    i = Application.instance.options['configfile']
+    export(format: i.to_sym) unless i.nil?
   end
 
   def export(args = {})
     if args.class != Hash
-      puts "[ERROR] CaseManager#export: Argument = <#{args}>, class = #{args.class}"
+      puts "[ERROR] CaseManager#export: Argument = <#{args}>, " \
+           "class = #{args.class}"
       puts '        Usage: export :format => :colored_text'
       raise '[ERROR] CaseManager#export: Argument error!'
     end

@@ -7,7 +7,7 @@ require_relative 'ext_filter'
 # This object contains data returned by remote/local execution
 class Result
   attr_reader :content
-  attr_writer :ok
+  attr_accessor :exitstatus
 
   def initialize
     reset
@@ -16,14 +16,14 @@ class Result
   def reset
     @content_backup = []
     @content        = []
-    @ok             = false
+    @exitstatus     = nil
     @value          = nil
     @expected       = nil
     @alterations    = []
   end
 
   def ok?
-    @ok
+    @exitstatus == 0
   end
 
   def alterations

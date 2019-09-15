@@ -9,7 +9,9 @@ class Case
 
   def run_local_cmd()
     @action[:conn_type] = :local
-    @result.content = my_execute( @action[:command], @action[:encoding] )
+    i = my_execute( @action[:command], @action[:encoding] )
+    @result.exitstatus = i[:exitstatus]
+    @result.content = i[:content]
   end
 
   def run_remote_cmd(input_hostname)
