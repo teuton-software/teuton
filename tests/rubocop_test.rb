@@ -8,10 +8,7 @@ class RubocopTest < Minitest::Test
     @files = {}
 
     @files[:case] = []
-    @files[:case] << 'lib/case_manager/case/result/result.rb'
-    @files[:case] << 'lib/case_manager/case/result/ext_array.rb'
-#    @files[:case] << 'lib/case_manager/case/result/ext_compare.rb'
-    @files[:case] << 'lib/case_manager/case/result/ext_filter.rb'
+    @files[:case] << 'lib/case_manager/case/play.rb'
 
     @files[:case_manager] = []
     @files[:case_manager] << 'lib/case_manager/main.rb'
@@ -63,6 +60,12 @@ class RubocopTest < Minitest::Test
     @files[:report] << 'lib/report/formatter/base_formatter.rb'
     @files[:report] << 'lib/report/formatter/json_formatter.rb'
     @files[:report] << 'lib/report/formatter/yaml_formatter.rb'
+
+    @files[:result] = []
+    @files[:result] << 'lib/case_manager/case/result/result.rb'
+    @files[:result] << 'lib/case_manager/case/result/ext_array.rb'
+#    @files[:result] << 'lib/case_manager/case/result/ext_compare.rb'
+    @files[:result] << 'lib/case_manager/case/result/ext_filter.rb'
   end
 
   def test_rubocop_case
@@ -123,6 +126,14 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_report
     @files[:report].each do |file|
+      output = `rubocop #{file}`
+      lines = output.split("\n")
+      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+    end
+  end
+
+  def test_rubocop_result
+    @files[:result].each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
       assert_equal true, lines.any?(/file inspected, no offenses detected/)

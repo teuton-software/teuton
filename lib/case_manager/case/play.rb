@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Case class:
 # * play method
 class Case
@@ -6,41 +8,46 @@ class Case
       verbose "Skipping case <#{@config.get(:tt_members)}>\n"
       return false
     end
-
-    # FIXTHIS: Delete previous temp files
-    # names = @id.to_s+"-*.tmp"
-    # r=`ls #{@tmpdir}/#{names} 2>/dev/null | wc -l`
-    # execute("rm #{@tmpdir}/#{names}") if r[0].to_i>0
-
+    # TODO: Delete old reports???
     start_time = Time.now
-    if get(:tt_sequence) # Play in sequence
-      verboseln "Starting case <#{@config.get(:tt_members)}>"
-      @groups.each do |t|
-        verbose "* Processing <#{t[:name]}> "
-        instance_eval(&t[:block])
-        verbose "\n"
-      end
-      verboseln "\n"
-    else # Play in parallel
-      @groups.each do |t|
-        # m = "GROUP: #{t[:name]}" # REMOVE this when update report
-        # log('=' * m.size)
-        # log(m)
-        @action[:groupname] = t[:name]
-        instance_eval(&t[:block])
-      end
-    end
+    play_in_sequence if get(:tt_sequence)     # Play in sequence
+    play_in_parallel unless get(:tt_sequence) # Play in parallel
+    fill_report(start_time, Time.now)
+    close_opened_sessions
+  end
+  alias start play
 
-    finish_time = Time.now
-    @report.head.merge! @config.local
-    @report.tail[:case_id] = @id
-    @report.tail[:start_time_] = start_time
-    @report.tail[:finish_time] = finish_time
-    @report.tail[:duration] = finish_time - start_time
-
+  def close_opened_sessions
     @sessions.each_value do |s|
       s.close if s.class == Net::SSH::Connection::Session
     end
   end
-  alias start play
+
+  private
+
+  def play_in_sequence
+    verboseln "Starting case <#{@config.get(:tt_members)}>"
+    @groups.each do |t|
+      verbose "* Processing <#{t[:name]}> "
+      instance_eval(&t[:block])
+      verbose "\n"
+    end
+    verboseln "\n"
+  end
+
+  def play_in_parallel
+    @groups.each do |t|
+      @action[:groupname] = t[:name]
+      instance_eval(&t[:block])
+    end
+  end
+
+  def fill_report(start_time, finish_time)
+    @report.head.merge! @config.local
+    # @report.head.merge! @config.global
+    @report.tail[:case_id] = @id
+    @report.tail[:start_time_] = start_time
+    @report.tail[:finish_time] = finish_time
+    @report.tail[:duration] = finish_time - start_time
+  end
 end
