@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'net/ssh'
 
@@ -5,21 +6,32 @@ require 'net/ssh'
 module OSType
   def self.detect(session)
     raise 'OSType#detect' unless session.class == Net::SSH::Connection::Session
+
     text = session.exec!('uname -a')
-    if text.include? 'GNU/Linux'
-      session.exec!('mkdir /tmp/teuton')
-      return { ostype: :gnulinux, remotefolder: '/tmp/teuton' }
-    elsif text.include? 'Darwin'
-      session.exec!('mkdir /tmp/teuton')
-      return { ostype: :macos, remotefolder: '/tmp/teuton' }
-    end
+    return gnulinux_detected if text.include? 'GNU/Linux'
+
+    return macos_detected if text.include? 'Darwin'
+
     text = session.exec!('ver')
-    if text.include? 'Windows'
-      session.exec!('mkdir %windir%\temp\teuton')
-      text = session.exec!('echo "%windir%\temp\teuton"')
-      return { ostype: :windows, remotefolder: text.strip! }
-    end
+    return windows_detected if text.include? 'Windows'
+
     puts '[ERROR] OSType#detect: Unknown OSType!'
     { ostype: :unknown, remotefolder: nil }
+  end
+
+  def self.gnulinux_detected(session)
+    session.exec!('mkdir /tmp/teuton')
+    { ostype: :gnulinux, remotefolder: '/tmp/teuton' }
+  end
+
+  def self.macos_detected(session)
+    session.exec!('mkdir /tmp/teuton')
+    { ostype: :macos, remotefolder: '/tmp/teuton' }
+  end
+
+  def self.windows_detected(session)
+    session.exec!('mkdir %windir%\temp\teuton')
+    text = session.exec!('echo "%windir%\temp\teuton"')
+    { ostype: :windows, remotefolder: text.strip! }
   end
 end

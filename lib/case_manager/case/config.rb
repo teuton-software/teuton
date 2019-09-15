@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../application'
 
 # Define Config class. Used by every Case.
@@ -20,6 +22,7 @@ class Case
       return @local[option]   unless @local[option].nil?
       return @running[option] unless @running[option].nil?
       return @global[option]  unless @global[option].nil?
+
       'NODATA'
     end
 

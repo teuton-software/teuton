@@ -1,25 +1,29 @@
+# frozen_string_literal: true
 
+# Class Case#close
 class Case
   def close(uniques)
     fails = 0
     @uniques.each do |key|
-      if uniques[key].include?(id) and uniques[key].count>1 then
-        fails += 1
-        log("UNIQUE:", :error)
-        begin
-          log("   ├── Value     => #{key.to_s}", :error)
-         rescue Exception => e
-          log(key, :error)
-          log(e.to_s, :error)
-        end
-        begin
-          log("   └── Conflicts => #{uniques[key].to_s}", :error)
-         rescue Exception => e
-          log(e.to_s, :error)
-        end
-      end
+      next unless uniques[key].include?(id) && uniques[key].count > 1
+
+      fails += 1
+      log_unique_message(key, uniques[key])
     end
-    @report.tail[:unique_fault]=fails
+    @report.tail[:unique_fault] = fails
     @report.close
+  end
+
+  private
+
+  def log_unique_message(key, value)
+    log('UNIQUE:', :error)
+    begin
+      log("   ├── Value     => #{key}", :error)
+      log("   └── Conflicts => #{value}", :error)
+    rescue StandardError => e
+      log(key, :error)
+      log(e.to_s, :error)
+    end
   end
 end

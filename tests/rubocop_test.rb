@@ -8,6 +8,10 @@ class RubocopTest < Minitest::Test
     @files = {}
 
     @files[:case] = []
+    @files[:case] << 'lib/case_manager/case/close.rb'
+    @files[:case] << 'lib/case_manager/case/config.rb'
+    @files[:case] << 'lib/case_manager/case/ostype.rb'
+    @files[:case] << 'lib/case_manager/case/main.rb'
     @files[:case] << 'lib/case_manager/case/play.rb'
 
     @files[:case_manager] = []
