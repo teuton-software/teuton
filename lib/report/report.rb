@@ -42,6 +42,7 @@ class Report
   end
 
   def export_resume(format = :txt)
+    format = :txt if format == :json
     @format = "resume_#{format.to_s}".to_sym
     filepath = File.join(@output_dir, @filename + '.' \
              + FormatterFactory.ext(@format))

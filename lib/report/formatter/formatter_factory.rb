@@ -27,6 +27,8 @@ module FormatterFactory
       f = ResumeTXTFormatter.new(report, false)
     when :resume_colored_text
       f = ResumeTXTFormatter.new(report, true)
+    when :resume_json
+      f = TXTFormatter.new(report, false)
     when :txt
       f = TXTFormatter.new(report,false)
     when :yaml
@@ -42,8 +44,9 @@ module FormatterFactory
     data = {}
     data[:txt] = 'txt'
     data[:colored_text] = 'txt'
-    data[:resume_txt] = 'txt'
     data[:resume_colored_text] = 'txt'
+    data[:resume_json] = 'json'
+    data[:resume_txt] = 'txt'
     data[:cvs] = 'csv'
     data[:resume_csv] = 'csv'
     return format.to_s if data[format].nil?
