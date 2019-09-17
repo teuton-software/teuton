@@ -57,6 +57,7 @@ class ArrayFormatter < BaseFormatter
         target[:weight]      = i[:weight]
         target[:description] = i[:description]
         target[:command]     = i[:command]
+        target[:conn_type]   = i[:conn_type]
         target[:duration]    = i[:duration]
         target[:alterations] = i[:alterations]
         target[:expected]    = i[:expected]
