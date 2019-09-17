@@ -13,18 +13,16 @@ module DSL
     tempfile(args[:tempfile]) if args[:tempfile]
     @action[:encoding] = args[:encoding] || 'UTF-8'
 
+    protocol = @config.get("#{host}_protocol".to_sym)
+    ip = @config.get("#{host}_ip".to_sym)
     start_time = Time.now
-    if host.to_s == 'localhost' || host.to_s.include?('127.0.0.')
+    if (protocol == 'NODATA' || protocol.nil?) &&
+       (host.to_s == 'localhost' || host.to_s.include?('127.0.0.') || ip.include?('127.0.0.'))
       run_local_cmd
+    elsif ip.nil? || ip == 'NODATA'
+      log("#{host} IP is nil!", :error)
     else
-      ip = get((host.to_s + '_ip').to_sym)
-      if ip.nil?
-        log("#{host} IP is nil!", :error)
-      elsif ip.include?('127.0.0.')
-        run_local_cmd
-      else
-        run_remote_cmd host
-      end
+      run_remote_cmd host
     end
     @action[:duration] = (Time.now - start_time).round(3)
   end
