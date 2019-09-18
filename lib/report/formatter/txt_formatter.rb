@@ -58,7 +58,7 @@ class TXTFormatter < ArrayFormatter
     group[:targets].each do |i|
       color = :red
       color = :green if i[:check]
-      w tab*2 + format("%02d", i[:target_id])
+      w tab*2 + format("%02d", i[:target_id].to_i)
       w " (#{Rainbow(i[:score].to_s+"/"+i[:weight].to_s).color(color)})\n"
       w tab*4+"Description : #{i[:description].to_s}\n"
       w tab*4+"Command     : #{i[:command].to_s}\n"
