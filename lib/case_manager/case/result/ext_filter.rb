@@ -78,8 +78,7 @@ class Result
 
   def find_when_regexp(filter)
     @alterations << "find(#{filter})"
-    temp = @content.clone
-    @content = temp.grep filter
+    @content.select! { |i| filter.match(i) }
     self
   end
 end

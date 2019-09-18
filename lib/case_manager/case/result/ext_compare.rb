@@ -83,8 +83,12 @@ class Result
     case p_value.class.to_s
     when 'Fixnum'
       l_value = @content[0].to_i
+      puts '[WARN] Fixnum class is deprecated!'
+      puts '       Upgrade your Ruby version.'
     when 'Float'
       l_value = @content[0].to_f
+    when 'Integer'
+      l_value = @content[0].to_i
     end
     l_value < p_value
   end
