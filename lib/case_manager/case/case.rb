@@ -12,10 +12,11 @@ require_relative 'case_model/case_model'
 
 # Case class
 # * initialize
-# * skip
+# * export
+# * filename
 # * grade
 # * members
-# * export
+# * skip
 # * show
 # * read_filename ???
 class Case
@@ -68,10 +69,14 @@ class Case
     tempfile :default
   end
 
-  def skip
-    @skip
+  def export(format)
+    return if skip?
+    @report.export format
   end
-  alias skip? skip
+
+  def filename
+    @report.filename #+ '.' + @report.format.to_s
+  end
 
   def grade
     return 0.0 if skip
@@ -83,17 +88,13 @@ class Case
     @report.head[:tt_members] || 'noname'
   end
 
-  def export(format)
-    return if skip?
-    @report.export format
+  def skip
+    @skip
   end
+  alias skip? skip
 
   def show
     @report.show
-  end
-
-  def filename
-    @report.filename #+ '.' + @report.format.to_s
   end
 
   private

@@ -2,7 +2,10 @@
 
 require_relative '../../application'
 
-# Define Config class. Used by every Case.
+# Class Case::Config
+# * get
+# * set
+# * unset
 class Case
   # This class manage configuration for only one case
   class Config

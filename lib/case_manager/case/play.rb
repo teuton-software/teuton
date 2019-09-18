@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 # Case class:
-# * play method
+# * play
+# * play_in_parallel
+# * play_in_sequence
+# * fill_report
+# * close_opened_sessions
 class Case
   def play
     if skip?
@@ -25,6 +29,13 @@ class Case
 
   private
 
+  def play_in_parallel
+    @groups.each do |t|
+      @action[:groupname] = t[:name]
+      instance_eval(&t[:block])
+    end
+  end
+
   def play_in_sequence
     verboseln "Starting case <#{@config.get(:tt_members)}>"
     @groups.each do |t|
@@ -35,16 +46,10 @@ class Case
     verboseln "\n"
   end
 
-  def play_in_parallel
-    @groups.each do |t|
-      @action[:groupname] = t[:name]
-      instance_eval(&t[:block])
-    end
-  end
-
   def fill_report(start_time, finish_time)
+    @report.head.merge! @config.global
     @report.head.merge! @config.local
-    # @report.head.merge! @config.global
+    @report.head.merge! @config.running
     @report.tail[:case_id] = @id
     @report.tail[:start_time_] = start_time
     @report.tail[:finish_time] = finish_time

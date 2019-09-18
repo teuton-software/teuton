@@ -19,8 +19,8 @@ module DSL
     if (protocol == 'NODATA' || protocol.nil?) &&
        (host.to_s == 'localhost' || host.to_s.include?('127.0.0.') || ip.include?('127.0.0.'))
       run_local_cmd
-    elsif ip.nil? || ip == 'NODATA'
-      log("#{host} IP is nil!", :error)
+    elsif ip == 'NODATA'
+      log("#{host} IP not found!", :error)
     else
       run_remote_cmd host
     end
