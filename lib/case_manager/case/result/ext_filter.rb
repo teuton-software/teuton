@@ -4,16 +4,20 @@
 class Result
   # TODO: Error line 102 undefined include? method for 0 Fixnum...
   def find(filter)
+    find?(filter)
+    self
+  end
+
+  def find?(filter)
     case filter.class.to_s
     when 'Array'
-      find_when_array(filter)
-      return self
+      return find_when_array(filter)
     when 'String'
-      find_when_string(filter)
+      return find_when_string(filter)
     when 'Regexp'
-      find_when_regexp(filter)
+      return find_when_regexp(filter)
     end
-    self
+    false
   end
 
   def not_find(p_filter)
@@ -60,25 +64,27 @@ class Result
   private
 
   def find_when_array(filter)
+    return find?(filter[0]) if filter.size == 1
+    
     @alterations << "find(#{filter})"
     @content.select! do |line|
       flag = false
-      filter.each { |i| flag ||= line.include?(i.to_s) }
+      filter.each { |i| flag ||= find?(i) }
       flag
     end
-    self
+    @content.size >= 0
   end
 
   def find_when_string(filter)
     @alterations << "find(#{filter})"
-    # Error controlar include? en 0 Fixnum...
+    # Error controlar include? en 0 Integer...
     @content.select! { |i| i.include?(filter.to_s) }
-    self
+    @content.size >= 0
   end
 
   def find_when_regexp(filter)
     @alterations << "find(#{filter})"
     @content.select! { |i| filter.match(i) }
-    self
+    @content.size >= 0
   end
 end

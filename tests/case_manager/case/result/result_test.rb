@@ -73,7 +73,8 @@ class ResultTest < Minitest::Test
 
     r.content = @content2
     assert_equal true, r.grep(filter1).size.eq(1)
-    assert_equal "find([\"a\"]) & count", r.alterations
+    #assert_equal "find([\"a\"]) & count", r.alterations
+    assert_equal "find(a) & count", r.alterations
     r.restore!
     assert_equal true, r.find(filter2).size.eq(2)
     assert_equal "find([\"a\", \"2\"]) & count", r.alterations
