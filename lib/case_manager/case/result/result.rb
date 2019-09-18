@@ -5,6 +5,8 @@ require_relative 'ext_compare'
 require_relative 'ext_filter'
 
 # This object contains data returned by remote/local execution
+# * initialize
+# * reset
 class Result
   attr_reader :content
   attr_accessor :exitstatus
@@ -38,30 +40,27 @@ class Result
   end
 
   def debug
-    my_screen_table = Terminal::Table.new do |st|
-      if @content.class == Array
-        debug_array(st)
-      else
-        debug_no_array(st)
-      end
+    if @content.class == Array
+      debug_array
+    else
+      debug_no_array
     end
-    puts '\n' + my_screen_table.to_s + '\n'
   end
 
-  def debug_array(mst)
-    mst.add_row ["count=#{@content.count}", 'result.debug()']
-    mst.add_separator
-    i = 0
-    @content.each do |item|
-      mst.add_row ['Line_' + i.to_s, item]
-      i += 1
+  def debug_array
+    print "*" * 20
+    print " [DEBUG] count=#{@content.count} "
+    puts "*" * 20
+    @content.each_with_index do |item, index|
+      puts format("[%2d] %s", index, item)
     end
+    puts "*" * 57
   end
 
   def debug_no_array(mst)
-    mst.add_row ['', 'result.debug()']
-    mst.add_separator
-    mst.add_row [@content.class.to_s, @content.to_s]
+    print "*" * 20
+    print "[DEBUG] value=#{@content.to_s} (#{@content.class.to_s})"
+    puts "*" * 20
   end
 
   def expected
