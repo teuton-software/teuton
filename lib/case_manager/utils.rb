@@ -18,7 +18,7 @@ module Utils
     flag = [:default, 'UTF-8'].include? encoding
     return text.encode('UTF-8', invalid: :replace).split("\n") if flag
 
-    # Convert text to UTF-8 when we know encoding
+    # Convert text from input ENCODING to UTF-8
     ec = Encoding::Converter.new(encoding.to_s, 'UTF-8')
     begin
       text = ec.convert(text)

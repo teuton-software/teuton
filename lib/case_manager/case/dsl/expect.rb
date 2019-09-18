@@ -47,8 +47,6 @@ module DSL
   end
 
   def expect2(cond, args = {})
-    weight(args[:weight])
-
     @action_counter += 1
     @action[:id] = @action_counter
     @action[:check] = cond

@@ -17,8 +17,9 @@ class Laboratory
   def target(desc, args = {})
     @stats[:targets] += 1
     @targetid += 1
-    i = @targetid
-    verboseln '(%03d' % i + ") target      #{desc}"
+    weight = args[:weight] || 1.0
+    verboseln '(%03d' % @targetid + ") target      #{desc}"
+    verboseln "      weight      #{weight}"
   end
   alias goal target
 
@@ -51,27 +52,18 @@ class Laboratory
       expect_one _cond, args
       return
     end
-    weight = 1.0
-    weight = args[:weight].to_f if args[:weight]
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect      #{result.expected} (#{result.expected.class})"
-    verboseln "      weight      #{weight}"
     verboseln ''
   end
 
   def expect_one(_cond, args = {})
-    weight = 1.0
-    weight = args[:weight].to_f if args[:weight]
     verboseln "      expect_one  #{_cond.to_s} (#{_cond.class})"
-    verboseln "      weight      #{weight}"
     verboseln ''
   end
 
   def expect_none(_cond, args = {})
-    weight = 1.0
-    weight = args[:weight].to_f if args[:weight]
     verboseln "      expect_none #{_cond.to_s} (#{_cond.class})"
-    verboseln "      weight      #{weight}"
     verboseln ''
   end
 
