@@ -31,18 +31,17 @@ module Utils
   end
 
   def my_execute(cmd, encoding = 'UTF-8')
-    text = ''
-    return output if Application.instance.debug
+    return { exitstatus: 0, content: '' } if Application.instance.debug
 
     begin
       text = `#{cmd}`
-      exitstatus = $?.exitstatus
+      exitstatus = $CHILD_STATUS.exitstatus
     rescue StandardError => e # rescue Exception => e
       verbose '!'
       puts("[ERROR] #{e}: Local exec: #{cmd}")
     end
     content = encode_and_split(encoding, text)
-    {exitstatus: exitstatus, content: content}
+    { exitstatus: exitstatus, content: content }
   end
 
   def verboseln(text)

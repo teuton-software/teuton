@@ -21,6 +21,10 @@ class Result
     end
     internal == external
   end
+  alias eq?        eq
+  alias equal      eq
+  alias equal?     eq
+  alias is_equal?  eq
 
   def neq(external)
     @expected = "Not equal to #{external}"
@@ -39,6 +43,9 @@ class Result
     end
     internal != external
   end
+  alias neq?       neq
+  alias not_equal  neq
+  alias not_equal? neq
 
   def ge(p_value)
     @expected = "Greater or equal to #{p_value}"
@@ -113,13 +120,20 @@ class Result
     l_value < p_value
   end
 
-  alias eq?        eq
-  alias equal      eq
-  alias equal?     eq
-  alias is_equal?  eq
-  alias neq?       neq
-  alias not_equal  neq
-  alias not_equal? neq
+  # Return 'true' if the parameter value is near to the target value.
+  # To get this we consider a 10% desviation or less, as an acceptable result.
+  def near_to?(value)
+    @expected = "Is near to #{value}"
+    return false if @content.nil?
+
+    target = @content[0].to_f
+    desv   = (target * 10.0) / 100.0
+    return true if (target - value.to_f).abs.to_f <= desv
+
+    false
+  end
+  alias near? near_to?
+
   alias greater_or_equal  ge
   alias greater_or_equal? ge
   alias greater          gt

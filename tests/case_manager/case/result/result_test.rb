@@ -69,24 +69,25 @@ require 'pry-byebug'
     filter2 = ['a', '2']
     filter3 = ['a', '3', '4', 'd']
     filter4 = ['3']
-    filter5 = ['3', /c|d/]
+    filter5 = ['11', 'd4']
     r = @result
 
+    #@content2 = [ "a12","b13","c23","d34" ]
     r.content = @content2
     assert_equal true, r.grep(filter1).count.eq(1)
     assert_equal "find([\"a\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter2).count.eq(1)
+    assert_equal true, r.find(filter2).count.eq(2)
     assert_equal "find([\"a\", \"2\"]) & count", r.alterations
     r.restore!
-#    assert_equal true, r.find(filter3).count.eq(0)
-#    assert_equal "find([\"a\", \"3\", \"4\", \"d\"]) & count", r.alterations
+    assert_equal true, r.find(filter3).count.eq(4)
+    assert_equal "find([\"a\", \"3\", \"4\", \"d\"]) & count", r.alterations
     r.restore!
     assert_equal true, r.find(filter4).count.eq(3)
     assert_equal "find([\"3\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter5).count.eq(3)
-    assert_equal "find([\"3\", /c|d/]) & count", r.alterations
+    assert_equal true, r.find(filter5).count.eq(0)
+    assert_equal "find([\"11\", \"d4\"]) & count", r.alterations
   end
 
   def test_grep_string

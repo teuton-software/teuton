@@ -5,9 +5,21 @@ class Result
   # TODO: Error line 102 undefined include? method for 0 Fixnum...
   def find(filter)
     @alterations << "find(#{filter})"
-    find?(filter)
+    case filter.class.to_s
+    when 'Array'
+      find_when_array(filter)
+    when 'String'
+      @content.select! { |i| i.include?(filter.to_s) }
+    when 'Integer'
+      @content.select! { |i| i.include?(filter.to_s) }
+    when 'Regexp'
+      @content.select! { |i| filter.match(i) }
+    end
     self
   end
+  alias grep   find
+  alias grep!  find
+  alias find!  find
 
   def not_find(p_filter)
     @alterations << "not_find(#{p_filter})"
@@ -16,6 +28,7 @@ class Result
     @content.reject! { |i| i.include?(p_filter) }
     self
   end
+  alias grep_v not_find
 
   def since(filter)
     @alterations << "since(#{filter})"
@@ -45,45 +58,13 @@ class Result
     self
   end
 
-  alias grep   find
-  alias grep!  find
-  alias find!  find
-  alias grep_v not_find
-
   private
 
-  def find?(filter)
-    case filter.class.to_s
-    when 'Array'
-      return find_when_array(filter)
-    when 'String'
-      return find_when_string(filter)
-    when 'Integer'
-      return find_when_string(filter.to_s)
-    when 'Regexp'
-      return find_when_regexp(filter)
-    end
-    false
-  end
-
   def find_when_array(filter)
-    return find?(filter[0]) if filter.size == 1
     @content.select! do |line|
       flag = false
-      filter.each { |i| flag ||= find?(i) }
+      filter.each { |i| flag ||= line.include?(i) }
       flag
     end
-    @content.size >= 0
-  end
-
-  def find_when_string(filter)
-    # Error controlar include? en 0 Integer...
-    @content.select! { |i| i.include?(filter.to_s) }
-    @content.size >= 0
-  end
-
-  def find_when_regexp(filter)
-    @content.select! { |i| filter.match(i) }
-    @content.size >= 0
   end
 end
