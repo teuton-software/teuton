@@ -63,30 +63,30 @@ class ResultTest < Minitest::Test
     assert_equal "find("+filter+") & count", r.alterations
   end
 
+require 'pry-byebug'
   def test_grep_array
     filter1 = ['a']
     filter2 = ['a', '2']
     filter3 = ['a', '3', '4', 'd']
-    filter4 = ['a4']
-    filter5 = ['e', '5']
+    filter4 = ['3']
+    filter5 = ['3', /c|d/]
     r = @result
 
     r.content = @content2
-    assert_equal true, r.grep(filter1).size.eq(1)
-    #assert_equal "find([\"a\"]) & count", r.alterations
-    assert_equal "find(a) & count", r.alterations
+    assert_equal true, r.grep(filter1).count.eq(1)
+    assert_equal "find([\"a\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter2).size.eq(2)
+    assert_equal true, r.find(filter2).count.eq(1)
     assert_equal "find([\"a\", \"2\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter3).size.eq(4)
-    assert_equal "find([\"a\", \"3\", \"4\", \"d\"]) & count", r.alterations
+#    assert_equal true, r.find(filter3).count.eq(0)
+#    assert_equal "find([\"a\", \"3\", \"4\", \"d\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter4).size.eq(0)
-    assert_equal "find([\"a4\"]) & count", r.alterations
+    assert_equal true, r.find(filter4).count.eq(3)
+    assert_equal "find([\"3\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter5).size.eq(0)
-    assert_equal "find([\"e\", \"5\"]) & count", r.alterations
+    assert_equal true, r.find(filter5).count.eq(3)
+    assert_equal "find([\"3\", /c|d/]) & count", r.alterations
   end
 
   def test_grep_string

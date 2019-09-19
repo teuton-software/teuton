@@ -4,7 +4,6 @@
 class Result
   def count
     @alterations << 'count'
-
     if @content.class == Array
       @content = [@content.count]
       self
@@ -13,7 +12,6 @@ class Result
     else
       @content = [@content.to_i.to_s]
     end
-
     self
   end
 
