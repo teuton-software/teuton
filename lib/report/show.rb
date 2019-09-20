@@ -17,10 +17,10 @@ class Report
 
   def show_initial_configurations
     puts 'INITIAL CONFIGURATIONS'
-    my_screen_table = Terminal::Table.new do |st|
-      @head.each { |key, value| st.add_row [key.to_s, value.to_s] }
+    @head.each do |key, value|
+      puts "  #{key.to_s.ljust(18)} : #{value}\n"
     end
-    puts my_screen_table.to_s
+    puts "\n\n"
   end
 
   def show_resume

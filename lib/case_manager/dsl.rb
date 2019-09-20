@@ -6,9 +6,10 @@ def use(filename)
   app = Application.instance
   rbfiles = File.join(app.project_path, "**", filename)
   files = Dir.glob(rbfiles)
-  use = []
-  files.sort.each { |f| use << f if f.include?(filename) }
-  require_relative use[0]
+  findfiles = []
+  files.sort.each { |f| findfiles << f if f.include?(filename) }
+  require_relative findfiles.first
+  app.uses << File.basename(findfiles.first)
 end
 
 def group(name, &block)

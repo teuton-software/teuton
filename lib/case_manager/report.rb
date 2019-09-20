@@ -10,6 +10,7 @@ class CaseManager
     @report.head[:tt_scriptname] = app.script_path
     @report.head[:tt_configfile] = p_config_filename
     @report.head[:tt_debug] = true if @debug
+    # @report.head[:tt_uses] = app.uses.join(', ')
     @report.head.merge!(app.global)
 
     verboseln '=' * @report.head[:tt_title].length
