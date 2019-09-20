@@ -17,7 +17,7 @@ class Application
   end
 
   def reset
-    @version = '2.0.8'
+    @version = '2.0.9'
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @running_basedir = Dir.getwd
     @output_basedir = 'var'
