@@ -1,6 +1,6 @@
 <#
 Windows S-NODE installation
-version: 20190127
+version: 20190922
 #>
 
 If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContains "S-1-5-32-544") {
@@ -11,10 +11,19 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContain
 Write-Host "[0/5.INFO] WINDOWS S-NODE installation"
 
 Write-Host "[1/5.INFO] Installing PACKAGES..."
-If (!(Get-Command choco.exe -ErrorAction SilentlyContinue)) {
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-}
-choco install -y openssh
+
+$tempdir = "$env:windir\temp"
+$zipfile = "$tempdir\OpenSSH-Win64.zip"
+
+Write-Host "Downloading OpenSSH-Win64..."
+Invoke-WebRequest -Uri "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip" -OutFile $zipfile
+
+Write-Host "Unzipping OpenSSH..."
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+[System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $env:ProgramFiles)
+
+Write-Host "Removing temporary files..."
+Remove-Item $zipfile
 
 Write-Host "[2/5.INFO] Config OpenSSH as a service"
 & "$env:ProgramFiles\OpenSSH-Win64\install-sshd.ps1" | Out-Null
