@@ -53,8 +53,7 @@ class CaseManager
   def send(args = {})
     threads = []
     puts ''
-    puts '[INFO] Sending files...'
-    puts args.to_s
+    puts "[INFO] Sending files...#{args.to_s}"
     @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
   end

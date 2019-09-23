@@ -17,10 +17,12 @@ class Report
 
   def show_initial_configurations
     puts 'INITIAL CONFIGURATIONS'
-    @head.each do |key, value|
-      puts "  #{key.to_s.ljust(18)} : #{value}\n"
+    my_screen_table = Terminal::Table.new do |st|
+      @head.each do |key, value|
+        st.add_row [key.to_s, trim_center(value)]
+      end
     end
-    puts "\n\n"
+    puts my_screen_table.to_s
   end
 
   def show_resume
@@ -75,5 +77,12 @@ class Report
       end
     end
     puts my_screen_table.to_s
+  end
+
+  def trim_center(input)
+    output = input.to_s
+    return output if output.size<65
+    output = input[0,10] + '...' + input[input.size-50, input.size]
+    output.to_s
   end
 end
