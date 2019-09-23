@@ -21,6 +21,17 @@ class NameFileFinderTest < Minitest::Test
     assert_equal c, app.config_path
     assert_equal 'example-01', app.test_name
 
+    # Simple mode, files exists (using absolute path)
+    basedir = app.running_basedir
+    absolute_path = File.join(basedir, 'tests/files/example-01.rb')
+    NameFileFinder.find_filenames_for(absolute_path)
+    b = File.join(basedir, 'tests/files/example-01.rb')
+    c = File.join(basedir, 'tests/files/example-01.yaml')
+    assert_equal a, app.project_path
+    assert_equal b, app.script_path
+    assert_equal c, app.config_path
+    assert_equal 'example-01', app.test_name
+
     # Simple mode, files exists with JSON
     NameFileFinder.find_filenames_for('tests/files/example-04.rb')
     basedir = app.running_basedir
