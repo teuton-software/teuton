@@ -24,7 +24,8 @@ module DSL
     if args[:remote_dir]
       remotefilepath = File.join(args[:remote_dir], filename)
     else
-      remotefilepath = File.join(remote_tempdir, filename)
+      # remotefilepath = File.join(remote_tempdir, filename)
+      remotefilepath = File.join('.', filename)
     end
 
     # Upload a file or directory to the remote host
