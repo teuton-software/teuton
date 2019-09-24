@@ -32,10 +32,10 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     w "#{Rainbow("INITIAL CONFIGURATIONS").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:config].each do |key,value|
-        st.add_row [ key.to_s, trim_center(value)]
+        st.add_row [ key.to_s, trim(value)]
       end
     end
-    w my_screen_table.to_s+"\n"
+    w my_screen_table.to_s+"\n\n"
   end
 
   def process_cases

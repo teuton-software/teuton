@@ -19,10 +19,10 @@ class Report
     puts 'INITIAL CONFIGURATIONS'
     my_screen_table = Terminal::Table.new do |st|
       @head.each do |key, value|
-        st.add_row [key.to_s, trim_center(value)]
+        st.add_row [key.to_s, trim(value)]
       end
     end
-    puts my_screen_table.to_s
+    puts my_screen_table.to_s + "\n\n"
   end
 
   def show_resume
@@ -33,7 +33,7 @@ class Report
         st.add_row [line[:id], line[:grade], line[:letter], line[:members]]
       end
     end
-    puts my_screen_table.to_s
+    puts my_screen_table.to_s + "\n\n"
   end
 
   def show_targets_history
@@ -54,6 +54,7 @@ class Report
         end
       end
     end
+    puts "\n\n"
   end
 
   def show_final_values
@@ -63,7 +64,7 @@ class Report
         st.add_row [key.to_s, value.to_s]
       end
     end
-    puts my_screen_table.to_s
+    puts my_screen_table.to_s + "\n"
   end
 
   def show_hall_of_fame
@@ -76,13 +77,13 @@ class Report
         st.add_row [line[0], line[1]]
       end
     end
-    puts my_screen_table.to_s
+    puts my_screen_table.to_s + "\n"
   end
 
-  def trim_center(input)
+  def trim(input)
     output = input.to_s
     return output if output.size<65
-    output = input[0,10] + '...' + input[input.size-50, input.size]
+    output = "...#{input[input.size-50, input.size]}"
     output.to_s
   end
 end

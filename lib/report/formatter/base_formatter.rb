@@ -25,10 +25,10 @@ class BaseFormatter
     @file.close
   end
 
-  def trim_center(input)
+  def trim(input)
     output = input.to_s
     return output if output.size<65
-    output = input[0,10] + '...' + input[input.size-50, input.size]
+    output = "...#{input[input.size-50, input.size]}"
     output.to_s
   end
 end
