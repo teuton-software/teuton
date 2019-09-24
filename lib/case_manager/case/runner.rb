@@ -16,6 +16,7 @@ class Case
     @action[:conn_type] = :local
     i = my_execute( @action[:command], @action[:encoding] )
     @result.exitstatus = i[:exitstatus]
+    @status = :ok
     @result.content = i[:content]
   end
 
@@ -47,20 +48,24 @@ class Case
         @sessions[hostname] = Net::SSH.start(ip,
                                              username,
                                              password: password)
+        @status = :ok
       end
       if @sessions[hostname].class == Net::SSH::Connection::Session
         text = @sessions[hostname].exec!(@action[:command].to_s)
       end
     rescue Errno::EHOSTUNREACH
       @sessions[hostname] = :nosession
+      @status = :error_host_unreachable
       verbose Application.instance.letter[:error]
       log( "Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       @sessions[hostname] = :nosession
+      @status = :error_authentication_failed
       verbose Application.instance.letter[:error]
       log('SSH::AuthenticationFailed!', :error)
     rescue Net::SSH::HostKeyMismatch
       @sessions[hostname] = :nosession
+      @status = :error_host_key_mismatch
       verbose Application.instance.letter[:error]
       log('SSH::HostKeyMismatch!', :error)
       log("* The destination server's fingerprint is not matching " \
@@ -70,6 +75,7 @@ class Case
           "-R #{ip}", :error)
     rescue StandardError => e
       @sessions[hostname] = :nosession
+      @status = :error
       verbose Application.instance.letter[:error]
       log("[#{e.class}] SSH on <#{username}@#{ip}>" \
           " exec: #{@action[:command]}", :error)
@@ -98,18 +104,22 @@ class Case
         h.cmd(@action[:command]) { |i| text << i }
         h.close
         @sessions[hostname] = :ok
+        @status = :ok
       end
     rescue Net::OpenTimeout
       @sessions[hostname] = :nosession
+      @status = :error_open_timeout
       verbose Application.instance.letter[:error]
       log(" ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
       log(' └── Revise host IP!', :warn)
     rescue Net::ReadTimeout
       @sessions[hostname] = :nosession
+      @status = :error_read_timeout
       verbose Application.instance.letter[:error]
       log(" ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue StandardError => e
       @sessions[hostname] = :nosession
+      @status = :error
       verbose Application.instance.letter[:error]
       log(" ExceptionType=<#{e.class}> doing telnet on <#{username}@#{ip}>" \
           " exec: #{@action[:command]}", :error)

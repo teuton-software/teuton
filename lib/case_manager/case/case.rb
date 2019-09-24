@@ -25,7 +25,7 @@ class Case
 
   attr_accessor :result
   attr_accessor :action # TODO: why not reader only???
-  attr_reader :id, :config, :uniques
+  attr_reader :id, :config, :uniques, :status
   @@id = 1
 
   def initialize(config)
@@ -48,6 +48,9 @@ class Case
       @skip = true
       @skip = false if app.options['case'].include? @id
     end
+
+    @status = :notfound
+    @status = :skipped if @skip
 
     @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp', @id.to_s)
     # ensure_dir @tmpdir # REVISE: When we will need this? Samba?

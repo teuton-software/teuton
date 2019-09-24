@@ -28,9 +28,9 @@ class Report
   def show_resume
     puts 'CASE RESULTS'
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE ID', 'GRADE', 'STATUS', 'MEMBERS']
+      st.add_row ['CASE ID', 'GRADE', 'L', 'MEMBERS', 'STATUS']
       @lines.each do |line|
-        st.add_row [line[:id], line[:grade], line[:letter], line[:members]]
+        st.add_row [line[:id], line[:grade], line[:letter], line[:members], line[:status]]
       end
     end
     puts my_screen_table.to_s + "\n\n"

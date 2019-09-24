@@ -30,14 +30,18 @@ class CaseManager
     @cases.each do |c|
       line = {}
       if c.skip?
-        line = { id: '-', grade: '-', letter: ' ', members: '-' }
+        line = { id: '-', grade: 0.0, letter: '',
+                members: '-', status: '',
+                moodle_id: '', moodle_feedback: '' }
+      else
+        line[:id] = format('case_%02d', c.id.to_i)
+        line[:letter] = app.letter[:error] if c.grade < 50.0
+        line[:grade] = c.grade.to_f #format('  %3d', c.grade.to_f)
+        line[:members] = c.members
+        line[:status] = c.status
+        line[:moodle_id] = c.get(:tt_moodle_id)
+        line[:moodle_feedback] = "\"Filename: #{c.filename}. Date: #{Time.now}\""
       end
-      line[:id] = format('case_%02d', c.id.to_i)
-      line[:letter] = app.letter[:error] if c.grade < 50.0
-      line[:grade] = c.grade.to_f #format('  %3d', c.grade.to_f)
-      line[:members] = c.members
-      line[:moodle_id] = c.get(:tt_moodle_id)
-      line[:moodle_feedback] = "\"Filename: #{c.filename}. Date: #{Time.now}\""
       @report.lines << line
     end
   end
