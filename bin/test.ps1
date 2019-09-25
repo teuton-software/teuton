@@ -16,7 +16,7 @@ function Unzip-File($zipFile, $destFolder) {
 }
 
 function Wget-File($url, $file) {
-    & "$env:ProgramFiles\wget\wget" "-O" "$file" "$url"
+    & "$env:ProgramFiles\wget\wget" "--quiet" "-O" "$file" "$url"
 }
 
 function Install-7zip() {
@@ -56,8 +56,6 @@ Start-Service sshd
 
 Write-Host "[4/5.INFO] Opening TCP port 22 in Windows Firewall"
 $FirewallRuleName = "SSH TCP port 22"
-If (!(Get-NetFirewallRule -DisplayName $FirewallRuleName -ErrorAction SilentlyContinue)) {
-    New-NetFirewallRule -DisplayName $FirewallRuleName -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('22') | Out-Null
-}
+& "netsh" "advfirewall" "firewall" "add" "rule" "name=$FirewallRuleName" "dir=in" "action=allow" "protocol=TCP" "localport=22"
 
 Write-Host "[5/5.INFO] Finish!"
