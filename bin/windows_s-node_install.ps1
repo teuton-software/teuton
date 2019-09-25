@@ -14,10 +14,12 @@ Write-Host "[1/5.INFO] Installing PACKAGES..."
 
 $tempdir = "$env:windir\temp"
 $zipfile = "$tempdir\OpenSSH-Win64.zip"
+$url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip"
 
-Write-Host "Downloading OpenSSH-Win64..."
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls
-Invoke-WebRequest -Uri "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip" -OutFile $zipfile
+Write-Host "Downloading OpenSSH-Win64 from $url..."
+# [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls
+(New-Object Net.WebClient).DownloadFile($url, $zipfile)
+
 
 Write-Host "Unzipping OpenSSH..."
 Add-Type -AssemblyName System.IO.Compression.FileSystem
