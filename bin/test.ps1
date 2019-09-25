@@ -45,7 +45,7 @@ Write-Host "Downloading OpenSSH-Win64 from $url to $file..."
 Wget-File $url $file 
 
 Write-Host "Unzipping OpenSSH..."
-Unzip-File $file $env:ProgramFiles
+Unzip-File $file "$env:ProgramFiles\OpenSSH-Win64"
 
 Write-Host "[2/5.INFO] Config OpenSSH as a service"
 & "$env:ProgramFiles\OpenSSH-Win64\install-sshd.ps1" | Out-Null
