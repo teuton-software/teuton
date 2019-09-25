@@ -16,8 +16,8 @@ $file = "$env:windir\temp\OpenSSH-Win64.zip"
 $url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip"
 
 Write-Host "Downloading OpenSSH-Win64 from $url to $file..."
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls
-(New-Object System.Net.WebClient).DownloadFile($url, $file)
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Invoke-WebRequest -Uri "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip" -OutFile $zipfile
 
 
 Write-Host "Unzipping OpenSSH..."
