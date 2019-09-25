@@ -87,7 +87,7 @@ class Case
         #h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 10, 'Prompt' => /[$%#>]\s?\z/n })
         h = Net::Telnet::new( 'Host' => ip,
                               'Timeout' => 30,
-                               'Prompt' => /login|teuton|[%$#>]/ )
+                              'Prompt' => /login|teuton|[$%#>]/ )
 #                               'Prompt' => Regexp.new(username[1,40]) })
 
         h.login(username, password)
