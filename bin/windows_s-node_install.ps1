@@ -1,6 +1,6 @@
 <#
 Windows S-NODE installation
-version: 20190922
+version: 20190925
 #>
 
 If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContains "S-1-5-32-544") {
@@ -8,24 +8,52 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContain
     Exit 1
 }
 
+function Unzip-File($zipFile, $destFolder) {
+    & "$env:ProgramFiles\7-Zip\7z" "e" "-y" "-o$destFolder" "$zipFile" | Out-Null
+}
+
+function Wget-File($url, $file) {
+    & "$env:ProgramFiles\wget\wget" "--quiet" "-O" "$file" "$url"
+}
+
+function Install-7zip() {
+    If (Test-Path "$env:ProgramFiles\7-zip") {
+        Write-Host "7-Zip already installed"
+    } else {
+        Write-Host "Downloading and installing 7-Zip ..."
+        (New-Object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z1900-x64.msi", "$env:windir\temp\7z1900-x64.msi")
+        & "$env:windir\temp\7z1900-x64.msi" /passive
+        Remove-Item "$env:windir\temp\7z1900-x64.msi"
+    }
+}
+
+function Install-Wget() {
+    If (Test-Path "$env:ProgramFiles\wget") {
+        Write-Host "wget for Windows already installed"
+    } else {
+        Write-Host "Downloading and installing wget for Windows ..."
+        (New-Object System.Net.WebClient).DownloadFile("https://eternallybored.org/misc/wget/releases/wget-1.20.3-win64.zip", "$env:windir\temp\wget-1.20.3-win64.zip")
+        Unzip-File "$env:windir\temp\wget-1.20.3-win64.zip" "$env:ProgramFiles\wget"
+        Remove-Item "$env:windir\temp\wget-1.20.3-win64.zip"
+    }
+}
+
 Write-Host "[0/5.INFO] WINDOWS S-NODE installation"
 
 Write-Host "[1/5.INFO] Installing PACKAGES..."
+
+Install-7zip
+
+Install-Wget
 
 $file = "$env:windir\temp\OpenSSH-Win64.zip"
 $url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip"
 
 Write-Host "Downloading OpenSSH-Win64 from $url to $file..."
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest -Uri "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip" -OutFile $zipfile
-
+Wget-File $url $file 
 
 Write-Host "Unzipping OpenSSH..."
-Add-Type -AssemblyName System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::ExtractToDirectory($file, $env:ProgramFiles)
-
-Write-Host "Removing temporary files..."
-Remove-Item $file
+Unzip-File $file "$env:ProgramFiles\OpenSSH-Win64"
 
 Write-Host "[2/5.INFO] Config OpenSSH as a service"
 & "$env:ProgramFiles\OpenSSH-Win64\install-sshd.ps1" | Out-Null
@@ -35,9 +63,6 @@ Set-Service sshd -StartupType Automatic
 Start-Service sshd
 
 Write-Host "[4/5.INFO] Opening TCP port 22 in Windows Firewall"
-$FirewallRuleName = "SSH TCP port 22"
-If (!(Get-NetFirewallRule -DisplayName $FirewallRuleName -ErrorAction SilentlyContinue)) {
-    New-NetFirewallRule -DisplayName $FirewallRuleName -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('22') | Out-Null
-}
+& "netsh" "advfirewall" "firewall" "add" "rule" "name=SSH TCP port 22" "dir=in" "action=allow" "protocol=TCP" "localport=22" | Out-Null
 
 Write-Host "[5/5.INFO] Finish!"

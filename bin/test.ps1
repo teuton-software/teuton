@@ -1,6 +1,6 @@
 <#
 Windows S-NODE installation
-version: 20190922
+version: 20190925
 #>
 
 If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContains "S-1-5-32-544") {
