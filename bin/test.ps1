@@ -8,7 +8,7 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContain
     Exit 1
 }
 
-$file = "$global:temp\OpenSSH-Win64.zip"
+$file = "$env:windir\temp\OpenSSH-Win64.zip"
 $url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip"
 
 function Unzip-File($zipFile, $destFolder) {
