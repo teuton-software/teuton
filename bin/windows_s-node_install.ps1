@@ -23,7 +23,6 @@ function Install-7zip() {
         Write-Host "Downloading and installing 7-Zip ..."
         (New-Object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z1900-x64.msi", "$env:windir\temp\7z1900-x64.msi")
         & "$env:windir\temp\7z1900-x64.msi" /passive
-        Remove-Item "$env:windir\temp\7z1900-x64.msi"
     }
 }
 
@@ -34,7 +33,6 @@ function Install-Wget() {
         Write-Host "Downloading and installing wget for Windows ..."
         (New-Object System.Net.WebClient).DownloadFile("https://eternallybored.org/misc/wget/releases/wget-1.20.3-win64.zip", "$env:windir\temp\wget-1.20.3-win64.zip")
         Unzip-File "$env:windir\temp\wget-1.20.3-win64.zip" "$env:ProgramFiles\wget"
-        Remove-Item "$env:windir\temp\wget-1.20.3-win64.zip"
     }
 }
 
