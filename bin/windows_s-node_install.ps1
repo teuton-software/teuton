@@ -13,7 +13,7 @@ function Unzip-File($zipFile, $destFolder) {
 }
 
 function Wget-File($url, $file) {
-    & "$env:ProgramFiles\wget\wget" "-O" "$file" "$url"
+    & "$env:ProgramFiles\wget\wget" "--no-check-certificate" "-O" "$file" "$url"
 }
 
 function Install-7zip() {
