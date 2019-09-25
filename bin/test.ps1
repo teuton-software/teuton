@@ -1,25 +1,76 @@
+<#
+Windows S-NODE installation
+version: 20190922
+#>
 
+If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContains "S-1-5-32-544") {
+    $Host.UI.WriteErrorLine("Must be run as administrator")
+    Exit 1
+}
 
-$wget = "http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-setup.exe"
+$temp = "$env:windir\temp\snode"
+$file = "$temp\OpenSSH-Win64.zip"
 $url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip"
-$file = "$env:windir\temp\OpenSSH-Win64.zip"
 
-$dest = "$env:windir\temp\snode"
+function Make-Folder($folder) {
+    Write-Host "Creating folder $folder ..."
+    New-Item -ItemType Directory $folder -ErrorAction SilentlyContinue | Out-Null
+}
 
-Write-Host "Creating temporary directory $dest ..."
-New-Item -ItemType Directory $dest | Out-Null
+function Remove-Folder($folder) {
+    Write-Host "Removing folder $folder..."
+    Remove-Item -Force -Recurse $folder
+}
 
+function Unzip-File($zipFile, $destFolder) {
+    & "$env:ProgramFiles\7-Zip\7z" "e" "-y" "-o$destFolder" "$zipFile" | Out-Null
+}
 
-Write-Host "Downloading and installing 7-Zip ..."
-(New-Object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z1900-x64.msi", "$env:windir\temp\7z1900-x64.msi")
-& "$env:windir\temp\7z1900-x64.msi" /passive
+function Wget-File($url, $file) {
+    & "$env:ProgramFiles\wget\wget" "-O" "$file" "$url"
+}
 
-Write-Host "Downloading and installing wget for Windows ..."
-(New-Object System.Net.WebClient).DownloadFile("https://netix.dl.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-bin.zip", "$dest\wget-1.11.4-1-bin.zip")
-(New-Object System.Net.WebClient).DownloadFile("https://netix.dl.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-dep.zip", "$dest\wget-1.11.4-1-dep.zip")
-$wget = "$env:ProgramFiles\wget"
-& "$env:ProgramFiles\7-Zip\7z" e -y -o{$wget} "$dest\wget-1.11.4-1-bin.zip"
-& "$env:ProgramFiles\7-Zip\7z" e -y -o{$wget} "$dest\wget-1.11.4-1-dep.zip"
+function Install-7zip() {
+    Write-Host "Downloading and installing 7-Zip ..."
+    (New-Object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z1900-x64.msi", "$temp\7z1900-x64.msi")
+    & "$dest\7z1900-x64.msi" /passive
+}
 
-Write-Host "Removing temporary directory $dest ..."
-Remove-Item -Recurse -Force $dest
+function Install-Wget() {
+    Write-Host "Downloading and installing wget for Windows ..."
+    (New-Object System.Net.WebClient).DownloadFile("https://eternallybored.org/misc/wget/releases/wget-1.20.3-win64.zip", "$temp\wget-1.20.3-win64.zip")
+    Unzip-File "$temp\wget-1.20.3-win64.zip" "$env:ProgramFiles\wget"
+}
+
+Write-Host "[0/5.INFO] WINDOWS S-NODE installation"
+
+Write-Host "[1/5.INFO] Installing PACKAGES..."
+
+Make-Folder $temp
+
+Install-7zip
+
+Install-Wget
+
+Write-Host "Downloading OpenSSH-Win64 from $url to $file..."
+Wget-File $url $file 
+
+Write-Host "Unzipping OpenSSH..."
+Unzip-File $file $env:ProgramFiles
+
+Remove-Folder $temp
+
+Write-Host "[2/5.INFO] Config OpenSSH as a service"
+& "$env:ProgramFiles\OpenSSH-Win64\install-sshd.ps1" | Out-Null
+
+Write-Host "[3/5.INFO] Config auto and running ssh service"
+Set-Service sshd -StartupType Automatic
+Start-Service sshd
+
+Write-Host "[4/5.INFO] Opening TCP port 22 in Windows Firewall"
+$FirewallRuleName = "SSH TCP port 22"
+If (!(Get-NetFirewallRule -DisplayName $FirewallRuleName -ErrorAction SilentlyContinue)) {
+    New-NetFirewallRule -DisplayName $FirewallRuleName -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('22') | Out-Null
+}
+
+Write-Host "[5/5.INFO] Finish!"
