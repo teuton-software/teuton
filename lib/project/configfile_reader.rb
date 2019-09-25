@@ -12,6 +12,7 @@ module ConfigFileReader
     unless File.exist?(filepath)
       data = {}
       data[:global] = {}
+      data[:alias] = {}
       data[:cases] = [{ tt_members: 'anonymous' }]
       return data
     end
@@ -33,6 +34,7 @@ module ConfigFileReader
       raise "[ERROR] ConfigFileReader <#{e}>"
     end
     data[:global] = data[:global] || {}
+    data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
     data
   end
@@ -40,6 +42,7 @@ module ConfigFileReader
   def self.read_json(filepath)
     data = JSON.parse(File.read(filepath), symbolize_names: true)
     data[:global] = data[:global] || {}
+    data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
     data
   end

@@ -1,4 +1,6 @@
 ---
 :global:
+:alias:
 :cases:
-- :tt_members: anonymous
+- :tt_members: MEMBERS
+  :tt_moodle_id: MOODLE_IDs

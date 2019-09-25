@@ -25,8 +25,9 @@ module ProjectCreator
   def self.create_main_dir_and_files(project_dir, source_basedir)
     # Directory and files: Ruby script, Configfile, gitignore
     items = [
-      { source: 'lib/files/start.rb', target: 'start.rb' },
       { source: 'lib/files/config.yaml', target: 'config.yaml' },
+      { source: 'lib/files/start.rb', target: 'start.rb' },
+      { source: 'lib/files/README.md', target: 'README.md' },
       { source: 'lib/files/gitignore', target: '.gitignore' }
     ]
     items.each do |item|
@@ -38,11 +39,11 @@ module ProjectCreator
 
   def self.create_assets_dir_and_files(project_dir, source_basedir)
     # Assets Directory and files
-    project_md_dir = File.join(project_dir, 'assets')
-    create_dir project_md_dir
-    source = File.join(source_basedir, 'lib/files/assets/README.md')
-    target = File.join(project_md_dir, 'README.md')
-    copyfile(source, target) # README.md
+    project_assets_dir = File.join(project_dir, 'assets')
+    create_dir project_assets_dir
+#    source = File.join(source_basedir, 'lib/files/README.md')
+#    target = File.join(project_dir, 'README.md')
+#    copyfile(source, target) # README.md
     puts ''
   end
 

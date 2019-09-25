@@ -9,7 +9,8 @@ class Application
   attr_reader   :default
   attr_accessor :options
   attr_accessor :verbose
-  attr_accessor :global, :groups, :uses, :hall_of_fame
+  attr_accessor :global, :ialias 
+  attr_accessor :groups, :uses, :hall_of_fame
   attr_accessor :project_path, :script_path, :config_path, :test_name
 
   def initialize
