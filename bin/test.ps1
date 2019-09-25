@@ -8,8 +8,8 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContain
     Exit 1
 }
 
-$temp = "$env:windir\temp\snode"
-$file = "$temp\OpenSSH-Win64.zip"
+$global:temp = "$env:windir\temp\snode"
+$file = "$global:temp\OpenSSH-Win64.zip"
 $url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip"
 
 function Make-Folder($folder) {
@@ -32,21 +32,21 @@ function Wget-File($url, $file) {
 
 function Install-7zip() {
     Write-Host "Downloading and installing 7-Zip ..."
-    (New-Object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z1900-x64.msi", "$temp\7z1900-x64.msi")
-    & "$temp\7z1900-x64.msi" /passive
+    (New-Object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z1900-x64.msi", "$global:temp\7z1900-x64.msi")
+    & "$global:temp\7z1900-x64.msi" /passive
 }
 
 function Install-Wget() {
     Write-Host "Downloading and installing wget for Windows ..."
-    (New-Object System.Net.WebClient).DownloadFile("https://eternallybored.org/misc/wget/releases/wget-1.20.3-win64.zip", "$temp\wget-1.20.3-win64.zip")
-    Unzip-File "$temp\wget-1.20.3-win64.zip" "$env:ProgramFiles\wget"
+    (New-Object System.Net.WebClient).DownloadFile("https://eternallybored.org/misc/wget/releases/wget-1.20.3-win64.zip", "$global:temp\wget-1.20.3-win64.zip")
+    Unzip-File "$global:temp\wget-1.20.3-win64.zip" "$env:ProgramFiles\wget"
 }
 
 Write-Host "[0/5.INFO] WINDOWS S-NODE installation"
 
 Write-Host "[1/5.INFO] Installing PACKAGES..."
 
-Make-Folder $temp
+Make-Folder $global:temp
 
 Install-7zip
 
@@ -58,7 +58,7 @@ Wget-File $url $file
 Write-Host "Unzipping OpenSSH..."
 Unzip-File $file $env:ProgramFiles
 
-Remove-Folder $temp
+Remove-Folder $global:temp
 
 Write-Host "[2/5.INFO] Config OpenSSH as a service"
 & "$env:ProgramFiles\OpenSSH-Win64\install-sshd.ps1" | Out-Null
