@@ -10,5 +10,6 @@ $url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1
 $file = "$env:USERPROFILE\OpenSSH-Win64.zip"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls
-Start-BitsTransfer -Source $url -Destination $file
+$web = new-object System.Net.WebClient
+$web.DownloadFile($url, $file)
 
