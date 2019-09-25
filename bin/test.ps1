@@ -7,5 +7,5 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContain
 $file = "$env:USERPROFILE\OpenSSH-Win64.zip"
 $url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip"
 
-(New-Object System.Net.WebClient).DownloadFile($url, $file)
+(New-Object System.Net.WebClient).DownloadFile([System.Uri]$url, $file)
 
