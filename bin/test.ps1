@@ -9,6 +9,7 @@ $dest = "$env:windir\temp\snode"
 Write-Host "Creating temporary directory $dest ..."
 New-Item -ItemType Directory $dest | Out-Null
 
+
 Write-Host "Downloading and installing 7-Zip ..."
 (New-Object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z1900-x64.msi", "$env:windir\temp\7z1900-x64.msi")
 & "$env:windir\temp\7z1900-x64.msi" /passive
