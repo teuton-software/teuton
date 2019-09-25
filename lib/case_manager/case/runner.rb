@@ -85,7 +85,10 @@ class Case
     begin
       if @sessions[hostname].nil? || @sessions[hostname] == :ok
         #h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 10, 'Prompt' => /[$%#>]\s?\z/n })
-        h = Net::Telnet::new({ 'Host' => ip, 'Timeout' => 10, 'Prompt' => Regexp.new(username[1,40]) })
+        h = Net::Telnet::new( 'Host' => ip,
+                              'Timeout' => 30,
+                               'Prompt' => /login|teuton|[%$#>]/ )
+#                               'Prompt' => Regexp.new(username[1,40]) })
 
         h.login(username, password)
         text = ''
@@ -112,7 +115,7 @@ class Case
 
     #@result.content = text.encode('UTF-8', :invalid => :replace).split("\n")
     output = encode_and_split(@action[:encoding], text)
-    
+
     @result.content = output
     @result.content.compact!
   end
