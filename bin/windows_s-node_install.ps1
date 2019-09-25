@@ -12,21 +12,20 @@ Write-Host "[0/5.INFO] WINDOWS S-NODE installation"
 
 Write-Host "[1/5.INFO] Installing PACKAGES..."
 
-$tempdir = "$env:windir\temp"
-$zipfile = "$tempdir\OpenSSH-Win64.zip"
+$file = "$env:windir\temp\OpenSSH-Win64.zip"
 $url = "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.0.0.0p1-Beta/OpenSSH-Win64.zip"
 
-Write-Host "Downloading OpenSSH-Win64 from $url to $zipfile..."
-# [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls
-(New-Object System.Net.WebClient).DownloadFile($url, $zipfile)
+Write-Host "Downloading OpenSSH-Win64 from $url to $file..."
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls
+(New-Object System.Net.WebClient).DownloadFile($url, $file)
 
 
 Write-Host "Unzipping OpenSSH..."
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $env:ProgramFiles)
+[System.IO.Compression.ZipFile]::ExtractToDirectory($file, $env:ProgramFiles)
 
 Write-Host "Removing temporary files..."
-Remove-Item $zipfile
+Remove-Item $file
 
 Write-Host "[2/5.INFO] Config OpenSSH as a service"
 & "$env:ProgramFiles\OpenSSH-Win64\install-sshd.ps1" | Out-Null
