@@ -33,7 +33,7 @@ function Wget-File($url, $file) {
 function Install-7zip() {
     Write-Host "Downloading and installing 7-Zip ..."
     (New-Object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z1900-x64.msi", "$temp\7z1900-x64.msi")
-    & "$dest\7z1900-x64.msi" /passive
+    & "$temp\7z1900-x64.msi" /passive
 }
 
 function Install-Wget() {
