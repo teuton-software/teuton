@@ -47,7 +47,9 @@ class Case
       if @sessions[hostname].nil?
         @sessions[hostname] = Net::SSH.start(ip,
                                              username,
-                                             password: password)
+                                             password: password,
+                                             keepalive: true,
+                                             non_interactive: true)
         @status = :ok
       end
       if @sessions[hostname].class == Net::SSH::Connection::Session
