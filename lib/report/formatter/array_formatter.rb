@@ -29,11 +29,10 @@ class ArrayFormatter < BaseFormatter
   end
 
   def build_history_data
-    body = {}
     groups = []
     group = {}
 
-    body[:logs] = []
+    @data[:logs] = []
     group[:title] = nil
     group[:targets] = []
 
@@ -64,13 +63,12 @@ class ArrayFormatter < BaseFormatter
         target[:result]      = i[:result]
         group[:targets] << target
       else
-        body[:logs] << i.to_s # Add log line
+        @data[:logs] << i.to_s # Add log line
       end
     end
 
     groups << group unless group[:title].nil? # Add group
-    body[:groups] = groups
-    @data[:test] = body
+    @data[:groups] = groups
   end
 
   def build_final_data

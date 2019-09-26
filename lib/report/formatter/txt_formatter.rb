@@ -18,7 +18,8 @@ class TXTFormatter < ArrayFormatter
 
     build_data
     process_config
-    process_test
+    process_logs
+    process_groups
     process_results
     process_hof
     deinit
@@ -36,36 +37,21 @@ class TXTFormatter < ArrayFormatter
     w my_screen_table.to_s+"\n\n"
   end
 
-  def process_test
-    if @data[:test][:logs].size > 0
+  def process_logs
+    if @data[:logs].size > 0
       w "#{Rainbow("LOGS").bg(:blue)}\n"
-      if @data[:test][:logs].size == 1
-        w "#{@data[:test][:logs][0]}\n"
+      if @data[:logs].size == 1
+        w "#{@data[:logs][0]}\n"
       else
-        @data[:test][:logs].each { |line| w ". #{line}\n" }
+        @data[:logs].each { |line| w ". #{line}\n" }
       end
-    end
-
-    if @data[:test][:groups].size > 0
-      w "\n#{Rainbow("GROUPS").bg(:blue)}\n"
-      @data[:test][:groups].each { |g| process_group g }
     end
   end
 
-  def process_group(group)
-    tab = '  '
-    w "- #{Rainbow(group[:title]).blue.bright}\n"
-    group[:targets].each do |i|
-      color = :red
-      color = :green if i[:check]
-      w tab*2 + format("%02d", i[:target_id].to_i)
-      w " (#{Rainbow(i[:score].to_s+"/"+i[:weight].to_s).color(color)})\n"
-      w tab*4+"Description : #{i[:description].to_s}\n"
-      w tab*4+"Command     : #{i[:command].to_s}\n"
-			w tab*4+"Duration    : #{i[:duration].to_s} (#{i[:conn_type].to_s})\n"
-      w tab*4+"Alterations : #{i[:alterations].to_s}\n"
-      w tab*4+"Expected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
-      w tab*4+"Result      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
+  def process_groups
+    if @data[:groups].size > 0
+      w "\n#{Rainbow("GROUPS").bg(:blue)}\n"
+      @data[:groups].each { |g| process_group g }
     end
   end
 
@@ -97,5 +83,24 @@ class TXTFormatter < ArrayFormatter
       end
     end
     w my_screen_table.to_s + "\n"
+  end
+
+  private
+
+  def process_group(group)
+    tab = '  '
+    w "- #{Rainbow(group[:title]).blue.bright}\n"
+    group[:targets].each do |i|
+      color = :red
+      color = :green if i[:check]
+      w tab*2 + format("%02d", i[:target_id].to_i)
+      w " (#{Rainbow(i[:score].to_s+"/"+i[:weight].to_s).color(color)})\n"
+      w tab*4+"Description : #{i[:description].to_s}\n"
+      w tab*4+"Command     : #{i[:command].to_s}\n"
+			w tab*4+"Duration    : #{i[:duration].to_s} (#{i[:conn_type].to_s})\n"
+      w tab*4+"Alterations : #{i[:alterations].to_s}\n"
+      w tab*4+"Expected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
+      w tab*4+"Result      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
+    end
   end
 end
