@@ -63,7 +63,6 @@ class ResultTest < Minitest::Test
     assert_equal "find("+filter+") & count", r.alterations
   end
 
-require 'pry-byebug'
   def test_grep_array
     filter1 = ['a']
     filter2 = ['a', '2']
