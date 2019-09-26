@@ -11,7 +11,6 @@ class Case
       log_unique_message(key, uniques[key])
     end
     @report.tail[:unique_fault] = fails
-    @report.tail[:status] = @status
     @report.close
   end
 

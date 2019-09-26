@@ -16,7 +16,6 @@ class Case
     @action[:conn_type] = :local
     i = my_execute( @action[:command], @action[:encoding] )
     @result.exitstatus = i[:exitstatus]
-    @status = :ok
     @result.content = i[:content]
   end
 
@@ -56,7 +55,7 @@ class Case
       end
     rescue Errno::EHOSTUNREACH
       @sessions[hostname] = :nosession
-      @conn_status[hostname] = :error_host_unreachable
+      @conn_status[hostname] = :host_unreachable
       verbose Application.instance.letter[:error]
       log( "Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
@@ -66,7 +65,7 @@ class Case
       log('SSH::AuthenticationFailed!', :error)
     rescue Net::SSH::HostKeyMismatch
       @sessions[hostname] = :nosession
-      @conn_status[hostname] = :error_host_key_mismatch
+      @conn_status[hostname] = :host_key_mismatch
       verbose Application.instance.letter[:error]
       log('SSH::HostKeyMismatch!', :error)
       log("* The destination server's fingerprint is not matching " \
@@ -109,13 +108,13 @@ class Case
       end
     rescue Net::OpenTimeout
       @sessions[hostname] = :nosession
-      @conn_status[hostname] = :error_open_timeout
+      @conn_status[hostname] = :open_timeout
       verbose Application.instance.letter[:error]
       log(" ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
       log(' └── Revise host IP!', :warn)
     rescue Net::ReadTimeout
       @sessions[hostname] = :nosession
-      @conn_status[hostname] = :error_read_timeout
+      @conn_status[hostname] = :read_timeout
       verbose Application.instance.letter[:error]
       log(" ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue StandardError => e

@@ -19,6 +19,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     build_data
     process_config
     process_cases
+    process_conn_errors
     process_results
     process_hof
     deinit
@@ -42,13 +43,28 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     w "#{Rainbow('CASE RESULTS').bg(:blue)}\n"
 
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row [ 'CASE ID', 'GRADE', 'L', 'MEMBERS', 'STATUS' ]
+      st.add_row [ 'CASE ID', 'GRADE', 'MEMBERS', 'STATE' ]
       @data[:cases].each do |line|
         st.add_row [ line[:id],
                      format('  %3d', line[:grade]),
-                     line[:letter],
                      line[:members],
-                     line[:status] ]
+                     line[:letter] ]
+      end
+    end
+    w my_screen_table.to_s+"\n\n"
+  end
+
+  def process_conn_errors
+    w "#{Rainbow('CONN ERRORS').bg(:blue)}\n"
+
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row [ 'CASE ID', 'MEMBERS', 'HOST', 'ERROR' ]
+      @data[:cases].each do |line|
+        line[:conn_status].each_pair do |h, e|
+          st.add_row [ line[:id],
+                       line[:members],
+                       h, e ]
+        end
       end
     end
     w my_screen_table.to_s+"\n"

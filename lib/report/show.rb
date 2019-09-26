@@ -33,7 +33,7 @@ class Report
   def show_case_list
     puts 'CASE RESULTS'
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE ID', 'GRADE', 'L', 'MEMBERS']
+      st.add_row ['CASE ID', 'GRADE', 'STATE', 'MEMBERS']
       @lines.each do |line|
         st.add_row [line[:id], line[:grade], line[:letter], line[:members]]
       end
@@ -42,9 +42,9 @@ class Report
   end
 
   def show_conn_status
-    puts 'CONN STATUS'
+    puts 'CONN ERRORS'
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE ID', 'MEMBERS', 'HOST', 'STATUS']
+      st.add_row ['CASE ID', 'MEMBERS', 'HOST', 'ERROR']
       @lines.each do |line|
         line[:conn_status].each_pair do |h,e|
           st.add_row [line[:id], line[:members], h, e]
