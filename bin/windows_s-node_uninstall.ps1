@@ -1,6 +1,6 @@
 <#
 Windows S-NODE uninstallation
-version: 20190922
+version: 20190925
 #>
 
 If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContains "S-1-5-32-544") {
@@ -11,7 +11,7 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContain
 Write-Host "[0/5.INFO] WINDOWS S-NODE uninstallation"
 
 Write-Host "[1/5.INFO] Closing TCP port 22 in Windows Firewall"
-Remove-NetFirewallRule -DisplayName "SSH TCP port 22" | Out-Null
+& "netsh" "advfirewall" "firewall" "delete" "rule" "name=SSH TCP port 22" | Out-Null
 
 Write-Host "[2/5.INFO] Stopping and disabling ssh service"
 Stop-Service sshd
