@@ -25,7 +25,7 @@ class Case
 
   attr_accessor :result
   attr_accessor :action # TODO: why not reader only???
-  attr_reader :id, :config, :uniques, :status
+  attr_reader :id, :config, :uniques, :conn_status
   @@id = 1
 
   def initialize(config)

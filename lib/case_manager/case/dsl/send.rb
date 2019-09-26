@@ -13,6 +13,8 @@ module DSL
     return unless args[:copy_to]
 
     host = args[:copy_to].to_s
+    return unless @conn_status[host].nil?
+
     ip = get((host + '_ip').to_sym)
     username = get((host + '_username').to_sym).to_s
     password = get((host + '_password').to_sym).to_s

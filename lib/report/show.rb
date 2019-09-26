@@ -26,11 +26,29 @@ class Report
   end
 
   def show_resume
+    show_case_list
+    show_conn_status
+  end
+
+  def show_case_list
     puts 'CASE RESULTS'
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE ID', 'GRADE', 'L', 'MEMBERS', 'STATUS']
+      st.add_row ['CASE ID', 'GRADE', 'L', 'MEMBERS']
       @lines.each do |line|
-        st.add_row [line[:id], line[:grade], line[:letter], line[:members], line[:status]]
+        st.add_row [line[:id], line[:grade], line[:letter], line[:members]]
+      end
+    end
+    puts my_screen_table.to_s + "\n\n"
+  end
+
+  def show_conn_status
+    puts 'CONN STATUS'
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row ['CASE ID', 'MEMBERS', 'HOST', 'STATUS']
+      @lines.each do |line|
+        line[:conn_status].each_pair do |h,e|
+          st.add_row [line[:id], line[:members], h, e]
+        end
       end
     end
     puts my_screen_table.to_s + "\n\n"

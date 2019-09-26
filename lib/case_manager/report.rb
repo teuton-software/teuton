@@ -31,14 +31,14 @@ class CaseManager
       line = {}
       if c.skip?
         line = { id: '-', grade: 0.0, letter: '',
-                members: '-', status: '',
+                members: '-', conn_status: {},
                 moodle_id: '', moodle_feedback: '' }
       else
         line[:id] = format('case_%02d', c.id.to_i)
         line[:letter] = app.letter[:error] if c.grade < 50.0
         line[:grade] = c.grade.to_f #format('  %3d', c.grade.to_f)
         line[:members] = c.members
-        line[:status] = c.status
+        line[:conn_status] = c.conn_status
         line[:moodle_id] = c.get(:tt_moodle_id)
         line[:moodle_feedback] = "\"Filename: #{c.filename}. Date: #{Time.now}\""
       end
