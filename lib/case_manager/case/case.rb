@@ -49,9 +49,7 @@ class Case
       @skip = false if app.options['case'].include? @id
     end
 
-    @status = :notfound
-    @status = :skipped if @skip
-
+    @conn_status = {}
     @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp', @id.to_s)
     # ensure_dir @tmpdir # REVISE: When we will need this? Samba?
     @remote_tmpdir = File.join('/', 'tmp')
