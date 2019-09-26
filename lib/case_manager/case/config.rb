@@ -9,9 +9,10 @@ require_relative '../../application'
 class Case
   # This class manage configuration for only one case
   class Config
-    attr_reader :global, :local, :running
+    attr_reader :ialias, :global, :local, :running
 
     def initialize(args)
+      @ialias  = args[:ialias] || Application.instance.ialias.clone
       @global  = args[:global] || Application.instance.global.clone
       @local   = args[:local]  || {}
       @running = {}

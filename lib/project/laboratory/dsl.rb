@@ -48,22 +48,25 @@ class Laboratory
   end
 
   def expect(_cond, args = {})
-    if _cond.class == String or _cond.class == Array
-      expect_one _cond, args
-      return
-    end
+    #unless [ String, Array, Regexp].include? _cond.class
+    #  verboseln "[ERROR] expect #{_cond} (#{_cond.class})"
+    #  return
+    #end
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
-    verboseln "      expect      #{result.expected} (#{result.expected.class})"
+    #verboseln "      expect      #{result.expected} (#{result.expected.class})"
+    verboseln "      expect      #{_cond} (#{_cond.class})"
     verboseln ''
   end
 
   def expect_one(_cond, args = {})
-    verboseln "      expect_one  #{_cond.to_s} (#{_cond.class})"
+    verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
+    verboseln "      expect_one  #{_cond} (#{_cond.class})"
     verboseln ''
   end
 
   def expect_none(_cond, args = {})
-    verboseln "      expect_none #{_cond.to_s} (#{_cond.class})"
+    verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
+    verboseln "      expect_none #{_cond} (#{_cond.class})"
     verboseln ''
   end
 

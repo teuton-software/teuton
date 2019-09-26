@@ -24,7 +24,8 @@ module DSL
     if args[:remote_dir]
       remotefilepath = File.join(args[:remote_dir], filename)
     else
-      remotefilepath = File.join(remote_tempdir, filename)
+      # remotefilepath = File.join(remote_tempdir, filename)
+      remotefilepath = File.join('.', filename)
     end
 
     # Upload a file or directory to the remote host
@@ -32,9 +33,9 @@ module DSL
       Net::SFTP.start(ip, username, password: password) do |sftp|
         sftp.upload!(localfilepath, remotefilepath)
       end
-      verboseln("=> [ OK  ] #{(get(:tt_members)[0,15]).ljust(10)} : #{remotefilepath}")
+      verboseln("=> [ OK  ] #{(get(:tt_members)[0,15]).ljust(16)} : #{remotefilepath}")
     rescue
-      verboseln("=> [ERROR] #{(get(:tt_members)[0,15]).ljust(10)} : scp #{localfilepath} => #{remotefilepath}")
+      verboseln("=> [ERROR] #{(get(:tt_members)[0,15]).ljust(16)} : scp #{localfilepath} => #{remotefilepath}")
     end
   end
 
@@ -51,10 +52,12 @@ module DSL
   end
 
   def tempdir
+    # puts '[WARN] Using DSL.tempdir'
     @tmpdir
   end
 
   def remote_tempfile
+    # puts '[WARN] Using DSL.tempfile'
     @action[:remote_tempfile]
   end
 

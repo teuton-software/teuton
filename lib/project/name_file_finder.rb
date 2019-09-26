@@ -7,7 +7,7 @@ require_relative '../application'
 # * find_filenames_for, verbose, verboseln
 module NameFileFinder
   def self.find_filenames_for(relpathtofile)
-    pathtofile = File.join(Application.instance.running_basedir, relpathtofile)
+    pathtofile = File.absolute_path(relpathtofile)
 
     # Define:
     #   script_path, must contain fullpath to DSL script file

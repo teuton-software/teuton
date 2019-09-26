@@ -24,4 +24,11 @@ class BaseFormatter
   def deinit
     @file.close
   end
+
+  def trim(input)
+    output = input.to_s
+    return output if output.size<65
+    output = "...#{input[input.size-50, input.size]}"
+    output.to_s
+  end
 end

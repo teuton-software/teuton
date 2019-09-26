@@ -30,23 +30,25 @@ class ResumeTXTFormatter < ResumeArrayFormatter
 
   def process_config
     w "#{Rainbow("INITIAL CONFIGURATIONS").bg(:blue)}\n"
-    @data[:config].each do |key,value|
-      #w format(" %-20s : %s\n", key.to_s, value.to_s)
-      w "  #{key.to_s.ljust(18)} : #{value}\n"
+    my_screen_table = Terminal::Table.new do |st|
+      @data[:config].each do |key,value|
+        st.add_row [ key.to_s, trim(value)]
+      end
     end
-    w "\n\n"
+    w my_screen_table.to_s+"\n\n"
   end
 
   def process_cases
     w "#{Rainbow('CASE RESULTS').bg(:blue)}\n"
 
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row [ 'CASE ID', 'GRADE', 'STATUS', 'MEMBERS' ]
+      st.add_row [ 'CASE ID', 'GRADE', 'L', 'MEMBERS', 'STATUS' ]
       @data[:cases].each do |line|
         st.add_row [ line[:id],
                      format('  %3d', line[:grade]),
                      line[:letter],
-                     line[:members] ]
+                     line[:members],
+                     line[:status] ]
       end
     end
     w my_screen_table.to_s+"\n"

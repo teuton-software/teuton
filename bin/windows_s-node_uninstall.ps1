@@ -1,6 +1,6 @@
 <#
 Windows S-NODE uninstallation
-version: 20190127
+version: 20190925
 #>
 
 If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContains "S-1-5-32-544") {
@@ -11,7 +11,7 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContain
 Write-Host "[0/5.INFO] WINDOWS S-NODE uninstallation"
 
 Write-Host "[1/5.INFO] Closing TCP port 22 in Windows Firewall"
-Remove-NetFirewallRule -DisplayName "SSH TCP port 22" | Out-Null
+& "netsh" "advfirewall" "firewall" "delete" "rule" "name=SSH TCP port 22" | Out-Null
 
 Write-Host "[2/5.INFO] Stopping and disabling ssh service"
 Stop-Service sshd
@@ -21,9 +21,6 @@ Write-Host "[3/5.INFO] Removing OpenSSH as a service"
 & "$env:ProgramFiles\OpenSSH-Win64\uninstall-sshd.ps1" | Out-Null
 
 Write-Host "[4/5.INFO] Uninstalling PACKAGES..."
-If (!(Get-Command choco.exe -ErrorAction SilentlyContinue)) {
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-}
-choco uninstall openssh -y --remove-dependencies
+Remove-Item $env:ProgramFiles\OpenSSH-Win64 -Recurse -Force
 
 Write-Host "[5/5.INFO] Finish!"

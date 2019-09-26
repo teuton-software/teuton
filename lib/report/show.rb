@@ -17,21 +17,23 @@ class Report
 
   def show_initial_configurations
     puts 'INITIAL CONFIGURATIONS'
-    @head.each do |key, value|
-      puts "  #{key.to_s.ljust(18)} : #{value}\n"
+    my_screen_table = Terminal::Table.new do |st|
+      @head.each do |key, value|
+        st.add_row [key.to_s, trim(value)]
+      end
     end
-    puts "\n\n"
+    puts my_screen_table.to_s + "\n\n"
   end
 
   def show_resume
     puts 'CASE RESULTS'
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE ID', 'GRADE', 'STATUS', 'MEMBERS']
+      st.add_row ['CASE ID', 'GRADE', 'L', 'MEMBERS', 'STATUS']
       @lines.each do |line|
-        st.add_row [line[:id], line[:grade], line[:letter], line[:members]]
+        st.add_row [line[:id], line[:grade], line[:letter], line[:members], line[:status]]
       end
     end
-    puts my_screen_table.to_s
+    puts my_screen_table.to_s + "\n\n"
   end
 
   def show_targets_history
@@ -52,6 +54,7 @@ class Report
         end
       end
     end
+    puts "\n\n"
   end
 
   def show_final_values
@@ -61,7 +64,7 @@ class Report
         st.add_row [key.to_s, value.to_s]
       end
     end
-    puts my_screen_table.to_s
+    puts my_screen_table.to_s + "\n"
   end
 
   def show_hall_of_fame
@@ -74,6 +77,13 @@ class Report
         st.add_row [line[0], line[1]]
       end
     end
-    puts my_screen_table.to_s
+    puts my_screen_table.to_s + "\n"
+  end
+
+  def trim(input)
+    output = input.to_s
+    return output if output.size<65
+    output = "...#{input[input.size-50, input.size]}"
+    output.to_s
   end
 end
