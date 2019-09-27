@@ -30,7 +30,7 @@ class TXTFormatter < ArrayFormatter
   private
 
   def process_config
-    w "#{Rainbow("CONFIGURATIONS").bg(:blue)}\n"
+    w "#{Rainbow("CONFIGURATION").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:config].sort.each { |key,value| st.add_row [ key.to_s, value.to_s] }
     end
@@ -66,7 +66,7 @@ class TXTFormatter < ArrayFormatter
   end
 
   def process_hof
-    return if @data[:hall_of_fame].size == 0
+    return if @data[:hall_of_fame].size < 3
 
     w "\n#{Rainbow("HALL OF FAME").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|

@@ -30,7 +30,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   private
 
   def process_config
-    w "#{Rainbow("INITIAL CONFIGURATIONS").bg(:blue)}\n"
+    w "#{Rainbow("CONFIGURATION").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:config].each do |key,value|
         st.add_row [ key.to_s, trim(value)]
@@ -40,7 +40,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   end
 
   def process_cases
-    w "#{Rainbow('CASE RESULTS').bg(:blue)}\n"
+    w "#{Rainbow('CASES').bg(:blue)}\n"
 
     my_screen_table = Terminal::Table.new do |st|
       st.add_row [ 'CASE ID', 'GRADE', 'MEMBERS', 'STATE' ]
@@ -81,7 +81,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   end
 
   def process_hof
-    return if @data[:hall_of_fame].size == 0
+    return if @data[:hall_of_fame].size < 3
 
     w "\n#{Rainbow("HALL OF FAME").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|

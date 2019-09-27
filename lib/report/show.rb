@@ -82,12 +82,12 @@ class Report
         st.add_row [key.to_s, value.to_s]
       end
     end
-    puts my_screen_table.to_s + "\n"
+    puts my_screen_table.to_s + "\n\n"
   end
 
   def show_hall_of_fame
     app = Application.instance
-    return if app.hall_of_fame.count < 2
+    return if app.hall_of_fame.size < 3
 
     puts 'HALL OF FAME'
     my_screen_table = Terminal::Table.new do |st|
