@@ -42,6 +42,10 @@ class Report
   end
 
   def show_conn_status
+    e = 0
+    @lines.each { |line| e += line[:conn_status].size }
+    return if e == 0
+
     puts 'CONN ERRORS'
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ['CASE ID', 'MEMBERS', 'HOST', 'ERROR']

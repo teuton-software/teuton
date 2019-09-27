@@ -38,21 +38,17 @@ class TXTFormatter < ArrayFormatter
   end
 
   def process_logs
-    if @data[:logs].size > 0
-      w "#{Rainbow("LOGS").bg(:blue)}\n"
-      if @data[:logs].size == 1
-        w "#{@data[:logs][0]}\n"
-      else
-        @data[:logs].each { |line| w ". #{line}\n" }
-      end
-    end
+    return if @data[:logs].size == 0
+
+    w "#{Rainbow("LOGS").bg(:blue)}\n"
+    @data[:logs].each { |line| w "* #{line}\n" }
   end
 
   def process_groups
-    if @data[:groups].size > 0
-      w "\n#{Rainbow("GROUPS").bg(:blue)}\n"
-      @data[:groups].each { |g| process_group g }
-    end
+    return if @data[:groups].size == 0
+
+    w "\n#{Rainbow("GROUPS").bg(:blue)}\n"
+    @data[:groups].each { |g| process_group g }
   end
 
   def process_results

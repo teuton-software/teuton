@@ -55,7 +55,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   end
 
   def process_conn_errors
-    w "#{Rainbow('CONN ERRORS').bg(:blue)}\n"
+    w "#{Rainbow('CONN ERRORS').bg(:red)}\n"
 
     my_screen_table = Terminal::Table.new do |st|
       st.add_row [ 'CASE ID', 'MEMBERS', 'HOST', 'ERROR' ]
