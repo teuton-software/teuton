@@ -7,7 +7,8 @@ module DSL
     s = Rainbow('WARN!').color(:yellow) if type == :warn
     s = Rainbow('ERROR').bg(:red) if type == :error
     t = Time.now
-    @report.lines << "[#{t.hour}:#{t.min}:#{t.sec}] #{s}: #{text}"
+    f = format('%02d:%02d:%02d', t.hour, t.min, t.sec)
+    @report.lines << "[#{f}] #{s}: #{text}"
   end
   alias msg log
 end

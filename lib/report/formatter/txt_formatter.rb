@@ -41,7 +41,7 @@ class TXTFormatter < ArrayFormatter
     return if @data[:logs].size == 0
 
     w "#{Rainbow("LOGS").bg(:blue)}\n"
-    @data[:logs].each { |line| w "* #{line}\n" }
+    @data[:logs].each { |line| w "    #{line}\n" }
   end
 
   def process_groups
