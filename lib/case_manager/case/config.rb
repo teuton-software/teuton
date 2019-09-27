@@ -12,7 +12,7 @@ class Case
     attr_reader :ialias, :global, :local, :running
 
     def initialize(args)
-      @ialias  = args[:ialias] || Application.instance.ialias.clone
+      @ialias  = args[:alias] || Application.instance.ialias.clone
       @global  = args[:global] || Application.instance.global.clone
       @local   = args[:local]  || {}
       @running = {}
@@ -26,7 +26,7 @@ class Case
       return @local[option]   unless @local[option].nil?
       return @running[option] unless @running[option].nil?
       return @global[option]  unless @global[option].nil?
-
+      return get(@ialias[option]) unless @ialias[option].nil?
       'NODATA'
     end
 
