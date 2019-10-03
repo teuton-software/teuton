@@ -23,11 +23,10 @@ class Case
 
     # Read param Option from [running, config or global] Hash data
     def get(option)
-      return @local[option]   unless @local[option].nil?
-      return @running[option] unless @running[option].nil?
-      return @global[option]  unless @global[option].nil?
-      return get(@ialias[option]) unless @ialias[option].nil?
-      'NODATA'
+      return @local[option]   if @local[option]
+      return @running[option] if @running[option]
+      return @global[option]  if @global[option]
+      search_alias option
     end
 
     def set(key, value)
@@ -36,6 +35,21 @@ class Case
 
     def unset(key)
       @running[key] = nil
+    end
+
+require 'pry-byebug'
+    def search_alias(key)
+      return get(@ialias[key]) if @ialias[key]
+
+      words = key.to_s.split('_')
+      return 'NODATA' if words.size < 2
+
+      return 'NODATA' unless %w[ip hostname username password].include? words[1]
+
+      key2 = @ialias[words[0].to_sym]
+      return 'NODATA' unless key2
+
+      get( ("#{key2}_#{words[1]}").to_sym )
     end
   end
 end
