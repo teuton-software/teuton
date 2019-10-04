@@ -1,7 +1,7 @@
 
 # TEUTON Software
 
-_Create Unit Test for your infrastructure.
+_Create Unit Test for your machines.
 Test your infraestructure as code._
 
 ![logo](./docs/logo.png)
@@ -11,16 +11,19 @@ TEUTON are test units for machines (everything).
 TEUTON tests tons of goals on tons of machines.
 ```
 
-Software for:
-* Write test units for machines (and everything).
-* Check a group of real/virtual machines to satisfied a list of targets/goals.
+Useful for:
+* Sysadmin teachers to evaluate students remote machines.
+* Sysadmin students to evaluate their learning process as a game.
+* Professional sysadmin to monitor remote machines.
+
+Allow us:
+* Write test units for real or virtual machines.
+* Check that requirements are met on remote machines.
 
 Features:
-* Execute Test Units that checks remote hosts or localhost.
-* Verify that these hosts satisfies specific requirements.
-* Use a set of keywords (Domain Specific Language) to define your challenges (Test Units).
-* Challenges are formed by groups of targets (goals).
-* Targets/goal are verified by this tool.
+* [Free Software License](LICENSE).
+* Multiplatform [installation](https://github.com/teuton-software/teuton/wiki/Installation).
+* Developed using the ruby language.
 
 ---
 
