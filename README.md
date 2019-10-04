@@ -23,6 +23,7 @@ Allow us:
 Features:
 * [Free Software License](LICENSE).
 * Multiplatform [installation](https://github.com/teuton-software/teuton/wiki/Installation).
+* Use SSH or Telent protocol to connect to remote machines. 
 * Developed using the ruby language.
 
 ---
