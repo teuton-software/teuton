@@ -21,7 +21,7 @@ Allow us:
 * Check that requirements are met on remote machines.
 
 Features:
-* [Free Software License](https://github.com/teuton-software/teuton/master/LICENSE).
+* [Free Software License](https://github.com/teuton-software/teuton/blob/master/LICENSE).
 * Multiplatform [installation](https://github.com/teuton-software/teuton/wiki/Installation).
 * Use SSH or Telent protocol to connect to remote machines.
 * Developed using the ruby language.
