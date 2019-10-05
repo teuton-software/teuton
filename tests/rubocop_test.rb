@@ -9,8 +9,7 @@ class RubocopTest < Minitest::Test
 
     @files[:case] = []
     @files[:case] << 'lib/case_manager/case/close.rb'
-#    @files[:case] << 'lib/case_manager/case/config.rb'
-    @files[:case] << 'lib/case_manager/case/ostype.rb'
+    @files[:case] << 'lib/case_manager/case/config.rb'
     @files[:case] << 'lib/case_manager/case/main.rb'
     @files[:case] << 'lib/case_manager/case/play.rb'
 
@@ -132,6 +131,7 @@ class RubocopTest < Minitest::Test
     @files[:report].each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
+      puts file
       assert_equal true, lines.any?(/file inspected, no offenses detected/)
     end
   end
