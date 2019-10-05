@@ -14,8 +14,11 @@ class Case
     end
     # TODO: Delete old reports???
     start_time = Time.now
-    play_in_sequence if get(:tt_sequence)     # Play in sequence
-    play_in_parallel unless get(:tt_sequence) # Play in parallel
+    if get(:tt_sequence) == true
+      play_in_sequence # Play in sequence
+    else
+      play_in_parallel # Play in parallel
+    end
     fill_report(start_time, Time.now)
     close_opened_sessions
   end
@@ -40,6 +43,7 @@ class Case
     verboseln "Starting case <#{@config.get(:tt_members)}>"
     @groups.each do |t|
       verbose "* Processing <#{t[:name]}> "
+      @action[:groupname] = t[:name]
       instance_eval(&t[:block])
       verbose "\n"
     end

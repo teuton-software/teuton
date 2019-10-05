@@ -29,24 +29,20 @@ class ArrayFormatter < BaseFormatter
   end
 
   def build_history_data
-    groups = []
-    group = {}
-
     @data[:logs] = []
-    group[:title] = nil
-    group[:targets] = []
-
+    groups = []
+    title = nil
+    targets = []
     @lines.each do |i|
       if i.class.to_s == 'Hash'
         value = 0.0
         value = i[:weight] if i[:check]
-
-        if i[:groupname] != group[:title]
-          groups << group unless group[:title].nil? # Add currentgroup
+        if i[:groupname] != title
+          # Add currentgroup
+          groups << { title: title, targets: targets } unless title.nil?
           # Create new group
-          group = Hash.new
-          group[:title] = i[:groupname]
-          group[:targets] = []
+          title = i[:groupname]
+          targets = []
         end
 
         target = {}
@@ -61,13 +57,13 @@ class ArrayFormatter < BaseFormatter
         target[:alterations] = i[:alterations]
         target[:expected]    = i[:expected]
         target[:result]      = i[:result]
-        group[:targets] << target
+        targets << target
       else
         @data[:logs] << i.to_s # Add log line
       end
     end
 
-    groups << group unless group[:title].nil? # Add group
+    groups << { title: title, targets: targets } unless title.nil?
     @data[:groups] = groups
   end
 

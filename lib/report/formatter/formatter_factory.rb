@@ -36,6 +36,8 @@ module FormatterFactory
       f = YAMLFormatter.new(report)
     when :xml
       f = XMLFormatter.new(report)
+    else
+      raise "FormaterFactory #{format} unkown!"
     end
     f.init(filename)
     f

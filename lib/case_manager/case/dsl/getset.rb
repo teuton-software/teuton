@@ -15,4 +15,13 @@ module DSL
   def set(key, value)
     @config.set(key, value)
   end
+
+  # If a method call is missing, then delegate to concept parent.
+  def method_missing(method)
+    puts "[DEBUG] Running method_missing #{method}"
+    a = method.to_s
+    if a[a.size-1] == '?'
+      instance_eval("get(:#{a[0,a.size-1]})")
+    end
+  end
 end
