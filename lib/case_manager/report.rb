@@ -13,6 +13,7 @@ class CaseManager
     # @report.head[:tt_uses] = app.uses.join(', ')
     @report.head.merge!(app.global)
 
+    verboseln ' '
     verboseln '=' * @report.head[:tt_title].length
     verboseln @report.head[:tt_title]
   end
@@ -23,8 +24,10 @@ class CaseManager
     @report.tail[:finish_time] = finish_time
     @report.tail[:duration] = finish_time - start_time
 
-    verboseln "\n[INFO] Duration = #{(finish_time - start_time)} (#{finish_time})"
+    verbose "\n[INFO] Duration = #{format('%3.3f',(finish_time - start_time))}"
+    verboseln "    (#{finish_time})"
     verboseln '=' * @report.head[:tt_title].length
+    verboseln ' '
 
     app = Application.instance
     @cases.each do |c|

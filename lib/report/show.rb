@@ -33,9 +33,9 @@ class Report
   def show_case_list
     puts 'CASE RESULTS'
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE ID', 'GRADE', 'STATE', 'MEMBERS']
+      st.add_row ['CASE ID', 'MEMBERS', 'GRADE', 'STATE' ]
       @lines.each do |line|
-        st.add_row [line[:id], line[:grade], line[:letter], line[:members]]
+        st.add_row [line[:id], line[:members], line[:grade], line[:letter]]
       end
     end
     puts my_screen_table.to_s + "\n\n"

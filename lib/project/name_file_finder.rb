@@ -104,11 +104,17 @@ module NameFileFinder
     app = Application.instance
 
     verbose Rainbow('[INFO] ScriptPath => ').blue
-    verboseln Rainbow(app.script_path).blue.bright
+    verboseln Rainbow(trim(app.script_path)).blue.bright
     verbose Rainbow('[INFO] ConfigPath => ').blue
-    verboseln Rainbow(app.config_path).blue.bright
+    verboseln Rainbow(trim(app.config_path)).blue.bright
     verbose Rainbow('[INFO] TestName   => ').blue
-    verboseln Rainbow(app.test_name).blue.bright
+    verboseln Rainbow(trim(app.test_name)).blue.bright
+  end
+
+  def self.trim(input)
+    output = input.to_s
+    output = "...#{input[input.size - 50, input.size]}" if output.size > 65
+    output.to_s
   end
 
   def self.verboseln(text)
