@@ -6,6 +6,7 @@ require_relative '../../application'
 # * get
 # * set
 # * unset
+# * missing_method
 class Case
   # This class manage configuration for only one case
   class Config
@@ -23,9 +24,12 @@ class Case
 
     # Read param Option from [running, config or global] Hash data
     def get(option)
-      return @local[option]   if @local[option]
+      return @local[option] if @local[option]
+
       return @running[option] if @running[option]
-      return @global[option]  if @global[option]
+
+      return @global[option] if @global[option]
+
       search_alias option
     end
 
@@ -37,7 +41,6 @@ class Case
       @running[key] = nil
     end
 
-require 'pry-byebug'
     def search_alias(key)
       return get(@ialias[key]) if @ialias[key]
 
@@ -49,7 +52,7 @@ require 'pry-byebug'
       key2 = @ialias[words[0].to_sym]
       return 'NODATA' unless key2
 
-      get( ("#{key2}_#{words[1]}").to_sym )
+      get("#{key2}_#{words[1]}".to_sym)
     end
   end
 end

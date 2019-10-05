@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'rainbow'
 require_relative 'csv_formatter'
 require_relative 'html_formatter'
 require_relative 'json_formatter'
 require_relative 'moodle_csv_formatter'
 require_relative 'resume_json_formatter'
+require_relative 'resume_yaml_formatter'
 require_relative 'resume_txt_formatter'
 require_relative 'txt_formatter'
 require_relative 'xml_formatter'
@@ -30,28 +32,32 @@ module FormatterFactory
       f = ResumeTXTFormatter.new(report, true)
     when :resume_json
       f = ResumeJSONFormatter.new(report)
+    when :resume_yaml
+      f = ResumeYAMLFormatter.new(report)
     when :txt
       f = TXTFormatter.new(report,false)
-    when :yaml
-      f = YAMLFormatter.new(report)
     when :xml
       f = XMLFormatter.new(report)
+    when :yaml
+      f = YAMLFormatter.new(report)
     else
-      raise "FormaterFactory #{format} unkown!"
+      raise Rainbow("[ERROR] FormaterFactory #{format} unkown!").red.bright
     end
     f.init(filename)
     f
   end
 
   def self.ext(format)
-    data = {}
-    data[:txt] = 'txt'
-    data[:colored_text] = 'txt'
-    data[:resume_colored_text] = 'txt'
-    data[:resume_json] = 'json'
-    data[:resume_txt] = 'txt'
-    data[:cvs] = 'csv'
-    data[:resume_csv] = 'csv'
+    data = { cvs: 'csv',
+             colored_text: 'txt',
+             json: 'json',
+             resume_colored_text: 'txt',
+             resume_csv: 'csv',
+             resume_json: 'json',
+             resume_txt: 'txt',
+             resume_yaml: 'yaml',
+             txt: 'txt',
+             yaml: 'yaml' }
     return format.to_s if data[format].nil?
 
     data[format]

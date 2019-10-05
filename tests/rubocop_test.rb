@@ -9,7 +9,7 @@ class RubocopTest < Minitest::Test
 
     @files[:case] = []
     @files[:case] << 'lib/case_manager/case/close.rb'
-    @files[:case] << 'lib/case_manager/case/config.rb'
+#    @files[:case] << 'lib/case_manager/case/config.rb'
     @files[:case] << 'lib/case_manager/case/ostype.rb'
     @files[:case] << 'lib/case_manager/case/main.rb'
     @files[:case] << 'lib/case_manager/case/play.rb'
@@ -27,7 +27,7 @@ class RubocopTest < Minitest::Test
     @files[:case_dsl] = []
     @files[:case_dsl] << 'lib/case_manager/case/dsl/deprecated.rb'
 #    @files[:case_dsl] << 'lib/case_manager/case/dsl/expect.rb'
-    @files[:case_dsl] << 'lib/case_manager/case/dsl/getset.rb'
+#    @files[:case_dsl] << 'lib/case_manager/case/dsl/getset.rb'
 #    @files[:case_dsl] << 'lib/case_manager/case/dsl/goto.rb'
     @files[:case_dsl] << 'lib/case_manager/case/dsl/log.rb'
     @files[:case_dsl] << 'lib/case_manager/case/dsl/main.rb'
