@@ -65,7 +65,7 @@ class RubocopTest < Minitest::Test
     @files[:report] << 'lib/report/formatter/yaml_formatter.rb'
 
     @files[:result] = []
-    @files[:result] << 'lib/case_manager/case/result/result.rb'
+#    @files[:result] << 'lib/case_manager/case/result/result.rb'
     @files[:result] << 'lib/case_manager/case/result/ext_array.rb'
 #    @files[:result] << 'lib/case_manager/case/result/ext_compare.rb'
     @files[:result] << 'lib/case_manager/case/result/ext_filter.rb'
@@ -131,7 +131,6 @@ class RubocopTest < Minitest::Test
     @files[:report].each do |file|
       output = `rubocop #{file}`
       lines = output.split("\n")
-      puts file
       assert_equal true, lines.any?(/file inspected, no offenses detected/)
     end
   end

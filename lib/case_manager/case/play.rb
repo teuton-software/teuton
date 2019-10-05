@@ -14,11 +14,8 @@ class Case
     end
     # TODO: Delete old reports???
     start_time = Time.now
-    if get(:tt_sequence) == true
-      play_in_sequence # Play in sequence
-    else
-      play_in_parallel # Play in parallel
-    end
+    play_in_sequence if get(:tt_sequence) == true # Play in sequence
+    play_in_parallel if get(:tt_sequence) != true # Play in parallel
     fill_report(start_time, Time.now)
     close_opened_sessions
   end

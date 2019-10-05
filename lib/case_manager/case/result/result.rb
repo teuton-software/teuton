@@ -44,7 +44,7 @@ class Result
     print " [DEBUG] count=#{@content.count} "
     puts '*' * 20
     @content.each_with_index do |item, index|
-      puts format("%2d: %s", index, item)
+      puts format('%2d: %s', index, item)
     end
     puts '*' * 57
   end
@@ -55,7 +55,8 @@ class Result
 
   def ok?
     return false if @exitstatus.nil?
-    @exitstatus.zero? 
+
+    @exitstatus.zero?
   end
 
   def restore
