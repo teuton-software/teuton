@@ -23,14 +23,16 @@ class Case
     end
 
     # Read param Option from [running, config or global] Hash data
-    def get(option)
+    def get(option, level = 0)
+      return 'NODATA' if level > 3
+
       return @local[option] if @local[option]
 
       return @running[option] if @running[option]
 
       return @global[option] if @global[option]
 
-      search_alias option
+      search_alias option, level + 1
     end
 
     def set(key, value)
@@ -41,8 +43,12 @@ class Case
       @running[key] = nil
     end
 
-    def search_alias(key)
-      return get(@ialias[key]) if @ialias[key]
+    private
+
+    def search_alias(key, level)
+      return search_array_alias(@ialias[key],level) if @ialias[key].class == Array
+
+      return get(@ialias[key]) if [Integer, String, Symbol].include? @ialias[key].class
 
       words = key.to_s.split('_')
       return 'NODATA' if words.size < 2
@@ -52,7 +58,19 @@ class Case
       key2 = @ialias[words[0].to_sym]
       return 'NODATA' unless key2
 
-      get("#{key2}_#{words[1]}".to_sym)
+      get("#{key2}_#{words[1]}".to_sym, level)
+    end
+
+    def search_array_alias(keys,level)
+      values = []
+      keys.each do |k|
+        if k.class == Symbol
+          values << get(k, level + 1)
+        else
+          values << k
+        end
+      end
+      values.join('')
     end
   end
 end

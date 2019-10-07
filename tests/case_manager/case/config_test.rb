@@ -7,16 +7,19 @@ class ConfigTest < Minitest::Test
   def setup
     @local = { :tt_members => 'Obiwan Kenobi',
                :username => 'obiwan',
+               :number => 42,
                :from => 'local',
                :linux1_ip => '192.168.1.100',
                :linux1_password => 'secret' }
     @global = { :dns => '8.8.4.4',
+                :ip_prefix => '172.19.',
                 :username => 'sysadmingame',
                 :from => 'global',
                 :linux1_username => 'root' }
     @ialias = { :user => :username,
                 :dns_ip => :dns,
-                :suse1 => :linux1 }
+                :suse1 => :linux1,
+                :ip => [ :ip_prefix, :number, '.32'] }
     @config = Case::Config.new( :local => @local,
                                 :global => @global,
                                 :alias => @ialias)
@@ -71,5 +74,7 @@ class ConfigTest < Minitest::Test
     assert_equal '192.168.1.100', @config.get(:suse1_ip)
     assert_equal @config.get(:linux1_username), @config.get(:suse1_username)
     assert_equal @config.get(:linux1_password), @config.get(:suse1_password)
+
+    assert_equal '172.19.42.32', @config.get(:ip)
   end
 end
