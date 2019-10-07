@@ -8,9 +8,7 @@ class Result
     case filter.class.to_s
     when 'Array'
       find_when_array(filter)
-    when 'String'
-      @content.select! { |i| i.include?(filter.to_s) }
-    when 'Integer'
+    when 'String' || 'Integer'
       @content.select! { |i| i.include?(filter.to_s) }
     when 'Regexp'
       @content.select! { |i| filter.match(i) }
