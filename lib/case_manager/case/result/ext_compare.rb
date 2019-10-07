@@ -2,24 +2,24 @@
 
 # This is an extension of Result class
 class Result
-  def eq(external)
-    @expected = external
+  def eq(input)
+    @expected = input
 
-    case external.class.to_s
+    case input.class.to_s
     when 'Fixnum'
-      internal = @content[0].to_i
+      value = @content[0].to_i
       puts '[WARN] Fixnum class is deprecated!'
       puts '       Upgrade your Ruby version.'
     when 'Float'
-      internal = @content[0].to_f
+      value = @content[0].to_f
     when 'Integer'
-      internal = @content[0].to_i
+      value = @content[0].to_i
     when 'String'
-      internal = @content[0].to_s
+      value = @content[0].to_s
     else
-      internal = @content[0]
+      value = @content[0]
     end
-    internal == external
+    value == input
   end
   alias eq?        eq
   alias equal      eq
@@ -47,100 +47,100 @@ class Result
   alias not_equal  neq
   alias not_equal? neq
 
-  def ge(p_value)
-    @expected = "Greater or equal to #{p_value}"
+  def ge(input)
+    @expected = "Greater or equal to #{input}"
     return false if @content.nil? || @content[0].nil?
 
-    l_value = @content[0]
-    case p_value.class.to_s
+    value = @content[0]
+    case input.class.to_s
     when 'Fixnum'
-      l_value = @content[0].to_i
+      value = @content[0].to_i
       puts '[WARN] Fixnum class is deprecated!'
       puts '       Upgrade your Ruby version.'
     when 'Float'
-      l_value = @content[0].to_f
+      value = @content[0].to_f
     when 'Integer'
-      l_value = @content[0].to_i
+      value = @content[0].to_i
     end
-    l_value >= p_value
+    value >= input
   end
+  alias greater_or_equal  ge
+  alias greater_or_equal? ge
 
-  def gt(p_value)
-    @expected = "Greater than #{p_value}"
+  def gt(input)
+    @expected = "Greater than #{input}"
     return false if @content.nil? || @content[0].nil?
 
-    l_value = @content[0]
-    case p_value.class.to_s
+    value = @content[0]
+    case input.class.to_s
     when 'Fixnum'
-      l_value = @content[0].to_i
+      value = @content[0].to_i
       puts '[WARN] Fixnum class is deprecated!'
       puts '       Upgrade your Ruby version.'
     when 'Float'
-      l_value = @content[0].to_f
+      value = @content[0].to_f
     when 'Integer'
-      l_value = @content[0].to_i
+      value = @content[0].to_i
     end
-    l_value > p_value
+    value > input
   end
+  alias greater          gt
+  alias greater_than     gt
 
-  def le(p_value)
-    @expected = "Lesser or equal to #{p_value}"
+  def le(input)
+    @expected = "Lesser or equal to #{input}"
 
     return false if @content.nil? || @content[0].nil?
 
-    l_value = @content[0]
-    case p_value.class.to_s
+    value = @content[0]
+    case input.class.to_s
     when 'Fixnum'
-      l_value = @content[0].to_i
+      value = @content[0].to_i
       puts '[WARN] Fixnum class is deprecated!'
       puts '       Upgrade your Ruby version.'
     when 'Float'
-      l_value = @content[0].to_f
+      value = @content[0].to_f
     when 'Integer'
-      l_value = @content[0].to_i
+      value = @content[0].to_i
     end
-    l_value <= p_value
+    value <= input
   end
+  alias lesser_or_equal  le
+  alias lesser_or_equal? le
 
-  def lt(p_value)
-    @expected = "Lesser than #{p_value}"
+  def lt(input)
+    @expected = "Lesser than #{input}"
     return false if @content.nil? || @content[0].nil?
 
-    l_value = @content[0]
-    case p_value.class.to_s
+    value = @content[0]
+    case input.class.to_s
     when 'Fixnum'
-      l_value = @content[0].to_i
+      value = @content[0].to_i
       puts '[WARN] Fixnum class is deprecated!'
       puts '       Upgrade your Ruby version.'
     when 'Float'
-      l_value = @content[0].to_f
+      value = @content[0].to_f
     when 'Integer'
-      l_value = @content[0].to_i
+      value = @content[0].to_i
     end
-    l_value < p_value
+    value < input
   end
+  alias lesser  lt
+  alias smaller lt
+  alias lesser_than lt
 
   # Return 'true' if the parameter value is near to the target value.
   # To get this we consider a 10% desviation or less, as an acceptable result.
-  def near_to?(value)
-    @expected = "Is near to #{value}"
+  def near_to?(input)
+    @expected = "Is near to #{input}"
     return false if @content.nil?
 
     target = @content[0].to_f
     desv   = (target * 10.0) / 100.0
-    return true if (target - value.to_f).abs.to_f <= desv
+    return true if (target - input.to_f).abs.to_f <= desv
 
     false
   end
   alias near? near_to?
 
-  alias greater_or_equal  ge
-  alias greater_or_equal? ge
-  alias greater          gt
-  alias greater_than     gt
-  alias lesser_or_equal  le
-  alias lesser_or_equal? le
-  alias lesser  lt
-  alias smaller lt
-  alias lesser_than lt
 end
