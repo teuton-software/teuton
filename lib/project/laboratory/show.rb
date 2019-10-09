@@ -138,6 +138,9 @@ class Laboratory
     unless config_vars[:global].nil?
       config_vars[:global].each_key { |k| script_vars.delete(k) }
     end
+    unless config_vars[:alias].nil?
+      config_vars[:alias].each_key { |k| script_vars.delete(k) }
+    end
 
     config_vars[:cases].each_with_index do |item, index|
       next if item[:tt_skip] == true
