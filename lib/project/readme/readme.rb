@@ -129,8 +129,8 @@ class Readme
       puts Lang::get(:params)
       @cases_params.uniq.each { |i| puts format('* %s', i) }
       puts "\n> NOTE:"
-      puts "> * Teuton software must known this information."
-      puts "> * Save them into challenge config file."
+      puts "> * Teuton software must known this information!"
+      puts "> * Save every ':param: value' into config file."
     end
   end
 

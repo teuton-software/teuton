@@ -82,6 +82,12 @@ class Readme
     value.to_s.upcase
   end
 
+  # If a method call is missing, then delegate to concept parent.
+  def method_missing(method)
+    a = method.to_s
+    instance_eval("get(:#{a[0, a.size - 1]})") if a[a.size - 1] == '?'
+  end
+
   def gett(value)
     a = get(value)
     return "[#{value}](\#required-params)" if @cases_params.include? value
