@@ -9,6 +9,7 @@ class CaseManager
 
     # Load configurations from config file
     configdata = ConfigFileReader.read(app.config_path)
+    app.ialias = configdata[:alias]
     app.global = configdata[:global]
     app.global[:tt_testname] = app.global[:tt_testname] || app.test_name
     app.global[:tt_sequence] = false if app.global[:tt_sequence].nil?
