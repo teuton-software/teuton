@@ -40,7 +40,7 @@ class Result
   end
 
   def debug
-    print '*' * 20
+    print "\n" + '*' * 20
     print " [DEBUG] count=#{@content.count} "
     puts '*' * 20
     @content.each_with_index do |item, index|
