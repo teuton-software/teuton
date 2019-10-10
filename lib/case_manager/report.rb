@@ -33,10 +33,11 @@ class CaseManager
     @cases.each do |c|
       line = {}
       if c.skip?
-        line = { id: '-', grade: 0.0, letter: '',
+        line = { skip: true, id: '-', grade: 0.0, letter: '',
                 members: '-', conn_status: {},
                 moodle_id: '', moodle_feedback: '' }
       else
+        line[:skip] = false
         line[:id] = format('case_%02d', c.id.to_i)
         line[:letter] = app.letter[:error] if c.grade < 50.0
         line[:grade] = c.grade.to_f #format('  %3d', c.grade.to_f)

@@ -21,7 +21,8 @@ class MoodleCSVFormatter < ResumeArrayFormatter
     # MoodleID, Grade, Feedback
     w "MoodleID, TeutonGrade, TeutonFeedback\n"
     @data[:cases].each do |line|
-      w "#{line[:moodle_id]},#{line[:grade]},#{line[:moodle_feedback]}\n"
+      w "#{line[:moodle_id]},#{line[:grade]}," \
+        "#{line[:moodle_feedback]}\n" unless line[:skip]
     end
   end
 end
