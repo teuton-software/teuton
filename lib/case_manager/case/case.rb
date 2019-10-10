@@ -5,7 +5,7 @@ require_relative '../../report/report'
 require_relative '../utils'
 require_relative 'main'
 require_relative 'result/result'
-require_relative 'builtin/case_service'
+require_relative 'builtin/main'
 
 # TODO: split Case class into several classes:
 # * Case, Action?, Session?, RunCommand class
