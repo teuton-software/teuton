@@ -38,24 +38,13 @@ class Result
   end
 
   def debug
-    my_screen_table = Terminal::Table.new do |st|
-      if @content.class == Array
-        debug_array(st)
-      else
-        debug_no_array(st)
-      end
+    print "\n" + '*' * 20
+    print " [DEBUG] count=#{@content.count} "
+    puts '*' * 20
+    @content.each_with_index do |item, index|
+      puts format('%2d: %s', index, item)
     end
-    puts '\n' + my_screen_table.to_s + '\n'
-  end
-
-  def debug_array(mst)
-    mst.add_row ["count=#{@content.count}", 'result.debug()']
-    mst.add_separator
-    i = 0
-    @content.each do |item|
-      mst.add_row ['Line_' + i.to_s, item]
-      i += 1
-    end
+    puts '*' * 57
   end
 
   def debug_no_array(mst)
