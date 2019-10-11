@@ -57,4 +57,19 @@ class CaseManager
     @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
   end
+
+  def preserve_files
+    app = Application.instance
+    t = Time.now
+    subdir = "#{t.year}#{format('%02d',t.month)}#{format('%02d',t.day)}-" \
+             "#{format('%02d',t.hour)}#{format('%02d',t.min)}" \
+             "#{format('%02d',t.sec)}"
+    logdir = File.join(app.output_basedir, app.global[:tt_testname], subdir)
+    srcdir = File.join(app.output_basedir, app.global[:tt_testname])
+    puts "[INFO] Preserving files => #{logdir}"
+    FileUtils.mkdir(logdir)
+    Dir.glob('var/learn-08-preserve/**.*').each do |file|
+      FileUtils.cp(file, logdir)
+    end
+  end
 end
