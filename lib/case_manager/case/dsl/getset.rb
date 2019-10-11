@@ -17,7 +17,7 @@ module DSL
   end
 
   # If a method call is missing, then delegate to concept parent.
-  def method_missing(method)
+  def method_missing(method, args = {})
     a = method.to_s
     instance_eval("get(:#{a[0, a.size - 1]})") if a[a.size - 1] == '?'
   end
