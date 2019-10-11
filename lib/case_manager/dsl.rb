@@ -12,6 +12,10 @@ def use(filename)
   app.uses << File.basename(findfiles.first)
 end
 
+def macro(name, args, &block)
+  Application.instance.macros[name] = { args: args, block: block }
+end
+
 def group(name, &block)
   Application.instance.groups << { name: name, block: block }
 end
