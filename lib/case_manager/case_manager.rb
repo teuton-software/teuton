@@ -48,14 +48,7 @@ class CaseManager
       raise '[ERROR] CaseManager#export: Argument error!'
     end
     ExportManager.run(@report, @cases, args)
-  end
-
-  def send(args = {})
-    threads = []
-    puts ''
-    puts "[INFO] Sending files...#{args.to_s}"
-    @cases.each { |c| threads << Thread.new { c.send(args) } }
-    threads.each(&:join)
+    preserve_files if args[:preserve] == true
   end
 
   def preserve_files
@@ -71,5 +64,13 @@ class CaseManager
     Dir.glob('var/learn-08-preserve/**.*').each do |file|
       FileUtils.cp(file, logdir)
     end
+  end
+
+  def send(args = {})
+    threads = []
+    puts ''
+    puts "[INFO] Sending files...#{args.to_s}"
+    @cases.each { |c| threads << Thread.new { c.send(args) } }
+    threads.each(&:join)
   end
 end
