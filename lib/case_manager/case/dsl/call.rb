@@ -10,16 +10,17 @@ module DSL
       return
     end
     input.each_pair { |k, v| set(k, v) }
-    flag = true
+    errors = []
     macros[name][:args].each do |i|
-      if get(i) == 'NODATA'
-        m = "[ERROR] Calling macro #{name} => required param #{i}"
-        puts m
-        log m
-        flag = false
-      end
+      errors << i if get(i) == 'NODATA'
     end
-    instance_eval(&macros[name][:block]) if flag
+    if errors.count > 0
+      m = "[ERROR] Calling macro #{name} => required params #{errors.join(',')}"
+      puts m
+      log m
+    else
+      instance_eval(&macros[name][:block])
+    end
     input.each_pair { |k, v| unset(k) }
   end
 end
