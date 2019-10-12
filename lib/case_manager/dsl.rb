@@ -12,7 +12,7 @@ def use(filename)
   app.uses << File.basename(findfiles.first)
 end
 
-def macro(name, args, &block)
+def macro(name, *args, &block)
   Application.instance.macros[name] = { args: args, block: block }
 end
 
