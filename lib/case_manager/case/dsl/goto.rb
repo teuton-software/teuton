@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'net/ssh'
+require_relative '../runner'
 
 # Case->DSL#goto
 module DSL

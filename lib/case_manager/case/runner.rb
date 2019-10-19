@@ -31,7 +31,7 @@ class Case
     when :telnet
       run_remote_cmd_telnet(input_hostname)
     else
-      raise "Unkown protocol <#{protocol.to_s}>"
+      log("Protocol #{protocol} unknown! Use ssh or telnet.", :error)
     end
   end
 
@@ -57,7 +57,7 @@ class Case
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :host_unreachable
       verbose Application.instance.letter[:error]
-      log( "Host #{ip} unreachable!", :error)
+      log("Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error_authentication_failed
