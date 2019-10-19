@@ -24,7 +24,7 @@ class Case
     when :telnet
       run_remote_cmd_telnet(pHostname)
     else
-      raise "Unkown remote protocol <#{protocol.to_s}>"
+      log("Protocol #{protocol} unknown! Set ssh or telnet protocol.", :error)
     end
   end
 
@@ -49,7 +49,7 @@ class Case
     rescue Errno::EHOSTUNREACH
       @sessions[hostname]=:nosession
       verbose app.letter[:error]
-      log( "Host #{ip} unreachable!", :error)
+      log("Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       @sessions[hostname]=:nosession
       verbose app.letter[:error]
@@ -64,7 +64,7 @@ class Case
     rescue Exception => e
       @sessions[hostname] = :nosession
       verbose app.letter[:error]
-      log( "[#{e.class}] SSH on <#{username}@#{ip}> exec: " + @action[:command], :error)
+      log("[#{e.class}] SSH on <#{username}@#{ip}> exec: " + @action[:command], :error)
     end
 
     output = encode_and_split(@action[:encoding],text)
