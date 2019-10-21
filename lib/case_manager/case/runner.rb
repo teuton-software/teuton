@@ -48,6 +48,7 @@ class Case
                                              username,
                                              password: password,
                                              keepalive: true,
+                                             timeout: 30,
                                              non_interactive: true)
       end
       if @sessions[hostname].class == Net::SSH::Connection::Session
