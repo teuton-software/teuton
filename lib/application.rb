@@ -10,7 +10,7 @@ class Application
   attr_accessor :options
   attr_accessor :verbose
   attr_accessor :global, :ialias
-  attr_accessor :macros, :groups, :uses
+  attr_accessor :checks, :groups, :uses
   attr_accessor :hall_of_fame
   attr_accessor :project_path, :script_path, :config_path, :test_name
 
@@ -29,7 +29,7 @@ class Application
 
     @global = {}
     @ialias = {}
-    @macros = {}
+    @checks = {}
     @groups = []
     @uses = [] # TODO
     @hall_of_fame = []

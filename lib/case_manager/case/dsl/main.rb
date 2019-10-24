@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'call'
+require_relative 'check'
 require_relative 'expect'
 require_relative 'getset'
 require_relative 'goto'

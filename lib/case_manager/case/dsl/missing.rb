@@ -6,6 +6,7 @@ module DSL
   def method_missing(method, args = {})
     a = method.to_s
     return instance_eval("get(:#{a[0, a.size - 1]})") if a[a.size - 1] == '?'
-    call a[5, a.size], args if a[0,5]=='call_'
+    return check a[6, a.size], args if a[0,6]=='check_'
+    check a, args
   end
 end

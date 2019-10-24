@@ -12,9 +12,13 @@ def use(filename)
   app.uses << File.basename(findfiles.first)
 end
 
-def macro(name, *args, &block)
-  Application.instance.macros[name] = { args: args, block: block }
+def define_check(name, *args, &block)
+  Application.instance.checks[name] = { args: args, block: block }
 end
+alias definecheck define_check
+alias def_check define_check
+alias defcheck define_check
+alias dcheck define_check
 
 def group(name, &block)
   Application.instance.groups << { name: name, block: block }
