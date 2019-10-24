@@ -144,5 +144,4 @@ class Result
   alias near_to near_to?
   alias near? near_to?
   alias near near_to?
-
 end
