@@ -15,6 +15,7 @@ module Utils
 
   def encode_and_split(encoding, text)
     # Convert text to UTF-8 deleting unknown chars
+    text = text || '' # Ensure text is not nil
     flag = [:default, 'UTF-8'].include? encoding
     return text.encode('UTF-8', invalid: :replace).split("\n") if flag
 
