@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 require 'rainbow'
-require_relative 'csv_formatter'
-require_relative 'html_formatter'
 require_relative 'json_formatter'
-require_relative 'moodle_csv_formatter'
+require_relative 'list_formatter'
+require_relative 'txt_formatter'
+require_relative 'yaml_formatter'
 require_relative 'resume_json_formatter'
+require_relative 'resume_list_formatter'
 require_relative 'resume_yaml_formatter'
 require_relative 'resume_txt_formatter'
-require_relative 'txt_formatter'
+require_relative 'moodle_csv_formatter'
+require_relative 'csv_formatter'
+require_relative 'html_formatter'
 require_relative 'xml_formatter'
-require_relative 'yaml_formatter'
 
 # FormaterFactory module
 module FormatterFactory
@@ -24,6 +26,8 @@ module FormatterFactory
       f = HTMLFormatter.new(report)
     when :json
       f = JSONFormatter.new(report)
+    when :list
+      f = ListFormatter.new(report)
     when :moodle_csv
       f = MoodleCSVFormatter.new(report)
     when :resume_txt
@@ -32,6 +36,8 @@ module FormatterFactory
       f = ResumeTXTFormatter.new(report, true)
     when :resume_json
       f = ResumeJSONFormatter.new(report)
+    when :resume_list
+      f = ResumeListFormatter.new(report)
     when :resume_yaml
       f = ResumeYAMLFormatter.new(report)
     when :txt
@@ -51,9 +57,11 @@ module FormatterFactory
     data = { cvs: 'csv',
              colored_text: 'txt',
              json: 'json',
+             list: 'txt',
              resume_colored_text: 'txt',
              resume_csv: 'csv',
              resume_json: 'json',
+             resume_list: 'txt',
              resume_txt: 'txt',
              resume_yaml: 'yaml',
              txt: 'txt',
