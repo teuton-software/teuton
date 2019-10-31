@@ -6,7 +6,7 @@ module DSL
   def check(name, input = {})
     checks = Application.instance.checks
     unless checks[name]
-      puts "[ERROR] Check #{name} not found!"
+      log("Check #{name} not found!", :error)
       return
     end
     input.each_pair { |k, v| set(k, v) }
@@ -15,9 +15,7 @@ module DSL
       errors << i if get(i) == 'NODATA'
     end
     if errors.count > 0
-      m = "[ERROR] Check #{name} => required params #{errors.join(',')}"
-      puts m
-      log m
+      log("Check #{name} => required params #{errors.join(',')}",:error)
     else
       instance_eval(&checks[name][:block])
     end

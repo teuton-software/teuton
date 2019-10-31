@@ -15,4 +15,8 @@ module DSL
   def set(key, value)
     @config.set(key, value)
   end
+
+  def unset(key)
+    @config.unset(key)
+  end
 end

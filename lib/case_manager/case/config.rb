@@ -26,9 +26,9 @@ class Case
     def get(option, level = 0)
       return 'NODATA' if level > 3
 
-      return @local[option] if @local[option]
-
       return @running[option] if @running[option]
+
+      return @local[option] if @local[option]
 
       return @global[option] if @global[option]
 
@@ -40,7 +40,7 @@ class Case
     end
 
     def unset(key)
-      @running[key] = nil
+      @running.delete(key)
     end
 
     private
