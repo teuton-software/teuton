@@ -95,7 +95,7 @@ class Readme
         weight = ''
         weight = "(x#{item[:weight]}) " if item[:weight] != 1.0
         puts "* #{weight}#{item[:target]}"
-        item[:readme].each { |line| puts "    * #{line}" }
+        item[:readme].each { |line| puts "    * #{line}\n" }
       end
     end
   end
