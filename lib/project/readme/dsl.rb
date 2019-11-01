@@ -9,18 +9,18 @@
 # * log
 class Readme
   def readme(text)
-    if @action == {}
+    if @action[:target].nil?
       # It's a group readme
-      @current[:readme] = text
+      @current[:readme] << text
     else
       # It's a target readme
-      @action[:readme] = text
+      @action[:readme] << text
     end
   end
 
   def target(desc, args = {})
     previous_host = @action[:host]
-    @action = { target: desc, host: previous_host, readme: nil }
+    @action = { target: desc, host: previous_host, readme: [] }
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
     @action[:weight] = weight

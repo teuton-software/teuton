@@ -49,7 +49,7 @@ class Readme
     @data[:logs] = []
     @data[:groups] = []
     @data[:play] = []
-    @action = {}
+    reset_action
     @setted_params = {}
     @cases_params = []
     @global_params = {}
@@ -58,7 +58,7 @@ class Readme
 
   def process_content
     Application.instance.groups.each do |g|
-      @current = { name: g[:name], readme: nil, actions: [] }
+      @current = { name: g[:name], readme: [], actions: [] }
       @data[:groups] << @current
       reset_action
       instance_eval(&g[:block])
@@ -66,7 +66,7 @@ class Readme
   end
 
   def reset_action
-    @action = {}
+    @action = { readme: [] }
   end
 
   def show
@@ -81,7 +81,7 @@ class Readme
       next if group[:actions].empty?
 
       puts "\n## #{group[:name]}\n\n"
-      puts group[:readme]+"\n\n" if group[:readme]
+      group[:readme].each { |line| puts "#{line}\n" }
       previous_host = nil
       group[:actions].each_with_index do |item, index|
         if item[:host].nil? && index.positive?
@@ -95,7 +95,7 @@ class Readme
         weight = ''
         weight = "(x#{item[:weight]}) " if item[:weight] != 1.0
         puts "* #{weight}#{item[:target]}"
-        puts "    * #{item[:readme]}" if item[:readme]
+        item[:readme].each { |line| puts "    * #{line}" }
       end
     end
   end
