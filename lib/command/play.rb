@@ -7,6 +7,7 @@ class Teuton < Thor
   option :cname, type: :string
   option :cpath, type: :string
   option :case, type: :string
+  option :quiet, type: :boolean
   desc '[play] [OPTIONS] DIRECTORY',
        'Run challenge from directory'
   long_desc <<-LONGDESC

@@ -122,6 +122,8 @@ module NameFileFinder
   end
 
   def self.verbose(text)
-    print text if Application.instance.verbose
+    return unless Application.instance.verbose
+    return if Application.instance.options['quiet']
+    print text
   end
 end
