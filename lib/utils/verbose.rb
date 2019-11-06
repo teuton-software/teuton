@@ -9,6 +9,7 @@ module Verbose
 
   def verbose(text)
     return if Application.instance.quiet?
+    
     print text
   end
 end

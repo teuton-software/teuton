@@ -50,7 +50,7 @@ module Utils
   end
 
   def verbose(text)
-    return unless Application.instance.verbose
+    return if Application.instance.quiet?
 
     print text
   end
