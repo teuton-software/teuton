@@ -15,13 +15,15 @@ Allow us:
 * Write test units for real or virtual machines.
 * Check that requirements are met on remote machines.
 
-## Installation
+## Documentation
 
-* [Installation scripts](https://github.com/teuton-software/teuton/wiki/Installation-using-scripts)
-
-## Getting started
-
-* [Example 01 - Target](https://github.com/teuton-software/teuton/wiki/Example-01---Target)
+* [Installation](https://github.com/teuton-software/teuton/wiki/Installation)
+    * [Installation scripts](https://github.com/teuton-software/teuton/wiki/Installation-using-scripts)
+* [Learning](https://github.com/teuton-software/teuton/wiki/Learning)
+    * [Quick demo](https://github.com/teuton-software/teuton/wiki/Quick-demo)
+    * [Example 01 - Target](https://github.com/teuton-software/teuton/wiki/Example-01---Target)
+* [Commands](https://github.com/teuton-software/teuton/wiki/Commands)
+* [DSL keywords](https://github.com/teuton-software/teuton/wiki/DSL-keywords)
 
 ## Features
 
