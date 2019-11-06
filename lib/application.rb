@@ -42,4 +42,10 @@ class Application
   def name
     @default[:name]
   end
+
+  def quiet?
+    return true if Application.instance.options['quiet']
+    return true unless Application.instance.verbose
+    false
+  end
 end
