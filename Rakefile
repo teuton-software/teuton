@@ -16,11 +16,6 @@ task :check do
   RakeFunction.check(packages)
 end
 
-desc 'Debian installation'
-task :debian do
-  RakeFunction.debian(packages)
-end
-
 desc 'Install gems'
 task :gems do
   RakeFunction.install_gems(packages)
@@ -29,6 +24,16 @@ end
 desc 'Rake help'
 task :help do
   system('rake -T')
+end
+
+desc 'Build gem'
+task :build do
+  system('gem build teuton.gemspec')
+end
+
+desc 'Debian installation'
+task :debian do
+  RakeFunction.debian(packages)
 end
 
 desc 'OpenSUSE installation'
