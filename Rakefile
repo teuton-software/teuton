@@ -14,6 +14,7 @@ end
 desc 'Check installation'
 task :check do
   RakeFunction.check(packages)
+  Rake::Task['build'].invoke
 end
 
 desc 'Install gems'
@@ -28,6 +29,7 @@ end
 
 desc 'Build gem'
 task :build do
+  puts '[INFO] Building gem...'
   system('gem build teuton.gemspec')
 end
 

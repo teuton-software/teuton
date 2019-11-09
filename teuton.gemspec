@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/teuton-software/teuton'
 
   s.executables << 'teuton'
-  s.files       = Dir['lib/  *.rb']
+  s.files       = Dir.glob(File.join('lib','**','*.rb'))
 
   s.add_runtime_dependency 'json', '~> 2.1'
   s.add_runtime_dependency 'net-sftp', '~> 2.1'
