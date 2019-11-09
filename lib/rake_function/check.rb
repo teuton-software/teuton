@@ -3,7 +3,7 @@
 # Method RakeFunction#check
 module RakeFunction
   def self.check(gems)
-    puts "[INFO] Version #{Application.instance.version}"
+    puts "[INFO] Version #{Application::VERSION}"
     check_gems gems
     check_tests
   end

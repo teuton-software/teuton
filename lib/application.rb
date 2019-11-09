@@ -4,7 +4,10 @@ require 'singleton'
 class Application
   include Singleton
 
-  attr_reader   :version, :letter
+  VERSION = '2.1.0'
+  NAME = 'teuton'
+
+  attr_reader   :letter
   attr_reader   :running_basedir, :output_basedir
   attr_reader   :default
   attr_accessor :options
@@ -19,7 +22,6 @@ class Application
   end
 
   def reset
-    @version = '2.1.0'
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @running_basedir = Dir.getwd
     @output_basedir = 'var'

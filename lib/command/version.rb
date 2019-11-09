@@ -7,8 +7,7 @@ class Teuton < Thor
   map ['v', '-v', '--version'] => 'version'
   desc 'version', 'Show the program version'
   def version
-    app = Application.instance
-    print Rainbow(app.name).bright.blue
-    puts  ' (version ' + Rainbow(app.version).green + ')'
+    print Rainbow(Application::NAME).bright.blue
+    puts  ' (version ' + Rainbow(Application::VERSION).green + ')'
   end
 end
