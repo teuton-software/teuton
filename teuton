@@ -1,22 +1,4 @@
 #!/usr/bin/env ruby
 
-require 'thor'
-# require 'pry-byebug'
-require_relative 'lib/teuton/application'
-require_relative 'lib/teuton/project/project'
-require_relative 'lib/teuton/command/main'
-
-# Command Line User Interface
-class Teuton < Thor
-  map ['h', '-h', '--help'] => 'help'
-
-  def method_missing(method, *_args, &_block)
-    play(method.to_s)
-  end
-
-  def respond_to_missing?(method_name, include_private = false)
-    super
-  end
-end
-
+require_relative 'lib/teuton'
 Teuton.start(ARGV)
