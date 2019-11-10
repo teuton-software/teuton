@@ -6,7 +6,7 @@ class CaseManager
   def open_main_report(p_config_filename)
     app = Application.instance
 
-    @report.head[:tt_title] = "Executing [#{app.name}] (version #{app.version})"
+    @report.head[:tt_title] = "Executing [#{app.name}] (version #{Application::VERSION})"
     @report.head[:tt_scriptname] = app.script_path
     @report.head[:tt_configfile] = p_config_filename
     @report.head[:tt_debug] = true if @debug

@@ -2,9 +2,9 @@
 
 require 'thor'
 # require 'pry-byebug'
-require_relative 'lib/application'
-require_relative 'lib/project/project'
-require_relative 'lib/command/main'
+require_relative 'lib/teuton/application'
+require_relative 'lib/teuton/project/project'
+require_relative 'lib/teuton/command/main'
 
 # Command Line User Interface
 class Teuton < Thor
