@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 require "minitest/autorun"
-require_relative "../../../../lib/case_manager/case/result/result"
+require_relative "../../../../lib/teuton/case_manager/case/result/result"
 
 class ResultTest < Minitest::Test
   def setup

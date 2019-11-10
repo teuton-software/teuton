@@ -8,67 +8,67 @@ class RubocopTest < Minitest::Test
     @files = {}
 
     @files[:case] = []
-    @files[:case] << 'lib/case_manager/case/close.rb'
-    @files[:case] << 'lib/case_manager/case/config.rb'
-    @files[:case] << 'lib/case_manager/case/main.rb'
-    @files[:case] << 'lib/case_manager/case/play.rb'
+    @files[:case] << 'lib/teuton/case_manager/case/close.rb'
+    @files[:case] << 'lib/teuton/case_manager/case/config.rb'
+    @files[:case] << 'lib/teuton/case_manager/case/main.rb'
+    @files[:case] << 'lib/teuton/case_manager/case/play.rb'
 
     @files[:case_manager] = []
-    @files[:case_manager] << 'lib/case_manager/main.rb'
-    @files[:case_manager] << 'lib/case_manager/show.rb'
-    @files[:case_manager] << 'lib/case_manager/utils.rb'
+    @files[:case_manager] << 'lib/teuton/case_manager/main.rb'
+    @files[:case_manager] << 'lib/teuton/case_manager/show.rb'
+    @files[:case_manager] << 'lib/teuton/case_manager/utils.rb'
 
     @files[:case_model] = []
-    @files[:case_model] << 'lib/case_manager/case/case_model/case_model.rb'
-    @files[:case_model] << 'lib/case_manager/case/case_model/group_model.rb'
-    @files[:case_model] << 'lib/case_manager/case/case_model/target_model.rb'
+    @files[:case_model] << 'lib/teuton/case_manager/case/case_model/case_model.rb'
+    @files[:case_model] << 'lib/teuton/case_manager/case/case_model/group_model.rb'
+    @files[:case_model] << 'lib/teuton/case_manager/case/case_model/target_model.rb'
 
     @files[:case_dsl] = []
-    @files[:case_dsl] << 'lib/case_manager/case/dsl/deprecated.rb'
-#    @files[:case_dsl] << 'lib/case_manager/case/dsl/expect.rb'
-#    @files[:case_dsl] << 'lib/case_manager/case/dsl/getset.rb'
-#    @files[:case_dsl] << 'lib/case_manager/case/dsl/goto.rb'
-    @files[:case_dsl] << 'lib/case_manager/case/dsl/log.rb'
-    @files[:case_dsl] << 'lib/case_manager/case/dsl/main.rb'
-#    @files[:case_dsl] << 'lib/case_manager/case/dsl/send.rb'
-    @files[:case_dsl] << 'lib/case_manager/case/dsl/target.rb'
-    @files[:case_dsl] << 'lib/case_manager/case/dsl/unique.rb'
+    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/deprecated.rb'
+#    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/expect.rb'
+#    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/getset.rb'
+#    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/goto.rb'
+    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/log.rb'
+    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/main.rb'
+#    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/send.rb'
+    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/target.rb'
+    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/unique.rb'
 
     @files[:command] = []
-    @files[:command] << 'lib/command/main.rb'
-    @files[:command] << 'lib/command/create.rb'
-    @files[:command] << 'lib/command/download.rb'
-    @files[:command] << 'lib/command/play.rb'
-    @files[:command] << 'lib/command/readme.rb'
-    @files[:command] << 'lib/command/test.rb'
-    @files[:command] << 'lib/command/update.rb'
-    @files[:command] << 'lib/command/version.rb'
+    @files[:command] << 'lib/teuton/command/main.rb'
+    @files[:command] << 'lib/teuton/command/create.rb'
+    @files[:command] << 'lib/teuton/command/download.rb'
+    @files[:command] << 'lib/teuton/command/play.rb'
+    @files[:command] << 'lib/teuton/command/readme.rb'
+    @files[:command] << 'lib/teuton/command/test.rb'
+    @files[:command] << 'lib/teuton/command/update.rb'
+    @files[:command] << 'lib/teuton/command/version.rb'
 
     @files[:project] = []
-    @files[:project] << 'lib/project/laboratory/laboratory.rb'
-    @files[:project] << 'lib/project/readme/dsl.rb'
-#    @files[:project] << 'lib/project/readme/readme.rb'
-#    @files[:project] << 'lib/project/config_file_reader.rb'
-#    @files[:project] << 'lib/project/name_file_finder.rb'
-    @files[:project] << 'lib/project/project_creator.rb'
-    @files[:project] << 'lib/project/project.rb'
+    @files[:project] << 'lib/teuton/project/laboratory/laboratory.rb'
+    @files[:project] << 'lib/teuton/project/readme/dsl.rb'
+#    @files[:project] << 'lib/teuton/project/readme/readme.rb'
+#    @files[:project] << 'lib/teuton/project/config_file_reader.rb'
+#    @files[:project] << 'lib/teuton/project/name_file_finder.rb'
+    @files[:project] << 'lib/teuton/project/project_creator.rb'
+    @files[:project] << 'lib/teuton/project/project.rb'
 
     @files[:rake_functions] = []
     @files[:rake_functions] << 'Rakefile'
-    @files[:rake_functions] << 'lib/rake_function/check.rb'
-    @files[:rake_functions] << 'lib/rake_function/install.rb'
+    @files[:rake_functions] << 'lib/teuton/rake_function/check.rb'
+    @files[:rake_functions] << 'lib/teuton/rake_function/install.rb'
 
     @files[:report] = []
-#    @files4 << 'lib/report/formatter/array_formatter.rb'
-    @files[:report] << 'lib/report/formatter/base_formatter.rb'
-    @files[:report] << 'lib/report/formatter/json_formatter.rb'
-    @files[:report] << 'lib/report/formatter/yaml_formatter.rb'
+#    @files4 << 'lib/teuton/report/formatter/array_formatter.rb'
+    @files[:report] << 'lib/teuton/report/formatter/base_formatter.rb'
+    @files[:report] << 'lib/teuton/report/formatter/json_formatter.rb'
+    @files[:report] << 'lib/teuton/report/formatter/yaml_formatter.rb'
 
     @files[:result] = []
-#    @files[:result] << 'lib/case_manager/case/result/result.rb'
-    @files[:result] << 'lib/case_manager/case/result/ext_array.rb'
-#    @files[:result] << 'lib/case_manager/case/result/ext_compare.rb'
-    @files[:result] << 'lib/case_manager/case/result/ext_filter.rb'
+#    @files[:result] << 'lib/teuton/case_manager/case/result/result.rb'
+    @files[:result] << 'lib/teuton/case_manager/case/result/ext_array.rb'
+#    @files[:result] << 'lib/teuton/case_manager/case/result/ext_compare.rb'
+    @files[:result] << 'lib/teuton/case_manager/case/result/ext_filter.rb'
   end
 
   def test_rubocop_case
