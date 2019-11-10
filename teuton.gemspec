@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
   #s.executables << 'teuton.bat'
   s.files       = Dir.glob(File.join('lib','**','*.rb'))
 
+  s.required_ruby_version = '>= 2.3.0'
+
   s.add_runtime_dependency 'json', '~> 2.1'
   s.add_runtime_dependency 'net-sftp', '~> 2.1'
   s.add_runtime_dependency 'net-ssh', '~> 5.2'
