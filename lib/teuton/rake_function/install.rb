@@ -6,7 +6,7 @@
 # * install_gems
 module RakeFunction
   def self.opensuse(packages)
-    names = %w[openssh make gcc ruby-devel]
+    names = %w[openssh make gcc ruby-dev]
     options = '--non-interactive'
     names.each do |n|
       system("zypper #{options} install #{n}")
