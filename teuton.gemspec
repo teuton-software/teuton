@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/teuton-software/teuton'
 
   s.executables << 'teuton'
-  #s.executables << 'teuton.bat'
+  s.executables << 'teuton.bat'
   s.files       = Dir.glob(File.join('lib','**','*.rb'))
 
   s.required_ruby_version = '>= 2.3.0'
