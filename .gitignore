@@ -1,3 +1,5 @@
 REVISE
 TO-REVISE
 var
+*.gem
+vagrant
