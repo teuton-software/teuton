@@ -17,9 +17,14 @@ task :check do
   Rake::Task['build'].invoke
 end
 
-desc 'Install gems'
-task :gems do
-  RakeFunction.install_gems(packages)
+desc 'Build gem'
+task :build do
+  puts '[INFO] Building gem...'
+  system('rm teuton-*.*.*.gem')
+  system('gem build teuton.gemspec')
+  puts "[ INFO ] Generating documentation..."
+  system('rm -r html/')
+  system('yardoc lib/* -o html')
 end
 
 desc 'Rake help'
@@ -27,10 +32,9 @@ task :help do
   system('rake -T')
 end
 
-desc 'Build gem'
-task :build do
-  puts '[INFO] Building gem...'
-  system('gem build teuton.gemspec')
+desc 'Install gems'
+task :gems do
+  RakeFunction.install_gems(packages)
 end
 
 desc 'Debian installation'
