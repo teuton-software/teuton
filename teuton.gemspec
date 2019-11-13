@@ -2,8 +2,7 @@ require_relative 'lib/teuton/application'
 
 Gem::Specification.new do |s|
   s.name        = Application::NAME
-#  s.version     = Application::VERSION
-  s.version     = '0.0.4'
+  s.version     = Application::VERSION
   s.date        = '2019-11-13'
   s.summary     = "Teuton (Teuton Software)"
   s.description = <<-EOF
@@ -37,7 +36,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'net-telnet', '~> 0.1'
   s.add_runtime_dependency 'rainbow', '~> 3.0'
   s.add_runtime_dependency 'thor', '~> 0.20'
-#  s.add_runtime_dependency 'timeout', '~> 0.0'
   s.add_runtime_dependency 'terminal-table', '~> 1.8'
 
   s.add_development_dependency 'minitest', '~> 5.11'
