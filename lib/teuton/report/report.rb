@@ -5,19 +5,30 @@ require_relative 'formatter/formatter_factory'
 require_relative 'show'
 require_relative 'close'
 
-=begin
- This class maintain the results of every case, in a structured way.
- * report/show.rb
- * report/close.rb
-=end
-
+##
+# This class maintain the results of every case, in a structured way.
+# * report/show.rb
+# * report/close.rb
 class Report
+  # @!attribute id
+  #   @return [Integer] It is the [Case] number. Zero indicates Resume Report.
   attr_accessor :id, :filename, :output_dir
-  attr_accessor :head, :lines, :tail
-  attr_reader :history
+  # @!attribute head
+  #   @return [Hash] Report head information.
+  attr_accessor :head
+  # @!attribute lines
+  #   @return [Array] Report body information.
+  attr_accessor :lines
+  # @!attribute tail
+  #   @return [Hash] Report tail information.
+  attr_accessor :tail
+  # @!attribute format
+  #   @return [Symbol] Indicate export format.
   attr_reader :format
-
-  def initialize(id=0)
+  attr_reader :history
+  ##
+  # Class constructor
+  def initialize(id = 0)
     @id = id
     number = '0' + @id.to_s
     number = @id.to_s if @id > 9
@@ -32,6 +43,9 @@ class Report
     @history = ''
   end
 
+  ##
+  # Export [Case] data to specified format.
+  # @param format [Symbol] Select export format. Default value is :txt.
   def export(format = :txt)
     @format = format
     filepath = File.join(@output_dir, @filename + '.' \
@@ -41,6 +55,9 @@ class Report
     formatter.process
   end
 
+  ##
+  # Export resumed data from all Cases, to specified format.
+  # @param format [Symbol] Select export format. Default value is :txt.
   def export_resume(format = :txt)
     @format = "resume_#{format.to_s}".to_sym
     filepath = File.join(@output_dir, @filename + '.' \

@@ -2,6 +2,13 @@
 
 # Close Show methods for Report class.
 class Report
+  ##
+  # Calculate final values:
+  # * grade
+  # * max_weight
+  # * good_weight,d
+  # * fail_weight
+  # * fail_counter
   def close
     app = Application.instance
     max = 0.0

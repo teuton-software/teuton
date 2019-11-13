@@ -2,6 +2,8 @@
 
 # Show methods for Report class.
 class Report
+  ##
+  # Display [Report] information on screen
   def show
     show_initial_configurations
     if @filename.to_s.include? 'resume'

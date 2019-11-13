@@ -2,10 +2,23 @@ require_relative 'lib/teuton/application'
 
 Gem::Specification.new do |s|
   s.name        = Application::NAME
-  s.version     = Application::VERSION
-  s.date        = '2019-11-09'
+#  s.version     = Application::VERSION
+  s.version     = '0.0.2'
+  s.date        = '2019-11-13'
   s.summary     = "Teuton (Teuton Software)"
-  s.description = "Intrastructure Test Software."
+  s.description = <<-EOF
+  Intrastructure Test Software.
+
+  Some dependencies require compilation.
+  Ensure these packages are installed into your local hosts:
+  [ALL] ruby, make, gcc
+  [Debian] ssh, ruby-dev
+  [OpenSUSE] openssh, ruby-devel
+
+  Read Teuton documentation: https://github.com/teuton-software/teuton/wiki/
+
+  EOF
+  s.extra_rdoc_files = [ 'README.md', 'docs/logo.png' ]
 
   s.license     = 'GPL-3.0'
   s.authors     = ['David Vargas Ruiz']
@@ -15,7 +28,7 @@ Gem::Specification.new do |s|
   s.executables << 'teuton'
 #  s.executables << 'teuton.bat'
   s.files       = Dir.glob(File.join('lib','**','*.rb'))
-
+  
   s.required_ruby_version = '>= 2.3.0'
 
   s.add_runtime_dependency 'json', '~> 2.1'
