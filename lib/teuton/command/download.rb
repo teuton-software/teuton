@@ -20,7 +20,13 @@ class Teuton < Thor
   def download
     repo = 'teuton-challenges'
     puts "[INFO] Downloading <#{repo}> repo..."
-    system("git clone https://github.com/teuton-software/#{repo}.git")
-    puts "[INFO] Your files are into <#{Rainbow(repo).bright}> directory..."
+    ok = system("git clone https://github.com/teuton-software/#{repo}.git")
+    if ok
+      puts "[INFO] Your files are into <#{Rainbow(repo).bright}> directory..."
+    else
+      puts Rainbow('[ERROR] Ensure: ').red
+      puts Rainbow('  1. Git is installed.').red
+      puts Rainbow('  2. Your Internet connection is working.').red
+    end
   end
 end

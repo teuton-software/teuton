@@ -3,7 +3,7 @@ require_relative 'lib/teuton/application'
 Gem::Specification.new do |s|
   s.name        = Application::NAME
 #  s.version     = Application::VERSION
-  s.version     = '0.0.2'
+  s.version     = '0.0.4'
   s.date        = '2019-11-13'
   s.summary     = "Teuton (Teuton Software)"
   s.description = <<-EOF
@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
   [OpenSUSE] openssh, ruby-devel
 
   Read Teuton documentation: https://github.com/teuton-software/teuton/wiki/
-
   EOF
+
   s.extra_rdoc_files = [ 'README.md', 'docs/logo.png' ]
 
   s.license     = 'GPL-3.0'
@@ -28,16 +28,16 @@ Gem::Specification.new do |s|
   s.executables << 'teuton'
 #  s.executables << 'teuton.bat'
   s.files       = Dir.glob(File.join('lib','**','*.rb'))
-  
+
   s.required_ruby_version = '>= 2.3.0'
 
   s.add_runtime_dependency 'json', '~> 2.1'
   s.add_runtime_dependency 'net-sftp', '~> 2.1'
   s.add_runtime_dependency 'net-ssh', '~> 5.2'
-  s.add_runtime_dependency 'net-telnet', '~> 0.2'
+  s.add_runtime_dependency 'net-telnet', '~> 0.1'
   s.add_runtime_dependency 'rainbow', '~> 3.0'
   s.add_runtime_dependency 'thor', '~> 0.20'
-  s.add_runtime_dependency 'timeout', '~> 0.0'
+#  s.add_runtime_dependency 'timeout', '~> 0.0'
   s.add_runtime_dependency 'terminal-table', '~> 1.8'
 
   s.add_development_dependency 'minitest', '~> 5.11'
