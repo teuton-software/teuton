@@ -4,8 +4,8 @@ require 'singleton'
 class Application
   include Singleton
 
-  VERSION = '2.1.1'
-  NAME = 'teuton'
+  VERSION = '2.1.1' # Application version
+  NAME = 'teuton'   # Application name
 
   attr_reader   :letter
   attr_reader   :running_basedir, :output_basedir

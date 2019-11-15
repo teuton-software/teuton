@@ -1,4 +1,5 @@
-require_relative 'application'
+require_relative 'teuton/application'
+require_relative 'teuton/project/project'
 require_relative 'teuton/project/project_creator'
 
 ##
@@ -8,6 +9,33 @@ module Teuton
   # Create new Teuton project
   def self.create(path_to_new_dir)
     ProjectCreator.create(path_to_new_dir)
+  end
+
+  ##
+  # Play (run) Teuton project.
+  # @param path_to_rb_file [String] Path to main rb file.
+  # @param options [Hash] Options like
+  # * :export [String]
+  # * :cname [String]
+  # * :cpath [String]
+  # * :case [String]
+  # * :quiet [Boolean]
+  def self.play(path_to_rb_file, options = {})
+    Project.play(path_to_rb_file, options)
+  end
+
+  ##
+  # Generate readme for Teuton project.
+  # @param path_to_rb_file [String] Path to main rb file.
+  def self.readme(path_to_rb_file)
+    Project.readme(path_to_rb_file, options)
+  end
+
+  ##
+  # Simulate play Teuton project, check syntax and display stats.
+  # @param path_to_rb_file [String] Path to main rb file.
+  def self.test(path_to_rb_file)
+    Project.test(path_to_rb_file, options)
   end
 
   ##
