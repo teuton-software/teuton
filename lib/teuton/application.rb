@@ -4,7 +4,7 @@ require 'singleton'
 class Application
   include Singleton
 
-  VERSION = '2.1.0'
+  VERSION = '2.1.1'
   NAME = 'teuton'
 
   attr_reader   :letter

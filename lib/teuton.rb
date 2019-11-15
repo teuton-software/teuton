@@ -1,17 +1,19 @@
-require 'thor'
-require_relative 'teuton/application'
-require_relative 'teuton/project/project'
-require_relative 'teuton/command/main'
+require_relative 'application'
+require_relative 'teuton/project/project_creator'
 
-# Command Line User Interface
-class Teuton < Thor
-  map ['h', '-h', '--help'] => 'help'
-
-  def method_missing(method, *_args, &_block)
-    play(method.to_s)
+##
+# Main Teuton functions
+module Teuton
+  ##
+  # Create new Teuton project
+  def self.create(path_to_new_dir)
+    ProjectCreator.create(path_to_new_dir)
   end
 
-  def respond_to_missing?(method_name, include_private = false)
-    super
+  ##
+  # Display Teuton version
+  def self.version
+    print Rainbow(Application::NAME).bright.blue
+    puts  ' (version ' + Rainbow(Application::VERSION).green + ')'
   end
 end

@@ -10,11 +10,6 @@ class ApplicationTest < Minitest::Test
     @app.reset
   end
 
-  def test_version
-    assert_equal 'teuton', Application::NAME
-    assert_equal '2.1.0', Application::VERSION
-  end
-
   def test_init_params
     assert_equal '.', @app.letter[:good]
     assert_equal 'F', @app.letter[:bad]
