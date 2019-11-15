@@ -3,7 +3,7 @@
 require 'rainbow'
 
 # Class method Teuton#download
-class Teuton < Thor
+class TeutonCommand < Thor
   map ['-dc', '--dc', '--download'] => 'download'
   desc 'download', 'Download Teuton challenges from git repo'
   long_desc <<-LONGDESC

@@ -3,7 +3,7 @@
 require 'rainbow'
 
 # Class method Teuton#version
-class Teuton < Thor
+class TeutonCommand < Thor
   map ['v', '-v', '--version'] => 'version'
   desc 'version', 'Show the program version'
   def version

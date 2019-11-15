@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require 'teuton'
-Teuton.start(ARGV)
+require 'teuton/command'
+TeutonCommand.start(ARGV)

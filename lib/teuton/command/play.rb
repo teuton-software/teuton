@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Teuton#play
-class Teuton < Thor
+class TeutonCommand < Thor
   map ['p', '-p', 'play', '--play'] => 'play'
   option :export, type: :string
   option :cname, type: :string

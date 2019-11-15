@@ -3,7 +3,7 @@
 require_relative '../project/project_creator.rb'
 
 # Teuton#create
-class Teuton < Thor
+class TeutonCommand < Thor
   map ['c', '-c', '--create'] => 'create'
   desc 'create DIRECTORY', 'Create skeleton for a new project'
   long_desc <<-LONGDESC

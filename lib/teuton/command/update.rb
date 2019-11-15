@@ -3,7 +3,7 @@
 require 'rainbow'
 
 # Class method Teuton#update
-class Teuton < Thor
+class TeutonCommand < Thor
   map ['--update', '-u', 'u'] => 'update'
   desc 'update', 'Update TEUTON from git repo'
   long_desc <<-LONGDESC
