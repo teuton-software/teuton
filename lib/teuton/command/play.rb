@@ -28,6 +28,9 @@ class TeutonCommand < Thor
   (5) teuton foo/demo.rb, Run challenge from foo/demo.rb with foo/demo.yaml config file.
 
   LONGDESC
+  ##
+  # Execute Teuton test unit
+  # @param path_to_rb_file [String] Route to main rb Teuton file
   def play(path_to_rb_file)
     Project.play(path_to_rb_file, options)
   end
