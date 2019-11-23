@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'yaml'
-require 'json'
+require 'json/pure'
 
 # Functions that read data from ConfigFile using formats YAML and JSON
 # * read
