@@ -12,8 +12,9 @@ Vagrant.configure("2") do |config|
 
     i.vm.synced_folder "./", "/vagrant"
     i.vm.provision "shell", inline: <<-SHELL
-      apt install -y tree vim
-      apt install -y ruby
+      apt-get install -y tree vim
+      apt-get install -y ruby
+      gem install teuton
     SHELL
     i.vm.provider "virtualbox" do |v|
       v.name = 'teuton-debian'
