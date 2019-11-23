@@ -3,18 +3,17 @@ require_relative 'lib/teuton/application'
 Gem::Specification.new do |s|
   s.name        = Application::NAME
   s.version     = Application::VERSION
-  s.date        = '2019-11-13'
+  s.date        = '2019-11-23'
   s.summary     = "Teuton (Teuton Software)"
   s.description = <<-EOF
-  Intrastructure Test Software.
+  Intrastructure test, useful for:
+  (1) Sysadmin teachers to evaluate students remote machines.
+  (2) Sysadmin apprentices to evaluate their learning process as a game.
+  (3) Professional sysadmin to monitor remote machines.
 
-  Some dependencies require compilation.
-  Ensure these packages are installed into your local hosts:
-  [ALL] ruby, make, gcc
-  [Debian] ssh, ruby-dev
-  [OpenSUSE] openssh, ruby-devel
-
-  Read Teuton documentation: https://github.com/teuton-software/teuton/wiki/
+  Allow us:
+  (a) Write test units for real or virtual machines using simple DSL.
+  (b) Check compliance with requirements on remote machines.
   EOF
 
   s.extra_rdoc_files = [ 'README.md', 'docs/logo.png' ]
