@@ -25,10 +25,10 @@ module ProjectCreator
   def self.create_main_dir_and_files(project_dir, source_basedir)
     # Directory and files: Ruby script, Configfile, gitignore
     items = [
-      { source: 'lib/files/config.yaml', target: 'config.yaml' },
-      { source: 'lib/files/start.rb', target: 'start.rb' },
-      { source: 'lib/files/README.md', target: 'README.md' },
-      { source: 'lib/files/gitignore', target: '.gitignore' }
+      { source: 'teuton/files/config.yaml', target: 'config.yaml' },
+      { source: 'teuton/files/start.rb', target: 'start.rb' },
+      { source: 'teuton/files/README.md', target: 'README.md' },
+      { source: 'teuton/files/gitignore', target: '.gitignore' }
     ]
     items.each do |item|
       source = File.join(source_basedir, item[:source])
@@ -54,7 +54,7 @@ module ProjectCreator
       begin
         FileUtils.mkdir_p(dirpath)
         puts "* Create dir        => #{Rainbow(dirpath).green}"
-      rescue StandarError
+      rescue StandardError
         puts "* Create dir  ERROR => #{Rainbow(dirpath).red}"
       end
     end
@@ -68,10 +68,11 @@ module ProjectCreator
     if File.exist? dest
       puts "* Exists file!      => #{Rainbow(dest).yellow}"
     else
+      puts "* File not found!   => #{Rainbow(target).yellow}" unless File.exist? target
       begin
         FileUtils.cp(target, dest)
         puts "* Create file       => #{Rainbow(dest).green}"
-      rescue StandarError
+      rescue StandardError
         puts "* Create file ERROR => #{Rainbow(dest).red}"
       end
     end

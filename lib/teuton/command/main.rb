@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'create'
 require_relative 'download'
 require_relative 'play'
 require_relative 'readme'
