@@ -4,7 +4,7 @@
 _Create Unit Test for your machines.
 Test your infraestructure as code._
 
-![logo](./docs/logo.png)
+![logo](./docs/images/logo.png)
 
 Intrastructure test, useful for:
 * Sysadmin teachers to evaluate students remote machines.
@@ -17,20 +17,16 @@ Allow us:
 
 # Documentation
 
-Read [Teuton Wiki](https://github.com/teuton-software/teuton/wiki) documentation.
+Teuton [documentation](./docs).
 
-* [Installation](https://github.com/teuton-software/teuton/wiki/Installation)
-    * [Modes](https://github.com/teuton-software/teuton/wiki/Modes-of-use)
-    * [Installation scripts](https://github.com/teuton-software/teuton/wiki/Installation-using-scripts)
-    * [Vagrant](https://github.com/teuton-software/teuton/wiki/Installation-using-Vagrant)
-    * [Manual](https://github.com/teuton-software/teuton/wiki/Manual-installation)
+* [Installation](docs/install/install.md)
+* [Commands](docs/commands/commands.md)
 * [Learning](https://github.com/teuton-software/teuton/wiki/Learning)
     * [Quick demo](https://github.com/teuton-software/teuton/wiki/Quick-demo)
     * [Example 01 - Target](https://github.com/teuton-software/teuton/wiki/Example-01---Target)
     * [Example 02 - Configfile](https://github.com/teuton-software/teuton/wiki/Example-02---Config-file)
     * [Example 03 - Remote hosts](https://github.com/teuton-software/teuton/wiki/Example-03---Remote-hosts)
     * [Example 04 - Use](https://github.com/teuton-software/teuton/wiki/Example-04---Use)
-* [Commands](https://github.com/teuton-software/teuton/wiki/Commands)
 * [DSL keywords](https://github.com/teuton-software/teuton/wiki/DSL-keywords)
 
 # Features

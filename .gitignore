@@ -1,6 +1,5 @@
-var
-TO-REVISE
-REVISE
 *.gem
 .yardoc
 html
+var
+*.devel
