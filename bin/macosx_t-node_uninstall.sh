@@ -1,22 +1,10 @@
 #!/bin/bash
 # MacOSX T-Node Uninstallation
-# version: 20190312
+# version: 20191205
 
-teutonPath=/usr/local/opt/teuton
+echo "[0/2.INFO] MacOSX T-NODE uninstallation"
 
-echo "[0/3.INFO] MacOSX T-NODE uninstallation"
+echo "[1/2.INFO] Uninstalling teuton..."
+gem uninstall -x teuton
 
-echo "[1/3.INFO] Uninstalling PACKAGES..."
-brew uninstall git
-brew uninstall chruby
-brew uninstall ruby-install
-
-sed -i "" '/^source \/usr\/local\/opt\/chruby\/share\/chruby\/chruby.sh$/d' ~/.bash_profile
-sed -i "" '/^source \/usr\/local\/opt\/chruby\/share\/chruby\/auto.sh$/d' ~/.bash_profile
-rm -rf ~/.ruby_version
-
-echo "[2/3.INFO] Uninstalling teuton..."
-rm -rf /usr/local/bin/teuton
-rm -rf $teutonPath
-
-echo "[3/3.INFO] Finish!"
+echo "[2/2.INFO] Finish!"
