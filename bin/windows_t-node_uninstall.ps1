@@ -1,6 +1,6 @@
 <#
 Windows T-NODE uninstallation
-version: 20190129
+version: 20191105
 #>
 
 If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContains "S-1-5-32-544") {
@@ -8,22 +8,9 @@ If ([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -NotContain
     Exit 1
 }
 
-$TeutonPath = $env:ProgramFiles + "\teuton"
+Write-Host "[0/2.INFO] WINDOWS T-NODE uninstallation"
 
-Write-Host "[0/4.INFO] WINDOWS T-NODE uninstallation"
+Write-Host "[1/2.INFO] Uninstalling teuton"
+gem uninstall -x teuton
 
-Write-Host "[1/4.INFO] Uninstalling PACKAGES..."
-If (Get-Command choco.exe -ErrorAction SilentlyContinue) {
-    choco uninstall git ruby -y --remove-dependencies
-}
-
-Write-Host "[2/4.INFO] Uninstalling teuton"
-Remove-Item -Force -Recurse $TeutonPath
-
-Write-Host "[3/4.INFO] Removing teuton from system environment PATH variable"
-$CurrentPath = [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine)
-If (!$CurrentPath.Contains($TeutonPath)) {
-    [Environment]::SetEnvironmentVariable("Path", $CurrentPath.Replace($TeutonPath, ""), [EnvironmentVariableTarget]::Machine)
-}
-
-Write-Host "[4/4.INFO] Finish!"
+Write-Host "[2/2.INFO] Finish!"
