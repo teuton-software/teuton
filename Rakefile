@@ -5,7 +5,7 @@ require_relative 'lib/teuton/rake_function/check.rb'
 require_relative 'lib/teuton/rake_function/install.rb'
 
 packages = %w[net-ssh net-sftp rainbow terminal-table]
-packages += %w[thor json minitest]
+packages += %w[thor json_pure minitest yard]
 
 desc 'Default: check'
 task default: :check do

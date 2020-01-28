@@ -3,7 +3,7 @@ require_relative 'lib/teuton/application'
 Gem::Specification.new do |s|
   s.name        = Application::NAME
   s.version     = Application::VERSION
-  s.date        = '2019-11-23'
+  s.date        = '2020-01-28'
   s.summary     = "Teuton (Teuton Software)"
   s.description = <<-EOF
   Intrastructure test, useful for:
