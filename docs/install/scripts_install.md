@@ -7,7 +7,6 @@ There are different Teuton [Modes of use](modes_of_use.md). For every mode there
 > Consult [tested OS](tested_os.md) to ensure if your favorite OS script installation has been tested.
 
 ---
-
 # T-NODE installation
 
 ## T-NODE: GNU/Linux installation
