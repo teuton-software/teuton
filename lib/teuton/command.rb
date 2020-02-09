@@ -20,11 +20,11 @@ class TeutonCommand < Thor
   map ['c', '-c', '--create'] => 'create'
   desc 'create DIRECTORY', 'Create skeleton for a new project'
   long_desc <<-LONGDESC
-  Create files for a new project: foo.rb, foo.yaml and .gitignore
+  Create files for a new project.
 
   Example:
 
-  #{$PROGRAM_NAME} create foo/demo
+  #{$PROGRAM_NAME} create dir/foo
   LONGDESC
   ##
   # Command create new Teuton project

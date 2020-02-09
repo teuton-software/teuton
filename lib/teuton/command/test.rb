@@ -29,6 +29,9 @@ class TeutonCommand < Thor
   , Test content of foo.rb and demo.yaml files.
 
   LONGDESC
+  ##
+  # Verify or test Teuton test units syntax
+  # @param path_to_rb_file [String] Route to main rb Teuton file
   def test(path_to_rb_file)
     Project.test(path_to_rb_file, options)
   end

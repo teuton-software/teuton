@@ -17,6 +17,9 @@ class TeutonCommand < Thor
   By default lang=es, but It's available lang=en too.
 
   LONGDESC
+  ##
+  # Create README from teuton test
+  # @param path_to_rb_file [String] Route to main rb Teuton file
   def readme(path_to_rb_file)
     Project.readme(path_to_rb_file, options)
   end
