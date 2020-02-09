@@ -3,3 +3,5 @@ TO-REVISE
 var
 *.gem
 vagrant
+.yardoc
+html/*
