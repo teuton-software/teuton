@@ -1,5 +1,5 @@
 
-# TEUTON Software (version 2.1.X)
+# TEUTON Software (version 2.1)
 
 _Create Unit Test for your machines, and
 test your infraestructure as code._
@@ -20,8 +20,8 @@ Teuton allow us:
 Teuton [documentation](./docs).
 
 * [Installation](docs/install/install.md)
-* [Commands](docs/commands/commands.md)
 * [Learning](docs/learn/learning.md)
+* [Commands](docs/commands/commands.md)
 * [DSL keywords](docs/dsl/keywords.md)
 
 # Features
