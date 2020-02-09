@@ -1,3 +1,6 @@
+
+# Commands
+
 | Command               | Description                            |
 | --------------------- | -------------------------------------- |
 | teuton                | [Show help](help.md)                   |

@@ -20,7 +20,7 @@ Teuton allow us:
 Teuton [documentation](./docs).
 
 * [Installation](docs/install/install.md)
-* [Learning](docs/learn/learning.md)
+* [Learning](docs/learn/README.md)
 * [Commands](docs/commands/commands.md)
 * [DSL keywords](docs/dsl/keywords.md)
 
