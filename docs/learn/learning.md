@@ -8,8 +8,8 @@ Learn how to write your own tests reading examples.
 - [Example 03 - Remote hosts](example-03-remote-hosts.md)
 - [Example 04 - Use](example-04-use.md)
 - [Example 05 - Debug](example-05-debug.md)
-- [[Example 11 - Create your first challenge]]
-- [[Videos]]
+- [Example 11 - Create your first test](example-11-first-test.md)
+- [Videos](videos.md)
 
 ---
 # More examples
