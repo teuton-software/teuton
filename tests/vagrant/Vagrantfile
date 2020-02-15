@@ -6,7 +6,11 @@ Vagrant.configure("2") do |config|
     i.vm.box = "generic/opensuse15"
     i.vm.hostname = "teuton-opensuse"
     i.vm.synced_folder "./", "/vagrant"
-#    i.vm.provision "shell", inline: "gem install teuton"
+    i.vm.network "public_network", bridge: [
+      "eth1",
+    ]
+
+    #    i.vm.provision "shell", inline: "gem install teuton"
     i.vm.provider "virtualbox" do |v|
       v.name = 'teuton-opensuse'
       v.memory = 2048
