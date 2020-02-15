@@ -2,22 +2,20 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.define "teuton-debian" do |i|
-    i.vm.box = "generic/debian9"
-    i.vm.hostname = "teuton-debian"
+  config.vm.define "teuton-opensuse" do |i|
+    i.vm.box = "generic/opensuse15"
+    i.vm.hostname = "teuton-opensuse"
     i.vm.network "public_network", bridge: [
       "wlp1s0",
       "enp2s0",
     ]
 
     i.vm.synced_folder "./", "/vagrant"
-    i.vm.provision "shell", inline: <<-SHELL
-      apt-get install -y tree vim
-      apt-get install -y ruby
-      gem install teuton
-    SHELL
+#    i.vm.provision "shell", inline: <<-SHELL
+#    wget -qO- https://raw.githubusercontent.com/dvarrui/teuton/master/bin/linux_t-node_install.sh > install.txt
+#  SHELL
     i.vm.provider "virtualbox" do |v|
-      v.name = 'teuton-debian'
+      v.name = 'teuton-opensuse'
       v.memory = 2048
     end
   end
