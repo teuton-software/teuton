@@ -2,17 +2,26 @@
 > We recommend you, start reading about [Modes of use](modes_of_use.md), and learn the differences between T-node and S-node before installation.
 
 ---
-# Installation
+# T-NODE (Recomended)
 
-**T-NODE installation**: Install Teuton on machine with T-NODE role.
+* **Install** Teuton on machine with T-NODE role.
 Installation process:
+    1. Install Ruby on your system.
+    2. `gem install teuton`
+* Run `teuton version` to check that your installation is ok.
 
-1. Install Ruby on your system.
-2. `gem install teuton`
+> **PROBLEMS**: If you have problems to find `teuton`command (OpenSUSE distro), try this:
+> * `find / -name teuton`, to find absolute path to teuton command.
+> * As superuser do `ln -s /PATH/TO/bin/teuton /usr/local/bin/teuton`, to create symbolic link to teuton command.
+> * Try again as normal user.
 
-Run `teuton version` to check that your installation is ok.
+* **Update** Teuton with `gem teuton update`.
+* **Uninstall** Teuton with `gem uninstall teuton`
 
-**S-NODE installation**: Install SSH server on every machine with S-NODE role.
+---
+# S-NODE (Recomended)
+
+* **Install** SSH server on every machine with S-NODE role.
 
 ---
 # Other installation ways
