@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   (b) Check compliance with requirements on remote machines.
   EOF
 
-  s.extra_rdoc_files = [ 'README.md' ] +
+  s.extra_rdoc_files = [ 'README.md', 'LICENSE' ] +
                        Dir.glob(File.join('docs','**','*.md'))
 
   s.license     = 'GPL-3.0'
