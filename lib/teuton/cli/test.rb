@@ -2,11 +2,11 @@
 
 # CLI#test
 class CLI < Thor
-  map ['t', '-t', '--test'] => 'test'
+  map ['t', '-t', '--test', 'test'] => 'check'
   option :c, type: :boolean
   option :cname, type: :string
   option :cpath, type: :string
-  desc 'test [OPTIONS] DIRECTORY',
+  desc 'check [OPTIONS] DIRECTORY',
        'Test or check challenge contents'
   long_desc <<-LONGDESC
 
@@ -32,7 +32,7 @@ class CLI < Thor
   ##
   # Verify or test Teuton test units syntax
   # @param path_to_rb_file [String] Route to main rb Teuton file
-  def test(path_to_rb_file)
+  def check(path_to_rb_file)
     Project.test(path_to_rb_file, options)
   end
 end

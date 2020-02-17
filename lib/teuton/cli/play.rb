@@ -2,13 +2,13 @@
 
 # CLI#play
 class CLI < Thor
-  map ['p', '-p', 'play', '--play'] => 'play'
+  map ['p', '-p', 'play', '--play', '--run', 'run'] => 'play'
   option :export, type: :string
   option :cname, type: :string
   option :cpath, type: :string
   option :case, type: :string
   option :quiet, type: :boolean
-  desc '[play] [OPTIONS] DIRECTORY',
+  desc '[run] [OPTIONS] DIRECTORY',
        'Run challenge from directory'
   long_desc <<-LONGDESC
   This function execute challenge from specified directory.

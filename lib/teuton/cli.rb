@@ -9,16 +9,8 @@ require_relative 'cli/main'
 class CLI < Thor
   map ['h', '-h', '--help'] => 'help'
 
-  def method_missing(method, *_args, &_block)
-    play(method.to_s)
-  end
-
-  def respond_to_missing?(method_name, include_private = false)
-    super
-  end
-
-  map ['c', '-c', '--create'] => 'create'
-  desc 'create DIRECTORY', 'Create skeleton for a new project'
+  map ['c', '-c', '--create', 'create'] => 'new'
+  desc 'new DIRECTORY', 'Create skeleton for a new project'
   long_desc <<-LONGDESC
   Create files for a new project.
 
@@ -27,8 +19,20 @@ class CLI < Thor
   #{$PROGRAM_NAME} create dir/foo
   LONGDESC
   ##
-  # Command create new Teuton project
-  def create(path_to_new_dir)
+  # Command: create new Teuton project
+  def new(path_to_new_dir)
     ProjectCreator.create(path_to_new_dir)
+  end
+
+  ##
+  # These inputs are equivalents:
+  # * teuton dir/foo
+  # * teuton play dir/foo
+  def method_missing(method, *_args, &_block)
+    play(method.to_s)
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    super
   end
 end

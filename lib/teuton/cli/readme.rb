@@ -2,7 +2,7 @@
 
 # CLI#readme
 class CLI < Thor
-  map ['r', '-r', '--readme'] => 'readme'
+  map ['--readme'] => 'readme'
   option :lang, type: :string
   desc 'readme DIRECTORY',
        'Create README.md file from challenge contents'
