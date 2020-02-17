@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Teuton#readme
-class TeutonCommand < Thor
+# CLI#readme
+class CLI < Thor
   map ['r', '-r', '--readme'] => 'readme'
   option :lang, type: :string
   desc 'readme DIRECTORY',

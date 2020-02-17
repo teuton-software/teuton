@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Teuton#test
-class TeutonCommand < Thor
+# CLI#test
+class CLI < Thor
   map ['t', '-t', '--test'] => 'test'
   option :c, type: :boolean
   option :cname, type: :string

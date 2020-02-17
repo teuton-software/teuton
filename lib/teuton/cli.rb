@@ -2,11 +2,11 @@ require 'thor'
 require_relative 'application'
 require_relative 'project/project'
 require_relative 'project/project_creator.rb'
-require_relative 'command/main'
+require_relative 'cli/main'
 
 ##
 # Command Line User Interface
-class TeutonCommand < Thor
+class CLI < Thor
   map ['h', '-h', '--help'] => 'help'
 
   def method_missing(method, *_args, &_block)
