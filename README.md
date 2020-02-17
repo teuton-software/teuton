@@ -1,4 +1,6 @@
 
+[![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
+
 # TEUTON Software (version 2.1)
 
 _Create Unit Test for your machines, and
