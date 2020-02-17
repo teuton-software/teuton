@@ -15,7 +15,7 @@ module ProjectCreator
     project_name = File.basename(project_dir)
     puts "\n[INFO] Creating #{Rainbow(project_name).bright} project skeleton"
 
-    source_basedir = File.join(File.dirname(__FILE__), '../..')
+    source_basedir = File.join(File.dirname(__FILE__), '..')
     create_dir project_dir
 
     create_main_dir_and_files(project_dir, source_basedir)
@@ -25,10 +25,10 @@ module ProjectCreator
   def self.create_main_dir_and_files(project_dir, source_basedir)
     # Directory and files: Ruby script, Configfile, gitignore
     items = [
-      { source: 'teuton/files/config.yaml', target: 'config.yaml' },
-      { source: 'teuton/files/start.rb', target: 'start.rb' },
-      { source: 'teuton/files/README.md', target: 'README.md' },
-      { source: 'teuton/files/gitignore', target: '.gitignore' }
+      { source: 'files/config.yaml', target: 'config.yaml' },
+      { source: 'files/start.rb', target: 'start.rb' },
+      { source: 'files/README.md', target: 'README.md' },
+      { source: 'files/gitignore', target: '.gitignore' }
     ]
     items.each do |item|
       source = File.join(source_basedir, item[:source])
