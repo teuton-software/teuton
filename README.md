@@ -17,7 +17,7 @@ Teuton allow us:
 
 # Documentation
 
-Teuton [documentation](./docs).
+Teuton [documentation](https://github.com/teuton-software/teuton/tree/devel/docs).
 
 * [Installation](docs/install/install.md)
 * [Learning](docs/learn/README.md)
@@ -27,7 +27,7 @@ Teuton [documentation](./docs).
 # Features
 
 * [Free Software License](LICENSE).
-* Multiplatform [installation](https://github.com/teuton-software/teuton/wiki/Installation).
+* Multiplatform [installation](https://github.com/teuton-software/teuton/blob/devel/docs/install/install.md).
 * Use SSH or Telnet protocol to connect to remote machines.
 * Developed using the ruby language.
 
