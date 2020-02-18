@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.define "teuton-debian" do |i|
-    i.vm.box = "generic/debian9"
+    i.vm.box = "generic/debian"
     i.vm.hostname = "teuton-debian"
     i.vm.synced_folder "./", "/vagrant"
 #    i.vm.network "public_network", bridge: [ "eth1" ]
