@@ -1,5 +1,5 @@
 
-> We recommend you, start reading about [Modes of use](modes_of_use.md), and learn the differences between T-node and S-node before installation.
+> Suggestion: start reading about [Modes of use](modes_of_use.md), and learn the differences between T-node and S-node before installation.
 
 ---
 # T-NODE (Recomended)

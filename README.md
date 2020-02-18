@@ -1,7 +1,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
 
-# TEUTON Software (version 2.1)
+# TEUTON (version 2.1)
 
 _Create Unit Test for your machines, and
 test your infraestructure as code._
@@ -19,17 +19,15 @@ Teuton allow us:
 
 # Documentation
 
-Teuton [documentation](https://github.com/teuton-software/teuton/tree/devel/docs).
-
-* [Installation](docs/install/install.md)
-* [Learning](docs/learn/README.md)
-* [Commands](docs/commands/commands.md)
-* [DSL keywords](docs/dsl/keywords.md)
+* [Installation](https://github.com/teuton-software/teuton/tree/devel/docs/install/install.md)
+* [Learning](https://github.com/teuton-software/teuton/tree/devel/docs/learn/README.md)
+* [Commands](https://github.com/teuton-software/teuton/tree/devel/docs/commands/commands.md)
+* [DSL keywords](https://github.com/teuton-software/teuton/tree/devel/docs/dsl/keywords.md)
 
 # Features
 
-* [Free Software License](LICENSE).
-* Multiplatform [installation](https://github.com/teuton-software/teuton/blob/devel/docs/install/install.md).
+* [Free Software License](https://github.com/teuton-software/teuton/tree/devel/LICENSE).
+* Multiplatform .
 * Use SSH or Telnet protocol to connect to remote machines.
 * Developed using the ruby language.
 

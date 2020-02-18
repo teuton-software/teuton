@@ -3,7 +3,7 @@ require_relative 'lib/teuton/application'
 Gem::Specification.new do |s|
   s.name        = Application::NAME
   s.version     = Application::VERSION
-  s.date        = '2020-02-09'
+  s.date        = '2020-02-18'
   s.summary     = "Teuton (Teuton Software)"
   s.description = <<-EOF
   Intrastructure test, useful for:
@@ -40,4 +40,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'minitest', '~> 5.11'
   s.add_development_dependency 'rubocop', '~> 0.74'
+
+  s.post_install_message = "Thanks for installing!"
 end
