@@ -12,8 +12,10 @@ Vagrant.configure("2") do |config|
       zypper refresh
       zypper install -y tree vim
       gem install teuton
-      find / -name teuton 
-      echo "Create symbolic link into /usr/local/bin"
+      echo "========================================="
+      echo "[INFO] Find teuton command
+      find /usr/lib64/ruby/ -name teuton
+      echo "[INFO] Create symbolic link to /usr/local/bin/teuton"
     SHELL
     i.vm.provider "virtualbox" do |v|
       v.name = 'teuton-opensuse'
