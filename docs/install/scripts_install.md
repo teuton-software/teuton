@@ -14,7 +14,7 @@ There are different Teuton [Modes of use](modes_of_use.md). For every mode there
 Run this command as `root` user:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/bin/linux_t-node_install.sh | bash
+wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/devel/install/linux/linux_t-node_install.sh | bash
 ```
 
 ## T-NODE: Mac OS X installation
@@ -22,7 +22,7 @@ wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/bin/li
 Run this command as admin user (member of `admin` group):
 
 ```bash
-curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/bin/macosx_t-node_install.sh | bash
+curl -sL https://raw.githubusercontent.com/teuton-software/teuton/devel/install/mac/macosx_t-node_install.sh | bash
 ```
 
 > No `root` user.
@@ -36,7 +36,7 @@ Requirements:
 Run this command on **PowerShell (PS)** as `Administrator` user:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/bin/windows_t-node_install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/devel/install/windows_t-node_install.ps1'))
 ```
 
 ---
@@ -52,7 +52,7 @@ This is, SSH server installation.
 Run this command as `root` user:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/bin/linux_s-node_install.sh | bash
+wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/devel/install/linux/linux_s-node_install.sh | bash
 ```
 
 ## S-NODE: Mac OS X installation
@@ -60,7 +60,7 @@ wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/bin/li
 Run this command as `root` user:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/bin/macosx_s-node_install.sh | bash
+curl -sL https://raw.githubusercontent.com/teuton-software/teuton/devel/install/mac/macosx_s-node_install.sh | bash
 ```
 
 ## S-NODE: Windows installation
@@ -72,5 +72,5 @@ Requirements:
 Run this command on **PowerShell (PS)** as `Administrator` user:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/bin/windows_s-node_install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/devel/install/windows/windows_s-node_install.ps1'))
 ```

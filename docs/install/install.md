@@ -1,8 +1,11 @@
 
-> Suggestion: start reading about [Modes of use](modes_of_use.md), and learn the differences between T-node and S-node before installation.
+There are different Teuton [Modes of use](modes_of_use.md). For every mode there are 2 node types and every node has their own installation script:
+
+* **T-node**: This host has installed Teuton software.
+* **S-node**: This host has installed SSH server.
 
 ---
-# T-NODE (Recomended)
+# T-NODE
 
 * **Install** Teuton on machine with T-NODE role.
 Installation process:
@@ -19,7 +22,7 @@ Installation process:
 * **Uninstall** Teuton with `gem uninstall teuton`
 
 ---
-# S-NODE (Recomended)
+# S-NODE
 
 * **Install** SSH server on every machine with S-NODE role.
 

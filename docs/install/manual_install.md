@@ -1,10 +1,10 @@
+
 There are diferents Teuton [Modes of use](Modes of use). For every mode there are 2 node typesm and every node has their own installation script:
 
 * **T-node**: This host has installed Teuton software.
 * **S-node**: This host has installed SSH server.
 
 ---
-
 # T-NODE: Manual installation
 
 | ID | Action            | Details |
