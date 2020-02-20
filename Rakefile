@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'lib/teuton/application'
-require_relative 'lib/teuton/rake_function/check.rb'
-require_relative 'lib/teuton/rake_function/install.rb'
+#require_relative 'lib/teuton/application'
+require_relative 'tasks/check.rb'
+require_relative 'tasks/install.rb'
 
 packages = %w[net-ssh net-sftp rainbow terminal-table]
 packages += %w[thor json_pure minitest yard]

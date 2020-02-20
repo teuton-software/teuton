@@ -3,14 +3,9 @@
 # Method RakeFunction#check
 module RakeFunction
   def self.check(gems)
-    puts "[INFO] Version #{Application::VERSION}"
-    check_gems gems
-    check_tests
-  end
-
-  def self.check_gems(gems)
     fails = filter_uninstalled_gems(gems)
     puts "[ERROR] Gems to install!: #{fails.join(',')}" unless fails == []
+    check_tests
   end
 
   def self.check_tests
