@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'packages'
 # Methods Module RakeFunction
 # * opensuse
 # * debian
 # * install_gems
 namespace :install do
-  require_relative 'packages'
 
   desc 'Install gems'
   task :gems do
@@ -44,8 +44,12 @@ namespace :install do
   end
 
   def create_symbolic_link
+    if File.exist? '/usr/local/bin/teuton'
+      puts '[WARN] Exist file /usr/local/bin/teuton!'
+      return
+    end
     puts '[INFO] Creating symbolic link into /usr/local/bin'
     basedir = File.dirname(__FILE__)
-    system("ln -s #{basedir}/teuton /usr/local/bin/teuton")
+    system("ln -s #{basedir}/teuton '/usr/local/bin/teuton'")
   end
 end

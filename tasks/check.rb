@@ -1,8 +1,8 @@
 # frozen_string_literal: true
+require_relative 'packages'
 
 # Method RakeFunction#check
 namespace :install do
-  require_relative 'packages'
 
   desc 'Check installation'
   task :check do
