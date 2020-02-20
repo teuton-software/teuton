@@ -4,9 +4,25 @@
 # * opensuse
 # * debian
 # * install_gems
-module RakeFunction
-  def self.opensuse(packages)
-    names = %w[openssh make gcc ruby-dev]
+namespace :install do
+  require_relative 'packages'
+
+  desc 'Install gems'
+  task :gems do
+    install_gems(packages)
+  end
+
+  desc 'Debian installation'
+  task :debian do
+    names = %w[ssh make gcc ruby-devel]
+    names.each { |name| system("apt-get install -y #{name}") }
+    install_gems packages, '--no-ri'
+    create_symbolic_link
+  end
+
+  desc 'OpenSUSE installation'
+  task :opensuse do
+    names = %w[openssh make gcc ruby-devel]
     options = '--non-interactive'
     names.each do |n|
       system("zypper #{options} install #{n}")
@@ -15,14 +31,7 @@ module RakeFunction
     create_symbolic_link
   end
 
-  def self.debian(packages)
-    names = %w[ssh make gcc ruby-dev]
-    names.each { |name| system("apt-get install -y #{name}") }
-    install_gems packages, '--no-ri'
-    create_symbolic_link
-  end
-
-  def self.install_gems(list, options = '')
+  def install_gems(list, options = '')
     fails = filter_uninstalled_gems(list)
     if !fails.empty?
       puts "[INFO] Installing gems (options = #{options})..."
@@ -32,5 +41,11 @@ module RakeFunction
     else
       puts '[ OK ] Gems installed'
     end
+  end
+
+  def create_symbolic_link
+    puts '[INFO] Creating symbolic link into /usr/local/bin'
+    basedir = File.dirname(__FILE__)
+    system("ln -s #{basedir}/teuton /usr/local/bin/teuton")
   end
 end

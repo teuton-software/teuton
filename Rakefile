@@ -1,20 +1,11 @@
 # frozen_string_literal: true
 
-#require_relative 'lib/teuton/application'
-require_relative 'tasks/check.rb'
-require_relative 'tasks/install.rb'
-
-packages = %w[net-ssh net-sftp rainbow terminal-table]
-packages += %w[thor json_pure minitest yard]
+require_relative 'tasks/check'
+require_relative 'tasks/install'
 
 desc 'Default: check'
-task default: :check do
-end
-
-desc 'Check installation'
-task :check do
-  RakeFunction.check(packages)
-  Rake::Task['build'].invoke
+task :default do
+  Rake::Task['install:check'].invoke
 end
 
 desc 'Rake help'
@@ -34,27 +25,4 @@ task :docs do
   puts "[ INFO ] Generating documentation..."
   system('rm -r html/')
   system('yardoc lib/* -o html')
-end
-
-namespace :install do
-  desc 'Install gems'
-  task :gems do
-    RakeFunction.install_gems(packages)
-  end
-
-  desc 'Debian installation'
-  task :debian do
-    RakeFunction.debian(packages)
-  end
-
-  desc 'OpenSUSE installation'
-  task :opensuse do
-    RakeFunction.opensuse(packages)
-  end
-end
-
-def create_symbolic_link
-  puts '[INFO] Creating symbolic link into /usr/local/bin'
-  basedir = File.dirname(__FILE__)
-  system("ln -s #{basedir}/teuton /usr/local/bin/teuton")
 end

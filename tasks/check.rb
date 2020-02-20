@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
 # Method RakeFunction#check
-module RakeFunction
-  def self.check(gems)
-    fails = filter_uninstalled_gems(gems)
+namespace :install do
+  require_relative 'packages'
+
+  desc 'Check installation'
+  task :check do
+    fails = filter_uninstalled_gems(packages)
     puts "[ERROR] Gems to install!: #{fails.join(',')}" unless fails == []
     check_tests
+    Rake::Task['build'].invoke
   end
 
-  def self.check_tests
+  def check_tests
     testfile = File.join('.', 'tests', 'all.rb')
     a = File.read(testfile).split("\n")
     b = a.select { |i| i.include? '_test' }
@@ -24,7 +28,7 @@ module RakeFunction
     system(testfile)
   end
 
-  def self.filter_uninstalled_gems(list)
+  def filter_uninstalled_gems(list)
     cmd = `gem list`.split("\n")
     names = cmd.map { |i| i.split(' ')[0] }
     fails = []
