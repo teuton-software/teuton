@@ -17,13 +17,17 @@ Teuton allow us:
 * Write test units for real or virtual machines using simple DSL.
 * Check compliance with requirements on remote machines.
 
+---
 # Documentation
 
 * [Installation](https://github.com/teuton-software/teuton/tree/devel/docs/install/install.md)
+    1. Install Ruby on your system.
+    2. `gem install teuton`
 * [Learning](https://github.com/teuton-software/teuton/tree/devel/docs/learn/README.md)
 * [Commands](https://github.com/teuton-software/teuton/tree/devel/docs/commands/commands.md)
 * [DSL keywords](https://github.com/teuton-software/teuton/tree/devel/docs/dsl/keywords.md)
 
+---
 # Features
 
 * [Free Software License](https://github.com/teuton-software/teuton/tree/devel/LICENSE).
@@ -31,6 +35,7 @@ Teuton allow us:
 * Use SSH or Telnet protocol to connect to remote machines.
 * Developed using the ruby language.
 
+---
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`

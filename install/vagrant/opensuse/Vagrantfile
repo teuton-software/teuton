@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
       zypper install -y tree vim
       gem install teuton
       echo "========================================="
-      echo "[INFO] Find teuton command
+      echo "[INFO] Find teuton command"
       find /usr/lib64/ruby/ -name teuton
       echo "[INFO] Create symbolic link to /usr/local/bin/teuton"
     SHELL
