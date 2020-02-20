@@ -17,12 +17,17 @@ task :check do
   Rake::Task['build'].invoke
 end
 
+desc 'Rake help'
+task :help do
+  system('rake -T')
+end
+
 desc 'Build gem'
 task :build do
   puts '[INFO] Building gem...'
   system('rm teuton-*.*.*.gem')
   system('gem build teuton.gemspec')
-end 
+end
 
 desc 'Generate docs'
 task :docs do
@@ -31,24 +36,21 @@ task :docs do
   system('yardoc lib/* -o html')
 end
 
-desc 'Rake help'
-task :help do
-  system('rake -T')
-end
+namespace :install do
+  desc 'Install gems'
+  task :gems do
+    RakeFunction.install_gems(packages)
+  end
 
-desc 'Install gems'
-task :gems do
-  RakeFunction.install_gems(packages)
-end
+  desc 'Debian installation'
+  task :debian do
+    RakeFunction.debian(packages)
+  end
 
-desc 'Debian installation'
-task :debian do
-  RakeFunction.debian(packages)
-end
-
-desc 'OpenSUSE installation'
-task :opensuse do
-  RakeFunction.opensuse(packages)
+  desc 'OpenSUSE installation'
+  task :opensuse do
+    RakeFunction.opensuse(packages)
+  end
 end
 
 def create_symbolic_link
