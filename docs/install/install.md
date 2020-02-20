@@ -29,14 +29,20 @@ Installation process:
 ---
 # Other installation ways
 
-[Installation using scripts](scripts_install.md)
+## Using scripts
+
+[Installation using scripts](scripts.md)
 * Use our scripts to run automatical installation for your OS.
 * Use this way if you don't know how to install Ruby on your system.
 
-[Installation using Vagrant](vagrant_install.md)
+## Using Vagranfiles
+
+[Installation using Vagrant](vagrant.md)
 * If you plan to install Teuton into virtual machines, and have Vagrant installed into your real machine, this is the easier way for you.
 
-[Manual installation](manual_install.md)
+## Manual
+
+[Manual installation](manual.md)
 * If you don't need help, and want to install Teuton by your own, or there are not installation scripts for your favorite OS, and you don't want to use Vagrant then... here you have information how to install all the required packages for Teuton.
 
 Let's us known your installation difficulties.
