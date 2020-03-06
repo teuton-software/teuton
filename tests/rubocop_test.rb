@@ -18,11 +18,6 @@ class RubocopTest < Minitest::Test
     @files[:case_manager] << 'lib/teuton/case_manager/show.rb'
     @files[:case_manager] << 'lib/teuton/case_manager/utils.rb'
 
-    @files[:case_model] = []
-    @files[:case_model] << 'lib/teuton/case_manager/case/case_model/case_model.rb'
-    @files[:case_model] << 'lib/teuton/case_manager/case/case_model/group_model.rb'
-    @files[:case_model] << 'lib/teuton/case_manager/case/case_model/target_model.rb'
-
     @files[:case_dsl] = []
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/deprecated.rb'
 #    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/expect.rb'
@@ -34,15 +29,12 @@ class RubocopTest < Minitest::Test
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/target.rb'
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/unique.rb'
 
-    @files[:command] = []
-    @files[:command] << 'lib/teuton/command/main.rb'
-    @files[:command] << 'lib/teuton/command/create.rb'
-    @files[:command] << 'lib/teuton/command/download.rb'
-    @files[:command] << 'lib/teuton/command/play.rb'
-    @files[:command] << 'lib/teuton/command/readme.rb'
-    @files[:command] << 'lib/teuton/command/test.rb'
-    @files[:command] << 'lib/teuton/command/update.rb'
-    @files[:command] << 'lib/teuton/command/version.rb'
+    @files[:cli] = []
+    @files[:cli] << 'lib/teuton/cli/main.rb'
+    @files[:cli] << 'lib/teuton/cli/play.rb'
+    @files[:cli] << 'lib/teuton/cli/readme.rb'
+    @files[:cli] << 'lib/teuton/cli/test.rb'
+    @files[:cli] << 'lib/teuton/cli/version.rb'
 
     @files[:project] = []
     @files[:project] << 'lib/teuton/project/laboratory/laboratory.rb'
@@ -53,10 +45,11 @@ class RubocopTest < Minitest::Test
     @files[:project] << 'lib/teuton/project/project_creator.rb'
     @files[:project] << 'lib/teuton/project/project.rb'
 
-    @files[:rake_functions] = []
-    @files[:rake_functions] << 'Rakefile'
-    @files[:rake_functions] << 'lib/teuton/rake_function/check.rb'
-    @files[:rake_functions] << 'lib/teuton/rake_function/install.rb'
+    @files[:rake] = []
+    @files[:rake] << 'Rakefile'
+    @files[:rake] << 'tasks/build.rb'
+    @files[:rake] << 'tasks/check.rb'
+    @files[:rake] << 'tasks/install.rb'
 
     @files[:report] = []
 #    @files4 << 'lib/teuton/report/formatter/array_formatter.rb'
@@ -74,72 +67,64 @@ class RubocopTest < Minitest::Test
   def test_rubocop_case
     @files[:case].each do |file|
       output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
     end
   end
 
   def test_rubocop_case_manager
     @files[:case_manager].each do |file|
       output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
-    end
-  end
-
-  def test_rubocop_case_model
-    @files[:case_model].each do |file|
-      output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
     end
   end
 
   def test_rubocop_case_dsl
     @files[:case_dsl].each do |file|
       output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
     end
   end
 
-  def test_rubocop_command
-    @files[:command].each do |file|
+  def test_rubocop_cli
+    @files[:cli].each do |file|
       output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
     end
   end
 
   def test_rubocop_project
     @files[:case_model].each do |file|
       output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
     end
   end
 
-  def test_rubocop_rake_functions
-    @files[:rake_functions].each do |file|
+  def test_rubocop
+    @files[:rake].each do |file|
       output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
     end
   end
 
   def test_rubocop_report
     @files[:report].each do |file|
       output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
     end
   end
 
   def test_rubocop_result
     @files[:result].each do |file|
       output = `rubocop #{file}`
-      lines = output.split("\n")
-      assert_equal true, lines.any?(/file inspected, no offenses detected/)
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
     end
   end
 end

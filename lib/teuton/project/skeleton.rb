@@ -3,14 +3,14 @@
 require 'fileutils'
 require 'rainbow'
 
-# Project#create
+# Skeleton class
 # * create
 # * create_main_dir_and_files
 # * create_assets_dir_and_files
 # * create_dir
 # * create_dirs
 # * copyfile
-module ProjectCreator
+module Skeleton
   def self.create(project_dir)
     project_name = File.basename(project_dir)
     puts "\n[INFO] Creating #{Rainbow(project_name).bright} project skeleton"

@@ -1,7 +1,7 @@
 require 'thor'
 require_relative 'application'
 require_relative 'project/project'
-require_relative 'project/project_creator.rb'
+require_relative 'project/skeleton.rb'
 require_relative 'cli/main'
 
 ##
@@ -21,7 +21,7 @@ class CLI < Thor
   ##
   # Command: create new Teuton project
   def new(path_to_new_dir)
-    ProjectCreator.create(path_to_new_dir)
+    Skeleton.create(path_to_new_dir)
   end
 
   ##

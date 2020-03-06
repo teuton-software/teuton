@@ -1,15 +1,14 @@
 # frozen_string_literal: true
+
 require_relative 'packages'
 
 # Method RakeFunction#check
 namespace :install do
-
   desc 'Check installation'
   task :check do
     fails = filter_uninstalled_gems(packages)
     puts "[ERROR] Gems to install!: #{fails.join(',')}" unless fails == []
     check_tests
-    Rake::Task['build'].invoke
   end
 
   def check_tests

@@ -7,7 +7,7 @@ class CLI < Thor
   map ['v', '-v', '--version'] => 'version'
   desc 'version', 'Show the program version'
   ##
-  # Display version 
+  # Display version
   def version
     print Rainbow(Application::NAME).bright.blue
     puts  ' (version ' + Rainbow(Application::VERSION).green + ')'

@@ -13,9 +13,10 @@ module Utils
     true
   end
 
+  # rubocop:disable Metrics/MethodLength
   def encode_and_split(encoding, text)
     # Convert text to UTF-8 deleting unknown chars
-    text = text || '' # Ensure text is not nil
+    text ||= '' # Ensure text is not nil
     flag = [:default, 'UTF-8'].include? encoding
     return text.encode('UTF-8', invalid: :replace).split("\n") if flag
 
@@ -30,6 +31,7 @@ module Utils
 
     text.split("\n")
   end
+  # rubocop:enable Metrics/MethodLength
 
   def my_execute(cmd, encoding = 'UTF-8')
     return { exitstatus: 0, content: '' } if Application.instance.debug

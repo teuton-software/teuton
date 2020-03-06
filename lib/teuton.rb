@@ -1,6 +1,6 @@
 require_relative 'teuton/application'
 require_relative 'teuton/project/project'
-require_relative 'teuton/project/project_creator'
+require_relative 'teuton/project/skeleton'
 
 ##
 # Main Teuton functions
@@ -8,7 +8,7 @@ module Teuton
   ##
   # Create new Teuton project
   def self.create(path_to_new_dir)
-    ProjectCreator.create(path_to_new_dir)
+    Skeleton.create(path_to_new_dir)
   end
 
   ##
