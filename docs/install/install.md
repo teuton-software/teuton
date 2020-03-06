@@ -14,9 +14,12 @@ Installation process:
 * Run `teuton version` to check that your installation is ok.
 
 > **PROBLEMS**: If you have problems to find `teuton`command (OpenSUSE distro), try this:
-> * `find / -name teuton`, to find absolute path to teuton command.
-> * As superuser do `ln -s /PATH/TO/bin/teuton /usr/local/bin/teuton`, to create symbolic link to teuton command.
-> * Try again as normal user.
+> * Option A:
+>     * `ruby -v`, display your current ruby version. Supose it is 2.5.
+>     * Run `teuton.ruby2.5`, instead of `teuton`.
+> * Option B:
+>     * `find /usr/lib64/ruby -name teuton`, to find absolute path to teuton command.
+>     * `sudo ln -s /PATH/TO/bin/teuton /usr/local/bin/teuton`, to create symbolic link to teuton command.
 
 * **Update** Teuton with `gem teuton update`.
 * **Uninstall** Teuton with `gem uninstall teuton`
