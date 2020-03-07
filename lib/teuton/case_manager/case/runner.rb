@@ -17,18 +17,18 @@ class Case
     protocol = @config.get("#{host}_protocol".to_sym)
     ip = @config.get("#{host}_ip".to_sym)
 
-    if protocol.to_s == 'ssh'
-      run_cmd_remote_ssh(host)
-    elsif protocol.to_s == 'telnet'
-        run_cmd_remote_telnet(host)
-    elsif (protocol.to_s == 'local' || host.to_s == 'localhost')
-      run_cmd_localhost()
-    elsif (ip.to_s == 'localhost' || ip.to_s.include?('127.0.0.'))
+    if (protocol.to_s.downcase == 'local' || host.to_s == 'localhost')
+      run_cmd_localhost() # Protocol force => local
+    elsif protocol.to_s.downcase == 'ssh'
+      run_cmd_remote_ssh(host) # Protocol force => ssh
+    elsif protocol.to_s.downcase == 'telnet'
+        run_cmd_remote_telnet(host) # Protocol force => telnet
+    elsif (ip.to_s.downcase == 'localhost' || ip.to_s.include?('127.0.0.'))
       run_cmd_localhost()
     elsif ip == 'NODATA'
       log("#{host} IP not found!", :error)
     else
-      run_cmd_remote host
+      run_cmd_remote_ssh host
     end
   end
 
