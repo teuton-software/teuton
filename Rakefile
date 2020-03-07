@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'tasks/check'
 require_relative 'tasks/install'
 require_relative 'tasks/build'
 
