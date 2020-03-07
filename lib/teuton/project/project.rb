@@ -33,10 +33,10 @@ module Project
 
   def self.process_input_case_option
     options = Application.instance.options
-    unless options['case'].nil?
-      a = options['case'].split(',')
-      options['case'] = a.collect! { |i| i.to_i }
-    end
+    return if options['case'].nil?
+
+    a = options['case'].split(',')
+    options['case'] = a.collect!(&:to_i)
   end
 
   def self.readme(pathtofile, options)

@@ -46,10 +46,12 @@ class Case
     private
 
     def search_alias(key, level)
-      return search_array_alias(@ialias[key],level) if @ialias[key].class == Array
-
-      return get(@ialias[key]) if [Integer, String, Symbol].include? @ialias[key].class
-
+      if @ialias[key].class == Array
+        return search_array_alias(@ialias[key], level)
+      elsif [Integer, String, Symbol].include? @ialias[key].class
+        return get(@ialias[key])
+      end
+      
       words = key.to_s.split('_')
       return 'NODATA' if words.size < 2
 
@@ -61,14 +63,14 @@ class Case
       get("#{key2}_#{words[1]}".to_sym, level)
     end
 
-    def search_array_alias(keys,level)
+    def search_array_alias(keys, level)
       values = []
       keys.each do |k|
         if k.class == Symbol
           values << get(k, level + 1)
-        else
-          values << k
+          next
         end
+        values << k
       end
       values.join('')
     end

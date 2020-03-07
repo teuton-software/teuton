@@ -31,21 +31,21 @@ class Readme
     unless host == :localhost
       b = {}
       a = "#{host}_ip".to_sym
-      if @config[:global][a].nil? && (not @setted_params.include?(a))
+      if @config[:global][a].nil? && !@setted_params.include?(a)
         @cases_params << a
       end
       b[:ip] = @config[:global][a] if @config[:global][a]
       b[:ip] = @setted_params[a] if @setted_params[a]
 
       a = "#{host}_username".to_sym
-      if @config[:global][a].nil? && (not @setted_params.include?(a))
+      if @config[:global][a].nil? && !@setted_params.include?(a)
         @cases_params << a
       end
       b[:username] = @config[:global][a] if @config[:global][a]
       b[:username] = @setted_params[a] if @setted_params[a]
 
       a = "#{host}_password".to_sym
-      if @config[:global][a].nil? && (not @setted_params.include?(a))
+      if @config[:global][a].nil? && !@setted_params.include?(a)
         @cases_params << a
       end
       b[:password] = @config[:global][a] if @config[:global][a]
@@ -62,7 +62,7 @@ class Readme
     goto(:localhost, args)
   end
 
-  def expect(_cond, args = {})
+  def expect(_cond, _args = {})
     @current[:actions] << @action
     result.reset
   end
@@ -92,6 +92,7 @@ class Readme
     a = get(value)
     return "[#{value}](\#required-params)" if @cases_params.include? value
     return "[#{value}](\#created-params)" if @setted_params[value]
+
     "[#{a}](\#global-params)" if @global_params.include? value
   end
 

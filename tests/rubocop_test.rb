@@ -9,7 +9,7 @@ class RubocopTest < Minitest::Test
 
     @files[:case] = []
     @files[:case] << 'lib/teuton/case_manager/case/close.rb'
-    @files[:case] << 'lib/teuton/case_manager/case/config.rb'
+#    @files[:case] << 'lib/teuton/case_manager/case/config.rb'
     @files[:case] << 'lib/teuton/case_manager/case/main.rb'
     @files[:case] << 'lib/teuton/case_manager/case/play.rb'
 
@@ -38,18 +38,18 @@ class RubocopTest < Minitest::Test
 
     @files[:project] = []
     @files[:project] << 'lib/teuton/project/laboratory/laboratory.rb'
-    @files[:project] << 'lib/teuton/project/readme/dsl.rb'
+#    @files[:project] << 'lib/teuton/project/readme/dsl.rb'
 #    @files[:project] << 'lib/teuton/project/readme/readme.rb'
 #    @files[:project] << 'lib/teuton/project/config_file_reader.rb'
 #    @files[:project] << 'lib/teuton/project/name_file_finder.rb'
-    @files[:project] << 'lib/teuton/project/project_creator.rb'
-    @files[:project] << 'lib/teuton/project/project.rb'
+#    @files[:project] << 'lib/teuton/project/project.rb'
+#    @files[:project] << 'lib/teuton/project/skeleton.rb'
 
     @files[:rake] = []
     @files[:rake] << 'Rakefile'
     @files[:rake] << 'tasks/build.rb'
-    @files[:rake] << 'tasks/check.rb'
     @files[:rake] << 'tasks/install.rb'
+    @files[:rake] << 'tasks/utils.rb'
 
     @files[:report] = []
 #    @files4 << 'lib/teuton/report/formatter/array_formatter.rb'
@@ -97,14 +97,14 @@ class RubocopTest < Minitest::Test
   end
 
   def test_rubocop_project
-    @files[:case_model].each do |file|
+    @files[:project].each do |file|
       output = `rubocop #{file}`
       puts "[DEBUG] #{file}" if $?.exitstatus > 0
       assert_equal 0, $?.exitstatus
     end
   end
 
-  def test_rubocop
+  def test_rubocop_rake
     @files[:rake].each do |file|
       output = `rubocop #{file}`
       puts "[DEBUG] #{file}" if $?.exitstatus > 0

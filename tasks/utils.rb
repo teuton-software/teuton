@@ -1,9 +1,12 @@
+# frozen_string_literal: true
 
+##
+# Group general functions used by Rakefile tasks
 module Utils
   def self.packages
     p = %w[net-ssh net-sftp rainbow terminal-table thor json_pure]
     p += %w[minitest yard rubocop]
-    return p
+    p
   end
 
   def self.create_symbolic_link
