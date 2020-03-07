@@ -2,6 +2,7 @@
 require 'net/ssh'
 require 'net/sftp'
 require 'net/telnet'
+require_relative 'dsl/log'
 
 # Class Case
 # * run_local_cmd
@@ -12,14 +13,38 @@ class Case
 
   private
 
-  def run_local_cmd()
+  def run_cmd_on(host)
+    protocol = @config.get("#{host}_protocol".to_sym)
+    ip = @config.get("#{host}_ip".to_sym)
+
+    if protocol.to_s == 'ssh'
+      run_cmd_remote_ssh(host)
+    elsif protocol.to_s == 'telnet'
+        run_cmd_remote_telnet(host)
+    elsif (protocol.to_s == 'local' || host.to_s == 'localhost')
+      run_cmd_localhost()
+    elsif (ip.to_s == 'localhost' || ip.to_s.include?('127.0.0.'))
+      run_cmd_localhost()
+    elsif ip == 'NODATA'
+      log("#{host} IP not found!", :error)
+    else
+      run_cmd_remote host
+    end
+  end
+
+  ##
+  # Run command on local machine
+  def run_cmd_localhost()
     @action[:conn_type] = :local
     i = my_execute( @action[:command], @action[:encoding] )
     @result.exitstatus = i[:exitstatus]
     @result.content = i[:content]
   end
 
-  def run_remote_cmd(input_hostname)
+  ##
+  # Run remote command
+  # @param input_hostname (Symbol or String)
+  def run_cmd_remote(input_hostname)
     hostname = input_hostname.to_s
     i = (hostname + '_protocol').to_sym
     protocol = @config.get(i) if @config.get(i)
@@ -27,15 +52,17 @@ class Case
     protocol = protocol.to_sym
     case protocol
     when :ssh
-      run_remote_cmd_ssh(input_hostname)
+      run_cmd_remote_ssh(input_hostname)
     when :telnet
-      run_remote_cmd_telnet(input_hostname)
+      run_cmd_remote_telnet(input_hostname)
+    when :local
+      run_cmd_localhost()
     else
       log("Protocol #{protocol} unknown! Use ssh or telnet.", :error)
     end
   end
 
-  def run_remote_cmd_ssh(input_hostname)
+  def run_cmd_remote_ssh(input_hostname)
     @action[:conn_type] = :ssh
     hostname = input_hostname.to_s
     ip = @config.get((hostname + '_ip').to_sym)
@@ -86,7 +113,7 @@ class Case
     @result.content.compact!
   end
 
-  def run_remote_cmd_telnet(input_hostname)
+  def run_cmd_remote_telnet(input_hostname)
     @action[:conn_type] = :telnet
     app = Application.instance
     hostname = input_hostname.to_s
