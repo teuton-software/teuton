@@ -14,12 +14,9 @@ module Skeleton
   def self.create(project_dir)
     project_name = File.basename(project_dir)
     puts "\n[INFO] Creating #{Rainbow(project_name).bright} project skeleton"
-
     source_basedir = File.join(File.dirname(__FILE__), '..')
     create_dir project_dir
-
     create_main_dir_and_files(project_dir, source_basedir)
-    create_assets_dir_and_files(project_dir, source_basedir)
   end
 
   def self.create_main_dir_and_files(project_dir, source_basedir)
@@ -27,7 +24,7 @@ module Skeleton
     items = [
       { source: 'files/config.yaml', target: 'config.yaml' },
       { source: 'files/start.rb', target: 'start.rb' },
-      { source: 'files/README.md', target: 'README.md' },
+    # { source: 'files/README.md', target: 'README.md' },
       { source: 'files/gitignore', target: '.gitignore' }
     ]
     items.each do |item|
@@ -35,16 +32,6 @@ module Skeleton
       target = File.join(project_dir, item[:target])
       copyfile(source, target)
     end
-  end
-
-  def self.create_assets_dir_and_files(project_dir, source_basedir)
-    # Assets Directory and files
-    project_assets_dir = File.join(project_dir, 'assets')
-    create_dir project_assets_dir
-#    source = File.join(source_basedir, 'lib/files/README.md')
-#    target = File.join(project_dir, 'README.md')
-#    copyfile(source, target) # README.md
-    puts ''
   end
 
   def self.create_dir(dirpath)
