@@ -3,7 +3,7 @@ Learn how to:
 * Organize huge amount of groups/targets into several files.
 * Checking Windows OS infrastructure (host1).
 
-> This example is on GitHub repository `teuton-challenge` at `learn/learn-04-use`.
+> This example is on GitHub repository at `examples/learn-04-use`.
 
 ## Tree directory
 

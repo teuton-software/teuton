@@ -3,7 +3,7 @@ Learn how to:
 * Check test syntax.
 * Debug your tests.
 
-> This example is on GitHub repository `teuton-challenge` at `learn/learn-05-debug`.
+> This example is on GitHub repository at `examples/learn-05-debug`.
 
 ## Tree directory
 

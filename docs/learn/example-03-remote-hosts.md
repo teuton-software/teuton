@@ -4,7 +4,7 @@ Learn how to:
 * Export reports using other output formats.
 * Checking remote machine (host1) with Windows OS.
 
-> This example is on GitHub repository `teuton-challenge` at `learn/learn-03-remote-hosts`.
+> This example is on GitHub repository at `examples/learn-03-remote-hosts`.
 
 ## Config file (`config.yaml`)
 

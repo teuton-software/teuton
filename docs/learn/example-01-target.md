@@ -2,7 +2,7 @@
 Let's learn how to create our first target.
 A target is a feature you want to measure or check.
 
-> This example is on GitHub repository `teuton-challenge` at `learn/learn-01-target/`.
+> This example is on GitHub repository at `examples/learn-01-target/`.
 
 ## Definitions (Group section)
 

@@ -2,7 +2,7 @@
 # use 'gnulinux/user'
 use 'user'
 
-group "learn-07-check" do
+group "learn-09-check" do
   check 'user_exist', name: 'root'
   user_exist(name: 'fran')
   check_user_exist(name: 'david')

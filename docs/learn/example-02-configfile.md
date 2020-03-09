@@ -2,7 +2,7 @@
 Learn how to use config file into your tests.
 Tests can use params defined into config files. It's good idea save variable data separated into external config file.
 
-> This example is on GitHub repository `teuton-challenge` at `learn/learn-02-config`.
+> This example is on GitHub repository at `examples/learn-02-config`.
 
 ## Config file (`config.yaml`)
 

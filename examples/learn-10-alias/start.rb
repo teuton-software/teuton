@@ -1,5 +1,5 @@
 
-group "learn-06-alias" do
+group "learn-10-alias" do
   target "Verify user #{get(:super)} with key alias."
   run "id #{get(:super)}"
   expect get(:super)

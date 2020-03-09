@@ -6,7 +6,7 @@ module Lang
     lang = {}
     lang['en'] = {
       version:  'Teuton version : %s',
-      testname: 'Challenge name : %s',
+      testname: 'Test unit name : %s',
       date:     'Date           : %s',
       hosts:    "\n\#\#\# Required hosts\n",
       params:   "\n\#\#\# Required params\n",
@@ -16,7 +16,7 @@ module Lang
     }
     lang['es'] = {
       version:  'Versión de Teuton : %s',
-      testname: 'Nombre del reto   : %s',
+      testname: 'Nombre del test   : %s',
       date:     'Fecha             : %s',
       hosts:    "\n\#\#\# Máquinas que se necesitan\n",
       params:   "\n\#\#\# Parámetros de necesarios\n",

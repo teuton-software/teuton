@@ -1,5 +1,5 @@
 
-group "learn-07-preserve" do
+group "learn-08-preserve" do
   target "Create user <david>"
   run "id david"
   expect "david"
