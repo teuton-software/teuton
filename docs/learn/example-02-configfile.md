@@ -1,10 +1,16 @@
+[<< back](README.md)
 
-Learn how to use config file into your tests.
-Tests can use params defined into config files. It's good idea save variable data separated into external config file.
+# Example: learn-02-config
+
+* Learn how to use config file.
+* Tests use params defined into config files.
+* It's good idea save variable data separated into external config file.
 
 > This example is on GitHub repository at `examples/learn-02-config`.
 
-## Config file (`config.yaml`)
+## Config file
+
+By default, `config.yaml` is our config file. Let's an example:
 
 ```yaml
 ---
@@ -16,7 +22,9 @@ Tests can use params defined into config files. It's good idea save variable dat
   :username: fran
 ```
 
-## Definitions (`start.rb`)
+## Definitions
+
+By default, `start.rb` it's our main execution file.
 
 ```ruby
 group "learn 02 config" do
@@ -140,29 +148,28 @@ RESULTS
 ```
 
 ---
-
-## Using other config files
+## Using other config file names
 
 **Default names:**:
-By default, when you run `teuton play foo`, this will search for:
+By default, when you run `teuton run foo`, this will search for:
 * `foo/start.rb` test file and
 * `foo/config.yaml` config file.
 
 **Using cname param:**
-But it's posible run `teuton play --cname=rock foo`, and this will search for:
+But it's posible run `teuton run --cname=rock foo`, and this will search for:
 * `foo/start.rb` test file and
 * `foo/rock.yaml` config file.
 
 `cname` param searchs YAML config file into the same project folder.
 
 **Using cpath param:**
-An also, it's posible run `teuton play --cpath=/home/david/startwars.yaml foo`, and this will search for:
+An also, it's posible run `teuton run --cpath=/home/david/startwars.yaml foo`, and this will search for:
 * `foo/start.rb` test file and
 * `/home/david/starwars.yaml` config file.
 
 `cpath` param use YAML config file, from the specified path.
 
 **Using diferent main rb name:**
-When you run `teuton play foo/mazingerz.rb`, this will search for:
+When you run `teuton run foo/mazingerz.rb`, this will search for:
 * `foo/mazingerz.rb` test file and
 * `foo/mazingerz.yaml` config file.

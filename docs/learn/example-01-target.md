@@ -19,12 +19,12 @@ group "learn-01-target" do
 end
 ```
 
-It's where we define targets using these words:
+We define targets using these words:
 * **target**: Description of the goal to be tested.
 * **run**: Execute a command `id david` on localhost machine.
 * **expect**: Evaluate if the result contains expected value.
 
-> Localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
+> In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
 
 ## Main execution block (Play section)
 
