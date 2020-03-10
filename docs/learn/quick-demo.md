@@ -1,13 +1,15 @@
 
+[<< back](README.md)
+
 # Quick demo
 
 Every TEUTON challenge (Test Unit) consists of 2 files.
-Let's look at demo `examples/learn-03-remote-hosts`:
+Let's look at example [learn-03-remote-hosts](examples/learn-03-remote-hosts):
 
-| File        | Description                   |
-| ----------- | ----------------------------- |
-| start.rb    | Defines TEUTON activity (DSL) |
-| config.yaml | Configuration file with every student machine |
+| File        | Description         |
+| ----------- | ------------------- |
+| start.rb    | Defines TEUTON test |
+| config.yaml | Configuration file  |
 
 ## Running
 
