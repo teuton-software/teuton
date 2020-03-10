@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.license     = 'GPL-3.0'
   s.authors     = ['David Vargas Ruiz']
   s.email       = 'teuton.software@protonmail.com'
-  s.homepage    = 'https://github.com/teuton-software/teuton'
+#  s.homepage    = 'https://github.com/teuton-software/teuton'
+  s.homepage    = 'https://github.com/teuton-software/teuton/tree/devel'
 
   s.executables << 'teuton'
 #  s.executables << 'teuton.bat'
