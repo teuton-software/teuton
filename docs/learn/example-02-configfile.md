@@ -8,6 +8,7 @@
 
 > This example is on GitHub repository at `examples/learn-02-config`.
 
+---
 ## Config file
 
 By default, `config.yaml` is our config file. Let's an example:
@@ -47,10 +48,8 @@ In this section we define targets using keywords: target, run, expect and get.
 ```ruby
 play do
   show
-  # export using other output formats
-  export :format => :colored_text
+  export
 end
-
 ```
 
 Runing this example and see `show` keyword output:
@@ -100,7 +99,7 @@ HALL OF FAME
 
 ## Results
 
-Output reports are saved into `var/learn-02-config/` directory.
+Output reports are saved into `var/learn-02-config/` directory. Detail output report is created for every case.
 
 ```
 var/learn-02-config
@@ -109,7 +108,7 @@ var/learn-02-config
 └── resume.txt
 ```
 
-Let's see `export` keyword output.
+Let's see `export` keyword output for case 01.
 
 ```
 $ more var/learn-02-config/case-01.txt
@@ -156,18 +155,18 @@ By default, when you run `teuton run foo`, this will search for:
 * `foo/config.yaml` config file.
 
 **Using cname param:**
-But it's posible run `teuton run --cname=rock foo`, and this will search for:
+But it's posible run `teuton run --cname=rock foo`, and choose diferent config file into projet folder:
 * `foo/start.rb` test file and
 * `foo/rock.yaml` config file.
 
 `cname` param searchs YAML config file into the same project folder.
 
 **Using cpath param:**
-An also, it's posible run `teuton run --cpath=/home/david/startwars.yaml foo`, and this will search for:
+An also, it's posible run `teuton run --cpath=/home/david/startwars.yaml foo`, and choose config file using its absolute path:
 * `foo/start.rb` test file and
 * `/home/david/starwars.yaml` config file.
 
-`cpath` param use YAML config file, from the specified path.
+`cpath` param selects YAML config file, from the specified path.
 
 **Using diferent main rb name:**
 When you run `teuton run foo/mazingerz.rb`, this will search for:

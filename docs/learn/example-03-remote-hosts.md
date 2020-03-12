@@ -1,4 +1,8 @@
 
+[<< back](README.md)
+
+# Example: learn-03-remote-hosts
+
 Learn how to:
 * Check a group of remote hosts.
 * Export reports using other output formats.
@@ -6,7 +10,9 @@ Learn how to:
 
 > This example is on GitHub repository at `examples/learn-03-remote-hosts`.
 
-## Config file (`config.yaml`)
+## Config file
+
+`config.yaml` file:
 
 ```yaml
 ---
@@ -30,7 +36,7 @@ Learn how to:
 
 ## Definitions (group section)
 
-Defining 3 targets to be checked:
+Define 3 targets (items to be checked):
 
 ```ruby
 group "learn 03 remote hosts" do
@@ -87,4 +93,4 @@ var
 * `case-01`, report with details about case 01 (maul)
 * `case-02`, report with details about case 02 (r2d2)
 * `case-03`, report with details about case 03 (obiwan)
-* `cresume`, report with global resumed information about all cases.
+* `resume`, report with global resumed information about all cases.
