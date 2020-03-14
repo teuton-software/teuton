@@ -1,4 +1,8 @@
 
+[<< back](README.md)
+
+# Example: learn-05-debug
+
 Learn how to:
 * Check test syntax.
 * Debug your tests.
@@ -35,23 +39,23 @@ end
 
 ## Debugging: Testing rb files
 
-Tests grows and becames huge, with a lot of targets (That isn't a problem). Then, we organize them spliting into several files and invoke `use` keywork from our main rb file (That's good) to load other files.
+Tests grows and becames huge, with a lot of targets (That isn't a problem). Then, we organize them spliting into several files and invoke `use` keywork from our main rb file to load other files (That's good idea) .
 
-When this happend, sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton test PATH/TO/PROJECT/FOLDER`. Let's see an example:
+When this happend, sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton check PATH/TO/PROJECT/FOLDER`. Let's see an example:
 
 ```bash
-$ teuton test learn/learn-01-target
-[INFO] ScriptPath => ...epos/teuton.d/units/learn/learn-01-target/start.rb
-[INFO] ConfigPath => ...s/teuton.d/units/learn/learn-01-target/config.yaml
+teuton check examples/learn-01-target
+[INFO] ScriptPath => .../teuton.d/teuton/examples/learn-01-target/start.rb
+[INFO] ConfigPath => ...uton.d/teuton/examples/learn-01-target/config.yaml
 [INFO] TestName   => learn-01-target
 
 +------------------------+
 | GROUP: learn-01-target |
 +------------------------+
 (001) target      Create user <david>
-     weight      1.0
-     goto        localhost and {:exec=>"id david"}
-     expect      david (String)
+      weight      1.0
+      goto        localhost and {:exec=>"id david"}
+      expect      david (String)
 
 +--------------+-------+
 | DSL Stats    | Count |
@@ -69,7 +73,7 @@ $ teuton test learn/learn-01-target
 +----------------------+
 | Revising CONFIG file |
 +----------------------+
-[WARN] File /home/david/proy/repos/teuton.d/units/learn/learn-01-target/config.yaml not found!
+[WARN] File ./examples/learn-01-target/config.yaml not found!
 [INFO] Recomended content:
 ---
 :global:
@@ -77,13 +81,13 @@ $ teuton test learn/learn-01-target
 - :tt_members: VALUE
 ```
 
-In this case, Teuton detects that there isn't config file and propose us content for `config.yaml`.
+In this case, Teuton detects that there isn't exist config file, and propose us content for `config.yaml`.
 
 ## Debugging: Result content
 
-Every time we invoke `goto` or `run` keywork, a OS command is executed and the output showed on screen is captured by Teuton and saved into `result` internal object.
+Every time we invoke `goto` or `run` keywork, an OS command is executed and the output showed on screen is captured by Teuton and saved into `result` internal object.
 
-We coul debug it invoking `result.debug` into our rb file. Let's see an example from `external.rb.rb` file:
+We could debug it invoking `result.debug` into our rb file. Let's see an example from `external.rb.rb` file:
 
 ```ruby
 group "Windows: external configuration" do
@@ -101,4 +105,4 @@ group "Windows: external configuration" do
 end
 ```
 
-`result.debug` it's usefull when you are verifying what command ouput has been captured by Teuton.
+`result.debug` it's usefull when you are verifying command output captured by Teuton.
