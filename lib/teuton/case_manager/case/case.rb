@@ -26,7 +26,7 @@ class Case
   attr_accessor :result
   attr_accessor :action # TODO: why not reader only???
   attr_reader :id, :config, :uniques, :conn_status
-  @@id = 1
+  @@id = '01'
 
   def initialize(config)
     app = Application.instance
@@ -34,7 +34,7 @@ class Case
     @groups = app.groups
 
     @id = @@id
-    @@id += 1
+    @@id = @@id.next
 
     # Define Case Report
     @report = Report.new(@id)

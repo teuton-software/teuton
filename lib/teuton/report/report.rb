@@ -28,11 +28,9 @@ class Report
   attr_reader :history
   ##
   # Class constructor
-  def initialize(id = 0)
+  def initialize(id = '00')
     @id = id
-    number = '0' + @id.to_s
-    number = @id.to_s if @id > 9
-    @filename = "case-#{number}"
+    @filename = "case-#{@id}"
     @output_dir = Application.instance.output_basedir
     @head    = {}
     @lines   = []

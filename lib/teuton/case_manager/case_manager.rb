@@ -61,9 +61,7 @@ class CaseManager
     srcdir = File.join(app.output_basedir, app.global[:tt_testname])
     puts "[INFO] Preserving files => #{logdir}"
     FileUtils.mkdir(logdir)
-    Dir.glob('var/learn-08-preserve/**.*').each do |file|
-      FileUtils.cp(file, logdir)
-    end
+    Dir.glob(srcdir, '**.*').each { |file| FileUtils.cp(file, logdir) }
   end
 
   def send(args = {})

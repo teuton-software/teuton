@@ -2,8 +2,14 @@
 
 require_relative '../application'
 
-# ExportManager#run
+##
+# ExportManager is used by CaseManager to export output reports)
 module ExportManager
+  ##
+  # Run export function
+  # @param main_report (Report)
+  # @param cases (Array)
+  # @param args (Hash) Selected export options
   def self.run(main_report, cases, args)
     # default :mode=>:all, :format=>:txt
     format = args[:format] || Application.instance.default[:format]

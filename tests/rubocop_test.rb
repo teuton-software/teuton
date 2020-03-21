@@ -14,6 +14,7 @@ class RubocopTest < Minitest::Test
     @files[:case] << 'lib/teuton/case_manager/case/play.rb'
 
     @files[:case_manager] = []
+    @files[:case_manager] << 'lib/teuton/case_manager/export_manager.rb'
     @files[:case_manager] << 'lib/teuton/case_manager/main.rb'
     @files[:case_manager] << 'lib/teuton/case_manager/show.rb'
     @files[:case_manager] << 'lib/teuton/case_manager/utils.rb'
@@ -55,6 +56,7 @@ class RubocopTest < Minitest::Test
 #    @files4 << 'lib/teuton/report/formatter/array_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/base_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/json_formatter.rb'
+    @files[:report] << 'lib/teuton/report/formatter/resume_txt_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/yaml_formatter.rb'
 
     @files[:result] = []
