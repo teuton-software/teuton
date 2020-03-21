@@ -56,8 +56,6 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   # rubocop:enable Metrics/MethodLength
 
   def process_conn_errors
-    w "#{Rainbow('CONN ERRORS').bg(:red)}\n"
-
     my_screen_table = Terminal::Table.new do |st|
       st.add_row %w[CASE MEMBERS HOST ERROR]
       @data[:cases].each do |line|
@@ -66,6 +64,8 @@ class ResumeTXTFormatter < ResumeArrayFormatter
         end
       end
     end
+    return unless my_screen_table.rows.size > 1
+    w "#{Rainbow('CONN ERRORS').bg(:red)}\n"
     w "#{my_screen_table}\n"
   end
 
