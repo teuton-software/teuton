@@ -7,6 +7,8 @@
 # * fill_report
 # * close_opened_sessions
 class Case
+  ##
+  # Execute "play" order on this case
   def play
     if skip?
       verbose "Skipping case <#{@config.get(:tt_members)}>\n"
@@ -21,6 +23,8 @@ class Case
   end
   alias start play
 
+  ##
+  # Close opened sessions for this case
   def close_opened_sessions
     @sessions.each_value do |s|
       s.close if s.class == Net::SSH::Connection::Session
@@ -29,6 +33,9 @@ class Case
 
   private
 
+  ##
+  # Execute every play#group in parallel
+  # TO-DO: Under construction!
   def play_in_parallel
     @groups.each do |t|
       @action[:groupname] = t[:name]
@@ -36,6 +43,8 @@ class Case
     end
   end
 
+  ##
+  # Execute every play#group in sequence
   def play_in_sequence
     verboseln "Starting case <#{@config.get(:tt_members)}>"
     @groups.each do |t|
@@ -47,12 +56,14 @@ class Case
     verboseln "\n"
   end
 
+  ##
+  # Fill case report with time information
   def fill_report(start_time, finish_time)
     @report.head.merge! @config.global
     @report.head.merge! @config.local
     @report.head.merge! @config.running
     @report.tail[:case_id] = @id
-    @report.tail[:start_time_] = start_time
+    @report.tail[:start_time] = start_time
     @report.tail[:finish_time] = finish_time
     @report.tail[:duration] = finish_time - start_time
   end
