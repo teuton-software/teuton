@@ -23,12 +23,17 @@ class CaseManager
   include Singleton
   include Utils
 
+  ##
+  # Initialize CaseManager
   def initialize
     @cases = []
     @report = Report.new(0)
     @report.filename = 'resume'
   end
 
+  ##
+  # Execute "play" order: Start every single case test
+  # @param block (Block)
   def play(&block)
     check_cases!
     instance_eval(&block)
@@ -40,6 +45,9 @@ class CaseManager
     export(format: i.to_sym) unless i.nil?
   end
 
+  ##
+  # Execute "export" order: Export every case report
+  # @param args (Hash) Export options
   def export(args = {})
     if args.class != Hash
       puts "[ERROR] CaseManager#export: Argument = <#{args}>, " \
@@ -47,10 +55,27 @@ class CaseManager
       puts '        Usage: export :format => :colored_text'
       raise '[ERROR] CaseManager#export: Argument error!'
     end
+    # First: export files
     ExportManager.run(@report, @cases, args)
+    # Second: preserve files if required
     preserve_files if args[:preserve] == true
   end
 
+  ##
+  # Execute "send" order: Send every case report
+  # @param args (Hash) Send options
+  def send(args = {})
+    threads = []
+    puts ''
+    puts "[INFO] Sending files...#{args.to_s}"
+    @cases.each { |c| threads << Thread.new { c.send(args) } }
+    threads.each(&:join)
+  end
+
+  private
+
+  ##
+  # Preserve output files for current project
   def preserve_files
     app = Application.instance
     t = Time.now
@@ -61,14 +86,6 @@ class CaseManager
     srcdir = File.join(app.output_basedir, app.global[:tt_testname])
     puts "[INFO] Preserving files => #{logdir}"
     FileUtils.mkdir(logdir)
-    Dir.glob(srcdir, '**.*').each { |file| FileUtils.cp(file, logdir) }
-  end
-
-  def send(args = {})
-    threads = []
-    puts ''
-    puts "[INFO] Sending files...#{args.to_s}"
-    @cases.each { |c| threads << Thread.new { c.send(args) } }
-    threads.each(&:join)
+    Dir.glob(File.join(srcdir, '**.*')).each { |file| FileUtils.cp(file, logdir) }
   end
 end

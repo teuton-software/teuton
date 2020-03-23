@@ -65,8 +65,8 @@ class ResumeTXTFormatter < ResumeArrayFormatter
       end
     end
     return unless my_screen_table.rows.size > 1
-    w "#{Rainbow('CONN ERRORS').bg(:red)}\n"
-    w "#{my_screen_table}\n"
+
+    w "#{Rainbow('CONN ERRORS').bg(:red)}\n#{my_screen_table}\n"
   end
 
   def process_results

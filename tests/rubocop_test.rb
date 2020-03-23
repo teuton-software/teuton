@@ -7,6 +7,9 @@ class RubocopTest < Minitest::Test
   def setup
     @files = {}
 
+    @files[:lib] = []
+    @files[:lib] << 'lib/teuton/application.rb'
+
     @files[:case] = []
     @files[:case] << 'lib/teuton/case_manager/case/close.rb'
 #    @files[:case] << 'lib/teuton/case_manager/case/config.rb'
@@ -64,6 +67,14 @@ class RubocopTest < Minitest::Test
     @files[:result] << 'lib/teuton/case_manager/case/result/ext_array.rb'
 #    @files[:result] << 'lib/teuton/case_manager/case/result/ext_compare.rb'
     @files[:result] << 'lib/teuton/case_manager/case/result/ext_filter.rb'
+  end
+
+  def test_rubocop_lib
+    @files[:lib].each do |file|
+      output = `rubocop #{file}`
+      puts "[DEBUG] #{file}" if $?.exitstatus > 0
+      assert_equal 0, $?.exitstatus
+    end
   end
 
   def test_rubocop_case

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'singleton'
 
 # This Singleton contains application params
@@ -5,7 +7,7 @@ class Application
   include Singleton
 
   VERSION = '2.1.8dev1' # Application version
-  NAME = 'teuton'   # Application name
+  NAME = 'teuton' # Application name
 
   attr_reader   :letter
   attr_reader   :running_basedir, :output_basedir
@@ -17,10 +19,15 @@ class Application
   attr_accessor :hall_of_fame
   attr_accessor :project_path, :script_path, :config_path, :test_name
 
+  ##
+  # Initialize Application instance
   def initialize
     reset
   end
 
+  ##
+  # Reset param values
+  # rubocop:disable Metrics/MethodLength
   def reset
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @running_basedir = Dir.getwd
@@ -36,18 +43,29 @@ class Application
     @uses = [] # TODO
     @hall_of_fame = []
   end
+  # rubocop:enable Metrics/MethodLength
 
+  ##
+  # Return debug param
+  # @return Boolean
   def debug
     @default[:debug]
   end
 
+  ##
+  # Return name param
+  # @return String
   def name
     @default[:name]
   end
 
+  ##
+  # Return quiet param
+  # @return Boolean
   def quiet?
     return true if Application.instance.options['quiet']
     return true unless Application.instance.verbose
+
     false
   end
 end
