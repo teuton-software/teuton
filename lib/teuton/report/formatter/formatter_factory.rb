@@ -28,6 +28,12 @@ module FormatterFactory
       f = JSONFormatter.new(report)
     when :list
       f = ListFormatter.new(report)
+    when :txt
+      f = TXTFormatter.new(report,false)
+    when :xml
+      f = XMLFormatter.new(report)
+    when :yaml
+      f = YAMLFormatter.new(report)
     when :moodle_csv
       f = MoodleCSVFormatter.new(report)
     when :resume_txt
@@ -40,12 +46,6 @@ module FormatterFactory
       f = ResumeListFormatter.new(report)
     when :resume_yaml
       f = ResumeYAMLFormatter.new(report)
-    when :txt
-      f = TXTFormatter.new(report,false)
-    when :xml
-      f = XMLFormatter.new(report)
-    when :yaml
-      f = YAMLFormatter.new(report)
     else
       raise Rainbow("[ERROR] FormaterFactory #{format} unkown!").red.bright
     end
