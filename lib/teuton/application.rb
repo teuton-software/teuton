@@ -6,7 +6,7 @@ require 'singleton'
 class Application
   include Singleton
 
-  VERSION = '2.1.8dev1' # Application version
+  VERSION = '2.1.8' # Application version
   NAME = 'teuton' # Application name
 
   attr_reader   :letter
