@@ -12,11 +12,11 @@ require_relative 'name_file_finder'
 module Project  ##
   ##
   # Check teuton test syntax
-  # @param pathtofile (String) Path to teuton test
+  # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
-  def self.check(pathtofile, options)
+  def self.check(projectpath, options)
     Application.instance.options.merge! options
-    NameFileFinder.find_filenames_for(pathtofile)
+    NameFileFinder.find_filenames_for(projectpath)
     NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('laboratory/laboratory') # Define DSL keywords
 
@@ -29,12 +29,12 @@ module Project  ##
 
   ##
   # Run test
-  # @param pathtofile (String) Path to teuton test
+  # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
-  def self.play(pathtofile, options)
+  def self.play(projectpath, options)
     Application.instance.options.merge! options
     process_input_case_option
-    NameFileFinder.find_filenames_for(pathtofile)
+    NameFileFinder.find_filenames_for(projectpath)
     NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
@@ -51,11 +51,11 @@ module Project  ##
 
   ##
   # Create Readme file for a test
-  # @param pathtofile (String) Path to teuton test
+  # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
-  def self.readme(pathtofile, options)
+  def self.readme(projectpath, options)
     Application.instance.options.merge! options
-    NameFileFinder.find_filenames_for(pathtofile)
+    NameFileFinder.find_filenames_for(projectpath)
     require_dsl_and_script('readme/readme') # Define DSL keywords
 
     app = Application.instance
