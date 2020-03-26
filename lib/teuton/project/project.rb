@@ -9,8 +9,12 @@ require_relative 'name_file_finder'
 # * process_input_case_option
 # * readme
 # * require_dsl_and_script
-module Project
-  def self.test(pathtofile, options)
+module Project  ##
+  ##
+  # Check teuton test syntax
+  # @param pathtofile (String) Path to teuton test
+  # @param options (Array) Array of input options
+  def self.check(pathtofile, options)
     Application.instance.options.merge! options
     NameFileFinder.find_filenames_for(pathtofile)
     NameFileFinder.puts_input_info_on_screen
@@ -23,6 +27,10 @@ module Project
     lab.show_dsl unless options[:r] || options[:c]
   end
 
+  ##
+  # Run test
+  # @param pathtofile (String) Path to teuton test
+  # @param options (Array) Array of input options
   def self.play(pathtofile, options)
     Application.instance.options.merge! options
     process_input_case_option
@@ -31,6 +39,8 @@ module Project
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
 
+  ##
+  # Convert input case options String to an Array of integers
   def self.process_input_case_option
     options = Application.instance.options
     return if options['case'].nil?
@@ -39,6 +49,10 @@ module Project
     options['case'] = a.collect!(&:to_i)
   end
 
+  ##
+  # Create Readme file for a test
+  # @param pathtofile (String) Path to teuton test
+  # @param options (Array) Array of input options
   def self.readme(pathtofile, options)
     Application.instance.options.merge! options
     NameFileFinder.find_filenames_for(pathtofile)

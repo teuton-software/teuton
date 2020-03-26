@@ -30,8 +30,8 @@ class CLI < Thor
   LONGDESC
   ##
   # Execute Teuton test unit
-  # @param path_to_rb_file [String] Route to main rb Teuton file
-  def play(path_to_rb_file)
-    Project.play(path_to_rb_file, options)
+  # @param filepath [String] Route to main: rb file or folder
+  def play(filepath)
+    Project.play(filepath, options)
   end
 end

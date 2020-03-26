@@ -12,3 +12,8 @@ desc 'Rake help'
 task :help do
   system('rake -T')
 end
+
+desc 'Delete output files'
+task :clean do
+  system("rm -r #{File.join('var', '*')}")
+end

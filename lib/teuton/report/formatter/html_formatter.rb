@@ -101,3 +101,4 @@ class HAMLFormatter < YAMLFormatter
     puts '</ul>'
   end
 end
+end

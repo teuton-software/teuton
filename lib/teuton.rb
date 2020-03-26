@@ -34,8 +34,8 @@ module Teuton
   ##
   # Simulate play Teuton project, check syntax and display stats.
   # @param path_to_rb_file [String] Path to main rb file.
-  def self.test(path_to_rb_file)
-    Project.test(path_to_rb_file, options)
+  def self.check(path_to_rb_file)
+    Project.check(path_to_rb_file, options)
   end
 
   ##

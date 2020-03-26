@@ -33,6 +33,6 @@ class CLI < Thor
   # Verify or test Teuton test units syntax
   # @param path_to_rb_file [String] Route to main rb Teuton file
   def check(path_to_rb_file)
-    Project.test(path_to_rb_file, options)
+    Project.check(path_to_rb_file, options)
   end
 end
