@@ -26,8 +26,11 @@ class Case
   attr_accessor :result
   attr_accessor :action # TODO: why not reader only???
   attr_reader :id, :config, :uniques, :conn_status
-  @@id = '01'
+  @@id = '01' # First case ID value
 
+  ##
+  # Initialize case from specified config
+  # @param config (Hash)
   def initialize(config)
     app = Application.instance
     @config = Case::Config.new(local: config, global: app.global)
@@ -46,7 +49,7 @@ class Case
     @skip = get(:tt_skip) unless get(:tt_skip) == 'NODATA'
     unless app.options['case'].nil?
       @skip = true
-      @skip = false if app.options['case'].include? @id
+      @skip = false if app.options['case'].include? @id.to_i
     end
 
     @conn_status = {}
@@ -70,8 +73,12 @@ class Case
     tempfile :default
   end
 
+  ##
+  # Export Case with specific output format
+  # @param format (Symbol)
   def export(format)
     return if skip?
+
     @report.export format
   end
 
@@ -79,21 +86,33 @@ class Case
     @report.filename #+ '.' + @report.format.to_s
   end
 
+  ##
+  # Return case grade
+  # @return grade
   def grade
     return 0.0 if skip
+
     @report.tail[:grade]
   end
 
+  ## Return case members
+  # @return members
   def members
     return '-' if skip
+
     @report.head[:tt_members] || 'noname'
   end
 
+  ##
+  # Return case skip value
+  # @return skip
   def skip
     @skip
   end
   alias skip? skip
 
+  ##
+  # Show case
   def show
     @report.show
   end

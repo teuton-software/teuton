@@ -6,25 +6,31 @@ require_relative '../application'
 # Project:
 # * find_filenames_for, verbose, verboseln
 module NameFileFinder
-  def self.find_filenames_for(relpathtofile)
-    pathtofile = File.absolute_path(relpathtofile)
+  ##
+  # Find project filenames from input project relative path
+  # @param relprojectpath (String)
+  def self.find_filenames_for(relprojectpath)
+    projectpath = File.absolute_path(relprojectpath)
 
     # Define:
     #   script_path, must contain fullpath to DSL script file
     #   config_path, must contain fullpath to YAML config file
-    if File.directory?(pathtofile)
+    if File.directory?(projectpath)
       # COMPLEX MODE: We use start.rb as main RB file
-      find_filenames_from_directory(pathtofile)
+      find_filenames_from_directory(projectpath)
     else
       # SIMPLE MODE: We use pathtofile as main RB file
-      find_filenames_from_rb(pathtofile)
+      find_filenames_from_rb(projectpath)
     end
     true
   end
 
-  def self.find_filenames_from_directory(pathtodir)
+  ##
+  # Find project filenames from input folder path
+  # @param folder_path (String)
+  def self.find_filenames_from_directory(folder_path)
     # COMPLEX MODE: We use start.rb as main RB file
-    script_path = File.join(pathtodir, 'start.rb')
+    script_path = File.join(folder_path, 'start.rb')
     unless File.exist? script_path
       print Rainbow('[ERROR] File ').red
       print Rainbow(script_path).bright.red
@@ -33,14 +39,17 @@ module NameFileFinder
     end
 
     app = Application.instance
-    app.project_path = pathtodir
+    app.project_path = folder_path
     app.script_path = script_path
-    app.test_name = pathtodir.split(File::SEPARATOR)[-1]
+    app.test_name = folder_path.split(File::SEPARATOR)[-1]
 
-    find_configfilename_from_directory(pathtodir)
+    find_configfilename_from_directory(folder_path)
   end
 
-  def self.find_configfilename_from_directory(pathtodir)
+  ##
+  # Find project config filename from input folder path
+  # @param folder_path (String)
+  def self.find_configfilename_from_directory(folder_path)
     # COMPLEX MODE: We use config.yaml by default
     app = Application.instance
 
@@ -49,9 +58,9 @@ module NameFileFinder
       config_name = 'config'
       # Config name file is introduced by cname arg option from teuton command
       config_name = app.options['cname'] unless app.options['cname'].nil?
-      config_path = File.join(pathtodir, "#{config_name}.json")
+      config_path = File.join(folder_path, "#{config_name}.json")
       unless File.exist? config_path
-        config_path = File.join(pathtodir, "#{config_name}.yaml")
+        config_path = File.join(folder_path, "#{config_name}.yaml")
       end
     else
       # Config path file is introduced by cpath arg option from teuton command
@@ -111,6 +120,10 @@ module NameFileFinder
     verboseln Rainbow(trim(app.test_name)).blue.bright
   end
 
+  ##
+  # Trim string text when is too long
+  # @param input (String)
+  # @return String
   def self.trim(input)
     output = input.to_s
     output = "...#{input[input.size - 50, input.size]}" if output.size > 65

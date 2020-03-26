@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# CaseManager#check_cases!
+##
+# CaseManager: check_cases!
 class CaseManager
   private
 
