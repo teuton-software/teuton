@@ -1,19 +1,41 @@
+# frozen_string_literal: true
 
-require_relative 'base_formatter'
+require_relative 'yaml_formatter'
 
-class HTMLFormatter < BaseFormatter
-
-  def initialize(pReport)
-    super(pReport)
+##
+# HTMLFormatter class receive a [Report] and generates HAML output.
+class HAMLFormatter < YAMLFormatter
+  ##
+  # Class constructor
+  # @param report [Report] Parent object that contains data to be exported.
+  def initialize(report)
+    super(report)
+    @data = {}
   end
 
+  ##
+  # Process data from parent object and export it into YAML format.
+  # @return [nil]
   def process
+    build_data
+    # w @data.to_yaml # Write data into ouput file
+    build_page
+    deinit
+  end
+
+  def build_page
     puts "<html>"
-    puts "<head><title>Checking Machines</title></head>"
+    puts "<head><title>TEUTON report</title></head>"
     puts "<body>"
+    build_config
+    build_targets
+    build_results
+  end
+
+  def build_config
     puts "<header><h1><a name=\"index\">Checking Machines v0.4</a></h1>"
     puts '<ul>'
-    @head.each do |key,value|
+    @data[:head].each do |key,value|
       puts "<li><b>"+key.to_s+": </b>"+value.to_s+"</li>" if key!=:title
     end
     puts '</ul>'
@@ -22,19 +44,20 @@ class HTMLFormatter < BaseFormatter
     puts "<tbody>"
 
     counter=0
-    @datagroups.each do |i|
+    @data[:groups].each do |group|
+      group[:targets].each do |target|
       counter+=1
-      puts "<tr><td><a href=\"#group"+counter.to_s+"\">"+i.head[:members]+"</a></td>"
-      puts "<td>"+i.tail[:grade].to_s+"</td>"
-      puts "<td>"+i.tail[:fail_counter].to_s+"</td></tr>"
+        puts "<tr><td><a href=\"#group"+counter.to_s+"\">"+target.head[:members]+"</a></td>"
+      puts "<td>"+target[:tail][:grade]+"</td>"
+      puts "<td>"+target[:tail][:fail_counter]+"</td></tr>"
     end
     puts "</tbody></table></header>"
     puts "<h1>Cases</h1>"
 
     counter=0
-    @datagroups.each do |i|
-      counter+=1
-      process_datagroup(i,counter)
+    @data[:groups].each do |group|
+      counter += 1
+      process_datagroup(group, counter)
     end
 
     puts '<ul>'
@@ -77,5 +100,4 @@ class HTMLFormatter < BaseFormatter
     end
     puts '</ul>'
   end
-
 end

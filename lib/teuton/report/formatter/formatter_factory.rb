@@ -11,7 +11,7 @@ require_relative 'resume_yaml_formatter'
 require_relative 'resume_txt_formatter'
 require_relative 'moodle_csv_formatter'
 require_relative 'csv_formatter'
-require_relative 'html_formatter'
+#require_relative 'html_formatter'
 require_relative 'xml_formatter'
 
 # FormaterFactory module
@@ -23,7 +23,7 @@ module FormatterFactory
     when :csv
       f = CSVFormatter.new(report)
     when :html
-      f = HTMLFormatter.new(report)
+ #     f = HTMLFormatter.new(report)
     when :json
       f = JSONFormatter.new(report)
     when :list
