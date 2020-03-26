@@ -1,16 +1,18 @@
 
+[<< back](README.md)
+
 # Run Test Unit
 
-We use `teuton play` command to run a Test Unit (or challenge).
+Use `teuton run DIRECTORY` command to run a Teuton Test.
 
-This command executes challenge (Test Unit) from specified directory. By default, show progress on the screen.
+This command executes Test from specified directory, and by default, show progress on the screen.
 
 ## Help
 
-Run `teuton help play` to see help.
+Run `teuton help run` to show help.
 
 Usage:
-* teuton [play] [OPTIONS] DIRECTORY
+* teuton [run] [OPTIONS] DIRECTORY
 
 Options:
 * [--export=EXPORT], select output format.
@@ -23,15 +25,15 @@ Options:
 | ID | Command              | Descriptiont |
 | -- | -------------------- | ------------ |
 | 01 | teuton foo           | Run foo/start.rb, with config file foo/config.yaml |
-| 02 | teuton play foo      | Run foo/start.rb, with config file foo/config.yaml |
+| 02 | teuton run foo      | Run foo/start.rb, with config file foo/config.yaml |
 | 03 | ruby teuton foo      | Same as 01 on Windows OS |
-| 04 | ruby teuton play foo | Same as 02 on WIndows OS |
+| 04 | ruby teuton run foo | Same as 02 on WIndows OS |
 | 05 | teuton . | Run ./start.rb with ./config.yaml file |
-| 06 | teuton play --export=json foo | Run foo/start.rb and force json format during exporting. Others output formats availables are: txt, colored_text, json, yaml |
-| 07 | teuton play --cname=class foo | Run foo/start.rb with foo/class.yaml config file |
+| 06 | teuton run --export=json foo | Run foo/start.rb and force json format during exporting. Others output formats availables are: txt, colored_text, json, yaml |
+| 07 | teuton run --cname=rock foo | Run foo/start.rb with foo/rock.yaml config file |
 | 08 | teuton foo/demo42.rb | Run foo/demo42.rb with foo/demo42.yaml config file |
-| 08 | teuton play --cpath=current/class.yaml foo | Run foo/start.rb with current/class.yaml config file |
-| 10 | teuton play --case=6,16 foo | Run foo/start.rb with foo/config.yaml config file but only for case id 6 and 16 |
+| 08 | teuton run --cpath=starwars/jedi.yaml foo | Run foo/start.rb with starwars/jedi.yaml config file |
+| 09 | teuton run --case=6,16 foo | Run foo/start.rb with foo/config.yaml config file but only for case id '06' and '16' |
 
 ---
 
@@ -40,39 +42,38 @@ Options:
 Running example 01:
 
 ```bash
-$ teuton learn/learn-01-target
-[INFO] ScriptPath => /home/david/proy/repos/teuton.d/challenges/learn/learn-01-target/start.rb
-[INFO] ConfigPath => /home/david/proy/repos/teuton.d/challenges/learn/learn-01-target/config.yaml
+$ teuton examples/learn-01-target
+
+[INFO] ScriptPath => .../teuton.d/teuton/examples/learn-01-target/start.rb
+[INFO] ConfigPath => ...uton.d/teuton/examples/learn-01-target/config.yaml
 [INFO] TestName   => learn-01-target
 
 ==================================
-Executing [teuton] (version 2.1.0)
-[INFO] Running in parallel (2019-10-04 23:44:19 +0100)
-Starting case <anonymous>
-* Processing <learn-01-target> .
-
-[INFO] Duration = 0.006568696 (2019-10-04 23:44:19 +0100)
+Executing [teuton] (version 2.1.8)
+[INFO] Running in parallel (2020-03-26 09:16:27 +0000)
+.
+[INFO] Duration = 0.004    (2020-03-26 09:16:27 +0000)
 ==================================
 
 INITIAL CONFIGURATIONS
 +---------------+-------------------------------------------------------+
-| tt_title      | Executing [teuton] (version 2.1.0)                    |
-| tt_scriptname | ...teuton.d/challenges/learn/learn-01-target/start.rb |
-| tt_configfile | ...ton.d/challenges/learn/learn-01-target/config.yaml |
+| tt_title      | Executing [teuton] (version 2.1.8)                    |
+| tt_scriptname | .../teuton.d/teuton/examples/learn-01-target/start.rb |
+| tt_configfile | ...uton.d/teuton/examples/learn-01-target/config.yaml |
 | tt_testname   | learn-01-target                                       |
 | tt_sequence   | false                                                 |
 +---------------+-------------------------------------------------------+
 
 CASE RESULTS
-+---------+-------+-------+-----------+
-| CASE ID | GRADE | STATE | MEMBERS   |
-| case_01 | 100.0 |       | anonymous |
-+---------+-------+-------+-----------+
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | anonymous | 100.0 |       |
++------+-----------+-------+-------+
 
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2019-10-04 23:44:19 +0100 |
-| finish_time | 2019-10-04 23:44:19 +0100 |
-| duration    | 0.006568696               |
+| start_time  | 2020-03-26 09:16:27 +0000 |
+| finish_time | 2020-03-26 09:16:27 +0000 |
+| duration    | 0.003855361               |
 +-------------+---------------------------+
 ```
