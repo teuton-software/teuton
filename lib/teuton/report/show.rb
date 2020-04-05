@@ -24,7 +24,7 @@ class Report
         st.add_row [key.to_s, trim(value)]
       end
     end
-    puts my_screen_table.to_s + "\n\n"
+    puts "#{my_screen_table}\n\n"
   end
 
   def show_resume
@@ -35,29 +35,29 @@ class Report
   def show_case_list
     puts 'CASE RESULTS'
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE', 'MEMBERS', 'GRADE', 'STATE' ]
+      st.add_row %w[CASE MEMBERS GRADE STATE]
       @lines.each do |line|
         st.add_row [line[:id], line[:members], line[:grade], line[:letter]]
       end
     end
-    puts my_screen_table.to_s + "\n\n"
+    puts "#{my_screen_table}\n\n"
   end
 
   def show_conn_status
-    e = 0
-    @lines.each { |line| e += line[:conn_status].size }
-    return if e == 0
+    errors = 0
+    @lines.each { |line| errors += line[:conn_status].size }
+    return if errors.zero?
 
     puts 'CONN ERRORS'
     my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['CASE', 'MEMBERS', 'HOST', 'ERROR']
+      st.add_row %w[CASE MEMBERS HOST ERROR]
       @lines.each do |line|
-        line[:conn_status].each_pair do |h,e|
-          st.add_row [line[:id], line[:members], h, e]
+        line[:conn_status].each_pair do |host, error|
+          st.add_row [line[:id], line[:members], host, error]
         end
       end
     end
-    puts my_screen_table.to_s + "\n\n"
+    puts "#{my_screen_table}\n\n"
   end
 
   def show_targets_history
@@ -70,11 +70,19 @@ class Report
         if i.class.to_s == 'Hash'
           value = 0.0
           value = i[:weight] if i[:check]
+          data = { tab: tab,
+                   id: i[:id].to_i,
+                   value: value.to_f,
+                   weight: i[:weight].to_f,
+                   desc: i[:description].to_s }
+
           print tab + "%03d" % i[:id].to_i
-          print ' (' + '%2d.2f' % value.to_f + '/'
-          puts '%2d.2f' % i[:weight].to_f + ') ' + i[:description].to_s
+          print ' (' + "%2d.2f" % value.to_f + '/'
+          puts "%2d.2f" % i[:weight].to_f + ') ' + i[:description].to_s
+          #puts format('%<tab>s%<id>03d (%<value>2d.2f/%<weight>2d.2f) %<desc>s',
+          #            data)
         else
-          puts tab + '-  ' + i.to_s
+          puts "#{tab}=>  #{i}"
         end
       end
     end
@@ -88,7 +96,7 @@ class Report
         st.add_row [key.to_s, value.to_s]
       end
     end
-    puts my_screen_table.to_s + "\n\n"
+    puts "#{my_screen_table}\n\n"
   end
 
   def show_hall_of_fame
@@ -101,13 +109,14 @@ class Report
         st.add_row [line[0], line[1]]
       end
     end
-    puts my_screen_table.to_s + "\n"
+    puts "#{my_screen_table}\n"
   end
 
   def trim(input)
     output = input.to_s
-    return output if output.size<65
-    output = "...#{input[input.size-50, input.size]}"
+    return output if output.size < 65
+
+    output = "...#{input[input.size - 50, input.size]}"
     output.to_s
   end
 end

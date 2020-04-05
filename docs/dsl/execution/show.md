@@ -13,9 +13,9 @@ end
 
 ## Other uses
 
-| Action          | Description                             |
-| --------------- | --------------------------------------- |
-| `show`          | Same as `show :resume`. Default option. |
-| `show :resume`  | Show resumed information on screen.     |
-| `show :details` | Show details from every cases on screen.|
-| `show :all`     | Same as `show :resume` and `show :details`. |
+| Action         | Description                             |
+| -------------- | --------------------------------------- |
+| `show`         | Same as `show :resume`. Default option. |
+| `show :resume` | Show resumed information on screen.     |
+| `show :cases`  | Show information from every case on screen.|
+| `show :all`    | Same as `show :resume` and `show :details`. |
