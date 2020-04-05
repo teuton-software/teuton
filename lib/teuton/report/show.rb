@@ -43,6 +43,7 @@ class Report
     puts "#{my_screen_table}\n\n"
   end
 
+  # rubocop:disable Metrics/MethodLength
   def show_conn_status
     errors = 0
     @lines.each { |line| errors += line[:conn_status].size }
@@ -59,7 +60,12 @@ class Report
     end
     puts "#{my_screen_table}\n\n"
   end
+  # rubocop:enable Metrics/MethodLength
 
+  # rubocop:disable Style/FormatString
+  # rubocop:disable Style/FormatStringToken
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def show_targets_history
     tab = '  '
     puts 'CASE RESULTS'
@@ -70,17 +76,10 @@ class Report
         if i.class.to_s == 'Hash'
           value = 0.0
           value = i[:weight] if i[:check]
-          data = { tab: tab,
-                   id: i[:id].to_i,
-                   value: value.to_f,
-                   weight: i[:weight].to_f,
-                   desc: i[:description].to_s }
-
-          print tab + "%03d" % i[:id].to_i
-          print ' (' + "%2d.2f" % value.to_f + '/'
-          puts "%2d.2f" % i[:weight].to_f + ') ' + i[:description].to_s
-          #puts format('%<tab>s%<id>03d (%<value>2d.2f/%<weight>2d.2f) %<desc>s',
-          #            data)
+          print tab + '%03d' % i[:id].to_i
+          print ' (%2.1f' % value.to_f
+          print '/%2.1f' % i[:weight].to_f
+          puts ') %s' % i[:description].to_s
         else
           puts "#{tab}=>  #{i}"
         end
@@ -88,6 +87,10 @@ class Report
     end
     puts "\n\n"
   end
+  # rubocop:enable Style/FormatString
+  # rubocop:enable Style/FormatStringToken
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   def show_final_values
     puts 'FINAL VALUES'

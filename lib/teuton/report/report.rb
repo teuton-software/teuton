@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'terminal-table'
 require_relative '../application'
@@ -32,9 +33,9 @@ class Report
     @id = id
     @filename = "case-#{@id}"
     @output_dir = Application.instance.output_basedir
-    @head    = {}
-    @lines   = []
-    @tail    = {}
+    @head = {}
+    @lines = []
+    @tail = {}
     # @history save 1 letter for every target.
     # For example: "..F." means: good, good, fail and good
     # I will use this in the future stats manager.
@@ -57,7 +58,7 @@ class Report
   # Export resumed data from all Cases, to specified format.
   # @param format [Symbol] Select export format. Default value is :txt.
   def export_resume(format = :txt)
-    @format = "resume_#{format.to_s}".to_sym
+    @format = "resume_#{format}".to_sym
     filepath = File.join(@output_dir, @filename + '.' \
              + FormatterFactory.ext(@format))
     formatter = FormatterFactory.get(self, @format, filepath)

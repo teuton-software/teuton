@@ -2,14 +2,13 @@
 
 require_relative '../application'
 
-# CaseManager#show
+# CaseManager show method
 class CaseManager
   def show(mode = :resume)
     return if Application.instance.quiet?
 
-    if %i[resume all].include? mode
-      @report.show
-    elsif %i[cases all].include? mode
+    @report.show if %i[resume all].include? mode
+    if %i[cases all].include? mode
       @cases.each do |c|
         puts '=' * 40
         c.show

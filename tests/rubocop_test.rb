@@ -56,7 +56,10 @@ class RubocopTest < Minitest::Test
     @files[:rake] << 'tasks/utils.rb'
 
     @files[:report] = []
-#    @files4 << 'lib/teuton/report/formatter/array_formatter.rb'
+    @files[:report] << 'lib/teuton/report/close.rb'
+    @files[:report] << 'lib/teuton/report/report.rb'
+    @files[:report] << 'lib/teuton/report/show.rb'
+#    @files << 'lib/teuton/report/formatter/array_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/base_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/json_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/resume_txt_formatter.rb'
