@@ -116,6 +116,8 @@ module NameFileFinder
     verboseln Rainbow(trim(app.script_path)).blue.bright
     verbose Rainbow('[INFO] ConfigPath => ').blue
     verboseln Rainbow(trim(app.config_path)).blue.bright
+    verbose Rainbow('[INFO] Pwd        => ').blue
+    verboseln Rainbow(app.running_basedir).blue.bright
     verbose Rainbow('[INFO] TestName   => ').blue
     verboseln Rainbow(trim(app.test_name)).blue.bright
   end

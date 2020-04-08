@@ -1,14 +1,21 @@
 
+##
+# Class CaseManager
+# Methods related with report
 class CaseManager
 
   private
 
-  def open_main_report(p_config_filename)
+  ##
+  # Open main report (resume report)
+  # @param config_filepath (String)
+  def open_main_report(config_filepath)
     app = Application.instance
 
     @report.head[:tt_title] = "Executing [#{app.name}] (version #{Application::VERSION})"
-    @report.head[:tt_scriptname] = app.script_path
-    @report.head[:tt_configfile] = p_config_filename
+    @report.head[:tt_scriptname] = trim(app.script_path)
+    @report.head[:tt_configfile] = trim(config_filepath)
+    @report.head[:tt_pwd] = app.running_basedir
     @report.head[:tt_debug] = true if @debug
     # @report.head[:tt_uses] = app.uses.join(', ')
     @report.head.merge!(app.global)
@@ -48,5 +55,18 @@ class CaseManager
       end
       @report.lines << line
     end
+  end
+
+  ##
+  # Trim string text when is too long
+  # @param input (String)
+  # @return String
+  def trim(input)
+    return input unless input.to_s.start_with? Dir.pwd.to_s
+
+    output = input.to_s
+    offset = (Dir.pwd).length + 1
+    output = "#{input[offset, input.size]}"
+    output.to_s
   end
 end
