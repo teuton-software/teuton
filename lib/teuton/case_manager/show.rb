@@ -4,18 +4,21 @@ require_relative '../application'
 
 # CaseManager show method
 class CaseManager
+  ##
+  # Show cases and resume report data on screep
+  # @param mode (Symbol) Values => :resume, :cases or :all
   def show(mode = :resume)
     return if Application.instance.quiet?
 
+    # Show resume report data on screen
     @report.show if %i[resume all].include? mode
-    if %i[cases all].include? mode
-      @cases.each do |c|
-        puts '=' * 40
-        c.show
-      end
+
+    # Show cases report data on screen
+    return if mode == :resume
+
+    @cases.each do |c|
+      puts '=' * 40
+      c.show
     end
-    # Last output char must be 4.
-    # It's required by TeutonPanel to detect the end
-    print 4.chr
   end
 end
