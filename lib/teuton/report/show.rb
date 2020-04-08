@@ -92,6 +92,8 @@ class Report
   # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
 
+  ##
+  # Display final values section on screen
   def show_final_values
     puts Rainbow('FINAL VALUES').bright
     my_screen_table = Terminal::Table.new do |st|
@@ -102,6 +104,8 @@ class Report
     puts "#{my_screen_table}\n\n"
   end
 
+  ##
+  # Display hall of fame section on screen
   def show_hall_of_fame
     app = Application.instance
     return if app.hall_of_fame.size < 3
@@ -115,6 +119,8 @@ class Report
     puts "#{my_screen_table}\n"
   end
 
+  ##
+  # Trim absolute path values
   def trim(input)
     return input unless input.to_s.start_with? Dir.pwd.to_s
 
