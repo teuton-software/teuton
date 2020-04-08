@@ -27,6 +27,7 @@ class CLI < Thor
   ##
   # These inputs are equivalents:
   # * teuton dir/foo
+  # * teuton run dir/foo
   # * teuton play dir/foo
   def method_missing(method, *_args, &_block)
     play(method.to_s)

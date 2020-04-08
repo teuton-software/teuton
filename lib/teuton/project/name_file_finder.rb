@@ -125,8 +125,11 @@ module NameFileFinder
   # @param input (String)
   # @return String
   def self.trim(input)
+    return input unless input.to_s.start_with? Dir.pwd.to_s
+
     output = input.to_s
-    output = "...#{input[input.size - 50, input.size]}" if output.size > 65
+    offset = (Dir.pwd).length + 1
+    output = "#{input[offset, input.size]}"
     output.to_s
   end
 

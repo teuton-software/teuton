@@ -7,6 +7,7 @@ class CLI < Thor
   option :cname, type: :string
   option :cpath, type: :string
   option :case, type: :string
+  option :color, type: :boolean
   option :quiet, type: :boolean
   desc '[run] [OPTIONS] DIRECTORY',
        'Run challenge from directory'

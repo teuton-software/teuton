@@ -18,7 +18,7 @@ class Report
   private
 
   def show_initial_configurations
-    puts 'INITIAL CONFIGURATIONS'
+    puts Rainbow('INITIAL CONFIGURATIONS').bright
     my_screen_table = Terminal::Table.new do |st|
       @head.each do |key, value|
         st.add_row [key.to_s, trim(value)]
@@ -33,7 +33,7 @@ class Report
   end
 
   def show_case_list
-    puts 'CASE RESULTS'
+    puts Rainbow('CASE RESULTS').bright
     my_screen_table = Terminal::Table.new do |st|
       st.add_row %w[CASE MEMBERS GRADE STATE]
       @lines.each do |line|
@@ -49,12 +49,12 @@ class Report
     @lines.each { |line| errors += line[:conn_status].size }
     return if errors.zero?
 
-    puts 'CONN ERRORS'
+    puts Rainbow('CONN ERRORS').bright
     my_screen_table = Terminal::Table.new do |st|
       st.add_row %w[CASE MEMBERS HOST ERROR]
       @lines.each do |line|
         line[:conn_status].each_pair do |host, error|
-          st.add_row [line[:id], line[:members], host, error]
+          st.add_row [line[:id], line[:members], host, Rainbow(error).red.bright]
         end
       end
     end
@@ -68,7 +68,7 @@ class Report
   # rubocop:disable Metrics/MethodLength
   def show_targets_history
     tab = '  '
-    puts 'CASE RESULTS'
+    puts Rainbow('CASE RESULTS').bright
     if @lines.size == 1
       puts @lines[0]
     else
@@ -93,7 +93,7 @@ class Report
   # rubocop:enable Metrics/MethodLength
 
   def show_final_values
-    puts 'FINAL VALUES'
+    puts Rainbow('FINAL VALUES').bright
     my_screen_table = Terminal::Table.new do |st|
       @tail.each do |key, value|
         st.add_row [key.to_s, value.to_s]
@@ -106,7 +106,7 @@ class Report
     app = Application.instance
     return if app.hall_of_fame.size < 3
 
-    puts 'HALL OF FAME'
+    puts Rainbow('HALL OF FAME').bright
     my_screen_table = Terminal::Table.new do |st|
       app.hall_of_fame.each do |line|
         st.add_row [line[0], line[1]]
@@ -116,10 +116,11 @@ class Report
   end
 
   def trim(input)
-    output = input.to_s
-    return output if output.size < 65
+    return input unless input.to_s.start_with? Dir.pwd.to_s
 
-    output = "...#{input[input.size - 50, input.size]}"
+    output = input.to_s
+    offset = (Dir.pwd).length + 1
+    output = "#{input[offset, input.size]}"
     output.to_s
   end
 end

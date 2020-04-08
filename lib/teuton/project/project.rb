@@ -33,16 +33,20 @@ module Project  ##
   # @param options (Array) Array of input options
   def self.play(projectpath, options)
     Application.instance.options.merge! options
-    process_input_case_option
+    process_input_options
     NameFileFinder.find_filenames_for(projectpath)
     NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
 
   ##
-  # Convert input case options String to an Array of integers
-  def self.process_input_case_option
+  # Preprocess input options:
+  # * Convert input case options String to an Array of integers
+  # * Read color input option
+  def self.process_input_options
     options = Application.instance.options
+    options['color'] = true if options['color'].nil?
+    Rainbow.enabled = options['color']
     return if options['case'].nil?
 
     a = options['case'].split(',')
