@@ -17,6 +17,8 @@ class Report
 
   private
 
+  ##
+  # Display initial configurations
   def show_initial_configurations
     puts Rainbow('INITIAL CONFIGURATIONS').bright
     my_screen_table = Terminal::Table.new do |st|
@@ -27,11 +29,15 @@ class Report
     puts "#{my_screen_table}\n\n"
   end
 
+  ##
+  # Display resume
   def show_resume
     show_case_list
     show_conn_status
   end
 
+  ##
+  # Display case list
   def show_case_list
     puts Rainbow('CASE RESULTS').bright
     my_screen_table = Terminal::Table.new do |st|
@@ -43,7 +49,10 @@ class Report
     puts "#{my_screen_table}\n\n"
   end
 
+  ##
+  # Display Connection status
   # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def show_conn_status
     errors = 0
     @lines.each { |line| errors += line[:conn_status].size }
@@ -54,13 +63,15 @@ class Report
       st.add_row %w[CASE MEMBERS HOST ERROR]
       @lines.each do |line|
         line[:conn_status].each_pair do |host, error|
-          st.add_row [line[:id], line[:members], host, Rainbow(error).red.bright]
+          st.add_row [line[:id], line[:members], host,
+                      Rainbow(error).red.bright]
         end
       end
     end
     puts "#{my_screen_table}\n\n"
   end
   # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 
   # rubocop:disable Style/FormatString
   # rubocop:disable Style/FormatStringToken
@@ -124,9 +135,7 @@ class Report
   def trim(input)
     return input unless input.to_s.start_with? Dir.pwd.to_s
 
-    output = input.to_s
-    offset = (Dir.pwd).length + 1
-    output = "#{input[offset, input.size]}"
-    output.to_s
+    offset = Dir.pwd.length + 1
+    input[offset, input.size].to_s
   end
 end

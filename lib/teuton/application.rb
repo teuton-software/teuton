@@ -6,7 +6,7 @@ require 'singleton'
 class Application
   include Singleton
 
-  VERSION = '2.1.10' # Application version
+  VERSION = '2.1.9' # Application version
   NAME = 'teuton' # Application name
 
   attr_reader   :letter
@@ -14,8 +14,11 @@ class Application
   attr_reader   :default
   attr_accessor :options
   attr_accessor :verbose
-  attr_accessor :global, :ialias
-  attr_accessor :checks, :groups, :uses
+  attr_accessor :global # Global configuration params
+  attr_accessor :ialias # Internal alias
+  attr_accessor :macros # Array of macros
+  attr_accessor :groups # Array of groups
+  attr_accessor :uses # Array of uses
   attr_accessor :hall_of_fame
   attr_accessor :project_path, :script_path, :config_path, :test_name
 
@@ -38,7 +41,7 @@ class Application
 
     @global = {}
     @ialias = {}
-    @checks = {}
+    @macros = {}
     @groups = []
     @uses = [] # TODO
     @hall_of_fame = []

@@ -1,4 +1,4 @@
-define_check 'package_installed', :package do
+define_macro 'package_installed', :package do
   ostype = get(:ostype) || :opensuse
 
   if ostype == :opensuse
@@ -8,7 +8,7 @@ define_check 'package_installed', :package do
   end
 end
 
-define_check 'package_not_installed', :package do
+define_macro 'package_not_installed', :package do
   ostype = get(:ostype) || :opensuse
 
   if ostype == :opensuse
