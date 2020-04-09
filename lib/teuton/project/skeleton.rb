@@ -11,6 +11,9 @@ require 'rainbow'
 # * create_dirs
 # * copyfile
 module Skeleton
+  ##
+  # Create teuton project skeleton
+  # @param project_dir (String)
   def self.create(project_dir)
     project_name = File.basename(project_dir)
     puts "\n[INFO] Creating #{Rainbow(project_name).bright} project skeleton"
@@ -19,12 +22,15 @@ module Skeleton
     create_main_dir_and_files(project_dir, source_basedir)
   end
 
+  ##
+  # Create main dir and files
+  # @param project_dir (String)
+  # @param source_basedir (String)
   def self.create_main_dir_and_files(project_dir, source_basedir)
     # Directory and files: Ruby script, Configfile, gitignore
     items = [
       { source: 'files/config.yaml', target: 'config.yaml' },
       { source: 'files/start.rb', target: 'start.rb' },
-    # { source: 'files/README.md', target: 'README.md' },
       { source: 'files/gitignore', target: '.gitignore' }
     ]
     items.each do |item|
@@ -34,6 +40,9 @@ module Skeleton
     end
   end
 
+  ##
+  # Create dir
+  # @param dirpath (String)
   def self.create_dir(dirpath)
     if Dir.exist? dirpath
       puts "* Exists dir!       => #{Rainbow(dirpath).yellow}"
@@ -47,17 +56,24 @@ module Skeleton
     end
   end
 
+  ##
+  # Create dirs
+  # @param args (Array)
   def self.create_dirs(*args)
     args.each { |arg| create_dir arg }
   end
 
-  def self.copyfile(target, dest)
+  ##
+  # Copy file
+  # @param source (String) Source file
+  # @param dest (String) Dest file
+  def self.copyfile(source, dest)
     if File.exist? dest
       puts "* Exists file!      => #{Rainbow(dest).yellow}"
     else
-      puts "* File not found!   => #{Rainbow(target).yellow}" unless File.exist? target
+      puts "* File not found!   => #{Rainbow(source).yellow}" unless File.exist? source
       begin
-        FileUtils.cp(target, dest)
+        FileUtils.cp(source, dest)
         puts "* Create file       => #{Rainbow(dest).green}"
       rescue StandardError
         puts "* Create file ERROR => #{Rainbow(dest).red}"
