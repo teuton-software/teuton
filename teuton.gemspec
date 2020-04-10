@@ -3,7 +3,7 @@ require_relative 'lib/teuton/application'
 Gem::Specification.new do |s|
   s.name        = Application::NAME
   s.version     = Application::VERSION
-  s.date        = '2020-04-09'
+  s.date        = '2020-04-10'
   s.summary     = "Teuton (Teuton Software)"
   s.description = <<-EOF
   Intrastructure test, useful for:
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/teuton-software/teuton/tree/devel'
 
   s.executables << 'teuton'
-#  s.executables << 'teuton.bat'
+  s.executables << 'check_teuton'
   s.files       = Dir.glob(File.join('lib','**','*.rb')) +
                   Dir.glob(File.join('lib','teuton','files','*'))
   s.required_ruby_version = '>= 2.5.0'
