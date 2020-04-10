@@ -29,13 +29,13 @@ module CheckTeuton
     testname = data[:config][:tt_testname]
     grade = data[:results][:grade].to_i
     if grade == 100
-      puts "OK - Test:#{testname} Case:#{data[:results][:case_id]} Grade:100"
+      puts "OK - #{testname}/case-#{data[:results][:case_id]} Grade=100%"
       exit 0
-    elsif grade == 0
-      puts "CRITICAL - Test:#{testname} Case:#{data[:results][:case_id]} Grade:0"
+    elsif grade < 50
+      puts "CRITICAL - #{testname}/case-#{data[:results][:case_id]} Grade=0%"
       exit 2
     end
-    puts "WARNING - Test:#{testname} Case:#{data[:results][:case_id]} Grade:#{grade}"
+    puts "WARNING - #{testname}/case-#{data[:results][:case_id]} Grade=#{grade}%"
     exit 1
   end
 end
