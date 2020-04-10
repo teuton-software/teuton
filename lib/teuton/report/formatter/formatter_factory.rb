@@ -2,16 +2,17 @@
 
 require 'rainbow'
 require_relative 'json_formatter'
+require_relative 'html_formatter'
 require_relative 'list_formatter'
 require_relative 'txt_formatter'
 require_relative 'yaml_formatter'
 require_relative 'resume_json_formatter'
+require_relative 'resume_html_formatter'
 require_relative 'resume_list_formatter'
 require_relative 'resume_yaml_formatter'
 require_relative 'resume_txt_formatter'
 require_relative 'moodle_csv_formatter'
 require_relative 'csv_formatter'
-#require_relative 'html_formatter'
 require_relative 'xml_formatter'
 
 # FormaterFactory module
@@ -23,7 +24,7 @@ module FormatterFactory
     when :csv
       f = CSVFormatter.new(report)
     when :html
- #     f = HTMLFormatter.new(report)
+      f = HTMLFormatter.new(report)
     when :json
       f = JSONFormatter.new(report)
     when :list
@@ -42,12 +43,14 @@ module FormatterFactory
       f = ResumeTXTFormatter.new(report, true)
     when :resume_json
       f = ResumeJSONFormatter.new(report)
+    when :resume_html
+      f = ResumeHTMLFormatter.new(report)
     when :resume_list
       f = ResumeListFormatter.new(report)
     when :resume_yaml
       f = ResumeYAMLFormatter.new(report)
     else
-      raise Rainbow("[ERROR] FormaterFactory #{format} unkown!").red.bright
+      raise "[ERROR] FormaterFactory #{format} unkown!"
     end
     f.init(filename)
     f
@@ -58,14 +61,15 @@ module FormatterFactory
              colored_text: 'txt',
              json: 'json',
              list: 'txt',
+             txt: 'txt',
+             yaml: 'yaml',
              resume_colored_text: 'txt',
              resume_csv: 'csv',
              resume_json: 'json',
+             resume_html: 'html',
              resume_list: 'txt',
              resume_txt: 'txt',
-             resume_yaml: 'yaml',
-             txt: 'txt',
-             yaml: 'yaml' }
+             resume_yaml: 'yaml' }
     return format.to_s if data[format].nil?
 
     data[format]
