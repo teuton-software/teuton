@@ -31,6 +31,10 @@ class Readme
   attr_reader :result
   attr_reader :data
 
+  ##
+  # Initialize Readme instance
+  # @param script_path (String) Path to main rb file (start.rb)
+  # @param config_path (String) Path to main config file (config.yaml)
   def initialize(script_path, config_path)
     @path = {}
     @path[:script]   = script_path
@@ -76,30 +80,8 @@ class Readme
     show_tail
   end
 
-  def show_content
-    @data[:groups].each do |group|
-      next if group[:actions].empty?
-
-      puts "\n## #{group[:name]}\n\n"
-      group[:readme].each { |line| puts "#{line}\n" }
-      previous_host = nil
-      group[:actions].each_with_index do |item, index|
-        if item[:host].nil? && index.positive?
-          item[:host] = group[:actions][0][:host]
-        end
-        if previous_host.nil? || item[:host] != previous_host
-          previous_host = item[:host] || 'null'
-          puts format(Lang::get(:goto), previous_host.upcase)
-        end
-
-        weight = ''
-        weight = "(x#{item[:weight]}) " if item[:weight] != 1.0
-        puts "* #{weight}#{item[:target]}"
-        item[:readme].each { |line| puts "    * #{line}\n" }
-      end
-    end
-  end
-
+  ##
+  # Show README head
   def show_head
     app = Application.instance
     puts '```'
@@ -107,8 +89,8 @@ class Readme
     puts format(Lang::get(:date), Time.now)
     puts format(Lang::get(:version), Application::VERSION)
     puts '```'
-    puts "\n---\n"
-    puts "# README.md\n"
+    puts "\n"
+    puts "# #{app.test_name}\n"
 
     i = 1
     unless @required_hosts.empty?
@@ -135,6 +117,35 @@ class Readme
     end
   end
 
+  ##
+  # Show README content
+  def show_content
+    @data[:groups].each do |group|
+      next if group[:actions].empty?
+
+      puts "\n## #{group[:name].capitalize}\n\n"
+      group[:readme].each { |line| puts "#{line}\n" }
+      previous_host = nil
+      group[:actions].each_with_index do |item, index|
+        if item[:host].nil? && index.positive?
+          item[:host] = group[:actions][0][:host]
+        end
+        if previous_host.nil? || item[:host] != previous_host
+          previous_host = item[:host] || 'null'
+          puts format(Lang::get(:goto), previous_host.upcase)
+        end
+
+        weight = ''
+        weight = "(x#{item[:weight]}) " if item[:weight] != 1.0
+        last = (item[:target].end_with?('.') ? '' : '.')
+        puts "* #{weight}#{item[:target]}#{last}"
+        item[:readme].each { |line| puts "    * #{line}\n" }
+      end
+    end
+  end
+
+  ##
+  # Show README tail
   def show_tail
     return if @global_params.empty?
 

@@ -1,5 +1,5 @@
 
-group "learn 02 config" do
+group "Using config file values" do
 
   target "Create user #{gett(:username)}"
   run "id #{get(:username)}"

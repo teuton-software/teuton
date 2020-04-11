@@ -1,9 +1,10 @@
 ```
-Challenge name : learn-02-config
-Date           : 2019-10-10 23:53:00 +0100
-Teuton version : 2.1.0
+Test unit name : learn-02-config
+Date           : 2020-04-11 19:58:38 +0100
+Teuton version : 2.1.9
 ```
-# README.md
+
+# learn-02-config
 
 ### Required params
 * username
@@ -12,9 +13,8 @@ Teuton version : 2.1.0
 > * Teuton software must known this information!
 > * Save every ':param: value' into config file.
 
-## learn 02 config
+## Using config file values
 
 
 Go to [LOCALHOST](#required-hosts) host, and do next:
-
-* Create user [username](#required-params)
+* Create user [username](#required-params).

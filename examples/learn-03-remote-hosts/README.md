@@ -1,9 +1,10 @@
 ```
-Challenge name : learn-03-remote-hosts
-Date           : 2019-10-10 23:53:29 +0100
-Teuton version : 2.1.0
+Test unit name : learn-03-remote-hosts
+Date           : 2020-04-11 20:11:25 +0100
+Teuton version : 2.1.9
 ```
-# README.md
+
+# learn-03-remote-hosts
 
 ### Required hosts
 
@@ -22,11 +23,10 @@ Teuton version : 2.1.0
 > * Teuton software must known this information!
 > * Save every ':param: value' into config file.
 
-## learn 03 remote hosts
+## How to test remote windows hosts
 
 
 Go to [HOST1](#required-hosts) host, and do next:
-
-* Update hostname with [host1_hostname](#required-params)
-* Ensure network DNS configuration is working
-* Create user [username](#required-params)
+* Update hostname with [host1_hostname](#required-params).
+* Ensure network DNS configuration is working.
+* Create user [username](#required-params).

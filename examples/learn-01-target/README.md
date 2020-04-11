@@ -1,13 +1,13 @@
 ```
-Challenge name : learn-01-target
-Date           : 2019-11-01 14:13:05 +0000
-Teuton version : 2.1.0
+Test unit name : learn-01-target
+Date           : 2020-04-11 19:56:51 +0100
+Teuton version : 2.1.9
 ```
-# README.md
 
-## learn-01-target
+# learn-01-target
+
+## Learn about targets
 
 
 Go to [LOCALHOST](#required-hosts) host, and do next:
-
-* Create user <david>
+* Create user david.

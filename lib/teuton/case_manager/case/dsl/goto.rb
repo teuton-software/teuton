@@ -23,8 +23,12 @@ module DSL
 
   ##
   # DLS run: It's the same as goto :localhost
+  # @param command (String)
+  # @param args (Hash)
   def run(command, args = {})
     args[:exec] = command.to_s
-    goto(:localhost, args)
+    host = :localhost
+    host = args[:into] if args[:into] # TO-FIX
+    goto(host, args)
   end
 end
