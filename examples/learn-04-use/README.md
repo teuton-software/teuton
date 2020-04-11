@@ -1,9 +1,10 @@
 ```
-Challenge name : learn-04-use
-Date           : 2019-10-10 23:54:15 +0100
-Teuton version : 2.1.0
+Test unit name : learn-04-use
+Date           : 2020-04-11 20:14:07 +0100
+Teuton version : 2.1.9
 ```
-# README.md
+
+# learn-04-use
 
 ### Required hosts
 
@@ -22,17 +23,15 @@ Teuton version : 2.1.0
 > * Teuton software must known this information!
 > * Save every ':param: value' into config file.
 
-## User configuration
+## Use file: user configuration
 
 
 Go to [HOST1](#required-hosts) host, and do next:
+* Create user [username](#required-params).
 
-* Create user [username](#required-params)
-
-## Network configuracion
+## Use file: network configuracion
 
 
 Go to [HOST1](#required-hosts) host, and do next:
-
-* Update computer name with [host1_hostname](#required-params)
-* Ensure DNS Server is working
+* Update computer name with [host1_hostname](#required-params).
+* Ensure DNS Server is working.

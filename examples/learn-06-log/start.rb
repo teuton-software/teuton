@@ -1,8 +1,8 @@
 
-group "learn-01-target" do
+group "Learning about log messages" do
   log 'Using log messages...'
 
-  target "Create user <david>"
+  target "Create user david"
   run "id david"
   expect "david"
 

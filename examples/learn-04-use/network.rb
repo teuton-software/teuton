@@ -1,5 +1,5 @@
 
-group "Network configuracion" do
+group "Use file: Network configuracion" do
 
   target "Update computer name with #{gett(:host1_hostname)}"
   goto   :host1, :exec => "hostname"
