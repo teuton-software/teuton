@@ -2,10 +2,12 @@
 # use 'gnulinux/user'
 use 'user'
 
-group "learn-09-check" do
+group "Learn about macros" do
+
   macro 'user_exist', name: 'root'
   user_exist(name: 'fran')
   macro_user_exist(name: 'david')
+
 end
 
 play do
