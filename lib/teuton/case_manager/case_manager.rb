@@ -55,10 +55,8 @@ class CaseManager
       puts '        Usage: export :format => :colored_text'
       raise '[ERROR] CaseManager#export: Argument error!'
     end
-    # First: export files
+    # Export report files
     ExportManager.run(@report, @cases, args)
-    # Second: preserve files if required
-    preserve_files if args[:preserve] == true
   end
 
   ##
@@ -70,22 +68,5 @@ class CaseManager
     puts "[INFO] Sending files...#{args.to_s}"
     @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
-  end
-
-  private
-
-  ##
-  # Preserve output files for current project
-  def preserve_files
-    app = Application.instance
-    t = Time.now
-    subdir = "#{t.year}#{format('%02d',t.month)}#{format('%02d',t.day)}-" \
-             "#{format('%02d',t.hour)}#{format('%02d',t.min)}" \
-             "#{format('%02d',t.sec)}"
-    logdir = File.join(app.output_basedir, app.global[:tt_testname], subdir)
-    srcdir = File.join(app.output_basedir, app.global[:tt_testname])
-    puts "[INFO] Preserving files => #{logdir}"
-    FileUtils.mkdir(logdir)
-    Dir.glob(File.join(srcdir, '**.*')).each { |file| FileUtils.cp(file, logdir) }
   end
 end
