@@ -135,7 +135,7 @@ class Report
   def trim(input)
     return input unless input.to_s.start_with? Dir.pwd.to_s
     return input if input == Dir.pwd.to_s
-    
+
     offset = Dir.pwd.length + 1
     input[offset, input.size].to_s
   end
