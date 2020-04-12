@@ -28,7 +28,9 @@ Gem::Specification.new do |s|
   s.executables << 'teuton'
   s.executables << 'check_teuton'
   s.files       = Dir.glob(File.join('lib','**','*.rb')) +
-                  Dir.glob(File.join('lib','teuton','files','*'))
+                  Dir.glob(File.join('lib','teuton','files','*')) + 
+                  Dir.glob(File.join('lib','teuton','files','template', '*'))
+ 
   s.required_ruby_version = '>= 2.5.0'
 
   s.add_runtime_dependency 'json_pure', '~> 2.2'
