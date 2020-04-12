@@ -82,8 +82,11 @@ class Case
     @report.export format
   end
 
+  ##
+  # Return case report filename
+  # @return String
   def filename
-    @report.filename #+ '.' + @report.format.to_s
+    @report.filename
   end
 
   ##

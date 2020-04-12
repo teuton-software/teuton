@@ -1,4 +1,4 @@
-
+require 'rainbow'
 ##
 # Class CaseManager
 # Methods related with report
@@ -17,12 +17,12 @@ class CaseManager
     @report.head[:tt_configfile] = trim(config_filepath)
     @report.head[:tt_pwd] = app.running_basedir
     @report.head[:tt_debug] = true if @debug
-    # @report.head[:tt_uses] = app.uses.join(', ')
+    # @report.head[:tt_uses] = app.uses.join(', ') # TO-REVISE
     @report.head.merge!(app.global)
 
     verboseln ' '
     verboseln '=' * @report.head[:tt_title].length
-    verboseln @report.head[:tt_title]
+    verboseln Rainbow(@report.head[:tt_title]).yellow.bright
   end
 
   def close_main_report(start_time)
@@ -31,8 +31,8 @@ class CaseManager
     @report.tail[:finish_time] = finish_time
     @report.tail[:duration] = finish_time - start_time
 
-    verbose "\n[INFO] Duration = #{format('%3.3f',(finish_time - start_time))}"
-    verboseln "    (#{finish_time})"
+    verbose Rainbow("\n[INFO] Duration = #{format('%3.3f',(finish_time - start_time))}").yellow.bright
+    verboseln Rainbow("    (#{finish_time})").yellow.bright
     verboseln '=' * @report.head[:tt_title].length
     verboseln ' '
 
@@ -63,6 +63,7 @@ class CaseManager
   # @return String
   def trim(input)
     return input unless input.to_s.start_with? Dir.pwd.to_s
+    return input if input == Dir.pwd.to_s
 
     output = input.to_s
     offset = (Dir.pwd).length + 1

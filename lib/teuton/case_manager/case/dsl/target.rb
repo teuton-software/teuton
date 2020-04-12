@@ -3,7 +3,7 @@
 # DSL#target
 module DSL
   def readme(_text)
-    # Usefull for "teuton reamde" action.
+    # Usefull only for "teuton reamde" command action.
   end
 
   def target(desc, args = {})

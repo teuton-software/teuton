@@ -5,6 +5,8 @@
 class CaseManager
   private
 
+  ##
+  # Start checking every single case
   def check_cases!
     app = Application.instance
 
@@ -33,14 +35,16 @@ class CaseManager
     close_main_report(start_time)
   end
 
+  ##
+  # Run all cases
   def run_all_cases
     start_time = Time.now
     if Application.instance.global[:tt_sequence]
-      verboseln "[INFO] Running in sequence (#{start_time})"
+      verboseln Rainbow("[INFO] Running in sequence (#{start_time})").yellow.bright
       # Run every case in sequence
       @cases.each(&:play)
     else
-      verboseln "[INFO] Running in parallel (#{start_time})"
+      verboseln Rainbow("[INFO] Running in parallel (#{start_time})").yellow.bright
       threads = []
       # Run all cases in parallel
       @cases.each { |c| threads << Thread.new { c.play } }
@@ -49,6 +53,8 @@ class CaseManager
     start_time
   end
 
+  ##
+  # Collect uniques values for all cases
   def collect_uniques_for_all_cases
     uniques = {} # Collect "unique" values from all cases
     @cases.each do |c|
@@ -63,6 +69,10 @@ class CaseManager
     uniques
   end
 
+  ##
+  # 1) Reevaluate every case with collected unique values
+  # 2) Close all case reports
+  # 3) And order to build hall of fame
   def close_reports_for_all_cases(uniques)
     threads = []
     @cases.each { |c| threads << Thread.new { c.close uniques } }

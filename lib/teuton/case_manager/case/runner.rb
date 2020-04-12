@@ -84,17 +84,17 @@ class Case
     rescue Errno::EHOSTUNREACH
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :host_unreachable
-      verbose Application.instance.letter[:error]
+      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log("Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error_authentication_failed
-      verbose Application.instance.letter[:error]
+      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log('SSH::AuthenticationFailed!', :error)
     rescue Net::SSH::HostKeyMismatch
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :host_key_mismatch
-      verbose Application.instance.letter[:error]
+      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log('SSH::HostKeyMismatch!', :error)
       log("* The destination server's fingerprint is not matching " \
           'what is in your local known_hosts file.', :error)
@@ -104,7 +104,7 @@ class Case
     rescue StandardError => e
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error
-      verbose Application.instance.letter[:error]
+      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log("[#{e.class}] SSH on <#{username}@#{ip}>" \
           " exec: #{@action[:command]}", :error)
     end
@@ -137,18 +137,18 @@ class Case
     rescue Net::OpenTimeout
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :open_timeout
-      verbose Application.instance.letter[:error]
+      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
       log(' └── Revise host IP!', :warn)
     rescue Net::ReadTimeout
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :read_timeout
-      verbose Application.instance.letter[:error]
+      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue StandardError => e
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error
-      verbose Application.instance.letter[:error]
+      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<#{e.class}> doing telnet on <#{username}@#{ip}>" \
           " exec: #{@action[:command]}", :error)
       log(" └── username=<#{username}>, password=<#{password}>," \

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rainbow'
+
 # DSL module:
 # * expect_none
 # * expect_one
@@ -62,7 +64,7 @@ module DSL
     app = Application.instance
     c = app.letter[:bad]
     c = app.letter[:good] if cond
-    verbose c
+    verbose Rainbow(c).yellow.bright
   end
 
   # Set weight value for the action
