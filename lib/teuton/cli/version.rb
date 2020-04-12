@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rainbow'
-
 # Class method Teuton#version
 class CLI < Thor
   map ['v', '-v', '--version'] => 'version'
@@ -9,7 +7,6 @@ class CLI < Thor
   ##
   # Display version
   def version
-    print Rainbow(Application::NAME).bright.blue
-    puts  ' (version ' + Rainbow(Application::VERSION).green + ')'
+    puts "#{Application::NAME} (version #{Application::VERSION})"
   end
 end
