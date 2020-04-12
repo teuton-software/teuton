@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'resume_yaml_formatter'
 require 'erb'
+require_relative 'resume_yaml_formatter'
+require_relative '../../application'
 
 ##
 # HTMLFormatter class receive a [Report] and generates HAML output.
@@ -12,6 +13,8 @@ class ResumeHTMLFormatter < ResumeYAMLFormatter
   def initialize(report)
     super(report)
     @data = {}
+    filepath = File.join(File.dirname(__FILE__), '..', '..', 'files', 'template', 'resume.html')
+    @template = File.read(filepath)
   end
 
   ##
@@ -22,10 +25,15 @@ class ResumeHTMLFormatter < ResumeYAMLFormatter
     deinit
   end
 
+  ##
+  # Build html case page
   def build_page
     config = @data[:config]
-#    renderer = ERB.new(File.read(filepath))
-#    page = renderer.result(binding)
-    w "UNDER CONSTRUCTION!!!"
+    cases = @data[:cases]
+    results = @data[:results]
+    hall_of_fame = @data[:hall_of_fame]
+    version = Application::VERSION
+    renderer = ERB.new(@template)
+    w renderer.result(binding)
   end
 end

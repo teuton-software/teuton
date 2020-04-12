@@ -13,7 +13,7 @@ class HTMLFormatter < YAMLFormatter
   def initialize(report)
     super(report)
     @data = {}
-    filepath = File.join(File.dirname(__FILE__), '..', '..', 'files', 'template.html')
+    filepath = File.join(File.dirname(__FILE__), '..', '..', 'files', 'template', 'case.html')
     @template = File.read(filepath)
   end
 
