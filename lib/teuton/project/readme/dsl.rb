@@ -59,7 +59,9 @@ class Readme
 
   def run(command, args = {})
     args[:exec] = command
-    goto(:localhost, args)
+    host = :localhost
+    host = args[:on] if args[:on]
+    goto(host, args)
   end
 
   def expect(_cond, _args = {})

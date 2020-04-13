@@ -11,7 +11,7 @@
 # * set
 class Laboratory
   def readme(_text)
-    # Usefull for "teuton reamde" action.
+    # Usefull for "teuton readme" command action.
   end
 
   def target(desc, args = {})
@@ -44,7 +44,9 @@ class Laboratory
 
   def run(command, args = {})
     args[:exec] = command
-    goto(:localhost, args)
+    host = :localhost
+    host = args[:on] if args[:on]
+    goto(host, args)
   end
 
   def expect(_cond, args = {})
