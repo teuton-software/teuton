@@ -9,6 +9,8 @@ require_relative '../configfile_reader'
 # * show_stats
 # * show_config
 class Laboratory
+  ##
+  # Display DSL on screen
   def show_dsl
     @verbose = true
     process_content
@@ -16,6 +18,8 @@ class Laboratory
     show_config
   end
 
+  ##
+  # Display stats on screen
   def show_stats
     @stats[:hosts] = 0
     @hosts.each_pair { |_k, v| @stats[:hosts] += v }
@@ -45,6 +49,8 @@ class Laboratory
     verboseln my_screen_table.to_s + "\n"
   end
 
+  ##
+  # Display config on screen
   def show_config
     @verbose = false
     process_content
@@ -52,19 +58,19 @@ class Laboratory
     revise_config_content
   end
 
-  def show_requests
-    @verbose = false
-    process_content
-    @verbose = true
-    my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['Lines', 'REQUEST description']
-      st.add_separator
-      @requests.each_with_index do |line, index|
-        st.add_row ['%03d' % index, line]
-      end
-    end
-    verboseln my_screen_table
-  end
+#  def show_requests
+#    @verbose = false
+#    process_content
+#    @verbose = true
+#    my_screen_table = Terminal::Table.new do |st|
+#      st.add_row ['Lines', 'REQUEST description']
+#      st.add_separator
+#      @requests.each_with_index do |line, index|
+#        st.add_row ['%03d' % index, line]
+#      end
+#    end
+#    verboseln my_screen_table
+#  end
 
   private
 
@@ -121,6 +127,8 @@ class Laboratory
     verboseln YAML.dump(output)
   end
 
+  ##
+  # Revive and check config content
   def revise_config_content
     @verbose = true
     my_screen_table = Terminal::Table.new do |st|

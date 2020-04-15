@@ -23,9 +23,9 @@ class Laboratory
   end
   alias goal target
 
-  def request(text)
-    @requests << text.to_s
-  end
+#  def request(text)
+#    @requests << text.to_s
+#  end
 
   def tempfile(_tempfile = nil)
     'tempfile'

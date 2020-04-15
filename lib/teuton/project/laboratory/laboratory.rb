@@ -59,7 +59,7 @@ class Laboratory
     @gets = {}
     @sets = {}
     @hosts = {}
-    @requests = []
+    @requests = [] # REVISE this
     @verbose = Application.instance.verbose
   end
 end

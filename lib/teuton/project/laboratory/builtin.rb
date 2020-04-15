@@ -1,4 +1,5 @@
-
+#
+# EXPERIMENTAL class
 class Builtin
   attr_accessor :param
 
