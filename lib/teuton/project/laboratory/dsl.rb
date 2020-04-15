@@ -31,22 +31,23 @@ class Laboratory
     'tempfile'
   end
 
+  def run(command, args = {})
+    args[:exec] = command
+    host = :localhost
+    host = args[:on] if args[:on]
+    goto(host, args)
+  end
+
   def goto(host = :localhost, args = {})
     result.reset
+    args[:on] = host unless args[:on]
 
     if @hosts[host]
       @hosts[host] += 1
     else
       @hosts[host] = 1
     end
-    verboseln "      goto        #{host} and #{args}"
-  end
-
-  def run(command, args = {})
-    args[:exec] = command
-    host = :localhost
-    host = args[:on] if args[:on]
-    goto(host, args)
+    verboseln "      run         '#{args[:exec]}' on #{args[:on]}"
   end
 
   def expect(_cond, args = {})

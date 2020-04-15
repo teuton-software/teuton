@@ -21,9 +21,9 @@ module DSL
   # goto :host1, :execute => "command"
   def goto(host = :localhost, args = {})
     @result.reset
+    args[:on] = host unless args[:on]
     @action[:command] = args[:execute] if args[:execute]
     @action[:command] = args[:exec] if args[:exec]
-    @action[:command] = args[:run] if args[:run]
     tempfile(args[:tempfile]) if args[:tempfile]
     @action[:encoding] = args[:encoding] || 'UTF-8'
 
