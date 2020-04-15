@@ -43,6 +43,8 @@ alias play start
 class Laboratory
   attr_reader :result
 
+  ##
+  # Initialize instance
   def initialize(script_path, config_path)
     @path = {}
     @path[:script]   = script_path
@@ -52,6 +54,8 @@ class Laboratory
     reset
   end
 
+  ##
+  # Set attibutes to default values
   def reset
     @result = Result.new
     @targetid = 0

@@ -51,12 +51,7 @@ class Laboratory
   end
 
   def expect(_cond, args = {})
-    #unless [ String, Array, Regexp].include? _cond.class
-    #  verboseln "[ERROR] expect #{_cond} (#{_cond.class})"
-    #  return
-    #end
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
-    #verboseln "      expect      #{result.expected} (#{result.expected.class})"
     verboseln "      expect      #{_cond} (#{_cond.class})"
     verboseln ''
   end
