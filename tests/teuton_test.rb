@@ -55,5 +55,37 @@ class TeutonTest < Minitest::Test
     assert_equal Hash.new, data[:cases][1][:conn_status]
     assert_equal 'NODATA', data[:cases][1][:moodle_id]
   end
-  
+
+  def test_learn_03_remote_hosts
+    filepath = 'examples/learn-03-remote-hosts'
+    testname, resume, data = execute_teuton_test filepath
+
+    assert_equal File.join(filepath, 'start.rb'), data[:config][:tt_scriptname]
+    assert_equal testname, data[:config][:tt_testname]
+
+    assert_equal 3, data[:cases].size
+
+    conn_error = { 'host1' => :error }
+    assert_equal false, data[:cases][0][:skip]
+    assert_equal '01', data[:cases][0][:id]
+    assert_equal 0.0, data[:cases][0][:grade]
+    assert_equal 'Darth Maul', data[:cases][0][:members]
+    assert_equal conn_error, data[:cases][0][:conn_status]
+    assert_equal 'maul@sith.sw, darth-maul@sith.sw', data[:cases][0][:moodle_id]
+
+    assert_equal true, data[:cases][1][:skip]
+    assert_equal '-', data[:cases][1][:id]
+    assert_equal 0.0, data[:cases][1][:grade]
+    assert_equal '-', data[:cases][1][:members]
+    assert_equal Hash.new, data[:cases][1][:conn_status]
+    assert_equal '', data[:cases][1][:moodle_id]
+
+    assert_equal false, data[:cases][2][:skip]
+    assert_equal '03', data[:cases][2][:id]
+    assert_equal 0.0, data[:cases][2][:grade]
+    assert_equal 'Obiwan Kenobi', data[:cases][2][:members]
+    assert_equal conn_error, data[:cases][2][:conn_status]
+    assert_equal %w[obiwan@jedi.sw obiwan-kenobi@jedi.sw], data[:cases][2][:moodle_id]
+  end
+
 end
