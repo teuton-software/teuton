@@ -10,19 +10,19 @@ A target is a feature you want to measure or check.
 ## Definitions (Group section)
 
 ```ruby
-group "learn-01-target" do
+group "Learn about targets" do
 
-  target "Exist <david> user"
+  target "Create user david"
   run "id david"
   expect "david"
 
 end
 ```
 
-We define targets using these words:
-* **target**: Description of the goal to be tested.
-* **run**: Execute a command `id david` on localhost machine.
-* **expect**: Evaluate if the result contains expected value.
+Define targets using these lines:
+* **target**: Description of the element to be tested.
+* **run**: Execute a command `id david` on localhost.
+* **expect**: Ensure the result contains expected value.
 
 > In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
 

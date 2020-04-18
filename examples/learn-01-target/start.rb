@@ -1,5 +1,5 @@
 
-group "learn about targets" do
+group "Learn about targets" do
 
   target "Create user david"
   run "id david"
