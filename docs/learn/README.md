@@ -6,7 +6,7 @@
 Learn how to write your own tests reading examples.
 - [Quick demo](quick-demo.md)
 - [Example 01 - Target](example-01-target.md)
-- [Example 02 - Config file](example-02-configfile.md)
+- [Example 02 - Config file](example-02-config.md)
 - [Example 03 - Remote hosts](example-03-remote-hosts.md)
 - [Example 04 - Use](example-04-use.md)
 - [Example 05 - Debug](example-05-debug.md)

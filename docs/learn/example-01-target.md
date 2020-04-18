@@ -7,7 +7,7 @@ A target is a feature you want to measure or check.
 
 > This example is on GitHub repository at `examples/learn-01-target/`.
 
-## Definitions (Group section)
+## Test definition sections (Group)
 
 ```ruby
 group "Learn about targets" do
@@ -26,7 +26,7 @@ Define targets using these lines:
 
 > In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
 
-## Main execution block (Play section)
+## Test execution sections (Play)
 
 ```ruby
 play do
@@ -35,81 +35,90 @@ play do
 end
 ```
 
-Runing this example:
+DSL keywords:
+* **show**: display process information on screen.
+* **export**: build output reports.
+
+## Runing the test
+
+**Let's see example**: Executing ` teuton run examples/learn-01-target` command.
 
 ```bash
- $ teuton learn/learn-01-target
-[INFO] ScriptPath => /home/david/proy/repos/teuton.d/challenges/learn/learn-01-target/start.rb
-[INFO] ConfigPath => /home/david/proy/repos/teuton.d/challenges/learn/learn-01-target/config.yaml
+[INFO] ScriptPath => examples/learn-01-target/start.rb
+[INFO] ConfigPath => examples/learn-01-target/config.yaml
+[INFO] Pwd        => /mnt/home/leap/proy/repos/teuton.d/teuton
 [INFO] TestName   => learn-01-target
+
 ==================================
-Executing [teuton] (version 2.0.0)
-[INFO] Running in parallel (2019-06-20 01:37:57 +0100)
+Executing [teuton] (version 2.1.9)
+[INFO] Running in parallel (2020-04-18 21:32:16 +0100)
 .
-[INFO] Duration = 0.013580866 (2019-06-20 01:37:58 +0100)
-
-
+[INFO] Duration = 0.003    (2020-04-18 21:32:16 +0100)
 ==================================
+
 INITIAL CONFIGURATIONS
-+---------------+------------------------------------------------------------------------------+
-| tt_title      | Executing [teuton] (version 2.0.0)                                           |
-| tt_scriptname | /home/david/proy/repos/teuton.d/challenges/learn/learn-01-target/start.rb    |
-| tt_configfile | /home/david/proy/repos/teuton.d/challenges/learn/learn-01-target/config.yaml |
-| tt_testname   | learn-01-target                                                              |
-| tt_sequence   | false                                                                        |
-+---------------+------------------------------------------------------------------------------+
++---------------+-------------------------------------------+
+| tt_title      | Executing [teuton] (version 2.1.9)        |
+| tt_scriptname | examples/learn-01-target/start.rb         |
+| tt_configfile | examples/learn-01-target/config.yaml      |
+| tt_pwd        | /mnt/home/leap/proy/repos/teuton.d/teuton |
+| tt_testname   | learn-01-target                           |
+| tt_sequence   | false                                     |
++---------------+-------------------------------------------+
+
 CASE RESULTS
-+---------+-------------+-----------+
-| Case ID | % Completed | Members   |
-| Case_01 | 100%        | anonymous |
-+---------+-------------+-----------+
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | anonymous | 100.0 |       |
++------+-----------+-------+-------+
+
 FINAL VALUES
 +-------------+---------------------------+
-| start_time  | 2019-06-20 01:37:57 +0100 |
-| finish_time | 2019-06-20 01:37:58 +0100 |
-| duration    | 0.013580866               |
+| start_time  | 2020-04-18 21:32:16 +0100 |
+| finish_time | 2020-04-18 21:32:16 +0100 |
+| duration    | 0.003310235               |
 +-------------+---------------------------+
 ```
 
-## Results
+## Output reports
 
-Output reports are saved into `var/learn-01-target/` directory.
+**Output directory**: reports created into `var/learn-01-target/` output directory.
 
 ```bash
-var/learn-01-targets
-├── case-01.txt
-└── resume.txt
+var
+└── learn-01-target
+    ├── case-01.txt
+    ├── moodle.csv
+    └── resume.txt
 ```
 
-Let's see `export` keyword output.
+**Let's see example**: Executing `more var/learn-01-target/case-01.txt` command.
 
 ```bash
-$ more var/learn-01-target/case-01.txt
+CONFIGURATION
++-------------+-----------------+
+| tt_members  | anonymous       |
+| tt_sequence | false           |
+| tt_skip     | false           |
+| tt_testname | learn-01-target |
++-------------+-----------------+
 
-CONFIGURATIONS
-+------------+-----------+
-| tt_members | anonymous |
-| tt_skip    | false     |
-+------------+-----------+
+GROUPS
+- Learn about targets
+    01 (1.0/1.0)
+        Description : Create user david
+        Command     : id david
+        Duration    : 0.003 (local)
+        Alterations : find(david) & count
+        Expected    : Greater than 0 (String)
+        Result      : 1 (Integer)
 
-TEST
-======================
-
-GROUP: learn-01-target
-
-  01 (1.0/1.0)
-  		Description : Exist <david> user
-  		Command     : id david
-  		Duration    : 0.004 (local)
-  		Alterations : find(david) & count
-  		Expected    : Greater than 0 (String)
-  		Result      : 1 (Integer)
 RESULTS
 +--------------+---------------------------+
-| case_id      | 1                         |
-| start_time_  | 2019-06-20 12:27:50 +0100 |
-| finish_time  | 2019-06-20 12:27:50 +0100 |
-| duration     | 0.004641837               |
+| case_id      | 01                        |
+| start_time   | 2020-04-18 21:32:16 +0100 |
+| finish_time  | 2020-04-18 21:32:16 +0100 |
+| duration     | 0.002835857               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |
