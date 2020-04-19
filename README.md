@@ -22,7 +22,7 @@ Teuton allow us:
 
 * [Installation](https://github.com/teuton-software/teuton/tree/devel/docs/install/README.md)
     1. Install Ruby on your system.
-    2. `gem install teuton`
+    1. `gem install teuton`
 * [Learning](https://github.com/teuton-software/teuton/tree/devel/docs/learn/README.md)
 * [Commands](https://github.com/teuton-software/teuton/tree/devel/docs/commands/README.md)
 * [DSL keywords](https://github.com/teuton-software/teuton/tree/devel/docs/dsl/README.md)
