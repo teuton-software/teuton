@@ -2,13 +2,13 @@
 
 # Example: learn-02-config
 
+This example is on GitHub repository at `examples/learn-02-config`.
+
+Summary:
 * Learn how to use config file.
 * Tests use params defined into config files.
 * It's good idea save variable data separated into external config file.
 
-> This example is on GitHub repository at `examples/learn-02-config`.
-
----
 ## Config file
 
 By default, `config.yaml` is our config file. Let's an example:
@@ -39,9 +39,9 @@ end
 
 In this section we define targets using keywords: target, run, expect and get.
 
-* **get** keyword is used to read param from configuracion file. It's posible personalize tests separated for every case.
+* **get** keyword is used to read params from configuracion file. It's posible personalize tests with diferent values for every case.
 
-> Localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
+> NOTE: In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
 
 ## Main execution block
 
@@ -93,7 +93,6 @@ FINAL VALUES
 | duration    | 0.003665655               |
 +-------------+---------------------------+
 ```
----
 
 ## Results
 
@@ -145,7 +144,6 @@ RESULTS
 +--------------+---------------------------+
 ```
 
----
 ## Using others config file
 
 **Default names:**:

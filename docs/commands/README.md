@@ -8,6 +8,9 @@ Available command functions:
 3. Create new test skeleton
 4. Check teuton test
 5. Run teuton test
+    * Running Teuton test
+    * Command options
+    * Choosing other config file name
 
 # 1. Show help
 

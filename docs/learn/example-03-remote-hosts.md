@@ -3,16 +3,19 @@
 
 # Example: learn-03-remote-hosts
 
-Learn how to:
+This example is on GitHub repository at `examples/learn-03-remote-hosts`.
+
+Summary:
 * Check a group of remote hosts.
 * Export reports using other output formats.
 * Checking remote machine (host1) with Windows OS.
 
-> This example is on GitHub repository at `examples/learn-03-remote-hosts`.
-
 ## Config file
 
-`config.yaml` file:
+This configuration file contains:
+* 2 global params denitions.
+* 3 cases.
+* 4 specific case params definitions.
 
 ```yaml
 ---
@@ -39,24 +42,24 @@ Learn how to:
 Define 3 targets (items to be checked):
 
 ```ruby
-group "learn 03 remote hosts" do
+group "How to test remote Windows hosts" do
 
-  target "Hostname is <#{get(:host1_hostname)}>"
-  goto   :host1, :exec => "hostname"
+  target "Update hostname with #{gett(:host1_hostname)}"
+  run "hostname", on: :host1
   expect_one get(:host1_hostname)
 
-  target "DNS Server OK"
-  goto   :host1, :exec => "nslookup www.google.es"
+  target "Ensure network DNS configuration is working"
+  run "nslookup www.google.es", on: :host1
   expect "Nombre:"
 
-  target "Exist user <#{get(:username)}>"
-  goto   :host1, :exec => "net user"
+  target "Create user #{gett(:username)}"
+  run "net user", on: :host1
   expect get(:username)
 
 end
 ```
 
-> Remote machine (host1) OS must be Windows.
+> NOTE: This example requires Windows OS on remote machine (host1).
 
 ## Execution (play section)
 
@@ -64,7 +67,7 @@ end
 play do
   show
   # export using other output formats
-  export :format => :colored_text
+  export :format => :txt
   export :format => :json
   send :copy_to => :host1
 end
@@ -77,20 +80,19 @@ end
 ## Output reports
 
 ```
- $ tree var
 var
 └── learn-03-remote-hosts
-    ├── case-01.colored_text
     ├── case-01.json
-    ├── case-02.colored_text
-    ├── case-02.json
-    ├── case-03.colored_text
+    ├── case-01.txt
     ├── case-03.json
-    ├── resume.colored_text
-    └── resume.json
+    ├── case-03.txt
+    ├── moodle.csv
+    ├── resume.json
+    └── resume.txt
 ```
 
 * `case-01`, report with details about case 01 (maul)
-* `case-02`, report with details about case 02 (r2d2)
+* Case 02 (r2ds) is skipped. So there are no report `case-02`.
 * `case-03`, report with details about case 03 (obiwan)
 * `resume`, report with global resumed information about all cases.
+* `moodle.csv`, CVS file with required fields to upload grades into Moodle eLearning platform.
