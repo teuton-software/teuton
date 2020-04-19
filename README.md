@@ -18,7 +18,7 @@ Allow us:
 # Documentation
 
 [Teuton 2.0 Wiki](https://github.com/teuton-software/teuton/wiki) documentation.
-* [Teuton 2.1](version2.1.md)
+* Goto [Teuton 2.1](https://github.com/teuton-software/teuton/tree/devel)
 * [Installation](https://github.com/teuton-software/teuton/wiki/Installation)
     * [Installation scripts](https://github.com/teuton-software/teuton/wiki/Installation-using-scripts)
 * [Learning](https://github.com/teuton-software/teuton/wiki/Learning)
