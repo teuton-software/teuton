@@ -10,11 +10,10 @@
 
 ## T-NODE installation
 
-* **Install** Teuton on machine with T-NODE role.
-Installation process:
+* **Install** Teuton (T-NODE role host):
     1. Install Ruby on your system.
     2. `gem install teuton`
-* Run `teuton version` to check your installation is ok.
+* Run `teuton version` to check is fine.
 
 > **PROBLEMS**: If you don't find `teuton`command (OpenSUSE distro), try this:
 > * Option A:
