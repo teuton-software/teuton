@@ -2,10 +2,10 @@
 
 # Installation
 
-Node definitions:
-* **T-node**: Host where Teuton software is installed. Monitor S-NODE hosts.
-* **S-node**: Host where SSH server is installed. This hosts are monitotized by T-NODE host.
-
+> Definitions:
+> * **T-node**: Host where Teuton software is installed. Monitor S-NODE hosts.
+> * **S-node**: Host where SSH server is installed. This hosts are monitotized by T-NODE host.
+>
 > Read [Modes of use](modes_of_use.md) to know about different Teuton ways of using it.
 
 ## T-NODE installation
