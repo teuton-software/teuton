@@ -17,7 +17,6 @@ Teuton allow us:
 * Write test units for real or virtual machines using simple DSL.
 * Check compliance with requirements on remote machines.
 
----
 # Documentation
 
 * [Installation](https://github.com/teuton-software/teuton/tree/devel/docs/install/README.md)
@@ -27,7 +26,6 @@ Teuton allow us:
 * [Commands](https://github.com/teuton-software/teuton/tree/devel/docs/commands/README.md)
 * [DSL keywords](https://github.com/teuton-software/teuton/tree/devel/docs/dsl/README.md)
 
----
 # Features
 
 * [Free Software License](https://github.com/teuton-software/teuton/tree/devel/LICENSE).
@@ -35,7 +33,6 @@ Teuton allow us:
 * Remote machines only require SSH or Telnet service installed.
 * Developed using ruby language.
 
----
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`
