@@ -8,7 +8,6 @@ Node definitions:
 
 > Read [Modes of use](modes_of_use.md) to know about different Teuton ways of using it.
 
----
 ## T-NODE installation
 
 * **Install** Teuton on machine with T-NODE role.
@@ -28,9 +27,11 @@ Installation process:
 * **Update** Teuton with `gem teuton update`.
 * **Uninstall** Teuton with `gem uninstall teuton`
 
-## S-NODE
+## S-NODE installation
 
 * **Install** SSH server on every machine with S-NODE role.
+
+> [All available installation](all.md) ways.
 
 ---
 Let's us known your installation difficulties.
