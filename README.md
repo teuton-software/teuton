@@ -31,9 +31,9 @@ Teuton allow us:
 # Features
 
 * [Free Software License](https://github.com/teuton-software/teuton/tree/devel/LICENSE).
-* Multiplatform .
-* Use SSH or Telnet protocol to connect to remote machines.
-* Developed using the ruby language.
+* Multiplatform.
+* Remote machines only require SSH or Telnet service installed.
+* Developed using ruby language.
 
 ---
 # Contact

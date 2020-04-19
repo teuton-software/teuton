@@ -1,16 +1,11 @@
 [<< back](README.md)
 
-# Teuton installation using scripts
-
-There are different Teuton [Modes of use](modes_of_use.md). For every mode there are 2 node types and every node has their own installation script:
-
-* **T-node**: This host has installed Teuton software.
-* **S-node**: This host has installed SSH server.
-
-> Consult [tested OS](tested_os.md) to ensure if your favorite OS script installation has been tested.
+# Using scripts to install Teuton
 
 ---
 # T-NODE installation
+
+* **T-node**: Host where Teuton software is installed. Monitor S-NODE hosts.
 
 ## T-NODE: GNU/Linux installation
 
@@ -43,12 +38,9 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 ```
 
 ---
-
 # S-NODE installation
 
-This is, SSH server installation.
-
-> The user from T-NODE have to know admin password/user to establish SSH connections to S-NODE.
+* **S-node**: Host where SSH server is installed. This hosts are monitotized by T-NODE host.
 
 ## S-NODE: GNU/Linux installation
 
