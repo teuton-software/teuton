@@ -11,9 +11,14 @@ class TeutonTest < Minitest::Test
   def execute_teuton_test(filepath)
     system("teuton run --no-color --export=yaml #{filepath} > /dev/null")
     testname = File.basename(filepath)
-    resume = File.join('var', testname, 'resume.yaml')
-    data = YAML.load(File.read(resume))
-    [ testname, resume, data ]
+    filepath = File.join('var', testname, 'resume.yaml')
+    data = YAML.load(File.read(filepath))
+    [ testname, filepath, data ]
+  end
+
+  def read_case_report(id, testname)
+    filepath = File.join('var', testname, "case-#{id}.yaml")
+    data = YAML.load(File.read(filepath))
   end
 
   def test_learn_01_target
@@ -30,6 +35,19 @@ class TeutonTest < Minitest::Test
     assert_equal 'anonymous', data[:cases][0][:members]
     assert_equal Hash.new, data[:cases][0][:conn_status]
     assert_equal 'NODATA', data[:cases][0][:moodle_id]
+
+    data = read_case_report('01', testname)
+    targets = data[:groups][0][:targets]
+    assert_equal '01', targets[0][:target_id]
+    assert_equal true, targets[0][:check]
+    assert_equal 1.0, targets[0][:score]
+    assert_equal 1.0, targets[0][:weight]
+    assert_equal 'Create user david', targets[0][:description]
+    assert_equal 'id david', targets[0][:command]
+    assert_equal :local, targets[0][:conn_type]
+    assert_equal 'find(david) & count', targets[0][:alterations]
+    assert_equal 'Greater than 0', targets[0][:expected]
+    assert_equal 1, targets[0][:result]
   end
 
   def test_learn_02_config
