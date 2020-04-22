@@ -5,10 +5,16 @@
 Let's learn how to create our first target.
 A target is a feature you want to measure or check.
 
+Summary:
+1. [Definition section](#definition-section)
+2. [Execution section](#execution-section)
+3. [Output reports](#output-reports)
+
 > This example is on GitHub repository at `examples/learn-01-target/`.
 
-## Test definition sections (Group)
+## Definition section
 
+Test definition section (Group):
 ```ruby
 group "Learn about targets" do
 
@@ -26,7 +32,9 @@ Define targets using these lines:
 
 > In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
 
-## Test execution sections (Play)
+## Execution section
+
+Test execution section (Play):
 
 ```ruby
 play do
