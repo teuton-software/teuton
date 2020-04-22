@@ -4,10 +4,15 @@
 
 This example is on GitHub repository at `examples/learn-02-config`.
 
-Summary:
 * Learn how to use config file.
 * Tests use params defined into config files.
 * It's good idea save variable data separated into external config file.
+
+Summary:
+1. [Config file](#config-file).
+2. [Definition section](#definition-section).
+3. [Execution section](#execution-section).
+4. [Results](#results).
 
 ## Config file
 
@@ -23,7 +28,7 @@ By default, `config.yaml` is our config file. Let's an example:
   :username: vargas
 ```
 
-## Definitions
+## Definition section
 
 By default, `start.rb` it's our main execution file.
 
@@ -43,8 +48,9 @@ In this section we define targets using keywords: target, run, expect and get.
 
 > NOTE: In this example, we assume GNU/Linux as localhost's OS.
 
-## Main execution block
+## Execution section
 
+Main execution block:
 ```ruby
 play do
   show
