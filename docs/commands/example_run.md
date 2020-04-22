@@ -1,11 +1,11 @@
 
 [<< back](README.md)
 
-1. Running Teuton test
-2. Command options
-3. [Choosing config file](#choosing-config-file)
+1. [Run test](#1-run-test)
+2. [Command options](#2-command-options)
+3. [Choosing config file](#3-choosing-config-file)
 
-# 1. Runing Teuton test
+# 1. Run test
 
 Description: Running Teuton test located into `example/learn-01-target` folder.
 
