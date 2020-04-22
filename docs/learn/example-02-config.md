@@ -1,5 +1,10 @@
 [<< back](README.md)
 
+1. [Config file](#config-file).
+2. [Definition section](#definition-section).
+3. [Execution section](#execution-section).
+4. [Results](#results).
+
 # Example: learn-02-config
 
 This example is on GitHub repository at `examples/learn-02-config`.
@@ -7,12 +12,6 @@ This example is on GitHub repository at `examples/learn-02-config`.
 * Learn how to use config file.
 * Tests use params defined into config files.
 * It's good idea save variable data separated into external config file.
-
-Summary:
-1. [Config file](#config-file).
-2. [Definition section](#definition-section).
-3. [Execution section](#execution-section).
-4. [Results](#results).
 
 ## Config file
 

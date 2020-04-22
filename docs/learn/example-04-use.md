@@ -1,5 +1,9 @@
-
 [<< back](README.md)
+
+1. [Tree directory](#tree-directory)
+2. [Execution section](#execution-section)
+3. [Users file](#users-file)
+4. [Network file](#network-file)
 
 # Example: learn-04-use
 
@@ -14,8 +18,8 @@ Learn how to:
 This example has more files:
 
 ```bash
-$ tree learn/learn-04-use
-learn/learn-04-require
+$ tree example/learn-04-use
+example/learn-04-require
 ├── config.yaml
 ├── network.rb
 ├── README.md
@@ -23,11 +27,11 @@ learn/learn-04-require
 └── users.rb
 ```
 
-* `README.md` and `config.yaml` are the same as previous examples.
+* `README.md` and `config.yaml` are the same as previous example.
 
-## Execution (play section)
+## Execution section
 
-Previous `start.rb` file is splited in: start.rb, users.rb and network.rb.
+Previous `start.rb` file is now splited in: start.rb, users.rb and network.rb.
 
 Let's see current `start.rb` file:
 
@@ -43,35 +47,37 @@ end
 
 * `use`, indicates external rb file that will be included/imported into main rb file. It's a good idea to organize project files, when the number of groups/targets is high.
 
-## Definitions (user section)
+## Users file
 
 > Require Windows OS on remote machine.
 
 Let's see `users.rb` file
-```ruby
-group "User configuration" do
-  target "Exist user <#{get(:username)}>"
-  goto   :host1, :exec => "net user"
-  expect get(:username)
-end
 
+```ruby
+group "Use file: User configuration" do
+
+  target "Create user #{gett(:username)}"
+  run "net user", on: :host1
+  expect get(:username)
+
+end
 ```
 
-## Definitions (network section)
+## Network file
 
 > Require Windows OS on remote machine.
 
 Let's see `network.rb` file:
 
 ```ruby
-group "Network configuracion" do
+group "Use file: Network configuracion" do
 
-  target "Hostname is <#{get(:host1_hostname)}>"
-  goto   :host1, :exec => "hostname"
+  target "Update computer name with #{gett(:host1_hostname)}"
+  run "hostname", on: :host1
   expect_one get(:host1_hostname)
 
-  target "DNS Server OK"
-  goto   :host1, :exec => "nslookup www.nba.es"
+  target "Ensure DNS Server is working"
+  run "nslookup www.google.es", on: :host1
   expect "Nombre:"
 
 end

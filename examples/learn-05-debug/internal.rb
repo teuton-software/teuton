@@ -2,22 +2,22 @@
 group "Windows: internal configurations" do
 
   target "Ensure Windows version is 6.1"
-  goto   :windows1, :exec => "ver"
+  run    "ver", on: :windows1
   expect "Windows", "6.1"
 
   target "Ensure Windows COMPUTERNAME is #{gett(:windows1_hostname)}"
-  goto   :windows1, :exec => "set"
+  run    "set", on: :windows1
   expect "COMPUTERNAME", get(:windows1_hostname)
 
   target "Configure gateway with #{gett(:gateway)}"
-  goto   :windows1, :exec => "ipconfig"
+  run    "ipconfig", on: :windows1
   expect "enlace", get(:gateway)
 
   target "Ensure gateway is working"
-  goto   :windows1, :exec => "ping #{get(:dns)}"
+  run    "ping #{get(:dns)}", on: :windows1
   expect result.find("Respuesta").count.eq 4
 
   target "Ensure DNS is working"
-  goto   :windows1, :exec => "nslookup www.iespuertodelacruz.es"
+  run    "nslookup www.iespuertodelacruz.es", on: :windows1
   expect "Address:", "88.198.18.148"
 end

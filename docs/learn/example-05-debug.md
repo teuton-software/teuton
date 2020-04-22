@@ -1,6 +1,11 @@
 
 [<< back](README.md)
 
+1. [Tree directory](#tree-directory)
+2. [Execution section](#execution-section)
+3. [Check test](#check-test)
+4. [Debug](#debug)
+
 # Example: learn-05-debug
 
 Learn how to:
@@ -13,7 +18,7 @@ Learn how to:
 
 ```bash
 $ tree learn/learn-05-debug
-learn/learn-05-debug
+example/learn-05-debug
 ├── config.yaml
 ├── external.rb
 ├── internal.rb
@@ -21,7 +26,7 @@ learn/learn-05-debug
 └── start.rb
 ```
 
-## Execution (play section)
+## Execution section
 
 The `start.rb`  is main execution rb file, and uses `external` and `internal` rb files.
 
@@ -37,24 +42,26 @@ play do
 end
 ```
 
-## Debugging: Testing rb files
+## Check test
 
 Tests grows and becames huge, with a lot of targets (That isn't a problem). Then, we organize them spliting into several files and invoke `use` keywork from our main rb file to load other files (That's good idea) .
 
-When this happend, sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton check PATH/TO/PROJECT/FOLDER`. Let's see an example:
+When this happend, sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton check PATH/TO/PROJECT/FOLDER`.
+
+Let's see example `teuton check examples/learn-01-target`:
 
 ```bash
-teuton check examples/learn-01-target
-[INFO] ScriptPath => .../teuton.d/teuton/examples/learn-01-target/start.rb
-[INFO] ConfigPath => ...uton.d/teuton/examples/learn-01-target/config.yaml
+[INFO] ScriptPath => examples/learn-01-target/start.rb
+[INFO] ConfigPath => examples/learn-01-target/config.yaml
+[INFO] Pwd        => /mnt/home/leap/proy/repos/teuton.d/teuton
 [INFO] TestName   => learn-01-target
 
-+------------------------+
-| GROUP: learn-01-target |
-+------------------------+
-(001) target      Create user <david>
++----------------------------+
+| GROUP: Learn about targets |
++----------------------------+
+(001) target      Create user david
       weight      1.0
-      goto        localhost and {:exec=>"id david"}
+      run         'id david' on localhost
       expect      david (String)
 
 +--------------+-------+
@@ -83,23 +90,23 @@ teuton check examples/learn-01-target
 
 In this case, Teuton detects that there isn't exist config file, and propose us content for `config.yaml`.
 
-## Debugging: Result content
+## Debug
 
-Every time we invoke `goto` or `run` keywork, an OS command is executed and the output showed on screen is captured by Teuton and saved into `result` internal object.
+Every time we invoke `run` or `goto` keywork, an OS command is executed. The output is showed on screen and saved into **result** internal object.
 
-We could debug it invoking `result.debug` into our rb file. Let's see an example from `external.rb.rb` file:
+We could debug it invoking `result.debug` into our tests. Let's see an example from `external.rb` file:
 
 ```ruby
 group "Windows: external configuration" do
 
   target "Localhost: Verify connectivity with #{gett(:windows1_ip)}"
-  run "ping #{get(:windows1_ip)} -c 1"
+  run    "ping #{get(:windows1_ip)} -c 1"
   result.debug
   expect_one "0% packet loss"
   result.debug
 
   target "Localhost: netbios-ssn service working on #{gett(:windows1_ip)}"
-  run "nmap -Pn #{get(:windows1_ip)}"
+  run    "nmap -Pn #{get(:windows1_ip)}"
   expect "139/tcp", "open"
 
 end

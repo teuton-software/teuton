@@ -1,5 +1,9 @@
-
 [<< back](README.md)
+
+1. [Config file](#config-file)
+2. [Definition section](#definition-section).
+3. [Execution section](#execution-section).
+4. [Results](#results).
 
 # Example: learn-03-remote-hosts
 
@@ -37,7 +41,7 @@ This configuration file contains:
   :username: obiwan
 ```
 
-## Definitions (group section)
+## Definition section
 
 Define 3 targets (items to be checked):
 
@@ -61,7 +65,7 @@ end
 
 > NOTE: This example requires Windows OS on remote machine (host1).
 
-## Execution (play section)
+## Execution section
 
 ```ruby
 play do
@@ -77,7 +81,7 @@ end
 * `export :format => :json`, create output reports into `var/learn-03-remote-host/` directory. We can use diferents format to export: txt, colored_text, json and yaml.
 * `send :copy_to => :host1` keyword copy output report into remote machine (host1).
 
-## Output reports
+## Results
 
 ```
 var
