@@ -1,15 +1,16 @@
 
 ## Description
 
-Connect to remote host and executes command. The commadn output is saved into result object.
+Connect to remote host and executes command. The command output is saved into **result** object.
 
 ## Usage
 
 ```ruby
+run "id fran", on: :host1
+on :host1, run: "id fran"
 goto :host1, :exec => "id fran"
 goto :host1, :execute => "id fran"
 ```
-
 > ADVISE: I know that programers dislike `goto` sentence, but this is diferent. Think of it as english speaker, not as developer.
 
 * This example connect to remote host identified by `host1`. Then we execute the command into it and save the output commadn into result object.
@@ -17,27 +18,33 @@ goto :host1, :execute => "id fran"
 
 ## Examples
 
-Execute `id obiwan` comand into remote host `linux1`.
+Execute `id obiwan` comand into remote host `:linux1`.
 ```Ruby
-  goto :linux1, :exec => "id obiwan"
-  goto :linux1, :execute => "id obiwan"
-  goto :linux1, exec: "id obiwan"
-  goto :linux1, execute: "id obiwan"
+run "id obiwan", on: :linux1
+run "id obiwan", :on => :linux1
+on :linux1, run: "id obiwan"
+on :linux1, :run => "id obiwan"
+goto :linux1, exec: "id obiwan"
+goto :linux1, :exec => "id obiwan"
 ```
 
-Execute `id david` command into `localhost`.
+Execute `id yoda` command into `localhost`.
 
 ```Ruby
-  goto :localhost, :exec => "id david"
-  goto :localhost, :execute => "id david"
-  run "id david"
+run "id yoda"
+run "id yoda", on: :localhost
+run "id yoda", :on => :localhost
+on :localhost, run: "id yoda"
+on :localhost, :run => "id yoda"
+goto :localhost, :exec => "id yoda"
+goto :localhost, :execute => "id yoda"
 ```
 
 ## Protocol
 
 **SSH connection**
 
-By default, when invoking `goto :host1` sentence, Teuton try to open remote SSH session. This config files examples do the same:
+Invoking `run` or `goto` sentence, Teuton opens SSH remote session by default. This config files examples do the same:
 
 Sample 1:
 ```
@@ -66,9 +73,9 @@ Sample 2:
   :host1_protocol: ssh
 ```
 
-**Telnet connection**
+**Telnet connection**: Open Telnet remote session.
 
-If you need to use telnet, then it's necessary specified that into config file. For example:
+For example:
 ```
 ---
 :global:
@@ -80,25 +87,19 @@ If you need to use telnet, then it's necessary specified that into config file. 
   :host1_protocol: telnet
 ```
 
-**Localhost**
-
-If our hostname is localhost, or the IP is 127.0.0.X, then Teuton will assume that you want to run your command on local system, and no session is opened. This examples are the same:
-
-```
-goto :localhost, :exec => "id david"
-```
-
-And
+**Localhost**: When hostname is localhost, or host IP is 127.0.0.X, then Teuton will assume that you want to run your command on local system, and no session is opened. This examples are the same:
 
 ```
 run "id david"
 ```
 
-**SSH to localhost**
+And
 
-> NOTE: Only works on Teuton version >= 2.1.X
+```
+goto :localhost, :exec => "id david"
+```
 
-If you want to open SSH session to your localhost, then force SSH protocol into your config file, like this:
+**SSH to localhost**: Force SSH session to localhost, then:
 
 ```
 ---
