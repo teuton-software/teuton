@@ -1,26 +1,33 @@
 
 [<< back](../../README.md)
 
+1. [Learning](#learning)
+2. [Examples](#examples)
+3. [Videos](#videos)
+
 # Learning
 
-Learn how to write your own tests reading examples.
-- [Quick demo](quick-demo.md)
+Learn how to use Teuton language to write your own tests:
 - [Example 01 - Target](example-01-target.md)
 - [Example 02 - Config file](example-02-config.md)
 - [Example 03 - Remote hosts](example-03-remote-hosts.md)
 - [Example 04 - Use](example-04-use.md)
 - [Example 05 - Debug](example-05-debug.md)
+- Example 06 - Log
+- Example 07 - Preserve
+- Example 08 - Readme
+- Example 09 - Macros
+- Example 10 - Alias
 - [Example 11 - Create your first test](example-11-first-test.md)
 - [Videos](videos.md)
 
----
-# More examples
+# Examples
 
+More examples
 * Let's see examples at [teuton-challenges](https://github.com/teuton-software/teuton-challenges) GitHub repository.
 * Ask us by email at `teuton.software@protonmail.com` or Twitter at `@SoftwareTeuton`.
 * [CHAPI19 - Spanish Teuton demo](https://github.com/dvarrui/proyectos-de-ejemplo/tree/master/charlas/teuton)
 
----
 # Videos
 
 By now there are no English videos. We are sorry!
