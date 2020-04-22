@@ -1,3 +1,8 @@
+[<< back](../README.md)
+
+1. [Description](#description)
+2. [Usage](#usage)
+3. [Example](#example)
 
 ## Description
 
@@ -12,7 +17,7 @@ set(:param1, 'value')
 ## Example
 
 ```ruby
-set(:new_param, "Hello")
-var = get(:new_param)
+set(:greet, "Hello")
+var = get(:greet)
 ```
-So `var` value will be "Hello".
+So `var` value is "Hello".
