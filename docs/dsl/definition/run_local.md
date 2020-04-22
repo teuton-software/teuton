@@ -22,13 +22,7 @@ In fact it's the same as doing next:
 ```ruby
 run "COMMAND", on: :localhost
 run "COMMAND", :on => :localhost
-on :localhost, run: "COMMAND"
-on :localhost, :run => "COMMAND"
-goto :localhost, execute: "COMMAND"
-goto :localhost, :execute => "COMMAND"
 ```
-
-> why have another instruction? Because there are people who like do it differently.
 
 ## Example
 
