@@ -7,7 +7,7 @@ Groups targets/goals.
 ## Usage
 
 ```ruby
-group "group_name" do
+group "Group name" do
 	...
 end
 ```
