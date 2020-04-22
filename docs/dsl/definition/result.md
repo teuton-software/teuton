@@ -1,3 +1,4 @@
+[<< back](../README.md)
 
 ## Description
 
@@ -7,7 +8,7 @@ It is usefull to build advanced `expect result...` sentences.
 * After every execution (For example, `goto :host1, :exec => "whoami"`), Teuton gets output and saves it into `result` object.
 * Use `result` object to read or filter that output.
 
-## Usage 
+## Usage
 
 This example get /etc/passwd file from host1, then filter lines without '#' and with '/bin/bash'.
 Count lines number and expect it to be greater that 6.
