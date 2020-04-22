@@ -144,4 +144,4 @@ RESULTS
 +--------------+---------------------------+
 ```
 
-> **How to choose another config file?** Read this document [example_run](../commands/example_run.md) document.
+> **How to choose another config file?** Read this document [example_run](../commands/example_run.md#3-choosing-config-file) document.
