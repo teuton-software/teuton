@@ -1,5 +1,5 @@
 
-group "Using config file values" do
+group "Reading params from config file" do
 
   target "Create user #{gett(:username)}"
   run "id #{get(:username)}"

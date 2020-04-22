@@ -3,7 +3,7 @@
 
 1. Running Teuton test
 2. Command options
-3. Choosing other config file name
+3. [Choosing config file](#choosing-config-file)
 
 # 1. Runing Teuton test
 
@@ -85,7 +85,7 @@ Options:
 | 08 | teuton run --cpath=starwars/jedi.yaml foo | Run foo/start.rb with starwars/jedi.yaml config file |
 | 09 | teuton run --case=6,16 foo | Run foo/start.rb with foo/config.yaml config file but only for case id '06' and '16' |
 
-# 3. Choosing others config file name
+# 3. Choosing config file
 
 **Default names:**:
 By default, when you run `teuton run foo`, this will search for:

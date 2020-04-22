@@ -18,9 +18,9 @@ By default, `config.yaml` is our config file. Let's an example:
 :global:
 :cases:
 - :tt_members: Student-name-1
-  :username: david
+  :username: root
 - :tt_members: Student-name-2
-  :username: fran
+  :username: vargas
 ```
 
 ## Definitions
@@ -28,7 +28,7 @@ By default, `config.yaml` is our config file. Let's an example:
 By default, `start.rb` it's our main execution file.
 
 ```ruby
-group "Using config file values" do
+group "Reading params from config file" do
 
   target "Create user #{gett(:username)}"
   run "id #{get(:username)}"
@@ -41,7 +41,7 @@ In this section we define targets using keywords: target, run, expect and get.
 
 * **get** keyword is used to read params from configuracion file. It's posible personalize tests with diferent values for every case.
 
-> NOTE: In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
+> NOTE: In this example, we assume GNU/Linux as localhost's OS.
 
 ## Main execution block
 
@@ -144,28 +144,4 @@ RESULTS
 +--------------+---------------------------+
 ```
 
-## Using others config file
-
-**Default names:**:
-By default, when you run `teuton run foo`, this will search for:
-* `foo/start.rb` test file and
-* `foo/config.yaml` config file.
-
-**Using cname param:**
-It's posible execute `teuton run --cname=rock foo`, and choose diferent config file into projet folder:
-* `foo/start.rb` test file and
-* `foo/rock.yaml` config file.
-
-> `cname` param searchs YAML config file into the same project folder.
-
-**Using cpath param:**
-An also, it's posible execute `teuton run --cpath=/home/david/startwars.yaml foo`, and choose config file using its absolute path:
-* `foo/start.rb` test file and
-* `/home/david/starwars.yaml` config file.
-
-> `cpath` param selects YAML config file, from the specified path.
-
-**Using diferent main rb name:**
-When you execute `teuton run foo/mazingerz.rb`, this will search for:
-* `foo/mazingerz.rb` test file and
-* `foo/mazingerz.yaml` config file.
+> **How to choose another config file?** Read this document [example_run](../commands/example_run.md) document.
