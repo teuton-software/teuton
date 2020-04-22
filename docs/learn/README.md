@@ -13,7 +13,7 @@ Learn how to use Teuton language to write your own tests:
 - [Example 03 - Remote hosts](example-03-remote-hosts.md)
 - [Example 04 - Use](example-04-use.md)
 - [Example 05 - Debug](example-05-debug.md)
-- Example 06 - Log
+- [Example 06 - Log](example-06-log.md)
 - Example 07 - Preserve
 - Example 08 - Readme
 - Example 09 - Macros

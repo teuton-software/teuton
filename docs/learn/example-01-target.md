@@ -2,7 +2,8 @@
 
 1. [Definition section](#definition-section)
 2. [Execution section](#execution-section)
-3. [Output reports](#output-reports)
+3. [Run test](#run-test)
+4. [Output reports](#output-reports)
 
 # Example: learn-01-target
 
@@ -46,7 +47,7 @@ DSL keywords:
 * **show**: display process information on screen.
 * **export**: build output reports.
 
-## Runing the test
+## Run test
 
 **Let's see example**: Executing ` teuton run examples/learn-01-target` command.
 
