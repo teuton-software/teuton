@@ -1,5 +1,10 @@
 [<< back](../README.md)
 
+1. [Description](#description)
+2. [Usage](#usage)
+3. [Alias](#alias)
+4. [Example](#example)
+
 ## Description
 
 Execute command on localhost and save output into result object.
@@ -10,8 +15,11 @@ Execute command on localhost and save output into result object.
 run "id COMMAND"
 ```
 
-**Alias**: In fact it's the same as doing next:
-```
+## Alias
+
+In fact it's the same as doing next:
+
+```ruby
 run "COMMAND", on: :localhost
 run "COMMAND", :on => :localhost
 on :localhost, run: "COMMAND"
@@ -20,7 +28,7 @@ goto :localhost, execute: "COMMAND"
 goto :localhost, :execute => "COMMAND"
 ```
 
-> Then, why have another instruction? Because there are people who like doing that way.
+> why have another instruction? Because there are people who like do it differently.
 
 ## Example
 

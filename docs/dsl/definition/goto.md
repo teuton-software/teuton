@@ -1,5 +1,10 @@
 [<< back](../README.md)
 
+1. [Description](#description)
+2. [Usage](#usage)
+3. [Examples](#examples)
+4. [Protocol](#protocol)
+
 ## Description
 
 Connect to remote host and executes command. The command output is saved into **result** object.

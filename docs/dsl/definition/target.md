@@ -1,5 +1,10 @@
 [<< back](../README.md)
 
+1. [Description](#description)
+2. [Usage](#usage)
+3. [Alias](#alias)
+4. [Weight](#weight)
+
 ## Description
 
 `target` instruction is used to begin new target/goal definition, and sets its description.
