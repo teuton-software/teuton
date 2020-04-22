@@ -1,3 +1,8 @@
+[<< back](../../README.md)
+
+1. [Description](#description)
+2. [Usage](#usage)
+3. [Parameters](#parameters)
 
 ## Description
 
@@ -7,11 +12,11 @@ When tests ends, `show` instruction shows on screen information about final resu
 
 ```ruby
 start do
-    show
+  show
 end
 ```
 
-## Other uses
+## Parameters
 
 | Action         | Description                             |
 | -------------- | --------------------------------------- |

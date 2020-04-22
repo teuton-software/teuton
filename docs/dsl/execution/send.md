@@ -1,3 +1,9 @@
+[<< back](../../README.md)
+
+1. [Description](#description)
+2. [Usage](#usage)
+3. [Parameters](#parameters)
+4. [Send several reports](#send-several-reports)
 
 ## Description
 
@@ -16,7 +22,19 @@ end
 * `host1`, it' the label that identified remote host. This information must be configured into config file.
 * `send :copy_to => :host1`, copy every case resport file into temp directory on remote host `host1`.
 
-## Other uses
+## Example
+
+Example 1: send `case-01-txt` file to remote Windows host.
+
+![](images/send-remote-dir-dot1.jpg)
+
+![](images/send-remote-dir-dot2.jpg)
+
+Example 2: send report file to remote "./Desktop" folder.
+
+![](images/send-remote-dir-desktop1.jpg)
+
+## Parameters
 
 | Action | Description |
 | ------ | ----------- |
@@ -27,11 +45,12 @@ end
 > * By default, `send` only works when remote OS type is UNIX base, like GNU/Linux, MACOS, BSD, etc.
 > * For Windows OS we must specified `:remote_dir`. Example: `send :copy_to => :host1, :remote_dir => "C:\\"`. This example will copy files on directory c:\ of host1 machine.
 
-## How to send several output files
+## Send several reports
 
 If you export several files using differents output formats, you will use several `export` orders. Then when invoke `send` order, this will send the last exported file.
 
 In this example we export json and txt files, but only send txt to remote hosts:
+
 ```ruby
 start do
   export :format => :json

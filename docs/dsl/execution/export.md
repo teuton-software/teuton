@@ -1,5 +1,10 @@
 [<< back](../../README.md)
 
+1. [Description](#description)
+2. [Usage](#usage)
+3. [Example](#example)
+4. [Formats](#formats)
+
 ## Description
 
 Create reports and save then into `var/TEST-NAME` folder.
@@ -9,6 +14,24 @@ Create reports and save then into `var/TEST-NAME` folder.
 ```ruby
 play do
     export
+end
+```
+
+## Example
+
+Run export and build reports using txt output format by default:
+
+```ruby
+play do
+  export
+end
+```
+
+Run test and build reports using `html` output format:
+
+```ruby
+play do
+  export :format => :html
 end
 ```
 
@@ -22,19 +45,3 @@ end
 | `export :format => :yaml` | Export file using YAML ouput format |
 | `export :format => :json` | Export file using JSON ouput format |
 | `export :format => :colored_text` | Export file using colored TXT ouput format |
-
-## Example
-
-Run export and build reports using txt output format by default:
-```
-    play do
-      export
-    end
-```
-
-Run test and build reports using `html` output format:
-```
-    play do
-      export :format => :html
-    end
-```
