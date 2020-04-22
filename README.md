@@ -24,7 +24,7 @@ Teuton allow us:
     1. `gem install teuton`
 * [Learning](https://github.com/teuton-software/teuton/tree/devel/docs/learn/README.md)
 * [Commands](https://github.com/teuton-software/teuton/tree/devel/docs/commands/README.md)
-* [DSL keywords](https://github.com/teuton-software/teuton/tree/devel/docs/dsl/README.md)
+* [Teuton language](https://github.com/teuton-software/teuton/tree/devel/docs/dsl/README.md)
 
 # Features
 
