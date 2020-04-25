@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "test-teuton-opensuse" do |i|
+    i.vm.box = "generic/opensuse15"
+    i.vm.hostname = "test-teuton-opensuse"
+    i.vm.synced_folder "./", "/vagrant"
+#    i.vm.network "public_network", bridge: [ "eth1" ]
+
+    i.vm.provision "shell", inline: <<-SHELL
+      zypper install -y tree vim
+    SHELL
+    i.vm.provider "virtualbox" do |v|
+      v.name = 'test-teuton-opensuse'
+      v.memory = 2048
+    end
+  end
+end
