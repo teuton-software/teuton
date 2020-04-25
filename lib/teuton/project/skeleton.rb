@@ -31,6 +31,7 @@ module Skeleton
     items = [
       { source: 'files/config.yaml', target: 'config.yaml' },
       { source: 'files/start.rb', target: 'start.rb' }
+      # { source: 'files/gitignore', target: '.gitignore' }
     ]
     items.each do |item|
       source = File.join(source_basedir, item[:source])
