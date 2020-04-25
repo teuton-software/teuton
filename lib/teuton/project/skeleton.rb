@@ -30,8 +30,7 @@ module Skeleton
     # Directory and files: Ruby script, Configfile, gitignore
     items = [
       { source: 'files/config.yaml', target: 'config.yaml' },
-      { source: 'files/start.rb', target: 'start.rb' },
-      { source: 'files/gitignore', target: '.gitignore' }
+      { source: 'files/start.rb', target: 'start.rb' }
     ]
     items.each do |item|
       source = File.join(source_basedir, item[:source])
