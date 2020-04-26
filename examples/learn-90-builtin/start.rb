@@ -1,16 +1,16 @@
 
 group "learn-07-builtin" do
-  service('firewalld').is_running?
-  service('sshd').is_running?
+  service('firewalld', :host1).is_running?
+  service('sshd', :host1).is_running?
 
-  user('root').exists?
-  user('david').exists?
+  user('root', :host1).exists?
+  user('david', :host1).exists?
 
-  package('geany').installed?
-  package('basic').installed?
+  package('geany', :host1).installed?
+  package('basic', :host1).installed?
 end
 
 play do
   show
-  export
+  export format: :colored_text
 end
