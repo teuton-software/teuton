@@ -3,11 +3,15 @@ group "learn-07-builtin" do
   host(:host1).service('firewalld').is_running?
   host(:host1).service('sshd').is_running?
 
-  host(:host1).user('root').exists?
-  host(:host1).user('david').exists?
+  h1 = host(:host1)
+  h1.user('root').exists?
+  h1.user('david').exists?
 
-  host(:host1).package('geany').installed?
-  host(:host1).package('basic').installed?
+  p1 = h1.package('geany')
+  p1.installed?
+
+  p2 = h1.package('basic')
+  p2.installed?
 end
 
 play do
