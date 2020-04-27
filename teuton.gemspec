@@ -1,9 +1,10 @@
+require 'date'
 require_relative 'lib/teuton/application'
 
 Gem::Specification.new do |s|
   s.name        = Application::NAME
   s.version     = Application::VERSION
-  s.date        = '2020-04-10'
+  s.date        = Date.today.strftime("%Y-%m-%d")
   s.summary     = "Teuton (Teuton Software)"
   s.description = <<-EOF
   Intrastructure test, useful for:
