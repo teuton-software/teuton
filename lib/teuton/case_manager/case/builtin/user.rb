@@ -1,10 +1,10 @@
 
 class User
-  attr_accessor :param
-
-  def initialize(parent, host = 'localhost')
-    @parent = parent
-    @host = host
+  def initialize(teuton_host, param)
+    @teuton_host = teuton_host
+    @parent = teuton_host.parent
+    @host = teuton_host.host
+    @param = param
   end
 
   def exists?
