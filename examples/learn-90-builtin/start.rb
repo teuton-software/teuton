@@ -10,6 +10,9 @@ group "learn-07-builtin" do
   u1 = h1.user('root')
   u1.exists?
   u1.is_member_of? 'users'
+
+  host(:host1).file('/etc').exist?
+  host(:host1).file('/etc').directory?
 end
 
 play do

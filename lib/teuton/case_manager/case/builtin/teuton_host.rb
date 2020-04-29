@@ -1,4 +1,5 @@
 
+require_relative 'teuton_file'
 require_relative 'package'
 require_relative 'service'
 require_relative 'user'
@@ -10,6 +11,10 @@ class TeutonHost
   def initialize(parent, host = 'localhost')
     @parent = parent
     @host = host
+  end
+
+  def file(param)
+    TeutonFile.new(self, param)
   end
 
   def package(param)
