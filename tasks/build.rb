@@ -15,6 +15,13 @@ namespace :build do
     system('yardoc lib/* -o html')
   end
 
+  desc 'Build docker image'
+  task :docker do
+    puts '[INFO] Building docker image...'
+    system('docker rmi dvarrui/teuton')
+    system('docker build -t dvarrui/teuton install/docker/')
+  end
+
   desc 'Build all (gem and docs)'
   task :all do
     Rake::Task['build:gem'].invoke

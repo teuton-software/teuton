@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'tasks/install'
 require_relative 'tasks/build'
+require_relative 'tasks/install'
+require_relative 'tasks/push'
 
 desc 'Default: check'
 task :default do
