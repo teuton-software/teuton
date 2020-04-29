@@ -19,4 +19,10 @@ class TeutonFile
     @parent.run "file #{@param}", on: @host
     @parent.expect @result.grep_v('cannot open').grep(@param).grep('directory').count.eq 1
   end
+
+  def regular?
+    @parent.target("File #{@param} is regular?")
+    @parent.run "file #{@param}", on: @host
+    @parent.expect @result.grep(@param).grep('directory').count.eq 0
+  end
 end

@@ -13,6 +13,7 @@ group "learn-07-builtin" do
 
   host(:host1).file('/etc').exist?
   host(:host1).file('/etc').directory?
+  host(:host1).file('/etc/hosts').regular?
 end
 
 play do
