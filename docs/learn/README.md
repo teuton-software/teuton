@@ -14,8 +14,8 @@ Learn how to use Teuton language to write your own tests:
 - [Example 04 - Use](example-04-use.md)
 - [Example 05 - Debug](example-05-debug.md)
 - [Example 06 - Log](example-06-log.md)
-- Example 07 - Preserve
-- Example 08 - Readme
+- [Example 07 - Readme](example-07-readme.md)
+- Example 08 - Preserve
 - Example 09 - Macros
 - Example 10 - Alias
 - [Example 11 - Create your first test](example-11-first-test.md)
