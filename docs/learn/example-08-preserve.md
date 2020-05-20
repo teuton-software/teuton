@@ -19,6 +19,7 @@ play do
 end
 ```
 
+> More information about [export](../dsl/execution/export.md) keyword.
 ## Result
 
 Example, executing `teuton run example/learn-08-preserve` twice:

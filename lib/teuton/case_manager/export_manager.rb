@@ -9,9 +9,18 @@ module ExportManager
   # Run export function
   # @param main_report (Report)
   # @param cases (Array)
-  # @param args (Hash) Selected export options
+  # @param input (Hash) Selected export options
   # rubocop: disable Metrics/AbcSize
-  def self.run(main_report, cases, args)
+  def self.run(main_report, cases, input)
+    args = {}
+    input.each_pair do |key, value|
+      if value.class == String
+        args[key] = value.to_sym
+      else
+        args[key] = value
+      end
+   end
+
     # default :mode=>:all, :format=>:txt
     format = args[:format] || Application.instance.default[:format]
     mode = args[:mode] || :all

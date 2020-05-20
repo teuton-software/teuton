@@ -49,3 +49,10 @@ end
 | 07 | `export :preserve => true` | Same as 01 example buy preserving report copies |
 | 08 | `export :format => :html, :preserve => true` | Same as 03 example but preserving report copies |
 | 09 | `export format: :html, preserve: true` | Same as 08 example |
+| 12 | `export format: "txt"` | Same as 02 |
+| 13 | `export format: "html"` | Same as 03 |
+| 14 | `export format: "yaml"` | Same as 04 |
+| 15 | `export format: "json"` | Same as 05 |
+| 16 | `export format: "colored_text"` | Same as 06 |
+| 17 | `export preserve: true` | Same as 07 |
+| 18 | `export format: "html", preserve: true` | Same as 08 |
