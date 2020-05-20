@@ -15,14 +15,13 @@ Create README files (with test instructions) from our test definition.
 Take a look at our test definition section (Group):
 ```ruby
 group "Customize readme output" do
-
   readme "This is our example 07."
   readme "And here we'll see how to use readme keyword"
 
   target "Create user david."
   readme "Help: you can use 'useradd' command to create users."
   readme "Remember: Only root is permitted to create new users."
-  
+
   run "id david"
   expect "david"
 
