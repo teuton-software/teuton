@@ -19,7 +19,7 @@ module ExportManager
       else
         args[key] = value
       end
-   end
+    end
 
     # default :mode=>:all, :format=>:txt
     format = args[:format] || Application.instance.default[:format]
