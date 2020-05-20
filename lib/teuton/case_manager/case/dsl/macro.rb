@@ -31,7 +31,9 @@ module DSL
   # * Invoke macro (assert)
   def method_missing(method, args = {})
     a = method.to_s
-    return instance_eval("get(:#{a[0, a.size - 1]})") if a[a.size - 1] == '?'
+    if a.start_with?('_') && a.end_with?('_')
+      return instance_eval("get(:#{a[1, a.size - 2]})")
+    end
     return macro a[6, a.size], args if a[0,6]=='macro_'
     macro a, args
   end

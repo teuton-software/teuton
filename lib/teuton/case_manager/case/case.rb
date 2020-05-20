@@ -115,7 +115,7 @@ class Case
   alias skip? skip
 
   ##
-  # Show case
+  # Show case report data on screen
   def show
     @report.show
   end

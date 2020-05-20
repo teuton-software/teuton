@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ##
-# Case class -> DSL module : log function
+# Define DSL#log function
 module DSL
   ##
   # Record log message

@@ -40,9 +40,9 @@ class CaseTest < Minitest::Test
     assert_equal params[:p1], c.get(:p1)
     assert_equal params[:p2], c.get(:p2)
     assert_equal 'demo', c.get(:tt_testname)
-    assert_equal params[:p1], c.p1?
-    assert_equal params[:p2], c.p2?
-    assert_equal 'demo', c.tt_testname?
+    assert_equal params[:p1], c._p1_
+    assert_equal params[:p2], c._p2_
+    assert_equal 'demo', c._tt_testname_
   end
 
   def test_target

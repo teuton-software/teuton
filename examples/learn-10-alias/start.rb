@@ -5,9 +5,9 @@ group "Using alias" do
   run "id #{get(:super)}"
   expect get(:super)
 
-  target "Verify user #{username?} with method alias."
-  run "id #{username?}"
-  expect username?
+  target "Verify user #{_username_} with method alias."
+  run "id #{_username_}"
+  expect _username_
 end
 
 play do
