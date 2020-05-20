@@ -1,21 +1,13 @@
 [<< back](../../README.md)
 
 1. [Description](#description)
-2. [Usage](#usage)
-3. [Example](#example)
-4. [Formats](#formats)
+2. [Example](#example)
+3. [Options](#options)
+4. [Usage](#usage)
 
 ## Description
 
 Create reports and save then into `var/TEST-NAME` folder.
-
-## Usage
-
-```ruby
-play do
-    export
-end
-```
 
 ## Example
 
@@ -35,8 +27,12 @@ play do
 end
 ```
 
+## Options
 
-## Formats
+1. **format**: txt, html, yaml. json, colored_text (txt with colors).
+2. **preserve**: true, false.
+
+## Usage
 
 |    | Command                  | Description |
 | -- | ------------------------ | ----------- |
