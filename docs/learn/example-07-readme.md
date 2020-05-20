@@ -22,6 +22,7 @@ group "Customize readme output" do
   target "Create user david."
   readme "Help: you can use 'useradd' command to create users."
   readme "Remember: Only root is permitted to create new users."
+  
   run "id david"
   expect "david"
 
