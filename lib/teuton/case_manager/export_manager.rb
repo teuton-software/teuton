@@ -10,16 +10,9 @@ module ExportManager
   # @param main_report (Report)
   # @param cases (Array)
   # @param input (Hash) Selected export options
-  # rubocop: disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize
   def self.run(main_report, cases, input)
-    args = {}
-    input.each_pair do |key, value|
-      if value.class == String
-        args[key] = value.to_sym
-      else
-        args[key] = value
-      end
-    end
+    args = strings2symbols(input)
 
     # default :mode=>:all, :format=>:txt
     format = args[:format] || Application.instance.default[:format]
@@ -36,6 +29,23 @@ module ExportManager
     preserve_files if args[:preserve] == true
   end
   # rubocop:enable Metrics/AbcSize
+
+  ##
+  # Convert Hash String values into Symbol values
+  # @param input (Hash)
+  # rubocop:disable Style/ConditionalAssignment
+  private_class_method def self.strings2symbols(input)
+    args = {}
+    input.each_pair do |key, value|
+      if value.class == String
+        args[key] = value.to_sym
+      else
+        args[key] = value
+      end
+    end
+    args
+  end
+  # rubocop:enable Style/ConditionalAssignment
 
   ##
   # Preserve output files for current project

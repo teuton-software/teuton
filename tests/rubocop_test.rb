@@ -23,7 +23,6 @@ class RubocopTest < Minitest::Test
     @files[:case_manager] << 'lib/teuton/case_manager/utils.rb'
 
     @files[:case_dsl] = []
-    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/deprecated.rb'
 #    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/expect.rb'
 #    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/getset.rb'
 #    @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/goto.rb'
