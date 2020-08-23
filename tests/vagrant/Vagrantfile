@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "teuton-debian" do |i|
+    i.vm.box = "generic/debian10"
+    i.vm.hostname = "alumno1"
+    # i.vm.synced_folder "./", "/vagrant"
+    i.vm.network "public_network", bridge: [ "wlan0" ]
+    i.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y tree vim
+      useradd alumno1 -m
+    SHELL
+    i.vm.provider "virtualbox" do |v|
+      v.name = 'teuton-debian'
+      v.memory = 2048
+    end
+  end
+end

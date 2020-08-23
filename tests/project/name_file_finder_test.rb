@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'minitest/autorun'
-require_relative '../../lib/project/name_file_finder'
-require_relative '../../lib/application'
+require_relative '../../lib/teuton/project/name_file_finder'
+require_relative '../../lib/teuton/application'
 
 # MiniTest for Project Class
 class NameFileFinderTest < Minitest::Test
@@ -14,6 +14,17 @@ class NameFileFinderTest < Minitest::Test
     NameFileFinder.find_filenames_for('tests/files/example-01.rb')
     basedir = app.running_basedir
     a = File.join(basedir, 'tests/files')
+    b = File.join(basedir, 'tests/files/example-01.rb')
+    c = File.join(basedir, 'tests/files/example-01.yaml')
+    assert_equal a, app.project_path
+    assert_equal b, app.script_path
+    assert_equal c, app.config_path
+    assert_equal 'example-01', app.test_name
+
+    # Simple mode, files exists (using absolute path)
+    basedir = app.running_basedir
+    absolute_path = File.join(basedir, 'tests/files/example-01.rb')
+    NameFileFinder.find_filenames_for(absolute_path)
     b = File.join(basedir, 'tests/files/example-01.rb')
     c = File.join(basedir, 'tests/files/example-01.yaml')
     assert_equal a, app.project_path

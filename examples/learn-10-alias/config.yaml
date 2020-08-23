@@ -1,0 +1,8 @@
+---
+:alias:
+  :super: :superuser
+:global:
+:cases:
+- :tt_members: Anonymous
+  :superuser: root
+  :username: david

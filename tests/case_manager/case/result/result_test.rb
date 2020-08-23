@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 require "minitest/autorun"
-require_relative "../../../../lib/case_manager/case/result/result"
+require_relative "../../../../lib/teuton/case_manager/case/result/result"
 
 class ResultTest < Minitest::Test
   def setup
@@ -67,25 +67,26 @@ class ResultTest < Minitest::Test
     filter1 = ['a']
     filter2 = ['a', '2']
     filter3 = ['a', '3', '4', 'd']
-    filter4 = ['a4']
-    filter5 = ['e', '5']
+    filter4 = ['3']
+    filter5 = ['11', 'd4']
     r = @result
 
+    #@content2 = [ "a12","b13","c23","d34" ]
     r.content = @content2
-    assert_equal true, r.grep(filter1).size.eq(1)
+    assert_equal true, r.grep(filter1).count.eq(1)
     assert_equal "find([\"a\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter2).size.eq(2)
+    assert_equal true, r.find(filter2).count.eq(2)
     assert_equal "find([\"a\", \"2\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter3).size.eq(4)
+    assert_equal true, r.find(filter3).count.eq(4)
     assert_equal "find([\"a\", \"3\", \"4\", \"d\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter4).size.eq(0)
-    assert_equal "find([\"a4\"]) & count", r.alterations
+    assert_equal true, r.find(filter4).count.eq(3)
+    assert_equal "find([\"3\"]) & count", r.alterations
     r.restore!
-    assert_equal true, r.find(filter5).size.eq(0)
-    assert_equal "find([\"e\", \"5\"]) & count", r.alterations
+    assert_equal true, r.find(filter5).count.eq(0)
+    assert_equal "find([\"11\", \"d4\"]) & count", r.alterations
   end
 
   def test_grep_string
@@ -241,10 +242,14 @@ class ResultTest < Minitest::Test
 
   def test_ok
     r = @result
+    assert_nil   r.exitstatus
     assert_equal false, r.ok?
-    r.ok = true
+    r.exitstatus = 0
+    assert_equal 0, r.exitstatus
     assert_equal true, r.ok?
     r.reset
+    r.exitstatus = 1
+    assert_equal 1, r.exitstatus
     assert_equal false, r.ok?
   end
 end

@@ -1,38 +1,37 @@
 
-# TEUTON (version 2.0)
- 
-_Create Unit Test for your machines.
-Test your infraestructure as code._
+[![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
 
-![logo](./docs/logo.png)
+# TEUTON (version 2.1)
 
-Intrastructure test, useful for:
+_Create Unit Test for your machines, and
+test your infraestructure as code._
+
+![logo](./docs/images/logo.png)
+
+Teuton is an intrastructure test tool, useful for:
 * Sysadmin teachers to evaluate students remote machines.
 * Sysadmin apprentices to evaluate their learning process as a game.
 * Professional sysadmin to monitor remote machines.
 
-Allow us:
-* Write test units for real or virtual machines.
-* Check that requirements are met on remote machines.
+Teuton allow us:
+* Write test units for real or virtual machines using simple DSL.
+* Check compliance with requirements on remote machines.
 
 # Documentation
 
-[Teuton 2.0 Wiki](https://github.com/teuton-software/teuton/wiki) documentation.
-* Goto [Teuton 2.1](https://github.com/teuton-software/teuton/tree/devel)
-* [Installation](https://github.com/teuton-software/teuton/wiki/Installation)
-    * [Installation scripts](https://github.com/teuton-software/teuton/wiki/Installation-using-scripts)
-* [Learning](https://github.com/teuton-software/teuton/wiki/Learning)
-    * [Quick demo](https://github.com/teuton-software/teuton/wiki/Quick-demo)
-    * [Example 01 - Target](https://github.com/teuton-software/teuton/wiki/Example-01---Target)
-* [Commands](https://github.com/teuton-software/teuton/wiki/Commands)
-* [DSL keywords](https://github.com/teuton-software/teuton/wiki/DSL-keywords)
+* [Installation](https://github.com/teuton-software/teuton/tree/devel/docs/install/README.md)
+    1. Install Ruby on your system.
+    1. `gem install teuton`
+* [Learning](https://github.com/teuton-software/teuton/tree/devel/docs/learn/README.md)
+* [Commands](https://github.com/teuton-software/teuton/tree/devel/docs/commands/README.md)
+* [Teuton language](https://github.com/teuton-software/teuton/tree/devel/docs/dsl/README.md)
 
 # Features
 
-* [Free Software License](LICENSE).
-* Multiplatform [installation](https://github.com/teuton-software/teuton/wiki/Installation).
-* Use SSH or Telnet protocol to connect to remote machines.
-* Developed using the ruby language.
+* [Free Software License](https://github.com/teuton-software/teuton/tree/devel/LICENSE).
+* Multiplatform.
+* Remote machines only require SSH or Telnet service installed.
+* Developed using ruby language.
 
 # Contact
 

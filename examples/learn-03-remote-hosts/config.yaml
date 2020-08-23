@@ -1,0 +1,24 @@
+---
+:global:
+  :host1_username: root
+  :host1_password: profesor
+:cases:
+- :tt_members: Darth Maul
+  :tt_skip: false
+  :tt_moodle_id: maul@sith.sw, darth-maul@sith.sw
+  :host1_ip: 192.168.1.201
+  :host1_hostname: siths
+  :username: maul
+- :tt_members: R2D2
+  :tt_skip: true
+  :tt_moodle_id: r2d2@robot.sw
+  :host1_ip: 192.168.1.202
+  :host1_hostname: robots
+  :username: r2d2
+- :tt_members: Obiwan Kenobi
+  :tt_moodle_id:
+    - obiwan@jedi.sw
+    - obiwan-kenobi@jedi.sw
+  :host1_ip: 192.168.1.203
+  :host1_hostname: jedis
+  :username: obiwan

@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+module CheckTeuton
+  ##
+  # Start check_teuton
+  # @param arg (String) First input argument
+  def self.start(arg)
+    show_help if arg.nil? or arg == 'help'
+    run(arg)
+  end
+
+  ##
+  # Show help
+  def self.show_help()
+    puts "check_teuton"
+    puts "  help              => Show this help"
+    puts "  PATH/TO/CASE/YAML => Read yaml for Nagios/Icinga"
+    exit 0
+  end
+
+  def self.run(filename)
+    unless File.exist?(filename)
+      puts "UNKNOWN - File not found! (#{filename})"
+      exit 3
+    end
+    data = YAML.load(File.read(filename))
+    testname = data[:config][:tt_testname]
+    grade = data[:results][:grade].to_i
+    if grade == 100
+      puts "OK - #{testname}/case-#{data[:results][:case_id]} Grade=100%"
+      exit 0
+    elsif grade < 50
+      puts "CRITICAL - #{testname}/case-#{data[:results][:case_id]} Grade=0%"
+      exit 2
+    end
+    puts "WARNING - #{testname}/case-#{data[:results][:case_id]} Grade=#{grade}%"
+    exit 1
+  end
+end
+
+CheckTeuton.start(ARGV[0])

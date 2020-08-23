@@ -1,18 +1,13 @@
 #!/usr/bin/env ruby
 
 require 'minitest/autorun'
-require_relative '../lib/application'
+require_relative '../lib/teuton/application'
 
 # MiniTest Application Class
 class ApplicationTest < Minitest::Test
   def setup
     @app = Application.instance
     @app.reset
-  end
-
-  def test_version
-    assert_equal 'teuton', @app.name
-    assert_equal '2.0.12', @app.version
   end
 
   def test_init_params
@@ -27,5 +22,16 @@ class ApplicationTest < Minitest::Test
     assert_equal true, @app.global == {}
     assert_equal [], @app.groups
     assert_equal [], @app.hall_of_fame
+  end
+
+  def test_quiet?
+    @app.verbose = false
+    assert_equal false, @app.verbose
+    assert_equal true, Application.instance.quiet?
+    @app.verbose = true
+    assert_equal true, @app.verbose
+    assert_equal false, Application.instance.quiet?
+    @app.options['quiet'] = true
+    assert_equal true, Application.instance.quiet?
   end
 end

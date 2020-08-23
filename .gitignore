@@ -1,7 +1,5 @@
-REVISE
-TO-REVISE
-var
 *.gem
-vagrant
 .yardoc
-html/*
+html
+var
+*.devel

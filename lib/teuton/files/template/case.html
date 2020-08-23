@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <title>Teuton report</title>
+  <style>
+     body{margin:0;padding:0;font-family:sans-serif;font-size:12pt}a,a:visited,body{color:#303030}#content{padding-left:50px;padding-right:50px;padding-top:30px;padding-bottom:30px}#content h1{font-size:160%;margin-bottom:10px}#footer{margin-top:100px;font-size:80%;white-space:nowrap}#footer,#footer a{color:#a0a0a0}#line-wrapping-toggle{vertical-align:middle}#label-for-line-wrapping-toggle{vertical-align:middle}ul{margin-left:0}h1,h2,h3{white-space:nowrap}h2{font-size:120%}ul.tabLinks{padding-left:0;padding-top:10px;padding-bottom:10px;overflow:auto;min-width:800px;width:auto!important;width:800px}ul.tabLinks li{float:left;height:100%;list-style:none;padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px;margin-bottom:0;-moz-border-radius:7px;border-radius:7px;margin-right:25px;border:solid 1px #d4d4d4;background-color:#f0f0f0}ul.tabLinks li:hover{background-color:#fafafa}ul.tabLinks li.selected{background-color:#00c21b;border-color:#00c21b}ul.tabLinks a{font-size:120%;display:block;outline:0;text-decoration:none;margin:0;padding:0}ul.tabLinks li h2{margin:0;padding:0}div.selected{display:block}div.deselected{display:none}div.tab table{min-width:350px;width:auto!important;width:350px;border-collapse:collapse}div.tab table,div.tab th{border-bottom:solid #d0d0d0 1px}div.tab th{text-align:left;white-space:nowrap;padding-left:6em}div.tab th:first-child{padding-left:0}div.tab td{white-space:nowrap;padding-left:6em;padding-top:5px;padding-bottom:5px}div.tab td:first-child{padding-left:0}div.tab td.numeric,div.tab th.numeric{text-align:right}span.code{display:inline-block;margin-top:0;margin-bottom:1em}span.code pre{font-size:11pt;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px;margin:0;background-color:#f7f7f7;border:solid 1px #d0d0d0;min-width:700px;width:auto!important;width:700px}span.wrapped pre{word-wrap:break-word;white-space:pre-wrap;word-break:break-all}label.hidden{display:none}div.tab td.indentPath{padding-left:3em}
+  </style>
+  <script type="text/javascript">
+    !function(e,t){"use strict";var n={};function i(e,t){e.getAttribute("className")?e.setAttribute("className",t):e.setAttribute("class",t)}function s(e){return e.getAttribute("className")?e.getAttribute("className"):e.getAttribute("class")}function r(e,t){i(e,s(e)+" "+t)}function a(e,t){i(e,s(e).replace(t,""))}function l(){var e=t.getElementById("tabs");return n.tabs=function(e){return p(e,"DIV","tab")}(e),n.titles=function(e){for(var t=[],n=0;n<e.length;n++){var i=e[n],s=p(i,"H2",null)[0];s.parentNode.removeChild(s),s.innerText?t.push(s.innerText):t.push(s.textContent)}return t}(n.tabs),n.headers=function(e){var t=p(e,"UL","tabLinks");return p(t[0],"LI",null)}(e),n.select=b,n.deselectAll=g,n.select(0),!0}function d(){return t.getElementById("line-wrapping-toggle")}function h(){for(var e=t.getElementById("tabs").getElementsByTagName("span"),n=[],i=0;i<e.length;++i)e[i].className.indexOf("code")>=0&&n.push(e[i]);return n}function c(e){for(var t=h(),n=0;n<t.length;++n)e(t[n],"wrapped")}function o(){d().checked?c(r):c(a)}function u(){if(h().length>0){var e=d(),n=t.getElementById("label-for-line-wrapping-toggle");e.onclick=o,e.checked=!1,a(n,"hidden")}}function f(){for(var e=this.id.substr(1),t=0;t<n.tabs.length;t++)if(n.tabs[t].id===e){n.select(t);break}return!1}function b(e){for(this.deselectAll(),i(this.tabs[e],"tab selected"),i(this.headers[e],"selected");this.headers[e].firstChild;)this.headers[e].removeChild(this.headers[e].firstChild);var n=t.createElement("H2");n.appendChild(t.createTextNode(this.titles[e])),this.headers[e].appendChild(n)}function g(){for(var e=0;e<this.tabs.length;e++){for(i(this.tabs[e],"tab deselected"),i(this.headers[e],"deselected");this.headers[e].firstChild;)this.headers[e].removeChild(this.headers[e].firstChild);var n=t.createElement("A");n.setAttribute("id","ltab"+e),n.setAttribute("href","#tab"+e),n.onclick=f,n.appendChild(t.createTextNode(this.titles[e])),this.headers[e].appendChild(n)}}function p(e,t,n){for(var i=[],s=e.childNodes,r=0;r<s.length;r++){var a=s.item(r);if(1===a.nodeType&&a.nodeName===t){if(n&&a.className.indexOf(n)<0)continue;i.push(a)}}return i}e.onload=function(){l(),u()}}(window,window.document);
+  </script>
+</head>
+
+<body>
+  <div id="content">
+    <h1><img title="teuton logo" alt="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAFg0lEQVQ4T23UW0yTdxgG8Pf/9UQPtIUWKJSWciiDcj4VhRoZh9iZoAJDIZuJ2wUyxS3CdMvkZmOaLFtczDJ1ajaGTBxVNEQdYRoYKBRqWTkUKAiVcmoLBaQt/aCl36LJEi94r9/8rp7nQbDDBQQEsNL2pmVa55aPURm0fNzlCiQAnIggnjIYzKZTp052t9xqmVWpVHD23Nm0J0+fKCxTlta5ubkptBOYmp162IfO+DohPUkqCheTjIZpYLAYr1+9hpHxNbNp4eH95ntnFPkKWlhUeB0JYQVeL3HJtrF0eUcwPi2pRpYi+y5DISdZzUvQ19kDVCoVZClxAICg75+ezqyU3R8+G3gmDwwJviEUC/0n9AbdJnv7ox3BDIWikC/g3GRxfDkDPVowzy4AQRAgEAVDTEIsLC1ab40Pjn0WnRT7rihcVB8RHcmYmZ4x6XWjZTuCymJlht2+cRe8XtFgvw5wFw4UKgVCJaEgkUZ4V6zLF7W92jp5bla6v79fszRWyjMZTepdcRkf7AiWV5XHmI3WO7tzFXE26xK0NNwBUZgIio+VwtTYFD6i1dVqnmou5ynz4jEfyl1xRJjI9GLmd3XHs5odwTO1ZyKfa7XNBYeUqRgJg19/vA5BIUFw6Oj7MNj/7/r44FhNf7e6IasgR8ag+9zlC3iihZfzF7raO3/YEbxy5Yqk6d7tpvyD+3ax2CxoutYIfnx/2Fe0HzRdatvMlPHT3o7eZqVSKXOTPS1MNou/Zl2p7nrc1fg2iEpLSykAQDp9+jS9uramNjo+tjI+NYE+rBkEOpMBXJ4fdLd3Gv1E4hOP6pvaD5QfiHfYN1p8GD4U74bnk7YHbW2vQVTwcUGwTW8r2qJsp3ncHnoQO9C4OD/PQyTsSEJ6EidIKIDFuQUwz5hh3bZmo3IY3w50913LKzkQRSE8LTQ6baO8+EhFWUmZGlVWVgpbB9ouLmc5i9yxiAIYADblAVovQKRLDFwaF+bNs8BmciA2Kg5IGAmM81M2p9deJwwVGtftjp+pNNrsiHqw2mKxaNDB0oMJHTZ1szefEuNH5wJGIHARm7BqWwWejgm7SOkwt2CCQH4QhAQK3+TR6XLCqHHU5rS/WmWyWGGAoVWC2G6++tPVOlRRVRWjGlCpwmXh8WWpJcD3C4Ch8WFoGLoNpG0M0tyJYDYvAofNBR6XBw6nw0uhURAiA3ppNAKTyQJeIM8zazK1X/jmfAWqqKqIURlaVYx3fOOLA/aDLFQGTVoVaNeHIIwSCmXRRWAxWwBDCCxW69bw6LA2TCJh7ZZnysbHx0nmRTNIY6ItC8vztXwavxEdLToa30p7rLLnemL2TKeAjJDCL8I/gWCRIKojADLJKYC7NgHHXRAiDNmanjE2Oh32e75+nNyc7L0VBsM4k83lGNbWVo/fvH6zCyVHJGcYsueb8UJMkjESA1KbGP5IbwOMRobCyT2QjGKhr0fzehNgf6ES1h32kRcTkyeoGFWtf6E/TkLk86ny1PaHdx58MTk5OY3kcnnSWPDLBmcplshZYgB7ggom+SpBnQB3njUTZYSlUHRDg7CFb4JCoQDP9varv/5+9Lm6U92Qsy8nd8Y4Vy2Rii51POxoA4BtlPleJtu1uVkxHW05tZFNiAjci1jPMbO/nqFFFm8sh8WJCBIEmRFCZBzH+TabbYXB8f2qv6u3PjMnM0CeIo+sv1Gvt9vty68H802wExMTA3yEzMOTjJmTHo+bI14RfM8ms5yjutFzjnWHOEQc0u92u1nL5mUZiUzCA0MCuwCRfosUSe53dnbib4/0/9VD2dnZLDqXnoU7cKp+SN+VnJacNzEx8aXLhXMFwuA+18aGYH1lXerxeHy2vR5fKp1mE4tFJTqNTvM2+B9Df2VX8nqE4QAAAABJRU5ErkJggg==" />
+    Teuton report</h1>
+    <div id="header">
+      <p><b>Test name:</b> <%= config[:tt_testname] %></p>
+      <p><b>Members:</b> <%= config[:tt_members] %></p>
+      <p><b>Grade:</b> <%= results[:grade] %></p>
+    </div>
+    <div id="tabs">
+      <ul class="tabLinks">
+        <li><a href="#tab0">Config</a></li>
+        <li><a href="#tab1">Logs</a></li>
+        <li><a href="#tab2">Groups</a></li>
+        <li><a href="#tab3">Results</a></li>
+        <li><a href="#tab4">Hall of fame</a></li>
+      </ul>
+      <div class="tab" id="tab0">
+        <h2>Config</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th class="numeric">Value</th>
+            </tr>
+          </thead>
+          <% config.each_pair do |key, value| %>
+          <tr>
+            <td><%= key.to_s %></td>
+            <td class="numeric"><%= value.to_s %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="tab" id="tab1">
+        <h2>Logs</h2>
+        <% logs.each do |line| %>
+          <p><%= line %></p>
+        <% end %>
+      </div>
+      <div class="tab" id="tab2">
+        <h2>Groups</h2>
+        <% groups.each do |group| %>
+        <h2><%= group[:title] %></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Target</th>
+              <th>Property</th>
+              <th class="numeric">Value</th>
+            </tr>
+          </thead>
+          <% group[:targets].each do |target| %>
+          <tr>
+            <td><b><%= target[:description] %></b></td>
+            <td></td>
+            <td class="numeric"></td>
+          </tr>
+            <% target.each_pair do |key, value| %>
+            <% next if key == :description %>
+            <tr>
+              <td></td>
+              <td><%= key.to_s %></td>
+              <td class="numeric"><%= value.to_s %></td>
+            </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+        </table>
+        <br/>
+      </div>
+      <div class="tab" id="tab3">
+        <h2>Results</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th class="numeric">Value</th>
+            </tr>
+          </thead>
+          <% results.each_pair do |key, value| %>
+          <tr>
+            <td><%= key.to_s %></td>
+            <td class="numeric"><%= value.to_s %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="tab" id="tab4">
+        <h2>Hall of fame</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th class="numeric">Cases</th>
+            </tr>
+          </thead>
+          <% hall_of_fame.each_pair do |key, value| %>
+          <tr>
+            <td><%= key.to_s %></td>
+            <td class="numeric"><%= value.to_s %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+      <div id="footer">
+        <p>
+          <div>
+            <label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+              <input id="line-wrapping-toggle" type="checkbox" autocomplete="off" />
+            </label>
+          </div>
+          Generated by <a href="http://github.com/teuton-software/teuton">Teuton <%= version %></a>
+          at <%= results[:finish_time] %>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

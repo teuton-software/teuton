@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'minitest/autorun'
-require_relative '../../../lib/case_manager/case/case'
+require_relative '../../../lib/teuton/case_manager/case/case'
 
 # MiniTest Case Class
 class CaseTest < Minitest::Test
@@ -36,6 +36,13 @@ class CaseTest < Minitest::Test
     assert_equal 1, c.config.running.size
     assert_equal params.size, c.config.local.size
     assert_equal @app.global.size, c.config.global.size
+
+    assert_equal params[:p1], c.get(:p1)
+    assert_equal params[:p2], c.get(:p2)
+    assert_equal 'demo', c.get(:tt_testname)
+    assert_equal params[:p1], c._p1_
+    assert_equal params[:p2], c._p2_
+    assert_equal 'demo', c._tt_testname_
   end
 
   def test_target
