@@ -1,7 +1,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
 
-# TEUTON (version 2.1)
+# TEUTON (version 2.2 devel)
 
 _Create Unit Test for your machines, and
 test your infraestructure as code._
