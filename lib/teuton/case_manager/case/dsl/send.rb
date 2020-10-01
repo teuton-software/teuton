@@ -18,6 +18,7 @@ module DSL
     ip = get((host + '_ip').to_sym)
     username = get((host + '_username').to_sym).to_s
     password = get((host + '_password').to_sym).to_s
+    port = get((host + '_port').to_sym) || 22
 
     filename = @report.filename + '.' + @report.format.to_s
     localfilepath = File.join(@report.output_dir, filename)
@@ -32,7 +33,7 @@ module DSL
 
     # Upload a file or directory to the remote host
     begin
-      Net::SFTP.start(ip, username, password: password) do |sftp|
+      Net::SFTP.start(ip, username, password: password, port: port) do |sftp|
         sftp.upload!(localfilepath, remotefilepath)
       end
       verboseln("=> [ OK  ] #{(get(:tt_members)[0,15]).ljust(16)} : #{remotefilepath}")

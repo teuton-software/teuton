@@ -68,11 +68,13 @@ class Case
     ip = @config.get((hostname + '_ip').to_sym)
     username = @config.get((hostname + '_username').to_sym).to_s
     password = @config.get((hostname + '_password').to_sym).to_s
+    port = @config.get((hostname + '_port').to_sym) || 22
     text = ''
     begin
       if @sessions[hostname].nil?
         @sessions[hostname] = Net::SSH.start(ip,
                                              username,
+                                             port: port,
                                              password: password,
                                              keepalive: true,
                                              timeout: 30,
