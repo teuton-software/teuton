@@ -8,11 +8,15 @@ require_relative 'dsl/log'
 # * run_local_cmd
 # * run_remote_cmd
 # * run_remote_cmd_ssh
+# * reconfigure_command_with_gateway
 # * run_remote_cmd_telnet
 class Case
 
   private
 
+  ##
+  # Run command on host
+  # @param host (String)
   def run_cmd_on(host)
     protocol = @config.get("#{host}_protocol".to_sym)
     ip = @config.get("#{host}_ip".to_sym)
@@ -65,10 +69,21 @@ class Case
   def run_cmd_remote_ssh(input_hostname)
     @action[:conn_type] = :ssh
     hostname = input_hostname.to_s
-    ip = @config.get((hostname + '_ip').to_sym)
-    username = @config.get((hostname + '_username').to_sym).to_s
-    password = @config.get((hostname + '_password').to_sym).to_s
-    port = @config.get((hostname + '_port').to_sym) || 22
+    ip = @config.get("#{hostname}_ip".to_sym).to_s
+    username = @config.get("#{hostname}_username".to_sym).to_s
+    password = @config.get("#{hostname}_password".to_sym).to_s
+    port = @config.get("#{hostname}_port".to_sym).to_i || 22
+
+    unless @config.get("#{hostname}_route".to_sym) == 'NODATA'
+      # Reconfigure command with gateway
+      hostname2 = @config.get("#{hostname}_route".to_sym)
+      ip2 = @config.get("#{hostname2}_ip".to_sym).to_s
+      username2 = @config.get("#{hostname2}_username".to_sym).to_s
+      password2 = @config.get("#{hostname2}_password".to_sym).to_s
+      command1 = @action[:command]
+      @action[:command] = "sshpass -p #{password2} #{username2}@#{ip2} #{command1}"
+    end
+
     text = ''
     begin
       if @sessions[hostname].nil?
@@ -81,7 +96,7 @@ class Case
                                              non_interactive: true)
       end
       if @sessions[hostname].class == Net::SSH::Connection::Session
-        text = @sessions[hostname].exec!(@action[:command].to_s)
+        text = @sessions[hostname].exec!(@action[:command])
       end
     rescue Errno::EHOSTUNREACH
       @sessions[hostname] = :nosession
@@ -113,6 +128,9 @@ class Case
     output = encode_and_split(@action[:encoding], text)
     @result.content = output
     @result.content.compact!
+  end
+
+  def reconfigure_command_with_gateway()
   end
 
   def run_cmd_remote_telnet(input_hostname)
