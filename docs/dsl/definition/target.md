@@ -2,7 +2,6 @@
 
 1. [Description](#description)
 2. [Usage](#usage)
-3. [Alias](#alias)
 4. [Weight](#weight)
 
 ## Description
@@ -18,7 +17,15 @@ target "Write here your description"
 * Define target description. Use your own words to describe it, so everybody could understand what is going to be measured.
 * This text will be shown into reports to help us understand output information easily.
 
-## Alias
+## Weight
+
+By default weight is 1.0, but it's posible specified other value:
+
+```ruby
+target "Write here your description", :weight => 2.5
+```
+
+## [DEPRECATED] Alias
 
 `goal` keyword is an alias of `target`. So it's the same:
 
@@ -30,12 +37,4 @@ or
 
 ```ruby
 goal "Write here your description"
-```
-
-## Weight
-
-By default weight is 1.0, but it's posible specified other value:
-
-```ruby
-target "Write here your description", :weight => 2.5
 ```

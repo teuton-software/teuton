@@ -50,9 +50,11 @@ goto :localhost, :execute => "id yoda"
 
 **SSH connection**
 
-Invoking `run` or `goto` sentence, Teuton opens SSH remote session by default. This config files examples do the same:
+Invoking `run` sentence, will open SSH session with remote host by default.
+This config files examples do the same:
 
-Sample 1:
+Sample 1. By default, SSH connection is established with remote host:
+
 ```
 ---
 :config:
@@ -65,7 +67,8 @@ Sample 1:
   :host1_password: secret
 ```
 
-Sample 2:
+Sample 2. `host1_protocol: ssh` force SSH connection with remote host:
+
 ```
 ---
 :config:
@@ -81,7 +84,8 @@ Sample 2:
 
 **Telnet connection**: Open Telnet remote session.
 
-For example:
+`host1_protocol: telnet` force Telnet connection with remote host:
+
 ```
 ---
 :global:
@@ -93,7 +97,9 @@ For example:
   :host1_protocol: telnet
 ```
 
-**Localhost**: When hostname is localhost, or host IP is 127.0.0.X, then Teuton will assume that you want to run your command on local system, and no session is opened. This examples are the same:
+**Localhost**: When hostname value is "localhost", or host IP is "127.0.0.X", then
+Teuton will assume that you want to run your command on local system, and no remote session is opened.
+This examples are the same:
 
 ```
 run "id david"
@@ -105,7 +111,7 @@ And
 goto :localhost, :exec => "id david"
 ```
 
-**SSH to localhost**: Force SSH session to localhost, then:
+**SSH to localhost**: Force SSH session to localhost:
 
 ```
 ---
