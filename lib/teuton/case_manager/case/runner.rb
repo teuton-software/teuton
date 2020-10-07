@@ -66,6 +66,7 @@ class Case
     end
   end
 
+  require 'pry-byebug'
   def run_cmd_remote_ssh(input_hostname)
     @action[:conn_type] = :ssh
     hostname = input_hostname.to_s
@@ -76,12 +77,16 @@ class Case
 
     unless @config.get("#{hostname}_route".to_sym) == 'NODATA'
       # Reconfigure command with gateway
-      hostname2 = @config.get("#{hostname}_route".to_sym)
-      ip2 = @config.get("#{hostname2}_ip".to_sym).to_s
-      username2 = @config.get("#{hostname2}_username".to_sym).to_s
-      password2 = @config.get("#{hostname2}_password".to_sym).to_s
-      command1 = @action[:command]
-      @action[:command] = "sshpass -p #{password2} #{username2}@#{ip2} #{command1}"
+      hostname2 = hostname
+      ip2 = ip
+      username2 = username
+      password2 = password
+      command2 = @action[:command]
+      hostname = @config.get("#{hostname}_route".to_sym)
+      ip = @config.get("#{hostname}_ip".to_sym).to_s
+      username = @config.get("#{hostname}_username".to_sym).to_s
+      password = @config.get("#{hostname}_password".to_sym).to_s
+      @action[:command] = "sshpass -p #{password2} ssh #{username2}@#{ip2} #{command2}"
     end
 
     text = ''
