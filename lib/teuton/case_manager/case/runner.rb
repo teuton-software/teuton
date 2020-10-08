@@ -86,7 +86,14 @@ class Case
       ip = @config.get("#{hostname}_ip".to_sym).to_s
       username = @config.get("#{hostname}_username".to_sym).to_s
       password = @config.get("#{hostname}_password".to_sym).to_s
-      @action[:command] = "sshpass -p #{password2} ssh #{username2}@#{ip2} #{command2}"
+      ostype = @config.get("#{hostname}_ostype".to_sym).to_s
+
+      if ostype.downcase.start_with? 'win'
+        # echo y | plink idp@2.tcp.eu.ngrok.io -ssh -P 16256 -pw idp "echo > Desktop\hola.txt"
+        @action[:command] = "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
+      else
+        @action[:command] = "sshpass -p #{password2} #{username2}@#{ip2} #{command2}"
+      end
     end
 
     text = ''
@@ -133,9 +140,6 @@ class Case
     output = encode_and_split(@action[:encoding], text)
     @result.content = output
     @result.content.compact!
-  end
-
-  def reconfigure_command_with_gateway()
   end
 
   def run_cmd_remote_telnet(input_hostname)
