@@ -7,7 +7,7 @@ require_relative 'base_formatter'
 class ArrayFormatter < BaseFormatter
   ##
   # Initialize class
-  # @param (Report) Format report data into Array
+  # @param report (Report) Format report data into Array
   def initialize(report)
     super(report)
     @data = {}

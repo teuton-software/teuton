@@ -4,7 +4,7 @@
 class BaseFormatter
   ##
   # Initialize class
-  # @param (Report) Format report data
+  # @param report (Report) Format report data
   def initialize(report)
     @head = report.head
     @lines = report.lines
