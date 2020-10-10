@@ -1,16 +1,16 @@
 [<< back](README.md)
 
-1. [Definition section](#definition-section)
-2. [Execution section](#execution-section)
-3. [Run test](#run-test)
-4. [Output reports](#output-reports)
-
 # Example: learn-01-target
 
 Let's learn how to create our first target.
 A target is a feature you want to measure or check.
 
 > This example is on GitHub repository at `examples/learn-01-target/`.
+
+1. [Definition section](#definition-section)
+2. [Execution section](#execution-section)
+3. [Run test](#run-test)
+4. [Output reports](#output-reports)
 
 ## Definition section
 

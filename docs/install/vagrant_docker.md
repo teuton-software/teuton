@@ -25,7 +25,7 @@ Second, choose:
 
 ## 2.1 Pulling docker images from remote
 
-Run this command to pull **dvarrui/teuton** image from Docker Hub and create teuton container:
+Run this command to pull **dvarrui/teuton** image from Docker Hub and create "teuton" container:
 
 `docker run --name teuton -v /home/teuton -i -t dvarrui/teuton /bin/bash`
 
