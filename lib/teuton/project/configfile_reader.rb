@@ -43,6 +43,7 @@ module ConfigFileReader
     data[:global] = data[:global] || {}
     data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
+    read_included_files!(data)
     data
   end
 
@@ -56,5 +57,12 @@ module ConfigFileReader
     data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
     data
+  end
+
+  private_class_method def self.read_included_files!(data)
+    return if data[:global][:tt_include].nil?
+
+
+    puts '[INFO] Reading included files...'
   end
 end
