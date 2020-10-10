@@ -1,8 +1,8 @@
 
 group "Demo new test" do
 
-	target "Exist </home/david> directory"
-	run "file /home/david", :on => :host1
+	target "Exist #{get(:dirname)} directory"
+	run "file #{get(:dirname)}"
 	expect_none "No such file or directory"
 
 end

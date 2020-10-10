@@ -1,5 +1,5 @@
 
-group "How to test remote Windows hosts" do
+group "Test remote Windows hosts" do
 
   target "Update hostname with #{gett(:host1_hostname)}"
   run "hostname", on: :host1

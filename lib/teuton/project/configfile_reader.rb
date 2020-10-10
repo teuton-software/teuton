@@ -62,8 +62,13 @@ module ConfigFileReader
     return if data[:global][:tt_include].nil?
 
     basedir = File.join(File.dirname(filepath), data[:global][:tt_include])
-    puts "[INFO] #{basedir}"
-
     puts '[INFO] Reading included files...'
+    puts "[INFO] #{basedir}"
+    files = Dir.glob(File.join(basedir, "**/**"))
+    files.each do |file|
+      casedata = YAML.load(File.open(file))
+      puts "* #{file}: #{casedata}"
+      data[:cases] << casedata
+    end
   end
 end
