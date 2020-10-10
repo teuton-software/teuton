@@ -9,6 +9,14 @@ require_relative 'cli/main'
 class CLI < Thor
   map ['h', '-h', '--help'] => 'help'
 
+  map ['v', '-v', '--version'] => 'version'
+  desc 'version', 'Show the program version'
+  ##
+  # Display version
+  def version
+    puts "#{Application::NAME} (version #{Application::VERSION})"
+  end
+
   map ['c', '-c', '--create', 'create'] => 'new'
   desc 'new DIRECTORY', 'Create skeleton for a new project'
   long_desc <<-LONGDESC
