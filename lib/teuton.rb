@@ -37,11 +37,4 @@ module Teuton
   def self.check(path_to_rb_file)
     Project.check(path_to_rb_file, options)
   end
-
-  ##
-  # Display Teuton version
-  def self.version
-    print Rainbow(Application::NAME).bright.blue
-    puts  ' (version ' + Rainbow(Application::VERSION).green + ')'
-  end
 end
