@@ -2,13 +2,19 @@
 
 require_relative 'base_formatter'
 
+##
 # ArrayFormatter class: format report data into an array
 class ArrayFormatter < BaseFormatter
+  ##
+  # Initialize class
+  # @param (Report) Format report data into Array
   def initialize(report)
     super(report)
     @data = {}
   end
 
+  ##
+  # Execute format action
   def process
     build_data
     w @data.to_s # Write data into ouput file
@@ -28,6 +34,8 @@ class ArrayFormatter < BaseFormatter
     @data[:config] = head
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def build_history_data
     @data[:logs] = []
     groups = []
@@ -46,7 +54,8 @@ class ArrayFormatter < BaseFormatter
         end
 
         target = {}
-        target[:target_id]   = format('%02d', i[:id])
+        # target[:target_id]   = format('%02d', i[:id])
+        target[:target_id]   = format('%<id>02d', id: i[:id])
         target[:check]       = i[:check]
         target[:score]       = value
         target[:weight]      = i[:weight]
@@ -66,6 +75,8 @@ class ArrayFormatter < BaseFormatter
     groups << { title: title, targets: targets } unless title.nil?
     @data[:groups] = groups
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   def build_final_data
     tail = {}
@@ -77,6 +88,7 @@ class ArrayFormatter < BaseFormatter
     app = Application.instance
     @data[:hall_of_fame] = {}
     return if app.options[:case_number] < 3
+
     fame = {}
     app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
     @data[:hall_of_fame] = fame
