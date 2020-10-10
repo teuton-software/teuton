@@ -3,8 +3,9 @@
 require 'rainbow'
 require_relative '../application'
 
-# Project:
-# * find_filenames_for, verbose, verboseln
+##
+# NameFileFinder module
+# Methods: find_filenames_for, verbose, verboseln
 module NameFileFinder
   ##
   # Find project filenames from input project relative path
