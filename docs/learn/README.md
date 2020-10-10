@@ -11,14 +11,14 @@ Learn how to use Teuton language to write your own tests:
 - [Example 01 - Target](example-01-target.md)
 - [Example 02 - Config file](example-02-config.md)
 - [Example 03 - Remote hosts](example-03-remote-hosts.md)
-- [Example 04 - Use](example-04-use.md)
-- [Example 05 - Debug](example-05-debug.md)
-- [Example 06 - Log](example-06-log.md)
-- [Example 07 - Readme](example-07-readme.md)
-- [Example 08 - Preserve](example-08-preserve.md)
-- Example 09 - Macros
-- Example 10 - Alias
-- [Example 11 - Create your first test](example-11-first-test.md)
+- [Example 04 - Create new test](example-04-new-test.md)
+- [Example 05 - Use](example-05-use.md)
+- [Example 06 - Debug](example-06-debug.md)
+- [Example 07 - Log](example-07-log.md)
+- [Example 08 - Readme](example-08-readme.md)
+- [Example 09 - Preserve](example-09-preserve.md)
+- Example 10 - Macros
+- Example 11 - Alias
 - [Videos](videos.md)
 
 # Examples

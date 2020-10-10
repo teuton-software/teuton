@@ -4,7 +4,6 @@ require 'yaml'
 require 'json/pure'
 
 ##
-# ConfigFileReader module
 # Functions that read data from ConfigFile using YAML or JSON formats
 module ConfigFileReader
   ##
@@ -43,7 +42,7 @@ module ConfigFileReader
     data[:global] = data[:global] || {}
     data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
-    read_included_files!(data)
+    read_included_files!(filepath, data)
     data
   end
 
@@ -59,9 +58,11 @@ module ConfigFileReader
     data
   end
 
-  private_class_method def self.read_included_files!(data)
+  private_class_method def self.read_included_files!(filepath, data)
     return if data[:global][:tt_include].nil?
 
+    basedir = File.join(File.dirname(filepath), data[:global][:tt_include])
+    puts "[INFO] #{basedir}"
 
     puts '[INFO] Reading included files...'
   end

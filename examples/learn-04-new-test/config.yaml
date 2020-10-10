@@ -1,0 +1,10 @@
+---
+:global:
+  :host1_username: root
+:cases:
+- :tt_members: student-name-01
+  :host1_ip: 1.1.1.1
+  :host1_password: root-password-student-01
+- :tt_members: student-name-02
+  :host1_ip: 2.2.2.2
+  :host1_password: root-password-student-02

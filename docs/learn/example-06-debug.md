@@ -1,24 +1,24 @@
 
 [<< back](README.md)
 
-1. [Tree directory](#tree-directory)
-2. [Execution section](#execution-section)
-3. [Check test](#check-test)
-4. [Debug](#debug)
+# Example: learn-06-debug
 
-# Example: learn-05-debug
+> This example is on GitHub repository at `examples/learn-06-debug`.
 
 Learn how to:
 * Check test syntax.
 * Debug your tests.
 
-> This example is on GitHub repository at `examples/learn-05-debug`.
+1. [Tree directory](#tree-directory)
+2. [Execution section](#execution-section)
+3. [Check test](#check-test)
+4. [Debug](#debug)
 
 ## Tree directory
 
 ```bash
-$ tree learn/learn-05-debug
-example/learn-05-debug
+$ tree learn/learn-06-debug
+example/learn-06-debug
 ├── config.yaml
 ├── external.rb
 ├── internal.rb

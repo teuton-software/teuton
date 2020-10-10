@@ -1,17 +1,17 @@
 [<< back](README.md)
 
-1. [Tree directory](#tree-directory)
-2. [Execution section](#execution-section)
-3. [Users file](#users-file)
-4. [Network file](#network-file)
+# Example: learn-05-use
 
-# Example: learn-04-use
+> This example is on GitHub repository at `examples/learn-05-use`.
 
 Learn how to:
 * Organize huge amount of groups/targets into several files.
 * Checking Windows OS infrastructure (host1).
 
-> This example is on GitHub repository at `examples/learn-04-use`.
+1. [Tree directory](#tree-directory)
+2. [Execution section](#execution-section)
+3. [Users file](#users-file)
+4. [Network file](#network-file)
 
 ## Tree directory
 

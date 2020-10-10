@@ -1,18 +1,18 @@
 [<< back](README.md)
 
-1. [Config file](#config-file)
-2. [Definition section](#definition-section).
-3. [Execution section](#execution-section).
-4. [Results](#results).
-
 # Example: learn-03-remote-hosts
 
-This example is on GitHub repository at `examples/learn-03-remote-hosts`.
+> This example is on GitHub repository at `examples/learn-03-remote-hosts`.
 
 Summary:
 * Check a group of remote hosts.
 * Export reports using other output formats.
 * Checking remote machine (host1) with Windows OS.
+
+1. [Config file](#config-file)
+2. [Definition section](#definition-section).
+3. [Execution section](#execution-section).
+4. [Results](#results).
 
 ## Config file
 

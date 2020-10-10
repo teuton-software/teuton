@@ -1,14 +1,14 @@
 [<< back](README.md)
 
-1. [Definition section](#definition-section)
-2. [Run test](#execution-section)
-3. [Result](#result)
+# Example: learn-07-log
 
-# Example: learn-06-log
+> This example is on GitHub repository at `examples/learn-06-log/`.
 
 Let's learn how to create log messages.
 
-> This example is on GitHub repository at `examples/learn-06-log/`.
+1. [Definition section](#definition-section)
+2. [Run test](#execution-section)
+3. [Result](#result)
 
 ## Definition section
 
@@ -29,7 +29,7 @@ end
 
 ## Result
 
-**Let's see example**: Content of `var/learn-06-log/case-01.txt` file.
+**Let's see example**: Content of `var/learn-07-log/case-01.txt` file.
 
 ```bash
 CONFIGURATION
@@ -37,7 +37,7 @@ CONFIGURATION
 | tt_members  | anonymous    |
 | tt_sequence | false        |
 | tt_skip     | false        |
-| tt_testname | learn-06-log |
+| tt_testname | learn-07-log |
 +-------------+--------------+
 
 LOGS

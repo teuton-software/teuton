@@ -1,21 +1,21 @@
 [<< back](README.md)
 
-1. [Definition section](#definition-section)
-2. [Execute command](#execute-command)
-3. [Result](#result)
-
 # Example: learn-07-readme
+
+> This example is on GitHub repository at `examples/learn-08-readme/`.
 
 Create README files (with test instructions) from our test definition.
 
-> This example is on GitHub repository at `examples/learn-07-readme/`.
+1. [Definition section](#definition-section)
+2. [Execute command](#execute-command)
+3. [Result](#result)
 
 ## Definition section
 
 Take a look at our test definition section (Group):
 ```ruby
 group "Customize readme output" do
-  readme "This is our example 07."
+  readme "This is our README example."
   readme "And here we'll see how to use readme keyword"
 
   target "Create user david."
@@ -37,19 +37,19 @@ There exists some `readme` instructions after `group` and `target` lines.
 To generate automatically a README file from previous test, execute this:
 
 ```
-teuton readme example/learn-07-readme > example/learn-07-readme/README.md
+teuton readme example/learn-08-readme > example/learn-08-readme/README.md
 ```
 
 ## Result
 
-**Let's see the output**: Content of `example/learn-07-readme/README.md` file.
+**Let's see the output**: Content of `example/learn-08-readme/README.md` file.
 
 ---
-# learn-07-readme
+# learn-08-readme
 
 ## Customize readme output
 
-This is our example 07.
+This is our README example.
 And here we'll see how to use readme keyword
 
 Go to [LOCALHOST](#required-hosts) host, and do next:

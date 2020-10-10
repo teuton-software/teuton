@@ -2,10 +2,10 @@
 
 # Example: learn-01-target
 
+> This example is on GitHub repository at `examples/learn-01-target/`.
+
 Let's learn how to create our first target.
 A target is a feature you want to measure or check.
-
-> This example is on GitHub repository at `examples/learn-01-target/`.
 
 1. [Definition section](#definition-section)
 2. [Execution section](#execution-section)
