@@ -3,11 +3,14 @@
 require 'yaml'
 require 'json/pure'
 
-# Functions that read data from ConfigFile using formats YAML and JSON
-# * read
-# * read_yaml
-# * read_json
+##
+# ConfigFileReader module
+# Functions that read data from ConfigFile using YAML or JSON formats
 module ConfigFileReader
+  ##
+  # Read config file
+  # @param filepath (String) Path to config file
+  # @return Hash with config data
   def self.read(filepath)
     unless File.exist?(filepath)
       data = {}
@@ -23,6 +26,10 @@ module ConfigFileReader
     raise "[ERROR] ConfigFileReader: #{filepath}"
   end
 
+  ##
+  # Read YAML config file
+  # @param filepath (String) Path to YAML config file
+  # @return Hash with config data
   def self.read_yaml(filepath)
     begin
       data = YAML.load(File.open(filepath))
@@ -39,6 +46,10 @@ module ConfigFileReader
     data
   end
 
+  ##
+  # Read JSON config file
+  # @param filepath (String) Path to JSON config file
+  # @return Hash with config data
   def self.read_json(filepath)
     data = JSON.parse(File.read(filepath), symbolize_names: true)
     data[:global] = data[:global] || {}
