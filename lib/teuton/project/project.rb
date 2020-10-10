@@ -3,12 +3,7 @@
 require_relative '../application'
 require_relative 'name_file_finder'
 
-# Project functions invoked by CLI project tool
-# * test
-# * play
-# * process_input_case_option
-# * readme
-# * require_dsl_and_script
+# Project module: functions invoked by CLI project tool
 module Project  ##
   ##
   # Check teuton test syntax
@@ -43,7 +38,7 @@ module Project  ##
   # Preprocess input options:
   # * Convert input case options String to an Array of integers
   # * Read color input option
-  def self.process_input_options
+  private_class_method def self.process_input_options
     options = Application.instance.options
     options['color'] = true if options['color'].nil?
     Rainbow.enabled = options['color']
@@ -67,7 +62,7 @@ module Project  ##
     readme.show
   end
 
-  def self.require_dsl_and_script(dslpath)
+  private_class_method def self.require_dsl_and_script(dslpath)
     app = Application.instance
     require_relative dslpath
     begin

@@ -3,13 +3,7 @@
 require 'fileutils'
 require 'rainbow'
 
-# Skeleton class
-# * create
-# * create_main_dir_and_files
-# * create_assets_dir_and_files
-# * create_dir
-# * create_dirs
-# * copyfile
+# Skeleton module
 module Skeleton
   ##
   # Create teuton project skeleton
