@@ -1,6 +1,5 @@
 require 'thor'
 require_relative 'application'
-require_relative 'project/project'
 require_relative 'skeleton.rb'
 require_relative 'cli/main'
 
