@@ -9,6 +9,7 @@ class RubocopTest < Minitest::Test
 
     @files[:lib] = []
     @files[:lib] << 'lib/teuton/application.rb'
+    @files[:lib] << 'lib/teuton/skeleton.rb'
 
     @files[:case] = []
     @files[:case] << 'lib/teuton/case_manager/case/close.rb'
@@ -45,7 +46,6 @@ class RubocopTest < Minitest::Test
 #    @files[:project] << 'lib/teuton/project/config_file_reader.rb'
 #    @files[:project] << 'lib/teuton/project/name_file_finder.rb'
 #    @files[:project] << 'lib/teuton/project/project.rb'
-#    @files[:project] << 'lib/teuton/project/skeleton.rb'
 
     @files[:rake] = []
     @files[:rake] << 'Rakefile'

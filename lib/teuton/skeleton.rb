@@ -54,6 +54,7 @@ module Skeleton
   # Copy file
   # @param source (String) Source file
   # @param dest (String) Dest file
+  # rubocop:disable Metrics/MethodLength
   private_class_method def self.copyfile(source, dest)
     if File.exist? dest
       puts "* Exists file!      => #{Rainbow(dest).yellow}"
@@ -67,4 +68,5 @@ module Skeleton
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end

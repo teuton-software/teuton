@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../project/project'
+
 # CLI#test
 class CLI < Thor
   map ['t', '-t', '--test', 'test'] => 'check'

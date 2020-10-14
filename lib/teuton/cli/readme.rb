@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../project/project'
+
 # CLI#readme
 class CLI < Thor
   map ['--readme'] => 'readme'
