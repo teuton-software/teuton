@@ -58,6 +58,10 @@ module ConfigFileReader
     data
   end
 
+  ##
+  # Read all configuration files from "filepath" folder.
+  # @param filepath (String) Folder with config files
+  # @param data (Hash) Input configuration
   private_class_method def self.read_included_files!(filepath, data)
     return if data[:global][:tt_include].nil?
 

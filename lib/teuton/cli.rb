@@ -36,6 +36,8 @@ class CLI < Thor
     play(method.to_s)
   end
 
+  ##
+  # Respond to missing methods name
   def respond_to_missing?(method_name, include_private = false)
     super
   end
