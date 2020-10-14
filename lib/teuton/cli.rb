@@ -21,10 +21,6 @@ class CLI < Thor
   desc 'new DIRECTORY', 'Create skeleton for a new project'
   long_desc <<-LONGDESC
   Create files for a new project.
-
-  Example:
-
-  #{$PROGRAM_NAME} create dir/foo
   LONGDESC
   ##
   # Command: create new Teuton project

@@ -20,7 +20,7 @@ module Skeleton
   # Create main dir and files
   # @param project_dir (String)
   # @param source_basedir (String)
-  def self.create_main_dir_and_files(project_dir, source_basedir)
+  private_class_method def self.create_main_dir_and_files(project_dir, source_basedir)
     # Directory and files: Ruby script, Configfile, gitignore
     items = [
       { source: 'files/config.yaml', target: 'config.yaml' },
@@ -37,7 +37,7 @@ module Skeleton
   ##
   # Create dir
   # @param dirpath (String)
-  def self.create_dir(dirpath)
+  private_class_method def self.create_dir(dirpath)
     if Dir.exist? dirpath
       puts "* Exists dir!       => #{Rainbow(dirpath).yellow}"
     else
@@ -51,17 +51,10 @@ module Skeleton
   end
 
   ##
-  # Create dirs
-  # @param args (Array)
-  def self.create_dirs(*args)
-    args.each { |arg| create_dir arg }
-  end
-
-  ##
   # Copy file
   # @param source (String) Source file
   # @param dest (String) Dest file
-  def self.copyfile(source, dest)
+  private_class_method def self.copyfile(source, dest)
     if File.exist? dest
       puts "* Exists file!      => #{Rainbow(dest).yellow}"
     else
