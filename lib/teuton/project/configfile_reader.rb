@@ -39,6 +39,7 @@ module ConfigFileReader
       puts "        #{e.message}\n" + ('=' * 80)
       raise "[ERROR] ConfigFileReader <#{e}>"
     end
+    # string_keys_to_symbol!(data)
     data[:global] = data[:global] || {}
     data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
@@ -69,4 +70,17 @@ module ConfigFileReader
     files = Dir.glob(File.join(basedir, "**/**"))
     files.each { |file| data[:cases] << YAML.load(File.open(file)) }
   end
+
+#  private_class_method def self.string_keys_to_symbol!(data)
+#    output = data.dup
+#    puts data
+#    data.each_pair do |key, value|
+#      if key.class == String
+#        output[key.to_sym] == value
+#        #output.delete(key)
+#      end
+#    end
+#    data = output
+#    puts data
+#  end
 end
