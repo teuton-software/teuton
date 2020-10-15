@@ -11,7 +11,7 @@ module Skeleton
   def self.create(project_dir)
     project_name = File.basename(project_dir)
     puts "\n[INFO] Creating #{Rainbow(project_name).bright} project skeleton"
-    source_basedir = File.join(File.dirname(__FILE__), '..')
+    source_basedir = File.dirname(__FILE__)
     create_dir project_dir
     create_main_dir_and_files(project_dir, source_basedir)
   end
