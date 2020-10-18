@@ -10,7 +10,7 @@ module Project  ##
   # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
   def self.check(projectpath, options)
-    Application.instance.options.merge! options
+    Application.instance.add_input_options options
     NameFileFinder.find_filenames_for(projectpath)
     NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('laboratory/laboratory') # Define DSL keywords
@@ -27,25 +27,10 @@ module Project  ##
   # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
   def self.play(projectpath, options)
-    Application.instance.options.merge! options
-    process_input_options
+    Application.instance.add_input_options options
     NameFileFinder.find_filenames_for(projectpath)
     NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
-  end
-
-  ##
-  # Preprocess input options:
-  # * Convert input case options String to an Array of integers
-  # * Read color input option
-  private_class_method def self.process_input_options
-    options = Application.instance.options
-    options['color'] = true if options['color'].nil?
-    Rainbow.enabled = options['color']
-    return if options['case'].nil?
-
-    a = options['case'].split(',')
-    options['case'] = a.collect!(&:to_i)
   end
 
   ##
@@ -53,7 +38,7 @@ module Project  ##
   # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
   def self.readme(projectpath, options)
-    Application.instance.options.merge! options
+    Application.instance.add_input_options options
     NameFileFinder.find_filenames_for(projectpath)
     require_dsl_and_script('readme/readme') # Define DSL keywords
 

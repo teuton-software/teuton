@@ -71,4 +71,18 @@ class Application
 
     false
   end
+
+  ##
+  # Preprocess input options:
+  # * Convert input case options String to an Array of integers
+  # * Read color input option
+  def add_input_options(input)
+    @options.merge! input
+    @options['color'] = true if @options['color'].nil?
+    Rainbow.enabled = @options['color']
+    return if @options['case'].nil?
+
+    a = @options['case'].split(',')
+    @options['case'] = a.collect!(&:to_i)
+  end
 end
