@@ -72,6 +72,8 @@ module ConfigFileReader
   end
 
   private_class_method def self.convert_string_keys_to_symbol(input)
+    return input if input.class != Hash
+
     output = {}
     input.each_pair do |key, value|
       key2 = key
@@ -79,7 +81,7 @@ module ConfigFileReader
       value2 = value
       if value.class == Hash
         value2 = convert_string_keys_to_symbol(value)
-      elsif value.class == Array && key == :cases
+      elsif value.class == Array && key2 == :cases
         value2 = []
         value.each { |i| value2 << convert_string_keys_to_symbol(i) }
       end
