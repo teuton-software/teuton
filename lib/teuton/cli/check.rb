@@ -5,7 +5,7 @@ require_relative '../project/project'
 # CLI#test
 class CLI < Thor
   map ['t', '-t', '--test', 'test'] => 'check'
-  option :c, type: :boolean
+  option :panel, type: :boolean
   option :cname, type: :string
   option :cpath, type: :string
   desc 'check [OPTIONS] DIRECTORY',
@@ -15,19 +15,13 @@ class CLI < Thor
   (1) teuton check path/to/dir/foo
   , Test content of start.rb and config.yaml files.
 
-  (2) teuton check path/to/dir/foo -c
-  , Only test CONFIG information from config.yaml.
-
-  (3) teuton check path/to/dir/foo --cname=demo
+  (2) teuton check path/to/dir/foo --cname=demo
   , Test content of start.rb and demo.yaml files.
 
-  (4) teuton check path/to/file/foo.rb
+  (3) teuton check path/to/file/foo.rb
   , Test content of foo.rb and foo.yaml files.
 
-  (5) teuton check path/to/file/foo.rb -c
-  , Only test CONFIG information from foo.yaml.
-
-  (6) teuton check path/to/file/foo.rb --cname=demo
+  (4) teuton check path/to/file/foo.rb --cname=demo
   , Test content of foo.rb and demo.yaml files.
 
   LONGDESC

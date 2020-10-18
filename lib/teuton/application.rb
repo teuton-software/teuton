@@ -80,6 +80,7 @@ class Application
     @options.merge! input
     @options['color'] = true if @options['color'].nil?
     Rainbow.enabled = @options['color']
+    @options['panel'] = false if @options['panel'].nil?
     return if @options['case'].nil?
 
     a = @options['case'].split(',')

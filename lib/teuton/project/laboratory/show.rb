@@ -58,20 +58,6 @@ class Laboratory
     revise_config_content
   end
 
-#  def show_requests
-#    @verbose = false
-#    process_content
-#    @verbose = true
-#    my_screen_table = Terminal::Table.new do |st|
-#      st.add_row ['Lines', 'REQUEST description']
-#      st.add_separator
-#      @requests.each_with_index do |line, index|
-#        st.add_row ['%03d' % index, line]
-#      end
-#    end
-#    verboseln my_screen_table
-#  end
-
   private
 
   def verbose(text)
@@ -84,14 +70,16 @@ class Laboratory
 
   def process_content
     groups = Application.instance.groups
-    verboseln ''
+    option = Application.instance.options
+
+    verboseln '' unless option[:panel]
     groups.each do |t|
       @stats[:groups] += 1
-
-      msg = "GROUP: #{t[:name]}"
-      my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
-      verboseln my_screen_table
-
+      unless option[:panel]
+        msg = "GROUP: #{t[:name]}"
+        my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
+        verboseln my_screen_table
+      end
       instance_eval(&t[:block])
     end
   end

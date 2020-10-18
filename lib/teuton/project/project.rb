@@ -4,7 +4,7 @@ require_relative '../application'
 require_relative 'name_file_finder'
 
 # Project module: functions invoked by CLI project tool
-module Project  ##
+module Project
   ##
   # Check teuton test syntax
   # @param projectpath (String) Path to teuton test
@@ -12,14 +12,13 @@ module Project  ##
   def self.check(projectpath, options)
     Application.instance.add_input_options options
     NameFileFinder.find_filenames_for(projectpath)
-    NameFileFinder.puts_input_info_on_screen
+    # NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('laboratory/laboratory') # Define DSL keywords
 
     app = Application.instance
     lab = Laboratory.new(app.script_path, app.config_path)
-    # lab.show_requests if options[:r]
-    lab.show_config if options[:c]
-    lab.show_dsl unless options[:r] || options[:c]
+    lab.show_config if options[:panel]
+    lab.show_dsl unless options[:panel]
   end
 
   ##
@@ -29,7 +28,7 @@ module Project  ##
   def self.play(projectpath, options)
     Application.instance.add_input_options options
     NameFileFinder.find_filenames_for(projectpath)
-    NameFileFinder.puts_input_info_on_screen
+    # NameFileFinder.puts_input_info_on_screen
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
 
