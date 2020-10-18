@@ -81,7 +81,7 @@ module ConfigFileReader
       value2 = value
       if value.class == Hash
         value2 = convert_string_keys_to_symbol(value)
-      elsif value.class == Array && key2 == :cases
+      elsif value.class == Array
         value2 = []
         value.each { |i| value2 << convert_string_keys_to_symbol(i) }
       end
