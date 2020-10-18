@@ -9,6 +9,7 @@ class RubocopTest < Minitest::Test
 
     @files[:lib] = []
     @files[:lib] << 'lib/teuton/application.rb'
+    @files[:lib] << 'lib/teuton/cli.rb'
     @files[:lib] << 'lib/teuton/skeleton.rb'
 
     @files[:case] = []
@@ -64,9 +65,9 @@ class RubocopTest < Minitest::Test
     @files[:report] << 'lib/teuton/report/formatter/yaml_formatter.rb'
 
     @files[:result] = []
-#    @files[:result] << 'lib/teuton/case_manager/case/result/result.rb'
+    @files[:result] << 'lib/teuton/case_manager/case/result/result.rb'
     @files[:result] << 'lib/teuton/case_manager/case/result/ext_array.rb'
-#    @files[:result] << 'lib/teuton/case_manager/case/result/ext_compare.rb'
+    @files[:result] << 'lib/teuton/case_manager/case/result/ext_compare.rb'
     @files[:result] << 'lib/teuton/case_manager/case/result/ext_filter.rb'
   end
 

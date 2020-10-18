@@ -44,7 +44,7 @@ class Result
     print " [DEBUG] count=#{@content.count} "
     puts '*' * 20
     @content.each_with_index do |item, index|
-      puts format('%2d: %s', index, item)
+      puts format('%<index>2d: %<item>s', { index: index, item: item })
     end
     puts '*' * 57
   end

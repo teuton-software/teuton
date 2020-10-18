@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 # This is an extension of Result class
+# rubocop:disable Metrics/ClassLength
 class Result
+  # rubocop:disable Metrics/MethodLength
+  # Return true when content is equal than input
+  # @param input (Object)
   def eq(input)
     @expected = input
 
@@ -21,11 +25,13 @@ class Result
     end
     value == input
   end
+  # rubocop:enable Metrics/MethodLength
   alias eq?        eq
   alias equal      eq
   alias equal?     eq
   alias is_equal?  eq
 
+  # rubocop:disable Metrics/MethodLength
   def neq(external)
     @expected = "Not equal to #{external}"
 
@@ -43,10 +49,12 @@ class Result
     end
     internal != external
   end
+  # rubocop:enable Metrics/MethodLength
   alias neq?       neq
   alias not_equal  neq
   alias not_equal? neq
 
+  # rubocop:disable Metrics/MethodLength
   def ge(input)
     @expected = "Greater or equal to #{input}"
     return false if @content.nil? || @content[0].nil?
@@ -64,9 +72,11 @@ class Result
     end
     value >= input
   end
+  # rubocop:enable Metrics/MethodLength
   alias greater_or_equal  ge
   alias greater_or_equal? ge
 
+  # rubocop:disable Metrics/MethodLength
   def gt(input)
     @expected = "Greater than #{input}"
     return false if @content.nil? || @content[0].nil?
@@ -84,9 +94,11 @@ class Result
     end
     value > input
   end
+  # rubocop:enable Metrics/MethodLength
   alias greater          gt
   alias greater_than     gt
 
+  # rubocop:disable Metrics/MethodLength
   def le(input)
     @expected = "Lesser or equal to #{input}"
 
@@ -105,9 +117,11 @@ class Result
     end
     value <= input
   end
+  # rubocop:enable Metrics/MethodLength
   alias lesser_or_equal  le
   alias lesser_or_equal? le
 
+  # rubocop:disable Metrics/MethodLength
   def lt(input)
     @expected = "Lesser than #{input}"
     return false if @content.nil? || @content[0].nil?
@@ -125,6 +139,7 @@ class Result
     end
     value < input
   end
+  # rubocop:enable Metrics/MethodLength
   alias lesser  lt
   alias smaller lt
   alias lesser_than lt
@@ -145,3 +160,4 @@ class Result
   alias near? near_to?
   alias near near_to?
 end
+# rubocop:enable Metrics/ClassLength
