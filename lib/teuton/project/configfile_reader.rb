@@ -71,7 +71,6 @@ module ConfigFileReader
     files.each { |file| data[:cases] << YAML.load(File.open(file)) }
   end
 
-require 'pry-byebug'
   private_class_method def self.convert_string_keys_to_symbol(input)
     output = {}
     input.each_pair do |key, value|
@@ -80,7 +79,7 @@ require 'pry-byebug'
       value2 = value
       if value.class == Hash
         value2 = convert_string_keys_to_symbol(value)
-      elsif value.class == Array
+      elsif value.class == Array && key == :cases
         value2 = []
         value.each { |i| value2 << convert_string_keys_to_symbol(i) }
       end
