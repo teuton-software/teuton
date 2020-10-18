@@ -9,10 +9,10 @@ class CLI < Thor
   option :cname, type: :string
   option :cpath, type: :string
   desc 'check [OPTIONS] DIRECTORY',
-       'Test or check challenge contents'
+       'Test or check test content'
   long_desc <<-LONGDESC
 
-  (1) teuton test path/to/dir/foo
+  (1) teuton check path/to/dir/foo
   , Test content of start.rb and config.yaml files.
 
   (2) teuton check path/to/dir/foo -c
