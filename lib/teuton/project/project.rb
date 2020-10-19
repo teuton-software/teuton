@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../application'
-require_relative 'name_file_finder'
 
 # Project module: functions invoked by CLI project tool
 module Project
@@ -10,9 +9,7 @@ module Project
   # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
   def self.check(projectpath, options)
-    Application.instance.add_input_options options
-    NameFileFinder.find_filenames_for(projectpath)
-    # NameFileFinder.puts_input_info_on_screen
+    Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script('laboratory/laboratory') # Define DSL keywords
 
     app = Application.instance
@@ -26,9 +23,7 @@ module Project
   # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
   def self.play(projectpath, options)
-    Application.instance.add_input_options options
-    NameFileFinder.find_filenames_for(projectpath)
-    # NameFileFinder.puts_input_info_on_screen
+    Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script('../case_manager/dsl') # Define DSL keywords
   end
 
@@ -37,8 +32,7 @@ module Project
   # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
   def self.readme(projectpath, options)
-    Application.instance.add_input_options options
-    NameFileFinder.find_filenames_for(projectpath)
+    Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script('readme/readme') # Define DSL keywords
 
     app = Application.instance

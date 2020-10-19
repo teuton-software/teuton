@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'singleton'
+require_relative 'project/name_file_finder'
 
 # This Singleton contains application params
 class Application
@@ -76,8 +77,9 @@ class Application
   # Preprocess input options:
   # * Convert input case options String to an Array of integers
   # * Read color input option
-  def add_input_options(input)
-    @options.merge! input
+  def add_input_params(projectpath, options)
+    NameFileFinder.find_filenames_for(projectpath)
+    @options.merge! options
     @options['color'] = true if @options['color'].nil?
     Rainbow.enabled = @options['color']
     @options['panel'] = false if @options['panel'].nil?
