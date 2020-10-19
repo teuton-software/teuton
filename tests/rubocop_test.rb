@@ -46,7 +46,7 @@ class RubocopTest < Minitest::Test
 #    @files[:project] << 'lib/teuton/project/readme/dsl.rb'
 #    @files[:project] << 'lib/teuton/project/readme/readme.rb'
 #    @files[:project] << 'lib/teuton/project/config_file_reader.rb'
-#    @files[:project] << 'lib/teuton/project/name_file_finder.rb'
+    @files[:project] << 'lib/teuton/project/name_file_finder.rb'
 #    @files[:project] << 'lib/teuton/project/project.rb'
 
     @files[:rake] = []

@@ -77,6 +77,7 @@ class Application
   # Preprocess input options:
   # * Convert input case options String to an Array of integers
   # * Read color input option
+  # rubocop:disable Metrics/AbcSize
   def add_input_params(projectpath, options)
     NameFileFinder.find_filenames_for(projectpath)
     @options.merge! options
@@ -88,4 +89,5 @@ class Application
     a = @options['case'].split(',')
     @options['case'] = a.collect!(&:to_i)
   end
+  # rubocop:enable Metrics/AbcSize
 end
