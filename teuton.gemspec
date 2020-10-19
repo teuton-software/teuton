@@ -28,9 +28,7 @@ Gem::Specification.new do |s|
 
   s.executables << 'teuton'
   s.executables << 'check_teuton'
-  s.files       = Dir.glob(File.join('lib','**','*.rb')) +
-                  [ File.join('lib','teuton','files','gitignore') ] +
-                  Dir.glob(File.join('lib','teuton','files','**', '*.*'))
+  s.files       = Dir.glob(File.join('lib', '**', '*.*'))
 
   s.required_ruby_version = '>= 2.5.0'
 
@@ -44,6 +42,4 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'minitest', '~> 5.11'
   s.add_development_dependency 'rubocop', '~> 0.74'
-
-  s.post_install_message = "Thanks for installing!"
 end
