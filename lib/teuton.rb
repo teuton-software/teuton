@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'teuton/application'
 require_relative 'teuton/project/project'
-require_relative 'teuton/project/skeleton'
+require_relative 'teuton/skeleton'
 
 ##
 # Main Teuton functions
@@ -15,11 +17,6 @@ module Teuton
   # Play (run) Teuton project.
   # @param path_to_rb_file [String] Path to main rb file.
   # @param options [Hash] Options like
-  # * :export [String]
-  # * :cname [String]
-  # * :cpath [String]
-  # * :case [String]
-  # * :quiet [Boolean]
   def self.play(path_to_rb_file, options = {})
     Project.play(path_to_rb_file, options)
   end

@@ -8,6 +8,7 @@ class RubocopTest < Minitest::Test
     @files = {}
 
     @files[:lib] = []
+    @files[:lib] << 'lib/teuton.rb'
     @files[:lib] << 'lib/teuton/application.rb'
     @files[:lib] << 'lib/teuton/cli.rb'
     @files[:lib] << 'lib/teuton/skeleton.rb'
