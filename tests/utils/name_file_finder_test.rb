@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'minitest/autorun'
-require_relative '../../lib/teuton/project/name_file_finder'
+require_relative '../../lib/teuton/utils/name_file_finder'
 require_relative '../../lib/teuton/application'
 
 # MiniTest for Project Class

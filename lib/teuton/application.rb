@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'singleton'
-require_relative 'project/name_file_finder'
+require_relative 'utils/name_file_finder'
 
 # This Singleton contains application params
 class Application

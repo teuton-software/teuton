@@ -2,8 +2,6 @@
 
 require 'thor'
 require_relative 'application'
-#require_relative 'project/project'
-#require_relative 'skeleton'
 require_relative '../teuton'
 
 ##
