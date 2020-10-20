@@ -25,7 +25,7 @@ module Teuton
   # @param options (Array) Array of input options
   def self.readme(projectpath, options = {})
     Application.instance.add_input_params(projectpath, options)
-    require_dsl_and_script('teuton/project/readme/readme') # Define DSL keywords
+    require_dsl_and_script('teuton/readme/readme') # Define DSL keywords
 
     app = Application.instance
     readme = Readme.new(app.script_path, app.config_path)
