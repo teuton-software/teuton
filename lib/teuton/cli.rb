@@ -40,7 +40,7 @@ class CLI < Thor
   LONGDESC
   ##
   # Verify or test Teuton test units syntax
-  # @param path_to_rb_file [String] Route to main rb Teuton file
+  # @param projectpath [String] Route to main rb Teuton file
   def check(projectpath)
     Teuton.check(projectpath, options)
   end
@@ -114,7 +114,6 @@ class CLI < Thor
   # These inputs are equivalents:
   # * teuton dir/foo
   # * teuton run dir/foo
-  # * teuton play dir/foo
   def method_missing(method, *_args, &_block)
     play(method.to_s)
   end
