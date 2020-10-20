@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'teuton/application'
-require_relative 'teuton/project/project'
 require_relative 'teuton/skeleton'
 
 ##
