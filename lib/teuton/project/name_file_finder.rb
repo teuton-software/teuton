@@ -145,8 +145,6 @@ module NameFileFinder
 
   ##
   # Trim string text when is too long
-  # @param input (String)
-  # @return String
   #  def self.trim(input)
   #    return input unless input.to_s.start_with? Dir.pwd.to_s
   #
