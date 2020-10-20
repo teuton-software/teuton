@@ -2,8 +2,9 @@
 
 require 'thor'
 require_relative 'application'
-require_relative 'project/project'
-require_relative 'skeleton'
+#require_relative 'project/project'
+#require_relative 'skeleton'
+require_relative '../teuton'
 
 ##
 # Command Line Interface
@@ -27,23 +28,23 @@ class CLI < Thor
   long_desc <<-LONGDESC
 
   (1) teuton check path/to/dir/foo
-  , Test content of start.rb and config.yaml files.
+  , Check content of start.rb and config.yaml files.
 
   (2) teuton check path/to/dir/foo --cname=demo
-  , Test content of start.rb and demo.yaml files.
+  , Check content of start.rb and demo.yaml files.
 
   (3) teuton check path/to/file/foo.rb
-  , Test content of foo.rb and foo.yaml files.
+  , Check content of foo.rb and foo.yaml files.
 
   (4) teuton check path/to/file/foo.rb --cname=demo
-  , Test content of foo.rb and demo.yaml files.
+  , Check content of foo.rb and demo.yaml files.
 
   LONGDESC
   ##
   # Verify or test Teuton test units syntax
   # @param path_to_rb_file [String] Route to main rb Teuton file
-  def check(path_to_rb_file)
-    Project.check(path_to_rb_file, options)
+  def check(projectpath)
+    Teuton.check(projectpath, options)
   end
 
   map ['r', '-r', '--run', 'run'] => 'play'
@@ -77,7 +78,7 @@ class CLI < Thor
   # Execute Teuton test unit
   # @param filepath [String] Route to main: rb file or folder
   def play(filepath)
-    Project.play(filepath, options)
+    Teuton.play(filepath, options)
   end
 
   map ['n', '-n', '--new'] => 'new'
@@ -87,8 +88,8 @@ class CLI < Thor
   LONGDESC
   ##
   # Command: create new Teuton project
-  def new(path_to_new_dir)
-    Skeleton.create(path_to_new_dir)
+  def new(projectpath)
+    Teuton.create(projectpath)
   end
 
   map ['--readme'] => 'readme'
@@ -106,9 +107,9 @@ class CLI < Thor
 
   ##
   # Create README from teuton test
-  # @param path_to_rb_file [String] Route to main rb Teuton file
-  def readme(path_to_rb_file)
-    Project.readme(path_to_rb_file, options)
+  # @param projectpath [String] Route to main rb Teuton file
+  def readme(projectpath)
+    Teuton.readme(projectpath, options)
   end
 
   ##
