@@ -35,10 +35,6 @@ class RubocopTest < Minitest::Test
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/target.rb'
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/unique.rb'
 
-    @files[:cli] = []
-    @files[:cli] << 'lib/teuton/cli/main.rb'
-    @files[:cli] << 'lib/teuton/cli/play.rb'
-
     @files[:project] = []
     @files[:project] << 'lib/teuton/project/laboratory/laboratory.rb'
 #    @files[:project] << 'lib/teuton/project/readme/dsl.rb'
@@ -96,14 +92,6 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_case_dsl
     @files[:case_dsl].each do |file|
-      output = `rubocop #{file}`
-      puts "[DEBUG] #{file}" if $?.exitstatus > 0
-      assert_equal 0, $?.exitstatus
-    end
-  end
-
-  def test_rubocop_cli
-    @files[:cli].each do |file|
       output = `rubocop #{file}`
       puts "[DEBUG] #{file}" if $?.exitstatus > 0
       assert_equal 0, $?.exitstatus
