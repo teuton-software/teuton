@@ -1,8 +1,8 @@
 require 'terminal-table'
 require 'rainbow'
 
-require_relative '../../application'
-require_relative '../configfile_reader'
+require_relative '../application'
+require_relative '../project/configfile_reader'
 
 # Laboratory
 # * show_dsl
