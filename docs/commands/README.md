@@ -5,7 +5,7 @@
 Available command functions:
 1. Show help
 2. Show version
-3. Create new test skeleton
+3. Create new test
 4. Check teuton test
 5. Run teuton test
     * Running Teuton test
@@ -34,6 +34,11 @@ Commands:
 
 ```
 
+Alias:
+* `teuton h`
+* `teuton -h`
+* `teuton --help`
+
 # 2. Show version
 
 Usage:
@@ -46,7 +51,7 @@ Example:
 
 ```bash
 $ teuton version                               
-teuton (version 2.1.9)
+teuton (version 2.2.0)
 ```
 
 Alias:
@@ -54,7 +59,7 @@ Alias:
 * `teuton -v`
 * `teuton --version`
 
-# 3. Create new test skeleton
+# 3. Create new test
 
 Usage:
 
@@ -71,7 +76,6 @@ Example:
 * Create dir        => foo
 * Create file       => foo/config.yaml
 * Create file       => foo/start.rb
-* Create file       => foo/.gitignore
 ```
 
 This command will create the next structure:
@@ -81,7 +85,11 @@ This command will create the next structure:
 | foo             | Base directory |
 | foo/start.rb    | Main Script    |
 | foo/config.yaml | YAML configuration file |
-| foo/.gitignore  | By default, ignore YAML files to be upload on git repository |
+
+Alias:
+* `teuton n foo`
+* `teuton -n foo`
+* `teuton --new foo`
 
 # 5. Check teuton test
 
@@ -91,9 +99,21 @@ Usage:
 teuton check DIRPATH
 ```
 
-Description: this command check teuton test source files,located into DIRPATH folder.
+Description: this command check teuton test and config files located into DIRPATH folder.
 
 [Example](example_check.md)
+
+| Command                      | Description |
+| ---------------------------- | ----------- |
+| teuton check path/to/dir/foo | Test content of start.rb and config.yaml files. |
+| teuton check path/to/dir/foo --cname=demo | Test content of start.rb and demo.yaml files. |
+| teuton check path/to/file/foo.rb | Test content of foo.rb and foo.yaml files. |
+| teuton check path/to/file/foo.rb --cname=demo | Test content of foo.rb and demo.yaml files.|
+
+Alias:
+* `teuton c foo`
+* `teuton -c foo`
+* `teuton --check foo`
 
 # 4. Run teuton test
 
@@ -106,3 +126,8 @@ teuton run DIRPATH
 Description: this command run teuton test located into DIRPATH folder.
 
 [Example](example_run.md)
+
+Alias:
+* `teuton r foo`
+* `teuton -r foo`
+* `teuton --run foo`

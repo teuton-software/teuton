@@ -44,6 +44,19 @@ class Readme
     reset
   end
 
+  ##
+  # Show README on screen
+  def show
+    process_content
+    show_head
+    show_content
+    show_tail
+  end
+
+  private
+
+  ##
+  # Reset attributes
   def reset
     app = Application.instance
     @config = ConfigFileReader.read(app.config_path)
@@ -71,13 +84,6 @@ class Readme
 
   def reset_action
     @action = { readme: [] }
-  end
-
-  def show
-    process_content
-    show_head
-    show_content
-    show_tail
   end
 
   ##
@@ -108,7 +114,7 @@ class Readme
     end
 
     unless @cases_params.empty?
-      @cases_params.uniq!.sort!
+      @cases_params.sort!
       puts Lang::get(:params)
       @cases_params.uniq.each { |i| puts format('* %s', i) }
       puts "\n> NOTE: Save every ':param: value' into config file."

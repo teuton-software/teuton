@@ -14,10 +14,6 @@ Example:
 
 ```bash
 > teuton check examples/learn-01-target
-[INFO] ScriptPath => examples/learn-01-target/start.rb
-[INFO] ConfigPath => examples/learn-01-target/config.yaml
-[INFO] Pwd        => /mnt/home/leap/proy/repos/teuton.d/teuton
-[INFO] TestName   => learn-01-target
 
 +----------------------------+
 | GROUP: Learn about targets |

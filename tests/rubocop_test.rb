@@ -36,10 +36,8 @@ class RubocopTest < Minitest::Test
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/unique.rb'
 
     @files[:cli] = []
-    @files[:cli] << 'lib/teuton/cli/check.rb'
     @files[:cli] << 'lib/teuton/cli/main.rb'
     @files[:cli] << 'lib/teuton/cli/play.rb'
-    @files[:cli] << 'lib/teuton/cli/readme.rb'
 
     @files[:project] = []
     @files[:project] << 'lib/teuton/project/laboratory/laboratory.rb'
