@@ -36,12 +36,12 @@ class RubocopTest < Minitest::Test
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/unique.rb'
 
     @files[:project] = []
-    @files[:project] << 'lib/teuton/project/laboratory/laboratory.rb'
+    @files[:project] << 'lib/teuton/check/laboratory.rb'
+    @files[:project] << 'lib/teuton/check/dsl.rb'
 #    @files[:project] << 'lib/teuton/project/readme/dsl.rb'
 #    @files[:project] << 'lib/teuton/project/readme/readme.rb'
-#    @files[:project] << 'lib/teuton/project/config_file_reader.rb'
-    @files[:project] << 'lib/teuton/project/name_file_finder.rb'
-#    @files[:project] << 'lib/teuton/project/project.rb'
+    @files[:project] << 'lib/teuton/utils/configfile_reader.rb'
+    @files[:project] << 'lib/teuton/utils/name_file_finder.rb'
 
     @files[:rake] = []
     @files[:rake] << 'Rakefile'

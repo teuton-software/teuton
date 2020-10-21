@@ -1,34 +1,27 @@
-# Laboratory
-# * target
-# * request (development)
-# * tempfile
-# * goto
-# * run
-# * expect
-# * get
-# * unique
-# * log
-# * set
+# frozen_string_literal: true
+
+##
+# Include Teuton DSL keywords into Laboratory class
 class Laboratory
   ##
-  # Execute Teuton DSL readme keywork
+  # Execute Teuton DSL readme keyword
   def readme(_text)
     # Usefull for "teuton readme" command action.
   end
 
   ##
-  # Execute Teuton DSL target keywork
+  # Execute Teuton DSL target keyword
   def target(desc, args = {})
     @stats[:targets] += 1
     @targetid += 1
     weight = args[:weight] || 1.0
-    verboseln '(%03d' % @targetid + ") target      #{desc}"
+    verboseln format('(%03<targetid>d) target      %<desc>s', targetid: @targetid, desc: desc)
     verboseln "      weight      #{weight}"
   end
   alias goal target
 
   ##
-  # Execute Teuton DSL run keywork
+  # Execute Teuton DSL run keyword
   def run(command, args = {})
     args[:exec] = command
     host = :localhost
@@ -37,7 +30,7 @@ class Laboratory
   end
 
   ##
-  # Execute Teuton DSL goto keywork
+  # Execute Teuton DSL goto keyword
   def goto(host = :localhost, args = {})
     result.reset
     args[:on] = host unless args[:on]
@@ -51,31 +44,31 @@ class Laboratory
   end
 
   ##
-  # Execute Teuton DSL expect keywork
-  def expect(_cond)
+  # Execute Teuton DSL expect keyword
+  def expect(cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
-    verboseln "      expect      #{_cond} (#{_cond.class})"
+    verboseln "      expect      #{cond} (#{cond.class})"
     verboseln ''
   end
 
   ##
-  # Execute Teuton DSL expect_one keywork
-  def expect_one(_cond)
+  # Execute Teuton DSL expect_one keyword
+  def expect_one(cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
-    verboseln "      expect_one  #{_cond} (#{_cond.class})"
+    verboseln "      expect_one  #{cond} (#{cond.class})"
     verboseln ''
   end
 
   ##
-  # Execute Teuton DSL expect_none keywork
-  def expect_none(_cond)
+  # Execute Teuton DSL expect_none keyword
+  def expect_none(cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
-    verboseln "      expect_none #{_cond} (#{_cond.class})"
+    verboseln "      expect_none #{cond} (#{cond.class})"
     verboseln ''
   end
 
   ##
-  # Execute Teuton DSL get keywork
+  # Execute Teuton DSL get keyword
   def get(varname)
     @stats[:gets] += 1
 
@@ -89,18 +82,23 @@ class Laboratory
   end
 
   # If a method call is missing, then try to call get(var)
+  # rubocop:disable Style/MissingRespondToMissing
   def method_missing(method)
     a = method.to_s
-    instance_eval("get(:#{a[0, a.size - 1]})") if a[a.size - 1] == '?'
+    instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__) if a[a.size - 1] == '?'
   end
+  # rubocop:enable Style/MissingRespondToMissing
 
+  ##
+  # Execute Teuton DSL gett keyword
+  # Same as get keyword, but show pretty output when used by readme command.
   def gett(option)
     value = get(option)
     value
   end
 
   ##
-  # Execute Teuton DSL unique keywork
+  # Execute Teuton DSL unique keyword
   def unique(key, _value)
     @stats[:uniques] += 1
 
@@ -109,14 +107,14 @@ class Laboratory
   end
 
   ##
-  # Execute Teuton DSL log keywork
+  # Execute Teuton DSL log keyword
   def log(text = '', type = :info)
     @stats[:logs] += 1
     verboseln "      log    [#{type}]: " + text.to_s
   end
 
   ##
-  # Execute Teuton DSL set keywork
+  # Execute Teuton DSL set keyword
   def set(key, value)
     @stats[:sets] += 1
 
