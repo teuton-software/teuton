@@ -3,14 +3,11 @@
 # Commands
 
 Available command functions:
-1. Show help
-2. Show version
-3. Create new test
-4. Check teuton test
-5. Run teuton test
-    * Running Teuton test
-    * Command options
-    * Choosing other config file name
+1. [Show help](#1-show-help)
+2. [Show version](#2-show-version)
+3. [Create new test](#3-create-new-test)
+4. [Check teuton test](#4-check-teuton-test)
+5. [Run teuton test](#5-run-teuton-test)
 
 # 1. Show help
 
@@ -67,6 +64,8 @@ Usage:
 teuton new foo
 ```
 
+Description: Create teuton test skeleton.
+
 Example:
 
 ```bash
@@ -91,7 +90,7 @@ Alias:
 * `teuton -n foo`
 * `teuton --new foo`
 
-# 5. Check teuton test
+# 4. Check teuton test
 
 Usage:
 
@@ -115,7 +114,7 @@ Alias:
 * `teuton -c foo`
 * `teuton --check foo`
 
-# 4. Run teuton test
+# 5. Run teuton test
 
 Usage:
 
@@ -128,6 +127,25 @@ Description: this command run teuton test located into DIRPATH folder.
 [Example](example_run.md)
 
 Alias:
-* `teuton r foo`
-* `teuton -r foo`
-* `teuton --run foo`
+* `teuton foo`
+
+# 6. Show README
+
+Usage:
+
+```bash
+teuton readme DIRPATH
+```
+
+Description:
+
+Read test and config files content, and display information about
+what kind of problem/exercise it is going to be evaluated. The students need this
+information to resolv the problem/exercise into their machines.
+
+The teacher could write this information or may use this command to generate automaticaly.
+
+Alias:
+* `teuton r DIRPATH`
+* `teuton -r DIRPATH`
+* `teuton --readme DIRPATH`

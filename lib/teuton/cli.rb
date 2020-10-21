@@ -45,7 +45,7 @@ class CLI < Thor
     Teuton.check(projectpath, options)
   end
 
-  map ['r', '-r', '--run', 'run'] => 'play'
+  map ['--run', 'run'] => 'play'
   option :export, type: :string
   option :cname, type: :string
   option :cpath, type: :string
@@ -90,7 +90,7 @@ class CLI < Thor
     Teuton.create(projectpath)
   end
 
-  map ['--readme'] => 'readme'
+  map ['r', '-r', '--readme'] => 'readme'
   option :lang, type: :string
   desc 'readme DIRECTORY',
        'Show README.md file from test contents'

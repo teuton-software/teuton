@@ -10,10 +10,14 @@
 # * log
 # * set
 class Laboratory
+  ##
+  # Execute Teuton DSL readme keywork
   def readme(_text)
     # Usefull for "teuton readme" command action.
   end
 
+  ##
+  # Execute Teuton DSL target keywork
   def target(desc, args = {})
     @stats[:targets] += 1
     @targetid += 1
@@ -23,14 +27,8 @@ class Laboratory
   end
   alias goal target
 
-#  def request(text)
-#    @requests << text.to_s
-#  end
-
-  def tempfile(_tempfile = nil)
-    'tempfile'
-  end
-
+  ##
+  # Execute Teuton DSL run keywork
   def run(command, args = {})
     args[:exec] = command
     host = :localhost
@@ -38,6 +36,8 @@ class Laboratory
     goto(host, args)
   end
 
+  ##
+  # Execute Teuton DSL goto keywork
   def goto(host = :localhost, args = {})
     result.reset
     args[:on] = host unless args[:on]
@@ -50,24 +50,32 @@ class Laboratory
     verboseln "      run         '#{args[:exec]}' on #{args[:on]}"
   end
 
-  def expect(_cond, args = {})
+  ##
+  # Execute Teuton DSL expect keywork
+  def expect(_cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect      #{_cond} (#{_cond.class})"
     verboseln ''
   end
 
-  def expect_one(_cond, args = {})
+  ##
+  # Execute Teuton DSL expect_one keywork
+  def expect_one(_cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_one  #{_cond} (#{_cond.class})"
     verboseln ''
   end
 
-  def expect_none(_cond, args = {})
+  ##
+  # Execute Teuton DSL expect_none keywork
+  def expect_none(_cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_none #{_cond} (#{_cond.class})"
     verboseln ''
   end
 
+  ##
+  # Execute Teuton DSL get keywork
   def get(varname)
     @stats[:gets] += 1
 
@@ -80,7 +88,7 @@ class Laboratory
     "get(#{varname})"
   end
 
-  # If a method call is missing, then delegate to concept parent.
+  # If a method call is missing, then try to call get(var)
   def method_missing(method)
     a = method.to_s
     instance_eval("get(:#{a[0, a.size - 1]})") if a[a.size - 1] == '?'
@@ -91,6 +99,8 @@ class Laboratory
     value
   end
 
+  ##
+  # Execute Teuton DSL unique keywork
   def unique(key, _value)
     @stats[:uniques] += 1
 
@@ -98,11 +108,15 @@ class Laboratory
     verboseln ''
   end
 
+  ##
+  # Execute Teuton DSL log keywork
   def log(text = '', type = :info)
     @stats[:logs] += 1
     verboseln "      log    [#{type}]: " + text.to_s
   end
 
+  ##
+  # Execute Teuton DSL set keywork
   def set(key, value)
     @stats[:sets] += 1
 

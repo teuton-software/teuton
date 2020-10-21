@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'terminal-table'
-require 'rainbow'
-
 require_relative '../application'
 require_relative '../case_manager/case/result/result'
 require_relative 'show'
@@ -35,7 +32,7 @@ alias task group
 # DSL start: Define main teuton test execution
 # @param block (Proc)
 def start(&block)
-  # don't do nothing
+  # Don't do nothing. We are checking test not running it
 end
 alias play start
 
