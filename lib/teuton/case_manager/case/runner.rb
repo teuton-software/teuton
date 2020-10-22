@@ -66,7 +66,6 @@ class Case
     end
   end
 
-  require 'pry-byebug'
   def run_cmd_remote_ssh(input_hostname)
     @action[:conn_type] = :ssh
     hostname = input_hostname.to_s
