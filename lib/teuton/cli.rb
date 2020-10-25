@@ -18,7 +18,7 @@ class CLI < Thor
   end
 
   map ['c', '-c', '--check'] => 'check'
-  option :panel, type: :boolean
+  option :panelconfig, type: :boolean
   option :cname, type: :string
   option :cpath, type: :string
   desc 'check [OPTIONS] DIRECTORY',

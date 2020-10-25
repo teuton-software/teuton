@@ -41,8 +41,8 @@ module Teuton
 
     app = Application.instance
     lab = Laboratory.new(app.script_path, app.config_path)
-    lab.show_config if options[:panel]
-    lab.show_dsl unless options[:panel]
+    lab.show unless options[:panelconfig]
+    lab.show_panelconfig if options[:panelconfig]
   end
 
   private_class_method def self.require_dsl_and_script(dslpath)

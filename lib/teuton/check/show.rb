@@ -10,52 +10,21 @@ require_relative '../utils/configfile_reader'
 # * show_config
 class Laboratory
   ##
-  # Display DSL on screen
-  def show_dsl
+  # Display DSL checking on screen
+  def show
     @verbose = true
     process_content
     show_stats
-    show_config
+    revise_config_content
   end
 
   ##
-  # Display stats on screen
-  def show_stats
-    @stats[:hosts] = 0
-    @hosts.each_pair { |_k, v| @stats[:hosts] += v }
-
-    my_screen_table = Terminal::Table.new do |st|
-      st.add_row ['DSL Stats', 'Count']
-      st.add_separator
-      st.add_row ['Groups', @stats[:groups]]
-      st.add_row ['Targets', @stats[:targets]]
-      st.add_row ['Goto', @stats[:hosts]]
-      @hosts.each_pair { |k, v| st.add_row [" * #{k}", v] }
-      st.add_row ['Uniques', @stats[:uniques]]
-      st.add_row ['Logs', @stats[:uniques]]
-      st.add_row [' ', ' ']
-
-      st.add_row ['Gets', @stats[:gets]]
-      if @gets.count > 0
-        list = @gets.sort_by { |_k, v| v }
-        list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
-      end
-
-      st.add_row ['Sets', @stats[:sets]]
-      if @sets.count > 0
-        @sets.each_pair { |k, v| st.add_row [" * #{k}", v.to_s] }
-      end
-    end
-    verboseln my_screen_table.to_s + "\n"
-  end
-
-  ##
-  # Display config on screen
-  def show_config
+  # Display config for teuton panel on screen
+  def show_panelconfig
     @verbose = false
     process_content
     @verbose = true
-    revise_config_content
+    recomended_panelconfig_content
   end
 
   private
@@ -72,7 +41,7 @@ class Laboratory
     groups = Application.instance.groups
     option = Application.instance.options
 
-    verboseln '' unless option[:panel]
+    verboseln ''
     groups.each do |t|
       @stats[:groups] += 1
       unless option[:panel]
@@ -115,10 +84,16 @@ class Laboratory
     verboseln YAML.dump(output)
   end
 
+  def recomended_panelconfig_content
+    output = { global: {}, cases: nil }
+    script_vars = find_script_vars
+    script_vars.each { |i| output[:global][i] = 'VALUE' }
+    verboseln YAML.dump(output)
+  end
+
   ##
   # Revive and check config content
   def revise_config_content
-    @verbose = true
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ['Revising CONFIG file']
     end
@@ -153,5 +128,36 @@ class Laboratory
         verboseln Rainbow('] or set tt_skip = true').red
       end
     end
+  end
+
+  ##
+  # Display stats on screen
+  def show_stats
+    @stats[:hosts] = 0
+    @hosts.each_pair { |_k, v| @stats[:hosts] += v }
+
+    my_screen_table = Terminal::Table.new do |st|
+      st.add_row ['DSL Stats', 'Count']
+      st.add_separator
+      st.add_row ['Groups', @stats[:groups]]
+      st.add_row ['Targets', @stats[:targets]]
+      st.add_row ['Goto', @stats[:hosts]]
+      @hosts.each_pair { |k, v| st.add_row [" * #{k}", v] }
+      st.add_row ['Uniques', @stats[:uniques]]
+      st.add_row ['Logs', @stats[:uniques]]
+      st.add_row [' ', ' ']
+
+      st.add_row ['Gets', @stats[:gets]]
+      if @gets.count > 0
+        list = @gets.sort_by { |_k, v| v }
+        list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
+      end
+
+      st.add_row ['Sets', @stats[:sets]]
+      if @sets.count > 0
+        @sets.each_pair { |k, v| st.add_row [" * #{k}", v.to_s] }
+      end
+    end
+    verboseln my_screen_table.to_s + "\n"
   end
 end
