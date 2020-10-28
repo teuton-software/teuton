@@ -45,6 +45,17 @@ class CLI < Thor
     Teuton.check(projectpath, options)
   end
 
+  # map ['--config'] => 'config'
+  # option :global, type: :boolean
+  # desc 'config [OPTIONS] DIRECTORY',
+  #     'Suggest config file content'
+  ##
+  # Sugget config file content
+  # @param projectpath [String] Route to main rb Teuton file
+  # def config(projectpath)
+  #  Teuton.check(projectpath, options)
+  # end
+
   map ['--run', 'run'] => 'play'
   option :export, type: :string
   option :cname, type: :string
