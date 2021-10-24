@@ -97,11 +97,11 @@ class Readme
       puts Lang::get(:hosts)
       puts "\n"
       puts '| ID | Host | Configuration |'
-      puts '| -- | ---- | ------------- |'
+      puts '| --- | --- | --- |'
       @required_hosts.each_pair do |k, v|
         c = []
         v.each_pair { |k2,v2| c << "#{k2}=#{v2}" }
-        puts "|#{i}|#{k.upcase}|#{c.join(', ')}|"
+        puts "| #{i} | #{k.upcase} | #{c.join(', ')} |"
         i += 1
       end
       puts "\n> NOTE: SSH Service installation is required on every host."
