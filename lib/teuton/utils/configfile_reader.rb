@@ -76,12 +76,12 @@ module ConfigFileReader
     return if data[:global][:tt_include].nil?
 
     include_dir = data[:global][:tt_include]
-    if include_dir == include_dir.absolute_path
+    if include_dir == File.absolute_path(include_dir)
       basedir = include_dir
     else
       basedir = File.join(File.dirname(filepath), data[:global][:tt_include])
     end
-    files = Dir.glob(File.join(basedir, '**/**'))
+    files = Dir.glob(File.join(basedir, '**/*.yaml'))
     files.each { |file| data[:cases] << YAML.load(File.open(file)) }
   end
   # rubocop:enable Security/YAMLLoad

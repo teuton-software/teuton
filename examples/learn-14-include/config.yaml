@@ -1,0 +1,6 @@
+---
+:global:
+  :tt_include: configfiles
+:cases:
+- :tt_members: MEMBERS
+  :tt_moodle_id: MOODLE_ID
