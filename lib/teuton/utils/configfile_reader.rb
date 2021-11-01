@@ -59,9 +59,11 @@ module ConfigFileReader
   # @return Hash with config data
   def self.read_json(filepath)
     data = JSON.parse(File.read(filepath), symbolize_names: true)
+    data = convert_string_keys_to_symbol(data)
     data[:global] = data[:global] || {}
     data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
+    read_included_files!(filepath, data)
     data
   end
 
@@ -73,7 +75,12 @@ module ConfigFileReader
   private_class_method def self.read_included_files!(filepath, data)
     return if data[:global][:tt_include].nil?
 
-    basedir = File.join(File.dirname(filepath), data[:global][:tt_include])
+    include_dir = data[:global][:tt_include]
+    if include_dir == include_dir.absolute_path
+      basedir = include_dir
+    else
+      basedir = File.join(File.dirname(filepath), data[:global][:tt_include])
+    end
     files = Dir.glob(File.join(basedir, '**/**'))
     files.each { |file| data[:cases] << YAML.load(File.open(file)) }
   end
