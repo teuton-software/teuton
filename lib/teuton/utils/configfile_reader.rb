@@ -82,6 +82,7 @@ module ConfigFileReader
       basedir = File.join(File.dirname(filepath), data[:global][:tt_include])
     end
     files = Dir.glob(File.join(basedir, '**/*.yaml'))
+    files += Dir.glob(File.join(basedir, '**/*.yml'))
     files.each { |file| data[:cases] << YAML.load(File.open(file)) }
   end
   # rubocop:enable Security/YAMLLoad
