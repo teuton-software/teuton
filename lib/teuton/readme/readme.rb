@@ -160,13 +160,13 @@ class Readme
     puts Lang::get(:global)
     puts "\n"
     puts '| Global param | Value |'
-    puts '| ------------ | ----- |'
+    puts '| --- | --- |'
     @global_params.each_pair { |k,v| puts "|#{k}|#{v}|" }
     puts "\n\#\# Created params"
     puts Lang::get(:created)
     puts "\n"
     puts '| Created params | Value |'
-    puts '| -------------- | ----- |'
+    puts '| --- | --- |'
     @setted_params.each_pair { |k,v| puts "|#{k}|#{v}|" }
   end
 end
