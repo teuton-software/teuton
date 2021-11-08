@@ -83,7 +83,16 @@ module ConfigFileReader
     end
     files = Dir.glob(File.join(basedir, '**/*.yaml'))
     files += Dir.glob(File.join(basedir, '**/*.yml'))
-    files.each { |file| data[:cases] << YAML.load(File.open(file)) }
+    files.each { |file|
+      begin
+        data[:cases] << YAML.load(File.open(file))
+      rescue StandardError => e
+        puts "\n" + ('=' * 80)
+        puts "[ERROR] ConfigFileReader#read <#{file}>"
+        puts '        I suggest to revise file format!'
+        puts "        #{e.message}\n" + ('=' * 80)
+      end
+    }
   end
   # rubocop:enable Security/YAMLLoad
 
