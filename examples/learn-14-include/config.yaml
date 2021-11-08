@@ -1,5 +1,5 @@
 ---
 :global:
-#  :tt_include: configfiles
-  :tt_include: idp.devel
+  :tt_include: configfiles
+#  :tt_include: idp.devel
 :cases:
