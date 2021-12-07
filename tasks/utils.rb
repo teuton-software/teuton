@@ -43,14 +43,9 @@ module Utils
     testfile = File.join('.', 'tests', 'all.rb')
     a = File.read(testfile).split("\n")
     b = a.select { |i| i.include? '_test' }
-
     d = File.join('.', 'tests', '**', '*_test.rb')
     e = Dir.glob(d)
-
-    unless b.size == e.size
-      puts "[FAIL] Some ruby tests are not executed by #{testfile}"
-    end
-
+    puts "[FAIL] Some ruby tests are not executed by #{testfile}" unless b.size == e.size
     puts "[INFO] Running #{testfile}"
     system(testfile)
   end

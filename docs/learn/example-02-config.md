@@ -1,17 +1,17 @@
 [<< back](README.md)
 
+# Example: learn-02-config
+
+> This example is on GitHub repository at `examples/learn-02-config`.
+
+* Learn how to use config file.
+* Use params defined into config files.
+* It's good idea save variable data separated into external config file.
+
 1. [Config file](#config-file).
 2. [Definition section](#definition-section).
 3. [Execution section](#execution-section).
 4. [Results](#results).
-
-# Example: learn-02-config
-
-This example is on GitHub repository at `examples/learn-02-config`.
-
-* Learn how to use config file.
-* Tests use params defined into config files.
-* It's good idea save variable data separated into external config file.
 
 ## Config file
 
@@ -34,7 +34,7 @@ By default, `start.rb` it's our main execution file.
 ```ruby
 group "Reading params from config file" do
 
-  target "Create user #{gett(:username)}"
+  target "Create user #{get(:username)}"
   run "id #{get(:username)}"
   expect get(:username)
 
@@ -61,41 +61,29 @@ Runing this example and see `show` keyword output:
 
 ```bash
 > teuton run --no-color examples/learn-02-config
-[INFO] ScriptPath => examples/learn-02-config/start.rb
-[INFO] ConfigPath => examples/learn-02-config/config.yaml
-[INFO] Pwd        => /mnt/home/leap/proy/repos/teuton.d/teuton
-[INFO] TestName   => learn-02-config
+CONFIGURATION
++---------------+----------------------------------------+
+| tt_title      | Executing [teuton] (version 2.2.0)     |
+| tt_scriptname | examples/learn-02-config/start.rb      |
+| tt_configfile | examples/learn-02-config/config.yaml   |
+| tt_pwd        | /home/david/proy/repos/teuton.d/teuton |
+| tt_testname   | learn-02-config                        |
+| tt_sequence   | false                                  |
++---------------+----------------------------------------+
 
-==================================
-Executing [teuton] (version 2.1.9)
-[INFO] Running in parallel (2020-04-18 21:46:38 +0100)
-id: «vargas»: no existe ese usuario
-.F
-[INFO] Duration = 0.004    (2020-04-18 21:46:38 +0100)
-==================================
-
-INITIAL CONFIGURATIONS
-+---------------+-------------------------------------------+
-| tt_title      | Executing [teuton] (version 2.1.9)        |
-| tt_scriptname | examples/learn-02-config/start.rb         |
-| tt_configfile | examples/learn-02-config/config.yaml      |
-| tt_pwd        | /mnt/home/leap/proy/repos/teuton.d/teuton |
-| tt_testname   | learn-02-config                           |
-| tt_sequence   | false                                     |
-+---------------+-------------------------------------------+
-
-CASE RESULTS
+CASES
 +------+----------------+-------+-------+
 | CASE | MEMBERS        | GRADE | STATE |
-| 01   | Student-name-1 | 100.0 |       |
-| 02   | Student-name-2 | 0.0   | ?     |
+| 01   | Student-name-1 |   100 |       |
+| 02   | Student-name-2 |     0 | ?     |
 +------+----------------+-------+-------+
 
-FINAL VALUES
+
+RESULTS
 +-------------+---------------------------+
-| start_time  | 2020-04-18 21:46:38 +0100 |
-| finish_time | 2020-04-18 21:46:38 +0100 |
-| duration    | 0.003665655               |
+| start_time  | 2020-10-10 12:37:54 +0100 |
+| finish_time | 2020-10-10 12:37:54 +0100 |
+| duration    | 0.002054143               |
 +-------------+---------------------------+
 ```
 
@@ -124,12 +112,13 @@ CONFIGURATION
 | username    | root            |
 +-------------+-----------------+
 
+
 GROUPS
-- Using config file values
+- Reading params from config file
     01 (1.0/1.0)
         Description : Create user root (username)
         Command     : id root
-        Duration    : 0.003 (local)
+        Duration    : 0.001 (local)
         Alterations : find(root) & count
         Expected    : Greater than 0 (String)
         Result      : 1 (Integer)
@@ -137,9 +126,9 @@ GROUPS
 RESULTS
 +--------------+---------------------------+
 | case_id      | 01                        |
-| start_time   | 2020-04-18 21:46:38 +0100 |
-| finish_time  | 2020-04-18 21:46:38 +0100 |
-| duration     | 0.002899065               |
+| start_time   | 2020-10-10 12:37:54 +0100 |
+| finish_time  | 2020-10-10 12:37:54 +0100 |
+| duration     | 0.001762191               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |

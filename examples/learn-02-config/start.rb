@@ -1,7 +1,7 @@
 
 group "Reading params from config file" do
 
-  target "Create user #{gett(:username)}"
+  target "Create user #{get(:username)}"
   run "id #{get(:username)}"
   expect get(:username)
 

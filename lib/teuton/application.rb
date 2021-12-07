@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'singleton'
+require_relative 'utils/name_file_finder'
 
 # This Singleton contains application params
 class Application
@@ -71,4 +72,22 @@ class Application
 
     false
   end
+
+  ##
+  # Preprocess input options:
+  # * Convert input case options String to an Array of integers
+  # * Read color input option
+  # rubocop:disable Metrics/AbcSize
+  def add_input_params(projectpath, options)
+    NameFileFinder.find_filenames_for(projectpath)
+    @options.merge! options
+    @options['color'] = true if @options['color'].nil?
+    Rainbow.enabled = @options['color']
+    @options['panel'] = false if @options['panel'].nil?
+    return if @options['case'].nil?
+
+    a = @options['case'].split(',')
+    @options['case'] = a.collect!(&:to_i)
+  end
+  # rubocop:enable Metrics/AbcSize
 end

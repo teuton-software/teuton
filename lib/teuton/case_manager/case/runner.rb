@@ -8,11 +8,15 @@ require_relative 'dsl/log'
 # * run_local_cmd
 # * run_remote_cmd
 # * run_remote_cmd_ssh
+# * reconfigure_command_with_gateway
 # * run_remote_cmd_telnet
 class Case
 
   private
 
+  ##
+  # Run command on host
+  # @param host (String)
   def run_cmd_on(host)
     protocol = @config.get("#{host}_protocol".to_sym)
     ip = @config.get("#{host}_ip".to_sym)
@@ -65,21 +69,45 @@ class Case
   def run_cmd_remote_ssh(input_hostname)
     @action[:conn_type] = :ssh
     hostname = input_hostname.to_s
-    ip = @config.get((hostname + '_ip').to_sym)
-    username = @config.get((hostname + '_username').to_sym).to_s
-    password = @config.get((hostname + '_password').to_sym).to_s
+    ip = @config.get("#{hostname}_ip".to_sym).to_s
+    username = @config.get("#{hostname}_username".to_sym).to_s
+    password = @config.get("#{hostname}_password".to_sym).to_s
+    port = @config.get("#{hostname}_port".to_sym).to_i || 22
+
+    unless @config.get("#{hostname}_route".to_sym) == 'NODATA'
+      # Reconfigure command with gateway
+      hostname2 = hostname
+      ip2 = ip
+      username2 = username
+      password2 = password
+      command2 = @action[:command]
+      hostname = @config.get("#{hostname}_route".to_sym)
+      ip = @config.get("#{hostname}_ip".to_sym).to_s
+      username = @config.get("#{hostname}_username".to_sym).to_s
+      password = @config.get("#{hostname}_password".to_sym).to_s
+      ostype = @config.get("#{hostname}_ostype".to_sym).to_s
+
+      if ostype.downcase.start_with? 'win'
+        # echo y | plink idp@2.tcp.eu.ngrok.io -ssh -P 16256 -pw idp "echo > Desktop\hola.txt"
+        @action[:command] = "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
+      else
+        @action[:command] = "sshpass -p #{password2} #{username2}@#{ip2} #{command2}"
+      end
+    end
+
     text = ''
     begin
       if @sessions[hostname].nil?
         @sessions[hostname] = Net::SSH.start(ip,
                                              username,
+                                             port: port,
                                              password: password,
                                              keepalive: true,
                                              timeout: 30,
                                              non_interactive: true)
       end
       if @sessions[hostname].class == Net::SSH::Connection::Session
-        text = @sessions[hostname].exec!(@action[:command].to_s)
+        text = @sessions[hostname].exec!(@action[:command])
       end
     rescue Errno::EHOSTUNREACH
       @sessions[hostname] = :nosession

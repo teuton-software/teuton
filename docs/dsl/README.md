@@ -18,7 +18,7 @@ These are the main DSL key words, usefull to define items to be evaluated.
 | [target](definition/target.md) | Define a target. This is the item to be checked. |
 | Remote [run](definition/run_remote.md)| Execute command into remote host. |
 | Local [run](definition/run_local.md)  | Execute command into local host. |
-| [result](definition/result.md) | Contain the output of previous `goto` order. |
+| [result](definition/result.md) | Contain the output of previous `run` order. |
 | [expect](definition/expect.md) | Check the obtained result with the expected value. |
 
 ## Execution instructions

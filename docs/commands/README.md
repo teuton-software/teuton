@@ -3,14 +3,11 @@
 # Commands
 
 Available command functions:
-1. Show help
-2. Show version
-3. Create new test skeleton
-4. Check teuton test
-5. Run teuton test
-    * Running Teuton test
-    * Command options
-    * Choosing other config file name
+1. [Show help](#1-show-help)
+2. [Show version](#2-show-version)
+3. [Create new test](#3-create-new-test)
+4. [Check teuton test](#4-check-teuton-test)
+5. [Run teuton test](#5-run-teuton-test)
 
 # 1. Show help
 
@@ -34,6 +31,11 @@ Commands:
 
 ```
 
+Alias:
+* `teuton h`
+* `teuton -h`
+* `teuton --help`
+
 # 2. Show version
 
 Usage:
@@ -46,7 +48,7 @@ Example:
 
 ```bash
 $ teuton version                               
-teuton (version 2.1.9)
+teuton (version 2.2.0)
 ```
 
 Alias:
@@ -54,13 +56,15 @@ Alias:
 * `teuton -v`
 * `teuton --version`
 
-# 3. Create new test skeleton
+# 3. Create new test
 
 Usage:
 
 ```bash
 teuton new foo
 ```
+
+Description: Create teuton test skeleton.
 
 Example:
 
@@ -71,7 +75,6 @@ Example:
 * Create dir        => foo
 * Create file       => foo/config.yaml
 * Create file       => foo/start.rb
-* Create file       => foo/.gitignore
 ```
 
 This command will create the next structure:
@@ -81,9 +84,13 @@ This command will create the next structure:
 | foo             | Base directory |
 | foo/start.rb    | Main Script    |
 | foo/config.yaml | YAML configuration file |
-| foo/.gitignore  | By default, ignore YAML files to be upload on git repository |
 
-# 5. Check teuton test
+Alias:
+* `teuton n foo`
+* `teuton -n foo`
+* `teuton --new foo`
+
+# 4. Check teuton test
 
 Usage:
 
@@ -91,11 +98,23 @@ Usage:
 teuton check DIRPATH
 ```
 
-Description: this command check teuton test source files,located into DIRPATH folder.
+Description: this command check teuton test and config files located into DIRPATH folder.
 
 [Example](example_check.md)
 
-# 4. Run teuton test
+| Command                      | Description |
+| ---------------------------- | ----------- |
+| teuton check path/to/dir/foo | Test content of start.rb and config.yaml files. |
+| teuton check path/to/dir/foo --cname=demo | Test content of start.rb and demo.yaml files. |
+| teuton check path/to/file/foo.rb | Test content of foo.rb and foo.yaml files. |
+| teuton check path/to/file/foo.rb --cname=demo | Test content of foo.rb and demo.yaml files.|
+
+Alias:
+* `teuton c foo`
+* `teuton -c foo`
+* `teuton --check foo`
+
+# 5. Run teuton test
 
 Usage:
 
@@ -106,3 +125,27 @@ teuton run DIRPATH
 Description: this command run teuton test located into DIRPATH folder.
 
 [Example](example_run.md)
+
+Alias:
+* `teuton foo`
+
+# 6. Show README
+
+Usage:
+
+```bash
+teuton readme DIRPATH
+```
+
+Description:
+
+Read test and config files content, and display information about
+what kind of problem/exercise it is going to be evaluated. The students need this
+information to resolv the problem/exercise into their machines.
+
+The teacher could write this information or may use this command to generate automaticaly.
+
+Alias:
+* `teuton r DIRPATH`
+* `teuton -r DIRPATH`
+* `teuton --readme DIRPATH`

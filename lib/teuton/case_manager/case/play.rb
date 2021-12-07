@@ -58,6 +58,7 @@ class Case
 
   ##
   # Fill case report with time information
+  # rubocop:disable Metrics/AbcSize
   def fill_report(start_time, finish_time)
     @report.head.merge! @config.global
     @report.head.merge! @config.local
@@ -67,4 +68,5 @@ class Case
     @report.tail[:finish_time] = finish_time
     @report.tail[:duration] = finish_time - start_time
   end
+  # rubocop:enable Metrics/AbcSize
 end

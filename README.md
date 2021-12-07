@@ -8,27 +8,27 @@ test your infraestructure as code._
 
 ![logo](./docs/images/logo.png)
 
-Teuton is an intrastructure test tool, useful for:
-* Sysadmin teachers to evaluate students remote machines.
-* Sysadmin apprentices to evaluate their learning process as a game.
-* Professional sysadmin to monitor remote machines.
+Teuton is an intrastructure test tool, useful:
+* For sysadmin teachers who want to evaluate students remote machines.
+* For sysadmin apprentices who want to evaluate their learning process as a game.
+* For professional sysadmin who want to monitor remote machines.
 
 Teuton allow us:
-* Write test units for real or virtual machines using simple DSL.
+* Write unit tests for real or virtual devices, using simple DSL.
 * Check compliance with requirements on remote machines.
 
 # Documentation
 
-* [Installation](https://github.com/teuton-software/teuton/tree/devel/docs/install/README.md)
+* [Installation](https://github.com/teuton-software/teuton/tree/master/docs/install/README.md)
     1. Install Ruby on your system.
-    1. `gem install teuton`
-* [Learning](https://github.com/teuton-software/teuton/tree/devel/docs/learn/README.md)
-* [Commands](https://github.com/teuton-software/teuton/tree/devel/docs/commands/README.md)
-* [Teuton language](https://github.com/teuton-software/teuton/tree/devel/docs/dsl/README.md)
+    1. `gem install teuton`, to install Teuton.
+* [Learning](https://github.com/teuton-software/teuton/tree/master/docs/learn/README.md)
+* [Commands](https://github.com/teuton-software/teuton/tree/master/docs/commands/README.md)
+* [Teuton language](https://github.com/teuton-software/teuton/tree/master/docs/dsl/README.md)
 
 # Features
 
-* [Free Software License](https://github.com/teuton-software/teuton/tree/devel/LICENSE).
+* [Free Software License](https://github.com/teuton-software/teuton/tree/master/LICENSE).
 * Multiplatform.
 * Remote machines only require SSH or Telnet service installed.
 * Developed using ruby language.

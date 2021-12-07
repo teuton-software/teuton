@@ -11,6 +11,7 @@ module ExportManager
   # @param cases (Array)
   # @param input (Hash) Selected export options
   # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
   def self.run(main_report, cases, input)
     args = strings2symbols(input)
 
@@ -29,6 +30,7 @@ module ExportManager
     preserve_files if args[:preserve] == true
   end
   # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   ##
   # Convert Hash String values into Symbol values
@@ -51,7 +53,6 @@ module ExportManager
   # Preserve output files for current project
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Layout/LineLength
   private_class_method def self.preserve_files
     app = Application.instance
     t = Time.now
@@ -67,5 +68,4 @@ module ExportManager
   end
   # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Layout/LineLength
 end

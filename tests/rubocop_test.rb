@@ -8,7 +8,10 @@ class RubocopTest < Minitest::Test
     @files = {}
 
     @files[:lib] = []
+    @files[:lib] << 'lib/teuton.rb'
     @files[:lib] << 'lib/teuton/application.rb'
+    @files[:lib] << 'lib/teuton/cli.rb'
+    @files[:lib] << 'lib/teuton/skeleton.rb'
 
     @files[:case] = []
     @files[:case] << 'lib/teuton/case_manager/case/close.rb'
@@ -32,21 +35,13 @@ class RubocopTest < Minitest::Test
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/target.rb'
     @files[:case_dsl] << 'lib/teuton/case_manager/case/dsl/unique.rb'
 
-    @files[:cli] = []
-    @files[:cli] << 'lib/teuton/cli/check.rb'
-    @files[:cli] << 'lib/teuton/cli/main.rb'
-    @files[:cli] << 'lib/teuton/cli/play.rb'
-    @files[:cli] << 'lib/teuton/cli/readme.rb'
-    @files[:cli] << 'lib/teuton/cli/version.rb'
-
     @files[:project] = []
-    @files[:project] << 'lib/teuton/project/laboratory/laboratory.rb'
+    @files[:project] << 'lib/teuton/check/laboratory.rb'
+    @files[:project] << 'lib/teuton/check/dsl.rb'
 #    @files[:project] << 'lib/teuton/project/readme/dsl.rb'
 #    @files[:project] << 'lib/teuton/project/readme/readme.rb'
-#    @files[:project] << 'lib/teuton/project/config_file_reader.rb'
-#    @files[:project] << 'lib/teuton/project/name_file_finder.rb'
-#    @files[:project] << 'lib/teuton/project/project.rb'
-#    @files[:project] << 'lib/teuton/project/skeleton.rb'
+    @files[:project] << 'lib/teuton/utils/configfile_reader.rb'
+    @files[:project] << 'lib/teuton/utils/name_file_finder.rb'
 
     @files[:rake] = []
     @files[:rake] << 'Rakefile'
@@ -58,16 +53,16 @@ class RubocopTest < Minitest::Test
     @files[:report] << 'lib/teuton/report/close.rb'
     @files[:report] << 'lib/teuton/report/report.rb'
     @files[:report] << 'lib/teuton/report/show.rb'
-#    @files << 'lib/teuton/report/formatter/array_formatter.rb'
+    @files[:report] << 'lib/teuton/report/formatter/array_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/base_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/json_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/resume_txt_formatter.rb'
     @files[:report] << 'lib/teuton/report/formatter/yaml_formatter.rb'
 
     @files[:result] = []
-#    @files[:result] << 'lib/teuton/case_manager/case/result/result.rb'
+    @files[:result] << 'lib/teuton/case_manager/case/result/result.rb'
     @files[:result] << 'lib/teuton/case_manager/case/result/ext_array.rb'
-#    @files[:result] << 'lib/teuton/case_manager/case/result/ext_compare.rb'
+    @files[:result] << 'lib/teuton/case_manager/case/result/ext_compare.rb'
     @files[:result] << 'lib/teuton/case_manager/case/result/ext_filter.rb'
   end
 
@@ -97,14 +92,6 @@ class RubocopTest < Minitest::Test
 
   def test_rubocop_case_dsl
     @files[:case_dsl].each do |file|
-      output = `rubocop #{file}`
-      puts "[DEBUG] #{file}" if $?.exitstatus > 0
-      assert_equal 0, $?.exitstatus
-    end
-  end
-
-  def test_rubocop_cli
-    @files[:cli].each do |file|
       output = `rubocop #{file}`
       puts "[DEBUG] #{file}" if $?.exitstatus > 0
       assert_equal 0, $?.exitstatus

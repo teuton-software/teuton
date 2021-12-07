@@ -28,15 +28,13 @@ Gem::Specification.new do |s|
 
   s.executables << 'teuton'
   s.executables << 'check_teuton'
-  s.files       = Dir.glob(File.join('lib','**','*.rb')) +
-                  [ File.join('lib','teuton','files','gitignore') ] +
-                  Dir.glob(File.join('lib','teuton','files','**', '*.*'))
+  s.files       = Dir.glob(File.join('lib', '**', '*.*'))
 
   s.required_ruby_version = '>= 2.5.0'
 
   s.add_runtime_dependency 'json_pure', '~> 2.2'
   s.add_runtime_dependency 'net-sftp', '~> 2.1'
-  s.add_runtime_dependency 'net-ssh', '~> 5.2'
+  s.add_runtime_dependency 'net-ssh', '~> 5.0.2'
   s.add_runtime_dependency 'net-telnet', '~> 0.1'
   s.add_runtime_dependency 'rainbow', '~> 3.0'
   s.add_runtime_dependency 'thor', '~> 0.20'
@@ -44,6 +42,4 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'minitest', '~> 5.11'
   s.add_development_dependency 'rubocop', '~> 0.74'
-
-  s.post_install_message = "Thanks for installing!"
 end

@@ -7,7 +7,7 @@ group "Learn about targets" do
 
 end
 
-play do
+start do
   show
   export
 end

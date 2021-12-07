@@ -19,10 +19,6 @@ Example:
 
 ```bash
 > teuton run examples/learn-01-target
-[INFO] ScriptPath => examples/learn-01-target/start.rb
-[INFO] ConfigPath => examples/learn-01-target/config.yaml
-[INFO] Pwd        => /mnt/home/leap/proy/repos/teuton.d/teuton
-[INFO] TestName   => learn-01-target
 
 ==================================
 Executing [teuton] (version 2.1.9)
