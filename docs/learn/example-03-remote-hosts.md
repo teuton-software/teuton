@@ -23,22 +23,22 @@ This configuration file contains:
 
 ```yaml
 ---
-:global:
-  :host1_username: root
-  :host1_password: profesor
-:cases:
-- :tt_members: Darth Maul
-  :host1_ip: 192.168.1.201
-  :host1_hostname: siths
-  :username: maul
-- :tt_members: R2D2
-  :host1_ip: 192.168.1.202
-  :host1_hostname: robots
-  :username: r2d2
-- :tt_members: Obiwan Kenobi
-  :host1_ip: 192.168.1.203
-  :host1_hostname: jedis
-  :username: obiwan
+global:
+  host1_username: root
+  host1_password: profesor
+cases:
+- tt_members: Darth Maul
+  host1_ip: 192.168.1.201
+  host1_hostname: siths
+  username: maul
+- tt_members: R2D2
+  host1_ip: 192.168.1.202
+  host1_hostname: robots
+  username: r2d2
+- tt_members: Obiwan Kenobi
+  host1_ip: 192.168.1.203
+  host1_hostname: jedis
+  username: obiwan
 ```
 
 ## Definition section

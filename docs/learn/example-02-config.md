@@ -19,12 +19,12 @@ By default, `config.yaml` is our config file. Let's an example:
 
 ```yaml
 ---
-:global:
-:cases:
-- :tt_members: Student-name-1
-  :username: root
-- :tt_members: Student-name-2
-  :username: vargas
+global:
+cases:
+- tt_members: Student-name-1
+  username: root
+- tt_members: Student-name-2
+  username: vargas
 ```
 
 ## Definition section
