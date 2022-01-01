@@ -1,4 +1,7 @@
 ---
-:global:
-  :tt_include: conf
-:cases:
+global:
+cases:
+- tt_members: student-name-01
+  dirname: /home/david
+- tt_members: student-name-02
+  dirname: /home/fran

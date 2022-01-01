@@ -1,8 +1,8 @@
 
 group "Demo new test" do
 
-	target "Exist #{get(:dirname)} directory"
-	run "file #{get(:dirname)}"
+	target "Exist #{_dirname} directory"
+	run "file #{_dirname}"
 	expect_none "No such file or directory"
 
 end
