@@ -1,6 +1,9 @@
 define_macro 'user_exist', :name do
   target "Exist user #{get(:name)}"
-  run "id #{get(:name)}"
+
+  run "id #{get(:name)}" if OS.linux?
+  run "net user #{get(:name)}" if OS.windows?
+
   expect_one get(:name)
 end
 

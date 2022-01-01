@@ -4,7 +4,8 @@
 # Group general functions used by Rakefile tasks
 module Utils
   def self.packages
-    p = %w[net-ssh net-sftp rainbow terminal-table thor json_pure net-telnet]
+    p = %w[net-ssh net-sftp rainbow net-telnet]
+    p += %w[terminal-table thor json_pure os]
     p += %w[minitest yard rubocop]
     p
   end
