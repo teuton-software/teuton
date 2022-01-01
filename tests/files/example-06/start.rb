@@ -11,19 +11,19 @@
 group "Create user obiwan" do
 
   target "Checking user <obiwan> using commands"
-  run "id obiwan| wc -l"
+  goto :localhost, :exec => "id obiwan| wc -l"
   expect result.equal(1)
 
   target "Checking user <obiwan> using count! method"
-  run "id obiwan"
+  goto :localhost, :exec => "id obiwan"
   expect result.count.eq 1
 
   target "Checking user <obiwan> using find! and count! methods with String arg"
-  run "cat /etc/passwd"
+  goto :localhost, :exec => "cat /etc/passwd"
   expect result.find("obiwan").count.eq 1
 
   target "Checking user <obiwan, obi-wan> using find! and count! methods with Regexp arg"
-  run "cat /etc/passwd"
+  goto :localhost, :exec => "cat /etc/passwd"
   expect result.find(/obiwan|obi-wan/).count.eq 1
 end
 

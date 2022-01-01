@@ -51,8 +51,6 @@ class Laboratory
     reset
   end
 
-  ##
-  # Set attibutes to default values
   def reset
     @result = Result.new
     @targetid = 0

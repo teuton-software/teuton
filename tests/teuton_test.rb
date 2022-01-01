@@ -8,20 +8,7 @@ class TeutonTest < Minitest::Test
   def setup
   end
 
-  def execute_teuton_test(filepath)
-    system("teuton run --no-color --export=yaml #{filepath} > /dev/null")
-    testname = File.basename(filepath)
-    filepath = File.join('var', testname, 'resume.yaml')
-    data = YAML.load(File.read(filepath))
-    [ testname, filepath, data ]
-  end
-
-  def read_case_report(id, testname)
-    filepath = File.join('var', testname, "case-#{id}.yaml")
-    data = YAML.load(File.read(filepath))
-  end
-
-  def test_learn_01_target
+  def test_example_learn_01_target
     filepath = 'examples/learn-01-target'
     testname, resume, data = execute_teuton_test filepath
 
@@ -50,12 +37,14 @@ class TeutonTest < Minitest::Test
     assert_equal 1, targets[0][:result]
   end
 
-  def test_learn_02_config
+  def test_example_learn_02_config
     filepath = 'examples/learn-02-config'
+    configfile = 'examples/learn-02-config/config.yaml'
     testname, resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, 'start.rb'), data[:config][:tt_scriptname]
     assert_equal testname, data[:config][:tt_testname]
+    assert_equal configfile, data[:config][:tt_configfile]
 
     assert_equal 2, data[:cases].size
 
@@ -74,6 +63,32 @@ class TeutonTest < Minitest::Test
     assert_equal 'NODATA', data[:cases][1][:moodle_id]
   end
 
+  def test_example_learn_02_config_with_cname_rock
+    filepath = 'examples/learn-02-config'
+    configfile = 'examples/learn-02-config/rock.yaml'
+    testname, resume, data = execute_teuton_test(filepath, '--cname=rock')
+
+    assert_equal File.join(filepath, 'start.rb'), data[:config][:tt_scriptname]
+    assert_equal testname, data[:config][:tt_testname]
+    assert_equal configfile, data[:config][:tt_configfile]
+
+    assert_equal 2, data[:cases].size
+
+    assert_equal false, data[:cases][0][:skip]
+    assert_equal '01', data[:cases][0][:id]
+    assert_equal 100, data[:cases][0][:grade]
+    assert_equal 'Rock and roll', data[:cases][0][:members]
+    assert_equal Hash.new, data[:cases][0][:conn_status]
+    assert_equal 'NODATA', data[:cases][0][:moodle_id]
+
+    assert_equal false, data[:cases][1][:skip]
+    assert_equal '02', data[:cases][1][:id]
+    assert_equal 0.0, data[:cases][1][:grade]
+    assert_equal 'AC/CD', data[:cases][1][:members]
+    assert_equal Hash.new, data[:cases][1][:conn_status]
+    assert_equal 'NODATA', data[:cases][1][:moodle_id]
+  end
+
   def test_learn_03_remote_hosts
     filepath = 'examples/learn-03-remote-hosts'
     testname, resume, data = execute_teuton_test filepath
@@ -83,7 +98,7 @@ class TeutonTest < Minitest::Test
 
     assert_equal 3, data[:cases].size
 
-    conn_error = { 'host1' => :error }
+    conn_error = { 'host1' => :host_unreachable }
     assert_equal false, data[:cases][0][:skip]
     assert_equal '01', data[:cases][0][:id]
     assert_equal 0.0, data[:cases][0][:grade]
@@ -104,6 +119,21 @@ class TeutonTest < Minitest::Test
     assert_equal 'Obiwan Kenobi', data[:cases][2][:members]
     assert_equal conn_error, data[:cases][2][:conn_status]
     assert_equal %w[obiwan@jedi.sw obiwan-kenobi@jedi.sw], data[:cases][2][:moodle_id]
+  end
+
+  private
+
+  def execute_teuton_test(filepath, options='')
+    system("teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null")
+    testname = File.basename(filepath)
+    filepath = File.join('var', testname, 'resume.yaml')
+    data = YAML.load(File.read(filepath))
+    [ testname, filepath, data ]
+  end
+
+  def read_case_report(id, testname)
+    filepath = File.join('var', testname, "case-#{id}.yaml")
+    data = YAML.load(File.read(filepath))
   end
 
 end
