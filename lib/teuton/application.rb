@@ -7,7 +7,7 @@ require_relative 'utils/name_file_finder'
 class Application
   include Singleton
 
-  VERSION = '2.2.0' # Application version
+  VERSION = '2.2.1' # Application version
   NAME = 'teuton' # Application name
 
   attr_reader   :letter
