@@ -60,8 +60,8 @@ module NameFileFinder
   def self.find_configfilename_from_directory(folder_path)
     # COMPLEX MODE: We use config.yaml by default
     app = Application.instance
-
     config_path = ''
+
     if app.options['cpath'].nil?
       config_name = 'config'
       # Config name file is introduced by cname arg option from teuton command

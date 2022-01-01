@@ -15,7 +15,7 @@ module Teuton
   # Run test
   # @param projectpath (String) Path to teuton test
   # @param options (Array) Array of input options
-  def self.play(projectpath, options = {})
+  def self.run(projectpath, options = {})
     Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script('teuton/case_manager/dsl') # Define DSL keywords
   end

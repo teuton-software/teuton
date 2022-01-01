@@ -87,7 +87,7 @@ class CLI < Thor
   # Execute Teuton test unit
   # @param filepath [String] Route to main: rb file or folder
   def play(filepath)
-    Teuton.play(filepath, options)
+    Teuton.run(filepath, options)
   end
 
   map ['n', '-n', '--new'] => 'new'

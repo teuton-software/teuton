@@ -79,11 +79,12 @@ class Application
   # * Read color input option
   # rubocop:disable Metrics/AbcSize
   def add_input_params(projectpath, options)
-    NameFileFinder.find_filenames_for(projectpath)
     @options.merge! options
+    NameFileFinder.find_filenames_for(projectpath)
     @options['color'] = true if @options['color'].nil?
     Rainbow.enabled = @options['color']
     @options['panel'] = false if @options['panel'].nil?
+
     return if @options['case'].nil?
 
     a = @options['case'].split(',')
