@@ -4,7 +4,7 @@ require 'minitest/autorun'
 require 'yaml'
 
 # MiniTest Rubocop
-class TeutonTest < Minitest::Test
+class TeutonExamplesTest < Minitest::Test
   def setup
   end
 
@@ -84,12 +84,39 @@ class TeutonTest < Minitest::Test
     assert_equal false, data[:cases][1][:skip]
     assert_equal '02', data[:cases][1][:id]
     assert_equal 0.0, data[:cases][1][:grade]
-    assert_equal 'AC/CD', data[:cases][1][:members]
+    assert_equal 'AC/DC', data[:cases][1][:members]
     assert_equal Hash.new, data[:cases][1][:conn_status]
     assert_equal 'NODATA', data[:cases][1][:moodle_id]
   end
 
-  def test_learn_03_remote_hosts
+  def test_example_learn_02_config_with_cpath_starwars
+    filepath = 'examples/learn-02-config'
+    configfile = 'examples/learn-02-config/starwars.yaml'
+    testname, resume, data = execute_teuton_test(filepath,
+                                                 "--cpath=#{configfile}")
+
+    assert_equal File.join(filepath, 'start.rb'), data[:config][:tt_scriptname]
+    assert_equal testname, data[:config][:tt_testname]
+    assert_equal configfile, data[:config][:tt_configfile]
+
+    assert_equal 2, data[:cases].size
+
+    assert_equal false, data[:cases][0][:skip]
+    assert_equal '01', data[:cases][0][:id]
+    assert_equal 100, data[:cases][0][:grade]
+    assert_equal 'Yoda', data[:cases][0][:members]
+    assert_equal Hash.new, data[:cases][0][:conn_status]
+    assert_equal 'NODATA', data[:cases][0][:moodle_id]
+
+    assert_equal false, data[:cases][1][:skip]
+    assert_equal '02', data[:cases][1][:id]
+    assert_equal 0.0, data[:cases][1][:grade]
+    assert_equal 'Darth Maul', data[:cases][1][:members]
+    assert_equal Hash.new, data[:cases][1][:conn_status]
+    assert_equal 'NODATA', data[:cases][1][:moodle_id]
+  end
+
+  def ntest_learn_03_remote_hosts
     filepath = 'examples/learn-03-remote-hosts'
     testname, resume, data = execute_teuton_test filepath
 
