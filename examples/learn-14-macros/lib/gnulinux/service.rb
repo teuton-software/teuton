@@ -1,18 +1,24 @@
 define_macro 'service_is_running', :service do
   target "Service #{get(:service)} is running"
-  run "systemctl status #{get(:service)}"
+
+  run "systemctl status #{get(:service)}" if OS.linux?
+
   expect_one [ 'Active:', 'active', '(running)' ]
 end
 
 define_macro 'service_is_not_running', :service do
   target "Service #{get(:service)} is not running"
-  run "systemctl status #{get(:service)}"
+
+  run "systemctl status #{get(:service)}" if OS.linux?
+
   expect_none [ 'Active:', 'active', '(running)' ]
 end
 
 define_macro 'service_is_enabled', :service do
   target "Service #{get(:service)} is enabled"
-  run "systemctl status #{get(:service)}"
+
+  run "systemctl status #{get(:service)}" if OS.linux?
+
   expect_one [ 'Loaded:', get(:service), ' enabled;' ]
 end
 
