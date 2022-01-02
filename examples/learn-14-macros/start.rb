@@ -1,13 +1,13 @@
 
-use 'lib/user'
+use 'gnulinux/user'
 
 group "Learn about macros" do
 
-  user_exist(name: 'fran')
+  user_exists(name: 'fran')
 
-  macro 'user_exist', name: 'root'
+  macro 'user_exists', name: 'root'
 
-  macro_user_exist(name: 'david')
+  macro_user_exists(name: 'david')
 
 end
 
