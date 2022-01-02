@@ -81,6 +81,7 @@ result.grep_v("nologin").grep("/bin/bash").count.gt 0
 
 | Function             | Description |
 | -------------------- | --------------------------------- |
+| `result.exitstatus`  | Return exit code from the last command executed by run statement |
 | `result.value`       | Return first output line or value |
 | `result.content`     | Return all output lines         |
 | `result.alterations` | Return transformations applied to the output |

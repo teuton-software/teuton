@@ -14,9 +14,6 @@ class Case
 
   private
 
-  ##
-  # Run command on host
-  # @param host (String)
   def run_cmd_on(host)
     protocol = @config.get("#{host}_protocol".to_sym)
     ip = @config.get("#{host}_ip".to_sym)
@@ -75,7 +72,7 @@ class Case
     port = @config.get("#{hostname}_port".to_sym).to_i || 22
 
     unless @config.get("#{hostname}_route".to_sym) == 'NODATA'
-      # Reconfigure command with gateway
+      # Reconfigure command with gateway. Example host1_route: IP.
       hostname2 = hostname
       ip2 = ip
       username2 = username
@@ -137,6 +134,7 @@ class Case
           " exec: #{@action[:command]}", :error)
     end
     output = encode_and_split(@action[:encoding], text)
+    @result.exitstatus = text.exitstatus
     @result.content = output
     @result.content.compact!
   end

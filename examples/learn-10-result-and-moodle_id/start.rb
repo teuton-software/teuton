@@ -15,6 +15,16 @@ group "Using result object" do
 
 end
 
+group "Checking exit code" do
+  users = ['david', 'fran']
+
+  users.each do |user|
+    target "Ensure exists username #{a} checking exit code"
+    run "id david"
+    expect (result.exitstatus == 0)
+  end
+end
+
 play do
   show
   export
