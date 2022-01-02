@@ -1,0 +1,7 @@
+---
+global:
+cases:
+- tt_members: Yoda
+  username: root
+- tt_members: Darth Maul
+  username: darth-maul

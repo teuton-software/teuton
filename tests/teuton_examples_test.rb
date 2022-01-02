@@ -9,7 +9,7 @@ class TeutonExamplesTest < Minitest::Test
   end
 
   def test_example_learn_01_target
-    filepath = 'examples/learn-01-target'
+    filepath = 'tests/files/learn-01-target'
     testname, resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, 'start.rb'), data[:config][:tt_scriptname]
@@ -30,7 +30,7 @@ class TeutonExamplesTest < Minitest::Test
     assert_equal 1.0, targets[0][:score]
     assert_equal 1.0, targets[0][:weight]
     assert_equal 'Create user david', targets[0][:description]
-    assert_equal 'id david', targets[0][:command]
+    assert_equal 'id david 2>/dev/null', targets[0][:command]
     assert_equal :local, targets[0][:conn_type]
     assert_equal 'find(david) & count', targets[0][:alterations]
     assert_equal 'Greater than 0', targets[0][:expected]
@@ -38,8 +38,8 @@ class TeutonExamplesTest < Minitest::Test
   end
 
   def test_example_learn_02_config
-    filepath = 'examples/learn-02-config'
-    configfile = 'examples/learn-02-config/config.yaml'
+    filepath = 'tests/files/learn-02-config'
+    configfile = 'tests/files/learn-02-config/config.yaml'
     testname, resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, 'start.rb'), data[:config][:tt_scriptname]
@@ -64,8 +64,8 @@ class TeutonExamplesTest < Minitest::Test
   end
 
   def test_example_learn_02_config_with_cname_rock
-    filepath = 'examples/learn-02-config'
-    configfile = 'examples/learn-02-config/rock.yaml'
+    filepath = 'tests/files/learn-02-config'
+    configfile = 'tests/files/learn-02-config/rock.yaml'
     testname, resume, data = execute_teuton_test(filepath, '--cname=rock')
 
     assert_equal File.join(filepath, 'start.rb'), data[:config][:tt_scriptname]
@@ -90,7 +90,7 @@ class TeutonExamplesTest < Minitest::Test
   end
 
   def test_example_learn_02_config_with_cpath_starwars
-    filepath = 'examples/learn-02-config'
+    filepath = 'tests/files/learn-02-config'
     configfile = 'examples/learn-02-config/starwars.yaml'
     testname, resume, data = execute_teuton_test(filepath,
                                                  "--cpath=#{configfile}")
@@ -117,7 +117,7 @@ class TeutonExamplesTest < Minitest::Test
   end
 
   def ntest_learn_03_remote_hosts
-    filepath = 'examples/learn-03-remote-hosts'
+    filepath = 'tests/files/learn-03-remote-hosts'
     testname, resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, 'start.rb'), data[:config][:tt_scriptname]
