@@ -134,7 +134,7 @@ class Case
           " exec: #{@action[:command]}", :error)
     end
     output = encode_and_split(@action[:encoding], text)
-    @result.exitstatus = text.exitstatus
+    # revise: @result.exitstatus = text.exitstatus
     @result.content = output
     @result.content.compact!
   end

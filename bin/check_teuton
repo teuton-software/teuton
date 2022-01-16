@@ -11,8 +11,6 @@ module CheckTeuton
     run(arg)
   end
 
-  ##
-  # Show help
   def self.show_help()
     puts "check_teuton"
     puts "  help              => Show this help"

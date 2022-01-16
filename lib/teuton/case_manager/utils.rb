@@ -26,7 +26,7 @@ module Utils
       text = ec.convert(text)
     rescue StandardError => e
       puts "[ERROR] #{e}: Declare text encoding..."
-      puts "        goto :host, :exec => 'command', :encoding => 'ISO-8859-1'"
+      puts "        run 'command', on: :host, :encoding => 'ISO-8859-1'"
     end
 
     text.split("\n")
