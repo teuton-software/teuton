@@ -1,37 +1,47 @@
+#!/usr/bin/env ruby
 
+require 'pry-byebug'
 require 'net/ssh'
 require 'net/telnet'
 
 class RemoteOS
   attr_reader :type
 
+
   def initialize(args)
-    @host_ip = args[:ip] || 'localhost'
-    @host_port = args[:port] || '22'
-    @host_username = args[:username] || 'root'
-    @host_password =  args[:password] || 'vagrant'
+    @ip = args[:ip] || 'localhost'
+    @port = args[:port] || '22'
+    @username = args[:username] || 'root'
+    @password =  args[:password] || 'vagrant'
     @type = :unkown
+    @command = 'lsb_release -d'
   end
 
-  private
+  def info
+    puts "[INFO] RemoteOS"
+    puts " * ip       : #{@ip}"
+    puts " * port     : #{@port}"
+    puts " * username : #{@username}"
+    puts " * password : #{@password}"
+    puts " * type     : #{@type}"
+    puts " * command  : #{@command}"
+  end
 
-  def quess_type
-    command = 'lsb_release -d'
+  def guess_type
     text = ''
     begin
-      session = Net::SSH.start(@host_ip,
-                               @host_username,
-                               port: @host_port,
-                               password: @host_password,
+      session = Net::SSH.start(@ip,
+                               @username,
+                               port: @port,
+                               password: @password,
                                keepalive: true,
                                timeout: 30,
                                non_interactive: true)
-      end
       if session.class == Net::SSH::Connection::Session
-        text = @session.exec!(command)
+        text = session.exec!(@command)
       end
     rescue Errno::EHOSTUNREACH
-      puts ("[ERROR] Host #{@host_ip} unreachable!")
+      puts ("[ERROR] Host #{@ip} unreachable!")
     rescue Net::SSH::AuthenticationFailed
       puts('[ERROR] SSH::AuthenticationFailed!')
     rescue Net::SSH::HostKeyMismatch
@@ -40,13 +50,26 @@ class RemoteOS
           'what is in your local known_hosts file.')
       puts('* Remove the existing entry in your local known_hosts file')
       puts("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' " \
-          "-R #{@host_ip}")
+          "-R #{@ip}")
     rescue StandardError => e
-      puts("[#{e.class}] SSH on <#{@host_username}@#{@host_ip}>" \
-          " exec: #{command}")
+      puts("[#{e.class}] SSH on <#{@username}@#{@ip}>" \
+          " exec: #{@command}")
     end
-    @result.exitstatus = text.exitstatus
-    [text, text.exitstatus]
+    #@result.exitstatus = text.exitstatus
+    #[text, text.exitstatus]
+    words = text.split
+    words[0] = nil
+    @type = words.compact.join('_')
   end
-
 end
+
+h = RemoteOS.new(ip: 'localhost',
+                 port: '2222',
+                 username: 'vagrant',
+                 password: 'vagrant')
+
+h.guess_type
+h.info
+
+# 'lsb_release -d'
+# => Debian_GNU/Linux_10_(buster)
