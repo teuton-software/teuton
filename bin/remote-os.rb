@@ -30,6 +30,7 @@ class RemoteOS
   end
 
   def guess_type(args)
+    # binding.pry
     @command = args[:command]
     position = args[:position]
     text = ''
@@ -64,7 +65,12 @@ class RemoteOS
     #[text, text.exitstatus]
     #binding.pry
     words = text.split
-    words[0] = nil
+    if words.size == 1
+      desc = words[0]
+      words = [ 'win', desc ]
+    else
+      words[0] = nil
+    end
     @name = :empty
     @desc = :empty
     unless words[position].nil?
@@ -74,7 +80,7 @@ class RemoteOS
   end
 end
 
-
+# 2211 win10 | /cygdrive/c/Users/vagrant
 # 'lsb_release -d'
 # 2231 => opensuse | openSUSE_Leap_15.3
 # 2241 => debian   | Debian_GNU/Linux_10_(buster)
@@ -101,16 +107,16 @@ remote_host = RemoteOS.new(ip: 'localhost',
                            username: 'vagrant',
                            password: 'vagrant')
 
-commands = { win10: 'hostname',
-             winserver: 'hostname',
+commands = { win10: 'pwd',
+             winserver: 'pwd',
              opensuse: 'lsb_release -d',
              debian: 'lsb_release -d',
              ubuntu: 'lsb_release -d',
              manjaro: 'lsb_release -d',
              minix: 'cat /etc/motd |grep MINIX'}
 
-position = { win10: 1,
-             winserver: 1,
+position = { win10: 0,
+             winserver: 0,
              opensuse: 1,
              debian: 1,
              ubuntu: 1,
