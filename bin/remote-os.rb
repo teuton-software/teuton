@@ -29,7 +29,8 @@ class RemoteOS
     puts " * command  : #{@command}"
   end
 
-  def guess_type
+  def guess_type(command)
+    @command = command
     text = ''
     begin
       session = Net::SSH.start(@ip,
@@ -59,22 +60,47 @@ class RemoteOS
     end
     #@result.exitstatus = text.exitstatus
     #[text, text.exitstatus]
+    #binding.pry
     words = text.split
     words[0] = nil
-    @name = words[1].downcase
-    @desc = words.compact.join('_')
+    @name = :empty
+    @desc = :empty
+    unless words[1].nil?
+      @name = words[1].downcase
+      @desc = words.compact.join('_')
+    end
   end
 end
 
-h = RemoteOS.new(ip: 'localhost',
-                 port: '2231',
-                 username: 'vagrant',
-                 password: 'vagrant')
-
-h.guess_type
-h.info
 
 # 'lsb_release -d'
 # 2231 => opensuse | openSUSE_Leap_15.3
 # 2241 => debian   | Debian_GNU/Linux_10_(buster)
+# 2242 => unkown UBUNTU!!!
 # 2251 => manjaro  | Manjaro_Linux
+
+ports = { win10: '2211', winserver: '2221',
+          opensuse: '2231', debian: '2241', ubuntu: '2242',
+          manjaro: '2251'}
+osname = ARGV.first
+
+if osname.nil?
+  puts "Opciones : #{ports.keys.sort.join(', ').to_s}"
+  exit 1
+end
+osname = osname.to_sym
+remote_host = RemoteOS.new(ip: 'localhost',
+                           port: ports[osname],
+                           username: 'vagrant',
+                           password: 'vagrant')
+
+commands = { win10: 'hostname', winserver: 'hostname',
+             opensuse: 'lsb_release -d', debian: 'lsb_release -d',
+             ubuntu: 'lsb_release -d', manjaro: 'lsb_release -d'}
+
+puts "[INFO] Trying with #{osname}..."
+puts " * port    : #{ports[osname]}"
+puts " * command : #{commands[osname]}"
+puts ""
+remote_host.guess_type(commands[osname])
+remote_host.info
