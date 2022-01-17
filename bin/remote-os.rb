@@ -5,15 +5,16 @@ require 'net/ssh'
 require 'net/telnet'
 
 class RemoteOS
-  attr_reader :type
-
+  attr_reader :name, :desc
+  attr_accessor :command
 
   def initialize(args)
     @ip = args[:ip] || 'localhost'
     @port = args[:port] || '22'
     @username = args[:username] || 'root'
     @password =  args[:password] || 'vagrant'
-    @type = :unkown
+    @desc = :unkown
+    @name = :unkown
     @command = 'lsb_release -d'
   end
 
@@ -23,7 +24,8 @@ class RemoteOS
     puts " * port     : #{@port}"
     puts " * username : #{@username}"
     puts " * password : #{@password}"
-    puts " * type     : #{@type}"
+    puts " * desc     : #{@desc}"
+    puts " * name     : #{@name}"
     puts " * command  : #{@command}"
   end
 
@@ -59,12 +61,13 @@ class RemoteOS
     #[text, text.exitstatus]
     words = text.split
     words[0] = nil
-    @type = words.compact.join('_')
+    @name = words[1].downcase
+    @desc = words.compact.join('_')
   end
 end
 
 h = RemoteOS.new(ip: 'localhost',
-                 port: '2222',
+                 port: '2231',
                  username: 'vagrant',
                  password: 'vagrant')
 
@@ -72,4 +75,6 @@ h.guess_type
 h.info
 
 # 'lsb_release -d'
-# => Debian_GNU/Linux_10_(buster)
+# 2231 => opensuse | openSUSE_Leap_15.3
+# 2241 => debian   | Debian_GNU/Linux_10_(buster)
+# 2251 => manjaro  | Manjaro_Linux
