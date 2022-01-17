@@ -19,18 +19,19 @@ class RemoteOS
   end
 
   def info
-    puts "[INFO] RemoteOS"
-    puts " * ip       : #{@ip}"
-    puts " * port     : #{@port}"
-    puts " * username : #{@username}"
-    puts " * password : #{@password}"
-    puts " * desc     : #{@desc}"
-    puts " * name     : #{@name}"
-    puts " * command  : #{@command}"
+    puts "\n[ RemoteOS ]\n"
+    puts "  ip       => #{@ip}"
+    puts "  port     => #{@port}"
+    puts "  username => #{@username}"
+    puts "  password => #{@password}"
+    puts "  command  => #{@command}"
+    puts "  desc     <= #{@desc}"
+    puts "  name     <= #{@name}"
   end
 
-  def guess_type(command)
-    @command = command
+  def guess_type(args)
+    @command = args[:command]
+    position = args[:position]
     text = ''
     begin
       session = Net::SSH.start(@ip,
@@ -55,8 +56,9 @@ class RemoteOS
       puts("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' " \
           "-R #{@ip}")
     rescue StandardError => e
-      puts("[#{e.class}] SSH on <#{@username}@#{@ip}>" \
+      puts("[#{e.class}] SSH on <#{@username}@#{@ip}:#{@port}>" \
           " exec: #{@command}")
+      exit 1
     end
     #@result.exitstatus = text.exitstatus
     #[text, text.exitstatus]
@@ -65,8 +67,8 @@ class RemoteOS
     words[0] = nil
     @name = :empty
     @desc = :empty
-    unless words[1].nil?
-      @name = words[1].downcase
+    unless words[position].nil?
+      @name = words[position].downcase
       @desc = words.compact.join('_')
     end
   end
@@ -78,29 +80,43 @@ end
 # 2241 => debian   | Debian_GNU/Linux_10_(buster)
 # 2242 => unkown UBUNTU!!!
 # 2251 => manjaro  | Manjaro_Linux
+# 2252 => mimix3 | Manjaro_Linux
 
-ports = { win10: '2211', winserver: '2221',
-          opensuse: '2231', debian: '2241', ubuntu: '2242',
-          manjaro: '2251'}
+ports = { win10: '2211',
+          winserver: '2221',
+          opensuse: '2231',
+          debian: '2241', ubuntu: '2242',
+          manjaro: '2251', minix: '2252'}
+
 osname = ARGV.first
 
 if osname.nil?
   puts "Opciones : #{ports.keys.sort.join(', ').to_s}"
   exit 1
 end
+
 osname = osname.to_sym
 remote_host = RemoteOS.new(ip: 'localhost',
                            port: ports[osname],
                            username: 'vagrant',
                            password: 'vagrant')
 
-commands = { win10: 'hostname', winserver: 'hostname',
-             opensuse: 'lsb_release -d', debian: 'lsb_release -d',
-             ubuntu: 'lsb_release -d', manjaro: 'lsb_release -d'}
+commands = { win10: 'hostname',
+             winserver: 'hostname',
+             opensuse: 'lsb_release -d',
+             debian: 'lsb_release -d',
+             ubuntu: 'lsb_release -d',
+             manjaro: 'lsb_release -d',
+             minix: 'cat /etc/motd |grep MINIX'}
 
-puts "[INFO] Trying with #{osname}..."
-puts " * port    : #{ports[osname]}"
-puts " * command : #{commands[osname]}"
-puts ""
-remote_host.guess_type(commands[osname])
+position = { win10: 1,
+             winserver: 1,
+             opensuse: 1,
+             debian: 1,
+             ubuntu: 1,
+             manjaro: 1,
+             minix: 7}
+
+remote_host.guess_type(command: commands[osname],
+                       position: position[osname])
 remote_host.info
