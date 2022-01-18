@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 APP_NAME=teuton
-VERSION=2.2.0
+VERSION=2.1.11
 REPO_URL=https://github.com/teuton-software/teuton-tests
 SAMPLES_FOLDER=teuton-tests
+GEM_URL=https://rubygems.org/gems/teuton
 
 apt update
 apt install -y vim tree nmap
@@ -23,7 +24,7 @@ apt install -y figlet
 figlet $APP_NAME > /etc/motd
 echo "" >> /etc/motd
 echo "$APP_NAME ($VERSION)" >> /etc/motd
-echo "$REPO_URL" >> /etc/motd
+echo "$GEM_URL" >> /etc/motd
 
 echo "[INFO] Configure aliases"
 echo "# Adding more alias" >> /home/vagrant/.bashrc
