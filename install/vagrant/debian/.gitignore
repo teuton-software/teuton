@@ -1,1 +1,3 @@
 .vagrant
+private*
+*.log
