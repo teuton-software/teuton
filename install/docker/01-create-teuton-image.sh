@@ -1,1 +1,1 @@
-docker build -t dvarrui/teuton .
+docker build -t teutonsoftware/teuton .
