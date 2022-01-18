@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "vagrant-manjaro" do |i|
+    i.vm.box = "marashni/manjaro64"
+    i.vm.box_version = "0.0.1"
+    i.vm.hostname = "vagrant-manjaro"
+    # i.vm.network "public_network", bridge: [ "eth0" ]
+    # i.vm.network "public_network", bridge: [ "wlan0" ]
+    i.vm.network :forwarded_port, guest: 22, host: 2251
+    i.vm.synced_folder "./", "/vagrant"
+    i.vm.provision "shell", inline: <<-SHELL
+      lsb_release -d
+    SHELL
+    i.vm.provider "virtualbox" do |vm|
+      vm.name = 'vagrant-manjaro'
+      vm.memory = 2048
+    end
+  end
+end
+

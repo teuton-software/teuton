@@ -5,13 +5,17 @@ Vagrant.configure("2") do |config|
   config.vm.define "teuton-debian" do |i|
     i.vm.box = "generic/debian10"
     i.vm.hostname = "teuton-debian"
+    #i.vm.network "public_network", bridge: [ "eth0" ]
+    #i.vm.network "public_network", bridge: [ "wlan0" ]
+    i.vm.network :forwarded_port, guest: 22, host: 2241
     i.vm.synced_folder "./", "/vagrant"
-#    i.vm.network "public_network", bridge: [ "wlan0" ]
     i.vm.provision "shell", inline: <<-SHELL
-      apt-get update
-      apt-get install -y tree vim
-      apt-get install -y ruby
+      apt update
+      apt install -y vim tree nmap
+      apt install -y neofetch
+      apt install -y ruby
       gem install teuton
+      lsb_release -d
     SHELL
     i.vm.provider "virtualbox" do |v|
       v.name = 'teuton-debian'
