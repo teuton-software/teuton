@@ -108,7 +108,7 @@ remote_host = RemoteOS.new(ip: 'localhost',
                            password: 'vagrant')
 
 commands = { win10: 'pwd',
-             winserver: 'pwd',
+             winserver: 'echo %windir%',
              opensuse: 'lsb_release -d',
              debian: 'lsb_release -d',
              ubuntu: 'lsb_release -d',
