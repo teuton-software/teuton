@@ -4,6 +4,8 @@ require_relative 'tasks/build'
 require_relative 'tasks/install'
 require_relative 'tasks/push'
 
+puts '[INFO] "rake build:gem" must be run before this!'
+
 desc 'Default: check'
 task :default do
   Rake::Task['install:check'].invoke
