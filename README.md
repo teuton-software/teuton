@@ -1,5 +1,8 @@
 
 [![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
+![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
+![Gem](https://img.shields.io/gem/dv/teuton/2.1.11)
+
 
 # TEUTON (version 2.2 devel)
 
