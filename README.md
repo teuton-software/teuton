@@ -22,7 +22,7 @@ Teuton allow us:
 
 # Documentation (version 2.2)
 
-* Documentation [version 2.1](https://github.com/teuton-software/teuton/tree/devel#readme).
+* Docs version [2.1](https://github.com/teuton-software/teuton/tree/devel#readme).
 * [Installation](https://github.com/teuton-software/teuton/tree/master/docs/install/README.md)
     1. Install Ruby on your system.
     1. `gem install teuton`, to install Teuton.
