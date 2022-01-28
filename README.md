@@ -20,8 +20,9 @@ Teuton allow us:
 * Write unit tests for real or virtual devices, using simple DSL.
 * Check compliance with requirements on remote machines.
 
-# Documentation
+# Documentation (version 2.2)
 
+* Documentation [version 2.1](https://github.com/teuton-software/teuton/tree/devel#readme).
 * [Installation](https://github.com/teuton-software/teuton/tree/master/docs/install/README.md)
     1. Install Ruby on your system.
     1. `gem install teuton`, to install Teuton.
