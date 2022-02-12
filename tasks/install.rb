@@ -28,7 +28,7 @@ namespace :install do
 
   desc 'OpenSUSE installation'
   task :opensuse do
-    names = %w[openssh make gcc ruby-devel]
+    names = %w[openssh make gcc ruby-devel ruby2.5-rubygem-yard]
     options = '--non-interactive'
     names.each { |n| system("zypper #{options} install #{n}") }
     Utils.install_gems Utils.packages, '--no-ri'

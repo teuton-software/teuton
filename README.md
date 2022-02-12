@@ -26,13 +26,14 @@ Teuton allow us:
 * [Installation](https://github.com/teuton-software/teuton/tree/master/docs/install/README.md)
     1. Install Ruby on your system.
     1. `gem install teuton`, to install Teuton.
-* [Learning](https://github.com/teuton-software/teuton/tree/master/docs/learn/README.md)
-* [Commands](https://github.com/teuton-software/teuton/tree/master/docs/commands/README.md)
-* [Teuton language](https://github.com/teuton-software/teuton/tree/master/docs/dsl/README.md)
+* [Videos, blogs, news](docs/videos.md)
+* [Learning](docs/learn/README.md)
+* [Commands](docs/commands/README.md)
+* [Teuton language](docs/dsl/README.md)
 
 # Features
 
-* [Free Software License](https://github.com/teuton-software/teuton/tree/master/LICENSE).
+* [Free Software License](LICENSE).
 * Multiplatform.
 * Remote machines only require SSH or Telnet service installed.
 * Developed using ruby language.
