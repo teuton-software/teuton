@@ -91,10 +91,10 @@ class CLI < Thor
     Teuton.run(filepath, options)
   end
 
-  map ['r', '-r', '--readme'] => 'readme'
+  map ['--readme'] => 'readme'
   option :lang, type: :string
   desc 'readme DIRECTORY',
-       'Show README.md file from test contents'
+       'Show README extracted from test contents'
   long_desc <<-LONGDESC
 
   (1) teuton readme foo
