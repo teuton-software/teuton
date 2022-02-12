@@ -14,7 +14,7 @@ class TeutonCommandTest < Minitest::Test
     assert_equal true,  system('teuton version > /dev/null')
   end
 
-  def notest_new
+  def test_new
     dir = 'delete.this.new'
     cmd = "teuton new #{dir} > /dev/null"
     assert_equal true,  system(cmd)
@@ -28,13 +28,13 @@ class TeutonCommandTest < Minitest::Test
 
     files.each do |filename|
       filepath = File.join(dir, filename)
-      assert_equal true,  system("rm #{filename}")
+      assert_equal true,  system("rm #{filepath}")
     end
 
     assert_equal true,  system("rmdir #{dir}")
   end
 
-  def notest_check_examples
+  def test_check_examples
     @examples.each do |name|
       dir = File.join(@dirbase, name)
       cmd = "teuton check #{dir} > /dev/null"
@@ -42,11 +42,11 @@ class TeutonCommandTest < Minitest::Test
     end
   end
 
-  def notest_run_examples
+  def test_run_examples
     @examples.each do |name|
       dir = File.join(@dirbase, name)
 
-      cmd = "teuton run #{dir} > /dev/null"
+      cmd = "teuton run --quiet #{dir} > /dev/null"
       assert_equal true,  system(cmd)
 
       cmd = "teuton #{dir} > /dev/null"
