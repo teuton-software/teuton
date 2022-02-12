@@ -17,7 +17,7 @@ module Utils
     end
     puts '[INFO] Creating symbolic link into /usr/local/bin'
     basedir = File.join(File.dirname(__FILE__), '..')
-    system("ln -s #{basedir}/teuton '/usr/local/bin/teuton'")
+    run_cmd "ln -s #{basedir}/teuton '/usr/local/bin/teuton'"
   end
 
   def self.install_gems(list, options = '')
@@ -25,10 +25,10 @@ module Utils
     if !fails.empty?
       puts "[INFO] Installing gems (options = #{options})..."
       fails.each do |name|
-        system("gem install #{name} #{options}")
+        run_cmd "gem install #{name} #{options}"
       end
     else
-      puts '[ OK ] Gems installed'
+      puts '[  OK  ] Gems installed'
     end
   end
 
@@ -41,13 +41,14 @@ module Utils
   end
 
   def self.check_tests
+    puts "[ INFO ] teuton version #{Version::VERSION}"
     testfile = File.join('.', 'tests', 'all.rb')
     a = File.read(testfile).split("\n")
     b = a.select { |i| i.include? '_test' }
     d = File.join('.', 'tests', '**', '*_test.rb')
     e = Dir.glob(d)
-    puts "[FAIL] Some ruby tests are not executed by #{testfile}" unless b.size == e.size
-    puts "[INFO] Running #{testfile}"
-    system(testfile)
+    puts "[ FAIL ] Some ruby tests are not executed by #{testfile}" unless b.size == e.size
+    puts "[ INFO ] Running #{testfile}"
+    run_cmd testfile
   end
 end
