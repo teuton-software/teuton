@@ -1,25 +1,24 @@
-# frozen_string_literal: true
 
 namespace :build do
   desc 'Build gem'
   task :gem do
-    puts '[INFO] Building gem...'
-    system('rm teuton-*.*.*.gem')
-    system('gem build teuton.gemspec')
+    puts '[ INFO ] Building gem...'
+    run_cmd "rm #{Version::GEMNAME}-*.*.*.gem"
+    run_cmd "gem build #{Version::GEMNAME}.gemspec"
   end
 
   desc 'Generate docs'
   task :docs do
-    puts '[INFO] Generating documentation...'
-    system('rm -r html/')
-    system('yardoc lib/* -o html')
+    puts '[ INFO ] Generating documentation...'
+    run_cmd 'rm -r html/'
+    run_cmd 'yardoc lib/* -o html'
   end
 
   desc 'Build docker image'
   task :docker do
-    puts '[INFO] Building docker image...'
-    system('docker rmi dvarrui/teuton')
-    system('docker build -t dvarrui/teuton install/docker/')
+    puts '[ INFO ] Building docker image...'
+    run_cmd "docker rmi #{Version::DOCKERNAME}"
+    run_cmd "docker build -t #{Version::DOCKERNAME} install/docker/"
   end
 
   desc 'Build all (gem and docs)'

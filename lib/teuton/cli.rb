@@ -2,19 +2,26 @@
 
 require 'thor'
 require_relative 'application'
+require_relative 'version'
 require_relative '../teuton'
 
-##
-# Command Line Interface
 class CLI < Thor
   map ['h', '-h', '--help'] => 'help'
 
   map ['v', '-v', '--version'] => 'version'
   desc 'version', 'Show the program version'
-  ##
-  # Display teuton version
   def version
-    puts "#{Application::NAME} (version #{Application::VERSION})"
+    puts "#{Version::APPNAME} (version #{Version::VERSION})"
+  end
+
+  map ['n', '-n', '--new'] => 'new'
+  desc 'new DIRECTORY', 'Create skeleton for a new project'
+  long_desc <<-LONGDESC
+  Create files for a new project.
+  LONGDESC
+  def new(projectpath)
+    # Command: create new Teuton project
+    Teuton.create(projectpath)
   end
 
   map ['c', '-c', '--check'] => 'check'
@@ -38,9 +45,6 @@ class CLI < Thor
   , Check content of foo.rb and demo.yaml files.
 
   LONGDESC
-  ##
-  # Verify or test Teuton test units syntax
-  # @param projectpath [String] Route to main rb Teuton file
   def check(projectpath)
     Teuton.check(projectpath, options)
   end
@@ -83,22 +87,8 @@ class CLI < Thor
   (5) teuton foo/demo.rb, Run challenge from foo/demo.rb with foo/demo.yaml config file.
 
   LONGDESC
-  ##
-  # Execute Teuton test unit
-  # @param filepath [String] Route to main: rb file or folder
   def play(filepath)
     Teuton.run(filepath, options)
-  end
-
-  map ['n', '-n', '--new'] => 'new'
-  desc 'new DIRECTORY', 'Create skeleton for a new project'
-  long_desc <<-LONGDESC
-  Create files for a new project.
-  LONGDESC
-  ##
-  # Command: create new Teuton project
-  def new(projectpath)
-    Teuton.create(projectpath)
   end
 
   map ['r', '-r', '--readme'] => 'readme'
@@ -114,10 +104,8 @@ class CLI < Thor
   , Create README.md from foo/demo.rb.
   LONGDESC
 
-  ##
-  # Create README from teuton test
-  # @param projectpath [String] Route to main rb Teuton file
   def readme(projectpath)
+    # Create README from teuton test
     Teuton.readme(projectpath, options)
   end
 
@@ -129,9 +117,8 @@ class CLI < Thor
     play(method.to_s)
   end
 
-  ##
-  # Respond to missing methods name
   def respond_to_missing?(method_name, include_private = false)
+    # Respond to missing methods name
     super
   end
 end

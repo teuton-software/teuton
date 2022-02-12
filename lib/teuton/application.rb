@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 require 'singleton'
+require_relative 'version'
 require_relative 'utils/name_file_finder'
 
 # This Singleton contains application params
 class Application
   include Singleton
-
-  VERSION = '2.2.1' # Application version
-  NAME = 'teuton' # Application name
+  include Version
 
   attr_reader   :letter
   attr_reader   :running_basedir, :output_basedir
