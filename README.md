@@ -3,7 +3,6 @@
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 ![Gem](https://img.shields.io/gem/dv/teuton/2.1.11)
 
-
 # TEUTON (version 2.2 devel)
 
 _Create Unit Test for your machines, and
@@ -11,14 +10,14 @@ test your infraestructure as code._
 
 ![logo](./docs/images/logo.png)
 
-Teuton is an intrastructure test tool, useful:
-* For sysadmin teachers who want to evaluate students remote machines.
-* For sysadmin apprentices who want to evaluate their learning process as a game.
-* For professional sysadmin who want to monitor remote machines.
+Teuton is an intrastructure test tool, useful for:
+* Sysadmin teachers who want to evaluate students remote machines.
+* Sysadmin apprentices who want to evaluate their learning process as a game.
+* Professional sysadmin who want to monitor remote machines.
 
 Teuton allow us:
 * Write unit tests for real or virtual devices, using simple DSL.
-* Check compliance with requirements on remote machines.
+* Check compliance with requirements on local or remote devices.
 
 # Documentation (version 2.2)
 
@@ -42,3 +41,4 @@ Teuton allow us:
 
 * **Email**: `teuton.software@protonmail.com`
 * **Twitter**: `@SoftwareTeuton`
+
