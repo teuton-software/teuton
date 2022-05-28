@@ -7,13 +7,6 @@ namespace :build do
     run_cmd "gem build #{Teuton::GEMNAME}.gemspec"
   end
 
-  desc 'Generate docs'
-  task :docs do
-    puts '[ INFO ] Generating documentation...'
-    run_cmd 'rm -r html/'
-    run_cmd 'yardoc lib/* -o html'
-  end
-
   desc 'Build docker image'
   task :docker do
     puts '[ INFO ] Building docker image...'
@@ -21,9 +14,9 @@ namespace :build do
     run_cmd "docker build -t #{Teuton::DOCKERNAME} install/docker/"
   end
 
-  desc 'Build all (gem and docs)'
+  desc 'Build all'
   task :all do
     Rake::Task['build:gem'].invoke
-    Rake::Task['build:docs'].invoke
+    Rake::Task['build:docker'].invoke
   end
 end
