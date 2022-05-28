@@ -3,8 +3,8 @@ namespace :build do
   desc 'Build gem'
   task :gem do
     puts '[ INFO ] Building gem...'
-    run_cmd "rm #{Version::GEMNAME}-*.*.*.gem"
-    run_cmd "gem build #{Version::GEMNAME}.gemspec"
+    run_cmd "rm #{Teuton::GEMNAME}-*.*.*.gem"
+    run_cmd "gem build #{Teuton::GEMNAME}.gemspec"
   end
 
   desc 'Generate docs'
@@ -17,8 +17,8 @@ namespace :build do
   desc 'Build docker image'
   task :docker do
     puts '[ INFO ] Building docker image...'
-    run_cmd "docker rmi #{Version::DOCKERNAME}"
-    run_cmd "docker build -t #{Version::DOCKERNAME} install/docker/"
+    run_cmd "docker rmi #{Teuton::DOCKERNAME}"
+    run_cmd "docker build -t #{Teuton::DOCKERNAME} install/docker/"
   end
 
   desc 'Build all (gem and docs)'
