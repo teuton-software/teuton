@@ -3,7 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 ![Gem](https://img.shields.io/gem/dv/teuton/2.1.11)
 
-# TEUTON (version 2.2 devel)
+# TEUTON
 
 _Create Unit Test for your machines, and
 test your infraestructure as code._
@@ -19,9 +19,8 @@ Teuton allow us:
 * Write unit tests for real or virtual devices, using simple DSL.
 * Check compliance with requirements on local or remote devices.
 
-# Documentation (version 2.2)
+# Documentation
 
-* Docs version [2.1](https://github.com/teuton-software/teuton/tree/devel#readme).
 * [Installation](https://github.com/teuton-software/teuton/tree/master/docs/install/README.md)
     1. Install Ruby on your system.
     1. `gem install teuton`, to install Teuton.
@@ -41,4 +40,3 @@ Teuton allow us:
 
 * **Email**: `teuton.software@protonmail.com`
 * **Twitter**: `@SoftwareTeuton`
-
