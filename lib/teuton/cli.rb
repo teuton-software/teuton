@@ -1,6 +1,5 @@
 
 require 'thor'
-# require_relative 'application'
 require_relative 'version'
 require_relative '../teuton'
 
@@ -19,7 +18,6 @@ class CLI < Thor
   Create files for a new project.
   LONGDESC
   def new(projectpath)
-    # Command: create new Teuton project
     Teuton.create(projectpath)
   end
 
@@ -47,17 +45,6 @@ class CLI < Thor
   def check(projectpath)
     Teuton.check(projectpath, options)
   end
-
-  # map ['--config'] => 'config'
-  # option :global, type: :boolean
-  # desc 'config [OPTIONS] DIRECTORY',
-  #     'Suggest config file content'
-  ##
-  # Sugget config file content
-  # @param projectpath [String] Route to main rb Teuton file
-  # def config(projectpath)
-  #  Teuton.check(projectpath, options)
-  # end
 
   map ['--run', 'run'] => 'play'
   option :export, type: :string
