@@ -3,3 +3,5 @@
 html
 var
 *.devel
+private*
+priv*
