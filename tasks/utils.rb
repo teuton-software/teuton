@@ -4,10 +4,10 @@
 # Group general functions used by Rakefile tasks
 module Utils
   def self.gemlist
-    gemnames = %w(colorize, rainbow)
+    gemnames = %w(colorize rainbow)
     gemnames << %w(net-sftp net-ssh net-telnet)
     gemnames << %w(os json_pure thor terminal-table)
-    gemnames
+    gemnames.flatten
   end
 
   def self.create_symbolic_link

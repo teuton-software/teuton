@@ -1,9 +1,8 @@
 
 module Teuton
-  MAJOR_VERSION = '2.2'
-  VERSION = "#{MAJOR_VERSION}.1"
+  VERSION = '2.3.0'
   APPNAME = 'teuton'
   GEMNAME = 'teuton'
   DOCKERNAME = "dvarrui/#{GEMNAME}"
-  HOMEPAGE = "https://github.com/teuton-software/teuton/tree/v#{MAJOR_VERSION}"
+  HOMEPAGE = "https://github.com/teuton-software/teuton"
 end
