@@ -1,5 +1,5 @@
 
-module Version
+module Teuton
   MAJOR_VERSION = '2.2'
   VERSION = "#{MAJOR_VERSION}.1"
   APPNAME = 'teuton'

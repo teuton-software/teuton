@@ -1,9 +1,10 @@
+
 require 'date'
-require_relative 'lib/teuton/application'
+require_relative 'lib/teuton/version'
 
 Gem::Specification.new do |s|
-  s.name        = Application::NAME
-  s.version     = Application::VERSION
+  s.name        = Teuton::GEMNAME
+  s.version     = Teuton::VERSION
   s.date        = Date.today.strftime("%Y-%m-%d")
   s.summary     = "Teuton (Teuton Software)"
   s.description = <<-EOF
@@ -23,7 +24,7 @@ Gem::Specification.new do |s|
   s.license     = 'GPL-3.0'
   s.authors     = ['David Vargas Ruiz']
   s.email       = 'teuton.software@protonmail.com'
-  s.homepage    = Version::HOMEPAGE
+  s.homepage    = Teuton::HOMEPAGE
 
   s.executables << 'teuton'
   s.executables << 'check_teuton'
@@ -31,14 +32,17 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.5.9'
 
-  s.add_runtime_dependency 'json_pure', '~> 2.2'
+  s.add_runtime_dependency 'colorize', '~> 0.8.1'
+  s.add_runtime_dependency 'rainbow', '~> 3.0'
   s.add_runtime_dependency 'net-sftp', '~> 2.1'
   s.add_runtime_dependency 'net-ssh', '~> 5.0'
   s.add_runtime_dependency 'net-telnet', '~> 0.1'
-  s.add_runtime_dependency 'rainbow', '~> 3.0'
+  s.add_runtime_dependency 'os', '~> 1.1'
+  s.add_runtime_dependency 'json_pure', '~> 2.2'
   s.add_runtime_dependency 'thor', '~> 0.20'
   s.add_runtime_dependency 'terminal-table', '~> 1.8'
 
   s.add_development_dependency 'minitest', '~> 5.11'
   s.add_development_dependency 'rubocop', '~> 0.74'
+  s.add_development_dependency 'yard', '~> 0.9'
 end

@@ -1,7 +1,6 @@
-# frozen_string_literal: true
 
 require 'thor'
-require_relative 'application'
+# require_relative 'application'
 require_relative 'version'
 require_relative '../teuton'
 
@@ -11,7 +10,7 @@ class CLI < Thor
   map ['v', '-v', '--version'] => 'version'
   desc 'version', 'Show the program version'
   def version
-    puts "#{Version::APPNAME} (version #{Version::VERSION})"
+    puts "#{Teuton::APPNAME} (version #{Teuton::VERSION})"
   end
 
   map ['n', '-n', '--new'] => 'new'
