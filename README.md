@@ -23,7 +23,7 @@ Teuton allow us:
 
 * [Installation](https://github.com/teuton-software/teuton/tree/master/docs/install/README.md)
     1. Install Ruby on your system.
-    1. `gem install teuton`, to install Teuton.
+    1. Install Teuton with `gem install teuton`.
 * [Videos, blogs, news](docs/videos.md)
 * [Learning](docs/learn/README.md)
 * [Commands](docs/commands/README.md)
