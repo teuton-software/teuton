@@ -1,6 +1,6 @@
 FROM debian:latest
 
-MAINTAINER teuton 2.2
+LABEL authors="teuton.software@proton.me"
 
 RUN apt-get update
 RUN apt-get install -y apt-utils
