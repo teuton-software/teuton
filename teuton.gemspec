@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = Teuton::GEMNAME
   s.version     = Teuton::VERSION
   s.date        = Date.today.strftime("%Y-%m-%d")
-  s.summary     = "Teuton (Teuton Software)"
+  s.summary     = "Teuton (Infrastructure test)"
   s.description = <<-EOF
   Intrastructure test, useful for:
   (1) Sysadmin teachers to evaluate students remote machines.
