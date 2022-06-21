@@ -1,13 +1,10 @@
-# frozen_string_literal: true
 
 require 'fileutils'
 require 'rainbow'
 
-# Skeleton module
 module Skeleton
   ##
   # Create teuton project skeleton
-  # @param project_dir (String)
   def self.create(project_dir)
     project_name = File.basename(project_dir)
     puts "\n[INFO] Creating #{Rainbow(project_name).bright} project skeleton"
@@ -33,9 +30,6 @@ module Skeleton
     end
   end
 
-  ##
-  # Create dir
-  # @param dirpath (String)
   private_class_method def self.create_dir(dirpath)
     if Dir.exist? dirpath
       puts "* Exists dir!       => #{Rainbow(dirpath).yellow}"
@@ -67,5 +61,4 @@ module Skeleton
       end
     end
   end
-  # rubocop:enable Metrics/MethodLength
 end

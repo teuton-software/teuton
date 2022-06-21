@@ -1,8 +1,7 @@
-# frozen_string_literal: true
 
 require_relative '../application'
+require 'fileutils'
 
-# Define general use methods
 module Utils
   # Create the directory if it dosn't exist.
   def ensure_dir(dirname)
@@ -13,7 +12,6 @@ module Utils
     true
   end
 
-  # rubocop:disable Metrics/MethodLength
   def encode_and_split(encoding, text)
     # Convert text to UTF-8 deleting unknown chars
     text ||= '' # Ensure text is not nil
@@ -31,7 +29,6 @@ module Utils
 
     text.split("\n")
   end
-  # rubocop:enable Metrics/MethodLength
 
   def my_execute(cmd, encoding = 'UTF-8')
     return { exitstatus: 0, content: '' } if Application.instance.debug

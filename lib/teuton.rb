@@ -1,9 +1,9 @@
 
 require_relative 'teuton/application'
-require_relative 'teuton/skeleton'
 
 module Teuton
   def self.create(path_to_new_dir)
+    require_relative 'teuton/skeleton'
     Skeleton.create(path_to_new_dir)
   end
 
@@ -13,7 +13,7 @@ module Teuton
   end
 
   def self.readme(projectpath, options = {})
-    # Create Readme file for a test
+    # Create Readme file for a teuton test
     Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script('teuton/readme/readme') # Define DSL keywords
 
