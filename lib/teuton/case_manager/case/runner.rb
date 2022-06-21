@@ -69,7 +69,8 @@ class Case
     ip = @config.get("#{hostname}_ip".to_sym).to_s
     username = @config.get("#{hostname}_username".to_sym).to_s
     password = @config.get("#{hostname}_password".to_sym).to_s
-    port = @config.get("#{hostname}_port".to_sym).to_i || 22
+    port = @config.get("#{hostname}_port".to_sym).to_i
+    port = 22 if port.zero?
 
     unless @config.get("#{hostname}_route".to_sym) == 'NODATA'
       # Reconfigure command with gateway. Example host1_route: IP.
