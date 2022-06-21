@@ -22,15 +22,10 @@ class Application
   attr_accessor :hall_of_fame
   attr_accessor :project_path, :script_path, :config_path, :test_name
 
-  ##
-  # Initialize Application instance
   def initialize
     reset
   end
 
-  ##
-  # Reset param values
-  # rubocop:disable Metrics/MethodLength
   def reset
     @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
     @running_basedir = Dir.getwd
@@ -46,25 +41,15 @@ class Application
     @uses = [] # TODO
     @hall_of_fame = []
   end
-  # rubocop:enable Metrics/MethodLength
 
-  ##
-  # Return debug param
-  # @return Boolean
   def debug
     @default[:debug]
   end
 
-  ##
-  # Return name param
-  # @return String
   def name
     @default[:name]
   end
 
-  ##
-  # Return quiet param
-  # @return Boolean
   def quiet?
     return true if Application.instance.options['quiet']
     return true unless Application.instance.verbose
@@ -76,7 +61,6 @@ class Application
   # Preprocess input options:
   # * Convert input case options String to an Array of integers
   # * Read color input option
-  # rubocop:disable Metrics/AbcSize
   def add_input_params(projectpath, options)
     @options.merge! options
     NameFileFinder.find_filenames_for(projectpath)
@@ -89,5 +73,4 @@ class Application
     a = @options['case'].split(',')
     @options['case'] = a.collect!(&:to_i)
   end
-  # rubocop:enable Metrics/AbcSize
 end

@@ -39,7 +39,7 @@ module Teuton
       require_relative app.script_path
     rescue SyntaxError => e
       puts e.to_s
-      puts Rainbow.new("[ FAIL ] SyntaxError into file #{app.script_path}").red
+      puts Rainbow.new("==> [FAIL] SyntaxError into file #{app.script_path}").red
     end
   end
 end

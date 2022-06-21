@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 require 'yaml'
 require 'json/pure'
@@ -29,9 +28,6 @@ module ConfigFileReader
   # Read YAML config file
   # @param filepath (String) Path to YAML config file
   # @return Hash with config data
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Security/YAMLLoad
   def self.read_yaml(filepath)
     begin
       data = YAML.load(File.open(filepath))
@@ -49,9 +45,6 @@ module ConfigFileReader
     read_included_files!(filepath, data)
     data
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Security/YAMLLoad
 
   ##
   # Read JSON config file
@@ -71,7 +64,6 @@ module ConfigFileReader
   # Read all configuration files from "filepath" folder.
   # @param filepath (String) Folder with config files
   # @param data (Hash) Input configuration
-  # rubocop:disable Security/YAMLLoad
   private_class_method def self.read_included_files!(filepath, data)
     return if data[:global][:tt_include].nil?
 
@@ -94,10 +86,7 @@ module ConfigFileReader
       end
     }
   end
-  # rubocop:enable Security/YAMLLoad
 
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
   private_class_method def self.convert_string_keys_to_symbol(input)
     return input if input.class != Hash
 
@@ -116,6 +105,4 @@ module ConfigFileReader
     end
     output
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
 end
