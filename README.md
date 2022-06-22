@@ -27,7 +27,7 @@ Teuton allow us:
 * [Videos, blogs, news](docs/videos.md)
 * [Learning](docs/learn/README.md)
 * [Commands](docs/commands/README.md)
-* [Teuton language](docs/dsl/README.md)
+* [Language reference](docs/dsl/README.md)
 
 # Features
 
