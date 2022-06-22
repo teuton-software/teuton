@@ -14,7 +14,7 @@
 ```ruby
 start do
   export
-  send :copy_to => :host1
+  send copy_to: :host1
 end
 ```
 
