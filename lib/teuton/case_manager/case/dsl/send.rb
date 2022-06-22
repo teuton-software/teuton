@@ -21,7 +21,8 @@ module DSL
     port = get((host + '_port').to_sym).to_i
     port = 22 if port.zero?
 
-    filename = @report.filename + '.' + @report.format.to_s
+    filename = "#{@report.filename}.#{@report.format.to_s}"
+    filename = "#{@report.filename}.txt" if @report.format == :colored_text
     localfilepath = File.join(@report.output_dir, filename)
     filename = args[:prefix].to_s + filename if args[:prefix]
 
