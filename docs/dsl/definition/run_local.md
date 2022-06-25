@@ -21,7 +21,6 @@ In fact it's the same as doing next:
 
 ```ruby
 run "COMMAND", on: :localhost
-run "COMMAND", :on => :localhost
 ```
 
 ## Example

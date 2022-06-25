@@ -22,7 +22,7 @@ target "Write here your description"
 By default weight is 1.0, but it's posible specified other value:
 
 ```ruby
-target "Write here your description", :weight => 2.5
+target "Write here your description", weight: 2.5
 ```
 
 ## [DEPRECATED] Alias
