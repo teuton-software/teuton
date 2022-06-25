@@ -27,7 +27,8 @@ class Application
   end
 
   def reset
-    @letter = { good: '.', bad: 'F', error: '?', none: ' ' }
+    @letter = { good: '.', bad: 'F', error: '?', none: ' ',
+                ok: "\u{2714}", cross: "\u{2716}" }
     @running_basedir = Dir.getwd
     @output_basedir = 'var'
     @default = { name: 'teuton', format: :txt, debug: false }
