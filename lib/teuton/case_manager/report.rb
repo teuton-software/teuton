@@ -44,7 +44,7 @@ class CaseManager
         line[:letter] = app.letter[:cross] if c.grade.zero?
         line[:letter] = app.letter[:error] if c.grade < 50.0
         line[:letter] = app.letter[:ok] if c.grade == 100.0
-        line[:grade] = c.grade.to_f #format('  %3d', c.grade.to_f)
+        line[:grade] = c.grade.to_f
         line[:members] = c.members
         line[:conn_status] = c.conn_status
         line[:moodle_id] = c.get(:tt_moodle_id)
