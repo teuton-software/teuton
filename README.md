@@ -40,4 +40,3 @@ Teuton allow us:
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`
-* **Twitter**: `@SoftwareTeuton`
