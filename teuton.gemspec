@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
   s.homepage    = Teuton::HOMEPAGE
 
   s.executables << 'teuton'
-  s.executables << 'check_teuton'
   s.files       = Dir.glob(File.join('lib', '**', '*.*'))
 
   s.required_ruby_version = '>= 2.5.9'
