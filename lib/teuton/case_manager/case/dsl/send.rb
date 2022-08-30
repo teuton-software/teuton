@@ -18,9 +18,11 @@ module DSL
     ip = get((host + '_ip').to_sym)
     username = get((host + '_username').to_sym).to_s
     password = get((host + '_password').to_sym).to_s
-    port = get((host + '_port').to_sym) || 22
+    port = get((host + '_port').to_sym).to_i
+    port = 22 if port.zero?
 
-    filename = @report.filename + '.' + @report.format.to_s
+    filename = "#{@report.filename}.#{@report.format.to_s}"
+    filename = "#{@report.filename}.txt" if @report.format == :colored_text
     localfilepath = File.join(@report.output_dir, filename)
     filename = args[:prefix].to_s + filename if args[:prefix]
 

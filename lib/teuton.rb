@@ -1,25 +1,19 @@
-# frozen_string_literal: true
 
 require_relative 'teuton/application'
-require_relative 'teuton/skeleton'
 
 module Teuton
   def self.create(path_to_new_dir)
+    require_relative 'teuton/skeleton'
     Skeleton.create(path_to_new_dir)
   end
 
-  # Run test
-  # @param projectpath (String) Path to teuton test
-  # @param options (Array) Array of input options
   def self.run(projectpath, options = {})
     Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script('teuton/case_manager/dsl') # Define DSL keywords
   end
 
-  # Create Readme file for a test
-  # @param projectpath (String) Path to teuton test
-  # @param options (Array) Array of input options
   def self.readme(projectpath, options = {})
+    # Create Readme file for a teuton test
     Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script('teuton/readme/readme') # Define DSL keywords
 
@@ -28,9 +22,6 @@ module Teuton
     readme.show
   end
 
-  # Check teuton test syntax
-  # @param projectpath (String) Path to teuton test
-  # @param options (Array) Array of input options
   def self.check(projectpath, options = {})
     Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script('teuton/check/laboratory') # Define DSL keywords
@@ -48,7 +39,7 @@ module Teuton
       require_relative app.script_path
     rescue SyntaxError => e
       puts e.to_s
-      puts Rainbow.new("[ FAIL ] SyntaxError into file #{app.script_path}").red
+      puts Rainbow.new("==> [FAIL] SyntaxError into file #{app.script_path}").red
     end
   end
 end

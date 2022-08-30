@@ -2,7 +2,6 @@
 
 require 'minitest/autorun'
 
-# MiniTest Rubocop
 class RubocopTest < Minitest::Test
   def setup
     @files = {}

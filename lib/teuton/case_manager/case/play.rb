@@ -16,15 +16,16 @@ class Case
     end
     # TODO: Delete old reports???
     start_time = Time.now
-    play_in_sequence if get(:tt_sequence) == true # Play in sequence
-    play_in_parallel if get(:tt_sequence) != true # Play in parallel
+    if get(:tt_sequence) == true
+      play_in_sequence
+    else
+      play_in_parallel
+    end
     fill_report(start_time, Time.now)
     close_opened_sessions
   end
   alias start play
 
-  ##
-  # Close opened sessions for this case
   def close_opened_sessions
     @sessions.each_value do |s|
       s.close if s.class == Net::SSH::Connection::Session
@@ -46,9 +47,9 @@ class Case
   ##
   # Execute every play#group in sequence
   def play_in_sequence
-    verboseln "Starting case <#{@config.get(:tt_members)}>"
+    verboseln "Starting case [#{@config.get(:tt_members)}]"
     @groups.each do |t|
-      verbose "* Processing <#{t[:name]}> "
+      verbose "* Processing [#{t[:name]}] "
       @action[:groupname] = t[:name]
       instance_eval(&t[:block])
       verbose "\n"
@@ -58,7 +59,6 @@ class Case
 
   ##
   # Fill case report with time information
-  # rubocop:disable Metrics/AbcSize
   def fill_report(start_time, finish_time)
     @report.head.merge! @config.global
     @report.head.merge! @config.local
@@ -68,5 +68,4 @@ class Case
     @report.tail[:finish_time] = finish_time
     @report.tail[:duration] = finish_time - start_time
   end
-  # rubocop:enable Metrics/AbcSize
 end

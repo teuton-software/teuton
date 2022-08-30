@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 # Close Show methods for Report class.
 class Report
@@ -9,8 +8,6 @@ class Report
   # * good_weight,d
   # * fail_weight
   # * fail_counter
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
   def close
     app = Application.instance
     max = 0.0
@@ -40,6 +37,4 @@ class Report
     @tail[:grade] = (100.0 * i).round
     @tail[:grade] = 0 if @tail[:unique_fault].positive?
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
 end

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 require 'rainbow'
 require_relative '../application'
@@ -29,8 +28,6 @@ module NameFileFinder
   ##
   # Find project filenames from input folder path
   # @param folder_path (String)
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
   def self.find_filenames_from_directory(folder_path)
     # COMPLEX MODE: We use start.rb as main RB file
     script_path = File.join(folder_path, 'start.rb')
@@ -48,15 +45,10 @@ module NameFileFinder
 
     find_configfilename_from_directory(folder_path)
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
 
   ##
   # Find project config filename from input folder path
   # @param folder_path (String)
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Style/IfUnlessModifier
   def self.find_configfilename_from_directory(folder_path)
     # COMPLEX MODE: We use config.yaml by default
     app = Application.instance
@@ -76,12 +68,7 @@ module NameFileFinder
     end
     app.config_path = config_path
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Style/IfUnlessModifier
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
   def self.find_filenames_from_rb(script_path)
     # SIMPLE MODE: We use script_path as main RB file
     # This must be fullpath to DSL script file
@@ -99,12 +86,7 @@ module NameFileFinder
 
     find_configfilenames_from_rb(script_path)
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
 
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Style/IfUnlessModifier
   def self.find_configfilenames_from_rb(script_path)
     # SIMPLE MODE: We use script_path as main RB file
     # This must be fullpath to DSL script file
@@ -126,33 +108,6 @@ module NameFileFinder
     end
     app.config_path = config_path
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Style/IfUnlessModifier
-
-  #  def self.puts_input_info_on_screen
-  #    app = Application.instance
-  #
-  #    verbose Rainbow('[INFO] ScriptPath => ').blue
-  #    verboseln Rainbow(trim(app.script_path)).blue.bright
-  #    verbose Rainbow('[INFO] ConfigPath => ').blue
-  #    verboseln Rainbow(trim(app.config_path)).blue.bright
-  #    verbose Rainbow('[INFO] Pwd        => ').blue
-  #    verboseln Rainbow(app.running_basedir).blue.bright
-  #    verbose Rainbow('[INFO] TestName   => ').blue
-  #    verboseln Rainbow(trim(app.test_name)).blue.bright
-  #  end
-
-  ##
-  # Trim string text when is too long
-  #  def self.trim(input)
-  #    return input unless input.to_s.start_with? Dir.pwd.to_s
-  #
-  #    output = input.to_s
-  #    offset = (Dir.pwd).length + 1
-  #    output = "#{input[offset, input.size]}"
-  #    output.to_s
-  #  end
 
   def self.verboseln(text)
     verbose(text + "\n")

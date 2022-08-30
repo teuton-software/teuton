@@ -11,7 +11,7 @@ end
 
 desc 'Rake help'
 task :help do
-  puts '[ REM  ] "rake install:gem" once time, before run "rake"'
+  puts '[WARNING] "rake install:gem" once time, before run "rake"'
   run_cmd 'rake -T'
 end
 
@@ -21,9 +21,9 @@ task :clean do
 end
 
 def run_cmd(command)
-  puts " => #{command}"
+  puts "==> #{command}"
   ok = system(command)
   unless ok
-    puts "[ FAIL ] Command execution error!"
+    puts "[FAIL] Command execution error!"
   end
 end

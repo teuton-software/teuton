@@ -1,7 +1,7 @@
 ```
 Test unit name : learn-02-config
-Date           : 2020-04-11 19:58:38 +0100
-Teuton version : 2.1.9
+Date           : 2022-06-22 00:11:07 +0100
+Teuton version : 2.3.4
 ```
 
 # learn-02-config
@@ -9,12 +9,10 @@ Teuton version : 2.1.9
 ### Required params
 * username
 
-> NOTE:
-> * Teuton software must known this information!
-> * Save every ':param: value' into config file.
+> NOTE: Save every 'param: value' into config file.
 
-## Using config file values
+## Reading params from config file
 
 
 Go to [LOCALHOST](#required-hosts) host, and do next:
-* Create user [username](#required-params).
+* Create user USERNAME.

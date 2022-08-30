@@ -3,7 +3,6 @@
 require 'minitest/autorun'
 require_relative '../lib/teuton/application'
 
-# MiniTest Application Class
 class ApplicationTest < Minitest::Test
   def setup
     @app = Application.instance

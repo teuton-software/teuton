@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 require_relative '../application'
 require_relative '../utils/configfile_reader'
@@ -44,8 +43,6 @@ class Readme
     reset
   end
 
-  ##
-  # Show README on screen
   def show
     process_content
     show_head
@@ -55,8 +52,6 @@ class Readme
 
   private
 
-  ##
-  # Reset attributes
   def reset
     app = Application.instance
     @config = ConfigFileReader.read(app.config_path)
@@ -86,8 +81,6 @@ class Readme
     @action = { readme: [] }
   end
 
-  ##
-  # Show README head
   def show_head
     app = Application.instance
     puts '```'
@@ -117,12 +110,10 @@ class Readme
       @cases_params.sort!
       puts Lang::get(:params)
       @cases_params.uniq.each { |i| puts format('* %s', i) }
-      puts "\n> NOTE: Save every ':param: value' into config file."
+      puts "\n> NOTE: Save every 'param: value' into config file."
     end
   end
 
-  ##
-  # Show README content
   def show_content
     @data[:groups].each do |group|
       next if group[:actions].empty?
@@ -148,8 +139,6 @@ class Readme
     end
   end
 
-  ##
-  # Show README tail
   def show_tail
     return if @global_params.empty?
 
@@ -170,3 +159,4 @@ class Readme
     @setted_params.each_pair { |k,v| puts "|#{k}|#{v}|" }
   end
 end
+

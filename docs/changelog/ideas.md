@@ -1,41 +1,5 @@
 
-# Teuton (version 2.3.0)
-
-
-**Documentation**
-
-* Doc learn 10,11, 12,13 y 14
-* 10 result and moodle_id
-* 11 get_vars
-* 12 alias
-* 13 include
-* 14 macro
-* Doc tt_include
-* Doc las macros => Modules
-
-**Configuration file**
-
-* Por defecto los valores de clave de los ficheros de configuración serán Strings en lugar de símbolos, aunque lo símbolos seguirán funcionando.
-* Test tt_include
-
-**To think - We are not sure about this***
-
-* "get" keyword simplification: Simplify getting and setting params process. For example: `_username_`, may be alias for `get(:username)`. Then
-
-```
-target "Create user #{_username_}"
-run "id #{_username_}"
-expect_one _username_
-```
-Same as
-
-```
-target "Create user "+get(:username)
-run "id " + get(:username)
-expect_one get(:username)
-```
-
-# Ideas el futuro
+# Ideas
 
 Esta es una lista de ideas para que no se me olvide... lo podemos ir ajustando 😊
 
@@ -76,8 +40,6 @@ Al ejecutar un test poder hacerlo "teuton run PATH/TO/FILE.zip"
 
 * Documentar y hacer videos.
 * Tener foros de la comunidad o presencia en reddit o stackoverflow.... o algo parecido???
-
-
 
 Create 2 evaluation modes:
 1. Evaluate targets (current mode): `start :score=>:targets do ...`

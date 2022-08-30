@@ -1,10 +1,8 @@
-# frozen_string_literal: true
 
 require 'terminal-table'
 require 'rainbow'
 require_relative 'array_formatter'
 
-# TXTFormatter class
 class TXTFormatter < ArrayFormatter
   def initialize(report, color=false)
     @color = color

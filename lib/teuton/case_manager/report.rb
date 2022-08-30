@@ -12,17 +12,13 @@ class CaseManager
   def open_main_report(config_filepath)
     app = Application.instance
 
-    @report.head[:tt_title] = "Executing [#{app.name}] (version #{Application::VERSION})"
+    @report.head[:tt_title] = "Teuton (#{Teuton::VERSION})"
     @report.head[:tt_scriptname] = trim(app.script_path)
     @report.head[:tt_configfile] = trim(config_filepath)
     @report.head[:tt_pwd] = app.running_basedir
     @report.head[:tt_debug] = true if @debug
     # @report.head[:tt_uses] = app.uses.join(', ') # TO-REVISE
     @report.head.merge!(app.global)
-
-    verboseln ' '
-    verboseln '=' * @report.head[:tt_title].length
-    verboseln Rainbow(@report.head[:tt_title]).yellow.bright
   end
 
   def close_main_report(start_time)
@@ -31,9 +27,8 @@ class CaseManager
     @report.tail[:finish_time] = finish_time
     @report.tail[:duration] = finish_time - start_time
 
-    verbose Rainbow("\n[INFO] Duration = #{format('%3.3f',(finish_time - start_time))}").yellow.bright
-    verboseln Rainbow("    (#{finish_time})").yellow.bright
-    verboseln '=' * @report.head[:tt_title].length
+    verbose Rainbow("\n==> Teuton: Duration=#{format('%3.3f',(finish_time - start_time))}").yellow.bright
+    verboseln Rainbow(" (#{finish_time})").yellow.bright
     verboseln ' '
 
     app = Application.instance
@@ -46,8 +41,10 @@ class CaseManager
       else
         line[:skip] = false
         line[:id] = format('%<id>02d', { id: c.id.to_i })
+        line[:letter] = app.letter[:cross] if c.grade.zero?
         line[:letter] = app.letter[:error] if c.grade < 50.0
-        line[:grade] = c.grade.to_f #format('  %3d', c.grade.to_f)
+        line[:letter] = app.letter[:ok] if c.grade == 100.0
+        line[:grade] = c.grade.to_f
         line[:members] = c.members
         line[:conn_status] = c.conn_status
         line[:moodle_id] = c.get(:tt_moodle_id)

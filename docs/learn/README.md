@@ -17,8 +17,11 @@ Learn how to use Teuton language to write your own tests:
 - [Example 07 - Log](example-07-log.md)
 - [Example 08 - Readme](example-08-readme.md)
 - [Example 09 - Preserve](example-09-preserve.md)
-- Example 10 - Macros
-- Example 11 - Alias
+- Example 10 - Result and Moodle
+- Example 11 - Get vars
+- Example 12 - Include
+- Example 13 - Alias
+- Example 14 - Macros
 - [Videos](videos.md)
 
 # Examples
