@@ -28,7 +28,7 @@ namespace :install do
     names = %w[openssh make gcc ruby-devel ruby2.5-rubygem-yard]
     options = '--non-interactive'
     names.each { |n| system("zypper #{options} install #{n}") }
-    Utils.install_gems Utils.packages, '--no-ri'
+    Utils.install_gems Utils.packages
     Utils.create_symbolic_link
   end
 end
