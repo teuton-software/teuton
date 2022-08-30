@@ -29,10 +29,10 @@ class TeutonExamplesTest < Minitest::Test
     assert_equal true, targets[0][:check]
     assert_equal 1.0, targets[0][:score]
     assert_equal 1.0, targets[0][:weight]
-    assert_equal 'Create user david', targets[0][:description]
-    assert_equal 'id david 2>/dev/null', targets[0][:command]
+    assert_equal 'Create user root', targets[0][:description]
+    assert_equal 'id root 2>/dev/null', targets[0][:command]
     assert_equal :local, targets[0][:conn_type]
-    assert_equal 'find(david) & count', targets[0][:alterations]
+    assert_equal 'find(root) & count', targets[0][:alterations]
     assert_equal 'Greater than 0', targets[0][:expected]
     assert_equal 1, targets[0][:result]
   end
