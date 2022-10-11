@@ -1,7 +1,7 @@
 
 use 'gnulinux/user'
 
-group "Learn about modules" do
+group "Learn about macros" do
 
   user_exists(name: 'fran')
   macro 'user_exists', name: 'root'
