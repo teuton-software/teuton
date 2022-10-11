@@ -36,12 +36,10 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'net-sftp', '~> 2.1'
   s.add_runtime_dependency 'net-ssh', '~> 5.0'
   s.add_runtime_dependency 'net-telnet', '~> 0.1'
-  s.add_runtime_dependency 'os', '~> 1.1'
   s.add_runtime_dependency 'json_pure', '~> 2.2'
   s.add_runtime_dependency 'thor', '~> 0.20'
   s.add_runtime_dependency 'terminal-table', '~> 1.8'
 
   s.add_development_dependency 'minitest', '~> 5.11'
   s.add_development_dependency 'rubocop', '~> 0.74'
-  s.add_development_dependency 'yard', '~> 0.9'
 end
