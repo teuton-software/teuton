@@ -6,13 +6,18 @@ require_relative 'tasks/push'
 
 desc 'Default: check'
 task :default do
-  Rake::Task['install:check'].invoke
+  Rake::Task['test'].invoke
 end
 
 desc 'Rake help'
 task :help do
   puts '[WARNING] "bundle install" before run "rake"'
   run_cmd 'rake -T'
+end
+
+desc 'Run tests'
+task :test do
+  Utils.check_tests
 end
 
 desc 'Delete output files'

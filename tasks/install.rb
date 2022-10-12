@@ -1,12 +1,6 @@
-
 require_relative 'utils'
 
 namespace :install do
-  desc 'Check installation'
-  task :check do
-    Utils.check_tests
-  end
-
   desc 'Debian installation'
   task :debian do
     names = %w[ssh make gcc ruby-devel]
