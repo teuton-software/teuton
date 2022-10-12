@@ -18,7 +18,6 @@ namespace :install do
   task :debian do
     names = %w[ssh make gcc ruby-devel]
     names.each { |name| system("apt-get install -y #{name}") }
-    # Utils.install_gems Utils.packages, '--no-ri'
     Utils.create_symbolic_link
   end
 
@@ -27,7 +26,6 @@ namespace :install do
     names = %w(openssh make gcc ruby-devel)
     options = '--non-interactive'
     names.each { |n| system("zypper #{options} install #{n}") }
-    Utils.install_gems Utils.packages
     Utils.create_symbolic_link
   end
 end

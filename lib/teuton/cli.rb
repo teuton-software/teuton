@@ -6,12 +6,6 @@ require_relative '../teuton'
 class CLI < Thor
   map ['h', '-h', '--help'] => 'help'
 
-  map ['v', '-v', '--version'] => 'version'
-  desc 'version', 'Show the program version'
-  def version
-    puts "#{Teuton::APPNAME} (version #{Teuton::VERSION})"
-  end
-
   map ['n', '-n', '--new'] => 'new'
   desc 'new DIRECTORY', 'Create skeleton for a new project'
   long_desc <<-LONGDESC
@@ -46,6 +40,24 @@ class CLI < Thor
     Teuton.check(projectpath, options)
   end
 
+  map ['--readme'] => 'readme'
+  option :lang, type: :string
+  desc 'readme DIRECTORY',
+       'Show README extracted from test contents'
+  long_desc <<-LONGDESC
+
+  (1) teuton readme foo
+  , Create README.md from foo/start.rb.
+
+  (2) teuton readme foo/demo.rb
+  , Create README.md from foo/demo.rb.
+  LONGDESC
+
+  def readme(projectpath)
+    # Create README from teuton test
+    Teuton.readme(projectpath, options)
+  end
+
   map ['--run', 'run'] => 'play'
   option :export, type: :string
   option :cname, type: :string
@@ -77,22 +89,10 @@ class CLI < Thor
     Teuton.run(filepath, options)
   end
 
-  map ['--readme'] => 'readme'
-  option :lang, type: :string
-  desc 'readme DIRECTORY',
-       'Show README extracted from test contents'
-  long_desc <<-LONGDESC
-
-  (1) teuton readme foo
-  , Create README.md from foo/start.rb.
-
-  (2) teuton readme foo/demo.rb
-  , Create README.md from foo/demo.rb.
-  LONGDESC
-
-  def readme(projectpath)
-    # Create README from teuton test
-    Teuton.readme(projectpath, options)
+  map ['v', '-v', '--version'] => 'version'
+  desc 'version', 'Show the program version'
+  def version
+    puts "#{Teuton::APPNAME} version #{Teuton::VERSION}"
   end
 
   ##

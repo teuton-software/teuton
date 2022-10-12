@@ -11,7 +11,7 @@ end
 
 desc 'Rake help'
 task :help do
-  puts '[WARNING] "rake install:gem" once time, before run "rake"'
+  puts '[WARNING] "bundle install" before run "rake"'
   run_cmd 'rake -T'
 end
 

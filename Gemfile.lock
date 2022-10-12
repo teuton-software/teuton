@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    teuton (2.2.1)
+    teuton (2.3.6)
       colorize (~> 0.8.1)
       json_pure (~> 2.2)
       net-sftp (~> 2.1)
@@ -51,6 +51,7 @@ GEM
       webrick (~> 1.7.0)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
