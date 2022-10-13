@@ -30,15 +30,6 @@ class Result
     @content = content.clone
   end
 
-  def reset
-    @content_backup = []
-    @content        = []
-    @exitstatus     = nil
-    @value          = nil
-    @expected       = nil
-    @alterations    = []
-  end
-
   def debug
     print "\n" + '*' * 20
     print " [DEBUG] count=#{@content.count} "
@@ -51,6 +42,23 @@ class Result
 
   def expected
     @expected.to_s
+  end
+
+  def first!
+    @content = [@content.first]
+  end
+
+  def last!
+    @content = [@content.last]
+  end
+
+  def reset
+    @content_backup = []
+    @content        = []
+    @exitstatus     = nil
+    @value          = nil
+    @expected       = nil
+    @alterations    = []
   end
 
   def ok?
