@@ -44,12 +44,14 @@ class Result
     @expected.to_s
   end
 
-  def first!
+  def first
     @content = [@content.first]
+    self
   end
 
-  def last!
+  def last
     @content = [@content.last]
+    self
   end
 
   def reset
