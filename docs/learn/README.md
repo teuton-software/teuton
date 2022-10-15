@@ -22,6 +22,7 @@ Learn how to use Teuton language to write your own tests:
 - Example 12 - Include
 - Example 13 - Alias
 - Example 14 - Macros
+- [Example 15 - Exit codes](example-15-exit_codes.md)
 - [Videos](videos.md)
 
 # Examples
