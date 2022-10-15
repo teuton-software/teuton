@@ -86,5 +86,4 @@ result.grep_v("nologin").grep("/bin/bash").count.gt 0
 | `result.alterations` | Return transformations applied to the output |
 | `result.content`     | Return all output lines         |
 | `result.debug`       | Print the result content on screen. Usefull for debugging process |
-| `result.exitstatus`  | **WARNING: Only works with localhost executions.** Return exit code from the last command executed by run statement |
 | `result.value`       | Return first output line or value |

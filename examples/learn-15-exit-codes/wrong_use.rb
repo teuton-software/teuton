@@ -1,5 +1,5 @@
 
-group "Read exit code (bad way)" do
+group "Read exit code (WRONG)" do
   log "DON'T DO THIS WAY"
 
   target "No user vader"

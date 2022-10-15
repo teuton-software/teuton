@@ -1,5 +1,6 @@
 
-use "good_way"
+# use "wrong_use"
+use "right_use"
 
 play do
   show

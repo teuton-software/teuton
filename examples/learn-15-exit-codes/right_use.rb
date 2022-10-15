@@ -1,8 +1,9 @@
 
-group "Read exit code (mode 1)" do
+group "Read exit code (RIGHT)" do
   target "No user vader"
   run "id vader;echo $?"
-  expect_one result.last.eq(1)
+  result.last
+  expect_one "1"
 
   target "Exist user root"
   run "id root;echo $?"
