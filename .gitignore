@@ -1,8 +1,9 @@
 *.gem
-*.devel
 *.lock
 .yardoc
 html
 var
 private*
 priv*
+pkg/
+sig/
