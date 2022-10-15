@@ -4,7 +4,9 @@
 
 > This example is on GitHub repository at `examples/learn-09-preserve/`.
 
-Older output report files are overwritten with new reports, every time we run teuton test. With `preserve` option we keep copies.
+Every time we run teuton test, older output report files are overwritten with new reports. if you want to preserve old versions then use `preserve`.
+
+With `preserve` option we keep older copies.
 
 1. [Execution section](#execution-section)
 2. [Result](#result)
@@ -20,6 +22,7 @@ end
 ```
 
 > More information about [export](../dsl/execution/export.md) keyword.
+
 ## Result
 
 Example, executing `teuton run example/learn-09-preserve` twice:

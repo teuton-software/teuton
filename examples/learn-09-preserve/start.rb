@@ -1,9 +1,9 @@
 
 group "Preserve output reports" do
 
-  target "Create user david"
-  run "id david"
-  expect "david"
+  target "Exits obiwan user "
+  run "id obiwan"
+  expect "obiwan"
 
 end
 
