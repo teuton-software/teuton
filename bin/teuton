@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'teuton/cli'
+require "teuton/cli"
 
 CLI.start(ARGV)

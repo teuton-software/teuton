@@ -141,9 +141,9 @@ class TeutonExamplesTest < Minitest::Test
     assert_equal '', data[:cases][1][:moodle_id]
 
     assert_equal false, data[:cases][2][:skip]
-    assert_equal '03', data[:cases][2][:id]
+    assert_equal "03", data[:cases][2][:id]
     assert_equal 0.0, data[:cases][2][:grade]
-    assert_equal 'Obiwan Kenobi', data[:cases][2][:members]
+    assert_equal "Obiwan Kenobi", data[:cases][2][:members]
     assert_equal conn_error, data[:cases][2][:conn_status]
     assert_equal %w[obiwan@jedi.sw obiwan-kenobi@jedi.sw], data[:cases][2][:moodle_id]
   end
@@ -153,14 +153,13 @@ class TeutonExamplesTest < Minitest::Test
   def execute_teuton_test(filepath, options='')
     system("teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null")
     testname = File.basename(filepath)
-    filepath = File.join('var', testname, 'resume.yaml')
+    filepath = File.join("var", testname, "resume.yaml")
     data = YAML.unsafe_load(File.read(filepath))
     [ testname, filepath, data ]
   end
 
   def read_case_report(id, testname)
-    filepath = File.join('var', testname, "case-#{id}.yaml")
-    data = YAML.unsafe_load(File.read(filepath))
+    filepath = File.join("var", testname, "case-#{id}.yaml")
+    YAML.unsafe_load(File.read(filepath))
   end
-
 end
