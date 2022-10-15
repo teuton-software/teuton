@@ -54,6 +54,7 @@ class Result
   end
 
   def ok?
+    # REVISE THIS
     return false if @exitstatus.nil?
 
     @exitstatus.zero?

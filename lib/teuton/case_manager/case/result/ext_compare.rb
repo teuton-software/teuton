@@ -12,8 +12,8 @@ class Result
     case input.class.to_s
     when 'Fixnum'
       value = @content[0].to_i
-      puts '[WARN] Fixnum class is deprecated!'
-      puts '       Upgrade your Ruby version.'
+      puts '[WARN] Fixnum is a Ruby deprecated class!'
+      puts '       (Upgrade your Ruby version)'
     when 'Float'
       value = @content[0].to_f
     when 'Integer'
