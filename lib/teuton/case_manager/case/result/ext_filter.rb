@@ -19,6 +19,12 @@ class Result
   alias grep!  find
   alias find!  find
 
+  def first
+    @alterations << "first"
+    @content = [@content.first]
+    self
+  end
+
   def not_find(p_filter)
     @alterations << "not_find(#{p_filter})"
     return self if @content.size.zero?
@@ -39,6 +45,12 @@ class Result
         flag
       end
     end
+    self
+  end
+
+  def last
+    @alterations << "last"
+    @content = [@content.last]
     self
   end
 

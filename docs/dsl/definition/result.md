@@ -68,21 +68,23 @@ result.grep_v("nologin").grep("/bin/bash").count.gt 0
 
 | Function             | VALUE type  | Description                           |
 | -------------------- | ----------- | ------------------------------------- |
+| `result.count`       |             | Count lines from result and save this number into result object. |
+| `result.first` | | Remove all lines except first one.|
 | `result.find(VALUE)` | String      | Filter lines that contains VALUE text |
 |                      | RegExp      | Filter lines that match VALUE regexp. For example `/?ello]`, filter lines with "Hello" or "hello" |
 |                      | Array       | Apply filter to every array element. For example `["Hi","Hello"]`, filter lines with "Hi" or "Hello". |
-| `result.grep(VALUE)` |             | Same as find |
+| `result.grep(VALUE)` | String, RegExp, Array | Same as find |
+| `result.grep_v(VALUE)` | String, RegExp, Array | Same as not_find |
+| `result.last` | | Remove all lines except last one.|
 | `result.not_find(VALUE)` |         | Filter lines that not contains VALUE. VALUE may be String, Regular Expresion or an Array. |
-| `result.grep_v(VALUE)` |           | Same as not_find |
-| `result.count`       |             | Count lines from result and save this number into result object. |
 | `result.restore`     |             | Restore result data. After every filtering action result is modified, but this function restore data to their original state. |
 
 **Information functions:**
 
 | Function             | Description |
 | -------------------- | --------------------------------- |
-| `result.exitstatus`  | Return exit code from the last command executed by run statement |
-| `result.value`       | Return first output line or value |
-| `result.content`     | Return all output lines         |
 | `result.alterations` | Return transformations applied to the output |
+| `result.content`     | Return all output lines         |
 | `result.debug`       | Print the result content on screen. Usefull for debugging process |
+| `result.exitstatus`  | **WARNING: Only works with localhost executions.** Return exit code from the last command executed by run statement |
+| `result.value`       | Return first output line or value |
