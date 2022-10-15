@@ -1,20 +1,16 @@
+require_relative "../lib/teuton/version"
 
-namespace :push do
-  desc 'Push gem'
-  task :gem do
-    puts '[INFO] Pushing gem...'
-    system('gem push teuton-*.*.*.gem')
+namespace :docker do
+  desc "Build docker image"
+  task :build do
+    puts "[INFO] Building docker image..."
+    run_cmd "docker rmi #{Teuton::DOCKERNAME}"
+    run_cmd "docker build -t #{Teuton::DOCKERNAME} install/docker/"
   end
 
-  desc 'Push docker'
-  task :docker do
-    puts '[INFO] Pushing docker...'
-    system('docker push dvarrui/teuton')
-  end
-
-  desc 'Push all (gem and docker)'
-  task :all do
-    Rake::Task['push:gem'].invoke
-    Rake::Task['push:docker'].invoke
+  desc "Push docker"
+  task :push do
+    puts "[INFO] Pushing docker..."
+    system("docker push dvarrui/teuton")
   end
 end

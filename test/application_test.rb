@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'minitest/autorun'
-require_relative '../lib/teuton/application'
+require "minitest/autorun"
+require_relative "../lib/teuton/application"
 
 class ApplicationTest < Minitest::Test
   def setup
@@ -10,11 +10,11 @@ class ApplicationTest < Minitest::Test
   end
 
   def test_init_params
-    assert_equal '.', @app.letter[:good]
-    assert_equal 'F', @app.letter[:bad]
-    assert_equal '?', @app.letter[:error]
-    assert_equal ' ', @app.letter[:none]
-    assert_equal 'var', @app.output_basedir
+    assert_equal ".", @app.letter[:good]
+    assert_equal "F", @app.letter[:bad]
+    assert_equal "?", @app.letter[:error]
+    assert_equal " ", @app.letter[:none]
+    assert_equal "var", @app.output_basedir
     assert_equal false, @app.debug
     assert_equal true, @app.verbose
 
@@ -30,7 +30,7 @@ class ApplicationTest < Minitest::Test
     @app.verbose = true
     assert_equal true, @app.verbose
     assert_equal false, Application.instance.quiet?
-    @app.options['quiet'] = true
+    @app.options["quiet"] = true
     assert_equal true, Application.instance.quiet?
   end
 end

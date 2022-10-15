@@ -5,12 +5,27 @@ require_relative "../../../lib/teuton/case_manager/case/config"
 
 class ConfigTest < Minitest::Test
   def setup
-    @local = {tt_members: "Obiwan Kenobi", username: "obiwan", number: 42,
-      from: "local", linux1_ip: "192.168.1.100", linux1_password: "secret" }
-    @global = {dns: "8.8.4.4", ip_prefix: "172.19.", username: "sysadmingame",
-      from: "global", linux1_username: "root"}
-    @ialias = {user: :username, dns_ip: :dns, suse1: :linux1,
-      ip: [:ip_prefix, :number, ".32"]}
+    @local = {
+      tt_members: "Obiwan Kenobi",
+      username: "obiwan",
+      number: 42,
+      from: "local",
+      linux1_ip: "192.168.1.100",
+      linux1_password: "secret"
+    }
+    @global = {
+      dns: "8.8.4.4",
+      ip_prefix: "172.19.",
+      username: "sysadmingame",
+      from: "global",
+      linux1_username: "root"
+    }
+    @ialias = {
+      user: :username,
+      dns_ip: :dns,
+      suse1: :linux1,
+      ip: [:ip_prefix, :number, ".32"]
+    }
     @config = Case::Config.new(local: @local, global: @global, alias: @ialias)
   end
 
