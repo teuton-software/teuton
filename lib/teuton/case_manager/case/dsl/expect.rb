@@ -1,42 +1,8 @@
 # frozen_string_literal: true
 
-require 'rainbow'
+require 'colorize'
 
-# DSL module:
-# * expect_none
-# * expect_one
-# * expect_any
-# * expect
-# * expect2
-# * weight
 module DSL
-  def expect_none(input)
-    if input.class == Array
-      input.each { |i| result.find(i) }
-    else
-      result.find(input)
-    end
-    expect2 result.count.eq(0)
-  end
-
-  def expect_one(input)
-    if input.class == Array
-      input.each { |i| result.find(i) }
-    else
-      result.find(input)
-    end
-    expect2 result.count.eq(1)
-  end
-
-  def expect_any(input)
-    if input.class == Array
-      input.each { |i| result.find(i) }
-    else
-      result.find(input)
-    end
-    expect2 result.count.gt(0)
-  end
-
   # expect <condition>, :weight => <value>
   def expect(input, args = {})
     if input.class == TrueClass || input.class == FalseClass
@@ -44,7 +10,7 @@ module DSL
     elsif input.class == String || input.class == Regexp || input.class == Array
       expect_any input
     else
-      puts "[ERROR] expect #{input} (#{input.class})"
+      puts "[TypeError] expect #{input} (#{input.class})"
     end
   end
 
@@ -64,7 +30,48 @@ module DSL
     app = Application.instance
     c = app.letter[:bad]
     c = app.letter[:good] if cond
-    verbose Rainbow(c).yellow.bright
+    verbose c.colorize(:green)
+  end
+
+  def expect_any(input, args = {})
+    if input.class == Array
+      input.each { |i| result.find(i) }
+    else
+      result.find(input)
+    end
+    expect2 result.count.gt(0), args
+  end
+
+  def expect_first(input, args = {})
+    @result.first
+    output = input
+    output = args[:expected] if args[:expected]
+    expect2 input, expected: output
+  end
+
+  def expect_last(input, args = {})
+    @result.last
+    output = input
+    output = args[:expected] if args[:expected]
+    expect2 input, expected: output
+  end
+
+  def expect_none(input, args = {})
+    if input.class == Array
+      input.each { |i| result.find(i) }
+    else
+      result.find(input)
+    end
+    expect2 result.count.eq(0), args
+  end
+
+  def expect_one(input, args = {})
+    if input.class == Array
+      input.each { |i| result.find(i) }
+    else
+      result.find(input)
+    end
+    expect2 result.count.eq(1), args
   end
 
   # Set weight value for the action

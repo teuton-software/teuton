@@ -32,13 +32,17 @@ expect 'obiwan' # Expect previous command output contains obiwan text
 
 ## Basic
 
-* **expect 'obiwan'**, expect line/s with "obiwan".
-* **expect ['obiwan', 'kenobi'**, expect line/s with "obiwan" and kenobi".
-* **expect_one 'obiwan'**, expect only one line with "obiwan".
-* **expect_one ['obiwan','kenobi']**, expect only one line with "obiwan" and "kenobi".
-* **expect_none 'obiwan'**, expect no line with "obiwan".
-* **expect_none ['obiwan', 'kenobi']**, expect no line with "obiwan" and "kenobi".
-* **expect /Obiwan|obi-wan/**, Expect line/s with Obiwan or obi-wan. This example uses regular expresions.
+| Command | Description |
+| ------- | ----------- |
+| expect "yoda" or expect_any "yoda" | one or more line/s with "yoda" |
+| expect ["obiwan", "kenobi"] | one or more line/s with "obiwan" and kenobi" |
+| expect_first "episode" | the first line with "episode" |
+| expect_last "episode" | the last line with "episode" |
+| expect_one "rogue" | only one line with "rogue" |
+| expect_one ["obiwan","kenobi"] | only one line with "obiwan" and "kenobi" |
+| expect_none "vader"| no line with "vader" |
+| expect_none ["darth", "vader"] | no line with "darth" and "vader" |
+| expect /Obiwan\|obi-wan/ | one or more line/s with Obiwan or obi-wan. This example uses regular expresions. |
 
 ## Advanced
 
