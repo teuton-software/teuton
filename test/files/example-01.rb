@@ -1,6 +1,4 @@
-
 group "group name 1" do
-
   target "target 1"
   run "id obiwan"
   expect_one "obiwan"
