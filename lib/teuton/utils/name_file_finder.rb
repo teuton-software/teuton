@@ -1,10 +1,6 @@
+require "rainbow"
+require_relative "../application"
 
-require 'rainbow'
-require_relative '../application'
-
-##
-# NameFileFinder module
-# Methods: find_filenames_for, verbose, verboseln
 module NameFileFinder
   ##
   # Find project filenames from input project relative path
@@ -30,11 +26,11 @@ module NameFileFinder
   # @param folder_path (String)
   def self.find_filenames_from_directory(folder_path)
     # COMPLEX MODE: We use start.rb as main RB file
-    script_path = File.join(folder_path, 'start.rb')
+    script_path = File.join(folder_path, "start.rb")
     unless File.exist? script_path
-      print Rainbow('[ERROR] File ').red
+      print Rainbow("[ERROR] File ").red
       print Rainbow(script_path).bright.red
-      puts Rainbow(' not found!').red
+      puts Rainbow(" not found!").red
       exit 1
     end
 
@@ -52,19 +48,19 @@ module NameFileFinder
   def self.find_configfilename_from_directory(folder_path)
     # COMPLEX MODE: We use config.yaml by default
     app = Application.instance
-    config_path = ''
+    config_path = ""
 
-    if app.options['cpath'].nil?
-      config_name = 'config'
+    if app.options["cpath"].nil?
+      config_name = "config"
       # Config name file is introduced by cname arg option from teuton command
-      config_name = app.options['cname'] unless app.options['cname'].nil?
+      config_name = app.options["cname"] unless app.options["cname"].nil?
       config_path = File.join(folder_path, "#{config_name}.json")
       unless File.exist? config_path
         config_path = File.join(folder_path, "#{config_name}.yaml")
       end
     else
       # Config path file is introduced by cpath arg option from teuton command
-      config_path = app.options['cpath']
+      config_path = app.options["cpath"]
     end
     app.config_path = config_path
   end
@@ -72,17 +68,17 @@ module NameFileFinder
   def self.find_filenames_from_rb(script_path)
     # SIMPLE MODE: We use script_path as main RB file
     # This must be fullpath to DSL script file
-    if File.extname(script_path) != '.rb'
-      print Rainbow('[ERROR] Script ').red
+    if File.extname(script_path) != ".rb"
+      print Rainbow("[ERROR] Script ").red
       print Rainbow(script_path).bright.red
-      puts Rainbow(' must have rb extension').red
+      puts Rainbow(" must have rb extension").red
       exit 1
     end
 
     app = Application.instance
     app.project_path = File.dirname(script_path)
     app.script_path = script_path
-    app.test_name = File.basename(script_path, '.rb')
+    app.test_name = File.basename(script_path, ".rb")
 
     find_configfilenames_from_rb(script_path)
   end
@@ -92,19 +88,19 @@ module NameFileFinder
     # This must be fullpath to DSL script file
     app = Application.instance
 
-    config_path = ''
-    if app.options['cpath'].nil?
-      config_name = File.basename(script_path, '.rb')
+    config_path = ""
+    if app.options["cpath"].nil?
+      config_name = File.basename(script_path, ".rb")
       # Config name file is introduced by cname arg option from teuton command
-      config_name = app.options['cname'] unless app.options['cname'].nil?
+      config_name = app.options["cname"] unless app.options["cname"].nil?
 
-      config_path = File.join(app.project_path, config_name + '.json')
+      config_path = File.join(app.project_path, config_name + ".json")
       unless File.exist? config_path
-        config_path = File.join(app.project_path, config_name + '.yaml')
+        config_path = File.join(app.project_path, config_name + ".yaml")
       end
     else
       # Config path file is introduced by cpath arg option from teuton command
-      config_path = app.options['cpath']
+      config_path = app.options["cpath"]
     end
     app.config_path = config_path
   end
@@ -115,7 +111,7 @@ module NameFileFinder
 
   def self.verbose(text)
     return unless Application.instance.verbose
-    return if Application.instance.options['quiet']
+    return if Application.instance.options["quiet"]
 
     print text
   end

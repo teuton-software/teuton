@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'yaml'
-require_relative 'array_formatter'
+require "yaml"
+require_relative "array_formatter"
 
 ##
 # YAMLFormatter class receive a [Report] and generates YAML output.

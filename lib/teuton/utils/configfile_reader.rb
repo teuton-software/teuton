@@ -1,6 +1,5 @@
-
-require 'yaml'
-require 'json/pure'
+require "yaml"
+require "json/pure"
 
 ##
 # Functions that read data from ConfigFile using YAML or JSON formats
@@ -14,12 +13,12 @@ module ConfigFileReader
       data = {}
       data[:global] = {}
       data[:alias] = {}
-      data[:cases] = [{ tt_members: 'anonymous' }]
+      data[:cases] = [{tt_members: "anonymous"}]
       return data
     end
-    return read_yaml(filepath) if File.extname(filepath) == '.yaml'
+    return read_yaml(filepath) if File.extname(filepath) == ".yaml"
 
-    return read_json(filepath) if File.extname(filepath) == '.json'
+    return read_json(filepath) if File.extname(filepath) == ".json"
 
     raise "[ERROR] ConfigFileReader: #{filepath}"
   end
@@ -31,11 +30,11 @@ module ConfigFileReader
   def self.read_yaml(filepath)
     begin
       data = YAML.load(File.open(filepath))
-    rescue StandardError => e
-      puts "\n" + ('=' * 80)
+    rescue => e
+      puts "\n" + ("=" * 80)
       puts "[ERROR] ConfigFileReader#read <#{filepath}>"
-      puts '        I suggest to revise file format!'
-      puts "        #{e.message}\n" + ('=' * 80)
+      puts "        I suggest to revise file format!"
+      puts "        #{e.message}\n" + ("=" * 80)
       raise "[ERROR] ConfigFileReader <#{e}>"
     end
     data = convert_string_keys_to_symbol(data)
@@ -68,21 +67,21 @@ module ConfigFileReader
     return if data[:global][:tt_include].nil?
 
     include_dir = data[:global][:tt_include]
-    if include_dir == File.absolute_path(include_dir)
-      basedir = include_dir
+    basedir = if include_dir == File.absolute_path(include_dir)
+      include_dir
     else
-      basedir = File.join(File.dirname(filepath), data[:global][:tt_include])
+      File.join(File.dirname(filepath), data[:global][:tt_include])
     end
-    files = Dir.glob(File.join(basedir, '**/*.yaml'))
-    files += Dir.glob(File.join(basedir, '**/*.yml'))
+    files = Dir.glob(File.join(basedir, "**/*.yaml"))
+    files += Dir.glob(File.join(basedir, "**/*.yml"))
     files.each { |file|
       begin
         data[:cases] << YAML.load(File.open(file))
-      rescue StandardError => e
-        puts "\n" + ('=' * 80)
+      rescue => e
+        puts "\n" + ("=" * 80)
         puts "[ERROR] ConfigFileReader#read <#{file}>"
-        puts '        I suggest to revise file format!'
-        puts "        #{e.message}\n" + ('=' * 80)
+        puts "        I suggest to revise file format!"
+        puts "        #{e.message}\n" + ("=" * 80)
       end
     }
   end
@@ -95,9 +94,9 @@ module ConfigFileReader
       key2 = key
       key2 = key.to_sym if key.class
       value2 = value
-      if value.class == Hash
+      if value.instance_of? Hash
         value2 = convert_string_keys_to_symbol(value)
-      elsif value.class == Array
+      elsif value.instance_of? Array
         value2 = []
         value.each { |i| value2 << convert_string_keys_to_symbol(i) }
       end

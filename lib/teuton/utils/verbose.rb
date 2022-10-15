@@ -1,5 +1,4 @@
-
-require_relative '../application'
+require_relative "../application"
 
 module Verbose
   def verboseln(text)

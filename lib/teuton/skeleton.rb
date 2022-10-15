@@ -1,10 +1,7 @@
-
-require 'fileutils'
-require 'rainbow'
+require "fileutils"
+require "rainbow"
 
 module Skeleton
-  ##
-  # Create teuton project skeleton
   def self.create(project_dir)
     project_name = File.basename(project_dir)
     puts "\n[INFO] Creating #{Rainbow(project_name).bright} project skeleton"
@@ -13,15 +10,11 @@ module Skeleton
     create_main_dir_and_files(project_dir, source_basedir)
   end
 
-  ##
-  # Create main dir and files
-  # @param project_dir (String)
-  # @param source_basedir (String)
   private_class_method def self.create_main_dir_and_files(project_dir, source_basedir)
     # Directory and files: Ruby script, Configfile, gitignore
     items = [
-      { source: 'files/config.yaml', target: 'config.yaml' },
-      { source: 'files/start.rb', target: 'start.rb' }
+      {source: "files/config.yaml", target: "config.yaml"},
+      {source: "files/start.rb", target: "start.rb"}
     ]
     items.each do |item|
       source = File.join(source_basedir, item[:source])
@@ -37,7 +30,7 @@ module Skeleton
       begin
         FileUtils.mkdir_p(dirpath)
         puts "* Create dir        => #{Rainbow(dirpath).green}"
-      rescue StandardError
+      rescue
         puts "* Create dir  ERROR => #{Rainbow(dirpath).red}"
       end
     end
@@ -47,7 +40,6 @@ module Skeleton
   # Copy file
   # @param source (String) Source file
   # @param dest (String) Dest file
-  # rubocop:disable Metrics/MethodLength
   private_class_method def self.copyfile(source, dest)
     if File.exist? dest
       puts "* Exists file!      => #{Rainbow(dest).yellow}"
@@ -56,7 +48,7 @@ module Skeleton
       begin
         FileUtils.cp(source, dest)
         puts "* Create file       => #{Rainbow(dest).green}"
-      rescue StandardError
+      rescue
         puts "* Create file ERROR => #{Rainbow(dest).red}"
       end
     end
