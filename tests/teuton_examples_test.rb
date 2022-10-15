@@ -154,13 +154,13 @@ class TeutonExamplesTest < Minitest::Test
     system("teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null")
     testname = File.basename(filepath)
     filepath = File.join('var', testname, 'resume.yaml')
-    data = YAML.load(File.read(filepath))
+    data = YAML.unsafe_load(File.read(filepath))
     [ testname, filepath, data ]
   end
 
   def read_case_report(id, testname)
     filepath = File.join('var', testname, "case-#{id}.yaml")
-    data = YAML.load(File.read(filepath))
+    data = YAML.unsafe_load(File.read(filepath))
   end
 
 end
