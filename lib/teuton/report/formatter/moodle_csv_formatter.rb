@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'resume_array_formatter'
+require_relative "resume_array_formatter"
 
-##
-# Format data to Moodle CSV
 class MoodleCSVFormatter < ResumeArrayFormatter
   ##
   # initialize instance
@@ -28,10 +26,9 @@ class MoodleCSVFormatter < ResumeArrayFormatter
     w "MoodleID, TeutonGrade, TeutonFeedback\n"
     @data[:cases].each do |line|
       moodle_id = line[:moodle_id]
-      moodle_id = line[:moodle_id].split(',') if moodle_id.class == String
+      moodle_id = line[:moodle_id].split(",") if moodle_id.instance_of? String
       moodle_id.each do |id|
-        w "#{id.strip},#{line[:grade]}," \
-          "#{line[:moodle_feedback]}\n" unless line[:skip]
+        w "#{id.strip},#{line[:grade]},#{line[:moodle_feedback]}\n" unless line[:skip]
       end
     end
   end

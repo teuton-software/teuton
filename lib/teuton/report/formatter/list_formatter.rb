@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'array_formatter'
+require_relative "array_formatter"
 
-# ListFormatter class
 class ListFormatter < ArrayFormatter
-  def initialize(report)
-    super(report)
-    @data = {}
-  end
-
   def process
     build_data
     process_config
@@ -23,7 +17,7 @@ class ListFormatter < ArrayFormatter
 
   def process_config
     w "CONFIGURATION\n"
-    @data[:config].sort.each { |key,value| w "  * #{key} : #{value}\n" }
+    @data[:config].sort.each { |key, value| w "  * #{key} : #{value}\n" }
     w "\n\n"
   end
 
@@ -43,8 +37,8 @@ class ListFormatter < ArrayFormatter
 
   def process_results
     w "\nRESULTS\n"
-    @data[:results].each do |key,value|
-      w "  * #{key.to_s} : #{value.to_s}\n"
+    @data[:results].each do |key, value|
+      w "  * #{key} : #{value}\n"
     end
   end
 
@@ -60,10 +54,10 @@ class ListFormatter < ArrayFormatter
   private
 
   def process_group(group)
-    tab = '  '
+    tab = "  "
     w "- #{group[:title]}\n"
     group[:targets].each do |i|
-      w tab*2 + "#{format("%02d", i[:target_id].to_i)}"
+      w "#{tab * 2}#{format("%02d", i[:target_id].to_i)}"
       w " (#{i[:score]}/#{i[:weight]}) "
       w "#{i[:description]}\n"
     end

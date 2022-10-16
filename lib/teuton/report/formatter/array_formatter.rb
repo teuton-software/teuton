@@ -13,8 +13,6 @@ class ArrayFormatter < BaseFormatter
     @data = {}
   end
 
-  ##
-  # Execute format action
   def process
     build_data
     w @data.to_s # Write data into ouput file

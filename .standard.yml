@@ -1,5 +1,7 @@
 ignore:
   - "private/**/*"
   - "test/manual/**/*"
+  - "lib/teuton/report/formatter/csv_formatter.rb"
   - "lib/teuton/report/formatter/html_formatter.rb"
   - "lib/teuton/report/formatter/xml_formatter.rb"
+
