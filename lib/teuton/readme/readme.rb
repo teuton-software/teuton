@@ -1,14 +1,14 @@
 
-require_relative '../application'
-require_relative '../utils/configfile_reader'
-require_relative '../case_manager/case/result/result'
-require_relative 'dsl'
-require_relative 'lang'
+require_relative "../application"
+require_relative "../utils/configfile_reader"
+require_relative "../case_manager/case/result/result"
+require_relative "dsl"
+require_relative "lang"
 
 def use(filename)
-  filename += '.rb'
+  filename += ".rb"
   app = Application.instance
-  rbfiles = File.join(app.project_path, '**', filename)
+  rbfiles = File.join(app.project_path, "**", filename)
   files = Dir.glob(rbfiles)
   use = []
   files.sort.each { |f| use << f if f.include?(filename) }
@@ -16,13 +16,14 @@ def use(filename)
 end
 
 def group(name, &block)
-  Application.instance.groups << { name: name, block: block }
+  Application.instance.groups << {name: name, block: block}
 end
 alias task group
 
 def start(&block)
   # don't do nothing
 end
+#alias_method "play", "start"
 alias play start
 
 # Creates README.md file from RB script file
@@ -36,10 +37,10 @@ class Readme
   # @param config_path (String) Path to main config file (config.yaml)
   def initialize(script_path, config_path)
     @path = {}
-    @path[:script]   = script_path
-    @path[:dirname]  = File.dirname(script_path)
-    @path[:filename] = File.basename(script_path, '.rb')
-    @path[:config]   = config_path
+    @path[:script] = script_path
+    @path[:dirname] = File.dirname(script_path)
+    @path[:filename] = File.basename(script_path, ".rb")
+    @path[:config] = config_path
     reset
   end
 
@@ -70,7 +71,7 @@ class Readme
 
   def process_content
     Application.instance.groups.each do |g|
-      @current = { name: g[:name], readme: [], actions: [] }
+      @current = {name: g[:name], readme: [], actions: []}
       @data[:groups] << @current
       reset_action
       instance_eval(&g[:block])
@@ -78,29 +79,29 @@ class Readme
   end
 
   def reset_action
-    @action = { readme: [] }
+    @action = {readme: []}
   end
 
   def show_head
     app = Application.instance
-    puts '```'
-    puts format(Lang::get(:testname), app.test_name)
-    puts format(Lang::get(:date), Time.now)
-    puts format(Lang::get(:version), Application::VERSION)
-    puts '```'
+    puts "```"
+    puts format(Lang.get(:testname), app.test_name)
+    puts format(Lang.get(:date), Time.now)
+    puts format(Lang.get(:version), Application::VERSION)
+    puts "```"
     puts "\n"
     puts "# #{app.test_name}\n"
 
     i = 1
     unless @required_hosts.empty?
-      puts Lang::get(:hosts)
+      puts Lang.get(:hosts)
       puts "\n"
-      puts '| ID | Host | Configuration |'
-      puts '| --- | --- | --- |'
+      puts "| ID | Host | Configuration |"
+      puts "| --- | --- | --- |"
       @required_hosts.each_pair do |k, v|
         c = []
-        v.each_pair { |k2,v2| c << "#{k2}=#{v2}" }
-        puts "| #{i} | #{k.upcase} | #{c.join(', ')} |"
+        v.each_pair { |k2, v2| c << "#{k2}=#{v2}" }
+        puts "| #{i} | #{k.upcase} | #{c.join(", ")} |"
         i += 1
       end
       puts "\n> NOTE: SSH Service installation is required on every host."
@@ -108,8 +109,8 @@ class Readme
 
     unless @cases_params.empty?
       @cases_params.sort!
-      puts Lang::get(:params)
-      @cases_params.uniq.each { |i| puts format('* %s', i) }
+      puts Lang.get(:params)
+      @cases_params.uniq.each { |i| puts format("* %s", i) }
       puts "\n> NOTE: Save every 'param: value' into config file."
     end
   end
@@ -126,13 +127,13 @@ class Readme
           item[:host] = group[:actions][0][:host]
         end
         if previous_host.nil? || item[:host] != previous_host
-          previous_host = item[:host] || 'null'
-          puts format(Lang::get(:goto), previous_host.upcase)
+          previous_host = item[:host] || "null"
+          puts format(Lang.get(:goto), previous_host.upcase)
         end
 
-        weight = ''
-        weight = "(x#{item[:weight]}) " if item[:weight] != 1.0
-        last = (item[:target].end_with?('.') ? '' : '.')
+        weight = ""
+        weight = "(x#{item[:weight]}) " if item[:weight].to_i != 1
+        last = (item[:target].end_with?(".") ? "" : ".")
         puts "* #{weight}#{item[:target]}#{last}"
         item[:readme].each { |line| puts "    * #{line}\n" }
       end
@@ -142,21 +143,19 @@ class Readme
   def show_tail
     return if @global_params.empty?
 
-    app = Application.instance
     puts "\n---"
     puts "# ANEXO"
     puts "\n\#\# Global params"
-    puts Lang::get(:global)
+    puts Lang.get(:global)
     puts "\n"
-    puts '| Global param | Value |'
-    puts '| --- | --- |'
-    @global_params.each_pair { |k,v| puts "|#{k}|#{v}|" }
+    puts "| Global param | Value |"
+    puts "| --- | --- |"
+    @global_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
     puts "\n\#\# Created params"
-    puts Lang::get(:created)
+    puts Lang.get(:created)
     puts "\n"
-    puts '| Created params | Value |'
-    puts '| --- | --- |'
-    @setted_params.each_pair { |k,v| puts "|#{k}|#{v}|" }
+    puts "| Created params | Value |"
+    puts "| --- | --- |"
+    @setted_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
   end
 end
-

@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'base_formatter'
+require_relative "base_formatter"
 
-##
-# ArrayFormatter class: format report data into an array
 class ArrayFormatter < BaseFormatter
-  ##
-  # Initialize class
-  # @param report (Report) Format report data into Array
   def initialize(report)
     super(report)
     @data = {}
@@ -32,49 +27,45 @@ class ArrayFormatter < BaseFormatter
     @data[:config] = head
   end
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
   def build_history_data
     @data[:logs] = []
     groups = []
     title = nil
     targets = []
     @lines.each do |i|
-      if i.class.to_s == 'Hash'
-        value = 0.0
-        value = i[:weight] if i[:check]
-        if i[:groupname] != title
-          # Add currentgroup
-          groups << { title: title, targets: targets } unless title.nil?
-          # Create new group
-          title = i[:groupname]
-          targets = []
-        end
-
-        target = {}
-        # target[:target_id]   = format('%02d', i[:id])
-        target[:target_id]   = format('%<id>02d', id: i[:id])
-        target[:check]       = i[:check]
-        target[:score]       = value
-        target[:weight]      = i[:weight]
-        target[:description] = i[:description]
-        target[:command]     = i[:command]
-        target[:conn_type]   = i[:conn_type]
-        target[:duration]    = i[:duration]
-        target[:alterations] = i[:alterations]
-        target[:expected]    = i[:expected]
-        target[:result]      = i[:result]
-        targets << target
-      else
+      unless i.instance_of? Hash
         @data[:logs] << i.to_s # Add log line
+        next
       end
+
+      value = 0.0
+      value = i[:weight] if i[:check]
+      if i[:groupname] != title
+        # Add currentgroup
+        groups << {title: title, targets: targets} unless title.nil?
+        # Create new group
+        title = i[:groupname]
+        targets = []
+      end
+
+      target = {}
+      target[:target_id] = format("%<id>02d", id: i[:id])
+      target[:check] = i[:check]
+      target[:score] = value
+      target[:weight] = i[:weight]
+      target[:description] = i[:description]
+      target[:command] = i[:command]
+      target[:conn_type] = i[:conn_type]
+      target[:duration] = i[:duration]
+      target[:alterations] = i[:alterations]
+      target[:expected] = i[:expected]
+      target[:result] = i[:result]
+      targets << target
     end
 
-    groups << { title: title, targets: targets } unless title.nil?
+    groups << {title: title, targets: targets} unless title.nil?
     @data[:groups] = groups
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
 
   def build_final_data
     tail = {}

@@ -1,5 +1,3 @@
-
-# Close Show methods for Report class.
 class Report
   ##
   # Calculate final values:
@@ -15,7 +13,7 @@ class Report
     fail = 0.0
     fail_counter = 0
     @lines.each do |i|
-      next unless i.class.to_s == 'Hash'
+      next unless i.instance_of? Hash
 
       max += i[:weight] if i[:weight].positive?
       if i[:check]

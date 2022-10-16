@@ -1,28 +1,19 @@
 # frozen_string_literal: true
 
-# BaseFormatter class
 class BaseFormatter
-  ##
-  # Initialize class
-  # @param report (Report) Format report data
   def initialize(report)
     @head = report.head
     @lines = report.lines
     @tail = report.tail
   end
 
-  ##
-  # Execute format action
   def process
-    raise 'Empty method!'
+    raise "Empty method!"
   end
 
-  ##
-  # Creates new output file
-  # @param filename (String) Path to output file
   def init(filename)
     @filename = filename
-    @file = File.open(@filename, 'w')
+    @file = File.open(@filename, "w")
   end
 
   ##
@@ -32,8 +23,6 @@ class BaseFormatter
     @file.write text.to_s
   end
 
-  ##
-  # Close open output file
   def deinit
     @file.close
   end
