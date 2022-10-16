@@ -52,6 +52,8 @@ De momento hacemos la siguiente propuesta (hay varias formas de afrontarlo) para
   expect_last "1"
 ```
 
+> https://github.com/teuton-software/teuton/blob/master/docs/learn/example-15-exit_codes.md
+
 ## Observaciones
 
 Estos ejemplos se probaron en GNU/Linux pero para que sirvan en Windows, etc, hay que cambiar `echo $?` por su equivalente en cada SO.
