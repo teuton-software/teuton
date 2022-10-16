@@ -1,10 +1,9 @@
-
-require 'terminal-table'
-require 'rainbow'
-require_relative 'array_formatter'
+require "terminal-table"
+require "rainbow"
+require_relative "array_formatter"
 
 class TXTFormatter < ArrayFormatter
-  def initialize(report, color=false)
+  def initialize(report, color = false)
     @color = color
     super(report)
     @data = {}
@@ -30,9 +29,9 @@ class TXTFormatter < ArrayFormatter
   def process_config
     w "#{Rainbow("CONFIGURATION").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
-      @data[:config].sort.each { |key,value| st.add_row [ key.to_s, value.to_s] }
+      @data[:config].sort.each { |key, value| st.add_row [key.to_s, value.to_s]}
     end
-    w my_screen_table.to_s+"\n\n"
+    w "#{my_screen_table}\n\n"
   end
 
   def process_logs
@@ -52,11 +51,11 @@ class TXTFormatter < ArrayFormatter
   def process_results
     w "\n#{Rainbow("RESULTS").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
-      @data[:results].each do |key,value|
-        st.add_row [ key.to_s, value.to_s]
+      @data[:results].each do |key, value|
+        st.add_row [key.to_s, value.to_s]
       end
     end
-    w my_screen_table.to_s+"\n"
+    w "#{my_screen_table}\n"
   end
 
   def process_hof
@@ -76,25 +75,25 @@ class TXTFormatter < ArrayFormatter
         st.add_row [text1, text2]
       end
     end
-    w my_screen_table.to_s + "\n"
+    w "#{my_screen_table}\n"
   end
 
   private
 
   def process_group(group)
-    tab = '  '
+    tab = "  "
     w "- #{Rainbow(group[:title]).blue.bright}\n"
     group[:targets].each do |i|
       color = :red
       color = :green if i[:check]
-      w tab*2 + format("%02d", i[:target_id].to_i)
-      w " (#{Rainbow(i[:score].to_s+"/"+i[:weight].to_s).color(color)})\n"
-      w tab*4+"Description : #{i[:description].to_s}\n"
-      w tab*4+"Command     : #{i[:command].to_s}\n"
-			w tab*4+"Duration    : #{i[:duration].to_s} (#{i[:conn_type].to_s})\n"
-      w tab*4+"Alterations : #{i[:alterations].to_s}\n"
-      w tab*4+"Expected    : #{i[:expected].to_s} (#{i[:expected].class.to_s})\n"
-      w tab*4+"Result      : #{i[:result].to_s} (#{i[:result].class.to_s})\n"
+      w tab * 2 + format("%02d", i[:target_id].to_i)
+      w " (" + Rainbow(i[:score].to_s + "/" + i[:weight].to_s).color(color) + ")\n"
+      w "#{tab * 4}Description : #{i[:description]}\n"
+      w "#{tab * 4}Command     : #{i[:command]}\n"
+      w "#{tab * 4}Duration    : #{i[:duration]} (#{i[:conn_type]})\n"
+      w "#{tab * 4}Alterations : #{i[:alterations]}\n"
+      w "#{tab * 4}Expected    : #{i[:expected]} (#{i[:expected].class})\n"
+      w "#{tab * 4}Result      : #{i[:result]} (#{i[:result].class})\n"
     end
   end
 end

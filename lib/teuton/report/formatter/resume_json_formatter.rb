@@ -1,6 +1,5 @@
-
-require 'json/pure'
-require_relative 'resume_array_formatter'
+require "json/pure"
+require_relative "resume_array_formatter"
 
 # JSONFormatter class
 class ResumeJSONFormatter < ResumeArrayFormatter

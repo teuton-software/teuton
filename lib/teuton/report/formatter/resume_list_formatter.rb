@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'resume_array_formatter'
+require_relative "resume_array_formatter"
 
 # ResumeListFormatter class
 class ResumeListFormatter < ResumeArrayFormatter
@@ -23,7 +23,7 @@ class ResumeListFormatter < ResumeArrayFormatter
 
   def process_config
     w "CONFIGURATION\n"
-    @data[:config].each do |key,value|
+    @data[:config].each do |key, value|
       w "  * #{key}: #{trim(value)}\n"
     end
   end
@@ -31,7 +31,7 @@ class ResumeListFormatter < ResumeArrayFormatter
   def process_cases
     w "CASES\n"
     @data[:cases].each do |line|
-      w "  [#{line[:id]}] #{line[:members]}   :#{format('%3d', line[:grade])}\n"
+      w "  [#{line[:id]}] #{line[:members]}   :#{format("%3d", line[:grade])}\n"
     end
   end
 
@@ -46,7 +46,7 @@ class ResumeListFormatter < ResumeArrayFormatter
 
   def process_results
     w "\nRESULTS\n"
-    @data[:results].each do |key,value|
+    @data[:results].each do |key, value|
       w "  * #{key}: #{value}\n"
     end
   end

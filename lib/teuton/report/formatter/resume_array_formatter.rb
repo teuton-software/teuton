@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'base_formatter'
+require_relative "base_formatter"
 
 # ArrayFormatter class: format report data into an array
 class ResumeArrayFormatter < BaseFormatter
