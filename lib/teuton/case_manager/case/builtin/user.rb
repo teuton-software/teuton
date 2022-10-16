@@ -1,4 +1,3 @@
-
 class User
   def initialize(teuton_host, param)
     @teuton_host = teuton_host
@@ -10,7 +9,7 @@ class User
   def exists?
     @parent.target("User #{@param} exists?")
     @parent.run "id #{@param}", on: @host
-    @parent.expect_one [ 'uid=', @param ]
+    @parent.expect_one ["uid=", @param]
   end
 
   def is_member_of?(groupname)

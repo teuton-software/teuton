@@ -26,6 +26,7 @@ class Case
   attr_accessor :result
   attr_accessor :action # TODO: why not reader only???
   attr_reader :id, :config, :uniques, :conn_status
+  attr_reader :skip
   @@id = "01" # First case ID value
 
   ##
@@ -64,10 +65,12 @@ class Case
     @verbose = Application.instance.verbose
 
     @action_counter = 0
-    @action = { id: 0,
-                weight: 1.0,
-                description: "No description!",
-                groupname: nil }
+    @action = {
+      id: 0,
+      weight: 1.0,
+      description: "No description!",
+      groupname: nil
+    }
     @uniques = []
     @sessions = {} # Store opened sessions for this case
     tempfile :default
@@ -109,9 +112,6 @@ class Case
   ##
   # Return case skip value
   # @return skip
-  def skip
-    @skip
-  end
   alias skip? skip
 
   ##
@@ -128,9 +128,9 @@ class Case
       item = file.readlines
       file.close
       item.map! { |i| i.sub(/\n/, "") }
-      return item
-    rescue StandardError
-      return []
+    rescue
+      item = []
     end
+    item
   end
 end

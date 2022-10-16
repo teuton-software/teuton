@@ -5,9 +5,9 @@ require "colorize"
 module DSL
   # expect <condition>, :weight => <value>
   def expect(input, args = {})
-    if input.class == TrueClass || input.class == FalseClass
+    if input.instance_of?(TrueClass) || input.instance_of?(FalseClass)
       expect2(input, args)
-    elsif input.class == String || input.class == Regexp || input.class == Array
+    elsif input.instance_of?(String) || input.instance_of?(Regexp) || input.instance_of?(Array)
       expect_any input
     else
       puts "[TypeError] expect #{input} (#{input.class})"
@@ -34,7 +34,7 @@ module DSL
   end
 
   def expect_any(input, args = {})
-    if input.class == Array
+    if input.instance_of? Array
       input.each { |i| result.find(i) }
     else
       result.find(input)
@@ -57,7 +57,7 @@ module DSL
   end
 
   def expect_none(input, args = {})
-    if input.class == Array
+    if input.instance_of? Array
       input.each { |i| result.find(i) }
     else
       result.find(input)
@@ -66,7 +66,7 @@ module DSL
   end
 
   def expect_one(input, args = {})
-    if input.class == Array
+    if input.instance_of? Array
       input.each { |i| result.find(i) }
     else
       result.find(input)

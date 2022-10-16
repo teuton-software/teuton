@@ -10,12 +10,12 @@ class Package
   def installed?
     @parent.target("Package #{@param} installed?")
     @parent.run "whereis #{@param}", on: @host
-    @parent.expect_one [ 'bin', @param ]
+    @parent.expect_one [ "bin", @param ]
   end
 
   def not_installed?
     @parent.target("Package #{@param} not installed?")
     @parent.run "whereis #{@param}", on: @host
-    @parent.expect_none [ 'bin' , @param ]
+    @parent.expect_none [ "bin" , @param ]
   end
 end

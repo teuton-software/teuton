@@ -1,14 +1,13 @@
-
-require_relative 'teuton_file'
-require_relative 'package'
-require_relative 'service'
-require_relative 'user'
+require_relative "teuton_file"
+require_relative "package"
+require_relative "service"
+require_relative "user"
 
 class TeutonHost
   attr_reader :parent
   attr_reader :host
 
-  def initialize(parent, host = 'localhost')
+  def initialize(parent, host = "localhost")
     @parent = parent
     @host = host
   end

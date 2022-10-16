@@ -8,14 +8,14 @@ require_relative "../../application"
 # * unset
 # * missing_method
 class Case
-  # This class manage configuration for only one case
   class Config
+    # This class manage configuration for only one case
     attr_reader :ialias, :global, :local, :running
 
     def initialize(args)
-      @ialias  = args[:alias] || Application.instance.ialias.clone
-      @global  = args[:global] || Application.instance.global.clone
-      @local   = args[:local]  || {}
+      @ialias = args[:alias] || Application.instance.ialias.clone
+      @global = args[:global] || Application.instance.global.clone
+      @local = args[:local] || {}
       @running = {}
 
       # Set defaults values
@@ -46,12 +46,12 @@ class Case
     private
 
     def search_alias(key, level)
-      if @ialias[key].class == Array
+      if @ialias[key].instance_of? Array
         return search_array_alias(@ialias[key], level)
       elsif [Integer, String, Symbol].include? @ialias[key].class
         return get(@ialias[key])
       end
-      
+
       words = key.to_s.split("_")
       return "NODATA" if words.size < 2
 
@@ -66,7 +66,7 @@ class Case
     def search_array_alias(keys, level)
       values = []
       keys.each do |k|
-        if k.class == Symbol
+        if k.instance_of? Symbol
           values << get(k, level + 1)
           next
         end
