@@ -1,9 +1,6 @@
-require 'rainbow'
-##
-# Class CaseManager
-# Methods related with report
-class CaseManager
+require "rainbow"
 
+class CaseManager
   private
 
   ##
@@ -27,23 +24,31 @@ class CaseManager
     @report.tail[:finish_time] = finish_time
     @report.tail[:duration] = finish_time - start_time
 
-    verbose Rainbow("\n==> Teuton: Duration=#{format('%3.3f',(finish_time - start_time))}").yellow.bright
+    duration = format("%3.3f", (finish_time - start_time))
+    verbose Rainbow("\n==> Teuton: Duration=#{duration}").yellow.bright
     verboseln Rainbow(" (#{finish_time})").yellow.bright
-    verboseln ' '
+    verboseln " "
 
     app = Application.instance
     @cases.each do |c|
       line = {}
       if c.skip?
-        line = { skip: true, id: '-', grade: 0.0, letter: '',
-                members: '-', conn_status: {},
-                moodle_id: '', moodle_feedback: '' }
+        line = {
+          skip: true,
+          id: "-",
+          grade: 0.0,
+          letter: "",
+          members: "-",
+          conn_status: {},
+          moodle_id: "",
+          moodle_feedback: ""
+        }
       else
         line[:skip] = false
-        line[:id] = format('%<id>02d', { id: c.id.to_i })
+        line[:id] = format("%<id>02d", {id: c.id.to_i})
         line[:letter] = app.letter[:cross] if c.grade.zero?
         line[:letter] = app.letter[:error] if c.grade < 50.0
-        line[:letter] = app.letter[:ok] if c.grade == 100.0
+        line[:letter] = app.letter[:ok] if c.grade.to_i == 100
         line[:grade] = c.grade.to_f
         line[:members] = c.members
         line[:conn_status] = c.conn_status
@@ -62,9 +67,7 @@ class CaseManager
     return input unless input.to_s.start_with? Dir.pwd.to_s
     return input if input == Dir.pwd.to_s
 
-    output = input.to_s
-    offset = (Dir.pwd).length + 1
-    output = "#{input[offset, input.size]}"
-    output.to_s
+    offset = Dir.pwd.length + 1
+    input[offset, input.size].to_s
   end
 end

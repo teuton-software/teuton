@@ -1,8 +1,6 @@
-
-require_relative '../application'
+require_relative "../application"
 
 class CaseManager
-
   private
 
   def build_hall_of_fame
@@ -10,10 +8,10 @@ class CaseManager
 
     @cases.each do |c|
       grade = c.grade # report.tail[:grade]
-      if celebrities[grade]
-        label = celebrities[grade] + '*'
+      label = if celebrities[grade]
+        celebrities[grade] + "*"
       else
-        label = '*'
+        "*"
       end
       celebrities[grade] = label unless c.skip
     end

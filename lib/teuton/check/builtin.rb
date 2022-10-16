@@ -10,6 +10,10 @@ class Builtin
   def method_missing(method)
     @parent.log "BUILTIN #{method}"
   end
+
+  def respond_to_missing?(_method, *)
+    true
+  end
 end
 
 # Laboratory
@@ -17,7 +21,7 @@ end
 class Laboratory
   def service(param)
     log "BUILTIN service(#{param})"
-    @builtin = @builtin || Builtin.new(self)
+    @builtin ||= Builtin.new(self)
     @builtin.param = param
     @builtin
   end

@@ -1,13 +1,12 @@
-
-require 'thor'
-require_relative 'version'
-require_relative '../teuton'
+require "thor"
+require_relative "version"
+require_relative "../teuton"
 
 class CLI < Thor
-  map ['h', '-h', '--help'] => 'help'
+  map ["h", "-h", "--help"] => "help"
 
-  map ['n', '-n', '--new'] => 'new'
-  desc 'new DIRECTORY', 'Create skeleton for a new project'
+  map ["n", "-n", "--new"] => "new"
+  desc "new DIRECTORY", "Create skeleton for a new project"
   long_desc <<-LONGDESC
   Create files for a new project.
   LONGDESC
@@ -15,12 +14,11 @@ class CLI < Thor
     Teuton.create(projectpath)
   end
 
-  map ['c', '-c', '--check'] => 'check'
+  map ["c", "-c", "--check"] => "check"
   option :panelconfig, type: :boolean
   option :cname, type: :string
   option :cpath, type: :string
-  desc 'check [OPTIONS] DIRECTORY',
-       'Check test and config file content'
+  desc "check [OPTIONS] DIRECTORY", "Check test and config file content"
   long_desc <<-LONGDESC
 
   (1) teuton check path/to/dir/foo
@@ -40,10 +38,9 @@ class CLI < Thor
     Teuton.check(projectpath, options)
   end
 
-  map ['--readme'] => 'readme'
+  map ["--readme"] => "readme"
   option :lang, type: :string
-  desc 'readme DIRECTORY',
-       'Show README extracted from test contents'
+  desc "readme DIRECTORY", "Show README extracted from test contents"
   long_desc <<-LONGDESC
 
   (1) teuton readme foo
@@ -58,15 +55,14 @@ class CLI < Thor
     Teuton.readme(projectpath, options)
   end
 
-  map ['--run', 'run'] => 'play'
+  map ["--run", "run"] => "play"
   option :export, type: :string
   option :cname, type: :string
   option :cpath, type: :string
   option :case, type: :string
   option :color, type: :boolean
   option :quiet, type: :boolean
-  desc '[run] [OPTIONS] DIRECTORY',
-       'Run test from directory'
+  desc "[run] [OPTIONS] DIRECTORY", "Run test from directory"
   long_desc <<-LONGDESC
   This function execute challenge from specified directory.
   By default, show progress on the screen.
@@ -89,8 +85,8 @@ class CLI < Thor
     Teuton.run(filepath, options)
   end
 
-  map ['v', '-v', '--version'] => 'version'
-  desc 'version', 'Show the program version'
+  map ["v", "-v", "--version"] => "version"
+  desc "version", "Show the program version"
   def version
     puts "#{Teuton::APPNAME} version #{Teuton::VERSION}"
   end

@@ -15,7 +15,7 @@ class Laboratory
     @stats[:targets] += 1
     @targetid += 1
     weight = args[:weight] || 1.0
-    verboseln format('(%03<targetid>d) target      %<desc>s', targetid: @targetid, desc: desc)
+    verboseln format("(%03<targetid>d) target      %<desc>s", targetid: @targetid, desc: desc)
     verboseln "      weight      #{weight}"
   end
   alias goal target
@@ -48,7 +48,7 @@ class Laboratory
   def expect(cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect      #{cond} (#{cond.class})"
-    verboseln ''
+    verboseln ""
   end
 
   ##
@@ -56,7 +56,7 @@ class Laboratory
   def expect_one(cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_one  #{cond} (#{cond.class})"
-    verboseln ''
+    verboseln ""
   end
 
   ##
@@ -64,7 +64,7 @@ class Laboratory
   def expect_none(cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_none #{cond} (#{cond.class})"
-    verboseln ''
+    verboseln ""
   end
 
   ##
@@ -85,7 +85,7 @@ class Laboratory
   # rubocop:disable Style/MissingRespondToMissing
   def method_missing(method)
     a = method.to_s
-    instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__) if a[a.size - 1] == '?'
+    instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__) if a[a.size - 1] == "?"
   end
   # rubocop:enable Style/MissingRespondToMissing
 
@@ -93,8 +93,7 @@ class Laboratory
   # Execute Teuton DSL gett keyword
   # Same as get keyword, but show pretty output when used by readme command.
   def gett(option)
-    value = get(option)
-    value
+    get(option)
   end
 
   ##
@@ -103,12 +102,12 @@ class Laboratory
     @stats[:uniques] += 1
 
     verboseln "    ! Unique      value for <#{key}>"
-    verboseln ''
+    verboseln ""
   end
 
   ##
   # Execute Teuton DSL log keyword
-  def log(text = '', type = :info)
+  def log(text = "", type = :info)
     @stats[:logs] += 1
     verboseln "      log    [#{type}]: " + text.to_s
   end
@@ -118,8 +117,8 @@ class Laboratory
   def set(key, value)
     @stats[:sets] += 1
 
-    key = ':' + key.to_s if key.class == Symbol
-    value = ':' + value.to_s if value.class == Symbol
+    key = ":" + key.to_s if key.instance_of? Symbol
+    value = ":" + value.to_s if value.instance_of? Symbol
 
     @sets[key] = value
     "set(#{key},#{value})"

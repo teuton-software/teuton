@@ -1,10 +1,7 @@
-
 group "GROUP NAME" do
-
-  target "TARGET.1 DESCRIPTION"
-  run "COMMAND.1"
-  expect "TEXT.1"
-
+  target "TARGET_1 DESCRIPTION"
+  run "COMMAND_1"
+  expect "TEXT_1"
 end
 
 play do

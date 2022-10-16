@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../application'
+require_relative "../application"
 
 # CaseManager show method
 class CaseManager
@@ -17,7 +17,7 @@ class CaseManager
     return if mode == :resume
 
     @cases.each do |c|
-      puts '=' * 40
+      puts "=" * 40
       c.show
     end
   end
