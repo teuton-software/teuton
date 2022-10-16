@@ -3,6 +3,7 @@
 .yardoc
 html
 var
+.private*
 private*
 priv*
 pkg/

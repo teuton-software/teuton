@@ -5,10 +5,11 @@ require "yaml"
 
 class TeutonExamplesTest < Test::Unit::TestCase
   def setup
+    @dirbase = File.join("test", "files")
   end
 
   def test_example_learn_01_target
-    filepath = "tests/files/learn-01-target"
+    filepath = File.join(@dirbase, "learn-01-target")
     testname, _resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
@@ -37,8 +38,8 @@ class TeutonExamplesTest < Test::Unit::TestCase
   end
 
   def test_example_learn_02_config
-    filepath = "tests/files/learn-02-config"
-    configfile = "tests/files/learn-02-config/config.yaml"
+    filepath = File.join(@dirbase, "learn-02-config")
+    configfile = File.join(@dirbase, "learn-02-config", "config.yaml")
     testname, _resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
@@ -63,8 +64,8 @@ class TeutonExamplesTest < Test::Unit::TestCase
   end
 
   def test_example_learn_02_config_with_cname_rock
-    filepath = "tests/files/learn-02-config"
-    configfile = "tests/files/learn-02-config/rock.yaml"
+    filepath = File.join(@dirbase, "learn-02-config")
+    configfile = File.join(@dirbase, "learn-02-config", "rock.yaml")
     testname, _resume, data = execute_teuton_test(filepath, "--cname=rock")
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
@@ -89,8 +90,8 @@ class TeutonExamplesTest < Test::Unit::TestCase
   end
 
   def test_example_learn_02_config_with_cpath_starwars
-    filepath = "tests/files/learn-02-config"
-    configfile = "examples/learn-02-config/starwars.yaml"
+    filepath = File.join(@dirbase, "learn-02-config")
+    configfile = File.join(@dirbase, "learn-02-config", "starwars.yaml")
     testname, _resume, data = execute_teuton_test(filepath, "--cpath=#{configfile}")
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
@@ -115,7 +116,7 @@ class TeutonExamplesTest < Test::Unit::TestCase
   end
 
   def ntest_learn_03_remote_hosts
-    filepath = "tests/files/learn-03-remote-hosts"
+    filepath = File.join(@dirbase, "learn-03-remote-hosts")
     testname, _resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
@@ -149,7 +150,8 @@ class TeutonExamplesTest < Test::Unit::TestCase
   private
 
   def execute_teuton_test(filepath, options = "")
-    system("teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null")
+    cmd = "teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null"
+    system(cmd)
     testname = File.basename(filepath)
     filepath = File.join("var", testname, "resume.yaml")
     data = YAML.unsafe_load(File.read(filepath))
