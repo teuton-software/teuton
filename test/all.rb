@@ -10,4 +10,3 @@ require_relative "utils/configfile_reader_test"
 require_relative "utils/name_file_finder_test"
 require_relative "teuton_examples_test"
 require_relative "teuton_command_test"
-# require_relative "rubocop_test" # Duration: 60 seg. Require rubocop

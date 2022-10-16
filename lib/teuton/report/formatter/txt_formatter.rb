@@ -29,7 +29,7 @@ class TXTFormatter < ArrayFormatter
   def process_config
     w "#{Rainbow("CONFIGURATION").bg(:blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
-      @data[:config].sort.each { |key, value| st.add_row [key.to_s, value.to_s]}
+      @data[:config].sort.each { |key, value| st.add_row [key.to_s, value.to_s] }
     end
     w "#{my_screen_table}\n\n"
   end
