@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require "minitest/autorun"
+require "test/unit"
 require "yaml"
 
-class TeutonExamplesTest < Minitest::Test
+class TeutonExamplesTest < Test::Unit::TestCase
   def setup
   end
 

@@ -1,8 +1,8 @@
 #!/usr/bin/ruby
 
-require "minitest/autorun"
+require "test/unit"
 
-class TeutonCommandTest < Minitest::Test
+class TeutonCommandTest < Test::Unit::TestCase
   def setup
     @examples = ["learn-01-target", "learn-02-config"]
     filedirname = File.dirname(__FILE__)
