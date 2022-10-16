@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require "minitest/autorun"
+require "test/unit"
 require_relative "../../../lib/teuton/case_manager/case/case"
 
-class CaseTest < Minitest::Test
+class CaseTest < Test::Unit::TestCase
   def setup
     @app = Application.instance
     @app.reset

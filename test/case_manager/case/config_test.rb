@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-require "minitest/autorun"
+require "test/unit"
 require_relative "../../../lib/teuton/case_manager/case/config"
 
-class ConfigTest < Minitest::Test
+class ConfigTest < Test::Unit::TestCase
   def setup
     @local = {
       tt_members: "Obiwan Kenobi",

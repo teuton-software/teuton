@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-require "minitest/autorun"
+require "test/unit"
 require_relative "../../../../lib/teuton/case_manager/case/result/result"
 
-class ResultTest < Minitest::Test
+class ResultTest < Test::Unit::TestCase
   def setup
     @result = Result.new
     @content = ["line1", "line2", "line3"]
