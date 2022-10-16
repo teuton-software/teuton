@@ -9,4 +9,3 @@ ignore:
   - "lib/teuton/report/formatter/xml_formatter.rb"
   - "private/**/*"
   - "test/manual/**/*"
-

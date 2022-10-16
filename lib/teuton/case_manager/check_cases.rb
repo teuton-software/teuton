@@ -19,7 +19,7 @@ class CaseManager
 
     # Create out dir
     outdir = app.global[:tt_outdir] ||
-             File.join('var', app.global[:tt_testname])
+             File.join("var", app.global[:tt_testname])
     ensure_dir outdir
     @report.output_dir = outdir
 

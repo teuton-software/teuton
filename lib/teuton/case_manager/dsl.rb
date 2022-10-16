@@ -1,10 +1,10 @@
-require_relative '../application'
-require_relative 'case_manager'
+require_relative "../application"
+require_relative "case_manager"
 
 # Define filename to be used into our test
 # @param filename (String) Filename to be required
 def use(filename)
-  filename += '.rb'
+  filename += ".rb"
   app = Application.instance
   rbfiles = File.join(app.project_path, "**", filename)
   files = Dir.glob(rbfiles)

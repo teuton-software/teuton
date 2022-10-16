@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'singleton'
-require_relative '../application'
-require_relative '../report/report'
-require_relative '../utils/configfile_reader'
-require_relative 'case/case'
-require_relative 'export_manager'
-require_relative 'main'
-require_relative 'utils'
+require "singleton"
+require_relative "../application"
+require_relative "../report/report"
+require_relative "../utils/configfile_reader"
+require_relative "case/case"
+require_relative "export_manager"
+require_relative "main"
+require_relative "utils"
 
 # This class does all the job
 # Organize the hole job, sending orders to others classes
@@ -28,7 +28,7 @@ class CaseManager
   def initialize
     @cases = []
     @report = Report.new(0)
-    @report.filename = 'resume'
+    @report.filename = "resume"
   end
 
   ##
@@ -38,10 +38,10 @@ class CaseManager
     check_cases!
     instance_eval(&block)
     # Run export if user pass option command "--export=json"
-    i = Application.instance.options['export']
+    i = Application.instance.options["export"]
     export(format: i.to_sym) unless i.nil?
     # Accept "configfile" param REVISE There exists?
-    i = Application.instance.options['configfile']
+    i = Application.instance.options["configfile"]
     export(format: i.to_sym) unless i.nil?
   end
 
@@ -52,8 +52,8 @@ class CaseManager
     if args.class != Hash
       puts "[ERROR] CaseManager#export: Argument = <#{args}>, " \
            "class = #{args.class}"
-      puts '        Usage: export :format => :colored_text'
-      raise '[ERROR] CaseManager#export: Argument error!'
+      puts "        Usage: export :format => :colored_text"
+      raise "[ERROR] CaseManager#export: Argument error!"
     end
     # Export report files
     ExportManager.run(@report, @cases, args)
@@ -64,7 +64,7 @@ class CaseManager
   # @param args (Hash) Send options
   def send(args = {})
     threads = []
-    puts ''
+    puts ""
     puts "[INFO] Sending files...#{args.to_s}"
     @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
