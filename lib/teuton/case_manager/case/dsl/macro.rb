@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative "../../../application"
 
 # DSL module methods: assert, missing_method
@@ -19,7 +20,7 @@ module DSL
       errors << i if get(i) == "NODATA"
     end
     if errors.count > 0
-      log("Macro #{name} => required params #{errors.join(",")}",:error)
+      log("Macro #{name} => required params #{errors.join(",")}", :error)
     else
       instance_eval(&macros[name][:block])
     end
@@ -32,9 +33,13 @@ module DSL
   def method_missing(method, args = {})
     a = method.to_s
     if a.start_with?("_") && a.end_with?("_")
-      return instance_eval("get(:#{a[1, a.size - 2]})")
+      return instance_eval("get(:#{a[1, a.size - 2]})", __FILE__, __LINE__)
     end
-    return macro a[6, a.size], args if a[0,6] == "macro_"
+    return macro a[6, a.size], args if a[0, 6] == "macro_"
     macro a, args
+  end
+
+  def respond_to_missing?(method, *)
+    true
   end
 end
