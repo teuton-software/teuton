@@ -85,10 +85,10 @@ class Readme
   end
 
   # If a method call is missing, then delegate to concept parent.
-  def method_missing(method)
-    a = method.to_s
-    if a[a.size - 1] == "?"
-      instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__)
+  def method_missing(method, args = {})
+    m = method.to_s
+    if m[0] == "_"
+      instance_eval("get(:#{m[1, m.size - 1]})", __FILE__, __LINE__)
     end
   end
 
