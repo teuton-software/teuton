@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../runner'
+require_relative "../runner"
 
 # Case class -> DSL module:
 # * goto
@@ -25,7 +25,7 @@ module DSL
     @action[:command] = args[:execute].to_s if args[:execute]
     @action[:command] = args[:exec].to_s if args[:exec]
     tempfile(args[:tempfile]) if args[:tempfile]
-    @action[:encoding] = args[:encoding] || 'UTF-8'
+    @action[:encoding] = args[:encoding] || "UTF-8"
 
     start_time = Time.now
     run_cmd_on(host)

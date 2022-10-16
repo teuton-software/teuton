@@ -6,18 +6,18 @@ class Result
   def find(filter)
     @alterations << "find(#{filter})"
     case filter.class.to_s
-    when 'Array'
+    when "Array"
       find_when_array(filter)
-    when 'String' || 'Integer'
+    when "String" || "Integer"
       @content.select! { |i| i.include?(filter.to_s) }
-    when 'Regexp'
+    when "Regexp"
       @content.select! { |i| filter.match(i) }
     end
     self
   end
-  alias grep   find
-  alias grep!  find
-  alias find!  find
+  alias grep find
+  alias grep! find
+  alias find! find
 
   def first
     @alterations << "first"
@@ -38,7 +38,7 @@ class Result
     @alterations << "since(#{filter})"
     return self if @content.size.zero?
 
-    if filter.class == String
+    if filter.instance_of? String
       flag = false
       @content.select! do |i|
         flag = true if i.include?(filter.to_s)
@@ -58,7 +58,7 @@ class Result
     @alterations << "until(#{filter})"
     return self if @content.size.zero?
 
-    if filter.class == String
+    if filter.instance_of? String
       flag = true
       @content.select! do |i|
         flag = false if i.include?(filter.to_s)

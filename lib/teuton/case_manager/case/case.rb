@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative '../../application'
-require_relative '../../report/report'
-require_relative '../utils'
-require_relative 'main'
-require_relative 'result/result'
-require_relative 'builtin/main'
+require_relative "../../application"
+require_relative "../../report/report"
+require_relative "../utils"
+require_relative "main"
+require_relative "result/result"
+require_relative "builtin/main"
 
 # TODO: split Case class into several classes:
 # * Case, Action?, Session?, RunCommand class
@@ -26,7 +26,7 @@ class Case
   attr_accessor :result
   attr_accessor :action # TODO: why not reader only???
   attr_reader :id, :config, :uniques, :conn_status
-  @@id = '01' # First case ID value
+  @@id = "01" # First case ID value
 
   ##
   # Initialize case from specified config
@@ -41,21 +41,21 @@ class Case
 
     # Define Case Report
     @report = Report.new(@id)
-    @report.output_dir = File.join('var', @config.global[:tt_testname])
+    @report.output_dir = File.join("var", @config.global[:tt_testname])
     ensure_dir @report.output_dir
 
     # Default configuration
     @skip = false
-    @skip = get(:tt_skip) unless get(:tt_skip) == 'NODATA'
-    unless app.options['case'].nil?
+    @skip = get(:tt_skip) unless get(:tt_skip) == "NODATA"
+    unless app.options["case"].nil?
       @skip = true
-      @skip = false if app.options['case'].include? @id.to_i
+      @skip = false if app.options["case"].include? @id.to_i
     end
 
     @conn_status = {}
-    @tmpdir = File.join('var', @config.get(:tt_testname), 'tmp', @id.to_s)
+    @tmpdir = File.join("var", @config.get(:tt_testname), "tmp", @id.to_s)
     # ensure_dir @tmpdir # REVISE: When we will need this? Samba?
-    @remote_tmpdir = File.join('/', 'tmp')
+    @remote_tmpdir = File.join("/", "tmp")
 
     @unique_values = {}
     @result = Result.new
@@ -66,7 +66,7 @@ class Case
     @action_counter = 0
     @action = { id: 0,
                 weight: 1.0,
-                description: 'No description!',
+                description: "No description!",
                 groupname: nil }
     @uniques = []
     @sessions = {} # Store opened sessions for this case
@@ -101,9 +101,9 @@ class Case
   ## Return case members
   # @return members
   def members
-    return '-' if skip
+    return "-" if skip
 
-    @report.head[:tt_members] || 'noname'
+    @report.head[:tt_members] || "noname"
   end
 
   ##
@@ -124,10 +124,10 @@ class Case
 
   def read_filename(filename)
     begin
-      file = File.open(filename, 'r')
+      file = File.open(filename, "r")
       item = file.readlines
       file.close
-      item.map! { |i| i.sub(/\n/, '') }
+      item.map! { |i| i.sub(/\n/, "") }
       return item
     rescue StandardError
       return []

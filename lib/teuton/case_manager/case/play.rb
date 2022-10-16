@@ -28,7 +28,7 @@ class Case
 
   def close_opened_sessions
     @sessions.each_value do |s|
-      s.close if s.class == Net::SSH::Connection::Session
+      s.close if s.instance_of? Net::SSH::Connection::Session
     end
   end
 

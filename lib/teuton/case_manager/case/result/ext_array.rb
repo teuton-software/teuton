@@ -3,12 +3,12 @@
 # This is an extension of Result class
 class Result
   def count
-    @alterations << 'count'
-    if @content.class == Array
+    @alterations << "count"
+    if @content.instance_of? Array
       @content = [@content.count]
       self
     elsif @content.nil?
-      @content = ['0']
+      @content = ["0"]
     else
       @content = [@content.to_i.to_s]
     end
@@ -31,13 +31,13 @@ class Result
   end
 
   def empty
-    @expected = 'Empty!'
+    @expected = "Empty!"
     @content.empty
   end
 
-  alias count!     count
-  alias length     count
-  alias len        count
-  alias size       count
-  alias empty?     empty
+  alias count! count
+  alias length count
+  alias len count
+  alias size count
+  alias empty? empty
 end

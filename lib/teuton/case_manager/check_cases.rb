@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-##
-# CaseManager: check_cases!
 class CaseManager
   private
 
@@ -18,8 +16,7 @@ class CaseManager
     app.global[:tt_sequence] = false if app.global[:tt_sequence].nil?
 
     # Create out dir
-    outdir = app.global[:tt_outdir] ||
-             File.join("var", app.global[:tt_testname])
+    outdir = app.global[:tt_outdir] || File.join("var", app.global[:tt_testname])
     ensure_dir outdir
     @report.output_dir = outdir
 

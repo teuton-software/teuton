@@ -17,7 +17,7 @@ class Case
   private
 
   def log_unique_message(key, value)
-    log('UNIQUE:', :error)
+    log("UNIQUE:", :error)
     begin
       log("   ├── Value     => #{key}", :error)
       log("   └── Conflicts => #{value}", :error)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'ext_array'
-require_relative 'ext_compare'
-require_relative 'ext_filter'
+require_relative "ext_array"
+require_relative "ext_compare"
+require_relative "ext_filter"
 
 # This object contains data returned by remote/local execution
 # * initialize
@@ -22,7 +22,7 @@ class Result
   end
 
   def alterations
-    @alterations.join(' & ')
+    @alterations.join(" & ")
   end
 
   def content=(content)
@@ -31,13 +31,13 @@ class Result
   end
 
   def debug
-    print "\n" + '*' * 20
+    print "\n" + "*" * 20
     print " [DEBUG] count=#{@content.count} "
-    puts '*' * 20
+    puts "*" * 20
     @content.each_with_index do |item, index|
-      puts format('%<index>2d: %<item>s', { index: index, item: item })
+      puts format("%<index>2d: %<item>s", {index: index, item: item})
     end
-    puts '*' * 57
+    puts "*" * 57
   end
 
   def expected
@@ -46,11 +46,11 @@ class Result
 
   def reset
     @content_backup = []
-    @content        = []
-    @exitstatus     = nil
-    @value          = nil
-    @expected       = nil
-    @alterations    = []
+    @content = []
+    @exitstatus = nil
+    @value = nil
+    @expected = nil
+    @alterations = []
   end
 
   def ok?
@@ -64,7 +64,7 @@ class Result
     temp = @content_backup.clone
     reset
     @content_backup = temp
-    @content        = temp.clone
+    @content = temp.clone
   end
   alias restore! restore
 

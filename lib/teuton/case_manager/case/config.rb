@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../application'
+require_relative "../../application"
 
 # Class Case::Config
 # * get
@@ -24,7 +24,7 @@ class Case
 
     # Read param Option from [running, config or global] Hash data
     def get(option, level = 0)
-      return 'NODATA' if level > 3
+      return "NODATA" if level > 3
 
       return @running[option] if @running[option]
 
@@ -52,13 +52,13 @@ class Case
         return get(@ialias[key])
       end
       
-      words = key.to_s.split('_')
-      return 'NODATA' if words.size < 2
+      words = key.to_s.split("_")
+      return "NODATA" if words.size < 2
 
-      return 'NODATA' unless %w[ip hostname username password].include? words[1]
+      return "NODATA" unless %w[ip hostname username password].include? words[1]
 
       key2 = @ialias[words[0].to_sym]
-      return 'NODATA' unless key2
+      return "NODATA" unless key2
 
       get("#{key2}_#{words[1]}".to_sym, level)
     end
@@ -72,7 +72,7 @@ class Case
         end
         values << k
       end
-      values.join('')
+      values.join("")
     end
   end
 end

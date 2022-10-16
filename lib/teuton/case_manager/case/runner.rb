@@ -10,26 +10,24 @@ class Case
     protocol = @config.get("#{host}_protocol".to_sym)
     ip = @config.get("#{host}_ip".to_sym)
 
-    if (protocol.to_s.downcase == 'local' || host.to_s == 'localhost')
-      run_cmd_localhost() # Protocol force => local
-    elsif protocol.to_s.downcase == 'ssh'
+    if protocol.to_s.downcase == "local" || host.to_s == "localhost"
+      run_cmd_localhost # Protocol force => local
+    elsif protocol.to_s.downcase == "ssh"
       run_cmd_remote_ssh(host) # Protocol force => ssh
-    elsif protocol.to_s.downcase == 'telnet'
-        run_cmd_remote_telnet(host) # Protocol force => telnet
-    elsif (ip.to_s.downcase == 'localhost' || ip.to_s.include?('127.0.0.'))
-      run_cmd_localhost()
-    elsif ip == 'NODATA'
+    elsif protocol.to_s.downcase == "telnet"
+      run_cmd_remote_telnet(host) # Protocol force => telnet
+    elsif ip.to_s.downcase == "localhost" || ip.to_s.include?("127.0.0.")
+      run_cmd_localhost
+    elsif ip == "NODATA"
       log("#{host} IP not found!", :error)
     else
       run_cmd_remote_ssh host
     end
   end
 
-  ##
-  # Run command on local machine
-  def run_cmd_localhost()
+  def run_cmd_localhost
     @action[:conn_type] = :local
-    i = my_execute( @action[:command], @action[:encoding] )
+    i = my_execute(@action[:command], @action[:encoding])
     @result.exitstatus = i[:exitstatus]
     @result.content = i[:content]
   end
@@ -39,9 +37,9 @@ class Case
   # @param input_hostname (Symbol or String)
   def run_cmd_remote(input_hostname)
     hostname = input_hostname.to_s
-    i = (hostname + '_protocol').to_sym
+    i = (hostname + "_protocol").to_sym
     protocol = @config.get(i) if @config.get(i)
-    protocol = :ssh if protocol.nil? || protocol == 'NODATA'
+    protocol = :ssh if protocol.nil? || protocol == "NODATA"
     protocol = protocol.to_sym
     case protocol
     when :ssh
@@ -49,7 +47,7 @@ class Case
     when :telnet
       run_cmd_remote_telnet(input_hostname)
     when :local
-      run_cmd_localhost()
+      run_cmd_localhost
     else
       log("Protocol #{protocol} unknown! Use ssh or telnet.", :error)
     end
@@ -64,7 +62,7 @@ class Case
     port = @config.get("#{hostname}_port".to_sym).to_i
     port = 22 if port.zero?
 
-    unless @config.get("#{hostname}_route".to_sym) == 'NODATA'
+    unless @config.get("#{hostname}_route".to_sym) == "NODATA"
       # Reconfigure command with gateway. Example host1_route: IP.
       # hostname2 = hostname ¿not used?
       ip2 = ip
@@ -77,26 +75,27 @@ class Case
       password = @config.get("#{hostname}_password".to_sym).to_s
       ostype = @config.get("#{hostname}_ostype".to_sym).to_s
 
-      if ostype.downcase.start_with? 'win'
-        # echo y | plink idp@2.tcp.eu.ngrok.io -ssh -P 16256 -pw idp "echo > Desktop\hola.txt"
-        @action[:command] = "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
+      @action[:command] = if ostype.downcase.start_with? "win"
+        "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
       else
-        @action[:command] = "sshpass -p #{password2} #{username2}@#{ip2} #{command2}"
+        "sshpass -p #{password2} #{username2}@#{ip2} #{command2}"
       end
     end
 
-    text = ''
+    text = ""
     begin
       if @sessions[hostname].nil?
-        @sessions[hostname] = Net::SSH.start(ip,
-                                             username,
-                                             port: port,
-                                             password: password,
-                                             keepalive: true,
-                                             timeout: 30,
-                                             non_interactive: true)
+        @sessions[hostname] = Net::SSH.start(
+          ip,
+          username,
+          port: port,
+          password: password,
+          keepalive: true,
+          timeout: 30,
+          non_interactive: true
+        )
       end
-      if @sessions[hostname].class == Net::SSH::Connection::Session
+      if @sessions[hostname].instance_of? Net::SSH::Connection::Session
         text = @sessions[hostname].exec!(@action[:command])
       end
     rescue Errno::EHOSTUNREACH
@@ -108,18 +107,18 @@ class Case
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error_authentication_failed
       verbose Rainbow(Application.instance.letter[:error]).red.bright
-      log('SSH::AuthenticationFailed!', :error)
+      log("SSH::AuthenticationFailed!", :error)
     rescue Net::SSH::HostKeyMismatch
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :host_key_mismatch
       verbose Rainbow(Application.instance.letter[:error]).red.bright
-      log('SSH::HostKeyMismatch!', :error)
+      log("SSH::HostKeyMismatch!", :error)
       log("* The destination server's fingerprint is not matching " \
-          'what is in your local known_hosts file.', :error)
-      log('* Remove the existing entry in your local known_hosts file', :error)
+          "what is in your local known_hosts file.", :error)
+      log("* Remove the existing entry in your local known_hosts file", :error)
       log("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' " \
           "-R #{ip}", :error)
-    rescue StandardError => e
+    rescue => e
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error
       verbose Rainbow(Application.instance.letter[:error]).red.bright
@@ -136,19 +135,21 @@ class Case
     @action[:conn_type] = :telnet
     # app = Application.instance ¿not used?
     hostname = input_hostname.to_s
-    ip = @config.get((hostname + '_ip').to_sym)
-    username = @config.get((hostname + '_username').to_sym).to_s
-    password = @config.get((hostname + '_password').to_sym).to_s
-    text = ''
+    ip = @config.get((hostname + "_ip").to_sym)
+    username = @config.get((hostname + "_username").to_sym).to_s
+    password = @config.get((hostname + "_password").to_sym).to_s
+    text = ""
     begin
       if @sessions[hostname].nil? || @sessions[hostname] == :ok
-        h = Net::Telnet.new( 'Host' => ip,
-                             'Timeout' => 30,
-                             'Prompt' => /login|teuton|[$%#>]/ )
-#                            'Prompt' => Regexp.new(username[1, 40]))
-#                            'Prompt' => /[$%#>] \z/n)
+        h = Net::Telnet.new(
+          "Host" => ip,
+          "Timeout" => 30,
+          "Prompt" => /login|teuton|[$%#>]/
+        )
+        # "Prompt" => Regexp.new(username[1, 40]))
+        # "Prompt" => /[$%#>] \z/n)
         h.login(username, password)
-        text = ''
+        text = ""
         h.cmd(@action[:command]) { |i| text << i }
         h.close
         @sessions[hostname] = :ok
@@ -158,13 +159,13 @@ class Case
       @conn_status[hostname] = :open_timeout
       verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
-      log(' └── Revise host IP!', :warn)
+      log(" └── Revise host IP!", :warn)
     rescue Net::ReadTimeout
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :read_timeout
       verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
-    rescue StandardError => e
+    rescue => e
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error
       verbose Rainbow(Application.instance.letter[:error]).red.bright

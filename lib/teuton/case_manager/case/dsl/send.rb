@@ -15,22 +15,21 @@ module DSL
     host = args[:copy_to].to_s
     return unless @conn_status[host].nil?
 
-    ip = get((host + '_ip').to_sym)
-    username = get((host + '_username').to_sym).to_s
-    password = get((host + '_password').to_sym).to_s
-    port = get((host + '_port').to_sym).to_i
+    ip = get((host + "_ip").to_sym)
+    username = get((host + "_username").to_sym).to_s
+    password = get((host + "_password").to_sym).to_s
+    port = get((host + "_port").to_sym).to_i
     port = 22 if port.zero?
 
-    filename = "#{@report.filename}.#{@report.format.to_s}"
+    filename = "#{@report.filename}.#{@report.format}"
     filename = "#{@report.filename}.txt" if @report.format == :colored_text
     localfilepath = File.join(@report.output_dir, filename)
     filename = args[:prefix].to_s + filename if args[:prefix]
 
-    if args[:remote_dir]
-      remotefilepath = File.join(args[:remote_dir], filename)
+    remotefilepath = if args[:remote_dir]
+      File.join(args[:remote_dir], filename)
     else
-      # remotefilepath = File.join(remote_tempdir, filename)
-      remotefilepath = File.join('.', filename)
+      File.join(".", filename)
     end
 
     # Upload a file or directory to the remote host
@@ -38,9 +37,9 @@ module DSL
       Net::SFTP.start(ip, username, password: password, port: port) do |sftp|
         sftp.upload!(localfilepath, remotefilepath)
       end
-      verboseln("=> [ OK  ] #{(get(:tt_members)[0,15]).ljust(16)} : #{remotefilepath}")
+      verboseln("=> [ OK  ] #{(get(:tt_members)[0, 15]).ljust(16)} : #{remotefilepath}")
     rescue
-      verboseln("=> [ERROR] #{(get(:tt_members)[0,15]).ljust(16)} : scp #{localfilepath} => #{remotefilepath}")
+      verboseln("=> [ERROR] #{(get(:tt_members)[0, 15]).ljust(16)} : scp #{localfilepath} => #{remotefilepath}")
     end
   end
 
@@ -48,7 +47,7 @@ module DSL
     return @action[:tempfile] if input.nil?
 
     name = input
-    name = 'teuton.tmp' if input == :default
+    name = "teuton.tmp" if input == :default
 
     @action[:tempfile] = File.join(@tmpdir, name)
     @action[:remote_tempfile] = File.join(@remote_tmpdir, name)
@@ -57,12 +56,10 @@ module DSL
   end
 
   def tempdir
-    # puts '[WARN] Using DSL.tempdir'
     @tmpdir
   end
 
   def remote_tempfile
-    # puts '[WARN] Using DSL.tempfile'
     @action[:remote_tempfile]
   end
 
