@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-require 'erb'
-require_relative 'yaml_formatter'
-require_relative '../../application'
+require "erb"
+require_relative "yaml_formatter"
+require_relative "../../application"
 
-##
-# HTMLFormatter class receive a [Report] and generates HAML output.
 class HTMLFormatter < YAMLFormatter
-  ##
-  # Class constructor
-  # @param report [Report] Parent object that contains data to be exported.
   def initialize(report)
     super(report)
     @data = {}
@@ -17,16 +12,12 @@ class HTMLFormatter < YAMLFormatter
     @template = File.read(filepath)
   end
 
-  ##
-  # Process data from parent object and export it into YAML format.
   def process
     build_data
     build_page
     deinit
   end
 
-  ##
-  # Build html case page
   def build_page
     config = @data[:config]
     results = @data[:results]

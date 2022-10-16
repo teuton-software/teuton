@@ -1,5 +1,4 @@
 require "rainbow"
-require_relative "../application"
 
 module NameFileFinder
   ##

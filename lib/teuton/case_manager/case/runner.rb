@@ -1,17 +1,9 @@
+require "net/ssh"
+require "net/sftp"
+require "net/telnet"
+require_relative "dsl/log"
 
-require 'net/ssh'
-require 'net/sftp'
-require 'net/telnet'
-require_relative 'dsl/log'
-
-# Class Case
-# * run_local_cmd
-# * run_remote_cmd
-# * run_remote_cmd_ssh
-# * reconfigure_command_with_gateway
-# * run_remote_cmd_telnet
 class Case
-
   private
 
   def run_cmd_on(host)
@@ -74,7 +66,7 @@ class Case
 
     unless @config.get("#{hostname}_route".to_sym) == 'NODATA'
       # Reconfigure command with gateway. Example host1_route: IP.
-      hostname2 = hostname
+      # hostname2 = hostname ¿not used?
       ip2 = ip
       username2 = username
       password2 = password
@@ -142,7 +134,7 @@ class Case
 
   def run_cmd_remote_telnet(input_hostname)
     @action[:conn_type] = :telnet
-    app = Application.instance
+    # app = Application.instance ¿not used?
     hostname = input_hostname.to_s
     ip = @config.get((hostname + '_ip').to_sym)
     username = @config.get((hostname + '_username').to_sym).to_s
