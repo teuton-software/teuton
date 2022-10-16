@@ -20,7 +20,7 @@ class Readme
 
   def target(desc, args = {})
     previous_host = @action[:host]
-    @action = { target: desc, host: previous_host, readme: [] }
+    @action = {target: desc, host: previous_host, readme: []}
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
     @action[:weight] = weight
@@ -54,7 +54,7 @@ class Readme
       @required_hosts[host.to_s] = b
     end
     @action[:host] = host
-    @action[:exec] = args[:exec] || 'noexec'
+    @action[:exec] = args[:exec] || "noexec"
   end
 
   def run(command, args = {})
@@ -87,7 +87,13 @@ class Readme
   # If a method call is missing, then delegate to concept parent.
   def method_missing(method)
     a = method.to_s
-    instance_eval("get(:#{a[0, a.size - 1]})") if a[a.size - 1] == '?'
+    if a[a.size - 1] == "?"
+      instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__)
+    end
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    true
   end
 
   def gett(value)
@@ -106,7 +112,7 @@ class Readme
     # don't do nothing
   end
 
-  def log(text = '', type = :info)
+  def log(text = "", type = :info)
     @data[:logs] << "[#{type}]: " + text.to_s
   end
 end

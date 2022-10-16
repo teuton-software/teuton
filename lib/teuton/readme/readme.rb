@@ -1,4 +1,3 @@
-
 require_relative "../application"
 require_relative "../utils/configfile_reader"
 require_relative "../case_manager/case/result/result"
@@ -23,7 +22,7 @@ alias task group
 def start(&block)
   # don't do nothing
 end
-#alias_method "play", "start"
+# alias_method "play", "start" # REVISE THIS
 alias play start
 
 # Creates README.md file from RB script file

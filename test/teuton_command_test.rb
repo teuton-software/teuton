@@ -4,7 +4,12 @@ require "test/unit"
 
 class TeutonCommandTest < Test::Unit::TestCase
   def setup
-    @examples = ["learn-01-target", "learn-02-config"]
+    @examples = [
+      "learn-01-target",
+      "learn-02-config",
+      "learn-03-remote-hosts",
+      # "learn-15-exit-codes"
+    ]
     filedirname = File.dirname(__FILE__)
     @dirbase = File.join(filedirname, "..", "examples")
   end
