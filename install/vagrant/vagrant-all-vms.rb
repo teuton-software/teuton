@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
-options = [ 'destroy', 'halt', 'up', 'port']
+options = [ "destroy", "halt", "up", "port", "status"]
 
 if ARGV.size.zero?
-  puts "Options: #{options.sort.join(', ')}"
+  puts "Options: #{options.sort.join(", ")}"
   exit 1
 end
 
 def apply(action)
-  filepaths = Dir.glob('*/Vagrantfile').sort
+  filepaths = Dir.glob("*/Vagrantfile").sort
 
   filepaths.each do |filepath|
     dirname = File.dirname(filepath)

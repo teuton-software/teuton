@@ -1,4 +1,3 @@
-
 class TeutonFile
   def initialize(teuton_host, param)
     @teuton_host = teuton_host

@@ -1,21 +1,20 @@
-
-require_relative 'teuton/application'
+require_relative "teuton/application"
 
 module Teuton
   def self.create(path_to_new_dir)
-    require_relative 'teuton/skeleton'
+    require_relative "teuton/skeleton"
     Skeleton.create(path_to_new_dir)
   end
 
   def self.run(projectpath, options = {})
     Application.instance.add_input_params(projectpath, options)
-    require_dsl_and_script('teuton/case_manager/dsl') # Define DSL keywords
+    require_dsl_and_script("teuton/case_manager/dsl") # Define DSL keywords
   end
 
   def self.readme(projectpath, options = {})
     # Create Readme file for a teuton test
     Application.instance.add_input_params(projectpath, options)
-    require_dsl_and_script('teuton/readme/readme') # Define DSL keywords
+    require_dsl_and_script("teuton/readme/readme") # Define DSL keywords
 
     app = Application.instance
     readme = Readme.new(app.script_path, app.config_path)
@@ -24,7 +23,7 @@ module Teuton
 
   def self.check(projectpath, options = {})
     Application.instance.add_input_params(projectpath, options)
-    require_dsl_and_script('teuton/check/laboratory') # Define DSL keywords
+    require_dsl_and_script("teuton/check/laboratory") # Define DSL keywords
 
     app = Application.instance
     lab = Laboratory.new(app.script_path, app.config_path)

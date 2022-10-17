@@ -1,4 +1,3 @@
-
 require_relative "teuton_host"
 
 class Case
