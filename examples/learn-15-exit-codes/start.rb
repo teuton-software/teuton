@@ -1,4 +1,3 @@
-
 group "Read exit code" do
   target "No user vader"
   run "id vader;echo $?"

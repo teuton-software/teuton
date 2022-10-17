@@ -1,11 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+NAME = "teuton-manjaro"
 Vagrant.configure("2") do |config|
-  config.vm.define "vagrant-manjaro" do |i|
+  config.vm.define NAME do |i|
     i.vm.box = "marashni/manjaro64"
     i.vm.box_version = "0.0.1"
-    i.vm.hostname = "vagrant-manjaro"
+    i.vm.hostname = NAME
     # i.vm.network "public_network", bridge: [ "eth0" ]
     # i.vm.network "public_network", bridge: [ "wlan0" ]
     i.vm.network :forwarded_port, guest: 22, host: 2251
@@ -14,9 +15,8 @@ Vagrant.configure("2") do |config|
       lsb_release -d
     SHELL
     i.vm.provider "virtualbox" do |vm|
-      vm.name = 'vagrant-manjaro'
+      vm.name = NAME
       vm.memory = 2048
     end
   end
 end
-

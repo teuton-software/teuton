@@ -1,7 +1,6 @@
+use "gnulinux/user"
 
-use 'gnulinux/user'
-
-def exit_code(cmd, host=:localhost)
+def exit_code(cmd, host = :localhost)
   run cmd, on: host
   run "echo $?", on: host
 end
