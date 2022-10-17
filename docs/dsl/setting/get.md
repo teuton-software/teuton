@@ -37,16 +37,16 @@ Supossing we are **case 01**, then:
 **Writting example**: We also can create new temporal params:
 
 ```ruby
-set(:greet, "Hello")
-var = get(:greet)
+set(:name, "Obiwan")
+var = get(:name)
 ```
 
-So `var` value is "Hello".
+So `var` value is "Obiwan".
 
 **Simpler reading example**: Other ways or reading param values:
 
 ```ruby
-var = greet?
+var = _name
 ```
 
-So `var` value is "Hello" too. `greet?` is an alias of `get(:greet)`.
+So `var` value is "Obiwan" too. `_name` is an alias of `get(:name)`.
