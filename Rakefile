@@ -12,21 +12,20 @@ end
 require "standard/rake"
 task default: %i[test standard]
 
-#require_relative 'tasks/build'
-#require_relative 'tasks/install'
-#require_relative 'tasks/push'
+require_relative "tasks/docker"
+require_relative "tasks/install"
 
-desc 'Default: run tests'
+desc "Default: run tests"
 task :default do
-  Rake::Task['test'].invoke
+  Rake::Task["test"].invoke
 end
 
-desc 'Help'
+desc "Help"
 task :help do
   system("rake -T")
 end
 
-desc 'Delete output files'
+desc "Delete output files"
 task :clean do
-  system("rm -r #{File.join('var', '*')}")
+  system("rm -r #{File.join("var", "*")}")
 end

@@ -1,6 +1,5 @@
-
-use 'users'
-use 'network'
+use "users"
+use "network"
 
 play do
   show

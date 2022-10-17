@@ -15,7 +15,7 @@ end
 play do
   show
   # export using other output formats
-  export :format => :txt
-  export :format => :json
-  send :copy_to => :host1
+  export format: :txt
+  export format: :json
+  send copy_to: :host1
 end

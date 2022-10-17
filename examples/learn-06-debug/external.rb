@@ -8,5 +8,4 @@ group "Windows: external configuration" do
   target "Ensure netbios-ssn service is working on #{gett(:windows1_ip)}"
   run "nmap -Pn #{get(:windows1_ip)}"
   expect ["139/tcp", "open"]
-
 end
