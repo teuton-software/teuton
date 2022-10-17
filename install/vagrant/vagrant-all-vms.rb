@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-options = [ "destroy", "halt", "up", "port", "status"]
+options = ["destroy", "halt", "up", "port", "status"]
 
 if ARGV.size.zero?
   puts "Options: #{options.sort.join(", ")}"
