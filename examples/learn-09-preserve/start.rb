@@ -1,10 +1,7 @@
-
 group "Preserve output reports" do
-
-  target "Exits obiwan user "
+  target "Exits user obiwan"
   run "id obiwan"
   expect "obiwan"
-
 end
 
 play do

@@ -1,4 +1,3 @@
-
 group "Customize readme output" do
   readme "This is our example 07."
   readme "And here we'll see how to use readme keyword"
@@ -9,7 +8,6 @@ group "Customize readme output" do
 
   run "id david"
   expect "david"
-
 end
 
 play do

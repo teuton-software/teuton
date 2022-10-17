@@ -1,4 +1,3 @@
-
 group "Windows: internal configurations" do
 
   target "Ensure Windows version is 6.1"

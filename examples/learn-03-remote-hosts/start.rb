@@ -1,6 +1,4 @@
-
 group "Test remote Windows hosts" do
-
   target "Update hostname with #{gett(:host1_hostname)}"
   run "hostname", on: :host1
   expect_one get(:host1_hostname)
@@ -12,7 +10,6 @@ group "Test remote Windows hosts" do
   target "Create user #{gett(:username)}"
   run "net user", on: :host1
   expect get(:username)
-
 end
 
 play do

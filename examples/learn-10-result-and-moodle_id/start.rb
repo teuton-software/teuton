@@ -1,27 +1,20 @@
-
 group "Using result object" do
-
   # Capturing hostname value
   run "hostname"
-  a = result.value
+  hostname = result.value
 
-  target "Ensure exists username #{a}"
-  run "id #{a}"
-  expect a
-
-  target "Hostname must be #{a}"
+  target "Hostname must be #{hostname}"
   run "hostname"
-  expect a
-
+  expect hostname
 end
 
-group "Checking exit code" do
-  users = ['david', 'fran']
+group "Checking users" do
+  users = ["root", "vader"]
 
-  users.each do |user|
-    target "Ensure exists username #{a} checking exit code"
-    run "id david"
-    expect (result.exitstatus == 0)
+  users.each do |name|
+    target "Exists username #{name}"
+    run "id #{name}"
+    expect "(#{name})"
   end
 end
 
