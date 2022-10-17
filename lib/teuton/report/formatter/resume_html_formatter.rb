@@ -26,7 +26,27 @@ class ResumeHTMLFormatter < ResumeYAMLFormatter
     results = @data[:results]
     hall_of_fame = @data[:hall_of_fame]
     version = Application::VERSION
-    renderer = ERB.new(@template)
-    w renderer.result(binding)
+    render = ERB.new(@template)
+
+    # TODO
+    # obiwan  = Data.new "obiwan", "jedi"
+    # render.run(obiwan.get_binding)
+
+    w render.result(binding)
+  end
+
+  class Data
+    def initialize(config, cases, results, hall_of_fame, version)
+      @config = config
+      @cases = cases
+      @results = results
+      @hall_of_fame = hall_of_fame
+      @version = version
+    end
+
+    # Support templating of member data.
+    def get_binding
+      binding
+    end
   end
 end
