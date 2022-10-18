@@ -45,9 +45,7 @@ If you are a teacher and are using the Moodle platform, probably you will want t
 
 Teuton generates a file called "moodle.csv" with the grades of each student. Only have to import the file into Moodle.
 
-So that teuton can generate this file with the information of each student, it is necessary to have the identifier of each one in Moodle. For example, you can use the email that the student has registered on the Moodle platform.
-
-In the configuration file "config.yaml" we will add a field to each case, called "moodle_id" with the identifier of each student. The file is only generated when we fill in this information.
+In the configuration file "config.yaml" add a field called "moodle_id" to each case. Fill it with the student's identification (For example, the email registered on the Moodle).
 
 Example:
 ```
