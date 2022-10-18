@@ -19,14 +19,39 @@ class HTMLFormatter < YAMLFormatter
   end
 
   def build_page
-    config = @data[:config]
-    results = @data[:results]
-    logs = @data[:logs]
-    groups = @data[:groups]
-    groups = @data[:groups]
-    hall_of_fame = @data[:hall_of_fame]
-    version = Application::VERSION
-    renderer = ERB.new(@template)
-    w renderer.result(binding)
+    # config = @data[:config]
+    # results = @data[:results]
+    # logs = @data[:logs]
+    # groups = @data[:groups]
+    # hall_of_fame = @data[:hall_of_fame]
+    # version = Application::VERSION
+    render = ERB.new(@template)
+    w render.result(binding)
+  end
+
+  private
+
+  def config
+    @data[:config]
+  end
+
+  def results
+    @data[:results]
+  end
+
+  def logs
+    @data[:logs]
+  end
+
+  def groups
+    @data[:groups]
+  end
+
+  def hall_of_fame
+    @data[:hall_of_fame]
+  end
+
+  def version
+    Application::VERSION
   end
 end

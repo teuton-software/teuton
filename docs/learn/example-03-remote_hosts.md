@@ -47,7 +47,6 @@ Define 3 targets (items to be checked):
 
 ```ruby
 group "How to test remote Windows hosts" do
-
   target "Update hostname with #{gett(:host1_hostname)}"
   run "hostname", on: :host1
   expect_one get(:host1_hostname)
@@ -59,7 +58,6 @@ group "How to test remote Windows hosts" do
   target "Create user #{gett(:username)}"
   run "net user", on: :host1
   expect get(:username)
-
 end
 ```
 
@@ -71,15 +69,19 @@ end
 play do
   show
   # export using other output formats
-  export :format => :txt
-  export :format => :json
-  send :copy_to => :host1
+  export format: :txt
+  export format: :html
+  send copy_to: :host1
 end
 ```
 
 * `show`, show process log on screen.
-* `export :format => :json`, create output reports into `var/learn-03-remote-host/` directory. We can use diferents format to export: txt, colored_text, json and yaml.
-* `send :copy_to => :host1` keyword copy output report into remote machine (host1).
+* `export format: :txt`, create output reports files into `var/learn-03-remote-host/` directory using `txt` format.
+* `export format: :html`, create output reports into `var/learn-03-remote-host/` directory using `html` format.
+
+> Several output formats available: txt, colored_text, html, json and yaml.
+
+* `send copy_to: :host1` keyword copy output report into remote machine (host1).
 
 ## Results
 

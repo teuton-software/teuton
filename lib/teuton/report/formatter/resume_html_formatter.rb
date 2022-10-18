@@ -5,7 +5,7 @@ require_relative "resume_yaml_formatter"
 require_relative "../../application"
 
 ##
-# HTMLFormatter class receive a [Report] and generates HAML output.
+# HTMLFormatter class receive a [Report] and generates HTML output.
 class ResumeHTMLFormatter < ResumeYAMLFormatter
   def initialize(report)
     super(report)
@@ -21,32 +21,29 @@ class ResumeHTMLFormatter < ResumeYAMLFormatter
   end
 
   def build_page
-    config = @data[:config]
-    cases = @data[:cases]
-    results = @data[:results]
-    hall_of_fame = @data[:hall_of_fame]
-    version = Application::VERSION
     render = ERB.new(@template)
-
-    # TODO
-    # obiwan  = Data.new "obiwan", "jedi"
-    # render.run(obiwan.get_binding)
-
     w render.result(binding)
   end
 
-  class Data
-    def initialize(config, cases, results, hall_of_fame, version)
-      @config = config
-      @cases = cases
-      @results = results
-      @hall_of_fame = hall_of_fame
-      @version = version
-    end
+  private
 
-    # Support templating of member data.
-    def get_binding
-      binding
-    end
+  def config
+    @data[:config]
+  end
+
+  def cases
+    @data[:cases]
+  end
+
+  def results
+    @data[:results]
+  end
+
+  def hall_of_fame
+    @data[:hall_of_fame]
+  end
+
+  def version
+    Application::VERSION
   end
 end
