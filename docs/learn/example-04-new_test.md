@@ -1,7 +1,7 @@
 
 [<< back](README.md)
 
-# Example: learn-04-new-test
+# Example: learn-04-new_test
 
 > This example is on GitHub repository at `examples/learn-04-new-test`.
 
@@ -41,12 +41,10 @@ This command will create:
 Write your own targets using the keywords: `target`, `run` and `expect`. Let's see:
 
 ```ruby
-group "Demo group" do
-
-	target "Exist </home/david> directory"
-	run "file /home/david", :on => :host1
-	expect ["/home/david", "directory"]
-
+group "Create new test" do
+  target "Exist </home/vader> directory"
+  run "file /home/vader", on: :host1
+  expect_none "No such file or directory"
 end
 ```
 
@@ -54,12 +52,10 @@ The above example checks if exists '/home/david' directory, into *host1* device.
 
 > Let's see the keywords used:
 >
-> * `target "Exist </home/david> directory"`, Describe the target with our words, so every one could easily understand what we are trying
+> * `target "Exist </home/vader> directory"`, Describe the target with our words, so every one could easily understand what we are trying
 to check.
-> * `run "file /home/david", :on => :host1`, : Execute the command into the remote machine (host1).
-> * `expect ["/home/david", "directory"]`: Compare command ouput with our expectations.
-
----
+> * `run "file /home/vader", on: :host1`, : Execute the command into the remote machine (host1).
+> * `  expect_none "No such file or directory"`: Compare command ouput with our expectations.
 
 ## STEP 3: Personalize Configfile
 
@@ -81,8 +77,6 @@ Use a YAML file (`foo/config.yaml`) or JSON for your own configurations. In this
 ```
 
 > The above file configures 2 differents cases with their own params. The script use this information when execute every case.
-
----
 
 ## STEP 4: run the challenge
 
