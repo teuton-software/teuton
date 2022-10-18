@@ -10,14 +10,14 @@
 Learn how to use Teuton language to write your own tests:
 - [Example 01 - Target](example-01-target.md)
 - [Example 02 - Config file](example-02-config.md)
-- [Example 03 - Remote hosts](example-03-remote-hosts.md)
-- [Example 04 - Create new test](example-04-new-test.md)
+- [Example 03 - Remote hosts](example-03-remote_hosts.md)
+- [Example 04 - Create new test](example-04-new_test.md)
 - [Example 05 - Use](example-05-use.md)
 - [Example 06 - Debug](example-06-debug.md)
 - [Example 07 - Log](example-07-log.md)
 - [Example 08 - Readme](example-08-readme.md)
 - [Example 09 - Preserve](example-09-preserve.md)
-- Example 10 - Result and Moodle
+- [Example 10 - Result and Moodlecd ID](example-10-result_and_moodle_id)
 - Example 11 - Get vars
 - Example 12 - Include
 - Example 13 - Alias

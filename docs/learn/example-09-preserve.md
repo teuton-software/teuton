@@ -2,7 +2,7 @@
 
 # Example: learn-09-preserve
 
-> This example is on GitHub repository at `examples/learn-09-preserve/`.
+> Example files at `examples/learn-09-preserve/` folder.
 
 Every time we run teuton test, older output report files are overwritten with new reports. if you want to preserve old versions then use `preserve`.
 
@@ -34,7 +34,7 @@ var
     │   ├── case-01.txt
     │   ├── moodle.csv
     │   └── resume.txt
-    ├── 20200520-113039
+    ├── 20200519-123039
     │   ├── case-01.txt
     │   ├── moodle.csv
     │   └── resume.txt
@@ -42,3 +42,5 @@ var
     ├── moodle.csv
     └── resume.txt
 ```
+
+* The first time test was launched at 11:30, and second at 12:30 the same day.
