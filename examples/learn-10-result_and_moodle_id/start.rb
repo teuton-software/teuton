@@ -3,9 +3,9 @@ group "Using result object" do
   run "hostname"
   hostname = result.value
 
-  target "Hostname must be #{hostname}"
-  run "hostname"
-  expect hostname
+  target "No #{hostname} user"
+  run "id hostname"
+  expect_none hostname
 end
 
 group "Checking users" do
@@ -14,6 +14,7 @@ group "Checking users" do
   users.each do |name|
     target "Exists username #{name}"
     run "id #{name}"
+    result.debug
     expect "(#{name})"
   end
 end
