@@ -38,9 +38,9 @@ class CaseTest < Test::Unit::TestCase
     assert_equal params[:p1], c.get(:p1)
     assert_equal params[:p2], c.get(:p2)
     assert_equal "demo", c.get(:tt_testname)
-    assert_equal params[:p1], c._p1_
-    assert_equal params[:p2], c._p2_
-    assert_equal "demo", c._tt_testname_
+    assert_equal params[:p1], c._p1
+    assert_equal params[:p2], c._p2
+    assert_equal "demo", c._tt_testname
   end
 
   def test_target
