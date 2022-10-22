@@ -1,4 +1,4 @@
-group "Read exit code" do
+group "Howto read exit code" do
   target "No user vader"
   run "id vader;echo $?"
   expect_last "1"

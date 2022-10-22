@@ -69,6 +69,8 @@ class Readme
     result.reset
   end
   alias expect_any expect
+  alias expect_first expect
+  alias expect_last expect
   alias expect_none expect
   alias expect_one expect
 
