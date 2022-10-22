@@ -74,6 +74,8 @@ module ConfigFileReader
     end
     files = Dir.glob(File.join(basedir, "**/*.yaml"))
     files += Dir.glob(File.join(basedir, "**/*.yml"))
+    files += Dir.glob(File.join(basedir, "**/*.YAML"))
+    files += Dir.glob(File.join(basedir, "**/*.YML"))
     files.each { |file|
       begin
         data[:cases] << YAML.load(File.open(file))
