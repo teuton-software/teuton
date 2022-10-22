@@ -11,7 +11,12 @@ class RunCommandTest < Test::Unit::TestCase
       "08-readme",
       # "learn-09-preserve",
       "10-result",
-      "11-moodle_id"
+      "11-moodle_id",
+      "12-get_vars",
+      "13-include",
+      "14-alias",
+      # "15-macros",
+      "16-exit_codes"
     ]
     filedirname = File.dirname(__FILE__)
     @dirbase = File.join(filedirname, "..", "..", "examples")
