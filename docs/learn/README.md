@@ -17,8 +17,8 @@ Learn how to use Teuton language to write your own tests:
 - [Example 07 - Log](example-07-log.md)
 - [Example 08 - Readme](example-08-readme.md)
 - [Example 09 - Preserve](example-09-preserve.md)
-- [Example 10 - Result and Moodlecd ID](example-10-result_and_moodle_id)
-- Example 11 - Get vars
+- [Example 10 - Result and Moodle ID](example-10-result_and_moodle_id.md)
+- [Example 11 - Get vars](example-11-get_vars.md)
 - Example 12 - Include
 - Example 13 - Alias
 - Example 14 - Macros
@@ -28,9 +28,9 @@ Learn how to use Teuton language to write your own tests:
 # Examples
 
 More examples
-* Let's see examples at [teuton-challenges](https://github.com/teuton-software/teuton-challenges) GitHub repository.
+* Let's see examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
 * Ask us by email at `teuton.software@protonmail.com` or Twitter at `@SoftwareTeuton`.
-* [CHAPI19 - Spanish Teuton demo](https://github.com/dvarrui/proyectos-de-ejemplo/tree/master/charlas/teuton)
+* [ES - CHAPI19: Teuton demo](https://github.com/dvarrui/proyectos-de-ejemplo/tree/master/charlas/teuton)
 
 # Videos
 
@@ -38,7 +38,7 @@ By now there are no English videos. We are sorry!
 But if you want to see Spanish videos, here you are:
 
 Teuton (v2.0):
-* [CHAPI19 - Charla Teuton](https://youtu.be/KFWQDfNAFxI?t=12221)
+* [ES - CHAPI19: Charla Teuton](https://youtu.be/KFWQDfNAFxI?t=12221)
 
 Sysadmingame (Teuton v1.0)
 * [Sysadmingame (1 de 3): Instalación del programa](https://youtu.be/dnyMq9_KDco)
