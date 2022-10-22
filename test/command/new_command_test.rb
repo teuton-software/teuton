@@ -2,7 +2,7 @@
 
 require "test/unit"
 
-class TeutonCommandTest < Test::Unit::TestCase
+class NewCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
       "learn-01-target",
