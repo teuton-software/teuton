@@ -9,8 +9,6 @@ require_relative "../utils/configfile_reader"
 # * show_stats
 # * show_config
 class Laboratory
-  ##
-  # Display DSL checking on screen
   def show
     @verbose = true
     process_content
@@ -18,8 +16,6 @@ class Laboratory
     revise_config_content
   end
 
-  ##
-  # Display config for teuton panel on screen
   def show_panelconfig
     @verbose = false
     process_content
