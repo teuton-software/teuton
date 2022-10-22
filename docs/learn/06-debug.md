@@ -1,9 +1,7 @@
 
 [<< back](README.md)
 
-# Example: learn-06-debug
-
-> This example is on GitHub repository at `examples/learn-06-debug`.
+# Example: 06-debug
 
 Learn how to:
 * Check test syntax.

@@ -1,8 +1,6 @@
 [<< back](README.md)
 
-# Example: learn-07-readme
-
-> This example is on GitHub repository at `examples/learn-08-readme/`.
+# Example: 07-readme
 
 Create README files (with test instructions) from our test definition.
 

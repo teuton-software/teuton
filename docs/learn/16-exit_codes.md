@@ -1,8 +1,6 @@
 [<< back](README.md)
 
-# Example: learn-15-exit_codes
-
-> This example is on GitHub repository at `examples/learn-15-exit_codes/`.
+# Example: 16-exit_codes
 
 _I am sorry! We have not solved the problem of getting the exit code of the commands so that it works for any platform. But we can help you do this work._
 

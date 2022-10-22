@@ -1,8 +1,6 @@
 [<< back](README.md)
 
-# Example: learn-07-log
-
-> This example is on GitHub repository at `examples/learn-06-log/`.
+# Example: 07-log
 
 Let's learn how to create log messages.
 

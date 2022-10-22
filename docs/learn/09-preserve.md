@@ -1,8 +1,6 @@
 [<< back](README.md)
 
-# Example: learn-09-preserve
-
-> Example files at `examples/learn-09-preserve/` folder.
+# Example: 09-preserve
 
 Every time we run teuton test, older output report files are overwritten with new reports. if you want to preserve old versions then use `preserve`.
 

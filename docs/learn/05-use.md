@@ -1,8 +1,6 @@
 [<< back](README.md)
 
-# Example: learn-05-use
-
-> This example is on GitHub repository at `examples/learn-05-use`.
+# Example: 05-use
 
 Learn how to:
 * Organize huge amount of groups/targets into several files.

@@ -1,8 +1,6 @@
 [<< back](README.md)
 
-# Example: learn-02-config
-
-> This example is on GitHub repository at `examples/learn-02-config`.
+# Example: 02-config
 
 * Learn how to use config file.
 * Use params defined into config files.

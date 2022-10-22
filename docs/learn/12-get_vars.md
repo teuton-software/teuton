@@ -1,8 +1,6 @@
 [<< back](README.md)
 
-# Example: learn-11-get_vars
-
-> Example files at `examples/learn-11-get_vars/` folder.
+# Example: 12-get_vars
 
 To read the variables from the configuration file we already have the `get` statement. Example, to read `dirname` we do `get(:dirname)`.
 

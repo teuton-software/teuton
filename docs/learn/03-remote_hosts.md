@@ -1,8 +1,6 @@
 [<< back](README.md)
 
-# Example: learn-03-remote-hosts
-
-> This example is on GitHub repository at `examples/learn-03-remote-hosts`.
+# Example: 03-remote-hosts
 
 Summary:
 * Check a group of remote hosts.

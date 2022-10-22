@@ -1,9 +1,7 @@
 
 [<< back](README.md)
 
-# Example: learn-04-new_test
-
-> This example is on GitHub repository at `examples/learn-04-new-test`.
+# Example: 04-new_test
 
 Steps:
 1. Create skeleton
