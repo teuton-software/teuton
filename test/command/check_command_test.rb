@@ -5,21 +5,22 @@ require "test/unit"
 class CheckCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
-      "learn-01-target",
-      "learn-02-config",
-      "learn-03-remote_hosts",
-      "learn-04-new_test",
-      "learn-05-use",
-      "learn-06-debug",
-      "learn-07-log",
-      "learn-08-readme",
-      "learn-09-preserve",
-      "learn-10-result_and_moodle_id",
-      "learn-11-get_vars",
-      "learn-12-include",
-      "learn-13-alias"
-      # "learn-14-macros",
-      # "learn-15-exit_codes"
+      "01-target",
+      "02-config",
+      "03-remote_hosts",
+      "04-new_test",
+      "05-use",
+      "06-debug",
+      "07-log",
+      "08-readme",
+      "09-preserve",
+      "10-result",
+      "11-moodle_id",
+      "12-get_vars",
+      "13-include",
+      "14-alias"
+      # "15-macros",
+      # "16-exit_codes"
     ]
     filedirname = File.dirname(__FILE__)
     @dirbase = File.join(filedirname, "..", "..", "examples")

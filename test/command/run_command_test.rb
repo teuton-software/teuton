@@ -5,12 +5,13 @@ require "test/unit"
 class RunCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
-      "learn-01-target",
-      "learn-02-config",
-      "learn-07-log",
-      "learn-08-readme",
+      "01-target",
+      "02-config",
+      "07-log",
+      "08-readme",
       # "learn-09-preserve",
-      "learn-10-result_and_moodle_id"
+      "10-result",
+      "11-moodle_id"
     ]
     filedirname = File.dirname(__FILE__)
     @dirbase = File.join(filedirname, "..", "..", "examples")
