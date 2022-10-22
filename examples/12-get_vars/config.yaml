@@ -1,6 +1,6 @@
 global:
 cases:
 - tt_members: student-name-01
-  dirname: /home/david
+  dirname: /root
 - tt_members: student-name-02
-  dirname: /home/fran
+  dirname: /home/vader
