@@ -8,19 +8,19 @@
 # Learning
 
 Learn how to use Teuton language to write your own tests:
-- [Example 01 - Target](01-target.md)
-- [Example 02 - Config file](02-config.md)
-- [Example 03 - Remote hosts](03-remote_hosts.md)
-- [Example 04 - Create new test](04-new_test.md)
-- [Example 05 - Use](05-use.md)
-- [Example 06 - Debug](06-debug.md)
-- [Example 07 - Log](07-log.md)
-- [Example 08 - Readme](08-readme.md)
-- [Example 09 - Preserve](09-preserve.md)
-- [Example 10 - Result object](10-result.md)
-- [Example 11 - Moodle ID](11-moodle_id.md)
-- [Example 12 - Get vars](12-get_vars.md)
-- Example 13 - Include
+- [01 - Target](01-target.md)
+- [02 - Config file](02-config.md)
+- [03 - Remote hosts](03-remote_hosts.md)
+- [04 - Create new test](04-new_test.md)
+- [05 - Use](05-use.md)
+- [06 - Debug](06-debug.md)
+- [07 - Log](07-log.md)
+- [08 - Readme](08-readme.md)
+- [09 - Preserve](09-preserve.md)
+- [10 - Result object](10-result.md)
+- [11 - Moodle ID](11-moodle_id.md)
+- [12 - Get vars](12-get_vars.md)
+- [13 - Include](13-include.md)
 - Example 14 - Alias
 - Example 15 - Macros
 - [Example 16 - Exit codes](16-exit_codes.md)
