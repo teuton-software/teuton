@@ -7,8 +7,6 @@
 # * fill_report
 # * close_opened_sessions
 class Case
-  ##
-  # Execute "play" order on this case
   def play
     if skip?
       verbose "Skipping case <#{@config.get(:tt_members)}>\n"
@@ -34,9 +32,6 @@ class Case
 
   private
 
-  ##
-  # Execute every play#group in parallel
-  # TO-DO: Under construction!
   def play_in_parallel
     @groups.each do |t|
       @action[:groupname] = t[:name]
@@ -44,8 +39,6 @@ class Case
     end
   end
 
-  ##
-  # Execute every play#group in sequence
   def play_in_sequence
     verboseln "Starting case [#{@config.get(:tt_members)}]"
     @groups.each do |t|
@@ -57,8 +50,6 @@ class Case
     verboseln "\n"
   end
 
-  ##
-  # Fill case report with time information
   def fill_report(start_time, finish_time)
     @report.head.merge! @config.global
     @report.head.merge! @config.local

@@ -76,46 +76,30 @@ class Case
     tempfile :default
   end
 
-  ##
-  # Export Case with specific output format
-  # @param format (Symbol)
   def export(format)
     return if skip?
 
     @report.export format
   end
 
-  ##
-  # Return case report filename
-  # @return String
   def filename
     @report.filename
   end
 
-  ##
-  # Return case grade
-  # @return grade
   def grade
     return 0.0 if skip
 
     @report.tail[:grade]
   end
 
-  ## Return case members
-  # @return members
   def members
     return "-" if skip
 
     @report.head[:tt_members] || "noname"
   end
 
-  ##
-  # Return case skip value
-  # @return skip
   alias skip? skip
 
-  ##
-  # Show case report data on screen
   def show
     @report.show
   end

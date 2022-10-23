@@ -78,9 +78,11 @@ class Laboratory
   end
 
   # Check macros and _get_vars
-  def method_missing(method)
+  def method_missing(method, *args, &block)
     a = method.to_s
-    instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__) if a[a.size - 1] == "?"
+    if args.nil? && block.nil?
+      instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__) if a[a.size - 1] == "?"
+    end
   end
 
   def gett(option)

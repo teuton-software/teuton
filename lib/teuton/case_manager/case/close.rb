@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Class Case#close
 class Case
   def close(uniques)
     fails = 0

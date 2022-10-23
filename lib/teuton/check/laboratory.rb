@@ -21,6 +21,13 @@ def group(name, &block)
 end
 alias task group
 
+def define_macro(name, *args, &block)
+  Application.instance.macros[name] = {args: args, block: block}
+end
+alias def_macro define_macro
+alias defmacro define_macro
+
+
 def start(&block)
   # Don't do nothing. We are checking test not running it
 end
