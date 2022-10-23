@@ -5,8 +5,7 @@
 
 # TEUTON
 
-_Create Unit Test for your machines, and
-test your infraestructure as code._
+_Create Unit Test for your machines. Test your infraestructure as code._
 
 ![logo](./docs/images/logo.png)
 
