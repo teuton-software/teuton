@@ -1,14 +1,14 @@
 [<< back](../README.md)
 
-# News
+# Blogs
 
-* [Introducción a Teuton](https://elpuig.xeill.net/Members/vcarceler/articulos/introduccion-a-teuton): iniciarse en el uso de Teutón gracias al fantástico artículo de Víctor Carceler.
-* [Verificar prácticas de GNS3 con Teuton](https://elpuig.xeill.net/Members/juanmorote/articulos/verificar-practicas-de-gns3-con-teuton): GNS3 es un excelente simulador de red Open Source que además se entiende con Teuton a las mil maravillas.
+* ES - [Introducción a Teuton](https://elpuig.xeill.net/Members/vcarceler/articulos/introduccion-a-teuton): iniciarse en el uso de Teutón gracias al fantástico artículo de Víctor Carceler.
+* ES - [Verificar prácticas de GNS3 con Teuton](https://elpuig.xeill.net/Members/juanmorote/articulos/verificar-practicas-de-gns3-con-teuton): GNS3 es un excelente simulador de red Open Source que además se entiende con Teuton a las mil maravillas.
 
 # Videos
 
 Teuton en el 2016 se llamaba "sysadmingame".
-* [CHAPI16 - Presentación sysadmingame chapi16 - Abril 2016](https://youtu.be/cNJaB5xzHHQ)
+* ES -[CHAPI16 - Presentación sysadmingame chapi16 - Abril 2016](https://youtu.be/cNJaB5xzHHQ)
 * sysadmingame:
     1. [Instalación del programa](https://youtu.be/dnyMq9_KDco)
     2. [Crear un caso simple](https://youtu.be/0e2g5Izvc6c)
