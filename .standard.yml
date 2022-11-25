@@ -1,4 +1,5 @@
 ignore:
+  - "lib/teuton/utils/configfile_reader.rb"
   - "lib/teuton/case_manager/case/case.rb"
   - "lib/teuton/case_manager/case/dsl/goto.rb"
   - "lib/teuton/case_manager/case/dsl/log.rb"
