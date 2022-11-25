@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.executables << "teuton"
   s.files = Dir.glob(File.join("lib", "**", "*.*"))
 
-  s.required_ruby_version = ">= 2.5.9"
+  s.required_ruby_version = ">= 2.6.0"
 
   s.add_runtime_dependency "colorize", "~> 0.8.1"
   s.add_runtime_dependency "rainbow", "~> 3.0"
