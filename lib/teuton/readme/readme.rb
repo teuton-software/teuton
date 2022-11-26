@@ -144,13 +144,13 @@ class Readme
 
     puts "\n---"
     puts "# ANEXO"
-    puts "\n\#\# Global params"
+    puts "\n## Global params"
     puts Lang.get(:global)
     puts "\n"
     puts "| Global param | Value |"
     puts "| --- | --- |"
     @global_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
-    puts "\n\#\# Created params"
+    puts "\n## Created params"
     puts Lang.get(:created)
     puts "\n"
     puts "| Created params | Value |"
