@@ -33,6 +33,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "net-ssh", "~> 5.0"
   s.add_runtime_dependency "net-telnet", "~> 0.1"
   s.add_runtime_dependency "json_pure", "~> 2.2"
-  s.add_runtime_dependency "thor", "~> 0.20"
+  s.add_runtime_dependency "thor", "~> 1.2"
   s.add_runtime_dependency "terminal-table", "~> 1.8"
 end
