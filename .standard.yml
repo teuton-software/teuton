@@ -1,4 +1,5 @@
 ignore:
+  - "lib/teuton/utils/configfile_reader.rb"
   - "lib/teuton/case_manager/case/case.rb"
   - "lib/teuton/case_manager/case/dsl/goto.rb"
   - "lib/teuton/case_manager/case/dsl/log.rb"
@@ -11,7 +12,6 @@ ignore:
   - "lib/teuton/case_manager/dsl.rb"
   - "lib/teuton/check/dsl.rb"
   - "lib/teuton/check/laboratory.rb"
-  - "lib/teuton/check/show.rb"
   - "lib/teuton/readme/dsl.rb"
   - "lib/teuton/readme/readme.rb"
   - "lib/teuton/report/formatter/csv_formatter.rb"
