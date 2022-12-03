@@ -1,0 +1,10 @@
+
+APPNAME=teuton
+DOCKER_NAME=$APPNAME
+# DOCKER_IMAGE=ruby:latest
+DOCKER_IMAGE=ruby:2.5.9
+# DOCKER_IMAGE=ruby:3.0
+# DOCKER_IMAGE=ruby:3.1
+
+sudo systemctl start docker
+docker run -it --rm --name $DOCKER_NAME -v "$PWD":/opt -w /opt $DOCKER_IMAGE /bin/bash
