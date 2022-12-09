@@ -8,8 +8,14 @@ def use(filename)
   files = Dir.glob(rbfiles)
   findfiles = []
   files.sort.each { |f| findfiles << f if f.include?(filename) }
-  require_relative findfiles.first
-  app.uses << File.basename(findfiles.first)
+  begin
+    require_relative findfiles.first
+    app.uses << File.basename(findfiles.first)
+  rescue
+    puts "[ERROR] Unknown file : #{filename}"
+    puts "        Check line   : use '#{filename}'"
+    exit 1
+  end
 end
 
 def define_macro(name, *args, &block)
