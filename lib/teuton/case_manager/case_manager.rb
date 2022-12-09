@@ -52,7 +52,7 @@ class CaseManager
     if args.class != Hash
       puts "[ERROR] CaseManager#export: Argument = <#{args}>, " \
            "class = #{args.class}"
-      puts "        Usage: export :format => :colored_text"
+      puts "        Usage: export format: :colored_text"
       raise "[ERROR] CaseManager#export: Argument error!"
     end
     # Export report files
