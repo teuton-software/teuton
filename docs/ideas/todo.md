@@ -3,24 +3,22 @@
 
 Esta es una lista de ideas para que no se me olvide... lo podemos ir ajustando 😊
 
-1. REPOSITORIOS: teutonget in process
+1. TEST-EN-CADENA (smart-shell): es un proyecto en curso que trabajará en colaboración ceon teuton. Detecta las acciones del usuario dentro de la shell y automáticamente lanza el test para validar el cumplimiento de los objetivos. Si se supera un % se pasa al siguiente test.
 
-2. TEST-EN-CADENA (smart-shell): es un proyecto en curso que trabajará en colaboración ceon teuton. Detecta las acciones del usuario dentro de la shell y automáticamente lanza el test para validar el cumplimiento de los objetivos. Si se supera un % se pasa al siguiente test.
-
-3. SERVIDOR TEUTON: Teuton web para recibir peticiones de los clientes... ?! Enganchar con teuton-server y teuton-client
+2. SERVIDOR TEUTON: Teuton web para recibir peticiones de los clientes... ?! Enganchar con teuton-server y teuton-client
 NO. quizás mejor enfoque. Tener un servidor dedicado con una página Web para lanzar test desde el propio servidor.
 
-4. Editor de ficheros de configuración.... una especie de asistente de ayuda..
+3. Editor de ficheros de configuración.... una especie de asistente de ayuda..
 no le veo mucho sentido tener un editor específico pero si al ejecutar un reto
 si hay valores con NODATA... entonces que pregunte al usuario y complete la
 configuración sobre la marcha???
 
-5. Editor de tests ?! .... lo veo complejo... a menos que se empiece por una versión simplificada.. El DSL es tan sencillo que no le veo sentido a un editor de retos. Pero si podemos aprovechar y crear una" librería " de los módulos más frecuentes?!... una ayuda para facilitar la creación de test... esto se puede emparejar con el editor de test...
+4. Editor de tests ?! .... lo veo complejo... a menos que se empiece por una versión simplificada.. El DSL es tan sencillo que no le veo sentido a un editor de retos. Pero si podemos aprovechar y crear una" librería " de los módulos más frecuentes?!... una ayuda para facilitar la creación de test... esto se puede emparejar con el editor de test...
 
-6. `result.test("...")`
-7. `send :email_to => :members_emails`
+5. `result.test("...")`
+6. `send :email_to => :members_emails`
 
-8. Empaquetar tests para facilitar su movilidad . Esto se combina muy bien con la opción de búsqueda de retos.... pensar en firma gpg o md5 de comprobación etc..  
+7. Empaquetar tests para facilitar su movilidad . Esto se combina muy bien con la opción de búsqueda de retos.... pensar en firma gpg o md5 de comprobación etc..  
 Al ejecutar un test poder hacerlo "teuton run PATH/TO/FILE.zip"
 
 
@@ -43,7 +41,7 @@ Al ejecutar un test poder hacerlo "teuton run PATH/TO/FILE.zip"
 
 Create 2 evaluation modes:
 1. Evaluate targets (current mode): `start :score=>:targets do ...`
-1. Evaluate task: `start :score=>:tasks do ...`
+1. Evaluate task: `start :score=>:groups do ...`
 
 
 ## Pending
@@ -59,9 +57,6 @@ Create 2 evaluation modes:
 * `expect regexp("val1|var2")`, regexp function creates regular expresion from String.
 * `expect result.ok?`, result from previous goto exec.
 * `result.exit_code`, exit code from previous goto exec.
-
-
-* Review docs and replace `"id #{get(:username)}"` by something line `"id "+get(:username)`.
 
 ### Reports and export keyword
 
@@ -124,9 +119,6 @@ end
 ```
 
 ---
-....
 
-* config -> host_port
 * teuton run into
-* resume.html
 * txt format -> remove conn_errors when errors = 0
