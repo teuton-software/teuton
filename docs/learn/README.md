@@ -30,7 +30,7 @@ Learn how to use Teuton language to write your own tests:
 
 More examples
 * Let's see examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
-* Ask us by email at `teuton.software@protonmail.com` or Twitter at `@SoftwareTeuton`.
+* Ask us by email at `teuton.software@protonmail.com`.
 * [ES - CHAPI19: Teuton demo](https://github.com/dvarrui/proyectos-de-ejemplo/tree/master/charlas/teuton)
 
 # Videos
