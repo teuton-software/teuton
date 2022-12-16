@@ -1,9 +1,9 @@
 
 [<< back](../../README.md)
 
-1. [Learning](#learning)
-2. [Examples](#examples)
-3. [Videos](#videos)
+* [Learning](#learning)
+* [Examples](#examples)
+* [Videos](#videos)
 
 # Learning
 
@@ -21,9 +21,9 @@ Learn how to use Teuton language to write your own tests:
 - [11 - Moodle ID](11-moodle_id.md)
 - [12 - Get vars](12-get_vars.md)
 - [13 - Include](13-include.md)
-- Example 14 - Alias
-- Example 15 - Macros
-- [Example 16 - Exit codes](16-exit_codes.md)
+- 14 - Alias
+- 15 - Macros
+- [16 - Exit codes](16-exit_codes.md)
 - [Videos](videos.md)
 
 # Examples
