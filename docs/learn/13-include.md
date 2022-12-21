@@ -2,13 +2,17 @@
 
 # Example: 13-include
 
-Until now, all the tests we have seen came with a configuration file (`config.yaml`) that contained all the parameters that will later be used in the test. It is also possible to have the information distributed among several configuration files.
+Use `tt-include` to include several config files into your main config file.
+
+## Explanation
+
+Until now, all the examples we have seen use one configuration file (`config.yaml`) that contain all the parameters required by the test. It is possible to save configuration distributed among several files.
 
 Suppose we have the following file structure.
 
 ```
 ├── config.yaml
-├── include_this_files
+├── moreconfigfiles
 │   ├── 02
 │   │   └── file02.yaml
 │   ├── file01.yaml
@@ -16,15 +20,15 @@ Suppose we have the following file structure.
 └── start.rb
 ```
 
-`config.yaml` will be the main config file. Using `tt_include` parameter, we define a folder where the rest of the configuration files will be.
+`config.yaml` will be the main config file. We have defined `tt_include` parameter with a folder wich contains more configuration files.
 
-In this example the contents of the files in the include_this_files folder will be included in the configuration:
+In this example the contents of all files in `moreconfigfiles` folder will be included when reading the config parameters:
 
 ```yaml
 ---
 # Fiel: config.yaml
 :global:
-  :tt_include: include_this_files
+  :tt_include: moreconfigfiles
 :cases:
 ```
 
@@ -41,19 +45,22 @@ CASE RESULTS
 +------+---------+-------+-------+
 ```
 
-Config files into `include_this_files` folder:
+Config files into `moreconfigfiles` folder:
 
 ```yaml
+# moreconfigfiles/file01.yaml
 :tt_members: file01
 :username: root
 ```
 
 ```yaml
+# moreconfigfiles/02/file02.yaml
 :tt_members: file02
 :username: quigon
 ```
 
 ```yaml
+# moreconfigfiles/file03.yml
 :tt_members: file03
 :username: vader
 ```
