@@ -28,6 +28,21 @@ gem install teuton
 
 > Install Teuton as normal user: `gem install --user-install teuton`
 
+# Usage
+
+Executing `teuton` command to run example test:
+
+```
+❯ teuton run examples/01-target
+
+CASE RESULTS
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | anonymous | 100.0 | ✔     |
++------+-----------+-------+-------+
+
+```
+
 # Documentation
 
 * [Blogs and videos](docs/videos.md)
