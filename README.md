@@ -18,11 +18,19 @@ Teuton allow us:
 * Write unit tests for real or virtual devices, using simple DSL.
 * Check compliance with requirements on local or remote devices.
 
+# Installation
+
+Install Ruby and then:
+
+```
+gem install teuton
+```
+
+> Install Teuton as normal user: `gem install --user-install teuton`
+
 # Documentation
 
 * [Installation](https://github.com/teuton-software/teuton/tree/master/docs/install/README.md)
-    * Install Ruby on your system.
-    * Install Teuton as normal user: `gem install --user-install teuton` (or install as superuser `gem install teuton`).
 * [Blogs and videos](docs/videos.md)
 * [Learning](docs/learn/README.md)
 * [Commands](docs/commands/README.md)
