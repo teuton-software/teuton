@@ -30,18 +30,17 @@ gem install teuton
 
 # Documentation
 
-* [Installation](https://github.com/teuton-software/teuton/tree/master/docs/install/README.md)
 * [Blogs and videos](docs/videos.md)
 * [Learning](docs/learn/README.md)
 * [Commands](docs/commands/README.md)
 * [Language reference](docs/dsl/README.md)
+* [Installation](docs/install/README.md)
 
 # Features
 
 * [Free Software License](LICENSE).
 * Multiplatform.
-* Remote machines only require SSH or Telnet service installed.
-* Developed using ruby language.
+* Remote machines/devices only require SSH or Telnet service installed.
 
 # Contact
 
