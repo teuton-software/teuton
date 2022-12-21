@@ -1,9 +1,9 @@
 
+# TEUTON
+
 [![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 ![Gem](https://img.shields.io/gem/dv/teuton/2.3.11)
-
-# TEUTON
 
 _Create Unit Test for your machines. Test your infraestructure as code._
 
