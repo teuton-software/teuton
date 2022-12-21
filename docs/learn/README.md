@@ -21,7 +21,7 @@ Learn how to use Teuton language to write your own tests:
 - [11 - Moodle ID](11-moodle_id.md)
 - [12 - Get vars](12-get_vars.md)
 - [13 - Include](13-include.md)
-- 14 - Alias
+- [14 - Alias](14-alias.md)
 - 15 - Macros
 - [16 - Exit codes](16-exit_codes.md)
 - [Videos](videos.md)

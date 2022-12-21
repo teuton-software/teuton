@@ -2,7 +2,11 @@
 
 # Example: 14-alias
 
-Supongamos que tenemos un test como el siguiente:
+By using aliases we can adapt a configuration file, so that it can be used with many different tests.
+
+## Exanation
+
+Suppose we have a test like the following:
 
 ```ruby
 group "Using alias" do
@@ -16,14 +20,14 @@ group "Using alias" do
 end
 ```
 
-Tenemos sólo 2 targets pero podríamos tener muchos más.
+> REMEMBER:
+> * We only have 2 targets but we could have many more.
+> * `_username` is equivalent to `get(:username)`
 
-> Recordemos que `_username` es equivalente a `get(:username)`
-
-Sabemos que el fichero de configuración debe definir los valores para los parámetros `super` y `username`. Queremos aprovechar un fichero de configuración que ya teníamos de otro test, pero tiene el siguiente contenido:
+Our test requires the `super` parameter but the configuration file has named it as `superuser`. Our configuration file define values for `supername` and `username` parameters. Let's see:
 
 ```yaml
-# Version 1
+# First version
 # File: config.yaml
 global:
 cases:
@@ -32,10 +36,10 @@ cases:
   username: obiwan
 ```
 
-Podemos comprobar que nuestro test require el parámetro `super` pero el fichero de configuración lo ha nombrado como `superuser`.
+We would like to take advantage of a configuration file that we already had from another test, without big changes. So we add an `alias`:
 
 ```yaml
-# Version 2
+# Alias Version
 # File: config.yaml
 alias:
   super: :superuser
@@ -45,3 +49,5 @@ cases:
   superuser: root
   username: obiwan
 ```
+
+Now our test will work correctly. Calling `get(:super)` will return the same value as doing `get(:superuser).
