@@ -43,6 +43,12 @@ CASE RESULTS
 
 ```
 
+# Features
+
+* [Free Software License](LICENSE).
+* Multiplatform.
+* Remote machines/devices only require SSH or Telnet service installed.
+
 # Documentation
 
 * [Blogs and videos](docs/videos.md)
@@ -51,12 +57,15 @@ CASE RESULTS
 * [Language reference](docs/dsl/README.md)
 * [Installation](docs/install/README.md)
 
-# Features
-
-* [Free Software License](LICENSE).
-* Multiplatform.
-* Remote machines/devices only require SSH or Telnet service installed.
-
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`
+
+# Contributing
+
+1. Make sure you have Ruby installed
+1. Fork it
+1. Create your feature branch (`git checkout -b my-new-feature`)
+1. Commit your changes (`git commit -am 'Add some feature'`)
+1. Push to the branch (`git push origin my-new-feature`)
+1. Create new Pull Request.
