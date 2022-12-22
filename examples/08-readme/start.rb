@@ -1,5 +1,5 @@
 group "Customize readme output" do
-  readme "This is our example 07."
+  readme "This is our readme example."
   readme "And here we'll see how to use readme keyword"
 
   target "Create user david."

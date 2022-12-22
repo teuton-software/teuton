@@ -1,6 +1,6 @@
 [<< back](README.md)
 
-# Example: 07-readme
+# Example: readme
 
 Create README files (with test instructions) from our test definition.
 
@@ -35,15 +35,15 @@ There exists some `readme` instructions after `group` and `target` lines.
 To generate automatically a README file from previous test, execute this:
 
 ```
-teuton readme example/learn-08-readme > example/learn-08-readme/README.md
+teuton readme example/08-readme > example/08-readme/README.md
 ```
 
 ## Result
 
-**Let's see the output**: Content of `example/learn-08-readme/README.md` file.
+**Let's see the output**: Content of `example/08-readme/README.md` file.
 
 ---
-# learn-08-readme
+# 08-readme
 
 ## Customize readme output
 

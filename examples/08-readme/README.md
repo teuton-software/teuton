@@ -1,14 +1,14 @@
 ```
-Test unit name : learn-07-readme
-Date           : 2020-05-20 10:38:47 +0100
-Teuton version : 2.1.11
+Test unit name : 08-readme
+Date           : 2022-12-24 13:48:08 +0000
+Teuton version : 2.3.11
 ```
 
-# learn-07-readme
+# 08-readme
 
 ## Customize readme output
 
-This is our example 07.
+This is our readme example.
 And here we'll see how to use readme keyword
 
 Go to [LOCALHOST](#required-hosts) host, and do next:
