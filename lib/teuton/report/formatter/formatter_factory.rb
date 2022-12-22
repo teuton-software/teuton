@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "rainbow"
 require_relative "json_formatter"
 require_relative "html_formatter"
@@ -15,7 +13,6 @@ require_relative "moodle_csv_formatter"
 require_relative "csv_formatter"
 require_relative "xml_formatter"
 
-# FormaterFactory module
 module FormatterFactory
   def self.get(report, format, filename)
     case format

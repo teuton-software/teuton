@@ -7,7 +7,7 @@ require_relative "show"
 require_relative "close"
 
 ##
-# This class maintain the results of every case, in a structured way.
+# This class maintains the results of every case, in a structured way.
 # * report/show.rb
 # * report/close.rb
 class Report
@@ -26,6 +26,8 @@ class Report
   # @!attribute format
   #   @return [Symbol] Indicate export format.
   attr_reader :format
+  # @!attribute history
+  #   @return [String] Target results.
   attr_reader :history
   ##
   # Class constructor
@@ -45,7 +47,7 @@ class Report
   ##
   # Export [Case] data to specified format.
   # @param format [Symbol] Select export format. Default value is :txt.
-  def export(format = :txt)
+  def export(format = :txt, options = {})
     @format = format
     filepath = File.join(@output_dir, @filename + "." \
              + FormatterFactory.ext(@format))
