@@ -3,11 +3,11 @@
 require "singleton"
 require_relative "../application"
 require_relative "../report/report"
+require_relative "../report/show"
 require_relative "../utils/configfile_reader"
 require_relative "case/case"
 require_relative "export_manager"
 require_relative "main"
-require_relative "utils"
 
 # This class does all the job
 # Organize the hole job, sending orders to others classes
@@ -22,9 +22,8 @@ require_relative "utils"
 class CaseManager
   include Singleton
   include Utils
+  attr_reader :report, :cases
 
-  ##
-  # Initialize CaseManager
   def initialize
     @cases = []
     @report = Report.new(0)
@@ -68,5 +67,13 @@ class CaseManager
     puts "[INFO] Sending files...#{args}"
     @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
+  end
+
+  def show(options = {verbose: 1})
+    verbose = options[:verbose]
+    return if Application.instance.quiet?
+
+    # Show resume report data on screen
+    ShowReport.new(@report).call(verbose)
   end
 end

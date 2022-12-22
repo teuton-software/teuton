@@ -5,6 +5,6 @@ group "Reading params from config file" do
 end
 
 play do
-  show
+  show verbose: 4
   export
 end

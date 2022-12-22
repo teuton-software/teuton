@@ -6,7 +6,7 @@
 
 ## Description
 
-When tests ends, `show` instruction shows on screen information about final results.
+When all tests are finished, the `show` command displays information on the screen about the final results.
 
 ## Usage
 
@@ -16,11 +16,26 @@ start do
 end
 ```
 
+or
+
+```ruby
+start do
+  show verbose: 1
+end
+```
+
 ## Parameters
 
-| Action         | Description                             |
-| -------------- | --------------------------------------- |
-| `show`         | Same as `show :resume`. Default option. |
-| `show :resume` | Show resumed information on screen.     |
-| `show :cases`  | Show information from every case on screen.|
-| `show :all`    | Same as `show :resume` and `show :details`. |
+| Action               | Description                       |
+| -------------------- | --------------------------------- |
+| `show`               | Same as `show level: 0` (Default) |
+| `show verbose: NUMBER` | NUMBER is the value of the verbose level |
+
+
+| Verbosity level | Description |
+| :-------------: | ----------- |
+| 0               | No output   |
+| 1               | Default output messages |
+| 2               | Show hall of fame |
+| 3               | Show final values |
+| 4               | Show Initial values |
