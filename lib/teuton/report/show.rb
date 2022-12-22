@@ -1,9 +1,14 @@
+require "rainbow"
+require_relative "../application"
+
 class ShowReport
   def initialize(report)
     @report = report
   end
 
   def call(verbose)
+    return if Application.instance.quiet?
+
     show_initial_configurations if verbose > 2
     if filename.to_s.include? "resume"
       show_resume

@@ -74,9 +74,6 @@ class CaseManager
 
   def show(options = {verbose: 1})
     verbose = options[:verbose]
-    return if Application.instance.quiet?
-
-    # Show resume report data on screen
     ShowReport.new(@report).call(verbose)
   end
 end
