@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "colorize"
-
 module DSL
   # expect <condition>, :weight => <value>
   def expect(input, args = {})
@@ -10,7 +8,7 @@ module DSL
     elsif input.instance_of?(String) || input.instance_of?(Regexp) || input.instance_of?(Array)
       expect_any input
     else
-      puts "[TypeError] expect #{input} (#{input.class})"
+      puts Rainbow("[TypeError] expect #{input} (#{input.class})").red
     end
   end
 
@@ -30,7 +28,7 @@ module DSL
     app = Application.instance
     c = app.letter[:bad]
     c = app.letter[:good] if cond
-    verbose c.colorize(:green)
+    verbose Rainbow(c).green
   end
 
   def expect_any(input, args = {})

@@ -18,7 +18,6 @@ require_relative "main"
 # * case_manager/export
 # * case_manager/hall_of_fame
 # * case_manager/report
-# * case_manager/show
 class CaseManager
   include Singleton
   include Utils
@@ -64,7 +63,7 @@ class CaseManager
   def send(args = {})
     threads = []
     puts ""
-    puts "[INFO] Sending files...#{args}"
+    puts Rainbow("[INFO] Sending files...#{args}").green
     @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
   end

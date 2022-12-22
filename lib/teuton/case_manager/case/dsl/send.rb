@@ -37,9 +37,11 @@ module DSL
       Net::SFTP.start(ip, username, password: password, port: port) do |sftp|
         sftp.upload!(localfilepath, remotefilepath)
       end
-      verboseln("=> [ OK  ] #{(get(:tt_members)[0, 15]).ljust(16)} : #{remotefilepath}")
+      msg = Rainbow("[ OK  ] #{(get(:tt_members)[0, 15]).ljust(16)} : #{remotefilepath}").green
+      verboseln(msg)
     rescue
-      verboseln("=> [ERROR] #{(get(:tt_members)[0, 15]).ljust(16)} : scp #{localfilepath} => #{remotefilepath}")
+      msg = Rainbow("[ERROR] #{(get(:tt_members)[0, 15]).ljust(16)} : scp #{localfilepath} => #{remotefilepath}").red
+      verboseln(msg)
     end
   end
 

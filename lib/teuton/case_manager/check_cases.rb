@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+require_relative "hall_of_fame"
 
 class CaseManager
   private
@@ -36,14 +36,13 @@ class CaseManager
   # Run all cases
   def run_all_cases
     start_time = Time.now
+    verboseln Rainbow("Started at #{start_time}").green
     if Application.instance.global[:tt_sequence] == true
-      verboseln Rainbow("==> Teuton: Running in sequence (#{start_time})").yellow.bright
       # Run every case in sequence
       @cases.each(&:play)
     else
-      verboseln Rainbow("==> Teuton: Running in parallel (#{start_time})").yellow.bright
-      threads = []
       # Run all cases in parallel
+      threads = []
       @cases.each { |c| threads << Thread.new { c.play } }
       threads.each(&:join)
     end
@@ -75,6 +74,6 @@ class CaseManager
     @cases.each { |c| threads << Thread.new { c.close uniques } }
     threads.each(&:join)
 
-    build_hall_of_fame
+    HallOfFame.new(@cases).call
   end
 end

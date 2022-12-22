@@ -24,7 +24,7 @@ end
 alias def_macro define_macro
 alias defmacro define_macro
 
-# Define a group of tests
+# Define a group of [target/run/expect]s
 # @param name (String) Group name
 # @param block (Block) Tests code
 def group(name, &block)

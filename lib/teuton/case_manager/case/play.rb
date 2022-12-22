@@ -9,7 +9,7 @@
 class Case
   def play
     if skip?
-      verbose "Skipping case <#{@config.get(:tt_members)}>\n"
+      verbose Rainbow("Skipping case <#{@config.get(:tt_members)}>\n").green
       return false
     end
     # TODO: Delete old reports???

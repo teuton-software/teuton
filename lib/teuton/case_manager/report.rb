@@ -25,8 +25,7 @@ class CaseManager
     @report.tail[:duration] = finish_time - start_time
 
     duration = format("%3.3f", (finish_time - start_time))
-    verbose Rainbow("\n==> Teuton: Duration=#{duration}").yellow.bright
-    verboseln Rainbow(" (#{finish_time})").yellow.bright
+    verboseln Rainbow("\nFinished in #{duration} seconds").green
     verboseln " "
 
     app = Application.instance

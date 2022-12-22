@@ -1,26 +1,30 @@
 require_relative "../application"
 
 class CaseManager
-  private
-
-  def build_hall_of_fame
-    celebrities = {}
-
-    @cases.each do |c|
-      grade = c.grade # report.tail[:grade]
-      label = if celebrities[grade]
-        celebrities[grade] + "*"
-      else
-        "*"
-      end
-      celebrities[grade] = label unless c.skip
+  class HallOfFame
+    def initialize(cases)
+      @cases = cases
     end
 
-    a = celebrities.sort_by { |key, _value| key }
-    list = a.reverse
+    def call
+      celebrities = {}
 
-    app = Application.instance
-    app.options[:case_number] = @cases.size
-    app.hall_of_fame = list
+      @cases.each do |c|
+        grade = c.grade # report.tail[:grade]
+        label = if celebrities[grade]
+          celebrities[grade] + "*"
+        else
+          "*"
+        end
+        celebrities[grade] = label unless c.skip
+      end
+
+      a = celebrities.sort_by { |key, _value| key }
+      list = a.reverse
+
+      app = Application.instance
+      app.options[:case_number] = @cases.size
+      app.hall_of_fame = list
+    end
   end
 end
