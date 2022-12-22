@@ -36,6 +36,7 @@ class CaseManager
   # Run all cases
   def run_all_cases
     start_time = Time.now
+    verboseln Rainbow("-" * 36).green
     verboseln Rainbow("Started at #{start_time}").green
     if Application.instance.global[:tt_sequence] == true
       # Run every case in sequence

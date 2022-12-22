@@ -11,11 +11,14 @@ class Case
     ip = @config.get("#{host}_ip".to_sym)
 
     if protocol.to_s.downcase == "local" || host.to_s == "localhost"
-      run_cmd_localhost # Protocol force => local
+      # Protocol force => local
+      run_cmd_localhost
     elsif protocol.to_s.downcase == "ssh"
-      run_cmd_remote_ssh(host) # Protocol force => ssh
+      # Protocol force => ssh
+      run_cmd_remote_ssh(host)
     elsif protocol.to_s.downcase == "telnet"
-      run_cmd_remote_telnet(host) # Protocol force => telnet
+      # Protocol force => telnet
+      run_cmd_remote_telnet(host)
     elsif ip.to_s.downcase == "localhost" || ip.to_s.include?("127.0.0.")
       run_cmd_localhost
     elsif ip == "NODATA"
@@ -101,17 +104,14 @@ class Case
     rescue Errno::EHOSTUNREACH
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :host_unreachable
-      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log("Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error_authentication_failed
-      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log("SSH::AuthenticationFailed!", :error)
     rescue Net::SSH::HostKeyMismatch
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :host_key_mismatch
-      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log("SSH::HostKeyMismatch!", :error)
       log("* The destination server's fingerprint is not matching " \
           "what is in your local known_hosts file.", :error)
@@ -121,7 +121,6 @@ class Case
     rescue => e
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error
-      verbose Rainbow(Application.instance.letter[:error]).red.bright
       log("[#{e.class}] SSH on <#{username}@#{ip}>" \
           " exec: #{@action[:command]}", :error)
     end

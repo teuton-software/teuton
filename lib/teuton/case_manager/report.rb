@@ -26,6 +26,7 @@ class CaseManager
 
     duration = format("%3.3f", (finish_time - start_time))
     verboseln Rainbow("\nFinished in #{duration} seconds").green
+    verboseln Rainbow("-" * 36).green
     verboseln " "
 
     app = Application.instance
@@ -36,7 +37,7 @@ class CaseManager
           skip: true,
           id: "-",
           grade: 0.0,
-          letter: "",
+          letter: "S",
           members: "-",
           conn_status: {},
           moodle_id: "",

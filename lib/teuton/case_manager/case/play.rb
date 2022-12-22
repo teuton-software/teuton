@@ -9,10 +9,9 @@
 class Case
   def play
     if skip?
-      verbose Rainbow("Skipping case <#{@config.get(:tt_members)}>\n").green
+      verbose Rainbow("S").green
       return false
     end
-    # TODO: Delete old reports???
     start_time = Time.now
     if get(:tt_sequence) == true
       play_in_sequence
