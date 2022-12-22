@@ -14,8 +14,9 @@ Learn how to:
 
 ## Tree directory
 
-```bash
-$ tree learn/learn-06-debug
+```
+> tree learn/learn-06-debug
+
 example/learn-06-debug
 ├── config.yaml
 ├── external.rb
@@ -48,12 +49,7 @@ When this happend, sometimes we need to verify or check rb file consistency and 
 
 Let's see example `teuton check examples/learn-01-target`:
 
-```bash
-[INFO] ScriptPath => examples/learn-01-target/start.rb
-[INFO] ConfigPath => examples/learn-01-target/config.yaml
-[INFO] Pwd        => /mnt/home/leap/proy/repos/teuton.d/teuton
-[INFO] TestName   => learn-01-target
-
+```
 +----------------------------+
 | GROUP: Learn about targets |
 +----------------------------+
@@ -78,12 +74,13 @@ Let's see example `teuton check examples/learn-01-target`:
 +----------------------+
 | Revising CONFIG file |
 +----------------------+
-[WARN] File ./examples/learn-01-target/config.yaml not found!
+[WARN] File /home/david/proy/repos/teuton.d/teuton/examples/01-target/config.yaml not found!
 [INFO] Recomended content:
 ---
 :global:
 :cases:
 - :tt_members: VALUE
+
 ```
 
 In this case, Teuton detects that there isn't exist config file, and propose us content for `config.yaml`.

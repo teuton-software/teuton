@@ -16,16 +16,15 @@ Learn how to:
 This example has more files:
 
 ```bash
-$ tree example/learn-04-use
-example/learn-04-require
+> tree example/04-use
+
+example/04-require
 ├── config.yaml
 ├── network.rb
 ├── README.md
 ├── start.rb
 └── users.rb
 ```
-
-* `README.md` and `config.yaml` are the same as previous example.
 
 ## Execution section
 

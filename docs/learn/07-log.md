@@ -27,27 +27,27 @@ end
 
 ## Result
 
-**Let's see example**: Content of `var/learn-07-log/case-01.txt` file.
+**Let's see example**: Content of `var/07-log/case-01.txt` file.
 
-```bash
+```
 CONFIGURATION
-+-------------+--------------+
-| tt_members  | anonymous    |
-| tt_sequence | false        |
-| tt_skip     | false        |
-| tt_testname | learn-07-log |
-+-------------+--------------+
++-------------+-----------+
+| tt_members  | anonymous |
+| tt_sequence | false     |
+| tt_skip     | false     |
+| tt_testname | 07-log    |
++-------------+-----------+
 
 LOGS
-    [19:23:20] : Using log messages...
-    [19:23:20] ERROR: Problem detected!
+    [13:45:02] : Using log messages...
+    [13:45:02] ERROR: Problem detected!
 
 GROUPS
 - Learning about log messages
     01 (1.0/1.0)
         Description : Create user david
         Command     : id david
-        Duration    : 0.003 (local)
+        Duration    : 0.002 (local)
         Alterations : find(david) & count
         Expected    : Greater than 0 (String)
         Result      : 1 (Integer)
@@ -55,9 +55,9 @@ GROUPS
 RESULTS
 +--------------+---------------------------+
 | case_id      | 01                        |
-| start_time   | 2020-04-22 19:23:20 +0100 |
-| finish_time  | 2020-04-22 19:23:20 +0100 |
-| duration     | 0.003096755               |
+| start_time   | 2022-12-24 13:45:02 +0000 |
+| finish_time  | 2022-12-24 13:45:02 +0000 |
+| duration     | 0.001900685               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |

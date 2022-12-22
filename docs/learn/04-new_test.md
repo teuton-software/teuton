@@ -13,8 +13,8 @@ Steps:
 
 Create skeleton for a new project: `teuton create foo`
 
-```bash
-$ teuton new foo
+```
+> teuton new foo
 
 [INFO] Creating foo project skeleton
 * Create dir        => foo
@@ -22,7 +22,7 @@ $ teuton new foo
 * Create file       => foo/start.rb
 ```
 
-> It's posible to create these files by hand.
+> NOTA: It is posible to create these files by hand.
 
 This command will create:
 
@@ -81,7 +81,7 @@ Use a YAML file (`foo/config.yaml`) or JSON for your own configurations. In this
 Now we only have to run the challenge:
 
 ```bash
-$ teuton foo
+> teuton run foo
 ```
 
 Output files are saved into `var/foo` directory.

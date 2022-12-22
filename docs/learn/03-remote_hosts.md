@@ -81,11 +81,30 @@ end
 
 * `send copy_to: :host1` keyword copy output report into remote machine (host1).
 
+## Screen output
+
+```
+CASE RESULTS
++------+---------------+-------+-------+
+| CASE | MEMBERS       | GRADE | STATE |
+| 01   | Darth Maul    | 0.0   | ?     |
+| -    | -             | 0.0   |       |
+| 03   | Obiwan Kenobi | 0.0   | ?     |
++------+---------------+-------+-------+
+
+CONN ERRORS
++------+---------------+-------+------------------+
+| CASE | MEMBERS       | HOST  | ERROR            |
+| 01   | Darth Maul    | host1 | host_unreachable |
+| 03   | Obiwan Kenobi | host1 | host_unreachable |
++------+---------------+-------+------------------+
+```
+
 ## Results
 
 ```
 var
-└── learn-03-remote-hosts
+└── 03-remote-hosts
     ├── case-01.json
     ├── case-01.txt
     ├── case-03.json
