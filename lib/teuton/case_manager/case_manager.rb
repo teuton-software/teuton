@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "rainbow"
 require "singleton"
 require_relative "../application"
 require_relative "../report/report"
@@ -63,7 +64,7 @@ class CaseManager
   def send(args = {})
     threads = []
     puts ""
-    puts Rainbow("[INFO] Sending files...#{args.to_s}").green
+    puts Rainbow("[INFO] Sending files...#{args}").green
     @cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
   end

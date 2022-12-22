@@ -32,8 +32,6 @@ class CaseManager
     close_main_report(start_time)
   end
 
-  ##
-  # Run all cases
   def run_all_cases
     start_time = Time.now
     verboseln Rainbow("-" * 36).green
