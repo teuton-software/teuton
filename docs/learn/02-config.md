@@ -58,38 +58,22 @@ end
 Runing this example and see `show` keyword output:
 
 ```bash
-> teuton run --no-color examples/learn-02-config
-CONFIGURATION
-+---------------+----------------------------------------+
-| tt_title      | Executing [teuton] (version 2.2.0)     |
-| tt_scriptname | examples/learn-02-config/start.rb      |
-| tt_configfile | examples/learn-02-config/config.yaml   |
-| tt_pwd        | /home/david/proy/repos/teuton.d/teuton |
-| tt_testname   | learn-02-config                        |
-| tt_sequence   | false                                  |
-+---------------+----------------------------------------+
+> teuton run examples/02-config
 
-CASES
+CASE RESULTS
 +------+----------------+-------+-------+
 | CASE | MEMBERS        | GRADE | STATE |
-| 01   | Student-name-1 |   100 |       |
-| 02   | Student-name-2 |     0 | ?     |
+| 01   | Student-name-1 | 100.0 | ✔     |
+| 02   | Student-name-2 | 0.0   | ?     |
 +------+----------------+-------+-------+
-
-RESULTS
-+-------------+---------------------------+
-| start_time  | 2020-10-10 12:37:54 +0100 |
-| finish_time | 2020-10-10 12:37:54 +0100 |
-| duration    | 0.002054143               |
-+-------------+---------------------------+
 ```
 
 ## Results
 
-Output reports are saved into `var/learn-02-config/` directory. Detail output report is created for every case.
+Output reports are saved into `var/02-config/` directory. Detail output report is created for every case.
 
 ```
-var/learn-02-config
+var/02-config
 ├── case-01.txt
 ├── case-02.txt
 ├── moodle.csv
@@ -99,23 +83,22 @@ var/learn-02-config
 Let's see `export` keyword output for case 01.
 
 ```
-> more var/learn-02-config/case-01.txt
+> more var/02-config/case-01.txt
 CONFIGURATION
-+-------------+-----------------+
-| tt_members  | Student-name-1  |
-| tt_sequence | false           |
-| tt_skip     | false           |
-| tt_testname | learn-02-config |
-| username    | root            |
-+-------------+-----------------+
-
++-------------+----------------+
+| tt_members  | Student-name-1 |
+| tt_sequence | false          |
+| tt_skip     | false          |
+| tt_testname | 02-config      |
+| username    | root           |
++-------------+----------------+
 
 GROUPS
 - Reading params from config file
     01 (1.0/1.0)
-        Description : Create user root (username)
+        Description : Create user root
         Command     : id root
-        Duration    : 0.001 (local)
+        Duration    : 0.002 (local)
         Alterations : find(root) & count
         Expected    : Greater than 0 (String)
         Result      : 1 (Integer)
@@ -123,9 +106,9 @@ GROUPS
 RESULTS
 +--------------+---------------------------+
 | case_id      | 01                        |
-| start_time   | 2020-10-10 12:37:54 +0100 |
-| finish_time  | 2020-10-10 12:37:54 +0100 |
-| duration     | 0.001762191               |
+| start_time   | 2022-12-24 13:33:49 +0000 |
+| finish_time  | 2022-12-24 13:33:49 +0000 |
+| duration     | 0.001777756               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |

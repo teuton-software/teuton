@@ -47,67 +47,38 @@ DSL keywords:
 
 ## Run test
 
-**Let's see example**: Executing ` teuton run examples/learn-01-target` command.
+**Let's see example**: Executing ` teuton run examples/01-target` command.
 
 ```bash
-[INFO] ScriptPath => examples/learn-01-target/start.rb
-[INFO] ConfigPath => examples/learn-01-target/config.yaml
-[INFO] Pwd        => /home/david/proy/repos/teuton.d/teuton
-[INFO] TestName   => learn-01-target
-
-==================================
-Executing [teuton] (version 2.2.0)
-[INFO] Running in parallel (2020-10-10 12:29:34 +0100)
-.
-[INFO] Duration = 0.002    (2020-10-10 12:29:34 +0100)
-==================================
-
-INITIAL CONFIGURATIONS
-+---------------+----------------------------------------+
-| tt_title      | Executing [teuton] (version 2.2.0)     |
-| tt_scriptname | examples/learn-01-target/start.rb      |
-| tt_configfile | examples/learn-01-target/config.yaml   |
-| tt_pwd        | /home/david/proy/repos/teuton.d/teuton |
-| tt_testname   | learn-01-target                        |
-| tt_sequence   | false                                  |
-+---------------+----------------------------------------+
-
 CASE RESULTS
 +------+-----------+-------+-------+
 | CASE | MEMBERS   | GRADE | STATE |
-| 01   | anonymous | 100.0 |       |
+| 01   | anonymous | 100.0 | ✔     |
 +------+-----------+-------+-------+
-
-FINAL VALUES
-+-------------+---------------------------+
-| start_time  | 2020-10-10 12:29:34 +0100 |
-| finish_time | 2020-10-10 12:29:34 +0100 |
-| duration    | 0.002187719               |
-+-------------+---------------------------+
 ```
 
 ## Output reports
 
-**Output directory**: reports created into `var/learn-01-target/` output directory.
+**Output directory**: reports created into `var/01-target/` output directory.
 
 ```bash
 var
-└── learn-01-target
+└── 01-target
     ├── case-01.txt
     ├── moodle.csv
     └── resume.txt
 ```
 
-**Let's see example**: Executing `more var/learn-01-target/case-01.txt` command.
+**Let's see example**: Executing `more var/01-target/case-01.txt` command.
 
 ```bash
 CONFIGURATION
-+-------------+-----------------+
-| tt_members  | anonymous       |
-| tt_sequence | false           |
-| tt_skip     | false           |
-| tt_testname | learn-01-target |
-+-------------+-----------------+
++-------------+-----------+
+| tt_members  | anonymous |
+| tt_sequence | false     |
+| tt_skip     | false     |
+| tt_testname | 01-target |
++-------------+-----------+
 
 GROUPS
 - Learn about targets
@@ -122,9 +93,9 @@ GROUPS
 RESULTS
 +--------------+---------------------------+
 | case_id      | 01                        |
-| start_time   | 2020-10-10 12:29:34 +0100 |
-| finish_time  | 2020-10-10 12:29:34 +0100 |
-| duration     | 0.001781893               |
+| start_time   | 2022-12-24 13:31:28 +0000 |
+| finish_time  | 2022-12-24 13:31:28 +0000 |
+| duration     | 0.001880141               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |
