@@ -1,4 +1,4 @@
-use 'targets'
+use "targets"
 
 play do
   show

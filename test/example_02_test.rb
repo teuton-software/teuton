@@ -6,40 +6,12 @@ require "yaml"
 class TeutonExamplesTest < Test::Unit::TestCase
   def setup
     @dirbase = File.join("test", "files")
+    @filepath = File.join(@dirbase, "test-02-config")
   end
 
-  def test_example_learn_01_target
-    filepath = File.join(@dirbase, "learn-01-target")
-    testname, _resume, data = execute_teuton_test filepath
-
-    assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
-    assert_equal testname, data[:config][:tt_testname]
-
-    assert_equal 1, data[:cases].size
-    assert_equal false, data[:cases][0][:skip]
-    assert_equal "01", data[:cases][0][:id]
-    assert_equal 100, data[:cases][0][:grade]
-    assert_equal "anonymous", data[:cases][0][:members]
-    assert_equal({}, data[:cases][0][:conn_status])
-    assert_equal "NODATA", data[:cases][0][:moodle_id]
-
-    data = read_case_report("01", testname)
-    targets = data[:groups][0][:targets]
-    assert_equal "01", targets[0][:target_id]
-    assert_equal true, targets[0][:check]
-    assert_equal 1.0, targets[0][:score]
-    assert_equal 1.0, targets[0][:weight]
-    assert_equal "Create user root", targets[0][:description]
-    assert_equal "id root 2>/dev/null", targets[0][:command]
-    assert_equal :local, targets[0][:conn_type]
-    assert_equal "find(root) & count", targets[0][:alterations]
-    assert_equal "Greater than 0", targets[0][:expected]
-    assert_equal 1, targets[0][:result]
-  end
-
-  def test_example_learn_02_config
-    filepath = File.join(@dirbase, "learn-02-config")
-    configfile = File.join(@dirbase, "learn-02-config", "config.yaml")
+  def test_example_test_02_config
+    filepath = @filepath
+    configfile = File.join(filepath, "config.yaml")
     testname, _resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
@@ -63,9 +35,9 @@ class TeutonExamplesTest < Test::Unit::TestCase
     assert_equal "NODATA", data[:cases][1][:moodle_id]
   end
 
-  def test_example_learn_02_config_with_cname_rock
-    filepath = File.join(@dirbase, "learn-02-config")
-    configfile = File.join(@dirbase, "learn-02-config", "rock.yaml")
+  def test_example_test_02_config_with_cname_rock
+    filepath = @filepath
+    configfile = File.join(filepath, "rock.yaml")
     testname, _resume, data = execute_teuton_test(filepath, "--cname=rock")
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
@@ -90,8 +62,8 @@ class TeutonExamplesTest < Test::Unit::TestCase
   end
 
   def test_example_learn_02_config_with_cpath_starwars
-    filepath = File.join(@dirbase, "learn-02-config")
-    configfile = File.join(@dirbase, "learn-02-config", "starwars.yaml")
+    filepath = @filepath
+    configfile = File.join(filepath, "starwars.yaml")
     testname, _resume, data = execute_teuton_test(filepath, "--cpath=#{configfile}")
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
