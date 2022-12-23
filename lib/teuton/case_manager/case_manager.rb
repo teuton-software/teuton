@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "rainbow"
 require "singleton"
 require_relative "../application"
@@ -49,9 +47,9 @@ class CaseManager
   # @param args (Hash) Export options
   def export(args = {})
     if args.class != Hash
-      puts "[ERROR] CaseManager#export: Argument = <#{args}>, " \
-           "class = #{args.class}"
-      puts "        Usage: export format: :colored_text"
+      puts "[ERROR] CaseManager#export: Argument error!"
+      puts "  Source : export #{args} <#{args.class}>"
+      puts "  Usage  : export format: 'txt'"
       raise "[ERROR] CaseManager#export: Argument error!"
     end
     # Export report files

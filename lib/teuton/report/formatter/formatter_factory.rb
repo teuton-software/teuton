@@ -47,7 +47,9 @@ module FormatterFactory
     when :resume_yaml
       f = ResumeYAMLFormatter.new(report)
     else
-      raise "[ERROR] FormaterFactory #{format} unkown!"
+      puts Rainbow("[ERROR] Unkown format: #{format}").red
+      puts Rainbow("        export format: FORMAT").red
+      exit 1
     end
     f.init(filename)
     f
