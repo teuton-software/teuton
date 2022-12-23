@@ -19,12 +19,6 @@ class HTMLFormatter < YAMLFormatter
   end
 
   def build_page
-    # config = @data[:config]
-    # results = @data[:results]
-    # logs = @data[:logs]
-    # groups = @data[:groups]
-    # hall_of_fame = @data[:hall_of_fame]
-    # version = Application::VERSION
     render = ERB.new(@template)
     w render.result(binding)
   end
