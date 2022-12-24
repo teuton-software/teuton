@@ -15,6 +15,6 @@ ignore:
   - "lib/teuton/readme/dsl.rb"
   - "lib/teuton/readme/readme.rb"
   - "lib/teuton/report/formatter/csv_formatter.rb"
-  - "lib/teuton/report/formatter/html_formatter.rb"
+  #- "lib/teuton/report/formatter/html_formatter.rb"
   - "private/**/*"
   - "test/manual/**/*"
