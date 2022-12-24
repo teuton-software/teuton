@@ -16,6 +16,5 @@ ignore:
   - "lib/teuton/readme/readme.rb"
   - "lib/teuton/report/formatter/csv_formatter.rb"
   - "lib/teuton/report/formatter/html_formatter.rb"
-  - "lib/teuton/report/formatter/xml_formatter.rb"
   - "private/**/*"
   - "test/manual/**/*"
