@@ -1,18 +1,11 @@
-# frozen_string_literal: true
-
-require_relative "resume_array_formatter"
+require_relative "resume/resume_array_formatter"
 
 class MoodleCSVFormatter < ResumeArrayFormatter
-  ##
-  # initialize instance
-  # @param report (Report)
   def initialize(report)
     super(report)
     @data = {}
   end
 
-  ##
-  # Process internal data and generates data with format
   def process
     build_data
     process_cases

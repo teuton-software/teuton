@@ -1,16 +1,13 @@
-# frozen_string_literal: true
-
 require "erb"
 require_relative "resume_yaml_formatter"
-require_relative "../../application"
+require_relative "../../../application"
 
-##
-# HTMLFormatter class receive a [Report] and generates HTML output.
 class ResumeHTMLFormatter < ResumeYAMLFormatter
   def initialize(report)
     super(report)
     @data = {}
-    filepath = File.join(File.dirname(__FILE__), "..", "..", "files", "template", "resume.html")
+    basedir = File.join(File.dirname(__FILE__), "..", "..", "..")
+    filepath = File.join(basedir, "files", "template", "resume.html")
     @template = File.read(filepath)
   end
 

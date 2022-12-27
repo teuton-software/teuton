@@ -1,10 +1,7 @@
-# frozen_string_literal: true
-
 require "terminal-table"
 require "rainbow"
 require_relative "resume_array_formatter"
 
-# TXTFormatter class
 class ResumeTXTFormatter < ResumeArrayFormatter
   def initialize(report, color = false)
     @color = color

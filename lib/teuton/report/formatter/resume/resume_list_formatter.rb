@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 require_relative "resume_array_formatter"
 
-# ResumeListFormatter class
 class ResumeListFormatter < ResumeArrayFormatter
   def initialize(report)
     super(report)
