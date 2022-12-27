@@ -12,10 +12,8 @@ require_relative "resume/txt"
 require_relative "resume/yaml"
 require_relative "moodle_csv_formatter"
 
-require "debug"
 module Formatter
   def self.call(report, format, filename)
-    binding.break
     klass = get(format)
     if klass.nil?
       puts Rainbow("[ERROR] Unkown format: #{format}").red

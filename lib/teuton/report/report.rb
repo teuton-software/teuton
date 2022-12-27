@@ -1,12 +1,10 @@
 require "terminal-table"
 require_relative "../application"
 require_relative "formatter/formatter"
-require_relative "show"
 require_relative "close"
 
 ##
 # This class maintains the results of every case, in a structured way.
-# * report/show.rb
 # * report/close.rb
 class Report
   attr_accessor :id, :filename, :output_dir
@@ -35,10 +33,7 @@ class Report
     Formatter.call(self, @format, filepath)
   end
 
-  ##
-  # Export resumed data from all Cases, to specified format.
-  # @param format [Symbol] Select export format. Default value is :txt.
-  def export_resume(format = :txt)
+  def export_resume(format = :txt, options = {})
     @format = "resume_#{format}".to_sym
     filepath = File.join(@output_dir, @filename)
     Formatter.call(self, @format, filepath)

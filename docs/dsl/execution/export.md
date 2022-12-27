@@ -29,7 +29,7 @@ end
 
 ## Options
 
-1. **format**: txt, html, yaml. json, colored_text (txt with colors).
+1. **format**: txt, html, yaml, json, colored_text (txt with colors).
 2. **preserve**: true, false.
 
 ## Usage
