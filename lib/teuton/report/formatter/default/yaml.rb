@@ -1,5 +1,5 @@
 require "yaml"
-require_relative "array_formatter"
+require_relative "array"
 
 class YAMLFormatter < ArrayFormatter
   def initialize(report)

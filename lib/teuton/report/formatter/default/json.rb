@@ -1,5 +1,5 @@
 require "json/pure"
-require_relative "array_formatter"
+require_relative "array"
 
 class JSONFormatter < ArrayFormatter
   def initialize(report)

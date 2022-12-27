@@ -1,6 +1,6 @@
 require "terminal-table"
 require_relative "../application"
-require_relative "formatter/formatter_factory"
+require_relative "formatter/formatter"
 require_relative "show"
 require_relative "close"
 
@@ -32,8 +32,7 @@ class Report
   def export(format = :txt, options = {})
     @format = format
     filepath = File.join(@output_dir, @filename)
-    formatter = FormatterFactory.get(self, @format, filepath)
-    formatter.process
+    Formatter.call(self, @format, filepath)
   end
 
   ##
@@ -42,11 +41,9 @@ class Report
   def export_resume(format = :txt)
     @format = "resume_#{format}".to_sym
     filepath = File.join(@output_dir, @filename)
-    formatter = FormatterFactory.get(self, @format, filepath)
-    formatter.process
+    Formatter.call(self, @format, filepath)
 
     filepath = File.join(@output_dir, "moodle")
-    formatter = FormatterFactory.get(self, :moodle_csv, filepath)
-    formatter.process
+    Formatter.call(self, :moodle_csv, filepath)
   end
 end

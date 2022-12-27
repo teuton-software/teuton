@@ -1,6 +1,6 @@
 require "terminal-table"
 require "rainbow"
-require_relative "array_formatter"
+require_relative "array"
 
 class TXTFormatter < ArrayFormatter
   def initialize(report, color = false)
