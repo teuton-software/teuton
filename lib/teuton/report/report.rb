@@ -31,9 +31,7 @@ class Report
 
   def export(format = :txt, options = {})
     @format = format
-    filepath = File.join(@output_dir, @filename + "." \
-             + FormatterFactory.ext(@format))
-
+    filepath = File.join(@output_dir, @filename)
     formatter = FormatterFactory.get(self, @format, filepath)
     formatter.process
   end
@@ -43,12 +41,11 @@ class Report
   # @param format [Symbol] Select export format. Default value is :txt.
   def export_resume(format = :txt)
     @format = "resume_#{format}".to_sym
-    filepath = File.join(@output_dir, @filename + "." \
-             + FormatterFactory.ext(@format))
+    filepath = File.join(@output_dir, @filename)
     formatter = FormatterFactory.get(self, @format, filepath)
     formatter.process
 
-    filepath = File.join(@output_dir, "moodle.csv")
+    filepath = File.join(@output_dir, "moodle")
     formatter = FormatterFactory.get(self, :moodle_csv, filepath)
     formatter.process
   end

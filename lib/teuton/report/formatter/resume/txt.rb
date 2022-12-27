@@ -6,6 +6,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   def initialize(report, color = false)
     @color = color
     super(report)
+    @ext = "txt"
     @data = {}
   end
 

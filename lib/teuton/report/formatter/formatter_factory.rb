@@ -55,9 +55,9 @@ module FormatterFactory
     f
   end
 
-  def self.ext(format)
+  def self.select(format)
     data = {
-      colored_text: "txt",
+      colored_text: {ext: "txt", klass: TXTFormatter.new(report, true)},
       json: "json",
       list: "txt",
       txt: "txt",

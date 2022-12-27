@@ -3,6 +3,7 @@ class BaseFormatter
     @head = report.head
     @lines = report.lines
     @tail = report.tail
+    @ext = "unkown"
   end
 
   def process
@@ -10,7 +11,7 @@ class BaseFormatter
   end
 
   def init(filename)
-    @filename = filename
+    @filename = "#{filename}.#{@ext}"
     @file = File.open(@filename, "w")
   end
 

@@ -3,6 +3,7 @@ require_relative "array"
 class ResumeListFormatter < ResumeArrayFormatter
   def initialize(report)
     super(report)
+    @ext = "list"
     @data = {}
   end
 

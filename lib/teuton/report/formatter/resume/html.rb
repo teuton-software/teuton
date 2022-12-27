@@ -5,6 +5,7 @@ require_relative "../../../application"
 class ResumeHTMLFormatter < ResumeYAMLFormatter
   def initialize(report)
     super(report)
+    @ext = "html"
     @data = {}
     basedir = File.join(File.dirname(__FILE__), "..", "..", "..")
     filepath = File.join(basedir, "files", "template", "resume.html")

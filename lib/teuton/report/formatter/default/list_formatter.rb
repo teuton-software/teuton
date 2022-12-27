@@ -1,6 +1,11 @@
 require_relative "array_formatter"
 
 class ListFormatter < ArrayFormatter
+  def initialize(report)
+    super(report)
+    @ext = "list"
+  end
+
   def process
     build_data
     process_config

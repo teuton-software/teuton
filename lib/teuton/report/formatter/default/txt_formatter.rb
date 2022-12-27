@@ -6,6 +6,7 @@ class TXTFormatter < ArrayFormatter
   def initialize(report, color = false)
     @color = color
     super(report)
+    @ext = "txt"
     @data = {}
   end
 

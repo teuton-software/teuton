@@ -3,6 +3,7 @@ require_relative "array"
 class ResumeYAMLFormatter < ResumeArrayFormatter
   def initialize(report)
     super(report)
+    @ext = "yaml"
     @data = {}
   end
 

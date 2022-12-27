@@ -3,6 +3,7 @@ require_relative "resume/array"
 class MoodleCSVFormatter < ResumeArrayFormatter
   def initialize(report)
     super(report)
+    @ext = "csv"
     @data = {}
   end
 

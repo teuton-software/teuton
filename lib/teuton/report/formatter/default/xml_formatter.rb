@@ -2,6 +2,11 @@ require_relative "../base_formatter"
 require_relative "../../../version"
 
 class XMLFormatter < BaseFormatter
+  def initialize(report)
+    super(report)
+    @ext = "xml"
+  end
+
   def process
     tab = "  "
     w "<teuton version='#{Teuton::VERSION}'>\n"

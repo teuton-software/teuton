@@ -4,6 +4,7 @@ require_relative "array"
 class ResumeJSONFormatter < ResumeArrayFormatter
   def initialize(report)
     super(report)
+    @ext = "json"
     @data = {}
   end
 
