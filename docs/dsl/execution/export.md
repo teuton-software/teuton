@@ -29,8 +29,9 @@ end
 
 ## Options
 
-1. **format**: txt, html, yaml, json, colored_text (txt with colors).
-2. **preserve**: true, false.
+1. **format**: txt (default), html, yaml, json, colored_text (txt with colors).
+2. **preserve**: false (default), true.
+3. **feedback**: true (default), false
 
 ## Usage
 
