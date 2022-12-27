@@ -1,11 +1,7 @@
 require "terminal-table"
 require_relative "../application"
 require_relative "formatter/formatter"
-require_relative "close"
 
-##
-# This class maintains the results of every case, in a structured way.
-# * report/close.rb
 class Report
   attr_accessor :id, :filename, :output_dir
   attr_accessor :head
@@ -40,5 +36,42 @@ class Report
 
     filepath = File.join(@output_dir, "moodle")
     Formatter.call(self, :moodle_csv, filepath)
+  end
+
+  ##
+  # Calculate final values:
+  # * grade
+  # * max_weight
+  # * good_weight,d
+  # * fail_weight
+  # * fail_counter
+  def close
+    app = Application.instance
+    max = 0.0
+    good = 0.0
+    fail = 0.0
+    fail_counter = 0
+    @lines.each do |i|
+      next unless i.instance_of? Hash
+
+      max += i[:weight] if i[:weight].positive?
+      if i[:check]
+        good += i[:weight]
+        @history += app.letter[:good]
+      else
+        fail += i[:weight]
+        fail_counter += 1
+        @history += app.letter[:bad]
+      end
+    end
+    @tail[:max_weight] = max
+    @tail[:good_weight] = good
+    @tail[:fail_weight] = fail
+    @tail[:fail_counter] = fail_counter
+
+    i = good.to_f / max
+    i = 0 if i.nan?
+    @tail[:grade] = (100.0 * i).round
+    @tail[:grade] = 0 if @tail[:unique_fault].positive?
   end
 end
