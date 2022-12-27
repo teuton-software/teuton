@@ -22,19 +22,20 @@ class Report
     @history = ""
   end
 
-  def export(format = :txt, options = {})
-    @format = format
+  def export(options)
     filepath = File.join(@output_dir, @filename)
-    Formatter.call(self, @format, filepath)
+    Formatter.call(self, options, filepath)
   end
 
-  def export_resume(format = :txt, options = {})
+  def export_resume(options)
+    format = options[:format]
     @format = "resume_#{format}".to_sym
+    options[:format] = @format
     filepath = File.join(@output_dir, @filename)
-    Formatter.call(self, @format, filepath)
+    Formatter.call(self, options, filepath)
 
     filepath = File.join(@output_dir, "moodle")
-    Formatter.call(self, :moodle_csv, filepath)
+    Formatter.call(self, {format: :moodle_csv}, filepath)
   end
 
   ##

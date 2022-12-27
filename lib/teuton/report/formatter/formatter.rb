@@ -13,10 +13,10 @@ require_relative "resume/yaml"
 require_relative "moodle_csv_formatter"
 
 module Formatter
-  def self.call(report, format, filename)
-    klass = get(format)
+  def self.call(report, options, filename)
+    klass = get(options[:format])
     if klass.nil?
-      puts Rainbow("[ERROR] Unkown format: #{format}").red
+      puts Rainbow("[ERROR] Unkown format: #{options[:format]}").red
       puts Rainbow("        export format: FORMAT").red
       exit 1
     end

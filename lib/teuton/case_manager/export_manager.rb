@@ -8,23 +8,22 @@ module ExportManager
   # @param main_report (Report)
   # @param cases (Array)
   # @param input (Hash) Selected export options
-  def self.run(main_report, cases, input)
-    args = strings2symbols(input)
-
-    # default :format=>:txt
-    format = args[:format] || Application.instance.default[:format]
-    mode = args[:mode] || :all
+  def self.run(main_report, cases, args)
+    options = strings2symbols(args)
+    if options[:format].nil?
+      options[:format] = Application.instance.default[:format]
+    end
 
     # Step 1: Export case reports
     threads = []
-    cases.each { |c| threads << Thread.new { c.export(format) } }
+    cases.each { |c| threads << Thread.new { c.export(options) } }
     threads.each(&:join)
 
     # Step 2: Export resume report
-    main_report.export_resume(format)
+    main_report.export_resume(options)
 
     # Step 3: Preserve files if required
-    preserve_files if args[:preserve] == true
+    preserve_files if options[:preserve] == true
   end
 
   ##
