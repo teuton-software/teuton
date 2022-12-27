@@ -21,9 +21,9 @@ namespace :docker do
 
   desc "Push docker"
   task :push do
-    image = "dvarrui/asker"
+    image = Teuton::DOCKERNAME
     puts "[INFO] Pushing docker..."
-    system("docker push #{image}:latest")
     system("docker push #{image}:#{Teuton::VERSION}")
+    system("docker push #{image}:latest")
   end
 end
