@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "json/pure"
 require_relative "array_formatter"
 

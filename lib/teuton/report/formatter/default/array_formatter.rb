@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-require_relative "base_formatter"
+require_relative "../base_formatter"
 
 class ArrayFormatter < BaseFormatter
   def initialize(report)

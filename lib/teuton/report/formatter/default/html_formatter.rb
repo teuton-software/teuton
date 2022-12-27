@@ -1,12 +1,12 @@
 require "erb"
 require_relative "yaml_formatter"
-require_relative "../../application"
+require_relative "../../../application"
 
 class HTMLFormatter < YAMLFormatter
   def initialize(report)
     super(report)
     @data = {}
-    basedir = File.join(File.dirname(__FILE__), "..", "..")
+    basedir = File.join(File.dirname(__FILE__), "..", "..", "..")
     filepath = File.join(basedir, "files", "template", "case.html")
     @template = File.read(filepath)
   end

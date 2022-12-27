@@ -1,25 +1,22 @@
 require "rainbow"
-require_relative "json_formatter"
-require_relative "html_formatter"
-require_relative "list_formatter"
-require_relative "txt_formatter"
-require_relative "yaml_formatter"
+require_relative "default/json_formatter"
+require_relative "default/html_formatter"
+require_relative "default/list_formatter"
+require_relative "default/txt_formatter"
+require_relative "default/yaml_formatter"
+require_relative "default/xml_formatter"
 require_relative "resume/resume_json_formatter"
 require_relative "resume/resume_html_formatter"
 require_relative "resume/resume_list_formatter"
 require_relative "resume/resume_txt_formatter"
 require_relative "resume/resume_yaml_formatter"
 require_relative "moodle_csv_formatter"
-require_relative "csv_formatter"
-require_relative "xml_formatter"
 
 module FormatterFactory
   def self.get(report, format, filename)
     case format
     when :colored_text
       f = TXTFormatter.new(report, true)
-    when :csv
-      f = CSVFormatter.new(report)
     when :html
       f = HTMLFormatter.new(report)
     when :json
@@ -60,7 +57,6 @@ module FormatterFactory
 
   def self.ext(format)
     data = {
-      cvs: "csv",
       colored_text: "txt",
       json: "json",
       list: "txt",

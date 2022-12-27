@@ -1,5 +1,5 @@
-require_relative "base_formatter"
-require_relative "../../version"
+require_relative "../base_formatter"
+require_relative "../../../version"
 
 class XMLFormatter < BaseFormatter
   def process
