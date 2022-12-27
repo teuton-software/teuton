@@ -16,7 +16,6 @@ play do
   show
   # export using other output formats
   export format: "txt"
-  export format: "colored_text"
   export format: "html"
   send copy_to: :host1
 end

@@ -12,62 +12,36 @@ require_relative "resume/txt"
 require_relative "resume/yaml"
 require_relative "moodle_csv_formatter"
 
+require "debug"
 module Formatter
   def self.call(report, format, filename)
-    case format
-    when :colored_text
-      f = ColoredTextFormatter.new(report)
-    when :html
-      f = HTMLFormatter.new(report)
-    when :json
-      f = JSONFormatter.new(report)
-    when :txt
-      f = TXTFormatter.new(report)
-    when :xml
-      f = XMLFormatter.new(report)
-    when :yaml
-      f = YAMLFormatter.new(report)
-    when :moodle_csv
-      f = MoodleCSVFormatter.new(report)
-    when :resume_txt
-      f = ResumeTXTFormatter.new(report)
-    when :resume_colored_text
-      f = ResumeColoredTextFormatter.new(report)
-    when :resume_json
-      f = ResumeJSONFormatter.new(report)
-    when :resume_html
-      f = ResumeHTMLFormatter.new(report)
-    when :resume_xml
-      # TODO
-      f = ResumeListFormatter.new(report)
-    when :resume_yaml
-      f = ResumeYAMLFormatter.new(report)
-    else
+    binding.break
+    klass = get(format)
+    if klass.nil?
       puts Rainbow("[ERROR] Unkown format: #{format}").red
       puts Rainbow("        export format: FORMAT").red
       exit 1
     end
-    f.init(filename)
-    f.process
+    formatter = klass.new(report)
+    formatter.init(filename)
+    formatter.process
   end
 
-  def self.select(format)
-    klasses = {
-      colored_text: "ColoredTXTFormatter",
+  def self.get(format)
+    list = {
+      colored_text: ColoredTextFormatter,
+      html: HTMLFormatter,
       json: JSONFormatter,
       txt: TXTFormatter,
-      xml: "xml",
-      yaml: "yaml",
-      resume_colored_text: "txt",
-      resume_csv: "csv",
-      resume_json: "json",
-      resume_html: "html",
-      resume_txt: "txt",
-      resume_xml: "xml",
-      resume_yaml: "yaml"
+      xml: XMLFormatter,
+      yaml: YAMLFormatter,
+      moodle_csv: MoodleCSVFormatter,
+      resume_html: ResumeHTMLFormatter,
+      resume_json: ResumeJSONFormatter,
+      resume_txt: ResumeTXTFormatter,
+      resume_xml: ResumeTXTFormatter, # TODO
+      resume_yaml: ResumeYAMLFormatter
     }
-    return format.to_s if klasses[format].nil?
-
-    klasses[format]
+    list[format]
   end
 end
