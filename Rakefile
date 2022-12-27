@@ -13,7 +13,7 @@ require "standard/rake"
 task default: %i[test standard]
 
 require_relative "tasks/docker"
-require_relative "tasks/install"
+require_relative "tasks/devel"
 
 desc "Default: run tests"
 task :default do
