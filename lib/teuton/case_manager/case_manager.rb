@@ -52,7 +52,6 @@ class CaseManager
       puts "  Usage  : export format: 'txt'"
       raise "[ERROR] CaseManager#export: Argument error!"
     end
-    # Export report files
     ExportManager.run(@report, @cases, args)
   end
 

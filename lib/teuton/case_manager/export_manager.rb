@@ -11,19 +11,17 @@ module ExportManager
   def self.run(main_report, cases, input)
     args = strings2symbols(input)
 
-    # default :mode=>:all, :format=>:txt
+    # default :format=>:txt
     format = args[:format] || Application.instance.default[:format]
     mode = args[:mode] || :all
 
     # Step 1: Export case reports
-    if %i[details all].include? mode
-      threads = []
-      cases.each { |c| threads << Thread.new { c.export(format) } }
-      threads.each(&:join)
-    end
+    threads = []
+    cases.each { |c| threads << Thread.new { c.export(format) } }
+    threads.each(&:join)
 
     # Step 2: Export resume report
-    main_report.export_resume(format) if %i[resume all].include? mode
+    main_report.export_resume(format)
 
     # Step 3: Preserve files if required
     preserve_files if args[:preserve] == true
