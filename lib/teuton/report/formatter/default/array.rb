@@ -1,4 +1,5 @@
 require_relative "../base_formatter"
+require_relative "../../../application"
 
 class ArrayFormatter < BaseFormatter
   def initialize(report)
@@ -6,18 +7,20 @@ class ArrayFormatter < BaseFormatter
     @data = {}
   end
 
-  def process
-    build_data
+  def process(options = {})
+    build_data(options)
     w @data.to_s # Write data into ouput file
     deinit
   end
 
-  def build_data
+  def build_data(options)
     build_initial_data
-    build_history_data
+    build_history_data(options)
     build_final_data
     build_hof_data
   end
+
+  private
 
   def build_initial_data
     head = {}
@@ -25,7 +28,7 @@ class ArrayFormatter < BaseFormatter
     @data[:config] = head
   end
 
-  def build_history_data
+  def build_history_data(options)
     @data[:logs] = []
     groups = []
     title = nil
@@ -52,12 +55,22 @@ class ArrayFormatter < BaseFormatter
       target[:score] = value
       target[:weight] = i[:weight]
       target[:description] = i[:description]
-      target[:command] = i[:command]
+
       target[:conn_type] = i[:conn_type]
       target[:duration] = i[:duration]
+
+      target[:command] = i[:command]
       target[:alterations] = i[:alterations]
       target[:expected] = i[:expected]
       target[:result] = i[:result]
+
+      if options[:feedback] == false
+        target[:command] = "*" * i[:command].size
+        target[:alterations] = "*" * i[:alterations].size
+        target[:expected] = "*" * i[:expected].size
+        target[:result] = "*" * i[:result].size
+      end
+
       targets << target
     end
 
@@ -79,5 +92,29 @@ class ArrayFormatter < BaseFormatter
     fame = {}
     app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
     @data[:hall_of_fame] = fame
+  end
+
+  def config
+    @data[:config]
+  end
+
+  def results
+    @data[:results]
+  end
+
+  def logs
+    @data[:logs]
+  end
+
+  def groups
+    @data[:groups]
+  end
+
+  def hall_of_fame
+    @data[:hall_of_fame]
+  end
+
+  def version
+    Application::VERSION
   end
 end

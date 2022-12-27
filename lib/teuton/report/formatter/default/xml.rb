@@ -7,7 +7,7 @@ class XMLFormatter < BaseFormatter
     @ext = "xml"
   end
 
-  def process
+  def process(options = {})
     tab = "  "
     w "<teuton version='#{Teuton::VERSION}'>\n"
     w "#{tab}<head>\n"

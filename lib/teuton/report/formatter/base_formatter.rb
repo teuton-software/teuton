@@ -1,12 +1,12 @@
 class BaseFormatter
   def initialize(report)
-    @head = report.head
-    @lines = report.lines
-    @tail = report.tail
+    @head = report.head.clone
+    @lines = report.lines.clone
+    @tail = report.tail.clone
     @ext = "unkown"
   end
 
-  def process
+  def process(options = {})
     raise "Empty method!"
   end
 

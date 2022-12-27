@@ -6,13 +6,13 @@ class ResumeArrayFormatter < BaseFormatter
     @data = {}
   end
 
-  def process
-    build_data
+  def process(options = {})
+    build_data(options)
     w @data.to_s # Write data into ouput file
     deinit
   end
 
-  def build_data
+  def build_data(options)
     build_initial_data
     build_cases_data
     build_final_data

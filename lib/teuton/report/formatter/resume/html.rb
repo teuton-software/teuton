@@ -12,8 +12,8 @@ class ResumeHTMLFormatter < ResumeYAMLFormatter
     @template = File.read(filepath)
   end
 
-  def process
-    build_data
+  def process(options = {})
+    build_data(options)
     build_page
     deinit
   end

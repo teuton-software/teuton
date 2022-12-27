@@ -7,6 +7,7 @@ New features:
 
 Revise:
 * verify get(:key) and get('key') works fine!
+* Formatter: xml, 
 
 Revise documentation:
 * Doc learn 10,11, 12,13 y 14

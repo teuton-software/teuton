@@ -1,6 +1,5 @@
 require "erb"
 require_relative "yaml"
-require_relative "../../../application"
 
 class HTMLFormatter < YAMLFormatter
   def initialize(report)
@@ -12,8 +11,8 @@ class HTMLFormatter < YAMLFormatter
     @template = File.read(filepath)
   end
 
-  def process
-    build_data
+  def process(options = {})
+    build_data(options)
     build_page
     deinit
   end
@@ -21,31 +20,5 @@ class HTMLFormatter < YAMLFormatter
   def build_page
     render = ERB.new(@template)
     w render.result(binding)
-  end
-
-  private
-
-  def config
-    @data[:config]
-  end
-
-  def results
-    @data[:results]
-  end
-
-  def logs
-    @data[:logs]
-  end
-
-  def groups
-    @data[:groups]
-  end
-
-  def hall_of_fame
-    @data[:hall_of_fame]
-  end
-
-  def version
-    Application::VERSION
   end
 end

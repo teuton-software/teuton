@@ -22,7 +22,7 @@ module Formatter
     end
     formatter = klass.new(report)
     formatter.init(filename)
-    formatter.process
+    formatter.process(options)
   end
 
   def self.get(format)
@@ -41,5 +41,14 @@ module Formatter
       resume_yaml: ResumeYAMLFormatter
     }
     list[format]
+  end
+
+  def self.hide_feedback(report)
+    report2 = report.clone
+    report2.groups.each do |group|
+      group.each do |item|
+        puts item.to_s
+      end
+    end
   end
 end

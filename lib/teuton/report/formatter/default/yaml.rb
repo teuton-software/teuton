@@ -7,8 +7,8 @@ class YAMLFormatter < ArrayFormatter
     @ext = "yaml"
   end
 
-  def process
-    build_data
+  def process(options = {})
+    build_data(options)
     w @data.to_yaml # Write data into ouput file
     deinit
   end

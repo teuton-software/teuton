@@ -7,8 +7,8 @@ class MoodleCSVFormatter < ResumeArrayFormatter
     @data = {}
   end
 
-  def process
-    build_data
+  def process(options = {})
+    build_data(options)
     process_cases
     deinit
   end

@@ -10,11 +10,11 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     @data = {}
   end
 
-  def process
+  def process(options = {})
     rainbow_state = Rainbow.enabled
     Rainbow.enabled = @color
 
-    build_data
+    build_data(options)
     process_config
     process_cases
     process_conn_errors

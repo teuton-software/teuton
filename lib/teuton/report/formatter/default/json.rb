@@ -7,8 +7,8 @@ class JSONFormatter < ArrayFormatter
     @ext = "json"
   end
 
-  def process
-    build_data
+  def process(options = {})
+    build_data(options)
     w @data.to_json # Write data into ouput file
     deinit
   end

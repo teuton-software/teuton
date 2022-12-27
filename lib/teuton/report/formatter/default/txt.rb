@@ -10,11 +10,11 @@ class TXTFormatter < ArrayFormatter
     @data = {}
   end
 
-  def process
+  def process(options = {})
     rainbow_state = Rainbow.enabled
     Rainbow.enabled = @color
 
-    build_data
+    build_data(options)
     process_config
     process_logs
     process_groups
