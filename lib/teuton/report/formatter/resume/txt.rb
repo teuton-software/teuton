@@ -1,6 +1,6 @@
 require "terminal-table"
 require "rainbow"
-require_relative "resume_array_formatter"
+require_relative "array"
 
 class ResumeTXTFormatter < ResumeArrayFormatter
   def initialize(report, color = false)

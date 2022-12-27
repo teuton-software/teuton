@@ -1,4 +1,4 @@
-require_relative "resume/resume_array_formatter"
+require_relative "resume/array"
 
 class MoodleCSVFormatter < ResumeArrayFormatter
   def initialize(report)

@@ -1,4 +1,4 @@
-require_relative "resume_array_formatter"
+require_relative "array"
 
 class ResumeListFormatter < ResumeArrayFormatter
   def initialize(report)

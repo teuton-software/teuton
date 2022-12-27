@@ -1,5 +1,5 @@
 require "erb"
-require_relative "resume_yaml_formatter"
+require_relative "yaml"
 require_relative "../../../application"
 
 class ResumeHTMLFormatter < ResumeYAMLFormatter

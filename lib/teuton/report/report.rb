@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "terminal-table"
 require_relative "../application"
 require_relative "formatter/formatter_factory"
@@ -11,26 +9,13 @@ require_relative "close"
 # * report/show.rb
 # * report/close.rb
 class Report
-  # @!attribute id
-  #   @return [Integer] It is the [Case] number. Zero indicates Resume Report.
   attr_accessor :id, :filename, :output_dir
-  # @!attribute head
-  #   @return [Hash] Report head information.
   attr_accessor :head
-  # @!attribute lines
-  #   @return [Array] Report body information.
   attr_accessor :lines
-  # @!attribute tail
-  #   @return [Hash] Report tail information.
   attr_accessor :tail
-  # @!attribute format
-  #   @return [Symbol] Indicate export format.
   attr_reader :format
-  # @!attribute history
-  #   @return [String] Target results.
   attr_reader :history
-  ##
-  # Class constructor
+
   def initialize(id = "00")
     @id = id
     @filename = "case-#{@id}"
@@ -44,9 +29,6 @@ class Report
     @history = ""
   end
 
-  ##
-  # Export [Case] data to specified format.
-  # @param format [Symbol] Select export format. Default value is :txt.
   def export(format = :txt, options = {})
     @format = format
     filepath = File.join(@output_dir, @filename + "." \

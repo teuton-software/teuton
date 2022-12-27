@@ -1,5 +1,5 @@
 require "json/pure"
-require_relative "resume_array_formatter"
+require_relative "array"
 
 class ResumeJSONFormatter < ResumeArrayFormatter
   def initialize(report)
