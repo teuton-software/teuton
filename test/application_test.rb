@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require "test/unit"
 require_relative "../lib/teuton/application"
 

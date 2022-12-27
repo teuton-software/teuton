@@ -6,7 +6,7 @@ class Report
   attr_accessor :head
   attr_accessor :lines
   attr_accessor :tail
-  attr_reader :format
+  attr_accessor :format
   attr_reader :history
 
   def initialize(id = "00")
@@ -20,6 +20,17 @@ class Report
     # For example: "..F." means: good, good, fail and good
     # I will use this in the future stats manager.
     @history = ""
+  end
+
+  def clone
+    report = Report.new
+    attrs = %i[id filename output_dir head lines tail format]
+    attrs.each do |attr|
+      attr_set = "#{attr}=".to_sym
+      report.send(attr_set, send(attr).clone)
+    end
+
+    report
   end
 
   def export(options)
