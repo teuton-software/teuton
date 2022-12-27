@@ -1,9 +1,10 @@
 require_relative "base_formatter"
+require_relative "../../version"
 
 class XMLFormatter < BaseFormatter
   def process
     tab = "  "
-    w "<teuton version='0.2'>\n"
+    w "<teuton version='#{Teuton::VERSION}'>\n"
     w "#{tab}<head>\n"
     @head.each { |key, value| w "#{tab * 2}<#{key}>#{value}</#{key}>\n" }
     w "#{tab}</head>\n"
@@ -22,7 +23,7 @@ class XMLFormatter < BaseFormatter
       w "#{tab * 3}<check>#{i[:check]}</check>\n"
       w "#{tab * 3}<weigth>#{i[:weight]}</weigth>\n"
       w "#{tab * 2}</line>\n"
-		end
+    end
     w "#{tab}</lines>\n"
     w "#{tab}<tail>\n"
     @tail.each { |key, value| w "#{tab * 2}<#{key}>#{value}</#{key}>\n" }

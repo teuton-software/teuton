@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "erb"
 require_relative "yaml_formatter"
 require_relative "../../application"
@@ -8,7 +6,8 @@ class HTMLFormatter < YAMLFormatter
   def initialize(report)
     super(report)
     @data = {}
-    filepath = File.join(File.dirname(__FILE__), '..', '..', 'files', 'template', 'case.html')
+    basedir = File.join(File.dirname(__FILE__), "..", "..")
+    filepath = File.join(basedir, "files", "template", "case.html")
     @template = File.read(filepath)
   end
 

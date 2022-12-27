@@ -44,6 +44,9 @@ module FormatterFactory
       f = ResumeHTMLFormatter.new(report)
     when :resume_list
       f = ResumeListFormatter.new(report)
+    when :resume_xml
+      # TODO
+      f = ResumeListFormatter.new(report)
     when :resume_yaml
       f = ResumeYAMLFormatter.new(report)
     else
@@ -62,6 +65,7 @@ module FormatterFactory
       json: "json",
       list: "txt",
       txt: "txt",
+      xml: "xml",
       yaml: "yaml",
       resume_colored_text: "txt",
       resume_csv: "csv",
@@ -69,6 +73,7 @@ module FormatterFactory
       resume_html: "html",
       resume_list: "txt",
       resume_txt: "txt",
+      resume_xml: "xml",
       resume_yaml: "yaml"
     }
     return format.to_s if data[format].nil?
