@@ -24,6 +24,7 @@ Learn how to use Teuton language to write your own tests:
 - [14 - Alias](14-alias.md)
 - 15 - Macros
 - [16 - Exit codes](16-exit_codes.md)
+- [17 - Hide feedback](17-hide-feedback.md)
 - [Videos](videos.md)
 
 # Examples

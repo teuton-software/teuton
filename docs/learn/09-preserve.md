@@ -23,7 +23,7 @@ end
 
 ## Result
 
-Example, executing `teuton run example/learn-09-preserve` twice:
+Example, executing `teuton run example/09-preserve` twice:
 
 ```
 var
