@@ -22,7 +22,7 @@ Teuton allow us:
 
 Install Ruby and then:
 
-```
+```console
 gem install teuton
 ```
 
@@ -32,7 +32,7 @@ gem install teuton
 
 Executing `teuton` command to run example test:
 
-```
+```console
 ❯ teuton run examples/01-target
 
 CASE RESULTS
