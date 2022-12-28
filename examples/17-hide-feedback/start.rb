@@ -6,7 +6,7 @@ end
 
 play do
   show
-  export format: "txt", feedback: false
   export format: "yaml", feedback: false
+  export format: "txt", feedback: true
   export format: "html", feedback: false
 end
