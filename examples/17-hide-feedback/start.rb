@@ -1,4 +1,4 @@
-group "Preserve output reports" do
+group "Hide feedback from reports" do
   target "Exits user root"
   run "id root"
   expect "root"
