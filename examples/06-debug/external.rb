@@ -1,5 +1,5 @@
 group "Windows: external configuration" do
-  target "ENsure connectivity with #{gett(:windows1_ip)} is ok"
+  target "Ensure connectivity with #{gett(:windows1_ip)} is ok"
   run "ping #{get(:windows1_ip)} -c 1"
   result.debug
   expect_one "0% packet loss"
