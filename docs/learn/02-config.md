@@ -22,7 +22,7 @@ cases:
 - tt_members: Student-name-1
   username: root
 - tt_members: Student-name-2
-  username: vargas
+  username: david
 ```
 
 ## Definition section
