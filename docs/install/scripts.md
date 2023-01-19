@@ -22,7 +22,7 @@
 Run this command as `root` user:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/devel/install/linux/linux_t-node_install.sh | bash
+wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/install/linux/linux_t-node_install.sh | bash
 ```
 
 ## 1.2 T-NODE: Windows installation
@@ -34,7 +34,7 @@ Requirements:
 Run this command on **PowerShell (PS)** as `Administrator` user:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/devel/install/windows/windows_t-node_install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/install/windows/windows_t-node_install.ps1'))
 ```
 
 ## 1.3 T-NODE: Mac OS X installation
@@ -42,20 +42,20 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 Run this command as admin user (member of `admin` group):
 
 ```bash
-curl -sL https://raw.githubusercontent.com/teuton-software/teuton/devel/install/mac/macosx_t-node_install.sh | bash
+curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/install/mac/macosx_t-node_install.sh | bash
 ```
 
 ---
 # 2. S-NODE installation
 
-* **S-node**: Host where SSH server is installed. This hosts are monitotized by T-NODE host.
+* **S-node**: Host where SSH server is installed. This hosts are monitorized by T-NODE host.
 
 ## 2.1 S-NODE: GNU/Linux installation
 
 Run this command as `root` user:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/devel/install/linux/linux_s-node_install.sh | bash
+wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/install/linux/linux_s-node_install.sh | bash
 ```
 
 ## 2.2 S-NODE: Windows installation
@@ -67,7 +67,7 @@ Requirements:
 Run this command on **PowerShell (PS)** as `Administrator` user:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/devel/install/windows/windows_s-node_install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/install/windows/windows_s-node_install.ps1'))
 ```
 
 ## 2.3 S-NODE: Mac OS X installation
@@ -75,7 +75,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 Run this command as `root` user:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/teuton-software/teuton/devel/install/mac/macosx_s-node_install.sh | bash
+curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/install/mac/macosx_s-node_install.sh | bash
 ```
 
 ---
