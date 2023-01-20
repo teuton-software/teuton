@@ -6,8 +6,8 @@ There are 2 types of nodes/hosts:
 
 | ID | Software | Description |
 | -- | -------- | ----------- |
-| **T-node** | [Teuton installation](t-node.md) | Host where Teuton software is installed. A T-NODE monitors several S-NODE hosts |
-| **S-node** | [SSH server installation](s-node.md) | Host where SSH server is installed. This hosts are monitotized by T-NODE host |
+| **T-node** | [Teuton installation](t-node.md) | T-NODE host monitors one or severals S-NODE hosts |
+| **S-node** | [SSH server installation](s-node.md) | S-NODE hosts are monitorized by T-NODE host |
 
 Read [modes of use](modes_of_use.md) to know more about differents T-NODE/S-NODE schemes.
 
