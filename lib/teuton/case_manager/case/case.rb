@@ -42,6 +42,7 @@ class Case
 
     # Define Case Report
     @report = Report.new(@id)
+    # TODO: Move folder creation from case to parent classes?
     @report.output_dir = File.join("var", @config.global[:tt_testname])
     ensure_dir @report.output_dir
 

@@ -47,10 +47,12 @@ class CaseManager
   # @param args (Hash) Export options
   def export(args = {})
     if args.class != Hash
-      puts "[ERROR] CaseManager#export: Argument error!"
-      puts "  Source : export #{args} <#{args.class}>"
-      puts "  Usage  : export format: 'txt'"
-      raise "[ERROR] CaseManager#export: Argument error!"
+      puts Rainbow("[ERROR] Argument error with 'export'!").red
+      puts Rainbow("  Code : CaseManager#export").red
+      puts Rainbow("  Line : export #{args}").red
+      puts Rainbow("  Use  : export format: 'txt'").red
+      puts ""
+      exit 1
     end
     ExportManager.run(@report, @cases, args)
   end
