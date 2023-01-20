@@ -1,18 +1,17 @@
 [<< back](README.md)
 
-# Example: 01-target
+# Example: target
 
-Let's learn how to create our first target.
-A target is a feature you want to measure or check.
-
-1. [Definition section](#definition-section)
-2. [Execution section](#execution-section)
-3. [Run test](#run-test)
-4. [Output reports](#output-reports)
+A target is a feature you want to check.
 
 ## Definition section
 
-Test definition section (Group):
+Test definition section (`group`):
+
+* **target**: Description of the element to be tested.
+* **run**: Execute a command `id david` on localhost.
+* **expect**: Ensure the result contains expected value.
+
 ```ruby
 group "Learn about targets" do
 
@@ -23,16 +22,14 @@ group "Learn about targets" do
 end
 ```
 
-Define targets using these lines:
-* **target**: Description of the element to be tested.
-* **run**: Execute a command `id david` on localhost.
-* **expect**: Ensure the result contains expected value.
-
 > In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
 
 ## Execution section
 
-Test execution section (Play):
+Test execution section (`play`):
+
+* **show**: display process information on screen.
+* **export**: build output reports.
 
 ```ruby
 play do
@@ -41,15 +38,13 @@ play do
 end
 ```
 
-DSL keywords:
-* **show**: display process information on screen.
-* **export**: build output reports.
+## Running the test
 
-## Run test
+Execute this command to run the test:
 
-**Let's see example**: Executing ` teuton run examples/01-target` command.
+```console
+> teuton run examples/01-target
 
-```bash
 CASE RESULTS
 +------+-----------+-------+-------+
 | CASE | MEMBERS   | GRADE | STATE |
@@ -59,9 +54,9 @@ CASE RESULTS
 
 ## Output reports
 
-**Output directory**: reports created into `var/01-target/` output directory.
+Report files created into `var/01-target/`:
 
-```bash
+```console
 var
 └── 01-target
     ├── case-01.txt
@@ -69,9 +64,11 @@ var
     └── resume.txt
 ```
 
-**Let's see example**: Executing `more var/01-target/case-01.txt` command.
+Let's see one report:
 
-```bash
+```
+> more var/01-target/case-01.txt
+
 CONFIGURATION
 +-------------+-----------+
 | tt_members  | anonymous |

@@ -1,19 +1,16 @@
 [<< back](README.md)
 
-# Example: 02-config
+# Example: config
 
-* Learn how to use config file.
-* Use params defined into config files.
-* It's good idea save variable data separated into external config file.
+_It's good idea save variables into config file._
 
-1. [Config file](#config-file).
-2. [Definition section](#definition-section).
-3. [Execution section](#execution-section).
-4. [Results](#results).
+Learn:
+* How to use config file.
+* How to use params defined into config files.
 
 ## Config file
 
-By default, `config.yaml` is our config file. Let's an example:
+By default, `config.yaml` is our default config file. Example:
 
 ```yaml
 ---
@@ -25,9 +22,11 @@ cases:
   username: david
 ```
 
+> **How to choose another config file?** Read this [document](../commands/example_run.md#3-choosing-config-file).
+
 ## Definition section
 
-By default, `start.rb` it's our main execution file.
+By default, `start.rb` it's our main execution file. Example:
 
 ```ruby
 group "Reading params from config file" do
@@ -39,15 +38,14 @@ group "Reading params from config file" do
 end
 ```
 
-In this section we define targets using keywords: target, run, expect and get.
+In this section, we define targets using `target`, `run`, `expect` and `get` keywords.
 
-* **get** keyword is used to read params from configuracion file. It's posible personalize tests with diferent values for every case.
-
-> NOTE: In this example, we assume GNU/Linux as localhost's OS.
+* **get** keyword read params from configuration file. It's posible personalize tests with diferent values for every case.
 
 ## Execution section
 
 Main execution block:
+
 ```ruby
 play do
   show
@@ -55,9 +53,9 @@ play do
 end
 ```
 
-Runing this example and see `show` keyword output:
+This example run test and show (`show` keyword) output on screen:
 
-```bash
+```console
 > teuton run examples/02-config
 
 CASE RESULTS
@@ -117,5 +115,3 @@ RESULTS
 | grade        | 100                       |
 +--------------+---------------------------+
 ```
-
-> **How to choose another config file?** Read this [document](../commands/example_run.md#3-choosing-config-file).
