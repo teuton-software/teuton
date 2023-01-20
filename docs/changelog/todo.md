@@ -22,3 +22,4 @@ Internal changes:
 * Laboratory to Checker
 * Colorize to Rainbow
 * Unify messages ERROR, INFO, WARN. etc
+* Create SendManager as ExportManager?
