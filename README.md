@@ -51,11 +51,12 @@ CASE RESULTS
 
 # Documentation
 
-* [Blogs and videos](docs/videos.md)
-* [Learning](docs/learn/README.md)
+* [Learn](docs/learn/README.md)
 * [Commands](docs/commands/README.md)
 * [Language reference](docs/dsl/README.md)
 * [Installation](docs/install/README.md)
+
+> [Blogs and videos](docs/videos.md)
 
 # Contact
 
