@@ -1,13 +1,10 @@
 
 [<< back](../../README.md)
 
-* [Learning](#learning)
-* [Examples](#examples)
-* [Videos](#videos)
+# Learn
 
-# Learning
+Learn how write your own Teuton tests:
 
-Learn how to use Teuton language to write your own tests:
 - [01 - Target](01-target.md)
 - [02 - Config file](02-config.md)
 - [03 - Remote hosts](03-remote_hosts.md)
@@ -25,14 +22,8 @@ Learn how to use Teuton language to write your own tests:
 - 15 - Macros
 - [16 - Exit codes](16-exit_codes.md)
 - [17 - Hide feedback](17-hide-feedback.md)
-- [Videos](videos.md)
 
-# Examples
-
-More examples
-* Let's see examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
-* Ask us by email at `teuton.software@protonmail.com`.
-* [ES - CHAPI19: Teuton demo](https://github.com/dvarrui/proyectos-de-ejemplo/tree/master/charlas/teuton)
+Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
 
 # Videos
 
@@ -41,6 +32,7 @@ But if you want to see Spanish videos, here you are:
 
 Teuton (v2.0):
 * [ES - CHAPI19: Charla Teuton](https://youtu.be/KFWQDfNAFxI?t=12221)
+* [ES - CHAPI19: Teuton demo](https://github.com/dvarrui/proyectos-de-ejemplo/tree/master/charlas/teuton)
 
 Sysadmingame (Teuton v1.0)
 * [Sysadmingame (1 de 3): Instalación del programa](https://youtu.be/dnyMq9_KDco)
