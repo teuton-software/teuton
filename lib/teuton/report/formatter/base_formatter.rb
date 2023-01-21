@@ -1,6 +1,6 @@
 class BaseFormatter
   attr_reader :ext
-  
+
   def initialize(report)
     @head = report.head.clone
     @lines = report.lines.clone
