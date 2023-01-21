@@ -1,10 +1,6 @@
 [<< back](../../README.md)
 
-1. [Description](#description)
-2. [Usage](#usage)
-3. [Parameters](#parameters)
-
-## Description
+# Show
 
 When all tests are finished, the `show` command displays information on the screen about the final results.
 

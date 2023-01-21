@@ -1,15 +1,13 @@
 [<< back](../README.md)
 
-1. [Description](#description)
-2. [Usage](#usage)
-3. [Alias](#alias)
-4. [Example](#example)
+# Run
 
-## Description
+* [Local execution](#local-run)
+* [Remote execution](#remote-run)
+
+# Local run
 
 Execute command on localhost and save output into result object.
-
-## Usage
 
 ```ruby
 run "id COMMAND"
@@ -21,6 +19,14 @@ In fact it's the same as doing next:
 
 ```ruby
 run "COMMAND", on: :localhost
+```
+
+```ruby
+run "COMMAND", on: 127.0.0.1
+```
+
+```ruby
+run "COMMAND", on: 'localhost'
 ```
 
 ## Example

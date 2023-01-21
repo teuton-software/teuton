@@ -1,49 +1,36 @@
 [<< back](../../README.md)
 
-# Teuton language
+# Language keywords
 
-To define and run our activity test we use the next DSL keywords:
-1. [Definition instructions](#definition-instructions)
-2. [Execution instructions](#execution-instructions)
-3. [Setting instructions](#setting-instructions)
-4. [Ruby language](#ruby-language)
+To define our targets, and to run our tests, we use the next DSL keywords:
 
-## Definition instructions
+Types:
 
-These are the main DSL key words, usefull to define items to be evaluated.
+* Definition: DSL keywords to define targets/items to be checked/evaluated.
+* Execution: DSL keywords used to specify accions related with reports and showing information.
+* Settings: DSL keyword to read and write config file.
 
-| DSL                            | Description |
-| :----------------------------- | :---------- |
-| [group](definition/group.md)   | Define a group of items to check. |
-| [target](definition/target.md) | Define a target. This is the item to be checked. |
-| Remote [run](definition/run_remote.md)| Execute command into remote host. |
-| Local [run](definition/run_local.md)  | Execute command into local host. |
-| [result](definition/result.md) | Contain the output of previous `run` order. |
-| [expect](definition/expect.md) | Check the obtained result with the expected value. |
-
-## Execution instructions
-
-DSL key word related with reports and information.
-
-| DSL                           | Descripción                              |
-| :---------------------------- | :--------------------------------------- |
-| [play](execution/play.md)     | Run the challenge.                       |
-| [show](execution/show.md)     | Show the results on screen.              |
-| [export](execution/export.md) | Make reports with the results of every evaluation. |
-| [send](execution/send.md)     | Send copy of report file to remote host. |
-
-## Setting instructions
-
-| DSL                   | Descripción                                    |
-| :-------------------- | :--------------------------------------------- |
-| [get](setting/get.md) | Read param value from configuration file.      |
-| [set](setting/set.md) | Set new param value for running configuration. |
+| DSL                 | Type       | Descripción                       |
+| :------------------ | :--------: | :-------------------------------- |
+| [group](group.md)   | Definition | Define a group of items to check. |
+| [target](target.md) | Definition | Define a target. This is the item to be checked. |
+| Remote [run](run_remote.md)| Definition | Execute command into remote host. |
+| Local [run](run_local.md)  | Definition | Execute command into local host. |
+| [result](result.md) | Definition | Contain the output of previous `run` order. |
+| [expect](expect.md) | Definition | Check the obtained result with the expected value. |
+| [play](play.md)     | Execution  | Run the challenge.                       |
+| [show](show.md)     | Execution  | Show the results on screen.              |
+| [export](export.md) | Execution  | Make reports with the results of every evaluation. |
+| [send](send.md)     | Execution  | Send copy of report file to remote host. |
+| [get](get.md)       | Settings   | Read param value from configuration file.      |
+| [set](set.md)       | Settings   | Set new param value for running configuration. |
 
 ## Ruby language
 
 It is possible to use ruby language programming structures, in the definition of our test (iterators, arrays, etc.). Useful when we have repetitive lines, etc.
 
-Example, how to create 4 target evaluation using an Array:
+Example, how to create 4 target evaluation using a List/Array:
+
 ```ruby
 users = ['Obiwan', 'Yoda', 'Maul', 'Vader']
 
