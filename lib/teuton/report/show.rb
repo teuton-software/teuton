@@ -1,4 +1,5 @@
 require "rainbow"
+require "terminal-table"
 require_relative "../application"
 
 class ShowReport
