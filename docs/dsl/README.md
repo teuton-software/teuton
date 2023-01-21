@@ -6,16 +6,15 @@ To define our targets, and to run our tests, we use the next DSL keywords:
 
 Types:
 
-* Definition: DSL keywords to define targets/items to be checked/evaluated.
-* Execution: DSL keywords used to specify accions related with reports and showing information.
-* Settings: DSL keyword to read and write config file.
+* **Definition DSL**: keywords to define targets/items to be checked/evaluated.
+* **Execution DSL**: keywords used to specify accions related with reports and showing information.
+* **Settings DSL**: keyword to read and write config file.
 
 | DSL                 | Type       | Descripción                       |
 | :------------------ | :--------: | :-------------------------------- |
 | [group](group.md)   | Definition | Define a group of items to check. |
 | [target](target.md) | Definition | Define a target. This is the item to be checked. |
-| Remote [run](run_remote.md)| Definition | Execute command into remote host. |
-| Local [run](run_local.md)  | Definition | Execute command into local host. |
+| [run](run.md)| Definition | Execute command into remote host or localhost. |
 | [result](result.md) | Definition | Contain the output of previous `run` order. |
 | [expect](expect.md) | Definition | Check the obtained result with the expected value. |
 | [play](play.md)     | Execution  | Run the challenge.                       |

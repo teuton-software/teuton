@@ -1,15 +1,8 @@
 [<< back](../../README.md)
 
-1. [Description](#description)
-2. [Usage](#usage)
-3. [Parameters](#parameters)
-4. [Send several reports](#send-several-reports)
-
-## Description
+# send
 
 `send` is used to copy Teuton reports into remote machines.
-
-## Usage
 
 ```ruby
 start do
