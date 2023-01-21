@@ -10,32 +10,34 @@ Types:
 * **Execution DSL**: keywords used to specify accions related with reports and showing information.
 * **Settings DSL**: keyword to read and write config file.
 
+## Keyword table
+
 | DSL                 | Type       | Descripción                       |
 | :------------------ | :--------: | :-------------------------------- |
-| [group](group.md)   | Definition | Define a group of items to check. |
-| [target](target.md) | Definition | Define a target. This is the item to be checked. |
-| [run](run.md)| Definition | Execute command into remote host or localhost. |
-| [result](result.md) | Definition | Contain the output of previous `run` order. |
 | [expect](expect.md) | Definition | Check the obtained result with the expected value. |
-| [play](play.md)     | Execution  | Run the challenge.                       |
-| [show](show.md)     | Execution  | Show the results on screen.              |
 | [export](export.md) | Execution  | Make reports with the results of every evaluation. |
+| [get](get.md)       | Settings   | Read param value from configuration file. |
+| [group](group.md)   | Definition | Define a group of items to check. |
+| [play](play.md)     | Execution  | Run the challenge.                |
+| [result](result.md) | Definition | Contain the output of previous `run` order. |
+| [run](run.md)| Definition | Execute command into remote host or localhost. |
+| [target](target.md) | Definition | Define a target. This is the item to be checked. |
 | [send](send.md)     | Execution  | Send copy of report file to remote host. |
-| [get](get.md)       | Settings   | Read param value from configuration file.      |
 | [set](set.md)       | Settings   | Set new param value for running configuration. |
+| [show](show.md)     | Execution  | Show the results on screen.       |
 
-## Ruby language
+### Programming language
 
-It is possible to use ruby language programming structures, in the definition of our test (iterators, arrays, etc.). Useful when we have repetitive lines, etc.
+It is possible to use Ruby language programming into Teuton tests. For example, in the definition of our test (iterators, arrays, etc.). Useful when we have repetitive lines, etc.
 
 Example, how to create 4 target evaluation using a List/Array:
 
 ```ruby
 users = ['Obiwan', 'Yoda', 'Maul', 'Vader']
 
-users.each do |user|
-  target "Exist user #{user}"
-  run "id #{user}", on: :host1
-  expect_one user
+for name in users do
+  target "Exist user #{name}"
+  run "id #{name}", on: :host1
+  expect_one name
 end
 ```
