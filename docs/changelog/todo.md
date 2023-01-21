@@ -23,3 +23,4 @@ Internal changes:
 * Colorize to Rainbow
 * Unify messages ERROR, INFO, WARN. etc
 * Create SendManager as ExportManager?
+* Add tt_label as alias of tt_members

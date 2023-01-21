@@ -22,6 +22,7 @@ module Formatter
     end
     formatter = klass.new(report)
     formatter.init(filename)
+    report.format = formatter.ext
     formatter.process(options)
   end
 
