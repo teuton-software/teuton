@@ -2,6 +2,13 @@ require "rainbow"
 require "terminal-table"
 require_relative "../application"
 
+# | Verbosity level | Description |
+# | :-------------: | ----------- |
+# | 0               | No output   |
+# | 1               | Default output messages |
+# | 2               | Show hall of fame |
+# | 3               | Show final values |
+# | 4               | Show Initial values |
 class ShowReport
   def initialize(report)
     @report = report
