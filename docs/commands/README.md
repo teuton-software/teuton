@@ -11,8 +11,6 @@ Available command functions:
 
 # 1. Show help
 
-Usage:
-
 ```bash
 teuton
 ```
@@ -32,13 +30,12 @@ Commands:
 ```
 
 Alias:
+
 * `teuton h`
 * `teuton -h`
 * `teuton --help`
 
 # 2. Show version
-
-Usage:
 
 ```bash
 teuton version
@@ -52,23 +49,22 @@ teuton (version 2.2.0)
 ```
 
 Alias:
+
 * `teuton v`
 * `teuton -v`
 * `teuton --version`
 
 # 3. Create new test
 
-Usage:
+Create teuton test skeleton.
 
 ```bash
 teuton new foo
 ```
 
-Description: Create teuton test skeleton.
-
 Example:
 
-```bash
+```console
 > teuton new foo
 
 [INFO] Creating foo project skeleton
@@ -86,15 +82,14 @@ This command will create the next structure:
 | foo/config.yaml | YAML configuration file |
 
 Alias:
+
 * `teuton n foo`
 * `teuton -n foo`
 * `teuton --new foo`
 
 # 4. Check teuton test
 
-Usage:
-
-```bash
+```console
 teuton check DIRPATH
 ```
 
@@ -110,13 +105,12 @@ Description: this command check teuton test and config files located into DIRPAT
 | teuton check path/to/file/foo.rb --cname=demo | Test content of foo.rb and demo.yaml files.|
 
 Alias:
+
 * `teuton c foo`
 * `teuton -c foo`
 * `teuton --check foo`
 
 # 5. Run teuton test
-
-Usage:
 
 ```bash
 teuton run DIRPATH
@@ -127,17 +121,14 @@ Description: this command run teuton test located into DIRPATH folder.
 [Example](example_run.md)
 
 Alias:
+
 * `teuton foo`
 
 # 6. Show README
 
-Usage:
-
 ```bash
 teuton readme DIRPATH
 ```
-
-Description:
 
 Read test and config files content, and display information about
 what kind of problem/exercise it is going to be evaluated. The students need this

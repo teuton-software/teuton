@@ -7,55 +7,33 @@
 
 # 1. Run test
 
-Description: Running Teuton test located into `example/learn-01-target` folder.
-
-Usage:
+Running Teuton test located into `example/01-target` folder.
 
 ```bash
-teuton run example/learn-01-target
+teuton run example/01-target
 ```
 
 Example:
 
 ```bash
-> teuton run examples/learn-01-target
-
-==================================
-Executing [teuton] (version 2.1.9)
-[INFO] Running in parallel (2020-04-19 14:09:41 +0100)
-.
-[INFO] Duration = 0.004    (2020-04-19 14:09:41 +0100)
-==================================
-
-INITIAL CONFIGURATIONS
-+---------------+-------------------------------------------+
-| tt_title      | Executing [teuton] (version 2.1.9)        |
-| tt_scriptname | examples/learn-01-target/start.rb         |
-| tt_configfile | examples/learn-01-target/config.yaml      |
-| tt_pwd        | /mnt/home/leap/proy/repos/teuton.d/teuton |
-| tt_testname   | learn-01-target                           |
-| tt_sequence   | false                                     |
-+---------------+-------------------------------------------+
+------------------------------------
+Started at 2023-01-21 13:32:24 +0000
+F
+Finished in 0.004 seconds
+------------------------------------
 
 CASE RESULTS
 +------+-----------+-------+-------+
 | CASE | MEMBERS   | GRADE | STATE |
-| 01   | anonymous | 100.0 |       |
+| 01   | anonymous | 0.0   | ?     |
 +------+-----------+-------+-------+
-
-FINAL VALUES
-+-------------+---------------------------+
-| start_time  | 2020-04-19 14:09:41 +0100 |
-| finish_time | 2020-04-19 14:09:41 +0100 |
-| duration    | 0.004231917               |
-+-------------+---------------------------+
 ```
 
 # 2. Command options
 
-Usage: `teuton help run`
-
 ```
+> teuton help run
+
 Usage:
   teuton [run] [OPTIONS] DIRECTORY
 

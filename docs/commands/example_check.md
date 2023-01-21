@@ -2,18 +2,18 @@
 
 # Check Teuton Test
 
-Objective: Revise Teuton test located into `example\learn-01-target`.
+Objective: Revise Teuton test located into `example\01-target`.
 
 Usage:
 
 ```
-teuton check examples/learn-01-target
+teuton check examples/01-target
 ```
 
 Example:
 
 ```bash
-> teuton check examples/learn-01-target
+❯ teuton check examples/01-target
 
 +----------------------------+
 | GROUP: Learn about targets |
@@ -39,7 +39,7 @@ Example:
 +----------------------+
 | Revising CONFIG file |
 +----------------------+
-[WARN] File /mnt/home/leap/proy/repos/teuton.d/teuton/examples/learn-01-target/config.yaml not found!
+[WARN] File .../examples/01-target/config.yaml not found!
 [INFO] Recomended content:
 ---
 :global:

@@ -70,3 +70,5 @@ CASE RESULTS
 1. Commit your changes (`git commit -am 'Add some feature'`)
 1. Push to the branch (`git push origin my-new-feature`)
 1. Create new Pull Request.
+
+You can also [create issues](https://github.com/teuton-software/teuton/issues) with your requests/incidences/suggestions.
