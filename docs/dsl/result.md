@@ -1,11 +1,6 @@
 [<< back](../README.md)
 
-1. [Description](#description)
-2. [Example 1](#example-1)
-3. [Example 2](#example-2)
-4. [Functions](#functions)
-
-## Description
+# result
 
 **result** object saves the output from previous execution.
 It is usefull to build advanced `expect result...` sentences.

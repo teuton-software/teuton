@@ -30,9 +30,7 @@ group "Reading params from config file" do
 end
 ```
 
-Use `get` keyword to customize your targets.
-
-* **get** keyword read params from configuration file. It's posible personalize tests with diferent values for every case.
+* [get](../dsl/get.md) keyword read params from configuration file. It's posible personalize tests with diferent values for every case.
 
 ## Example
 

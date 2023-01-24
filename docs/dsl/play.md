@@ -1,13 +1,8 @@
 [<< back](../../README.md)
 
-1. [Description](#description)
-2. [Usage](#usage)
-
-## Description
+# play
 
 DSL keyword that starts the execution of all targets/goals (defined into groups). We put this instruction at the end of every script, so it begin running the tests over the machines.
-
-## Usage
 
 ```ruby
 play do

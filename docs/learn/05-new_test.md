@@ -1,7 +1,7 @@
 
 [<< back](README.md)
 
-# Example: 04-new_test
+# new test
 
 Steps:
 1. Create skeleton

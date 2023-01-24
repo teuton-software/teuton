@@ -1,13 +1,8 @@
 [<< back](../README.md)
 
-1. [Description](#description)
-2. [Usage](#usage)
+# group
 
-## Description
-
-Groups targets/goals.
-
-## Usage
+Groups targets.
 
 ```ruby
 group "Group name" do

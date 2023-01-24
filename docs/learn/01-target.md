@@ -2,13 +2,13 @@
 
 # target
 
-A **target** is a feature you want to check. Targets are defined into `group` sections and every evaluation has 3 parts:
+A [target](../dsl/target.md) is a feature you want to check. Targets are defined into `group` sections and every evaluation has 3 parts:
 
 ## Target definition
 
-* **target**: Description of the element to be tested.
-* **run**: Execute a command `id david` on localhost.
-* **expect**: Verify that the result contains expected value.
+* [target](dsl/target.md): Description of the element to be tested.
+* [run](../dsl/run.md): Execute a command `id david` on localhost.
+* [expect](../&dsl/expect.md): Verify that the result contains expected value.
 
 ```ruby
 group "Learn about targets" do
@@ -26,8 +26,8 @@ end
 
 When we run this teuton test, the execution section (`play`) is processed. This seccion now contains this:
 
-* **show**: display process information on screen.
-* **export**: build output reports.
+* [show](../dsl/show.md): display process information on screen.
+* [export](../dsl/export.md): build output reports.
 
 ```ruby
 play do

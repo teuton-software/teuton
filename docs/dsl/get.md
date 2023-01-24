@@ -1,22 +1,16 @@
 [<< back](../README.md)
 
-1. [Description](#description)
-2. [Usage](#usage)
-3. [Examples](#examples)
+# get
 
-## Description
-
-`get` read param value from configuration file.
-
-## Usage
+`get` reads param value from configuration file.
 
 ```ruby
 get(PARAM)
 ```
 
-## Examples
+## Example
 
-**Reading example**: Suppose we have this `config.yaml` content:
+**Reading Example**. Suppose we have this `config.yaml` content:
 
 ```yaml
 ---

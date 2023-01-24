@@ -1,10 +1,8 @@
 [<< back](../../README.md)
 
-# Show
+# show
 
 When all tests are finished, the `show` command displays information on the screen about the final results.
-
-## Usage
 
 ```ruby
 start do
@@ -12,21 +10,18 @@ start do
 end
 ```
 
-or
-
-```ruby
-start do
-  show verbose: 1
-end
-```
-
-## Parameters
+## Verbosity
 
 | Action               | Description                       |
 | -------------------- | --------------------------------- |
 | `show`               | Same as `show level: 0` (Default) |
 | `show verbose: NUMBER` | NUMBER is the value of the verbose level |
 
+```ruby
+start do
+  show verbose: 1
+end
+```
 
 | Verbosity level | Description |
 | :-------------: | ----------- |
