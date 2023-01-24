@@ -1,24 +1,8 @@
 [<< back](../README.md)
 
-1. [Description](#description)
-2. [Usage](#usage)
-3. [Example](#example)
-4. [Basic](#basic)
-5. [Advanced](#advanced)
-
-## Description
+# expect
 
 Compare the obtained result with the expected one. This comparation process is registered into final report.
-
-## Usage
-
-```ruby
-target 'Exist user obiwan'
-run 'cat /etc/passwd'
-expect 'root'
-```
-
-Use `expect` keyword to check output (from previous execution).
 
 ## Example
 
@@ -27,7 +11,7 @@ Let's see some examples:
 ```ruby
 target 'Exist user obiwan'
 run 'id obiwan'
-expect 'obiwan' # Expect previous command output contains obiwan text
+expect 'obiwan' # Expect previous run command output contains obiwan text
 ```
 
 ## Basic

@@ -66,25 +66,18 @@ goto :hostID, :exec => "COMMAND"
 
 Execute `id obiwan` comand into remote host `:linux1`.
 
-```Ruby
+```ruby
 run "id obiwan", on: :linux1
+```
+
+## Deprecated
+
+```ruby
 run "id obiwan", :on => :linux1
 on :linux1, run: "id obiwan"
 on :linux1, :run => "id obiwan"
 goto :linux1, exec: "id obiwan"
 goto :linux1, :exec => "id obiwan"
-```
-
-Execute `id yoda` command into `localhost`.
-
-```Ruby
-run "id yoda"
-run "id yoda", on: :localhost
-run "id yoda", :on => :localhost
-on :localhost, run: "id yoda"
-on :localhost, :run => "id yoda"
-goto :localhost, :exec => "id yoda"
-goto :localhost, :execute => "id yoda"
 ```
 
 ## Protocol
