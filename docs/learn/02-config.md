@@ -1,16 +1,10 @@
 [<< back](README.md)
 
-# Example: config
+# config
 
-_It's good idea save variables into config file._
+_It's good idea save dinamic data into config file._
 
-Learn:
-* How to use config file.
-* How to use params defined into config files.
-
-## Config file
-
-By default, `config.yaml` is our default config file. Example:
+By default, `config.yaml` is our config file. Example:
 
 ```yaml
 ---
@@ -24,8 +18,6 @@ cases:
 
 > **How to choose another config file?** Read this [document](../commands/example_run.md#3-choosing-config-file).
 
-## Definition section
-
 By default, `start.rb` it's our main execution file. Example:
 
 ```ruby
@@ -38,22 +30,11 @@ group "Reading params from config file" do
 end
 ```
 
-In this section, we define targets using `target`, `run`, `expect` and `get` keywords.
+Use `get` keyword to customize your targets.
 
 * **get** keyword read params from configuration file. It's posible personalize tests with diferent values for every case.
 
-## Execution section
-
-Main execution block:
-
-```ruby
-play do
-  show
-  export
-end
-```
-
-This example run test and show (`show` keyword) output on screen:
+## Example
 
 ```console
 > teuton run examples/02-config
@@ -66,8 +47,6 @@ CASE RESULTS
 +------+----------------+-------+-------+
 ```
 
-## Results
-
 Output reports are saved into `var/02-config/` directory. Detail output report is created for every case.
 
 ```
@@ -78,7 +57,7 @@ var/02-config
 └── resume.txt
 ```
 
-Let's see `export` keyword output for case 01.
+Let's see case 01 report.
 
 ```
 > more var/02-config/case-01.txt

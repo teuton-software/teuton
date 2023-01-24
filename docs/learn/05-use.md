@@ -1,19 +1,12 @@
 [<< back](README.md)
 
-# Example: 05-use
+# use
 
-Learn how to:
-* Organize huge amount of groups/targets into several files.
-* Checking Windows OS infrastructure (host1).
+`use` keyword allow us organize huge amount of groups/targets into several files.
 
-1. [Tree directory](#tree-directory)
-2. [Execution section](#execution-section)
-3. [Users file](#users-file)
-4. [Network file](#network-file)
+## Example
 
-## Tree directory
-
-This example has more files:
+> This example requires Windows OS on remote machine.
 
 ```bash
 > tree example/04-use
@@ -26,13 +19,10 @@ example/04-require
 └── users.rb
 ```
 
-## Execution section
-
-Previous `start.rb` file is now splited in: start.rb, users.rb and network.rb.
-
-Let's see current `start.rb` file:
+`start.rb` file is now splited in: start.rb, users.rb and network.rb.
 
 ```ruby
+# File: start.rb
 use 'users'
 use 'network'
 
@@ -42,15 +32,14 @@ play do
 end
 ```
 
-* `use`, indicates external rb file that will be included/imported into main rb file. It's a good idea to organize project files, when the number of groups/targets is high.
+* `use`, indicates that we are using an external file that will be imported into our start.rb file.
 
-## Users file
+> It's a good idea to organize project files, when the number of groups/targets is high.
 
-> Require Windows OS on remote machine.
-
-Let's see `users.rb` file
 
 ```ruby
+# File: users.rb
+
 group "Use file: User configuration" do
 
   target "Create user #{gett(:username)}"
@@ -60,13 +49,9 @@ group "Use file: User configuration" do
 end
 ```
 
-## Network file
-
-> Require Windows OS on remote machine.
-
-Let's see `network.rb` file:
-
 ```ruby
+# File: network.rb
+
 group "Use file: Network configuracion" do
 
   target "Update computer name with #{gett(:host1_hostname)}"

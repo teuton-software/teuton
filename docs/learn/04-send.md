@@ -62,6 +62,26 @@ end
 
 > NOTE: This example requires Windows OS on remote machine (host1).
 
+## Execution section
+
+```ruby
+play do
+  show
+  # export using other output formats
+  export format: :txt
+  export format: :html
+  send copy_to: :host1
+end
+```
+
+* `show`, show process log on screen.
+* `export format: :txt`, create output reports files into `var/learn-03-remote-host/` directory using `txt` format.
+* `export format: :html`, create output reports into `var/learn-03-remote-host/` directory using `html` format.
+
+> Several output formats available: txt, colored_text, html, json and yaml.
+
+* `send copy_to: :host1` keyword copy output report into remote machine (host1).
+
 ## Screen output
 
 ```
@@ -86,9 +106,12 @@ CONN ERRORS
 ```
 var
 └── 03-remote-hosts
+    ├── case-01.json
     ├── case-01.txt
+    ├── case-03.json
     ├── case-03.txt
     ├── moodle.csv
+    ├── resume.json
     └── resume.txt
 ```
 

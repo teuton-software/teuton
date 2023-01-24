@@ -1,16 +1,14 @@
 [<< back](README.md)
 
-# Example: target
+# target
 
-A target is a feature you want to check.
+A **target** is a feature you want to check. Targets are defined into `group` sections and every evaluation has 3 parts:
 
-## Definition section
-
-Test definition section (`group`):
+## Target definition
 
 * **target**: Description of the element to be tested.
 * **run**: Execute a command `id david` on localhost.
-* **expect**: Ensure the result contains expected value.
+* **expect**: Verify that the result contains expected value.
 
 ```ruby
 group "Learn about targets" do
@@ -22,11 +20,11 @@ group "Learn about targets" do
 end
 ```
 
-> In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
+> In this example, our localhost's OS is GNU/Linux (or any other compatible OS) because the command executed is `id david`.
 
 ## Execution section
 
-Test execution section (`play`):
+When we run this teuton test, the execution section (`play`) is processed. This seccion now contains this:
 
 * **show**: display process information on screen.
 * **export**: build output reports.
@@ -38,7 +36,7 @@ play do
 end
 ```
 
-## Running the test
+## Example
 
 Execute this command to run the test:
 
@@ -52,9 +50,7 @@ CASE RESULTS
 +------+-----------+-------+-------+
 ```
 
-## Output reports
-
-Report files created into `var/01-target/`:
+Report files are created into `var/01-target/` folder:
 
 ```console
 var
