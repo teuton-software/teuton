@@ -10,19 +10,19 @@ Learn how write your own Teuton tests:
 - [03 - Check remote hosts](03-remote_hosts.md)
 - [04 - Send report copies to hosts](04-send.md)
 - [05 - Create new test](05-new_test.md)
-- [06 - Use](06-use.md)
-- [07 - Debug](07-debug.md)
-- [07 - Log](07-log.md)
-- [08 - Readme](08-readme.md)
-- [09 - Preserve](09-preserve.md)
+- [06 - Manage several files with use keyword](06-use.md)
+- [07 - Debug results](07-debug.md)
+- [07 - Log messages](07-log.md)
+- [08 - Build readme](08-readme.md)
+- [09 - Preserve old reports](09-preserve.md)
 - [10 - Result object](10-result.md)
 - [11 - Moodle ID](11-moodle_id.md)
 - [12 - Get vars](12-get_vars.md)
 - [13 - Include](13-include.md)
 - [14 - Alias](14-alias.md)
 - 15 - Macros
-- [16 - Exit codes](16-exit_codes.md)
-- [17 - Hide feedback](17-hide-feedback.md)
+- [16 - Checking exit codes](16-exit_codes.md)
+- [17 - Hide feedback from reports](17-hide-feedback.md)
 
 Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
 
