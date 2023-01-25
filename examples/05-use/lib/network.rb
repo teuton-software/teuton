@@ -1,9 +1,9 @@
-group "Use file: Network configuracion" do
-  target "Update computer name with #{gett(:host1_hostname)}"
+group "Using file: network" do
+  target "Update computer name with #{get(:hostname)}"
   run "hostname", on: :host1
-  expect_one get(:host1_hostname)
+  expect_one get(:hostname)
 
   target "Ensure DNS Server is working"
-  run "nslookup www.google.es", on: :host1
-  expect "Nombre:"
+  run "host www.google.es", on: :host1
+  expect "www.google.es has address "
 end

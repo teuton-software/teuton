@@ -1,4 +1,4 @@
-use "users"
+use "lib/users"
 use "network"
 
 play do

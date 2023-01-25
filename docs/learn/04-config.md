@@ -77,7 +77,7 @@ GROUPS
         Alterations : find(david) & count
         Expected    : Greater than 0 (String)
         Result      : 1 (Integer)
-l
+
 RESULTS
 +--------------+---------------------------+
 | case_id      | 01                        |
@@ -91,4 +91,57 @@ RESULTS
 | fail_counter | 0                         |
 | grade        | 100                       |
 +--------------+---------------------------+```
+```
+
+## Using differents configuration files
+
+Example with 3 config files (yaml files):
+
+```
+❯ tree examples/04-config
+
+examples/04-config
+├── config.yaml
+├── rock.yaml
+├── start.rb
+└── starwars.yaml
+```
+
+Usign default config file (`config.yaml`):
+
+```
+❯ teuton run examples/04-config
+
+CASE RESULTS
++------+----------------+-------+-------+
+| CASE | MEMBERS        | GRADE | STATE |
+| 01   | name_student_1 | 100.0 | ✔     |
+| 02   | name_student_2 | 0.0   | ?     |
++------+----------------+-------+-------+
+```
+
+Using `example/04-config/starwars.yaml`:
+
+```
+❯ teuton run --cname=starwars examples/04-config
+
+CASE RESULTS
++------+------------+-------+-------+
+| CASE | MEMBERS    | GRADE | STATE |
+| 01   | Yoda       | 0.0   | ?     |
+| 02   | Darth Maul | 0.0   | ?     |
++------+------------+-------+-------+
+```
+
+Using `example/04-config/rock.yaml`:
+
+```
+❯ teuton run --cpath=examples/04-config/rock.yaml examples/04-config
+
+CASE RESULTS
++------+------------+-------+-------+
+| CASE | MEMBERS    | GRADE | STATE |
+| 01   | AC/DC band | 0.0   | ?     |
+| 02   | Muse band  | 0.0   | ?     |
++------+------------+-------+-------+
 ```

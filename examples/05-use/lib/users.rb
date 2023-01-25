@@ -1,5 +1,5 @@
-group "Use file: User configuration" do
-  target "Create user #{gett(:username)}"
-  run "net user", on: :host1
+group "Using file: users" do
+  target "Create user #{get(:username)}"
+  run "id #{get(:username)}", on: :host1
   expect get(:username)
 end

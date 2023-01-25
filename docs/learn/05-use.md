@@ -9,21 +9,20 @@
 > This example requires Windows OS on remote machine.
 
 ```bash
-> tree example/04-use
-
-example/04-require
+❯ tree examples/05-use
+examples/05-use
+├── lib
+│   ├── network.rb
+│   └── users.rb
 ├── config.yaml
-├── network.rb
-├── README.md
-├── start.rb
-└── users.rb
+└── start.rb
 ```
 
-`start.rb` file is now splited in: start.rb, users.rb and network.rb.
+* `start.rb` file is now splited into: `start.rb`, `users.rb` and `network.rb`.
 
 ```ruby
 # File: start.rb
-use 'users'
+use 'lib/users'
 use 'network'
 
 play do
@@ -32,35 +31,31 @@ play do
 end
 ```
 
-* `use`, indicates that we are using an external file that will be imported into our start.rb file.
+* `use`, indicates that we require external file, that will be imported into our start.rb file.
+* Notice that you can specify relative route `use 'lib/users'`, or only filename `use 'network'`. In the second case, teuton will search a file with that name into project folders.
 
 > It's a good idea to organize project files, when the number of groups/targets is high.
-
 
 ```ruby
 # File: users.rb
 
-group "Use file: User configuration" do
-
-  target "Create user #{gett(:username)}"
+group "Using file: users" do
+  target "Create user #{get(:username)}"
   run "net user", on: :host1
   expect get(:username)
-
 end
 ```
 
 ```ruby
 # File: network.rb
 
-group "Use file: Network configuracion" do
-
-  target "Update computer name with #{gett(:host1_hostname)}"
+group "Using file: network" do
+  target "Update computer name with #{get(:hostname)}"
   run "hostname", on: :host1
-  expect_one get(:host1_hostname)
+  expect_one get(:hostname)
 
   target "Ensure DNS Server is working"
-  run "nslookup www.google.es", on: :host1
-  expect "Nombre:"
-
+  run "host www.google.es", on: :host1
+  expect "www.google.es has address "
 end
 ```
