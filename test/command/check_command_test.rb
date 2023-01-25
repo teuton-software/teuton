@@ -5,7 +5,7 @@ require "test/unit"
 class CheckCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
-      "01-target",
+      "02-target",
       "02-config",
       "03-remote_hosts",
       "04-send",

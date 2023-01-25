@@ -5,11 +5,11 @@
 
 Learn how write your own Teuton tests:
 
-- [01 - Evaluate target](01-target.md)
+* [01 - Create new test](01-cmd_new.md)
+* [02 - Evaluate target](02-target.md)
 - [02 - Read config file](02-config.md)
 - [03 - Check remote hosts](03-remote_hosts.md)
 - [04 - Send report copies to hosts](04-send.md)
-- [05 - Create new test](05-new_test.md)
 - [06 - Manage several files with use keyword](06-use.md)
 - [07 - Debug results](07-debug.md)
 - [07 - Log messages](07-log.md)

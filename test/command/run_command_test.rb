@@ -5,7 +5,7 @@ require "test/unit"
 class RunCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
-      "01-target",
+      "02-target",
       "02-config",
       "07-log",
       "08-readme",

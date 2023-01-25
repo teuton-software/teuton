@@ -55,7 +55,7 @@ to check.
 > * `run "file /home/vader", on: :host1`, : Execute the command into the remote machine (host1).
 > * `  expect_none "No such file or directory"`: Compare command ouput with our expectations.
 
-## STEP 3: Personalize Configfile
+## STEP 3: Customize configfile
 
 Use a YAML file (`foo/config.yaml`) or JSON for your own configurations. In this example, the file contains params used by our challenge (script).
 
@@ -66,12 +66,12 @@ Use a YAML file (`foo/config.yaml`) or JSON for your own configurations. In this
 :global:
   :host1_username: root
 :cases:
-- :tt_members: student-name-01
+- :tt_members: student-01-name
   :host1_ip: 1.1.1.1
-  :host1_password: root-password-student-01
-- :tt_members: student-name-02
+  :host1_password: student-01-password
+- :tt_members: student-02-name
   :host1_ip: 2.2.2.2
-  :host1_password: root-password-student-02
+  :host1_password: student-02-password
 ```
 
 > The above file configures 2 differents cases with their own params. The script use this information when execute every case.
