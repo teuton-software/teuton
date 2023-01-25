@@ -5,95 +5,89 @@
 To run test on remote host we have to define them into config file.
 
 Let's see an example with:
-* 2 global params.
-* 3 cases.
-* 4 case params.
+* 1 global param.
+* 3 cases with 3 params.
 
 ```yaml
 ---
 global:
   host1_username: root
-  host1_password: profesor
 cases:
-- tt_members: Darth Maul
+- tt_members: student_1
   host1_ip: 192.168.1.201
-  host1_hostname: siths
-  username: maul
-- tt_members: R2D2
+  host1_password: secret_1
+- tt_members: student_2
   host1_ip: 192.168.1.202
-  host1_hostname: robots
-  username: r2d2
-- tt_members: Obiwan Kenobi
-  host1_ip: 192.168.1.203
-  host1_hostname: jedis
-  username: obiwan
+  host1_password: secret_2
+- tt_members: student_3
+  host1_ip: 127.0.0.1
+  host1_password: secret_3
 ```
 
 Every remote host definition require some params:
 
-| Param | Description    | Value |
+| Param | Description    | Default value |
 | ----- | -------------- | ------------- |
 | ip    | Remote host IP | |
-| port  | Remote host port | 22 is default value |
+| port  | Remote host port | 22 |
 | username | Remote user account | Not required with public SSH id |
 | password | Remote user pasword | Not required with public SSH id |
-| protocol | SSH or Telner | SSH is defautl value |
-| route | Gateway | Defines host2 used as gateway to reach host |  
+| protocol | SSH or Telner | SSH |
+| route | Defines host2 used as gateway to reach host | |
 
 ## Definition section
 
-Define 3 targets (items to be checked):
+Define 1 target (item to be checked):
 
 ```ruby
-group "How to test remote Windows hosts" do
-  target "Update hostname with #{gett(:host1_hostname)}"
-  run "hostname", on: :host1
-  expect_one get(:host1_hostname)
-
-  target "Ensure network DNS configuration is working"
-  run "nslookup www.google.es", on: :host1
-  expect "Nombre:"
-
-  target "Create user #{gett(:username)}"
-  run "net user", on: :host1
-  expect get(:username)
+group "Remote hosts" do
+  target "Create user david"
+  run "id david", on: :host1
+  expect "david"
 end
 ```
 
-> NOTE: This example requires Windows OS on remote machine (host1).
+> NOTE: This example requires GNU/Linux OS on remote machine (host1).
 
-## Screen output
+Execution:
 
 ```
+> teuton run examples/03-remote_hosts
+
 CASE RESULTS
-+------+---------------+-------+-------+
-| CASE | MEMBERS       | GRADE | STATE |
-| 01   | Darth Maul    | 0.0   | ?     |
-| -    | -             | 0.0   |       |
-| 03   | Obiwan Kenobi | 0.0   | ?     |
-+------+---------------+-------+-------+
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | student_1 | 0.0   | ?     |
+| 02   | student_2 | 0.0   | ?     |
+| 03   | student_3 | 100.0 | ✔     |
++------+-----------+-------+-------+
 
 CONN ERRORS
-+------+---------------+-------+------------------+
-| CASE | MEMBERS       | HOST  | ERROR            |
-| 01   | Darth Maul    | host1 | host_unreachable |
-| 03   | Obiwan Kenobi | host1 | host_unreachable |
-+------+---------------+-------+------------------+
++------+-----------+-------+------------------+
+| CASE | MEMBERS   | HOST  | ERROR            |
+| 01   | student_1 | host1 | host_unreachable |
+| 02   | student_2 | host1 | host_unreachable |
++------+-----------+-------+------------------+
 ```
 
-## Results
+Notice that case-03 is 100% and conection works. It is running on localhost because has localhost IP (127.0.0.1)
+
+Results:
 
 ```
-var
-└── 03-remote-hosts
-    ├── case-01.txt
-    ├── case-03.txt
-    ├── moodle.csv
-    └── resume.txt
+❯ tree var/03-remote_hosts
+
+var/03-remote_hosts
+├── case-01.txt
+├── case-02.txt
+├── case-03.txt
+├── moodle.csv
+└── resume.txt
 ```
 
-* `case-01`, report with details about case 01 (maul)
-* Case 02 (r2ds) is skipped. So there are no report `case-02`.
-* `case-03`, report with details about case 03 (obiwan)
-* `resume`, report with global resumed information about all cases.
-* `moodle.csv`, CVS file with required fields to upload grades into Moodle eLearning platform.
+## tt_skip param
+
+To disable a case, add skip param `tt_skip: true`.
+* `tt_skip` it is true by default.
+* `tt_skip: false` ignore this case.
+* `tt_skip: true`, evaluate this case.

@@ -2,6 +2,6 @@
 global:
 cases:
 - tt_members: Yoda
-  username: root
+  username: yoda
 - tt_members: Darth Maul
-  username: darth-maul
+  username: maul

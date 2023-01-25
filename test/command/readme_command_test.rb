@@ -6,8 +6,8 @@ class ReadmeCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
       "02-target",
-      "02-config",
       "03-remote_hosts",
+      "04-config",
       "05-new_test",
       "06-use",
       "07-debug",

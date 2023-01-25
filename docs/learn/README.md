@@ -7,8 +7,10 @@ Learn how write your own Teuton tests:
 
 * [01 - Create new test](01-cmd_new.md)
 * [02 - Evaluate target](02-target.md)
-- [02 - Read config file](02-config.md)
 - [03 - Check remote hosts](03-remote_hosts.md)
+- [04 - Read config file](04-config.md)
+
+---
 - [04 - Send report copies to hosts](04-send.md)
 - [06 - Manage several files with use keyword](06-use.md)
 - [07 - Debug results](07-debug.md)

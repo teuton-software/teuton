@@ -6,7 +6,7 @@ class RunCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
       "02-target",
-      "02-config",
+      "04-config",
       "07-log",
       "08-readme",
       # "learn-09-preserve",

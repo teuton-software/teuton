@@ -50,7 +50,7 @@ CASE RESULTS
 +------+-----------+-------+-------+
 ```
 
-Report files are created into `var/01-target/` folder:
+Report files are created into `var/02-target/` folder:
 
 ```console
 var
@@ -63,7 +63,7 @@ var
 Let's see one report:
 
 ```
-> more var/01-target/case-01.txt
+> more var/02-target/case-01.txt
 
 CONFIGURATION
 +-------------+-----------+

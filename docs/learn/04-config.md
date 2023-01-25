@@ -7,13 +7,12 @@ _It's good idea save dinamic data into config file._
 By default, `config.yaml` is our config file. Example:
 
 ```yaml
----
 global:
 cases:
-- tt_members: Student-name-1
-  username: root
-- tt_members: Student-name-2
+- tt_members: name_student_1
   username: david
+- tt_members: name_student_2
+  username: fran
 ```
 
 > **How to choose another config file?** Read this [document](../commands/example_run.md#3-choosing-config-file).
@@ -35,20 +34,20 @@ end
 ## Example
 
 ```console
-> teuton run examples/02-config
+> teuton run examples/04-config
 
 CASE RESULTS
 +------+----------------+-------+-------+
 | CASE | MEMBERS        | GRADE | STATE |
-| 01   | Student-name-1 | 100.0 | ✔     |
-| 02   | Student-name-2 | 0.0   | ?     |
+| 01   | name_student_1 | 100.0 | ✔     |
+| 02   | name_student_2 | 0.0   | ?     |
 +------+----------------+-------+-------+
 ```
 
-Output reports are saved into `var/02-config/` directory. Detail output report is created for every case.
+Reports:
 
 ```
-var/02-config
+var/04-config
 ├── case-01.txt
 ├── case-02.txt
 ├── moodle.csv
@@ -58,37 +57,38 @@ var/02-config
 Let's see case 01 report.
 
 ```
-> more var/02-config/case-01.txt
+> more var/04-config/case-01.txt
+
 CONFIGURATION
 +-------------+----------------+
-| tt_members  | Student-name-1 |
+| tt_members  | name_student_1 |
 | tt_sequence | false          |
 | tt_skip     | false          |
-| tt_testname | 02-config      |
-| username    | root           |
+| tt_testname | 04-config      |
+| username    | david          |
 +-------------+----------------+
 
 GROUPS
 - Reading params from config file
     01 (1.0/1.0)
-        Description : Create user root
-        Command     : id root
+        Description : Create user david
+        Command     : id david
         Duration    : 0.002 (local)
-        Alterations : find(root) & count
+        Alterations : find(david) & count
         Expected    : Greater than 0 (String)
         Result      : 1 (Integer)
-
+l
 RESULTS
 +--------------+---------------------------+
 | case_id      | 01                        |
-| start_time   | 2022-12-24 13:33:49 +0000 |
-| finish_time  | 2022-12-24 13:33:49 +0000 |
-| duration     | 0.001777756               |
+| start_time   | 2023-01-25 20:46:13 +0000 |
+| finish_time  | 2023-01-25 20:46:13 +0000 |
+| duration     | 0.001778546               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |
 | fail_weight  | 0.0                       |
 | fail_counter | 0                         |
 | grade        | 100                       |
-+--------------+---------------------------+
++--------------+---------------------------+```
 ```
