@@ -131,7 +131,7 @@ class Laboratory
       st.add_separator
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
-      st.add_row ["Goto", @stats[:hosts]]
+      st.add_row ["Runs", @stats[:hosts]]
       @hosts.each_pair { |k, v| st.add_row [" * #{k}", v] }
       st.add_row ["Uniques", @stats[:uniques]]
       st.add_row ["Logs", @stats[:uniques]]
