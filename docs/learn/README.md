@@ -1,4 +1,3 @@
-
 [<< back](../../README.md)
 
 # Learn
@@ -7,13 +6,15 @@ Learn how write your own Teuton tests:
 
 * [01 - Creating new test](01-cmd_new.md)
 * [02 - Evaluating target](02-target.md)
-- [03 - Checking remote hosts](03-remote_hosts.md)
-- [04 - Reading config file](04-config.md)
-- [05 - Using several files](05-use.md)
-- [06 - Check test syntax](06-cmd_check.md)
+* [03 - Checking remote hosts](03-remote_hosts.md)
+* [04 - Reading config file](04-config.md)
+* [05 - Using several files](05-use.md)
+* [06 - Check test syntax](06-cmd_check.md)
+* [07 - Target Weight](07-target_weight.md)
+* [08 - Unique values](08-unique_values.md)
+* [09 - Send report copies to remote hosts](09-send.md)
 
 ---
-- [04 - Send report copies to remote hosts](04-send.md)
 - [07 - Debug results](07-debug.md)
 - [07 - Log messages](07-log.md)
 - [08 - Build readme](08-readme.md)

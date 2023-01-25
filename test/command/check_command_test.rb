@@ -1,20 +1,18 @@
-#!/usr/bin/ruby
-
 require "test/unit"
 
 class CheckCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
+      "01-cmd_new",
       "02-target",
       "03-remote_hosts",
       "04-config",
-      "04-send",
-      "05-new_test",
-      "06-use",
+      "05-use",
       "07-debug",
       "07-log",
       "08-readme",
       "09-preserve",
+      "09-send",
       "10-result",
       "11-moodle_id",
       "12-get_vars",
