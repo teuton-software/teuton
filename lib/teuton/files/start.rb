@@ -1,7 +1,7 @@
-group "GROUP NAME" do
-  target "TARGET_1 DESCRIPTION"
-  run "COMMAND_1"
-  expect "TEXT_1"
+group "NAME-TO-CHANGE" do
+  target "DESC_TO-CHANGE"
+  run "COMMAND_TO-CHANGE"
+  expect "TEXT_TO-CHANGE"
 end
 
 play do
