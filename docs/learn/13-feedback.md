@@ -2,9 +2,12 @@
 
 # Feedback
 
-* [export feedback: false](../dsl/export.md) will hide feedback information on output reports.
+Exporting with false feedback option `export feedback: false`, hide some items from output reports. Hiden items: command, alterations, expected and result.
+
+> More information about [export](../dsl/execution/export.md) keyword.
 
 Example
+
 ```ruby
 play do
   show
@@ -13,8 +16,25 @@ play do
 end
 ```
 
-* Run `teuton examples/13-feedback`.
-* Then `more examples/13-feedback/case-01.txt`.
+## Description
+
+Every time teuton is run, all cases are evaluated and when exporting the results, by default, all the information collected during the evaluation process is logged.
+
+Each "target" contains the following fields:
+
+* Identification: id, description
+* Evaluation result: check(true/false)
+* Punctuation: score, weight
+* Check process: conn_type, command, duration, alterations, expected, result
+
+Some of these fields should always be visible, such as: id, description, check, score, and weight. And others, more related to the process that perform teuton for verification can be hidden using the "feedback: false" parameter.
+
+With "feedback: false" the fields are hidden: command, alterations, expected and result.
+
+
+## Results
+
+Executing `teuton run examples/13-feedback`, we get this output:
 
 ```
 GROUPS
