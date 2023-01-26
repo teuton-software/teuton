@@ -14,18 +14,20 @@ Learn how write your own Teuton tests:
 * [08 - UNIQUE values](08-unique_values.md)
 * [09 - SEND report copies to remote hosts](09-send.md)
 * [10 - DEBUG results](10-debug.md)
+* [11 - Export other FORMATS](11-export.md)
+* [12 - PRESERVE old reports](12-preserve.md)
+* [13 - Hide FEEDBACK from reports](13-feedback.md)
+* [14 - MOODLE ID](14-moodle_id.md)
+* [15 - Build README from test](15-readme.md)
+* [16 - INCLUDE more configuration files](16-include.md)
+* [17 - ALIAS](17-alias.md)
+* [18 - Log messages](18-log.md)
 
 ---
-- [12 - Preserve old reports](12-preserve.md)
-- [12 - Get vars](12-get_vars.md)
-- [13 - Include](13-include.md)
-- [14 - Moodle ID](14-moodle_id.md)
-- [14 - Alias](14-alias.md)
-- [15 - Build readme](15-readme.md)
+- [92 - Get vars](92-get_vars.md)
 - 15 - Macros
 - [16 - Checking exit codes](16-exit_codes.md)
 - [17 - Hide feedback from reports](17-hide-feedback.md)
-- [18 - Log messages](18-log.md)
 - [23 - RESULT object](23-result.md)
 
 Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.

@@ -13,15 +13,16 @@ class RunCommandTest < Test::Unit::TestCase
       # "09-send",
       # "10-debug",
       "11-export",
-      "12-get_vars",
-      # "12-preserve",
-      "13-include",
-      "14-alias",
+      # 12-preserve",
+      "13-feedback",
       "14-moodle_id",
-      # "15-macros",
       "15-readme",
-      "16-exit_codes",
+      "16-include",
+      "17-alias",
       "18-log",
+      # "15-macros",
+      "92-get_vars",
+      "16-exit_codes",
       "23-result"
     ]
     filedirname = File.dirname(__FILE__)

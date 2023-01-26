@@ -6,5 +6,6 @@ end
 
 play do
   show
-  export preserve: true
+  export feedback: false
+  export format: "html", feedback: false
 end
