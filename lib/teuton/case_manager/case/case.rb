@@ -99,7 +99,7 @@ class Case
     @report.head[:tt_members] || "noname"
   end
 
-  alias skip? skip
+  alias_method :skip?, :skip
 
   private
 

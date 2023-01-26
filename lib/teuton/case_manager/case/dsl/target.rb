@@ -12,5 +12,5 @@ module DSL
     w = args[:weight] || 1.0
     weight(w)
   end
-  alias goal target
+  alias_method :goal, :target
 end

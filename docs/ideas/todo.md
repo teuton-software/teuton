@@ -3,6 +3,7 @@
 
 ## Add
 
+* Option roadmap_ok_only. When expect returns false... test stop. The rest of targets are forced to fails.
 * `expect_equal "camaleon"`, same as `expect result.equal "camaleon"`.
 * **FEATURE** Define a loop of executions of our activity. For example:
   every 5 minutes, run the activity, and repeat this 10 times.

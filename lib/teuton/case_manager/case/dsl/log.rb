@@ -16,5 +16,5 @@ module DSL
     msg = "[#{f}] #{text}" if s == ""
     @report.lines << msg
   end
-  alias msg log
+  alias_method :msg, :log
 end

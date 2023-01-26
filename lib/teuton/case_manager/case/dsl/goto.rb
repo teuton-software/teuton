@@ -31,5 +31,5 @@ module DSL
     run_cmd_on(host)
     @action[:duration] = (Time.now - start_time).round(3)
   end
-  alias on goto
+  alias_method :on, :goto
 end
