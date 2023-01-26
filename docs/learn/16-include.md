@@ -1,10 +1,8 @@
 [<< back](README.md)
 
-# Example: 13-include
+# include
 
 Use `tt-include` to include several config files into your main config file.
-
-## Explanation
 
 Until now, all the examples we have seen use one configuration file (`config.yaml`) that contain all the parameters required by the test. It is possible to save configuration distributed among several files.
 
