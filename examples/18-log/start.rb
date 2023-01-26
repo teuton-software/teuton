@@ -3,6 +3,7 @@ group "Learning about log messages" do
 
   target "Create user david"
   run "id david"
+  log result.value
   expect "david"
 
   log "Problem detected!", :error

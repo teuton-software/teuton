@@ -1,33 +1,27 @@
 [<< back](README.md)
 
-# Example: 07-log
+# 18-log
 
-Let's learn how to create log messages.
+* `log TEXT`, save TEXT into output report.
 
-1. [Definition section](#definition-section)
-2. [Run test](#execution-section)
-3. [Result](#result)
+Example
 
-## Definition section
-
-Test definition section (Group):
 ```ruby
 group "Learning about log messages" do
-  log 'Using log messages...'
+  log "Using log messages."
 
   target "Create user david"
-  run    "id david"
+  run "id david"
+  log result.value
   expect "david"
 
-  log 'Problem detected!', :error
+  log "Problem detected!", :error
+  log "This is a warning", :warn
+  log "Hi, there!", :info
 end
 ```
 
-> In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
-
-## Result
-
-**Let's see example**: Content of `var/07-log/case-01.txt` file.
+Content of `var/18-log/case-01.txt` file.
 
 ```
 CONFIGURATION
@@ -35,12 +29,15 @@ CONFIGURATION
 | tt_members  | anonymous |
 | tt_sequence | false     |
 | tt_skip     | false     |
-| tt_testname | 07-log    |
+| tt_testname | 18-log    |
 +-------------+-----------+
 
 LOGS
-    [13:45:02] : Using log messages...
-    [13:45:02] ERROR: Problem detected!
+    [09:14:22]  INFO: Using log messages.
+    [09:14:22]  INFO: uid=1000(david) gid=1000(david) grupos=495(cdrom),493(disk),487(video),474(wheel),464(wireshark),459(docker),456(vboxusers),1000(david)
+    [09:14:22] ERROR: Problem detected!
+    [09:14:22] WARN!: This is a warning
+    [09:14:22]  INFO: Hi, there!
 
 GROUPS
 - Learning about log messages
@@ -55,9 +52,9 @@ GROUPS
 RESULTS
 +--------------+---------------------------+
 | case_id      | 01                        |
-| start_time   | 2022-12-24 13:45:02 +0000 |
-| finish_time  | 2022-12-24 13:45:02 +0000 |
-| duration     | 0.001900685               |
+| start_time   | 2023-01-26 09:14:22 +0000 |
+| finish_time  | 2023-01-26 09:14:22 +0000 |
+| duration     | 0.002012326               |
 | unique_fault | 0                         |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |
@@ -65,4 +62,3 @@ RESULTS
 | fail_counter | 0                         |
 | grade        | 100                       |
 +--------------+---------------------------+
-```

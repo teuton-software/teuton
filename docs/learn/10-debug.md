@@ -11,87 +11,32 @@ examples/10-debug
 ├── config.yaml
 ├── external.rb
 ├── internal.rb
-├── README.md
 └── start.rb
 ```
 
-## Execution section
+Tests grows and becames huge, with a lot of targets (That isn't a problem). Then, we organize them spliting into several files and invoke `use` keywork from our main rb file to load other files (That's good idea).
 
-The `start.rb`  is main execution rb file, and uses `external` and `internal` rb files.
-
-Let's see current `start.rb` file:
-
-```ruby
-use 'external'
-use 'internal'
-
-play do
-  show
-  export :format => :colored_text
-end
-```
-
-## Check test
-
-Tests grows and becames huge, with a lot of targets (That isn't a problem). Then, we organize them spliting into several files and invoke `use` keywork from our main rb file to load other files (That's good idea) .
-
-When this happend, sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton check PATH/TO/PROJECT/FOLDER`.
-
-Let's see example `teuton check examples/01-target`:
-
-```
-+----------------------------+
-| GROUP: Learn about targets |
-+----------------------------+
-(001) target      Create user david
-      weight      1.0
-      run         'id david' on localhost
-      expect      david (String)
-
-+--------------+-------+
-| DSL Stats    | Count |
-+--------------+-------+
-| Groups       | 1     |
-| Targets      | 1     |
-| Goto         | 1     |
-|  * localhost | 1     |
-| Uniques      | 0     |
-| Logs         | 0     |
-|              |       |
-| Gets         | 0     |
-| Sets         | 0     |
-+--------------+-------+
-+----------------------+
-| Revising CONFIG file |
-+----------------------+
-[WARN] File .../examples/01-target/config.yaml not found!
-[INFO] Recomended content:
----
-:global:
-:cases:
-- :tt_members: VALUE
-
-```
-
-In this case, Teuton detects that there isn't exist config file, and propose us content for `config.yaml`.
+Sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton check PATH/TO/PROJECT/FOLDER`.
 
 ## Debug
 
-Every time we invoke `run` or `goto` keywork, an OS command is executed. The output is showed on screen and saved into **result** internal object.
+Every time we invoke `run` keywork, an OS command is executed. The output is showed on screen and saved into **result** internal object.
 
 We could debug it invoking `result.debug` into our tests. Let's see an example from `external.rb` file:
 
 ```ruby
-group "Windows: external configuration" do
+# File: external.rb
 
-  target "Localhost: Verify connectivity with #{gett(:windows1_ip)}"
-  run    "ping #{get(:windows1_ip)} -c 1"
+group "Windows: external configuration from localhost" do
+
+  target "From localhost, check if exist connectivity with #{get(:windows_ip)}"
+  run    "ping #{get(:windows_ip)} -c 1"
   result.debug
   expect_one "0% packet loss"
   result.debug
 
-  target "Localhost: netbios-ssn service working on #{gett(:windows1_ip)}"
-  run    "nmap -Pn #{get(:windows1_ip)}"
+  target "From localhost, check if Netbios-ssn service working on #{get(:windows_ip)}"
+  run    "nmap -Pn #{get(:windows_ip)}"
   expect "139/tcp", "open"
 
 end

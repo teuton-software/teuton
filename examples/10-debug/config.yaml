@@ -1,14 +1,14 @@
 ---
 :global:
-  :gateway: 192.168.1.1
-  :dns: 8.8.4.4
-  :domain: curso1516
-  :windows1_username: sysadmingame  
-  :windows1_protocol: telnet
-:cases:
-- :tt_members: Obiwan
-  :firstname: obiwan
-  :lastname: kenobi
-  :windows1_hostname: ABR2016
-  :windows1_ip: 192.168.1.111
-  :windows1_password: profesor
+  gateway: 192.168.1.255
+  dns: 1.1.1.1
+  domain: curso1516
+  windows_username: demo
+  windows_version: "6.1"
+cases:
+- tt_members: student_1
+  firstname: firstname_student_1
+  lastname: lastname_student_1
+  windows_hostname: hostname
+  windows_ip: 192.168.1.1
+  windows_password: secret_1

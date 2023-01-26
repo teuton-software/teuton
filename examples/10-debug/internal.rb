@@ -1,21 +1,21 @@
 group "Windows: internal configurations" do
-  target "Ensure Windows version is 6.1"
-  run "ver", on: :windows1
-  expect ["Windows", "6.1"]
+  target "Ensure Windows version is #{get(:windows_version)}"
+  run "ver", on: :windows
+  expect ["Windows", get(:windows_version)]
 
-  target "Ensure Windows COMPUTERNAME is #{gett(:windows1_hostname)}"
-  run "set", on: :windows1
-  expect ["COMPUTERNAME", get(:windows1_hostname)]
+  target "Ensure Windows COMPUTERNAME is #{get(:windows_hostname)}"
+  run "set", on: :windows
+  expect ["COMPUTERNAME", get(:windows_hostname)]
 
-  target "Configure gateway with #{gett(:gateway)}"
-  run "ipconfig", on: :windows1
+  target "Configure gateway with #{get(:gateway)}"
+  run "ipconfig", on: :windows
   expect ["enlace", get(:gateway)]
 
   target "Ensure gateway is working"
-  run "ping #{get(:dns)}", on: :windows1
+  run "ping #{get(:dns)}", on: :windows
   expect result.find("Respuesta").count.eq 4
 
   target "Ensure DNS is working"
-  run "nslookup www.iespuertodelacruz.es", on: :windows1
+  run "nslookup www.iespuertodelacruz.es", on: :windows
   expect ["Address:", "88.198.18.148"]
 end
