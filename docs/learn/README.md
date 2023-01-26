@@ -4,31 +4,28 @@
 
 Learn how write your own Teuton tests:
 
-* [01 - Creating NEW test](01-cmd_new.md)
-* [02 - Evaluating TARGET](02-target.md)
-* [03 - Checking REMOTE HOSTS](03-remote_hosts.md)
-* [04 - Reading CONFIG file](04-config.md)
-* [05 - Using several files](05-use.md)
-* [06 - CHECK test syntax](06-cmd_check.md)
-* [07 - Target WEIGHT](07-target_weight.md)
-* [08 - UNIQUE values](08-unique_values.md)
-* [09 - SEND report copies to remote hosts](09-send.md)
-* [10 - DEBUG results](10-debug.md)
-* [11 - Export other FORMATS](11-export.md)
-* [12 - PRESERVE old reports](12-preserve.md)
-* [13 - Hide FEEDBACK from reports](13-feedback.md)
-* [14 - MOODLE ID](14-moodle_id.md)
-* [15 - Build README from test](15-readme.md)
-* [16 - INCLUDE more configuration files](16-include.md)
-* [17 - ALIAS](17-alias.md)
-* [18 - LOG messages](18-log.md)
-* [19 - Don't get params, just read vars](19-read_vars.md)
-
----
-- 15 - Macros
-- [16 - Checking exit codes](16-exit_codes.md)
-- [17 - Hide feedback from reports](17-hide-feedback.md)
-- [23 - RESULT object](23-result.md)
+1. [Creating NEW test](01-cmd_new.md)
+1. [Evaluating TARGET](02-target.md)
+1. [Checking REMOTE HOSTS](03-remote_hosts.md)
+1. [Reading CONFIG file](04-config.md)
+1. [Using several files](05-use.md)
+1. [CHECK test syntax](06-cmd_check.md)
+1. [Target WEIGHT](07-target_weight.md)
+1. [UNIQUE values](08-unique_values.md)
+1. [SEND report copies to remote hosts](09-send.md)
+1. [DEBUG results](10-debug.md)
+1. [Export other FORMATS](11-export.md)
+1. [PRESERVE old reports](12-preserve.md)
+1. [Hide FEEDBACK from reports](13-feedback.md)
+1. [MOODLE ID](14-moodle_id.md)
+1. [Build README from test](15-readme.md)
+1. [INCLUDE more configuration files](16-include.md)
+1. [ALIAS](17-alias.md)
+1. [LOG messages](18-log.md)
+1. [Don't get params, just read vars](19-read_vars.md)
+1. 20 - Macros
+1. [Checking exit codes](21-exit_codes.md)
+1. [RESULT object](22-result.md)
 
 Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
 

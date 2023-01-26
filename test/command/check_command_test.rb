@@ -21,9 +21,9 @@ class CheckCommandTest < Test::Unit::TestCase
       "17-alias",
       "18-log",
       "19-read_vars",
-      # "15-macros",
-      "16-exit_codes",
-      "23-result"
+      # "20-macros",
+      "21-exit_codes",
+      "22-result"
     ]
     filedirname = File.dirname(__FILE__)
     @dirbase = File.join(filedirname, "..", "..", "examples")
