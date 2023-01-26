@@ -12,6 +12,7 @@ class CheckCommandTest < Test::Unit::TestCase
       "08-unique_values",
       "09-send",
       "10-debug",
+      "11-export",
       "12-get_vars",
       "12-preserve",
       "13-include",
