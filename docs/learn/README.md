@@ -13,13 +13,13 @@ Learn how write your own Teuton tests:
 * [07 - Target WEIGHT](07-target_weight.md)
 * [08 - UNIQUE values](08-unique_values.md)
 * [09 - SEND report copies to remote hosts](09-send.md)
+* [10 - DEBUG results](10-debug.md)
 
 ---
-- [07 - Debug results](07-debug.md)
-- [09 - Preserve old reports](09-preserve.md)
-- [11 - Moodle ID](11-moodle_id.md)
+- [12 - Preserve old reports](12-preserve.md)
 - [12 - Get vars](12-get_vars.md)
 - [13 - Include](13-include.md)
+- [14 - Moodle ID](14-moodle_id.md)
 - [14 - Alias](14-alias.md)
 - [15 - Build readme](15-readme.md)
 - 15 - Macros

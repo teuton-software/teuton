@@ -1,23 +1,13 @@
-
 [<< back](README.md)
 
-# Example: 06-debug
+# debug
 
-Learn how to:
-* Check test syntax.
 * Debug your tests.
 
-1. [Tree directory](#tree-directory)
-2. [Execution section](#execution-section)
-3. [Check test](#check-test)
-4. [Debug](#debug)
-
-## Tree directory
-
 ```
-> tree learn/learn-06-debug
+> tree examples/10-debug
 
-example/learn-06-debug
+examples/10-debug
 ├── config.yaml
 ├── external.rb
 ├── internal.rb
@@ -47,7 +37,7 @@ Tests grows and becames huge, with a lot of targets (That isn't a problem). Then
 
 When this happend, sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton check PATH/TO/PROJECT/FOLDER`.
 
-Let's see example `teuton check examples/learn-01-target`:
+Let's see example `teuton check examples/01-target`:
 
 ```
 +----------------------------+
@@ -74,7 +64,7 @@ Let's see example `teuton check examples/learn-01-target`:
 +----------------------+
 | Revising CONFIG file |
 +----------------------+
-[WARN] File /home/david/proy/repos/teuton.d/teuton/examples/01-target/config.yaml not found!
+[WARN] File .../examples/01-target/config.yaml not found!
 [INFO] Recomended content:
 ---
 :global:

@@ -10,11 +10,13 @@
 ```ruby
 play do
   show
-  export
+  export format: :txt
+  export format: :html
   send copy_to: :host1
 end
 ```
 
 * `show`, show process log on screen.
-* `export`, create reports with `txt` format.
+* `export format: :txt`, create reports with `txt` format.
+* `export format: :html`, create reports with `html` format.
 * `send copy_to: :host1`, copy output report into remote machine (host1).
