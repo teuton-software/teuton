@@ -20,8 +20,8 @@ class RunCommandTest < Test::Unit::TestCase
       "16-include",
       "17-alias",
       "18-log",
+      "19-read_vars",
       # "15-macros",
-      "92-get_vars",
       "16-exit_codes",
       "23-result"
     ]

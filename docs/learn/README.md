@@ -21,10 +21,10 @@ Learn how write your own Teuton tests:
 * [15 - Build README from test](15-readme.md)
 * [16 - INCLUDE more configuration files](16-include.md)
 * [17 - ALIAS](17-alias.md)
-* [18 - Log messages](18-log.md)
+* [18 - LOG messages](18-log.md)
+* [19 - Don't get params, just read vars](19-read_vars.md)
 
 ---
-- [92 - Get vars](92-get_vars.md)
 - 15 - Macros
 - [16 - Checking exit codes](16-exit_codes.md)
 - [17 - Hide feedback from reports](17-hide-feedback.md)

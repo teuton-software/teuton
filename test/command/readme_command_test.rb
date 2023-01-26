@@ -22,7 +22,7 @@ class ReadmeCommandTest < Test::Unit::TestCase
       "16-include",
       "17-alias",
       "18-log",
-      "92-get_vars",
+      "19-read_vars",
       "23-result"
     ]
     filedirname = File.dirname(__FILE__)

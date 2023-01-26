@@ -1,14 +1,20 @@
 group "Ways to read config vars" do
+  ###
+  # Using get
   # "get(:dirname)"" reads dirname var from config file
   target "Exist #{get(:dirname)} directory"
   run "file #{get(:dirname)}"
   expect_none "No such file or directory"
 
+  ###
+  # Using _
   # "_dirname" is equivalet to "get(:dirname)"
   target "Exist #{_dirname} directory"
   run "file #{_dirname}"
   expect_none "No such file or directory"
 
+  ###
+  # Using variable
   # "dirname" is a variable
   dirname = get(:dirname)
   target "Exist #{dirname} directory"

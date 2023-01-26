@@ -1,10 +1,10 @@
 [<< back](README.md)
 
-# Example: 12-get_vars
+# Read vars
 
-To read the variables from the configuration file we already have the `get` statement. Example, to read `dirname` we do `get(:dirname)`.
+To get paramm values from the configuration file we already have the `get` statement. Example, to read `dirname` we do `get(:dirname)`.
 
-**Example 1:** Using `get` to read vars.
+**Example 1:** Using `get` to get values.
 
 ```ruby
   # "get(:dirname)" reads dirname var from config file
