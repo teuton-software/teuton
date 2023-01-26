@@ -1,12 +1,14 @@
 
-# TODO list 
+# TODO list
 
-## Add 
+## Add
 
 * `expect_equal "camaleon"`, same as `expect result.equal "camaleon"`.
 * **FEATURE** Define a loop of executions of our activity. For example:
   every 5 minutes, run the activity, and repeat this 10 times.
-  `start :times=>10, :every=>5 do`      
+  `start :times=>10, :every=>5 do`
+* Script to set **static IP**
+* Change export to show **command output** into reports.   
 * **TEST**: actualizar las pruebas con vagrant para la versión actual. Mejora de la calidad del código.
 * **DOCS** PROMOCIONAR.  Documentar y hacer videos. Tener foros de la comunidad o presencia en reddit o stackoverflow.... o algo parecido???
 * Create 2 evaluation modes:
