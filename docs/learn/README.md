@@ -4,29 +4,29 @@
 
 Learn how write your own Teuton tests:
 
-* [01 - Creating new test](01-cmd_new.md)
-* [02 - Evaluating target](02-target.md)
-* [03 - Checking remote hosts](03-remote_hosts.md)
-* [04 - Reading config file](04-config.md)
+* [01 - Creating NEW test](01-cmd_new.md)
+* [02 - Evaluating TARGET](02-target.md)
+* [03 - Checking REMOTE HOSTS](03-remote_hosts.md)
+* [04 - Reading CONFIG file](04-config.md)
 * [05 - Using several files](05-use.md)
-* [06 - Check test syntax](06-cmd_check.md)
-* [07 - Target Weight](07-target_weight.md)
+* [06 - CHECK test syntax](06-cmd_check.md)
+* [07 - Target WEIGHT](07-target_weight.md)
 * 08 - Unique values(08-unique_values.md)
-* [09 - Send report copies to remote hosts](09-send.md)
+* [09 - SEND report copies to remote hosts](09-send.md)
 
 ---
 - [07 - Debug results](07-debug.md)
-- [07 - Log messages](07-log.md)
-- [08 - Build readme](08-readme.md)
 - [09 - Preserve old reports](09-preserve.md)
-- [10 - Result object](10-result.md)
 - [11 - Moodle ID](11-moodle_id.md)
 - [12 - Get vars](12-get_vars.md)
 - [13 - Include](13-include.md)
 - [14 - Alias](14-alias.md)
+- [15 - Build readme](15-readme.md)
 - 15 - Macros
 - [16 - Checking exit codes](16-exit_codes.md)
 - [17 - Hide feedback from reports](17-hide-feedback.md)
+- [18 - Log messages](18-log.md)
+- [23 - RESULT object](23-result.md)
 
 Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
 

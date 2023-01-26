@@ -8,18 +8,19 @@ class CheckCommandTest < Test::Unit::TestCase
       "03-remote_hosts",
       "04-config",
       "05-use",
+      "07-target_weight",
       "07-debug",
-      "07-log",
-      "08-readme",
       "09-preserve",
       "09-send",
-      "10-result",
       "11-moodle_id",
       "12-get_vars",
       "13-include",
       "14-alias",
       # "15-macros",
-      "16-exit_codes"
+      "15-readme",
+      "16-exit_codes",
+      "18-log",
+      "23-result"
     ]
     filedirname = File.dirname(__FILE__)
     @dirbase = File.join(filedirname, "..", "..", "examples")

@@ -1,6 +1,6 @@
 [<< back](README.md)
 
-# Example: 10-result
+# result
 
 Sometimes it can be useful to look at the information returned by the "run" command. For this we use the **"result" object**.
 
@@ -20,11 +20,11 @@ end
 
 **Example 2:** When we are debugging our test and we want to see the content of the "result" object on the screen, we will use `result.debug`.
 
-```
+```ruby
 group "Checking users" do
   users = ["root", "vader"]
 
-  users.each do |name|
+  for name in users do
     target "Exists username #{name}"
     run "id #{name}"
     result.debug
