@@ -11,7 +11,7 @@ end
 group "Checking users" do
   users = ["root", "vader"]
 
-  users.each do |name|
+  for name in users do
     target "Exists username #{name}"
     run "id #{name}"
     expect "(#{name})"

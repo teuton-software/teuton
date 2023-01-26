@@ -1,4 +1,6 @@
 global:
 cases:
-- tt_members: MEMBERS
-  tt_moodle_id: MOODLE_ID
+- tt_members: Darth Vader
+  tt_moodle_id: vader@starwars.com
+- tt_members: Obiwan Kenobi
+  tt_moodle_id: obiwan@starwars.com

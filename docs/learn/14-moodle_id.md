@@ -1,14 +1,17 @@
 [<< back](README.md)
 
-# Example: 11-moodle_id
+# Moodle
 
-If you are a teacher and are using the Moodle platform, probably you will want to upload the results of the evaluation carried out by Teuton in Moodle.
+As a teacher, probably you are using Moodle platform. So, you want to upload the results of the evaluation carried out by Teuton into Moodle.
 
-Teuton generates a file called "moodle.csv" with the grades of each student. Only have to import the file into Moodle.
+Teuton generates a file called `moodle.csv` with the grades of each student into CSV format. This file is suitable to import into Moodle platform.
 
-In the configuration file "config.yaml" add a field called "moodle_id" to each case. Fill it with the student's identification (For example, the email registered on the Moodle).
+## tt_moodle_id
+
+Add a new field called `tt_moodle_id` to each case in "config.yaml". Fill it with the student's identification (For example, the email registered on the Moodle, or ID number, etc.).
 
 Example:
+
 ```
 global:
 cases:
@@ -17,3 +20,5 @@ cases:
 - tt_members: Obiwan Kenobi
   tt_moodle_id: obiwan@starwars.com
 ```
+
+Now, when running test "moodle.csv" will be generated with all student grades.
