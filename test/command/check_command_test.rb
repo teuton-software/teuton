@@ -9,6 +9,7 @@ class CheckCommandTest < Test::Unit::TestCase
       "04-config",
       "05-use",
       "07-target_weight",
+      "08-unique_values",
       "07-debug",
       "09-preserve",
       "09-send",

@@ -11,7 +11,7 @@ Learn how write your own Teuton tests:
 * [05 - Using several files](05-use.md)
 * [06 - CHECK test syntax](06-cmd_check.md)
 * [07 - Target WEIGHT](07-target_weight.md)
-* 08 - Unique values(08-unique_values.md)
+* [08 - UNIQUE values](08-unique_values.md)
 * [09 - SEND report copies to remote hosts](09-send.md)
 
 ---
