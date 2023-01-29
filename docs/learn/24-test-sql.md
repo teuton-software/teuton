@@ -2,9 +2,31 @@
 
 # Test SQL and database
 
-**Example:**
+**Exercise**
 
 * Ask students to make a Sqlite Database. Create a table called `characters` with `name` varchar, and `rol` varchar.
+* Database example:
+
+```
+❯ sqlite3 examples/24-test-sql/database_01.db
+
+sqlite> .schema characters
+CREATE TABLE characters ( name varchar(255), rol varchar(255));
+
+sqlite> select * from characters;
+Obiwan|Jedi
+```
+
+* Query example:
+
+```
+❯ cat examples/24-test-sql/query_01.sql
+
+select * from characters where rol='Jedi';
+```
+
+**Teuton test**
+
 * Define targets:
 
 ```ruby
@@ -34,7 +56,7 @@ cases:
   query: query_01.sql
 ```
 
-* Test output:
+**Test output**
 
 ```
 ❯ teuton examples/24-test-sql                                   
