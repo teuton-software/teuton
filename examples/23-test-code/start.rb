@@ -3,7 +3,7 @@ group "Test code 1" do
 
   target "Sum"
   run "#{filepath} 3 4"
-  expect /Sum\s+=\s+7/
+  expect [ "Sum", "7" ]
 
   target "Mul"
   run "#{filepath} 3 4"
