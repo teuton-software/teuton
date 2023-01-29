@@ -15,6 +15,11 @@ def use(filename)
   require_relative use[0]
 end
 
+def define_macro(name, *args, &block)
+  puts "macro: #{name}"
+  Application.instance.macros[name] = {args: args, block: block}
+end
+
 def group(name, &block)
   Application.instance.groups << {name: name, block: block}
 end
@@ -59,6 +64,7 @@ class Readme
     @verbose = app.verbose
     @result = Result.new
     @data = {}
+    @data[:macros] = []
     @data[:logs] = []
     @data[:groups] = []
     @data[:play] = []

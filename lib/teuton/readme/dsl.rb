@@ -87,10 +87,18 @@ class Readme
   end
 
   # If a method call is missing, then delegate to concept parent.
-  def method_missing(method, args = {})
+  # def method_missing(method, args = {})
+  def method_missing(method, *args, &block)
     m = method.to_s
     if m[0] == "_"
       instance_eval("get(:#{m[1, m.size - 1]})", __FILE__, __LINE__)
+    elsif not Application.instance.macros[m].nil?
+      puts "macro exec: #{m}"
+      code = ""
+      args[0].keys.each { |key| code += "set(:#{key}, '#{args[0][key]}')\n" }
+      puts code
+      # instance_eval(code)
+      # Application.instance.macros[m].call
     end
   end
 
