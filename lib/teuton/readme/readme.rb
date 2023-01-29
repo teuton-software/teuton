@@ -1,6 +1,7 @@
 require_relative "../application"
 require_relative "../utils/configfile_reader"
 require_relative "../case_manager/case/result/result"
+require_relative "../version"
 require_relative "dsl"
 require_relative "lang"
 
@@ -86,7 +87,7 @@ class Readme
     puts "```"
     puts format(Lang.get(:testname), app.test_name)
     puts format(Lang.get(:date), Time.now)
-    puts format(Lang.get(:version), Application::VERSION)
+    puts format(Lang.get(:version), Teuton::VERSION)
     puts "```"
     puts "\n"
     puts "# #{app.test_name}\n"
