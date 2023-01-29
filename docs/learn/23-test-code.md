@@ -6,7 +6,7 @@ Let's test code using teuton.
 
 **Example:**
 
-* Ask students to give us a program that performs addition and multiplication.
+* Ask students to make a program that performs addition and multiplication.
 * Define targets `sum` and `mul`:
 
 ```ruby
