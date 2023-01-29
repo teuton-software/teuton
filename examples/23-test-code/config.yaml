@@ -1,0 +1,8 @@
+---
+global:
+  folder: examples/23-test-code/code
+cases:
+- tt_members: student_1
+  filename: math_1.py
+- tt_members: student_2
+  filename: math_2b.py

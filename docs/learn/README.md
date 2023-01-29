@@ -26,6 +26,7 @@ Learn how write your own Teuton tests:
 1. 20 - Macros
 1. [Checking exit codes](21-exit_codes.md)
 1. [RESULT object](22-result.md)
+1. [Test CODE, programs and scripts](23-test-code.md)
 
 Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
 
