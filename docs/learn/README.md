@@ -23,10 +23,10 @@ Learn how write your own Teuton tests:
 1. [ALIAS](17-alias.md)
 1. [LOG messages](18-log.md)
 1. [Don't get params, just read vars](19-read_vars.md)
-1. [Macros](20-macros.md)
+1. [MACROS](20-macros.md)
 1. [Checking exit codes](21-exit_codes.md)
 1. [RESULT object](22-result.md)
-1. [Test CODE](23-test-code.md)
+1. [Test code](23-test-code.md)
 1. [Test SQL and database](24-test-sql.md)
 
 Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
