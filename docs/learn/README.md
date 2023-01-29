@@ -27,6 +27,7 @@ Learn how write your own Teuton tests:
 1. [Checking exit codes](21-exit_codes.md)
 1. [RESULT object](22-result.md)
 1. [Test CODE](23-test-code.md)
+1. [Test SQL and database](24-test-sql.md)
 
 Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
 
