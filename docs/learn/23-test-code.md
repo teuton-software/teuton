@@ -30,17 +30,18 @@ Sum = 7
 Mul = 12
 ```
 
+## Defining our targets
 
 ```ruby
-group "Test code 1" do
+group "Test code example" do
   folder = "examples/23-test-code/code"
 
   target "Sum"
-  run "./#{folder}/math_1.py 2 3"
-  expect /Sum\s+=\s+5/
+  run "./#{folder}/math_1.py 3 4"
+  expect /Sum\s+=\s+7/
 
   target "Mul"
-  run "./#{folder}/math_1.py 2 3"
-  expect /Mul\s+=\s+6/
+  run "./#{folder}/math_1.py 3 4"
+  expect /Mul\s+=\s+12/
 end
 ```
