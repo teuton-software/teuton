@@ -4,10 +4,10 @@
 
 Let's test code using teuton.
 
-## Example 1
+**Example:**
 
 * Ask students to give us a program that performs addition and multiplication.
-* Define targets:
+* Define targets `sum` and `mul`:
 
 ```ruby
 # File: start.rb
