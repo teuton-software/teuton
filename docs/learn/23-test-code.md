@@ -11,7 +11,7 @@ Let's test code using teuton.
 
 ```ruby
 # File: start.rb
-group "Test code 1" do
+group "Test code example" do
   # Reading filepath from config file
   filepath = "./#{get(:folder)}/#{get(:filename)}"
 

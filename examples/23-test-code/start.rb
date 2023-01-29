@@ -1,4 +1,4 @@
-group "Test code 1" do
+group "Test code example" do
   filepath = "./#{get(:folder)}/#{get(:filename)}"
 
   target "Sum"
