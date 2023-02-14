@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This is an extension of Result class
+# Result class extension
 class Result
   # TODO: Error line 102 undefined include? method for 0 Fixnum...
   def find(filter)
@@ -15,9 +15,9 @@ class Result
     end
     self
   end
-  alias grep find
-  alias grep! find
-  alias find! find
+  alias_method :grep, :find
+  alias_method :grep!, :find
+  alias_method :find!, :find
 
   def first
     @alterations << "first"
@@ -32,7 +32,7 @@ class Result
     @content.reject! { |i| i.include?(p_filter) }
     self
   end
-  alias grep_v not_find
+  alias_method :grep_v, :not_find
 
   def since(filter)
     @alterations << "since(#{filter})"
