@@ -55,7 +55,9 @@ module DSL
   end
 
   def expect_none(input, args = {})
-    if input.instance_of? Array
+    if input.nil?
+      # nothing to do
+    elsif input.instance_of? Array
       input.each { |i| result.find(i) }
     else
       result.find(input)
