@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
-require 'net/ftp'
+require "net/ftp"
 
 host = ARGV[0]
-user = 'anonymous'
-pass = 'anonymous'
+user = "anonymous"
+pass = "anonymous"
 filename = ARGV[1]
 
 begin

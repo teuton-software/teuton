@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This is an extension of Result class
+# Extension of Result class
 class Result
   def eq(input)
     # Return true when content is equal than input
@@ -22,10 +22,10 @@ class Result
     end
     value == input
   end
-  alias eq? eq
-  alias equal eq
-  alias equal? eq
-  alias is_equal? eq
+  alias_method :eq?, :eq
+  alias_method :equal, :eq
+  alias_method :equal?, :eq
+  alias_method :is_equal?, :eq
 
   def neq(external)
     @expected = "Not equal to #{external}"
@@ -44,9 +44,9 @@ class Result
     end
     internal != external
   end
-  alias neq? neq
-  alias not_equal neq
-  alias not_equal? neq
+  alias_method :neq?, :neq
+  alias_method :not_equal, :neq
+  alias_method :not_equal?, :neq
 
   def ge(input)
     @expected = "Greater or equal to #{input}"
@@ -65,8 +65,8 @@ class Result
     end
     value >= input
   end
-  alias greater_or_equal ge
-  alias greater_or_equal? ge
+  alias_method :greater_or_equal, :ge
+  alias_method :greater_or_equal?, :ge
 
   def gt(input)
     @expected = "Greater than #{input}"
@@ -85,8 +85,8 @@ class Result
     end
     value > input
   end
-  alias greater gt
-  alias greater_than gt
+  alias_method :greater, :gt
+  alias_method :greater_than, :gt
 
   def le(input)
     @expected = "Lesser or equal to #{input}"
@@ -106,8 +106,8 @@ class Result
     end
     value <= input
   end
-  alias lesser_or_equal le
-  alias lesser_or_equal? le
+  alias_method :lesser_or_equal, :le
+  alias_method :lesser_or_equal?, :le
 
   def lt(input)
     @expected = "Lesser than #{input}"
@@ -126,9 +126,9 @@ class Result
     end
     value < input
   end
-  alias lesser lt
-  alias smaller lt
-  alias lesser_than lt
+  alias_method :lesser, :lt
+  alias_method :smaller, :lt
+  alias_method :lesser_than, :lt
 
   # Return 'true' if the parameter value is near to the target value.
   # To get this we consider a 10% desviation or less, as an acceptable result.
@@ -142,8 +142,7 @@ class Result
 
     false
   end
-  alias near_to near_to?
-  alias near? near_to?
-  alias near near_to?
+  alias_method :near_to, :near_to?
+  alias_method :near?, :near_to?
+  alias_method :near, :near_to?
 end
-# rubocop:enable Metrics/ClassLength

@@ -4,7 +4,6 @@ ignore:
   - "lib/teuton/utils/configfile_reader.rb"
   - "lib/teuton/case_manager/case/play.rb"
   - "lib/teuton/case_manager/case/result/ext_array.rb"
-  - "lib/teuton/case_manager/case/result/ext_compare.rb"
   - "lib/teuton/case_manager/case/result/ext_filter.rb"
   - "lib/teuton/case_manager/case/result/result.rb"
   - "lib/teuton/case_manager/dsl.rb"
