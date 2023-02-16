@@ -2,6 +2,7 @@
 ## TO-DO
 
 New features:
+- Parse new input format, and detect parse errors
 - Teuton readme --lang=es
 - Export files with other langs
 
