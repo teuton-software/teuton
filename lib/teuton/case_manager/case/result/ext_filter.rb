@@ -25,11 +25,18 @@ class Result
     self
   end
 
-  def not_find(p_filter)
-    @alterations << "not_find(#{p_filter})"
+  def not_find(filter)
+    @alterations << "not_find(#{filter})"
     return self if @content.size.zero?
 
-    @content.reject! { |i| i.include?(p_filter) }
+    case filter.class.to_s
+    when "Array"
+      filter.each { |i| not_find(i.to_s) }
+    when "String" || "Integer"
+      @content.reject! { |i| i.include?(filter.to_s) }
+    when "Regexp"
+      @content.reject! { |i| filter.match(i) }
+    end
     self
   end
   alias_method :grep_v, :not_find
