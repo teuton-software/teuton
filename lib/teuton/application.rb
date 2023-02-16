@@ -1,10 +1,8 @@
 require "singleton"
-# require_relative "version"
 require_relative "utils/name_file_finder"
 
 class Application
   include Singleton
-  # include Teuton
 
   attr_reader :letter
   attr_reader :running_basedir, :output_basedir
