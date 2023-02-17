@@ -25,7 +25,9 @@ expect 'obiwan' # Expect previous run command output contains obiwan text
 | expect_one "rogue" | only one line with "rogue" |
 | expect_one ["obiwan","kenobi"] | only one line with "obiwan" and "kenobi" |
 | expect_none "vader"| no line with "vader" |
-| expect_none ["darth", "vader"] | no line with "darth" and "vader" |
+| expect_none ["darth", "vader"] | no line with "darth" or "vader" |
+| expect_none | no output lines expected |
+| expect_nothing | no output lines expected |
 | expect /Obiwan\|obi-wan/ | one or more line/s with Obiwan or obi-wan. This example uses regular expresions. |
 
 ## Advanced
