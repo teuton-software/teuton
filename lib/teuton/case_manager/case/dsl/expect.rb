@@ -54,7 +54,12 @@ module DSL
     expect2 input, expected: output
   end
 
-  def expect_none(input, args = {})
+  # def expect_none(input, args = {})
+  def expect_nothing(args = {})
+    expect2 result.count.eq(0), args
+  end
+
+  def expect_none(input = nil, args = {})
     if input.nil?
       # nothing to do
     elsif input.instance_of? Array
