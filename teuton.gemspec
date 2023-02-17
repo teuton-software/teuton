@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.5.9"
 
-  s.add_runtime_dependency "colorize", "~> 0.8.1"
+  # s.add_runtime_dependency "colorize", "~> 0.8.1"
   s.add_runtime_dependency "rainbow", "~> 3.1"  # 3.0
   s.add_runtime_dependency "net-sftp", "~> 4.0" # 2.1
   s.add_runtime_dependency "net-ssh", "~> 7.0"  # 5.0
