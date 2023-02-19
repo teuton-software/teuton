@@ -9,7 +9,7 @@ _Create Unit Test for your machines. Test your infrastructure as code._
 
 ![logo](./docs/images/logo.png)
 
-Teuton is an intrastructure test tool, useful for:
+Teuton is an infrastructure test tool, useful for:
 * Sysadmin teachers who want to evaluate students remote machines.
 * Sysadmin apprentices who want to evaluate their learning process as a game.
 * Professional sysadmin who want to monitor remote machines.
