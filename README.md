@@ -5,7 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 ![Gem](https://img.shields.io/gem/dv/teuton/2.4.0)
 
-_Create Unit Test for your machines. Test your infraestructure as code._
+_Create Unit Test for your machines. Test your infrastructure as code._
 
 ![logo](./docs/images/logo.png)
 
