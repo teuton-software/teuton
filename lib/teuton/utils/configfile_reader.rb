@@ -31,11 +31,11 @@ module ConfigFileReader
     begin
       data = YAML.load(File.open(filepath))
     rescue => e
-      puts "\n" + ("=" * 80)
-      puts "[ERROR] ConfigFileReader#read <#{filepath}>"
-      puts "        I suggest to revise file format!"
-      puts "        #{e.message}\n" + ("=" * 80)
-      raise "[ERROR] ConfigFileReader <#{e}>"
+      $stderr.puts "\n" + ("=" * 80)
+      $stderr.puts "[ERROR] ConfigFileReader#read <#{filepath}>"
+      $stderr.puts "        I suggest to revise file format!"
+      $stderr.puts "        #{e.message}\n" + ("=" * 80)
+      exit 1
     end
     data = convert_string_keys_to_symbol(data)
     data[:global] = data[:global] || {}

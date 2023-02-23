@@ -27,8 +27,13 @@ module Teuton
 
     app = Application.instance
     lab = Laboratory.new(app.script_path, app.config_path)
-    lab.show unless options[:panelconfig]
-    lab.show_panelconfig if options[:panelconfig]
+    if options[:panelconfig]
+      lab.show_panelconfig
+    else
+      lab.show
+    end
+    puts Rainbow("Check OK!").green
+    exit 0
   end
 
   private_class_method def self.require_dsl_and_script(dslpath)
@@ -36,10 +41,11 @@ module Teuton
     require_relative dslpath
     begin
       require_relative app.script_path
-    rescue SyntaxError => e
-      puts e.to_s
-      puts Rainbow.new("[FAIL ] Reading file #{app.script_path}").red
-      puts Rainbow.new("[ERROR] Syntax Error!").red
+    rescue
+      warn e.to_s
+      warn Rainbow.new("[FAIL ] Reading file #{app.script_path}").red
+      warn Rainbow.new("[ERROR] Syntax Error!").red
+      exit 1
     end
   end
 end

@@ -69,15 +69,14 @@ class Laboratory
   end
 
   def recomended_config_content
-    verbose Rainbow("[WARN] File ").yellow
-    verbose Rainbow(@path[:config]).yellow.bright
-    verboseln Rainbow(" not found!").yellow
-    verboseln "[INFO] Recomended content:"
+    verboseln Rainbow("[WARN] Configfile not found").bright.yellow
+    verboseln Rainbow("       #{@path[:config]}").white
+    verboseln Rainbow("[INFO] Recomended content:").bright.yellow
     output = {global: nil, cases: []}
     output[:cases][0] = {}
     script_vars = find_script_vars
     script_vars.each { |i| output[:cases][0][i] = "VALUE" }
-    verboseln YAML.dump(output)
+    verboseln Rainbow(YAML.dump(output)).white
   end
 
   def recomended_panelconfig_content
