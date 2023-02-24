@@ -100,6 +100,9 @@ class Case
       end
       text = if @sessions[hostname].instance_of? Net::SSH::Connection::Session
         @sessions[hostname].exec!(@action[:command])
+        # ssh.exec!("ls -l /home/jamis") do |channel, stream, data|
+        #   stdout << data if stream == :stdout
+        # end
       else
         "SSH: NO CONNECTION!"
       end
