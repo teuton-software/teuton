@@ -98,8 +98,10 @@ class Case
           non_interactive: true
         )
       end
-      if @sessions[hostname].instance_of? Net::SSH::Connection::Session
-        text = @sessions[hostname].exec!(@action[:command])
+      text = if @sessions[hostname].instance_of? Net::SSH::Connection::Session
+        @sessions[hostname].exec!(@action[:command])
+      else
+        "SSH: NO CONNECTION!"
       end
     rescue Errno::EHOSTUNREACH
       @sessions[hostname] = :nosession
@@ -148,10 +150,11 @@ class Case
         # "Prompt" => Regexp.new(username[1, 40]))
         # "Prompt" => /[$%#>] \z/n)
         h.login(username, password)
-        text = ""
         h.cmd(@action[:command]) { |i| text << i }
         h.close
         @sessions[hostname] = :ok
+      else
+        text = "TELNET: NO CONNECTION!"
       end
     rescue Net::OpenTimeout
       @sessions[hostname] = :nosession

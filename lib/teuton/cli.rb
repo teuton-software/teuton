@@ -19,17 +19,17 @@ class CLI < Thor
   option :cname, type: :string
   option :cpath, type: :string
   desc "check [OPTIONS] DIRECTORY", "Check test and config file content"
-  long_desc <<-LONGDESC
+  long_desc <<~LONGDESC
 
-(1) teuton check PATH/TO/DIR , Check content of start.rb and config.yaml files.
+    (1) teuton check PATH/TO/DIR , Check content of start.rb and config.yaml files.
 
-(2) teuton check PATH/TO/DIR --cname=demo , Check content of start.rb and demo.yaml files:
+    (2) teuton check PATH/TO/DIR --cname=demo , Check content of start.rb and demo.yaml files:
 
-(3) teuton check PATH/TO/DIR --panelconfig  , Only show config file recomendations
+    (3) teuton check PATH/TO/DIR --panelconfig  , Only show config file recomendations
 
-(4) teuton check PATH/TO/DIR/foo.rb , Check content of foo.rb and foo.yaml files.
+    (4) teuton check PATH/TO/DIR/foo.rb , Check content of foo.rb and foo.yaml files.
 
-(5) teuton check PATH/TO/DIR/foo.rb --cname=demo , Check content of foo.rb and demo.yaml files.
+    (5) teuton check PATH/TO/DIR/foo.rb --cname=demo , Check content of foo.rb and demo.yaml files.
 
   LONGDESC
   def check(projectpath)
