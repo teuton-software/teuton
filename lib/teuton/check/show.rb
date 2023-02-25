@@ -87,11 +87,6 @@ class Laboratory
   end
 
   def revise_config_content
-    my_screen_table = Terminal::Table.new do |st|
-      st.add_row ["Revising CONFIG file"]
-    end
-    verboseln my_screen_table
-
     unless File.exist?(@path[:config])
       recomended_config_content
       return
