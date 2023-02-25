@@ -32,8 +32,6 @@ module Teuton
     else
       lab.show
     end
-    puts Rainbow("Check OK!").green
-    exit 0
   end
 
   private_class_method def self.require_dsl_and_script(dslpath)

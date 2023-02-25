@@ -69,9 +69,9 @@ class Laboratory
   end
 
   def recomended_config_content
-    verboseln Rainbow("[WARN] Configfile not found").bright.yellow
-    verboseln Rainbow("       #{@path[:config]}").white
-    verboseln Rainbow("[INFO] Recomended content:").bright.yellow
+    warn Rainbow("[WARN] Configfile not found").bright.yellow
+    warn Rainbow("       #{@path[:config]}").white
+    warn Rainbow("[INFO] Recomended content:").bright.yellow
     output = {global: nil, cases: []}
     output[:cases][0] = {}
     script_vars = find_script_vars

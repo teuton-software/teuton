@@ -51,11 +51,10 @@ Example:
 :global:
 :cases:
 - :tt_members: VALUE
-
-Check OK!
 ```
 
 The check process notifies that
 * This test hasn't config file
 * and recommends content for our config file. But it isn't necessary for this example.
-* Syntax is OK!
+* exit_code 0 = Syntax ok.
+* exit code 1 = Syntax ERROR.
