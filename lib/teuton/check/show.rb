@@ -16,7 +16,7 @@ class Laboratory
     revise_config_content
   end
 
-  def show_panelconfig
+  def show_onlyconfig
     @verbose = false
     process_content
     @verbose = true
@@ -80,9 +80,10 @@ class Laboratory
   end
 
   def recomended_panelconfig_content
-    output = {global: {}, cases: nil}
+    output = {global: nil, cases: [{}]}
     script_vars = find_script_vars
-    script_vars.each { |i| output[:global][i] = "VALUE" }
+    # script_vars.each { |i| output[:global][i] = "VALUE" }
+    script_vars.each { |i| output[:cases][0][i] = "VALUE" }
     verboseln YAML.dump(output)
   end
 
