@@ -15,7 +15,8 @@ class CLI < Thor
   end
 
   map ["c", "-c", "--check"] => "check"
-  option :panelconfig, type: :boolean
+  option :onlyconfig, type: :boolean
+  option :color, type: :boolean
   option :cname, type: :string
   option :cpath, type: :string
   desc "check [OPTIONS] DIRECTORY", "Check test and config file content"
@@ -25,7 +26,7 @@ class CLI < Thor
 
     (2) teuton check PATH/TO/DIR --cname=demo , Check content of start.rb and demo.yaml files:
 
-    (3) teuton check PATH/TO/DIR --panelconfig  , Only show config file recomendations
+    (3) teuton check PATH/TO/DIR --onlyconfig  , Only show config file recomendations
 
     (4) teuton check PATH/TO/DIR/foo.rb , Check content of foo.rb and foo.yaml files.
 

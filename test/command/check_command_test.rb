@@ -32,7 +32,7 @@ class CheckCommandTest < Test::Unit::TestCase
   def test_check_examples
     @examples.each do |name|
       dir = File.join(@dirbase, name)
-      cmd = "teuton check #{dir} > /dev/null"
+      cmd = "teuton check #{dir} 2>/dev/null 1>/dev/null"
       puts "=> check: #{name}"
       assert_equal true, system(cmd)
     end

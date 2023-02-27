@@ -27,7 +27,7 @@ module Teuton
 
     app = Application.instance
     lab = Laboratory.new(app.script_path, app.config_path)
-    if options[:panelconfig]
+    if options[:onlyconfig]
       lab.show_panelconfig
     else
       lab.show

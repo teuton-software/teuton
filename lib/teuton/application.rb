@@ -70,9 +70,9 @@ class Application
     Rainbow.enabled = @options["color"]
     @options["panel"] = false if @options["panel"].nil?
 
-    return if @options["case"].nil?
-
-    a = @options["case"].split(",")
-    @options["case"] = a.collect!(&:to_i)
+    unless @options["case"].nil?
+      numbers = @options["case"].split(",")
+      @options["case"] = numbers.collect!(&:to_i)
+    end
   end
 end
