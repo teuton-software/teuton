@@ -48,10 +48,12 @@ CASE RESULTS
 * [Free Software License](LICENSE).
 * Multiplatform.
 * Remote machines/devices only require SSH or Telnet service installed.
+* Simple DSL to define your goals: `target`, `run`,`expect` and more.
+* Output format: txt, json, yaml, etc.
 
 # Documentation
 
-* [Learn](docs/learn/README.md)
+* [Getting started](docs/learn/README.md)
 * [Language reference](docs/dsl/README.md)
 * [Commands](docs/commands/README.md)
 * [Installation](docs/install/README.md)
