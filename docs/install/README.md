@@ -1,8 +1,8 @@
 [<< back](../../README.md)
 
-# Installation process
+# Installation
 
-There are 2 types of nodes/hosts:
+There are 2 types of nodes/hosts, so there are 2 installations:
 
 | ID | Software | Description |
 | -- | -------- | ----------- |
@@ -20,6 +20,7 @@ Read [modes of use](modes_of_use.md) to know more about differents T-NODE/S-NODE
 |           | Fedora    | Workstation 29 | x84-64 | Ok     |        |
 |           | LinuxMint | 18.3           | x86-64 | Ok     |        |
 |           | openSUSE  | Leap 15        | x86-64 | Ok     | Ok     |
+|           | openSUSE  | Tumbleweed     | x86-64 | Ok     | Ok     |
 |           | Ubuntu    | 18.04          | x86-64 | Ok     | Ok     |
 | Microsoft | Windows   | 7 Enterprise   | x86    | Ok     |        |
 |           | Windows   | 10 Pro         | x86-64 | Ok     | Ok     |
