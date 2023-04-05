@@ -3,20 +3,15 @@
 
 [![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
-![Gem](https://img.shields.io/gem/dv/teuton/2.4.0)
 
 _Create Unit Test for your machines. Test your infrastructure as code._
 
 ![logo](./docs/images/logo.png)
 
-Teuton is an infrastructure test tool, useful for:
+Infrastructure test, useful for:
 * Sysadmin teachers who want to evaluate students remote machines.
 * Sysadmin apprentices who want to evaluate their learning process as a game.
 * Professional sysadmin who want to monitor remote machines.
-
-Teuton allow us:
-* Write unit tests for real or virtual devices, using simple DSL.
-* Check compliance with requirements on local or remote devices.
 
 # Installation
 
@@ -40,16 +35,15 @@ CASE RESULTS
 | CASE | MEMBERS   | GRADE | STATE |
 | 01   | anonymous | 100.0 | ✔     |
 +------+-----------+-------+-------+
-
 ```
 
 # Features
 
-* [Free Software License](LICENSE).
+* Simple DSL to define your tests: `target`, `run`,`expect` and more.
+* Remote devices only require SSH or Telnet service installed.
+* Output format: txt, html, json, yaml, etc.
 * Multiplatform.
-* Remote machines/devices only require SSH or Telnet service installed.
-* Simple DSL to define your goals: `target`, `run`,`expect` and more.
-* Output format: txt, json, yaml, etc.
+* [Free Software License](LICENSE).
 
 # Documentation
 
