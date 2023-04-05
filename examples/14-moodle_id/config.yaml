@@ -1,4 +1,5 @@
 global:
+  tt_moodle_max_score: 10
 cases:
 - tt_members: Darth Vader
   tt_moodle_id: vader@starwars.com
