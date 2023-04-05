@@ -17,7 +17,7 @@ Learn how write your own Teuton tests:
 1. [Export other FORMATS](11-export.md)
 1. [PRESERVE old reports](12-preserve.md)
 1. [Hide FEEDBACK from reports](13-feedback.md)
-1. [MOODLE ID](14-moodle_id.md)
+1. [MOODLE](14-moodle_id.md)
 1. [Build README from test](15-readme.md)
 1. [INCLUDE more configuration files](16-include.md)
 1. [ALIAS](17-alias.md)
