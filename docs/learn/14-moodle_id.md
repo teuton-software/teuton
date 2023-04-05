@@ -22,3 +22,21 @@ cases:
 ```
 
 Now, when after test execution, use "moodle.csv" output file to load students grades and feedback into your Moodle platform.
+
+## tt_moodle_max_score
+
+By default, teuton evaluates grades from 0 to 100. So grade max score is 100.0 by default. Sometimes teachers configure their moodle tasks with diferents max score, so it is necesary adjust Teuton output grades with Moodle input grades.
+
+We use `tt_moodle_max_score` to customize Moodle max score. So when Teuton export `moodle.csv` values, divides Teuton grades by this value.
+
+Example:
+
+```
+global:
+  tt_moodle_max_score: 10
+cases:
+- tt_members: Darth Vader
+  tt_moodle_id: vader@starwars.com
+- tt_members: Obiwan Kenobi
+  tt_moodle_id: obiwan@starwars.com
+```
