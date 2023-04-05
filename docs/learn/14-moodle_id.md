@@ -8,7 +8,7 @@ Teuton generates a file called `moodle.csv` with the grades of each student into
 
 ## tt_moodle_id
 
-Add a new field called `tt_moodle_id` to each case in "config.yaml". Fill it with the student's identification (For example, the email registered on the Moodle, or ID number, etc.).
+Add a new field called `tt_moodle_id` to each case in "config.yaml". Fill it with the student's Moodle identification. For example, registered email on or ID number on Moodle platform.
 
 Example:
 
@@ -21,4 +21,4 @@ cases:
   tt_moodle_id: obiwan@starwars.com
 ```
 
-Now, when running test "moodle.csv" will be generated with all student grades.
+Now, when after test execution, use "moodle.csv" output file to load students grades and feedback into your Moodle platform.
