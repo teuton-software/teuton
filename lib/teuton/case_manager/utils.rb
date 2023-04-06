@@ -1,5 +1,6 @@
 require_relative "../application"
 require "fileutils"
+require "rainbow"
 
 module Utils
   def ensure_dir(dirname)
@@ -36,7 +37,7 @@ module Utils
       text = `#{cmd}`
       exitstatus = $CHILD_STATUS.exitstatus
     rescue => e
-      verbose "F"
+      verbose Rainbow("!").green
       exitstatus = $CHILD_STATUS.exitstatus
       text = e.to_s
     end
