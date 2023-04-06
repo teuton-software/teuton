@@ -14,6 +14,12 @@ subgraph "create new project"
   Skeleton --> Files([Files])
 end
 
+subgraph run
+  Teuton -- run --> CaseManager
+  Result
+end
+
+
 subgraph check
   Teuton -- check --> Laboratory
 
@@ -21,10 +27,6 @@ subgraph check
   check/DSL --> Laboratory
   Laboratory --> Show  
   Laboratory --> Result
-end
-
-subgraph run
-  Teuton -- run --> CaseManager
 end
 
 subgraph readme
