@@ -5,8 +5,10 @@
 ```mermaid
 flowchart TB
 
+subgraph user
   CLI --> Teuton
   Teuton --> Application
+end
 
 subgraph create
   Teuton -- create --> Skeleton
