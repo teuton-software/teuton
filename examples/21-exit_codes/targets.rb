@@ -8,7 +8,7 @@ group "Howto read exit code" do
   expect_last "0"
 end
 
-group "Capture stderr" do 
+group "Capture stderr" do
   target "Right execution: ls"
   run "ls"
   expect result.count.gt 0
