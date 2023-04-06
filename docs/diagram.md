@@ -5,6 +5,7 @@
 ```mermaid
 flowchart TB
 
+  CLI --> Teuton
   Teuton --> Application
 
 subgraph create
