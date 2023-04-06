@@ -19,8 +19,8 @@ subgraph check
 
   Builtin! --> Laboratory
   check/DSL --> Laboratory
-  Show --> Laboratory  
-  Result --> Laboratory
+  Laboratory --> Show  
+  Laboratory --> Result
 end
 
 subgraph run
