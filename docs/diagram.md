@@ -9,7 +9,7 @@ subgraph user
   CLI --> Teuton
 end
 
-subgraph create
+subgraph "create new project"
   Teuton -- create --> Skeleton
 end
 
