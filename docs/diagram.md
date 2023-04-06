@@ -16,7 +16,7 @@ end
 
 subgraph check
   Teuton -- check --> Laboratory
-  Laboratory --> [Builtin!]
+  Laboratory --> Builtin[Builtin!]
   Laboratory --> DSL
   Laboratory --> Show  
 end
