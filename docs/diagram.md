@@ -23,9 +23,9 @@ end
 subgraph check
   Teuton -- check --> Laboratory
 
-  Builtin! --> Laboratory
-  check/DSL --> Laboratory
-  Laboratory --> Show  
+  Laboratory --> check/DSL
+  Laboratory --> Builtin!
+  Laboratory --> Show
   Laboratory --> Result
 end
 
