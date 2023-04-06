@@ -17,12 +17,10 @@ end
 subgraph check
   Teuton -- check --> Laboratory
 
-  subgraph "check use"
-    Laboratory --> Builtin!
-    Laboratory --> check/DSL
-    Laboratory --> Show  
-    Laboratory --> Result
-  end
+  Laboratory --> Builtin!
+  Laboratory --> check/DSL
+  Laboratory --> Show  
+  Result --> Laboratory
 end
 
 subgraph run
