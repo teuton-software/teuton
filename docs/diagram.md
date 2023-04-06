@@ -5,10 +5,14 @@
 ```mermaid
 flowchart TB
 
-Teuton -- check --> Laboratory
+  Teuton --> Application
 
 subgraph create
   Teuton -- create --> Skeleton
+end
+
+subgraph check
+  Teuton -- check --> Laboratory
 end
 
 subgraph run
@@ -17,14 +21,5 @@ end
 
 subgraph readme
   Teuton -- readme --> Readme
-end
-
-subgraph data
-  Settings -- read --> settingsyaml([settings.yaml])
-  Settings -- read --> configyamls([config/*.yaml])
-  RemoteFile -- read --> www[(WWW)]
-  SeleniumWrapper -- read --> www[(WWW)]
-  Cache -- read --> html[(HTML)]
-  RemoteFile -- write --> html[(HTML)]
 end
 ```
