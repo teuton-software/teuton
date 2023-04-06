@@ -19,6 +19,7 @@ subgraph check
   Laboratory --> Builtin[[Builtin!]]
   Laboratory --> DSL
   Laboratory --> Show  
+  Laboratory --> Result
 end
 
 subgraph run
@@ -27,5 +28,8 @@ end
 
 subgraph readme
   Teuton -- readme --> Readme
+  Readme --> DSL
+  Readme --> Lang!  
+  Readme --> Result
 end
 ```
