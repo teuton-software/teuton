@@ -5,12 +5,12 @@
 ```mermaid
 flowchart TB
 
-Teuton -- create --> Skeleton
 Teuton -- run --> CaseManager
 Teuton -- readme --> Readme
 Teuton -- check --> Laboratory
 
-subgraph AirbnbImpl
+subgraph create
+  Teuton -- create --> Skeleton
   Airbnb -- read --> AirbnbAssets
   Airbnb -- read --> AirbnbDetail
   Airbnb -- download --> AirbnbImages
