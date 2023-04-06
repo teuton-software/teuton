@@ -36,8 +36,9 @@ module Utils
       text = `#{cmd}`
       exitstatus = $CHILD_STATUS.exitstatus
     rescue => e
-      verbose "!"
-      puts("[ERROR] #{e}: Local exec: #{cmd}")
+      verbose "F"
+      exitstatus = $CHILD_STATUS.exitstatus
+      text = e.to_s
     end
     content = encode_and_split(encoding, text)
     {exitstatus: exitstatus, content: content}
