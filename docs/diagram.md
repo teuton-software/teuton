@@ -16,6 +16,9 @@ end
 
 subgraph check
   Teuton -- check --> Laboratory
+  Laboratory --> Builtin
+  Laboratory --> DSL
+  Laboratory --> Show  
 end
 
 subgraph run

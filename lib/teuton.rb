@@ -6,6 +6,19 @@ module Teuton
     Skeleton.create(path_to_new_dir)
   end
 
+  def self.check(projectpath, options = {})
+    Application.instance.add_input_params(projectpath, options)
+    require_dsl_and_script("teuton/check/laboratory") # Define DSL
+
+    app = Application.instance
+    lab = Laboratory.new(app.script_path, app.config_path)
+    if options[:onlyconfig]
+      lab.show_onlyconfig
+    else
+      lab.show
+    end
+  end
+
   def self.run(projectpath, options = {})
     Application.instance.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/case_manager/dsl") # Define DSL
@@ -19,19 +32,6 @@ module Teuton
     app = Application.instance
     readme = Readme.new(app.script_path, app.config_path)
     readme.show
-  end
-
-  def self.check(projectpath, options = {})
-    Application.instance.add_input_params(projectpath, options)
-    require_dsl_and_script("teuton/check/laboratory") # Define DSL
-
-    app = Application.instance
-    lab = Laboratory.new(app.script_path, app.config_path)
-    if options[:onlyconfig]
-      lab.show_onlyconfig
-    else
-      lab.show
-    end
   end
 
   private_class_method def self.require_dsl_and_script(dslpath)
