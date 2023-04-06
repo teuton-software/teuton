@@ -11,6 +11,7 @@ end
 
 subgraph "create new project"
   Teuton -- create --> Skeleton
+  Skeleton --> Files([Files])
 end
 
 subgraph check
