@@ -41,8 +41,8 @@ subgraph case_manager
   ReportManager --> HallOfFame
 end
 
-subgraph case
-  CaseManager --> Case
+subgraph "case folder"
+  CaseManager --> Case("Case\nDSL\nConfig")
 end
 
 subgraph report
