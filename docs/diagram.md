@@ -30,9 +30,9 @@ subgraph readme
 end
 
 subgraph utils
-  Readme --> ConfigFileReader
-  Readme --> Result
   Laboratory --> Result
+  Readme --> Result
+  Readme --> ConfigFileReader
 end
 ```
 
