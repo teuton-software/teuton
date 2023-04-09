@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "test/unit"
-require_relative "../../lib/teuton/application/name_file_finder"
+require_relative "../../lib/teuton/utils/name_file_finder"
 require_relative "../../lib/teuton/application"
 
 class NameFileFinderTest < Test::Unit::TestCase

@@ -1,5 +1,5 @@
 require "singleton"
-require_relative "application/name_file_finder"
+require_relative "utils/name_file_finder"
 
 class Application
   include Singleton
