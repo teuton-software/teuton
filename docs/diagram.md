@@ -49,7 +49,7 @@ end
 
 subgraph case_manager
   Teuton -- require --> DSL
-  DSL --> Application
+  DSL -- use/macros/groups --> Application
   DSL -- play --> CaseManager
   CheckCases
   Result
