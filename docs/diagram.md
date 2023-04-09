@@ -52,7 +52,7 @@ subgraph case_manager
   Result
 end
 
-subgraph case_manager
+subgraph report
   CaseManager --> Report
   Report --> Formatter
 end
