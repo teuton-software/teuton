@@ -27,10 +27,10 @@ subgraph utils
   Verbose
 end
 
-subgraph case_manager
+subgraph manager
   Teuton -- require --> manager/DSL
-  DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
-  DSL -- play --> CaseManager("CaseManager\ncheck_cases\nExportManager\nSendManager\nShowReport")
+  manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
+  manager/DSL -- play --> CaseManager("CaseManager\ncheck_cases\nExportManager\nSendManager\nShowReport")
   CaseManager --> ConfigFileReader
   ReportManager --> HallOfFame
 end
