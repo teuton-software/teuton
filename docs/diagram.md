@@ -33,10 +33,7 @@ end
 subgraph case_manager
   Teuton -- require --> DSL
   DSL -- use/macros/groups --> Application
-  DSL -- play --> CaseManager("CaseManager\ncheck_cases\n")
-  CaseManager --> ExportManager
-  CaseManager --> SendManager
-  CaseManager --> ShowReport
+  DSL -- play --> CaseManager("CaseManager\ncheck_cases\nExportManager\nSendManager\nShowReport")
   ReportManager --> HallOfFame
 end
 
