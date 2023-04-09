@@ -1,5 +1,4 @@
 require "rainbow"
-require "singleton"
 require_relative "../application"
 require_relative "../report/report"
 require_relative "../report/show"
@@ -20,7 +19,6 @@ require_relative "utils"
 # * case_manager/hall_of_fame
 # * case_manager/report
 class CaseManager
-  include Singleton
   include Utils
   attr_reader :report, :cases
 

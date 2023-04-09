@@ -35,6 +35,6 @@ alias task group
 # Start test
 # @param block (Block) Extra code executed at the end.
 def play(&block)
-  CaseManager.instance.play(&block)
+  CaseManager.new.play(&block)
 end
 alias start play
