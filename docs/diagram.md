@@ -12,7 +12,7 @@ end
 subgraph "create new project"
   direction LR
   Teuton -- create --> Skeleton
-  Skeleton --> Files([Files])
+  Files([Files])
 end
 
 subgraph check
