@@ -7,6 +7,7 @@ require_relative "case/case"
 require_relative "export_manager"
 require_relative "check_cases"
 require_relative "report"
+require_relative "send_manager"
 require_relative "utils"
 
 # This class does all the job
@@ -57,18 +58,8 @@ class CaseManager
     ExportManager.run(@report, @cases, args)
   end
 
-  ##
-  # Execute "send" order: Send every case report
-  # @param args (Hash) Send options
   def send(args = {})
-    threads = []
-    puts ""
-    puts Rainbow("-" * 50).green
-    puts Rainbow("Sending files...#{args}").color(:green)
-    @cases.each { |c| threads << Thread.new { c.send(args) } }
-    threads.each(&:join)
-    puts Rainbow("Sending finished!").color(:green)
-    puts Rainbow("-" * 50).green
+    SendManager.new.run(@cases, args)
   end
 
   def show(options = {verbose: 1})
