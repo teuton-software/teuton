@@ -23,10 +23,7 @@ subgraph check
 end
 
 subgraph readme
-  Teuton -- readme --> Readme
-
-  readme/DSL
-  readme/Lang!  
+  Teuton -- readme --> Readme("Readme\nDSL\nLang!")
 end
 
 subgraph case
