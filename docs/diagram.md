@@ -29,6 +29,8 @@ end
 
 subgraph utils
   Readme --> ConfigFileReader
+  Laboratory --> ConfigFileReader
+  CaseManager --> ConfigFileReader
   Application --> NameFileFinder
   Verbose
 end
