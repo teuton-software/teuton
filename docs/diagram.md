@@ -28,7 +28,7 @@ end
 
 subgraph utils
   Readme --> ConfigFileReader
-  NameFileReader
+  Application --> NameFileFinder
   Verbose
 end
 
