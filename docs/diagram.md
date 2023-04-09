@@ -15,11 +15,7 @@ subgraph "create new project"
 end
 
 subgraph check
-  Teuton -- check --> Laboratory
-
-  check/DSL
-  check/Builtin!
-  check/Show
+  Teuton -- check --> Laboratory("Laboratory\nDSL\nShow\nBuiltin!")
 end
 
 subgraph readme
