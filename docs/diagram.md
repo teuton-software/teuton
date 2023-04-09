@@ -21,18 +21,18 @@ subgraph "create readme\nfrom project"
   Teuton -- readme --> Readme("Readme\nDSL\nLang!")
 end
 
-subgraph utils
-  Readme --> ConfigFileReader
-  Laboratory --> ConfigFileReader
-  Verbose
-end
-
 subgraph manager
   Teuton -- require --> manager/DSL
-  manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
   manager/DSL -- play --> CaseManager("CaseManager\ncheck_cases\nExportManager\nSendManager\nShowReport")
   CaseManager --> ConfigFileReader
   ReportManager --> HallOfFame
+end
+
+subgraph utils
+  manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
+  Readme --> ConfigFileReader
+  Laboratory --> ConfigFileReader
+  Verbose
 end
 
 subgraph "case folder"
