@@ -28,13 +28,14 @@ class Case
   private
 
   def play_groups_in_sequence
+    verboseln "\n=> Starting case [#{@config.get(:tt_members)}]" if get(:tt_sequence) == true
     @groups.each do |t|
       @action[:groupname] = t[:name]
       instance_eval(&t[:block])
     end
   end
 
-  def play_in_sequence
+  def play_groups_in_parallel
     verboseln "Starting case [#{@config.get(:tt_members)}]"
     @groups.each do |t|
       verbose "* Processing [#{t[:name]}] "
