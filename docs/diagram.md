@@ -9,22 +9,16 @@ subgraph user
   CLI --> Teuton
 end
 
-subgraph "create new project"
+subgraph "create\nnew\nproject"
   Teuton -- create --> Skeleton("Sekeleton\nFiles")
 end
 
-subgraph "check project files"
+subgraph "check\nproject\nfiles"
   Teuton -- check --> Laboratory("Laboratory\nDSL\nShow\nBuiltin!")
 end
 
 subgraph "create readme\nfrom project"
   Teuton -- readme --> Readme("Readme\nDSL\nLang!")
-end
-
-subgraph "result class"
-  Laboratory --> Result
-  Readme --> Result("Result\next_array\next_compare\next_filter")
-  Case --> Result
 end
 
 subgraph utils
@@ -43,6 +37,12 @@ end
 
 subgraph "case folder"
   CaseManager --> Case("Case\nDSL\nConfig")
+  Case --> Result
+end
+
+subgraph "result class"
+  Laboratory --> Result
+  Readme --> Result("Result\next_array\next_compare\next_filter")
   Case --> Result
 end
 
