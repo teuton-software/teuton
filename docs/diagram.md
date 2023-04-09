@@ -39,10 +39,6 @@ subgraph case_manager
   ReportManager --> HallOfFame
 end
 
-subgraph result
-  Result("Result\next_array\next_compare\next_filter")
-end
-
 subgraph report
   CaseManager --> Report
   Report --> Formatter
