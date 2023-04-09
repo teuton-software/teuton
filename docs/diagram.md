@@ -13,11 +13,11 @@ subgraph "create new project"
   Teuton -- create --> Skeleton("Sekeleton\nFiles")
 end
 
-subgraph check
+subgraph "check project files"
   Teuton -- check --> Laboratory("Laboratory\nDSL\nShow\nBuiltin!")
 end
 
-subgraph readme
+subgraph "create readme from project"
   Teuton -- readme --> Readme("Readme\nDSL\nLang!")
 end
 
