@@ -21,13 +21,15 @@ subgraph "create readme from project"
   Teuton -- readme --> Readme("Readme\nDSL\nLang!")
 end
 
-subgraph result
+subgraph "result class"
   Laboratory --> Result
   Readme --> Result("Result\next_array\next_compare\next_filter")
 end
 
 subgraph utils
   Readme --> ConfigFileReader
+  NameFileReader
+  Verbose
 end
 
 subgraph case_manager
