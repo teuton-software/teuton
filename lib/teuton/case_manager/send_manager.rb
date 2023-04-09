@@ -4,7 +4,7 @@ class SendManager
   ##
   # Execute "send" order: Send every case report
   # @param args (Hash) Send options
-  def run(cases, args)
+  def call(cases, args)
     threads = []
     puts ""
     puts Rainbow("-" * 50).green

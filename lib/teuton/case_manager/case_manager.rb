@@ -1,4 +1,3 @@
-require "rainbow"
 require_relative "../application"
 require_relative "../report/report"
 require_relative "../report/show"
@@ -47,23 +46,14 @@ class CaseManager
   # Execute "export" order: Export every case report
   # @param args (Hash) Export options
   def export(args = {})
-    if args.class != Hash
-      puts Rainbow("[ERROR] Argument error with 'export'!").red
-      puts Rainbow("  Code : CaseManager#export").red
-      puts Rainbow("  Line : export #{args}").red
-      puts Rainbow("  Use  : export format: 'txt'").red
-      puts ""
-      exit 1
-    end
-    ExportManager.new.run(@report, @cases, args)
+    ExportManager.new.call(@report, @cases, args)
   end
 
   def send(args = {})
-    SendManager.new.run(@cases, args)
+    SendManager.new.call(@cases, args)
   end
 
   def show(options = {verbose: 1})
-    verbose = options[:verbose]
-    ShowReport.new(@report).call(verbose)
+    ShowReport.new(@report).call(options[:verbose])
   end
 end

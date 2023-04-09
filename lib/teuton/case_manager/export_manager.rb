@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "rainbow"
 require_relative "../application"
 
 class ExportManager
@@ -8,7 +9,15 @@ class ExportManager
   # @param main_report (Report)
   # @param cases (Array)
   # @param input (Hash) Selected export options
-  def run(main_report, cases, args)
+  def call(main_report, cases, args)
+    if args.class != Hash
+      puts Rainbow("[ERROR] Export argument error!").red
+      puts Rainbow("  Revise: export #{args}").red
+      puts Rainbow("  Use   : export format: 'txt'").red
+      puts ""
+      exit 1
+    end
+
     options = strings2symbols(args)
     if options[:format].nil?
       options[:format] = Application.instance.default[:format]
