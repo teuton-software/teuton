@@ -6,7 +6,9 @@ require_relative "../report/show"
 require_relative "../utils/configfile_reader"
 require_relative "case/case"
 require_relative "export_manager"
-require_relative "main"
+require_relative "check_cases"
+require_relative "report"
+require_relative "utils"
 
 # This class does all the job
 # Organize the hole job, sending orders to others classes

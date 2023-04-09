@@ -48,7 +48,9 @@ subgraph user
 end
 
 subgraph case_manager
-  Teuton -- run --> CaseManager
+  Teuton -- run --> DSL
+  DSL --> Casemanager
+  CheckCases
   Result
 end
 
