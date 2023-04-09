@@ -13,11 +13,7 @@ class Case
       return false
     end
     start_time = Time.now
-    if get(:tt_sequence) == true
-      play_in_sequence
-    else
-      play_in_parallel
-    end
+    play_groups_in_sequence
     fill_report(start_time, Time.now)
     close_opened_sessions
   end
@@ -31,7 +27,7 @@ class Case
 
   private
 
-  def play_in_parallel
+  def play_groups_in_sequence
     @groups.each do |t|
       @action[:groupname] = t[:name]
       instance_eval(&t[:block])

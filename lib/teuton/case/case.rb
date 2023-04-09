@@ -11,9 +11,6 @@ require_relative "runner"
 require_relative "result/result"
 require_relative "builtin/main"
 
-# TODO: split Case class into several classes:
-# * Case, Action?, Session?, RunCommand class
-
 # Case class
 # * initialize
 # * export
@@ -32,9 +29,6 @@ class Case
   attr_reader :skip
   @@id = "01" # First case ID value
 
-  ##
-  # Initialize case from specified config
-  # @param config (Hash)
   def initialize(config)
     app = Application.instance
     @config = Case::Config.new(local: config, global: app.global)
