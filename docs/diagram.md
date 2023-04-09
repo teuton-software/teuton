@@ -44,11 +44,12 @@ end
 flowchart TB
 
 subgraph user
-  CLI --> Teuton
+  CLI -- run --> Teuton
 end
 
 subgraph case_manager
-  Teuton -- load --> DSL
+  Teuton -- require --> DSL
+  DSL --> Application
   DSL -- play --> CaseManager
   CheckCases
   Result
