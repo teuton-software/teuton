@@ -2,13 +2,13 @@
 
 require_relative "../application"
 
-module ExportManager
+class ExportManager
   ##
   # Run export function
   # @param main_report (Report)
   # @param cases (Array)
   # @param input (Hash) Selected export options
-  def self.run(main_report, cases, args)
+  def run(main_report, cases, args)
     options = strings2symbols(args)
     if options[:format].nil?
       options[:format] = Application.instance.default[:format]
@@ -26,10 +26,12 @@ module ExportManager
     preserve_files if options[:preserve] == true
   end
 
+  private
+
   ##
   # Convert Hash String values into Symbol values
   # @param input (Hash)
-  private_class_method def self.strings2symbols(input)
+  def strings2symbols(input)
     args = {}
     input.each_pair do |key, value|
       args[key] = if value.instance_of? String
@@ -43,7 +45,7 @@ module ExportManager
 
   ##
   # Preserve output files for current project execution
-  private_class_method def self.preserve_files
+  def preserve_files
     app = Application.instance
     t = Time.now
     data = {year: t.year, month: t.month, day: t.day, hour: t.hour, min: t.min, sec: t.sec}

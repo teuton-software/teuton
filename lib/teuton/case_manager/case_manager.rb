@@ -5,9 +5,9 @@ require_relative "../report/show"
 require_relative "../utils/configfile_reader"
 require_relative "case/case"
 require_relative "export_manager"
+require_relative "send_manager"
 require_relative "check_cases"
 require_relative "report"
-require_relative "send_manager"
 require_relative "utils"
 
 # This class does all the job
@@ -55,7 +55,7 @@ class CaseManager
       puts ""
       exit 1
     end
-    ExportManager.run(@report, @cases, args)
+    ExportManager.new.run(@report, @cases, args)
   end
 
   def send(args = {})
