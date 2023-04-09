@@ -2,7 +2,6 @@
 
 require_relative "../../application"
 require_relative "../../report/report"
-require_relative "../../report/show"
 require_relative "../utils"
 require_relative "main"
 require_relative "result/result"

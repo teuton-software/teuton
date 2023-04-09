@@ -53,6 +53,7 @@ subgraph case_manager
   DSL -- play --> CaseManager
   CaseManager --> ExportManager
   CaseManager --> SendManager
+  CaseManager --> ShowReport
   CheckCases
   Result
 end
