@@ -23,12 +23,9 @@ subgraph readme
   Teuton -- readme --> Readme("Readme\nDSL\nLang!")
 end
 
-subgraph case
-
-  subgraph result
-    Laboratory --> Result
-    Readme --> Result("Result\next_array\next_compare\next_filter")
-  end
+subgraph result
+  Laboratory --> Result
+  Readme --> Result("Result\next_array\next_compare\next_filter")
 end
 
 subgraph utils

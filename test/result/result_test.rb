@@ -1,7 +1,5 @@
-#!/usr/bin/ruby
-
 require "test/unit"
-require_relative "../../../lib/teuton/case/result/result"
+require_relative "../../lib/teuton/result/result"
 
 class ResultTest < Test::Unit::TestCase
   def setup

@@ -3,12 +3,12 @@
 require_relative "../application"
 require_relative "../report/report"
 require_relative "../case_manager/utils"
+require_relative "../result/result"
 require_relative "dsl"
 require_relative "config"
 require_relative "close"
 require_relative "play"
 require_relative "runner"
-require_relative "result/result"
 require_relative "builtin/main"
 
 # Case class
