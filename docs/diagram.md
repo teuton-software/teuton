@@ -25,8 +25,8 @@ end
 subgraph readme
   Teuton -- readme --> Readme
 
-  Readme --> readme/DSL
-  Readme --> Lang!  
+  readme/DSL
+  Lang!  
 end
 
 subgraph utils
