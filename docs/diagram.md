@@ -29,9 +29,12 @@ subgraph readme
   readme/Lang!  
 end
 
-subgraph utils
+subgraph case/result
   Laboratory --> Result
   Readme --> Result
+end
+
+subgraph utils
   Readme --> ConfigFileReader
 end
 ```
