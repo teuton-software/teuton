@@ -13,7 +13,7 @@ subgraph "create\nnew\nproject"
   Teuton -- create --> Skeleton("Sekeleton\nFiles")
 end
 
-subgraph "check\nproject\nfiles"
+subgraph "check\nproject files"
   Teuton -- check --> Laboratory("Laboratory\nDSL\nShow\nBuiltin!")
 end
 
