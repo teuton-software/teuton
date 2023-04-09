@@ -47,8 +47,13 @@ subgraph user
   CLI --> Teuton
 end
 
-subgraph run
+subgraph case_manager
   Teuton -- run --> CaseManager
   Result
+end
+
+subgraph case_manager
+  CaseManager --> Report
+  Report --> Formatter
 end
 ```
