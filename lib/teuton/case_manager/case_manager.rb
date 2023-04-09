@@ -30,7 +30,6 @@ class CaseManager
 
   ##
   # Execute "play" order: Start every single case test
-  # @param block (Block)
   def play(&block)
     check_cases!
     instance_eval(&block)
@@ -42,9 +41,6 @@ class CaseManager
     export(format: i.to_sym) unless i.nil?
   end
 
-  ##
-  # Execute "export" order: Export every case report
-  # @param args (Hash) Export options
   def export(args = {})
     ExportManager.new.call(@report, @cases, args)
   end

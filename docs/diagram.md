@@ -55,6 +55,8 @@ subgraph case_manager
   CaseManager --> SendManager
   CaseManager --> ShowReport
   CheckCases
+  Report
+  HallOfFame
   Result
 end
 

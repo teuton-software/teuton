@@ -3,6 +3,9 @@
 require "rainbow"
 require_relative "../application"
 
+##
+# Execute "export" order: Export every case report
+# @param args (Hash) Export options
 class ExportManager
   ##
   # Run export function
