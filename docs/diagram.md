@@ -48,8 +48,8 @@ subgraph user
 end
 
 subgraph case_manager
-  Teuton -- run --> DSL
-  DSL --> CaseManager
+  Teuton -- load --> DSL
+  DSL -- play --> CaseManager
   CheckCases
   Result
 end
