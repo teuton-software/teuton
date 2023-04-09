@@ -30,7 +30,6 @@ end
 subgraph utils
   Readme --> ConfigFileReader
   Laboratory --> ConfigFileReader
-  CaseManager --> ConfigFileReader
   Application --> NameFileFinder
   Verbose
 end
@@ -39,6 +38,7 @@ subgraph case_manager
   Teuton -- require --> DSL
   DSL -- use/macros/groups --> Application
   DSL -- play --> CaseManager("CaseManager\ncheck_cases\nExportManager\nSendManager\nShowReport")
+  CaseManager --> ConfigFileReader
   ReportManager --> HallOfFame
 end
 
