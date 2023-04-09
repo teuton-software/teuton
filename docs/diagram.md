@@ -24,6 +24,7 @@ end
 subgraph "result class"
   Laboratory --> Result
   Readme --> Result("Result\next_array\next_compare\next_filter")
+  Case --> Result
 end
 
 subgraph utils
@@ -37,6 +38,10 @@ subgraph case_manager
   DSL -- use/macros/groups --> Application
   DSL -- play --> CaseManager("CaseManager\ncheck_cases\nExportManager\nSendManager\nShowReport")
   ReportManager --> HallOfFame
+end
+
+subgraph case
+  CaseManager --> Case
 end
 
 subgraph report
