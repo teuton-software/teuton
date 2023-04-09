@@ -37,7 +37,6 @@ end
 
 subgraph "case folder"
   CaseManager --> Case("Case\nDSL\nConfig")
-  Case --> Result
 end
 
 subgraph "result class"
