@@ -29,24 +29,14 @@ end
 subgraph utils
   Readme --> ConfigFileReader
 end
-```
-
-
-```mermaid
-flowchart TB
-
-subgraph user
-  CLI -- run --> Teuton
-end
 
 subgraph case_manager
   Teuton -- require --> DSL
   DSL -- use/macros/groups --> Application
-  DSL -- play --> CaseManager
+  DSL -- play --> CaseManager("CaseManager\ncheck_cases\n")
   CaseManager --> ExportManager
   CaseManager --> SendManager
   CaseManager --> ShowReport
-  CheckCases
   ReportManager --> HallOfFame
 end
 
