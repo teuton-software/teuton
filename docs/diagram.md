@@ -28,7 +28,7 @@ subgraph utils
 end
 
 subgraph case_manager
-  Teuton -- require --> DSL
+  Teuton -- require --> manager/DSL
   DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
   DSL -- play --> CaseManager("CaseManager\ncheck_cases\nExportManager\nSendManager\nShowReport")
   CaseManager --> ConfigFileReader
@@ -37,7 +37,7 @@ end
 
 subgraph "case folder"
   CaseManager --> Case("Case\nConfig\nClose\nPlay\nRunner")
-  Case --> DSL
+  Case --> case/DSL
 end
 
 subgraph "result class"
