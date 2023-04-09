@@ -29,9 +29,15 @@ subgraph readme
   readme/Lang!  
 end
 
-subgraph case/result
-  Laboratory --> Result
-  Readme --> Result
+subgraph case
+
+  subgraph result
+    Laboratory --> Result
+    Readme --> Result
+    result/ext_array
+    result/ext_compare
+    result/ext_filter
+  end
 end
 
 subgraph utils
