@@ -17,7 +17,7 @@ subgraph "check project files"
   Teuton -- check --> Laboratory("Laboratory\nDSL\nShow\nBuiltin!")
 end
 
-subgraph "create readme from project"
+subgraph "create readme\nfrom project"
   Teuton -- readme --> Readme("Readme\nDSL\nLang!")
 end
 
@@ -43,6 +43,7 @@ end
 
 subgraph "case folder"
   CaseManager --> Case("Case\nDSL\nConfig")
+  Case --> Result
 end
 
 subgraph report
