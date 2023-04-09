@@ -36,7 +36,7 @@ subgraph case_manager
 end
 
 subgraph "case folder"
-  CaseManager --> Case("Case\nConfig\nClose\nPlay\nRunner")
+  CaseManager --> Case("**Case**\nConfig\nClose\nPlay\nRunner")
 end
 
 subgraph "result class"
