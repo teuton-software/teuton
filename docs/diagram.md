@@ -17,16 +17,16 @@ end
 subgraph check
   Teuton -- check --> Laboratory
 
-  Laboratory --> check/DSL
-  Laboratory --> Builtin!
-  Laboratory --> Show
+  check/DSL
+  check/Builtin!
+  check/Show
 end
 
 subgraph readme
   Teuton -- readme --> Readme
 
   readme/DSL
-  Lang!  
+  readme/Lang!  
 end
 
 subgraph utils
