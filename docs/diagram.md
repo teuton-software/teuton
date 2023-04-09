@@ -55,5 +55,7 @@ end
 subgraph report
   CaseManager --> Report
   Report --> Formatter
+
+  ShowReports?
 end
 ```
