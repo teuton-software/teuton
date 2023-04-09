@@ -48,5 +48,6 @@ end
 subgraph report
   CaseManager --> Report
   Report --> Formatter
+  Formatter --> files/template
 end
 ```
