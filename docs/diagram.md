@@ -34,9 +34,6 @@ subgraph case
   subgraph result
     Laboratory --> Result
     Readme --> Result("Result\next_array\next_compare\next_filter")
-    result/ext_array
-    result/ext_compare
-    result/ext_filter
   end
 end
 
@@ -65,7 +62,7 @@ subgraph case_manager
 end
 
 subgraph case
-  Result
+  Result("Result\next_array\next_compare\next_filter")
 end
 
 subgraph report
