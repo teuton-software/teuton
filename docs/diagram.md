@@ -10,6 +10,7 @@ subgraph user
 end
 
 subgraph "create new project"
+  direction RL
   Teuton -- create --> Skeleton
   Skeleton --> Files([Files])
 end
