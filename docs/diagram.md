@@ -39,7 +39,7 @@ subgraph case_manager
   ReportManager --> HallOfFame
 end
 
-subgraph case
+subgraph result
   Result("Result\next_array\next_compare\next_filter")
 end
 
