@@ -51,6 +51,8 @@ subgraph case_manager
   Teuton -- require --> DSL
   DSL -- use/macros/groups --> Application
   DSL -- play --> CaseManager
+  CaseManager --> ExportManager
+  CaseManager --> SendManager
   CheckCases
   Result
 end
