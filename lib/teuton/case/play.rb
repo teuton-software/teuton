@@ -21,7 +21,7 @@ class Case
     fill_report(start_time, Time.now)
     close_opened_sessions
   end
-  alias start play
+  alias_method :start, :play
 
   def close_opened_sessions
     @sessions.each_value do |s|

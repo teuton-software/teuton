@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "../../application"
-require_relative "../../report/report"
-require_relative "../utils"
+require_relative "../application"
+require_relative "../report/report"
+require_relative "../case_manager/utils"
 require_relative "main"
 require_relative "result/result"
 require_relative "builtin/main"

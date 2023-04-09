@@ -1,7 +1,7 @@
 require_relative "../application"
+require_relative "../case/case"
 require_relative "../report/report"
 require_relative "../utils/configfile_reader"
-require_relative "case/case"
 require_relative "export_manager"
 require_relative "send_manager"
 require_relative "show_report"

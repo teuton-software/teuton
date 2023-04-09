@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 require "test/unit"
-require_relative "../../../lib/teuton/case_manager/case/config"
+require_relative "../../lib/teuton/case/config"
 
 class ConfigTest < Test::Unit::TestCase
   def setup

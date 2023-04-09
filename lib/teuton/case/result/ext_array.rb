@@ -35,9 +35,9 @@ class Result
     @content.empty
   end
 
-  alias count! count
-  alias length count
-  alias len count
-  alias size count
-  alias empty? empty
+  alias_method :count!, :count
+  alias_method :length, :count
+  alias_method :len, :count
+  alias_method :size, :count
+  alias_method :empty?, :empty
 end

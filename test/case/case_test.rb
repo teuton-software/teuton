@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "test/unit"
-require_relative "../../../lib/teuton/case_manager/case/case"
+require_relative "../../lib/teuton/case/case"
 
 class CaseTest < Test::Unit::TestCase
   def setup
