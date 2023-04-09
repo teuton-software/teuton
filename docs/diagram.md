@@ -49,7 +49,7 @@ end
 
 subgraph case_manager
   Teuton -- run --> DSL
-  DSL --> Casemanager
+  DSL --> CaseManager
   CheckCases
   Result
 end
