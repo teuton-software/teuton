@@ -1,6 +1,6 @@
 require_relative "../application"
 require_relative "../utils/configfile_reader"
-require_relative "../result/result"
+require_relative "../utils/result/result"
 require_relative "../version"
 require_relative "dsl"
 require_relative "lang"

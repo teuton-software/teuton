@@ -33,17 +33,15 @@ subgraph utils
   Laboratory --> ConfigFileReader
   CaseManager --> ConfigFileReader
   Verbose
+
+  Laboratory --> Result
+  Readme --> Result("Result\next_array\next_compare\next_filter")
+  Case --> Result
 end
 
 subgraph "case folder"
   CaseManager --> Case("Case\nConfig\nClose\nPlay\nRunner")
   Case --> case/DSL
-end
-
-subgraph "result class"
-  Laboratory --> Result
-  Readme --> Result("Result\next_array\next_compare\next_filter")
-  Case --> Result
 end
 
 subgraph report

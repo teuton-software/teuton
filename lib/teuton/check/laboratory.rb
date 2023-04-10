@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../application"
-require_relative "../result/result"
+require_relative "../utils/result/result"
 require_relative "show"
 require_relative "dsl"
 require_relative "builtin"
