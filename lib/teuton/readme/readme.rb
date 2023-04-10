@@ -1,4 +1,4 @@
-require_relative "../application"
+require_relative "../utils/application"
 require_relative "../utils/configfile_reader"
 require_relative "../utils/result/result"
 require_relative "../version"

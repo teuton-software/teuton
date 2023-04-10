@@ -1,5 +1,3 @@
-#!/usr/bin/ruby
-
 require "test/unit"
 
 class ReadmeCommandTest < Test::Unit::TestCase

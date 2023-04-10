@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rainbow"
-require_relative "../application"
+require_relative "../utils/application"
 
 ##
 # Execute "export" order: Export every case report

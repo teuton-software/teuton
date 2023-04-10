@@ -1,6 +1,6 @@
 require "erb"
 require_relative "yaml"
-require_relative "../../../application"
+require_relative "../../../utils/application"
 
 class ResumeHTMLFormatter < ResumeYAMLFormatter
   def initialize(report)

@@ -1,7 +1,7 @@
-require_relative "../application"
 require "fileutils"
 require "open3"
 require "rainbow"
+require_relative "../utils/application"
 
 module Utils
   def ensure_dir(dirname)

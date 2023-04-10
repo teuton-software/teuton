@@ -1,6 +1,6 @@
 require "rainbow"
 require "terminal-table"
-require_relative "../application"
+require_relative "../utils/application"
 
 # | Verbosity level | Description |
 # | :-------------: | ----------- |

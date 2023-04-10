@@ -1,5 +1,5 @@
 require_relative "../base_formatter"
-require_relative "../../../application"
+require_relative "../../../utils/application"
 
 class ArrayFormatter < BaseFormatter
   def initialize(report)

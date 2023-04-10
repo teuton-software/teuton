@@ -1,4 +1,4 @@
-require_relative "teuton/application"
+require_relative "teuton/utils/application"
 
 module Teuton
   def self.create(path_to_new_dir)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../application"
+require_relative "../utils/application"
 
 # Class Case::Config
 # * get

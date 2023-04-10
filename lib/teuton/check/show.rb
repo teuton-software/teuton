@@ -1,7 +1,7 @@
 require "terminal-table"
 require "rainbow"
 
-require_relative "../application"
+require_relative "../utils/application"
 require_relative "../utils/configfile_reader"
 
 # Laboratory

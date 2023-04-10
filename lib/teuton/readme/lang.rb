@@ -1,4 +1,4 @@
-require_relative "../application"
+require_relative "../utils/application"
 
 module Lang
   def self.get(key)

@@ -1,4 +1,4 @@
-require_relative "../application"
+require_relative "../utils/application"
 require_relative "case_manager"
 
 def use(filename)

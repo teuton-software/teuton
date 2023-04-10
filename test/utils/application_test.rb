@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../lib/teuton/application"
+require_relative "../../lib/teuton/utils/application"
 
 class ApplicationTest < Test::Unit::TestCase
   def setup

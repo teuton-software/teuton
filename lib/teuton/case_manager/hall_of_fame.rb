@@ -1,4 +1,4 @@
-require_relative "../application"
+require_relative "../utils/application"
 
 class CaseManager
   class HallOfFame
