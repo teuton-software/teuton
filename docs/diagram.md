@@ -32,16 +32,18 @@ subgraph "case folder"
 end
 
 subgraph utils
-  manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
-  Case --> Application
+  Verbose
+
   Readme --> ConfigFileReader
   Laboratory --> ConfigFileReader
   CaseManager --> ConfigFileReader
-  Verbose
 
   Laboratory --> Result
   Readme --> Result("Result\next_array\next_compare\next_filter")
   Case --> Result
+
+  manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
+  Case --> Application
 end
 
 subgraph report
