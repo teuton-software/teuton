@@ -1,5 +1,6 @@
 require_relative "../application"
 require "fileutils"
+require "open3"
 require "rainbow"
 
 module Utils
@@ -34,12 +35,14 @@ module Utils
     return {exitstatus: 0, content: ""} if Application.instance.debug
 
     begin
-      text = `#{cmd}`
-      exitstatus = $CHILD_STATUS.exitstatus
+      # text = `#{cmd}`
+      # exitstatus = $CHILD_STATUS.exitstatus
+      text, status = Open3.capture2e(cmd)
+      exitstatus = status.exitstatus
     rescue => e
       verbose Rainbow("!").green
-      exitstatus = $CHILD_STATUS.exitstatus
       text = e.to_s
+      exitstatus = 1
     end
     content = encode_and_split(encoding, text)
     {exitstatus: exitstatus, content: content}
