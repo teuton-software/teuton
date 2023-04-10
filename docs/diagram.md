@@ -43,6 +43,7 @@ subgraph utils
   Case --> Result
 
   Laboratory --> Application
+  Readme --> Application
   manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
   Case --> Application
 end
