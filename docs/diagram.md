@@ -28,7 +28,7 @@ subgraph manager
 end
 
 subgraph "case folder"
-  CaseManager --> Case("Case\nConfig\nClose\nPlay\nRunner\ncase/DSL")
+  CaseManager --> Case("Case\nConfig\nClose\nPlay\nRunner\ncase/DSL\ncase/builtin!")
 end
 
 subgraph utils
