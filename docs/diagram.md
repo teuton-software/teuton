@@ -13,16 +13,16 @@ subgraph "create\nnew\nproject"
   Teuton -- create --> Skeleton("Sekeleton\nFiles")
 end
 
-subgraph "check\nproject files"
+subgraph "Check\nproject files"
   Teuton -- check --> Laboratory("Laboratory\nDSL\nShow\nBuiltin!")
 end
 
-subgraph "create readme\nfrom project"
+subgraph "Create readme\nfrom project"
   Teuton -- readme --> Readme("Readme\nDSL\nLang!")
 end
 
 subgraph manager
-  Teuton -- require --> manager/DSL
+  Teuton -- run --> manager/DSL
   manager/DSL -- play --> CaseManager("CaseManager\ncheck_cases\nExportManager\nSendManager\nShowReport")
   ReportManager --> HallOfFame
 end
