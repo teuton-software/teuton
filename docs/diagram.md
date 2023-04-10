@@ -33,6 +33,7 @@ end
 
 subgraph utils
   manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
+  Case --> Application
   Readme --> ConfigFileReader
   Laboratory --> ConfigFileReader
   CaseManager --> ConfigFileReader
@@ -45,5 +46,6 @@ end
 
 subgraph report
   CaseManager --> Report("Report\nFormatter\nfiles/template")
+  Case --> Report
 end
 ```
