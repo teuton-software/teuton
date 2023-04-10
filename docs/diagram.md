@@ -27,6 +27,11 @@ subgraph manager
   ReportManager --> HallOfFame
 end
 
+subgraph "case folder"
+  CaseManager --> Case("Case\nConfig\nClose\nPlay\nRunner")
+  Case --> case/DSL
+end
+
 subgraph utils
   manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
   Readme --> ConfigFileReader
@@ -37,11 +42,6 @@ subgraph utils
   Laboratory --> Result
   Readme --> Result("Result\next_array\next_compare\next_filter")
   Case --> Result
-end
-
-subgraph "case folder"
-  CaseManager --> Case("Case\nConfig\nClose\nPlay\nRunner")
-  Case --> case/DSL
 end
 
 subgraph report
