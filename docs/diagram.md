@@ -45,8 +45,6 @@ subgraph utils
 end
 
 subgraph report
-  CaseManager --> Report
-  Report --> Formatter
-  Formatter --> files/template
+  CaseManager --> Report("Report\nFormatter\nfiles/template")
 end
 ```
