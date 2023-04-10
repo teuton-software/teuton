@@ -42,6 +42,7 @@ subgraph utils
   Readme --> Result("Result\next_array\next_compare\next_filter")
   Case --> Result
 
+  Laboratory --> Application
   manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
   Case --> Application
 end
