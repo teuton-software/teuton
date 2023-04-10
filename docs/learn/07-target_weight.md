@@ -19,15 +19,13 @@ end
 ```
 
 ```
-❯ teuton check examples/07-target_weight
-
 +--------------------------+
 | GROUP: Using file: users |
 +--------------------------+
 (001) target      Create user get(username)
       weight      1.0
       run         'id get(username)' on host1
-      expect      get(username) (String)
+      expect      ["uid=", "(get(username))", "gid="] (Array)
 
 +----------------------------+
 | GROUP: Using file: network |

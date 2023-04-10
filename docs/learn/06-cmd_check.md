@@ -14,7 +14,7 @@ Check Teuton test syntax and show statistics.
 (001) target      Create user get(username)
       weight      1.0
       run         'id get(username)' on host1
-      expect      get(username) (String)
+      expect      ["uid=", "(get(username))", "gid="] (Array)
 
 +----------------------------+
 | GROUP: Using file: network |
@@ -44,7 +44,4 @@ Check Teuton test syntax and show statistics.
 |  * hostname | 2     |
 | Sets        | 0     |
 +-------------+-------+
-+----------------------+
-| Revising CONFIG file |
-+----------------------+
 ```

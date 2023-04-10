@@ -43,7 +43,7 @@ Define 1 target (item to be checked):
 group "Remote hosts" do
   target "Create user david"
   run "id david", on: :host1
-  expect "david"
+  expect [ "uid=", "(david)", "gid=" ]
 end
 ```
 
