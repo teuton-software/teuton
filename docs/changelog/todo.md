@@ -1,8 +1,4 @@
 
-## Done
-
-New feature:
-- When running local or SSH commands, stdout and stderr are captured and readed by "expect" sentence.
 
 ## TO-DO
 
