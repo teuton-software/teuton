@@ -1,4 +1,3 @@
-require_relative "../utils/application"
 require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 require_relative "../utils/result/result"
@@ -8,7 +7,6 @@ require_relative "lang"
 
 def use(filename)
   filename += ".rb"
-  # app = Application.instance
   rbfiles = File.join(Project.value[:project_path], "**", filename)
   files = Dir.glob(rbfiles)
   use = []
@@ -19,12 +17,10 @@ end
 
 def define_macro(name, *args, &block)
   puts "macro: #{name}"
-  # Application.instance.macros[name] = {args: args, block: block}
   Project.value[:macros][name] = {args: args, block: block}
 end
 
 def group(name, &block)
-  # Application.instance.groups << {name: name, block: block}
   Project.value[:groups] << {name: name, block: block}
 end
 alias task group
@@ -35,16 +31,14 @@ end
 # alias_method "play", "start" # REVISE THIS
 alias play start
 
-# Creates README.md file from RB script file
 class Readme
+  # Creates README.md file from RB script file
   attr_reader :result
   attr_reader :data
 
-  ##
-  # Initialize Readme instance
-  # @param script_path (String) Path to main rb file (start.rb)
-  # @param config_path (String) Path to main config file (config.yaml)
   def initialize(script_path, config_path)
+    # script_path Path to main rb file (start.rb)
+    # config_path Path to main config file (config.yaml)
     @path = {}
     @path[:script] = script_path
     @path[:dirname] = File.dirname(script_path)
@@ -80,7 +74,6 @@ class Readme
   end
 
   def process_content
-    # Application.instance.groups.each do |g|
     Project.value[:groups].each do |g|
       @current = {name: g[:name], readme: [], actions: []}
       @data[:groups] << @current

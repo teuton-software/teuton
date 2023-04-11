@@ -8,7 +8,6 @@ module Teuton
   end
 
   def self.check(projectpath, options = {})
-    # Application.instance.add_input_params(projectpath, options)
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/check/laboratory") # Define DSL
     lab = Laboratory.new(
@@ -29,11 +28,8 @@ module Teuton
   end
 
   def self.readme(projectpath, options = {})
-    # Create Readme file for a teuton test
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/readme/readme") # Define DSL
-
-    # app = Application.instance
     readme = Readme.new(
       Project.value[:script_path],
       Project.value[:config_path]

@@ -1,4 +1,3 @@
-require_relative "../utils/application"
 require_relative "../utils/project"
 
 module Lang

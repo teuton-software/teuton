@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 # Readme
-# * target
-# * goto
-# * run
-# * expect
-# * unique
-# * log
+#   readme, target, goto, run
+#   expect,
+#   gett, set, unique, log
 class Readme
   def readme(text)
     if @action[:target].nil?
