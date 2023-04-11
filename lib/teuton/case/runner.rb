@@ -6,6 +6,8 @@ require_relative "dsl/log"
 class Case
   private
 
+  # READ: @config
+  # WRITE: @action, @result, @session
   def run_cmd_on(host)
     protocol = @config.get("#{host}_protocol".to_sym)
     ip = @config.get("#{host}_ip".to_sym)
@@ -30,15 +32,13 @@ class Case
 
   def run_cmd_localhost
     @action[:conn_type] = :local
-    i = my_execute(@action[:command], @action[:encoding])
-    @result.exitstatus = i[:exitstatus]
-    @result.content = i[:content]
+    resp = my_execute(@action[:command], @action[:encoding])
+    @result.exitcode = resp[:exitcode]
+    @result.content = resp[:content]
   end
 
-  ##
-  # Run remote command
-  # @param input_hostname (Symbol or String)
   def run_cmd_remote(input_hostname)
+    # @param input_hostname (Symbol or String)
     hostname = input_hostname.to_s
     i = (hostname + "_protocol").to_sym
     protocol = @config.get(i) if @config.get(i)
@@ -86,6 +86,7 @@ class Case
     end
 
     text = ""
+    exitcode = 0
     begin
       if @sessions[hostname].nil?
         @sessions[hostname] = Net::SSH.start(
@@ -100,23 +101,24 @@ class Case
       end
       text = if @sessions[hostname].instance_of? Net::SSH::Connection::Session
         @sessions[hostname].exec!(@action[:command])
-        # ssh.exec!("ls -l /home/jamis") do |channel, stream, data|
-        #   stdout << data if stream == :stdout
-        # end
       else
         "SSH: NO CONNECTION!"
       end
+      exitcode = text.exitstatus
     rescue Errno::EHOSTUNREACH
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :host_unreachable
+      exitcode = -1
       log("Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error_authentication_failed
+      exitcode = -1
       log("SSH::AuthenticationFailed!", :error)
     rescue Net::SSH::HostKeyMismatch
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :host_key_mismatch
+      exitcode = -1
       log("SSH::HostKeyMismatch!", :error)
       log("* The destination server's fingerprint is not matching " \
           "what is in your local known_hosts file.", :error)
@@ -126,11 +128,12 @@ class Case
     rescue => e
       @sessions[hostname] = :nosession
       @conn_status[hostname] = :error
+      exitcode = -1
       log("[#{e.class}] SSH on <#{username}@#{ip}>" \
           " exec: #{@action[:command]}", :error)
     end
     output = encode_and_split(@action[:encoding], text)
-    # revise: @result.exitstatus = text.exitstatus
+    @result.exitcode = exitcode
     @result.content = output
     @result.content.compact!
   end
@@ -180,6 +183,7 @@ class Case
           " ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end
     output = encode_and_split(@action[:encoding], text)
+    @result.exitcode = -1
     @result.content = output
     @result.content.compact!
   end

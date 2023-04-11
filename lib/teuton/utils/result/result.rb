@@ -15,7 +15,7 @@ require_relative "ext_filter"
 # * value
 class Result
   attr_reader :content
-  attr_accessor :exitstatus
+  attr_accessor :exitcode
 
   def initialize
     reset
@@ -47,17 +47,14 @@ class Result
   def reset
     @content_backup = []
     @content = []
-    @exitstatus = nil
+    @exitcode = -1
     @value = nil
     @expected = nil
     @alterations = []
   end
 
   def ok?
-    # REVISE THIS
-    return false if @exitstatus.nil?
-
-    @exitstatus.zero?
+    @exitcode.zero?
   end
 
   def restore

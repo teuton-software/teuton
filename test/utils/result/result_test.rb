@@ -240,14 +240,14 @@ class ResultTest < Test::Unit::TestCase
 
   def test_ok
     r = @result
-    assert_nil r.exitstatus
+    assert_equal(-1, r.exitcode)
     assert_equal false, r.ok?
-    r.exitstatus = 0
-    assert_equal 0, r.exitstatus
+    r.exitcode = 0
+    assert_equal 0, r.exitcode
     assert_equal true, r.ok?
     r.reset
-    r.exitstatus = 1
-    assert_equal 1, r.exitstatus
+    r.exitcode = 1
+    assert_equal 1, r.exitcode
     assert_equal false, r.ok?
   end
 end
