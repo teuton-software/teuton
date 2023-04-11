@@ -92,7 +92,8 @@ class Readme
     m = method.to_s
     if m[0] == "_"
       instance_eval("get(:#{m[1, m.size - 1]})", __FILE__, __LINE__)
-    elsif not Application.instance.macros[m].nil?
+    # elsif not Application.instance.macros[m].nil?
+    elsif not Project.value[:macros][m].nil?
       puts "macro exec: #{m}"
       code = ""
       args[0].keys.each { |key| code += "set(:#{key}, '#{args[0][key]}')\n" }

@@ -30,7 +30,6 @@ module Teuton
 
   def self.readme(projectpath, options = {})
     # Create Readme file for a teuton test
-    Application.instance.add_input_params(projectpath, options)
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/readme/readme") # Define DSL
 

@@ -1,4 +1,5 @@
 require_relative "../utils/application"
+require_relative "../utils/project"
 
 module Lang
   def self.get(key)
@@ -23,7 +24,8 @@ module Lang
       global: "\nParámetros globales que pueden ser modificados:\n",
       created: "\nParámetros creados durante la ejecución del reto:\n"
     }
-    locale = Application.instance.options["lang"].downcase
+    # locale = Application.instance.options["lang"].downcase
+    locale = Project.value[:options]["lang"].downcase
     lang[locale][key]
   end
 end

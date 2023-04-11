@@ -19,12 +19,12 @@ end
 
 def define_macro(name, *args, &block)
   puts "macro: #{name}"
-  Application.instance.macros[name] = {args: args, block: block}
+  # Application.instance.macros[name] = {args: args, block: block}
   Project.value[:macros][name] = {args: args, block: block}
 end
 
 def group(name, &block)
-  Application.instance.groups << {name: name, block: block}
+  # Application.instance.groups << {name: name, block: block}
   Project.value[:groups] << {name: name, block: block}
 end
 alias task group
