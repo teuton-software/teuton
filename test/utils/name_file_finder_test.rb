@@ -1,93 +1,128 @@
 require "test/unit"
 require_relative "../../lib/teuton/utils/application"
+require_relative "../../lib/teuton/utils/project"
 require_relative "../../lib/teuton/utils/name_file_finder"
 
 class NameFileFinderTest < Test::Unit::TestCase
   def test_relpath_simple_mode_find_filenames_for
-    app = Application.instance
-    app.verbose = false
+    Application.instance.verbose = false
+    Project.value[:verbose] = false
 
     # Simple mode, files exists
-    NameFileFinder.find_filenames_for("test/files/example-01.rb")
-    basedir = app.running_basedir
+    finder = NameFileFinder.new
+    finder.find_filenames_for("test/files/example-01.rb")
+
+    basedir = Project.value[:running_basedir]
     a = File.join(basedir, "test/files")
     b = File.join(basedir, "test/files/example-01.rb")
     c = File.join(basedir, "test/files/example-01.yaml")
-    assert_equal a, app.project_path
-    assert_equal b, app.script_path
-    assert_equal c, app.config_path
-    assert_equal "example-01", app.test_name
+    assert_equal a, finder.project_path
+    assert_equal b, finder.script_path
+    assert_equal c, finder.config_path
+    assert_equal "example-01", finder.test_name
+
+    Application.instance.verbose = true
+    Project.value[:verbose] = true
   end
 
   def test_abspath_simple_mode_find_filenames_for
-    app = Application.instance
-    app.verbose = false
+    Application.instance.verbose = false
+    Project.value[:verbose] = false
 
     # Simple mode, files exists (using absolute path)
-    basedir = app.running_basedir
+    basedir = Project.value[:running_basedir]
     absolute_path = File.join(basedir, "test/files/example-01.rb")
-    NameFileFinder.find_filenames_for(absolute_path)
+    finder = NameFileFinder.new
+    finder.find_filenames_for(absolute_path)
     a = File.join(basedir, "test/files")
     b = File.join(basedir, "test/files/example-01.rb")
     c = File.join(basedir, "test/files/example-01.yaml")
-    assert_equal a, app.project_path
-    assert_equal b, app.script_path
-    assert_equal c, app.config_path
-    assert_equal "example-01", app.test_name
+    assert_equal a, finder.project_path
+    assert_equal b, finder.script_path
+    assert_equal c, finder.config_path
+    assert_equal "example-01", finder.test_name
+
+    Application.instance.verbose = true
+    Project.value[:verbose] = true
   end
 
   def test_json_simple_mode_find_filenames_for
-    app = Application.instance
-    app.verbose = false
+    Application.instance.verbose = false
+    Project.value[:verbose] = false
 
     # Simple mode, files exists with JSON
-    NameFileFinder.find_filenames_for("test/files/example-04.rb")
-    basedir = app.running_basedir
+    finder = NameFileFinder.new
+    finder.find_filenames_for("test/files/example-04.rb")
+    basedir = Project.value[:running_basedir]
     a = File.join(basedir, "test/files")
     b = File.join(basedir, "test/files/example-04.rb")
     c = File.join(basedir, "test/files/example-04.json")
-    assert_equal a, app.project_path
-    assert_equal b, app.script_path
-    assert_equal c, app.config_path
-    assert_equal "example-04", app.test_name
+    assert_equal a, finder.project_path
+    assert_equal b, finder.script_path
+    assert_equal c, finder.config_path
+    assert_equal "example-04", finder.test_name
+
+    Application.instance.verbose = true
+    Project.value[:verbose] = true
   end
 
-  def test_complex_mode_find_filenames_for
-    app = Application.instance
-    app.verbose = false
+  def test_complex_mode_dir_empty
+    Application.instance.verbose = false
+    Project.value[:verbose] = false
 
     # Complex mode, dir empty
-    NameFileFinder.find_filenames_for("test/files/example-02")
-    basedir = app.running_basedir
+    finder = NameFileFinder.new
+    finder.find_filenames_for("test/files/example-02")
+    basedir = Project.value[:running_basedir]
     a = File.join(basedir, "test/files/example-02")
     b = File.join(basedir, "test/files/example-02/start.rb")
     c = File.join(basedir, "test/files/example-02/config.yaml")
-    assert_equal a, app.project_path
-    assert_equal b, app.script_path
-    assert_equal c, app.config_path
-    assert_equal "example-02", app.test_name
+    assert_equal a, finder.project_path
+    assert_equal b, finder.script_path
+    assert_equal c, finder.config_path
+    assert_equal "example-02", finder.test_name
 
-    # Complex mode, files exists
-    NameFileFinder.find_filenames_for("test/files/example-03")
-    basedir = app.running_basedir
+    Application.instance.verbose = true
+    Project.value[:verbose] = true
+  end
+
+  def test_complex_mode_files_exist
+    Application.instance.verbose = false
+    Project.value[:verbose] = false
+
+    # Complex mode, files exist
+    finder = NameFileFinder.new
+    finder.find_filenames_for("test/files/example-03")
+    basedir = Project.value[:running_basedir]
     a = File.join(basedir, "test/files/example-03")
     b = File.join(basedir, "test/files/example-03/start.rb")
     c = File.join(basedir, "test/files/example-03/config.yaml")
-    assert_equal a, app.project_path
-    assert_equal b, app.script_path
-    assert_equal c, app.config_path
-    assert_equal "example-03", app.test_name
+    assert_equal a, finder.project_path
+    assert_equal b, finder.script_path
+    assert_equal c, finder.config_path
+    assert_equal "example-03", finder.test_name
+
+    Application.instance.verbose = true
+    Project.value[:verbose] = true
+  end
+
+  def test_complex_mode_files_exist_with_json
+    Application.instance.verbose = false
+    Project.value[:verbose] = false
 
     # Complex mode, files exists with JSON
-    NameFileFinder.find_filenames_for("test/files/example-05")
-    basedir = app.running_basedir
+    finder = NameFileFinder.new
+    finder.find_filenames_for("test/files/example-05")
+    basedir = Project.value[:running_basedir]
     a = File.join(basedir, "test/files/example-05")
     b = File.join(basedir, "test/files/example-05/start.rb")
     c = File.join(basedir, "test/files/example-05/config.json")
-    assert_equal a, app.project_path
-    assert_equal b, app.script_path
-    assert_equal c, app.config_path
-    assert_equal "example-05", app.test_name
-    app.verbose = true
+    assert_equal a, finder.project_path
+    assert_equal b, finder.script_path
+    assert_equal c, finder.config_path
+    assert_equal "example-05", finder.test_name
+
+    Application.instance.verbose = true
+    Project.value[:verbose] = true
   end
 end

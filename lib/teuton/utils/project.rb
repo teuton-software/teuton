@@ -23,10 +23,6 @@ class Project
     @project[:groups] = [] # Array of groups
     @project[:uses] = []   # TODO: Array of files used
     @project[:hall_of_fame] = []
-    @project[:project_path] = nil
-    @project[:script_path] = nil
-    @project[:config_path] = nil
-    @project[:test_name] = nil
   end
 
   def self.value
@@ -60,8 +56,14 @@ class Project
   # * Read color input option
   def self.add_input_params(projectpath, options)
     value[:options].merge! options
-    NameFileFinder.find_filenames_for(projectpath)
     Rainbow.enabled = value[:options]["color"]
+
+    finder = NameFileFinder.new(value[:options])
+    finder.find_filenames_for(projectpath)
+    value[:project_path] = finder.project_path
+    value[:script_path] = finder.script_path
+    value[:config_path] = finder.config_path
+    value[:test_name] = finder.test_name
 
     unless value[:options]["case"].nil?
       numbers = value[:options]["case"].split(",")

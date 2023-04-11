@@ -1,10 +1,24 @@
 require "rainbow"
 
-module NameFileFinder
+class NameFileFinder
+  attr_reader :options
+  attr_reader :project_path
+  attr_reader :script_path
+  attr_reader :config_path
+  attr_reader :test_name
+
+  def initialize(options = {})
+    @options = options
+    @project_path = nil
+    @script_path = nil
+    @config_path = nil
+    @test_name = nil
+  end
+
   ##
   # Find project filenames from input project relative path
   # @param relprojectpath (String)
-  def self.find_filenames_for(relprojectpath)
+  def find_filenames_for(relprojectpath)
     projectpath = File.absolute_path(relprojectpath)
 
     # Define:
@@ -20,10 +34,10 @@ module NameFileFinder
     true
   end
 
-  ##
-  # Find project filenames from input folder path
-  # @param folder_path (String)
-  def self.find_filenames_from_directory(folder_path)
+  private
+
+  def find_filenames_from_directory(folder_path)
+    # Find project filenames from input folder path
     # COMPLEX MODE: We use start.rb as main RB file
     script_path = File.join(folder_path, "start.rb")
     unless File.exist? script_path
@@ -31,38 +45,34 @@ module NameFileFinder
       exit 1
     end
 
-    app = Application.instance
-    app.project_path = folder_path
-    app.script_path = script_path
-    app.test_name = folder_path.split(File::SEPARATOR)[-1]
+    @project_path = folder_path
+    @script_path = script_path
+    @test_name = folder_path.split(File::SEPARATOR)[-1]
 
     find_configfilename_from_directory(folder_path)
   end
 
-  ##
-  # Find project config filename from input folder path
-  # @param folder_path (String)
-  def self.find_configfilename_from_directory(folder_path)
+  def find_configfilename_from_directory(folder_path)
+    # Find project config filename from input folder path
     # COMPLEX MODE: We use config.yaml by default
-    app = Application.instance
     config_path = ""
 
-    if app.options["cpath"].nil?
+    if options["cpath"].nil?
       config_name = "config"
       # Config name file is introduced by cname arg option from teuton command
-      config_name = app.options["cname"] unless app.options["cname"].nil?
+      config_name = options["cname"] unless options["cname"].nil?
       config_path = File.join(folder_path, "#{config_name}.json")
       unless File.exist? config_path
         config_path = File.join(folder_path, "#{config_name}.yaml")
       end
     else
       # Config path file is introduced by cpath arg option from teuton command
-      config_path = app.options["cpath"]
+      config_path = options["cpath"]
     end
-    app.config_path = config_path
+    @config_path = config_path
   end
 
-  def self.find_filenames_from_rb(script_path)
+  def find_filenames_from_rb(script_path)
     # SIMPLE MODE: We use script_path as main RB file
     # This must be fullpath to DSL script file
     if File.extname(script_path) != ".rb"
@@ -71,44 +81,29 @@ module NameFileFinder
       exit 1
     end
 
-    app = Application.instance
-    app.project_path = File.dirname(script_path)
-    app.script_path = script_path
-    app.test_name = File.basename(script_path, ".rb")
-
+    @project_path = File.dirname(script_path)
+    @script_path = script_path
+    @test_name = File.basename(script_path, ".rb")
     find_configfilenames_from_rb(script_path)
   end
 
-  def self.find_configfilenames_from_rb(script_path)
+  def find_configfilenames_from_rb(script_path)
     # SIMPLE MODE: We use script_path as main RB file
     # This must be fullpath to DSL script file
-    app = Application.instance
-
     config_path = ""
-    if app.options["cpath"].nil?
+    if options["cpath"].nil?
       config_name = File.basename(script_path, ".rb")
       # Config name file is introduced by cname arg option from teuton command
-      config_name = app.options["cname"] unless app.options["cname"].nil?
+      config_name = options["cname"] unless options["cname"].nil?
 
-      config_path = File.join(app.project_path, config_name + ".json")
+      config_path = File.join(@project_path, config_name + ".json")
       unless File.exist? config_path
-        config_path = File.join(app.project_path, config_name + ".yaml")
+        config_path = File.join(@project_path, config_name + ".yaml")
       end
     else
       # Config path file is introduced by cpath arg option from teuton command
-      config_path = app.options["cpath"]
+      config_path = options["cpath"]
     end
-    app.config_path = config_path
-  end
-
-  def self.verboseln(text)
-    verbose(text + "\n")
-  end
-
-  def self.verbose(text)
-    return unless Application.instance.verbose
-    return if Application.instance.options["quiet"]
-
-    print text
+    @config_path = config_path
   end
 end

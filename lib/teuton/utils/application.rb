@@ -33,7 +33,11 @@ class Application
     @running_basedir = Dir.getwd
     @output_basedir = "var"
     @default = {name: "teuton", format: :txt, debug: false}
-    @options = {"lang" => "en"}
+    @options = {
+      "lang" => "en",
+      "color" => true,
+      "panel" => false
+    }
     @verbose = true
 
     @global = {}
@@ -65,10 +69,14 @@ class Application
   # * Read color input option
   def add_input_params(projectpath, options)
     @options.merge! options
-    NameFileFinder.find_filenames_for(projectpath)
-    @options["color"] = true if @options["color"].nil?
     Rainbow.enabled = @options["color"]
-    @options["panel"] = false if @options["panel"].nil?
+
+    finder = NameFileFinder.new(@options)
+    finder.find_filenames_for(projectpath)
+    @project_path = finder.project_path
+    @script_path = finder.script_path
+    @config_path = finder.config_path
+    @test_name = finder.test_name
 
     unless @options["case"].nil?
       numbers = @options["case"].split(",")
