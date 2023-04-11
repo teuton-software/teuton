@@ -1,11 +1,9 @@
 require "test/unit"
-require_relative "../../lib/teuton/utils/application"
 require_relative "../../lib/teuton/utils/project"
 require_relative "../../lib/teuton/utils/name_file_finder"
 
 class NameFileFinderTest < Test::Unit::TestCase
   def test_relpath_simple_mode_find_filenames_for
-    Application.instance.verbose = false
     Project.value[:verbose] = false
 
     # Simple mode, files exists
@@ -21,12 +19,10 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal c, finder.config_path
     assert_equal "example-01", finder.test_name
 
-    Application.instance.verbose = true
     Project.value[:verbose] = true
   end
 
   def test_abspath_simple_mode_find_filenames_for
-    Application.instance.verbose = false
     Project.value[:verbose] = false
 
     # Simple mode, files exists (using absolute path)
@@ -42,12 +38,10 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal c, finder.config_path
     assert_equal "example-01", finder.test_name
 
-    Application.instance.verbose = true
     Project.value[:verbose] = true
   end
 
   def test_json_simple_mode_find_filenames_for
-    Application.instance.verbose = false
     Project.value[:verbose] = false
 
     # Simple mode, files exists with JSON
@@ -62,12 +56,10 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal c, finder.config_path
     assert_equal "example-04", finder.test_name
 
-    Application.instance.verbose = true
     Project.value[:verbose] = true
   end
 
   def test_complex_mode_dir_empty
-    Application.instance.verbose = false
     Project.value[:verbose] = false
 
     # Complex mode, dir empty
@@ -82,12 +74,10 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal c, finder.config_path
     assert_equal "example-02", finder.test_name
 
-    Application.instance.verbose = true
     Project.value[:verbose] = true
   end
 
   def test_complex_mode_files_exist
-    Application.instance.verbose = false
     Project.value[:verbose] = false
 
     # Complex mode, files exist
@@ -102,12 +92,10 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal c, finder.config_path
     assert_equal "example-03", finder.test_name
 
-    Application.instance.verbose = true
     Project.value[:verbose] = true
   end
 
   def test_complex_mode_files_exist_with_json
-    Application.instance.verbose = false
     Project.value[:verbose] = false
 
     # Complex mode, files exists with JSON
@@ -122,7 +110,6 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal c, finder.config_path
     assert_equal "example-05", finder.test_name
 
-    Application.instance.verbose = true
     Project.value[:verbose] = true
   end
 end

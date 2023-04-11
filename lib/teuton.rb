@@ -1,9 +1,10 @@
 require_relative "teuton/utils/application"
+require_relative "teuton/utils/project"
 
 module Teuton
   def self.create(path_to_new_dir)
     require_relative "teuton/skeleton"
-    Skeleton.create(path_to_new_dir)
+    Skeleton.new.create(path_to_new_dir)
   end
 
   def self.check(projectpath, options = {})
