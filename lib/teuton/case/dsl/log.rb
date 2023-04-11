@@ -1,6 +1,5 @@
 require "rainbow"
-##
-# Define DSL#log function
+
 module DSL
   ##
   # Record log message

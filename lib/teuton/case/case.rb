@@ -3,6 +3,7 @@
 require_relative "../case_manager/utils"
 require_relative "../report/report"
 require_relative "../utils/application"
+require_relative "../utils/project"
 require_relative "../utils/result/result"
 require_relative "dsl"
 require_relative "config"
@@ -30,9 +31,13 @@ class Case
   @@id = "01" # First case ID value
 
   def initialize(config)
-    app = Application.instance
-    @config = Case::Config.new(local: config, global: app.global)
-    @groups = app.groups
+    # app = Application.instance
+    # @config = Case::Config.new(local: config, global: app.global)
+    @config = Case::Config.new(
+      local: config,
+      global: Project.value[:global]
+    )
+    @groups = Project.value[:groups]
 
     @id = @@id
     @@id = @@id.next
@@ -46,9 +51,11 @@ class Case
     # Default configuration
     @skip = false
     @skip = get(:tt_skip) unless get(:tt_skip) == "NODATA"
-    unless app.options["case"].nil?
+    # unless app.options["case"].nil?
+    unless Project.value[:options]["case"].nil?
       @skip = true
-      @skip = false if app.options["case"].include? @id.to_i
+      # @skip = false if app.options["case"].include? @id.to_i
+      @skip = false if Project.value[:options]["case"].include? @id.to_i
     end
 
     @conn_status = {}
@@ -59,8 +66,10 @@ class Case
     @unique_values = {}
     @result = Result.new
 
-    @debug = Application.instance.debug
-    @verbose = Application.instance.verbose
+    # @debug = Application.instance.debug
+    # @verbose = Application.instance.verbose
+    @debug = Project.value[:debug]
+    @verbose = Project.value[:verbose]
 
     @action_counter = 0
     @action = {

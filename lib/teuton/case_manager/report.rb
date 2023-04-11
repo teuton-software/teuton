@@ -1,4 +1,6 @@
 require "rainbow"
+require_relative "../utils/project"
+require_relative "../utils/settings"
 
 class CaseManager
   private
@@ -7,15 +9,15 @@ class CaseManager
   # Open main report (resume report)
   # @param config_filepath (String)
   def open_main_report(config_filepath)
-    app = Application.instance
+    # app = Application.instance
 
     @report.head[:tt_title] = "Teuton (#{Teuton::VERSION})"
-    @report.head[:tt_scriptname] = trim(app.script_path)
+    @report.head[:tt_scriptname] = trim(Project.value[:script_path])
     @report.head[:tt_configfile] = trim(config_filepath)
-    @report.head[:tt_pwd] = app.running_basedir
+    @report.head[:tt_pwd] = Project.value[:running_basedir]
     @report.head[:tt_debug] = true if @debug
-    # @report.head[:tt_uses] = app.uses.join(', ') # TO-REVISE
-    @report.head.merge!(app.global)
+    @report.head[:tt_uses] = Project.value[:uses].join(", ") # TO-REVISE
+    @report.head.merge!(Project.value[:global])
   end
 
   def close_main_report(start_time)
@@ -29,7 +31,7 @@ class CaseManager
     verboseln Rainbow("-" * 36).green
     verboseln " "
 
-    app = Application.instance
+    # app = Application.instance
     @cases.each do |c|
       line = {}
       if c.skip?
@@ -46,9 +48,9 @@ class CaseManager
       else
         line[:skip] = false
         line[:id] = format("%<id>02d", {id: c.id.to_i})
-        line[:letter] = app.letter[:cross] if c.grade.zero?
-        line[:letter] = app.letter[:error] if c.grade < 50.0
-        line[:letter] = app.letter[:ok] if c.grade.to_i == 100
+        line[:letter] = Settings.letter[:cross] if c.grade.zero?
+        line[:letter] = Settings.letter[:error] if c.grade < 50.0
+        line[:letter] = Settings.letter[:ok] if c.grade.to_i == 100
         line[:grade] = c.grade.to_f
         line[:members] = c.members
         line[:conn_status] = c.conn_status

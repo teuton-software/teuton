@@ -1,4 +1,5 @@
 require_relative "hall_of_fame"
+require_relative "../utils/project"
 
 class CaseManager
   private
@@ -6,22 +7,23 @@ class CaseManager
   ##
   # Start checking every single case
   def check_cases!
-    app = Application.instance
-
+    # app = Application.instance
+    app = Project.value
     # Load configurations from config file
-    configdata = ConfigFileReader.read(app.config_path)
-    app.ialias = configdata[:alias]
-    app.global = configdata[:global]
-    app.global[:tt_testname] = app.global[:tt_testname] || app.test_name
-    app.global[:tt_sequence] = false if app.global[:tt_sequence].nil?
+    # configdata = ConfigFileReader.read(app.config_path)
+    configdata = ConfigFileReader.read(Project.value[:config_path])
+    app[:ialias] = configdata[:alias]
+    app[:global] = configdata[:global]
+    app[:global][:tt_testname] = app[:global][:tt_testname] || app[:test_name]
+    app[:global][:tt_sequence] = false if app[:global][:tt_sequence].nil?
 
     # Create out dir
-    outdir = app.global[:tt_outdir] || File.join("var", app.global[:tt_testname])
+    outdir = app[:global][:tt_outdir] || File.join("var", app[:global][:tt_testname])
     ensure_dir outdir
     @report.output_dir = outdir
 
     # Fill report head
-    open_main_report(app.config_path)
+    open_main_report(app[:config_path])
 
     # create cases and run
     configdata[:cases].each { |config| @cases << Case.new(config) }
@@ -36,7 +38,8 @@ class CaseManager
     start_time = Time.now
     verboseln Rainbow("-" * 36).green
     verboseln Rainbow("Started at #{start_time}").green
-    if Application.instance.global[:tt_sequence] == true
+    # if Application.instance.global[:tt_sequence] == true
+    if Project.value[:global][:tt_sequence] == true
       # Run every case in sequence
       @cases.each(&:play)
     else

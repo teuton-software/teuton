@@ -1,4 +1,6 @@
 require_relative "../utils/application"
+require_relative "../utils/project"
+require_relative "../utils/settings"
 require_relative "formatter/formatter"
 
 class Report
@@ -12,7 +14,8 @@ class Report
   def initialize(id = "00")
     @id = id
     @filename = "case-#{@id}"
-    @output_dir = Application.instance.output_basedir
+    # @output_dir = Application.instance.output_basedir
+    @output_dir = Project.value[:output_basedir]
     @head = {}
     @lines = []
     @tail = {}
@@ -57,7 +60,6 @@ class Report
   # * fail_weight
   # * fail_counter
   def close
-    app = Application.instance
     max = 0.0
     good = 0.0
     fail = 0.0
@@ -68,11 +70,11 @@ class Report
       max += i[:weight] if i[:weight].positive?
       if i[:check]
         good += i[:weight]
-        @history += app.letter[:good]
+        @history += Settings.letter[:good]
       else
         fail += i[:weight]
         fail_counter += 1
-        @history += app.letter[:bad]
+        @history += Settings.letter[:bad]
       end
     end
     @tail[:max_weight] = max

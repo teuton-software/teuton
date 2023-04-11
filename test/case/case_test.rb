@@ -5,9 +5,8 @@ require_relative "../../lib/teuton/case/case"
 
 class CaseTest < Test::Unit::TestCase
   def setup
-    @app = Application.instance
-    @app.reset
-    @app.global = {tt_testname: "demo"}
+    Project.init
+    Project.value[:global] = {tt_testname: "demo"}
     @case = Case.new({})
   end
 
@@ -33,7 +32,7 @@ class CaseTest < Test::Unit::TestCase
     c.config.set(:p3, "p3")
     assert_equal 1, c.config.running.size
     assert_equal params.size, c.config.local.size
-    assert_equal @app.global.size, c.config.global.size
+    assert_equal Project.value[:global].size, c.config.global.size
 
     assert_equal params[:p1], c.get(:p1)
     assert_equal params[:p2], c.get(:p2)
