@@ -1,7 +1,11 @@
 group "Remote host" do
-  target "Create user david"
-  run "id david", on: :host1
-  expect ["uid=", "(david)", "gid="]
+  target "Create user root"
+  run "id root"
+  expect ["uid=", "(root)", "gid="]
+
+  target "Delete user vader"
+  run "id vader"
+  expect ["id:", "vader", "no exist"]
 end
 
 play do

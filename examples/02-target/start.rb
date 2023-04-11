@@ -1,7 +1,7 @@
 group "Learn about targets" do
-  target "Create user david"
-  run "id david"
-  expect ["uid=", "(david)", "gid="]
+  target "Create user root"
+  run "id root"
+  expect ["uid=", "(root)", "gid="]
 
   target "Delete user vader"
   run "id vader"
