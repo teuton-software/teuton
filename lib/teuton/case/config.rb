@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../utils/application"
+require_relative "../utils/project"
 
 # Class Case::Config
 # * get
@@ -13,8 +13,8 @@ class Case
     attr_reader :ialias, :global, :local, :running
 
     def initialize(args)
-      @ialias = args[:alias] || Application.instance.ialias.clone
-      @global = args[:global] || Application.instance.global.clone
+      @ialias = args[:alias] || Project.value[:ialias].clone
+      @global = args[:global] || Project.value[:global].clone
       @local = args[:local] || {}
       @running = {}
 

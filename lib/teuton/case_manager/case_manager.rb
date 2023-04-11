@@ -1,6 +1,5 @@
 require_relative "../case/case"
 require_relative "../report/report"
-require_relative "../utils/application"
 require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 require_relative "export_manager"
@@ -32,17 +31,20 @@ class CaseManager
     check_cases!
     instance_eval(&block)
     # Run export if user pass option command "--export=json"
-    # i = Application.instance.options["export"]
     i = Project.value[:options]["export"]
     export(format: i.to_sym) unless i.nil?
     # Accept "configfile" param REVISE There exists?
-    # i = Application.instance.options["configfile"]
     i = Project.value[:options]["configfile"]
     export(format: i.to_sym) unless i.nil?
   end
 
   def export(args = {})
-    ExportManager.new.call(@report, @cases, args)
+    ExportManager.new.call(
+      @report,
+      @cases,
+      args,
+      Project.value[:format]
+    )
   end
 
   def send(args = {})

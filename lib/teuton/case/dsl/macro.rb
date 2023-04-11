@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../utils/application"
+require_relative "../../utils/project"
 
 # DSL module methods: assert, missing_method
 module DSL
@@ -9,7 +9,7 @@ module DSL
   # @param name (String) Macro name
   # @param input (Hash) Macro params
   def macro(name, input = {})
-    macros = Application.instance.macros
+    macros = Project.value[:macros]
     unless macros[name]
       log("Macro #{name} not found!", :error)
       return

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "rainbow"
-require_relative "../utils/application"
 
 ##
 # Execute "export" order: Export every case report
@@ -12,7 +11,7 @@ class ExportManager
   # @param main_report (Report)
   # @param cases (Array)
   # @param input (Hash) Selected export options
-  def call(main_report, cases, args)
+  def call(main_report, cases, args, default_format)
     if args.class != Hash
       puts Rainbow("[ERROR] Export argument error!").red
       puts Rainbow("  Revise: export #{args}").red
@@ -23,7 +22,7 @@ class ExportManager
 
     options = strings2symbols(args)
     if options[:format].nil?
-      options[:format] = Application.instance.default[:format]
+      options[:format] = default_format
     end
 
     # Step 1: Export case reports

@@ -1,17 +1,14 @@
-require_relative "../utils/application"
 require_relative "../utils/project"
 require_relative "case_manager"
 
 def use(filename)
   filename += ".rb"
-  # app = Application.instance
   rbfiles = File.join(Project.value[:project_path], "**", filename)
   files = Dir.glob(rbfiles)
   findfiles = []
   files.sort.each { |f| findfiles << f if f.include?(filename) }
   begin
     require_relative findfiles.first
-    # app.uses << File.basename(findfiles.first)
     Project.value[:uses] << File.basename(findfiles.first)
   rescue
     puts "[ERROR] Unknown file : #{filename}"
@@ -21,7 +18,6 @@ def use(filename)
 end
 
 def define_macro(name, *args, &block)
-  Application.instance.macros[name] = {args: args, block: block}
   Project.value[:macros][name] = {args: args, block: block}
 end
 alias def_macro define_macro
@@ -31,14 +27,12 @@ alias defmacro define_macro
 # @param name (String) Group name
 # @param block (Block) Tests code
 def group(name, &block)
-  Application.instance.groups << {name: name, block: block}
   Project.value[:groups] << {name: name, block: block}
 end
 alias task group
 
-# Start test
-# @param block (Block) Extra code executed at the end.
 def play(&block)
+  # Start test
   CaseManager.new.play(&block)
 end
 alias start play
