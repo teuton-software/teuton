@@ -8,7 +8,7 @@ module Teuton
   end
 
   def self.check(projectpath, options = {})
-    Application.instance.add_input_params(projectpath, options)
+    # Application.instance.add_input_params(projectpath, options)
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/check/laboratory") # Define DSL
     lab = Laboratory.new(
