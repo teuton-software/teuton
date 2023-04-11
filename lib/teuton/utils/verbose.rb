@@ -1,4 +1,4 @@
-require_relative "../application"
+require_relative "project"
 
 module Verbose
   def verboseln(text)
@@ -6,7 +6,7 @@ module Verbose
   end
 
   def verbose(text)
-    return if Application.instance.quiet?
+    return if Project.quiet?
 
     print text
   end

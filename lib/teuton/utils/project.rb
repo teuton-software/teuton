@@ -7,11 +7,14 @@ class Project
     @project = {}
     @project[:running_basedir] = Dir.getwd
     @project[:output_basedir] = "var"
-    @project[:default] = {name: "teuton", format: :txt, debug: false}
+    @project[:name] = "teuton"
+    @project[:format] = :txt
+    @project[:debug] = false
     @project[:options] = {
       "color" => true,
       "lang" => "en",
-      "panel" => false
+      "panel" => false,
+      "quiet" => false
     }
     @project[:verbose] = true
     @project[:global] = {} # Hash of Global configuration params
@@ -32,12 +35,12 @@ class Project
 
   init
 
-  def debug
-    @default[:debug]
+  def self.debug
+    value[:debug]
   end
 
-  def name
-    @default[:name]
+  def self.name
+    value[:name]
   end
 
   def self.quiet?
@@ -45,6 +48,10 @@ class Project
     return true unless value[:verbose]
 
     false
+  end
+
+  def self.verbose
+    value[:verbose]
   end
 
   ##
