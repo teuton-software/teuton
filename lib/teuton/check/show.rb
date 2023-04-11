@@ -1,13 +1,9 @@
 require "terminal-table"
 require "rainbow"
 
-require_relative "../utils/application"
+require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 
-# Laboratory
-# * show_dsl
-# * show_stats
-# * show_config
 class Laboratory
   def show
     @verbose = true
@@ -34,9 +30,9 @@ class Laboratory
   end
 
   def process_content
-    groups = Application.instance.groups
-    option = Application.instance.options
-
+    groups = Project.value[:groups]
+    option = Project.value[:options]
+    @stats[:uses] = Project.value[:uses].size
     verboseln ""
     groups.each do |t|
       @stats[:groups] += 1
@@ -124,6 +120,7 @@ class Laboratory
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ["DSL Stats", "Count"]
       st.add_separator
+      st.add_row ["Uses", @stats[:uses]]
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
       st.add_row ["Runs", @stats[:hosts]]

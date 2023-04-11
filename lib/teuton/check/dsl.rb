@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-##
-# Include Teuton DSL keywords into Laboratory class
 class Laboratory
+  # Include Teuton DSL keywords into Laboratory class
   def readme(_text)
     # Usefull for "teuton readme" command action.
   end

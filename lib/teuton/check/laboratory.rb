@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "../utils/application"
 require_relative "../utils/project"
 require_relative "../utils/result/result"
 require_relative "show"
@@ -9,21 +8,21 @@ require_relative "builtin"
 
 def use(filename)
   filename += ".rb"
-  app = Application.instance
-  rbfiles = File.join(app.project_path, "**", filename)
+  rbfiles = File.join(Project.value[:project_path], "**", filename)
   files = Dir.glob(rbfiles)
   use = []
   files.sort.each { |f| use << f if f.include?(filename) }
   require_relative use[0]
+  Project.value[:uses] << use[0]
 end
 
 def group(name, &block)
-  Application.instance.groups << {name: name, block: block}
+  Project.value[:groups] << {name: name, block: block}
 end
 alias task group
 
 def define_macro(name, *args, &block)
-  Application.instance.macros[name] = {args: args, block: block}
+  Project.value[:macros][name] = {args: args, block: block}
 end
 alias def_macro define_macro
 alias defmacro define_macro
@@ -55,6 +54,6 @@ class Laboratory
     @sets = {}
     @hosts = {}
     @requests = [] # REVISE this
-    @verbose = Application.instance.verbose
+    @verbose = Project.value[:verbose]
   end
 end
