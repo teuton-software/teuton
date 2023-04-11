@@ -1,4 +1,5 @@
 require_relative "../utils/application"
+require_relative "../utils/project"
 
 class CaseManager
   class HallOfFame
@@ -23,7 +24,8 @@ class CaseManager
       list = a.reverse
 
       app = Application.instance
-      app.options[:case_number] = @cases.size
+      # app.options[:case_number] = @cases.size
+      Project.value[:options][:case_number] = @cases.size
       app.hall_of_fame = list
     end
   end

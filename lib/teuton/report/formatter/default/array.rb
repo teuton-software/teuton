@@ -1,5 +1,5 @@
 require_relative "../base_formatter"
-require_relative "../../../utils/application"
+require_relative "../../../utils/project"
 
 class ArrayFormatter < BaseFormatter
   def initialize(report)
@@ -85,12 +85,11 @@ class ArrayFormatter < BaseFormatter
   end
 
   def build_hof_data
-    app = Application.instance
     @data[:hall_of_fame] = {}
-    return if app.options[:case_number] < 3
+    return if Project.value[:options][:case_number] < 3
 
     fame = {}
-    app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
+    Project.value[:hall_of_fame].each { |line| fame[line[0]] = line[1] }
     @data[:hall_of_fame] = fame
   end
 
@@ -115,6 +114,6 @@ class ArrayFormatter < BaseFormatter
   end
 
   def version
-    Application::VERSION
+    Teuton::VERSION
   end
 end

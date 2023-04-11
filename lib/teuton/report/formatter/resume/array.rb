@@ -1,4 +1,5 @@
 require_relative "../base_formatter"
+require_relative "../../../utils/project"
 
 class ResumeArrayFormatter < BaseFormatter
   def initialize(report)
@@ -36,10 +37,9 @@ class ResumeArrayFormatter < BaseFormatter
   end
 
   def build_hof_data
-    app = Application.instance
     fame = {}
-    if app.options[:case_number] > 2
-      app.hall_of_fame.each { |line| fame[line[0]] = line[1] }
+    if Project.value[:options][:case_number] > 2
+      Project.value[:hall_of_fame].each { |line| fame[line[0]] = line[1] }
     end
     @data[:hall_of_fame] = fame
   end
