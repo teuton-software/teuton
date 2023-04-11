@@ -34,8 +34,11 @@ module Teuton
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/readme/readme") # Define DSL
 
-    app = Application.instance
-    readme = Readme.new(app.script_path, app.config_path)
+    # app = Application.instance
+    readme = Readme.new(
+      Project.value[:script_path],
+      Project.value[:config_path]
+    )
     readme.show
   end
 

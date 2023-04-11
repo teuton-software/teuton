@@ -1,4 +1,5 @@
 require_relative "../utils/application"
+require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 require_relative "../utils/result/result"
 require_relative "../version"
@@ -7,21 +8,24 @@ require_relative "lang"
 
 def use(filename)
   filename += ".rb"
-  app = Application.instance
-  rbfiles = File.join(app.project_path, "**", filename)
+  # app = Application.instance
+  rbfiles = File.join(Project.value[:project_path], "**", filename)
   files = Dir.glob(rbfiles)
   use = []
   files.sort.each { |f| use << f if f.include?(filename) }
   require_relative use[0]
+  Project.value[:uses] << use[0]
 end
 
 def define_macro(name, *args, &block)
   puts "macro: #{name}"
   Application.instance.macros[name] = {args: args, block: block}
+  Project.value[:macros][name] = {args: args, block: block}
 end
 
 def group(name, &block)
   Application.instance.groups << {name: name, block: block}
+  Project.value[:groups] << {name: name, block: block}
 end
 alias task group
 
@@ -59,9 +63,9 @@ class Readme
   private
 
   def reset
-    app = Application.instance
-    @config = ConfigFileReader.read(app.config_path)
-    @verbose = app.verbose
+    # app = Application.instance
+    @config = ConfigFileReader.read(Project.value[:config_path])
+    @verbose = Project.value[:verbose]
     @result = Result.new
     @data = {}
     @data[:macros] = []
@@ -76,7 +80,8 @@ class Readme
   end
 
   def process_content
-    Application.instance.groups.each do |g|
+    # Application.instance.groups.each do |g|
+    Project.value[:groups].each do |g|
       @current = {name: g[:name], readme: [], actions: []}
       @data[:groups] << @current
       reset_action
@@ -89,14 +94,13 @@ class Readme
   end
 
   def show_head
-    app = Application.instance
     puts "```"
-    puts format(Lang.get(:testname), app.test_name)
+    puts format(Lang.get(:testname), Project.value[:test_name])
     puts format(Lang.get(:date), Time.now)
     puts format(Lang.get(:version), Teuton::VERSION)
     puts "```"
     puts "\n"
-    puts "# #{app.test_name}\n"
+    puts "# #{Project.value[:test_name]}\n"
 
     i = 1
     unless @required_hosts.empty?
