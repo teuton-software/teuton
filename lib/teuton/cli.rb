@@ -37,6 +37,16 @@ class CLI < Thor
     Teuton.check(projectpath, options)
   end
 
+  map ["co", "-co", "--config"] => "config"
+  desc "config DIRECTORY", "Suggest configuration"
+  long_desc <<~LONGDESC
+    config [OPTIONS] DIRECTORY", "Suggest configuration"
+  LONGDESC
+  def config(projectpath)
+    opt = {"onlyconfig"=>true}
+    Teuton.check(projectpath, opt)
+  end
+
   map ["--readme"] => "readme"
   option :lang, type: :string
   desc "readme DIRECTORY", "Show README extracted from test contents"

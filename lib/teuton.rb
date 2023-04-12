@@ -13,7 +13,7 @@ module Teuton
       Project.value[:script_path],
       Project.value[:config_path]
     )
-    if options[:onlyconfig]
+    if options["onlyconfig"]
       lab.show_onlyconfig
     else
       lab.show
