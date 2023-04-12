@@ -1,4 +1,3 @@
-require_relative "../utils/application"
 require_relative "../utils/project"
 
 class CaseManager
@@ -10,23 +9,21 @@ class CaseManager
     def call
       celebrities = {}
 
-      @cases.each do |c|
-        grade = c.grade # report.tail[:grade]
+      @cases.each do |acase|
+        next if acase.skip
+
+        grade = acase.grade
         label = if celebrities[grade]
           celebrities[grade] + "*"
         else
           "*"
         end
-        celebrities[grade] = label unless c.skip
+        celebrities[grade] = label
       end
 
-      a = celebrities.sort_by { |key, _value| key }
-      list = a.reverse
-
-      app = Application.instance
-      # app.options[:case_number] = @cases.size
       Project.value[:options][:case_number] = @cases.size
-      app.hall_of_fame = list
+      ordered_list = celebrities.sort_by { |key, _value| key }
+      Project.value[:hall_of_fame] = ordered_list.reverse
     end
   end
 end
