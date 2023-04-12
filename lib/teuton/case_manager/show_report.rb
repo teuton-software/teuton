@@ -1,6 +1,5 @@
 require "rainbow"
 require "terminal-table"
-# require_relative "../utils/application"
 require_relative "../utils/project"
 
 # | Verbosity level | Description |
@@ -16,7 +15,6 @@ class ShowReport
   end
 
   def call(verbose)
-    # return if Application.instance.quiet?
     return if Project.quiet?
 
     show_initial_configurations if verbose > 2
@@ -123,8 +121,6 @@ class ShowReport
   end
 
   def show_hall_of_fame
-    # app = Application.instance
-    # return if app.hall_of_fame.size < 3
     return if Project.value[:hall_of_fame].size < 3
 
     puts Rainbow("HALL OF FAME").bright
@@ -136,9 +132,8 @@ class ShowReport
     puts "#{my_screen_table}\n"
   end
 
-  ##
-  # Trim absolute path values
   def trim(input)
+    # Trim absolute path values
     return input unless input.to_s.start_with? Dir.pwd.to_s
     return input if input == Dir.pwd.to_s
 

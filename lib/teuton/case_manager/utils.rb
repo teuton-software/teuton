@@ -1,7 +1,7 @@
 require "fileutils"
 require "open3"
 require "rainbow"
-require_relative "../utils/application"
+require_relative "../utils/project"
 
 module Utils
   def ensure_dir(dirname)
@@ -32,7 +32,7 @@ module Utils
   end
 
   def my_execute(cmd, encoding = "UTF-8")
-    return {exitstatus: 0, content: ""} if Application.instance.debug
+    return {exitstatus: 0, content: ""} if Project.debug
 
     begin
       # text = `#{cmd}`
@@ -53,7 +53,7 @@ module Utils
   end
 
   def verbose(text)
-    return if Application.instance.quiet?
+    return if Project.quiet?
 
     print text
   end
