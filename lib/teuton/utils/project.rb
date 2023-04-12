@@ -31,7 +31,7 @@ class Project
 
   init
 
-  def self.debug
+  def self.debug?
     value[:debug]
   end
 

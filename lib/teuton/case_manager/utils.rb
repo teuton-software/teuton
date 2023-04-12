@@ -32,7 +32,7 @@ module Utils
   end
 
   def my_execute(cmd, encoding = "UTF-8")
-    return {exitstatus: 0, content: ""} if Project.debug
+    return {exitstatus: 0, content: ""} if Project.debug?
 
     begin
       # text = `#{cmd}`

@@ -1,6 +1,6 @@
 require "erb"
 require_relative "yaml"
-require_relative "../../../utils/application"
+# require_relative "../../../../teuton"
 
 class ResumeHTMLFormatter < ResumeYAMLFormatter
   def initialize(report)
@@ -42,6 +42,6 @@ class ResumeHTMLFormatter < ResumeYAMLFormatter
   end
 
   def version
-    Application::VERSION
+    Teuton::VERSION
   end
 end

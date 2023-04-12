@@ -65,9 +65,7 @@ class Case
     @unique_values = {}
     @result = Result.new
 
-    # @debug = Application.instance.debug
-    # @verbose = Application.instance.verbose
-    @debug = Project.value[:debug]
+    @debug = Project.debug?
     @verbose = Project.value[:verbose]
 
     @action_counter = 0
