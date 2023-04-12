@@ -1,4 +1,3 @@
-require_relative "../utils/application"
 require_relative "../utils/project"
 require_relative "../utils/settings"
 require_relative "formatter/formatter"
