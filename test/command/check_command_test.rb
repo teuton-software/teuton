@@ -8,6 +8,7 @@ class CheckCommandTest < Test::Unit::TestCase
       "03-remote_hosts",
       "04-config",
       "05-use",
+      # "06-send",
       "07-target_weight",
       "08-unique_values",
       "09-send",

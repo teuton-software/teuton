@@ -3,10 +3,10 @@
 
 # check test
 
-Check Teuton test syntax and show statistics.
+Check Teuton check syntax and show statistics.
 
 ```
-❯ teuton check examples/05-use
+❯ teuton check examples/05-use     
 
 +--------------------------+
 | GROUP: Using file: users |
@@ -32,6 +32,7 @@ Check Teuton test syntax and show statistics.
 +-------------+-------+
 | DSL Stats   | Count |
 +-------------+-------+
+| Uses        | 2     |
 | Groups      | 2     |
 | Targets     | 3     |
 | Runs        | 3     |

@@ -5,6 +5,7 @@ require "test/unit"
 class RunCommandTest < Test::Unit::TestCase
   def setup
     @examples = [
+      "01-cmd_new",
       "02-target",
       # "04-config",
       # "05-use",
@@ -33,15 +34,17 @@ class RunCommandTest < Test::Unit::TestCase
 
   def test_run_examples
     puts ""
-    @examples.each do |name|
-      dir = File.join(@dirbase, name)
-      puts "=> run: #{name}"
+    @examples.each { |name| execute_run name }
+  end
 
-      cmd = "teuton run --quiet #{dir} > /dev/null"
-      assert_equal true, system(cmd)
+  def execute_run(name)
+    dir = File.join(@dirbase, name)
+    puts "=> run: #{name}"
 
-      cmd = "teuton #{dir} > /dev/null"
-      assert_equal true, system(cmd)
-    end
+    cmd = "teuton run --quiet #{dir} > /dev/null"
+    assert_equal true, system(cmd)
+
+    cmd = "teuton #{dir} > /dev/null"
+    assert_equal true, system(cmd)
   end
 end
