@@ -25,9 +25,8 @@ module DSL
     @report.lines << @action.clone
     weight(1.0)
 
-    app = Application.instance
-    c = app.letter[:bad]
-    c = app.letter[:good] if cond
+    c = Settings.letter[:bad]
+    c = Settings.letter[:good] if cond
     verbose Rainbow(c).green
   end
 

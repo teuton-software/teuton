@@ -1,4 +1,4 @@
-require_relative "teuton/utils/application"
+# require_relative "teuton/utils/application"
 require_relative "teuton/utils/project"
 
 module Teuton
@@ -22,7 +22,7 @@ module Teuton
   end
 
   def self.run(projectpath, options = {})
-    Application.instance.add_input_params(projectpath, options)
+    # Application.instance.add_input_params(projectpath, options)
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/case_manager/dsl") # Define DSL
   end
