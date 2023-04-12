@@ -2,7 +2,9 @@
 global:
   folder: examples/23-test-code/code
 cases:
-- tt_members: student_1
+- tt_members: student_1_python
   filename: math_1.py
-- tt_members: student_2
+- tt_members: student_2_python
   filename: math_2b.py
+- tt_members: student_3_ruby
+  filename: math_3.rb

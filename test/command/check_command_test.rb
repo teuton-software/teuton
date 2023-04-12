@@ -23,13 +23,15 @@ class CheckCommandTest < Test::Unit::TestCase
       "19-read_vars",
       # "20-macros",
       "21-exit_codes",
-      "22-result"
+      "22-result",
+      "23-test-code"
     ]
     filedirname = File.dirname(__FILE__)
     @dirbase = File.join(filedirname, "..", "..", "examples")
   end
 
   def test_check_examples
+    puts ""
     @examples.each do |name|
       dir = File.join(@dirbase, name)
       cmd = "teuton check #{dir} 2>/dev/null 1>/dev/null"
