@@ -43,7 +43,7 @@ class CLI < Thor
     config [OPTIONS] DIRECTORY", "Suggest configuration"
   LONGDESC
   def config(projectpath)
-    opt = {"onlyconfig"=>true}
+    opt = {"onlyconfig" => true}
     Teuton.check(projectpath, opt)
   end
 
