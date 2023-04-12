@@ -1,4 +1,3 @@
-# require_relative "teuton/utils/application"
 require_relative "teuton/utils/project"
 
 module Teuton

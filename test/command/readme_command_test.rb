@@ -33,11 +33,13 @@ class ReadmeCommandTest < Test::Unit::TestCase
 
   def test_readme_examples
     puts ""
-    @examples.each do |name|
-      dir = File.join(@dirbase, name)
-      cmd = "teuton readme #{dir} > /dev/null"
-      puts "=> readme: #{name}"
-      assert_equal true, system(cmd)
-    end
+    @examples.each { |name| execute_readme name }
+  end
+
+  def execute_readme(name)
+    dir = File.join(@dirbase, name)
+    cmd = "teuton readme #{dir} > /dev/null"
+    puts "=> readme: #{name}"
+    assert_equal true, system(cmd)
   end
 end
