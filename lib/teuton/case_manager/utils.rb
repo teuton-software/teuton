@@ -5,6 +5,7 @@ require_relative "../utils/project"
 
 module Utils
   def ensure_dir(dirname)
+    # TODO: Mover a la carpeta Utils
     # Create the directory if it dosn't exist.
     unless Dir.exist?(dirname)
       FileUtils.mkdir_p(dirname)
@@ -32,6 +33,7 @@ module Utils
   end
 
   def my_execute(cmd, encoding = "UTF-8")
+    # TODO: mover a la clase case
     return {exitstatus: 0, content: ""} if Project.debug?
 
     begin

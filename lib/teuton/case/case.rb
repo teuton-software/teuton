@@ -23,15 +23,18 @@ class Case
   include DSL
   include Utils
 
-  attr_accessor :result
-  attr_accessor :action # TODO: why not reader only???
-  attr_reader :id, :config, :uniques, :conn_status
+  attr_accessor :action # Updated by ExecuteManager
+  attr_accessor :result # Updated by ExecuteManager
+  attr_accessor :sessions # Updated by ExecuteManager
+  attr_accessor :conn_status # Updated by ExecuteManager
+
+  attr_reader :id
+  attr_reader :config   # Readed by ExecuteManager
+  attr_reader :uniques
   attr_reader :skip
   @@id = "01" # First case ID value
 
   def initialize(config)
-    # app = Application.instance
-    # @config = Case::Config.new(local: config, global: app.global)
     @config = Case::Config.new(
       local: config,
       global: Project.value[:global]
