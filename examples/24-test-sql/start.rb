@@ -4,11 +4,11 @@ group "Test SQL and database" do
 
   target "Database schema"
   run "sqlite3 #{database} '.schema characters'"
-  expect "name varchar", "rol varchar"
+  expect ["name varchar", "rol varchar"]
 
   target "Query Jedi"
   run "sqlite3 #{database} '.read #{query}'"
-  expect "Obiwan", "Jedi"
+  expect ["Obiwan", "Jedi"]
 end
 
 play do

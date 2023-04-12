@@ -24,7 +24,8 @@ class ReadmeCommandTest < Test::Unit::TestCase
       # "20-macros"
       "21-exit_codes",
       "22-result",
-      "23-test-code"
+      "23-test-code",
+      "24-test-sql"
     ]
     filedirname = File.dirname(__FILE__)
     @dirbase = File.join(filedirname, "..", "..", "examples")
