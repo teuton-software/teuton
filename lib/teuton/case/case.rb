@@ -9,7 +9,7 @@ require_relative "dsl/all"
 require_relative "config"
 require_relative "close"
 require_relative "play"
-require_relative "runner"
+# require_relative "runner"
 require_relative "builtin/main"
 
 # Case class: export, filename, grade, members,skip

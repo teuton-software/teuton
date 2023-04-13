@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "../runner"
+# require_relative "../runner"
+require_relative "../execute/manager"
 
 # Case class -> DSL module:
 # * goto
@@ -28,7 +29,8 @@ module DSL
     @action[:encoding] = args[:encoding] || "UTF-8"
 
     start_time = Time.now
-    run_cmd_on(host)
+    # run_cmd_on(host)
+    ExecuteManager.new(self).run_cmd_on(host)
     @action[:duration] = (Time.now - start_time).round(3)
   end
   alias_method :on, :goto
