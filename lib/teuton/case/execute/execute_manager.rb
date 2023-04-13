@@ -5,6 +5,7 @@ require "open3"
 require "rainbow"
 require_relative "../../utils/project"
 require_relative "../../utils/verbose"
+require_relative "execute_local"
 
 class ExecuteManager
   include Verbose
@@ -25,6 +26,7 @@ class ExecuteManager
     if protocol.to_s.downcase == "local" || host.to_s == "localhost"
       # Protocol force => local
       run_cmd_localhost
+      # ExecuteLocal.new(@parent).call
     elsif protocol.to_s.downcase == "ssh"
       # Protocol force => ssh
       run_cmd_remote_ssh(host)
@@ -102,7 +104,7 @@ class ExecuteManager
     port = config.get("#{hostname}_port".to_sym).to_i
     port = 22 if port.zero?
 
-    unless @config.get("#{hostname}_route".to_sym) == "NODATA"
+    unless config.get("#{hostname}_route".to_sym) == "NODATA"
       # Reconfigure command with gateway. Example host1_route: IP.
       # hostname2 = hostname ¿not used?
       ip2 = ip
