@@ -75,6 +75,7 @@ class Case
   end
 
   def filename
+    # called from: close_main_report
     @report.filename
   end
 

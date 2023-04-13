@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
-# Case->DSL#
-# * send
-# * tempfile
-# * tempdir
-# * remote_tempdir
-# * remote_tempfile
 module DSL
+  # * send, tempfile, tempdir, remote_tempdir, remote_tempfile
   def send(args = {})
     return if skip?
 
