@@ -13,7 +13,6 @@ require_relative "runner"
 require_relative "builtin/main"
 
 # Case class
-# * initialize
 # * export
 # * filename
 # * grade
