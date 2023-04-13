@@ -3,8 +3,8 @@ require "net/sftp"
 require "net/telnet"
 require "open3"
 require "rainbow"
-require_relative "../../utils/project"
-require_relative "../../utils/verbose"
+require_relative "../utils/project"
+require_relative "../utils/verbose"
 
 class ExecuteManager
   include Verbose
@@ -17,6 +17,8 @@ class ExecuteManager
   end
 
   def run_cmd_on(host)
+    start_time = Time.now
+
     protocol = config.get("#{host}_protocol".to_sym)
     ip = config.get("#{host}_ip".to_sym)
 
@@ -36,6 +38,8 @@ class ExecuteManager
     else
       run_cmd_remote_ssh host
     end
+
+    action[:duration] = (Time.now - start_time).round(3)
   end
 
   private

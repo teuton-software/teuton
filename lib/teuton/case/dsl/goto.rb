@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-# require_relative "../runner"
-require_relative "../execute/manager"
+require_relative "../execute_manager"
 
-# Case class -> DSL module:
-# * goto
-# * run
 module DSL
   ##
-  # DLS run: It's the same as goto :localhost
+  # DSL run and goto
+  # run: It's the same as goto :localhost
   # @param command (String)
   # @param args (Hash)
   def run(command, args = {})
@@ -18,7 +15,7 @@ module DSL
     goto(host, args)
   end
 
-  # Run command from the host identify as pHostname
+  # Run command from the host identify as "host"
   # goto :host1, :execute => "command"
   def goto(host = :localhost, args = {})
     @result.reset
@@ -28,10 +25,9 @@ module DSL
     tempfile(args[:tempfile]) if args[:tempfile]
     @action[:encoding] = args[:encoding] || "UTF-8"
 
-    start_time = Time.now
-    # run_cmd_on(host)
+    # start_time = Time.now
     ExecuteManager.new(self).run_cmd_on(host)
-    @action[:duration] = (Time.now - start_time).round(3)
+    # @action[:duration] = (Time.now - start_time).round(3)
   end
   alias_method :on, :goto
 end
