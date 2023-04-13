@@ -25,7 +25,7 @@ module DSL
     tempfile(args[:tempfile]) if args[:tempfile]
     @action[:encoding] = args[:encoding] || "UTF-8"
 
-    ExecuteManager.new(self).run_cmd_on(host)
+    ExecuteManager.new(self).call(host)
   end
   alias_method :on, :goto
 end

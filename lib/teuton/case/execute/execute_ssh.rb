@@ -1,93 +1,12 @@
+require "net/ssh"
+require "net/sftp"
 require "rainbow"
 require_relative "../../utils/project"
-require_relative "execute_local"
-require_relative "execute_ssh"
-require_relative "execute_telnet"
+require_relative "../../utils/verbose"
+require_relative "execute_base"
 
-class ExecuteManager
-  def initialize(parent)
-    @parent = parent
-    # READ: @config, cmd = action[:command]
-    # WRITE: @action, @result, @session
-    # my_execute, encode_and_split methods?
-  end
-
-  def call(host)
-    start_time = Time.now
-
-    protocol = config.get("#{host}_protocol".to_sym)
-    ip = config.get("#{host}_ip".to_sym)
-
-    if protocol.to_s.downcase == "local" || host.to_s == "localhost"
-      # Protocol force => local
-      # run_cmd_localhost
-      ExecuteLocal.new(@parent).call
-    elsif protocol.to_s.downcase == "ssh"
-      # Protocol force => ssh
-      # run_cmd_remote_ssh(host)
-      ExecuteSSH.new(@parent).call(host)
-    elsif protocol.to_s.downcase == "telnet"
-      # Protocol force => telnet
-      # run_cmd_remote_telnet(host)
-      ExecuteTelnet.new(@parent).call(host)
-    elsif ip.to_s.downcase == "localhost" || ip.to_s.include?("127.0.0.")
-      # run_cmd_localhost
-      ExecuteLocal.new(@parent).call
-    elsif ip == "NODATA"
-      log("#{host} IP not found!", :error)
-    else
-      # run_cmd_remote_ssh host
-      ExecuteSSH.new(@parent).call(host)
-    end
-
-    action[:duration] = (Time.now - start_time).round(3)
-  end
-
-  private
-
-  def config
-    @parent.config
-  end
-
-  def action
-    @parent.action
-  end
-
-  def result
-    @parent.result
-  end
-
-  def sessions
-    @parent.sessions
-  end
-
-  def log(...)
-    @parent.log(...)
-  end
-
-  def conn_status
-    @parent.conn_status
-  end
-
-  def run_cmd_remote66(input_hostname)
-    hostname = input_hostname.to_s # input_hostname could by Symbol or String
-    i = (hostname + "_protocol").to_sym
-    protocol = config.get(i) if config.get(i)
-    protocol = :ssh if protocol.nil? || protocol == "NODATA"
-    protocol = protocol.to_sym
-    case protocol
-    when :ssh
-      run_cmd_remote_ssh(input_hostname)
-    when :telnet
-      run_cmd_remote_telnet(input_hostname)
-    when :local
-      run_cmd_localhost
-    else
-      log("Protocol #{protocol} unknown! Use ssh or telnet.", :error)
-    end
-  end
-
-  def run_cmd_remote_ssh(input_hostname)
+class ExecuteSSH < ExecuteBase
+  def call(input_hostname)
     action[:conn_type] = :ssh
     hostname = input_hostname.to_s
     ip = config.get("#{hostname}_ip".to_sym).to_s
@@ -167,23 +86,5 @@ class ExecuteManager
     result.exitcode = exitcode
     result.content = output
     result.content.compact!
-  end
-
-  def encode_and_split(encoding, text)
-    # Convert text to UTF-8 deleting unknown chars
-    text ||= "" # Ensure text is not nil
-    flag = [:default, "UTF-8"].include? encoding
-    return text.encode("UTF-8", invalid: :replace).split("\n") if flag
-
-    # Convert text from input ENCODING to UTF-8
-    ec = Encoding::Converter.new(encoding.to_s, "UTF-8")
-    begin
-      text = ec.convert(text)
-    rescue => e
-      puts "[ERROR] #{e}: Declare text encoding..."
-      puts "        run 'command', on: :host, :encoding => 'ISO-8859-1'"
-    end
-
-    text.split("\n")
   end
 end
