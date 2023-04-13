@@ -2,45 +2,14 @@ require "open3"
 require "rainbow"
 require_relative "../../utils/project"
 require_relative "../../utils/verbose"
+require_relative "execute_base"
 
-class ExecuteLocal
-  include Verbose
-
-  def initialize(parent)
-    @parent = parent
-    # READ: @config, cmd = action[:command]
-    # WRITE: @action, @result, @session
-    # my_execute, encode_and_split methods?
-  end
-
+class ExecuteLocal < ExecuteBase
   def call
+    run_cmd_localhost
   end
 
   private
-
-  def config
-    @parent.config
-  end
-
-  def action
-    @parent.action
-  end
-
-  def result
-    @parent.result
-  end
-
-  def sessions
-    @parent.sessions
-  end
-
-  def log(...)
-    @parent.log(...)
-  end
-
-  def conn_status
-    @parent.conn_status
-  end
 
   def run_cmd_localhost
     action[:conn_type] = :local

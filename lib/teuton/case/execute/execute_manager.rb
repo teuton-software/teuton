@@ -25,8 +25,8 @@ class ExecuteManager
 
     if protocol.to_s.downcase == "local" || host.to_s == "localhost"
       # Protocol force => local
-      run_cmd_localhost
-      # ExecuteLocal.new(@parent).call
+      # run_cmd_localhost
+      ExecuteLocal.new(@parent).call
     elsif protocol.to_s.downcase == "ssh"
       # Protocol force => ssh
       run_cmd_remote_ssh(host)
