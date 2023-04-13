@@ -7,9 +7,9 @@ require_relative "execute_base"
 class ExecuteLocal < ExecuteBase
   def call
     action[:conn_type] = :local
-    resp = my_execute(action[:command], action[:encoding])
-    result.exitcode = resp[:exitcode]
-    result.content = resp[:content]
+    response = my_execute(action[:command], action[:encoding])
+    result.exitcode = response[:exitcode]
+    result.content = response[:content]
   end
 
   def my_execute(cmd, encoding = "UTF-8")
