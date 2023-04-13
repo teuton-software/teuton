@@ -34,7 +34,8 @@ class ExecuteManager
       # Protocol force => telnet
       run_cmd_remote_telnet(host)
     elsif ip.to_s.downcase == "localhost" || ip.to_s.include?("127.0.0.")
-      run_cmd_localhost
+      # run_cmd_localhost
+      ExecuteLocal.new(@parent).call
     elsif ip == "NODATA"
       log("#{host} IP not found!", :error)
     else
