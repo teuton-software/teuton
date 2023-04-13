@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../case_manager/utils"
-require_relative "../report/report"
+require_relative "utils"
 require_relative "../utils/project"
+require_relative "../utils/verbose"
 require_relative "../utils/result/result"
+require_relative "../report/report"
 require_relative "dsl/all"
 require_relative "config"
 require_relative "close"
@@ -22,6 +23,7 @@ require_relative "builtin/main"
 class Case
   include DSL
   include Utils
+  include Verbose
 
   attr_accessor :action # Updated by ExecuteManager
   attr_accessor :result # Updated by ExecuteManager
@@ -46,31 +48,24 @@ class Case
 
     # Define Case Report
     @report = Report.new(@id)
-    # TODO: Move folder creation from case to parent classes?
     @report.output_dir = File.join("var", @config.global[:tt_testname])
-    ensure_dir @report.output_dir
 
     # Default configuration
     @skip = false
     @skip = get(:tt_skip) unless get(:tt_skip) == "NODATA"
-    # unless app.options["case"].nil?
     unless Project.value[:options]["case"].nil?
       @skip = true
-      # @skip = false if app.options["case"].include? @id.to_i
       @skip = false if Project.value[:options]["case"].include? @id.to_i
     end
+    @debug = Project.debug?
+    @verbose = Project.value[:verbose]
 
-    @conn_status = {}
     @tmpdir = File.join("var", @config.get(:tt_testname), "tmp", @id.to_s)
     # ensure_dir @tmpdir # REVISE: When we will need this? Samba?
     @remote_tmpdir = File.join("/", "tmp")
 
     @unique_values = {}
     @result = Result.new
-
-    @debug = Project.debug?
-    @verbose = Project.value[:verbose]
-
     @action_counter = 0
     @action = {
       id: 0,
@@ -80,6 +75,7 @@ class Case
     }
     @uniques = []
     @sessions = {} # Store opened sessions for this case
+    @conn_status = {}
     tempfile :default
   end
 

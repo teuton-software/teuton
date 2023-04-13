@@ -1,6 +1,7 @@
 require_relative "../case/case"
 require_relative "../report/report"
 require_relative "../utils/project"
+require_relative "../utils/verbose"
 require_relative "../utils/configfile_reader"
 require_relative "export_manager"
 require_relative "send_manager"
@@ -18,6 +19,7 @@ require_relative "utils"
 # * case_manager/report
 class CaseManager
   include Utils
+  include Verbose
   attr_reader :report, :cases
 
   def initialize
