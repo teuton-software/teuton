@@ -4,6 +4,8 @@ class Case
   # Case class: play
   # TODO: Encapsulate code into PlayManager class
   # * play_in_parallel, play_in_sequence, fill_report, close_opened_sessions
+  # READ: sessions, config, groups, action, report
+  # TODO: groups from Project or from Case???
   def play
     if skip?
       verbose Rainbow("S").green

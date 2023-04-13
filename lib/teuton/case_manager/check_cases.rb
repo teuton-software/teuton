@@ -4,13 +4,10 @@ require_relative "../utils/project"
 class CaseManager
   private
 
-  ##
-  # Start checking every single case
   def check_cases!
-    # app = Application.instance
+    # Start checking every single case
     app = Project.value
     # Load configurations from config file
-    # configdata = ConfigFileReader.read(app.config_path)
     configdata = ConfigFileReader.read(Project.value[:config_path])
     app[:ialias] = configdata[:alias]
     app[:global] = configdata[:global]
@@ -29,6 +26,8 @@ class CaseManager
     configdata[:cases].each { |config| @cases << Case.new(config) }
     start_time = run_all_cases # run cases
 
+    # TODO: merge these 2 methdos
+    # TODO: CloseManager.call ???
     uniques = collect_uniques_for_all_cases
     close_reports_for_all_cases(uniques)
     close_main_report(start_time)
