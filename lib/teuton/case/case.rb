@@ -12,13 +12,7 @@ require_relative "play"
 require_relative "runner"
 require_relative "builtin/main"
 
-# Case class
-# * export
-# * filename
-# * grade
-# * members
-# * skip
-# * read_filename ???
+# Case class: export, filename, grade, members,skip
 class Case
   include DSL
   include Utils
@@ -61,7 +55,6 @@ class Case
 
     @tmpdir = File.join("var", @config.get(:tt_testname), "tmp", @id.to_s)
     # ensure_dir @tmpdir # REVISE: When we will need this? Samba?
-    @remote_tmpdir = File.join("/", "tmp")
 
     @unique_values = {}
     @result = Result.new
@@ -101,18 +94,4 @@ class Case
   end
 
   alias_method :skip?, :skip
-
-  private
-
-  def read_filename(filename)
-    begin
-      file = File.open(filename, "r")
-      item = file.readlines
-      file.close
-      item.map! { |i| i.sub(/\n/, "") }
-    rescue
-      item = []
-    end
-    item
-  end
 end

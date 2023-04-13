@@ -52,7 +52,7 @@ module DSL
     name = "teuton.tmp" if input == :default
 
     @action[:tempfile] = File.join(@tmpdir, name)
-    @action[:remote_tempfile] = File.join(@remote_tmpdir, name)
+    @action[:remote_tempfile] = File.join(remote_tempdir, name)
 
     @action[:tempfile]
   end
@@ -66,6 +66,6 @@ module DSL
   end
 
   def remote_tempdir
-    @remote_tmpdir
+    File.join("/", "tmp") # TODO: Remove this?
   end
 end
