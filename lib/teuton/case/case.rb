@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "utils"
 require_relative "../utils/project"
 require_relative "../utils/verbose"
 require_relative "../utils/result/result"
@@ -9,13 +8,11 @@ require_relative "dsl/all"
 require_relative "config"
 require_relative "close"
 require_relative "play"
-# require_relative "runner"
 require_relative "builtin/main"
 
-# Case class: export, filename, grade, members,skip
 class Case
+  # Case: export, filename, grade, members,skip
   include DSL
-  include Utils
   include Verbose
 
   attr_accessor :action # Updated by ExecuteManager

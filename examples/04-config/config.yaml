@@ -1,6 +1,6 @@
 global:
 cases:
-- tt_members: name_student_1
+- tt_members: student_name_1
   username: david
-- tt_members: name_student_2
+- tt_members: student_name_2
   username: fran
