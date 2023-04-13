@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-# Case class:
-# * play
-# * play_in_parallel
-# * play_in_sequence
-# * fill_report
-# * close_opened_sessions
 class Case
+  # Case class: play
+  # TODO: Encapsulate code into PlayManager class
+  # * play_in_parallel, play_in_sequence, fill_report, close_opened_sessions
   def play
     if skip?
       verbose Rainbow("S").green
@@ -31,6 +28,7 @@ class Case
     verboseln "\n=> Starting case [#{@config.get(:tt_members)}]" if get(:tt_sequence) == true
     @groups.each do |t|
       @action[:groupname] = t[:name]
+      # TODO: @parent(case).instance_eval(&t[:block])
       instance_eval(&t[:block])
     end
   end
