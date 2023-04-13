@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../execute_manager"
+require_relative "../execute/execute_manager"
 
 module DSL
   ##
@@ -25,9 +25,7 @@ module DSL
     tempfile(args[:tempfile]) if args[:tempfile]
     @action[:encoding] = args[:encoding] || "UTF-8"
 
-    # start_time = Time.now
     ExecuteManager.new(self).run_cmd_on(host)
-    # @action[:duration] = (Time.now - start_time).round(3)
   end
   alias_method :on, :goto
 end

@@ -3,8 +3,8 @@ require "net/sftp"
 require "net/telnet"
 require "open3"
 require "rainbow"
-require_relative "../utils/project"
-require_relative "../utils/verbose"
+require_relative "../../utils/project"
+require_relative "../../utils/verbose"
 
 class ExecuteManager
   include Verbose
