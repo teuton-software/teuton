@@ -60,12 +60,14 @@ class ArrayFormatter < BaseFormatter
       target[:duration] = i[:duration]
 
       target[:command] = i[:command]
+      target[:output] = i[:output]
       target[:alterations] = i[:alterations]
       target[:expected] = i[:expected]
       target[:result] = i[:result]
 
       if options[:feedback] == false
         target[:command] = "*" * i[:command].size
+        target[:output] = "*" * i[:output].size
         target[:alterations] = "*" * i[:alterations].size
         target[:expected] = "*" * i[:expected].size
         target[:result] = "*" * i[:result].size

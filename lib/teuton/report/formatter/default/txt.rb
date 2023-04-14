@@ -91,6 +91,7 @@ class TXTFormatter < ArrayFormatter
       w " (" + Rainbow(i[:score].to_s + "/" + i[:weight].to_s).color(color) + ")\n"
       w "#{tab * 4}Description : #{i[:description]}\n"
       w "#{tab * 4}Command     : #{i[:command]}\n"
+      w "#{tab * 4}Output      : #{i[:output]}\n"
       w "#{tab * 4}Duration    : #{i[:duration]} (#{i[:conn_type]})\n"
       w "#{tab * 4}Alterations : #{i[:alterations]}\n"
       w "#{tab * 4}Expected    : #{i[:expected]} (#{i[:expected].class})\n"

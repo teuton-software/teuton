@@ -26,6 +26,11 @@ module DSL
     @action[:encoding] = args[:encoding] || "UTF-8"
 
     ExecuteManager.new(self).call(host)
+    @action[:output] = if @result.content.size < 2
+      @result.value.clone
+    else
+      "(#{@result.content.size} lines)"
+    end
   end
   alias_method :on, :goto
 end
