@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module DSL
+  # expect, expect2, expect_any, expect_first, expect_last
+  # expect_nothing, expect_none, expect_one
+
   # expect <condition>, :weight => <value>
   def expect(input, args = {})
     if input.instance_of?(TrueClass) || input.instance_of?(FalseClass)
@@ -37,6 +40,10 @@ module DSL
       result.find(input)
     end
     expect2 result.count.gt(0), args
+  end
+
+  def expect_exit(value)
+    expect2 result.exitcode == value
   end
 
   def expect_first(input, args = {})
@@ -78,8 +85,8 @@ module DSL
     expect2 result.count.eq(1), args
   end
 
-  # Set weight value for the action
   def weight(value = nil)
+    # Set weight value for the action
     if value.nil?
       @action[:weight]
     elsif value == :default
