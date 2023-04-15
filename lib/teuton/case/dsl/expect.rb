@@ -20,18 +20,10 @@ module DSL
     @action[:id] = @action_counter
     @action[:check] = cond
 
-    @action[:result] = if args[:value]
-      args[:value]
-    else
-      @result.value
-    end
+    @action[:result] = (args[:value] || @result.value)
 
     @action[:alterations] = @result.alterations
-    @action[:expected] = if args[:expected]
-      args[:expected]
-    else
-      @result.expected
-    end
+    @action[:expected] = (args[:expected] || @result.expected)
     @report.lines << @action.clone
     weight(1.0)
 
