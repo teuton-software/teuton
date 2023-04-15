@@ -16,13 +16,18 @@ require_relative "ext_filter"
 class Result
   attr_reader :content
   attr_accessor :exitcode
+  attr_writer :alterations
 
   def initialize
     reset
   end
 
   def alterations
-    @alterations.join(" & ")
+    if @alterations.is_a? String
+      @alterations
+    else
+      @alterations.join(" & ")
+    end
   end
 
   def content=(content)

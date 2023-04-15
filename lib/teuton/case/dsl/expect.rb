@@ -19,12 +19,19 @@ module DSL
     @action_counter += 1
     @action[:id] = @action_counter
     @action[:check] = cond
-    @action[:result] = @result.value
+
+    @action[:result] = if args[:value]
+      args[:value]
+    else
+      @result.value
+    end
 
     @action[:alterations] = @result.alterations
-    @action[:expected] = @result.expected
-    @action[:expected] = args[:expected] if args[:expected]
-
+    @action[:expected] = if args[:expected]
+      args[:expected]
+    else
+      @result.expected
+    end
     @report.lines << @action.clone
     weight(1.0)
 
@@ -43,7 +50,11 @@ module DSL
   end
 
   def expect_exit(value)
-    expect2 result.exitcode == value
+    @result.alterations = "Read exit code"
+    real_value = result.exitcode
+    expect_value = value
+    cond = (real_value == expect_value)
+    expect2 cond, value: real_value, expected: expect_value
   end
 
   def expect_first(input, args = {})

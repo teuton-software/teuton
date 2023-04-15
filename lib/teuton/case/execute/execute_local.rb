@@ -13,17 +13,17 @@ class ExecuteLocal < ExecuteBase
   end
 
   def my_execute(cmd, encoding = "UTF-8")
-    return {exitstatus: 0, content: ""} if Project.debug?
+    return {exitcode: 0, content: ""} if Project.debug?
 
     begin
       text, status = Open3.capture2e(cmd)
-      exitstatus = status.exitstatus
+      exitcode = status.exitstatus
     rescue => e
       verbose Rainbow("!").green
       text = e.to_s
-      exitstatus = 1
+      exitcode = 1
     end
     content = encode_and_split(encoding, text)
-    {exitstatus: exitstatus, content: content}
+    {exitcode: exitcode, content: content}
   end
 end
