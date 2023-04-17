@@ -44,8 +44,16 @@ module DSL
   def expect_exit(value)
     @result.alterations = "Read exit code"
     real_value = result.exitcode
-    expect_value = value
-    cond = (real_value == expect_value)
+    cond = if value.is_a? Range
+      expect_value = "With range #{value}"
+      value.to_a.include? real_value
+    elsif value.is_a? Array
+      expect_value = "Inside list #{value}"
+      value.include? real_value
+    else
+      expect_value = value
+      (real_value == value.to_i)
+    end
     expect2 cond, value: real_value, expected: expect_value
   end
 
@@ -63,7 +71,6 @@ module DSL
     expect2 input, expected: output
   end
 
-  # def expect_none(input, args = {})
   def expect_nothing(args = {})
     expect2 result.count.eq(0), args
   end
