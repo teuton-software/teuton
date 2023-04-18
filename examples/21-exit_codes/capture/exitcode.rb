@@ -11,7 +11,7 @@ group "Capture exit code" do
   run "id vader"
   expect_exit 1..3
 
-  target "Using an array"
+  target "Using a list"
   run "id vader"
   expect_exit [1, 3, 7]
 end
