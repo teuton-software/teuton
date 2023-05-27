@@ -14,6 +14,11 @@ expect_ok
 table report!
 
 ==========================
+Save case state or progress
+
+var/tesname/states.db ¿?
+
+==========================
 use recursively search into parent folders
 Tree example:
 
@@ -91,4 +96,7 @@ var
 
 * Implement "scp" over Telnet ¿?
 * Default port values ssh/telnet and default username values (root, Administrator)
+* Check DSL sequence target->run*->expect
+* Add/create doc videos
+* Use travis
 
