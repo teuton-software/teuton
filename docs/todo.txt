@@ -1,0 +1,76 @@
+
+2022-12-21
+
+==========================
+teuton run TEST --auto=5
+Execute TEST every 5 minutes
+
+=========================
+table report!
+
+==========================
+use recursively search into parent folders
+Tree example:
+
+├── lib
+│   ├── target_A.rb
+│   └── target_B.rb
+└── teuton
+    ├── test_1
+    │   ├── start.rb
+    │   └── target_1.rb
+    └── test_2
+        ├── start.rb
+        └── target_2.rb
+
+# teuton/test_1/start.rb 
+use "target_1"
+use "lib/target_A"
+
+play do 
+  show
+  export
+end
+
+==========================
+Docker/podman integration
+Host definition example:
+  host1_ip:
+  host1_portr:
+  host1_username:
+  host1_password:
+
+  host1_type: docker/podman
+  host1_image: "debian:latest"
+  host1_name (default value) -> "testname_hostname_case01" as dockername
+  host1_preffix: (Code added to docker name) "idp" -> "idp_hostname_case01"
+ 
+  host1_vol_rw: "_, _, _"
+  host1_vol_ro: "_, _, _"
+
+* Folders to mount docker volumes
+  Create temp folders for every case/host.
+  but... When create theses folders?
+  (1) While running? This may be done automaticaly at running first step
+      It's easy but temp folders that not exists before running test
+  (2) Before run?    New command as: "teuton create-temp" TESTNAME
+      It's usefull if we need to put files into temp folders (volumes)
+      before running test.
+
+var
+└── test_1
+    └── tmp
+        ├── case01
+        │   ├── host1
+        │   └── host2
+        ├── case02
+        │   ├── host1
+        │   └── host2
+        └── case03
+            ├── host1
+            └── host2
+
+---------------------------
+* Verify XML export file ¿?
+* Colorize vs Rainbow gem ¿?: By now only use Rainbow gem
+
