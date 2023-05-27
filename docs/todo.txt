@@ -5,7 +5,12 @@
 teuton run TEST --auto=5
 Execute TEST every 5 minutes
 
-=========================
+==========================
+target "Script Ok"
+run_file "scripts/check.sh", on: :host1
+expect_ok
+
+==========================
 table report!
 
 ==========================
@@ -73,4 +78,13 @@ var
 ---------------------------
 * Verify XML export file ¿?
 * Colorize vs Rainbow gem ¿?: By now only use Rainbow gem
-
+* Doc ngrok use. Use cases and tutorial
+* Doc host1_route combined with ngrok
+* Host object so "host(:debian)" return a Host object so
+   h = host(:debian)
+   h.ip -> get(:debian_ip)
+   h.username -> get(:debian_username)
+   h.password -> get(:debian_password)
+   h.port
+   h.route
+   h.protocol
