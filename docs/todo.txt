@@ -88,3 +88,7 @@ var
    h.port
    h.route
    h.protocol
+
+* Implement "scp" over Telnet ¿?
+* Default port values ssh/telnet and default username values (root, Administrator)
+
