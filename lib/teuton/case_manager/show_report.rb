@@ -95,7 +95,7 @@ class ShowReport
       puts lines[0]
     else
       lines.each do |i|
-        if i.class.to_s == "Hash"
+        if i.instance_of?(::Hash)
           value = 0.0
           value = i[:weight] if i[:check]
           print tab + "%03d" % i[:id].to_i

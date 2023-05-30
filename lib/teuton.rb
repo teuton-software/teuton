@@ -41,7 +41,7 @@ module Teuton
     begin
       require_relative Project.value[:script_path]
     rescue => e
-      warn e.to_s
+      warn e
       warn Rainbow.new("[FAIL ] Reading file #{Project.value[:script_path]}").red
       warn Rainbow.new("[ERROR] Syntax Error!").red
       exit 1

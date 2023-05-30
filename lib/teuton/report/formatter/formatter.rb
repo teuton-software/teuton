@@ -48,7 +48,7 @@ module Formatter
     report2 = report.clone
     report2.groups.each do |group|
       group.each do |item|
-        puts item.to_s
+        puts item
       end
     end
   end
