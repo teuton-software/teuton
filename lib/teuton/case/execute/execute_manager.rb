@@ -26,8 +26,8 @@ class ExecuteManager
     @parent.config
   end
 
-  def log
-    @parent.log
+  def log(...)
+    @parent.log(...)
   end
 
   def run_on(host)
