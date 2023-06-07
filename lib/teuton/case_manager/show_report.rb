@@ -1,5 +1,6 @@
 require "rainbow"
 require "terminal-table"
+# require_relative "../utils/application"
 require_relative "../utils/project"
 
 # | Verbosity level | Description |
@@ -121,11 +122,12 @@ class ShowReport
   end
 
   def show_hall_of_fame
-    return if Project.value[:hall_of_fame].size < 3
+    hall_of_fame = Project.value[:hall_of_fame]
+    return if hall_of_fame.size < 3
 
     puts Rainbow("HALL OF FAME").bright
     my_screen_table = Terminal::Table.new do |st|
-      app.hall_of_fame.each do |line|
+      hall_of_fame.each do |line|
         st.add_row [line[0], line[1]]
       end
     end
