@@ -67,7 +67,7 @@ class ArrayFormatter < BaseFormatter
 
       if options[:feedback] == false
         target[:command] = "*" * i[:command].size
-        i[:output] = "" if i[:output].nil? 
+        i[:output] = "" if i[:output].nil?
         target[:output] = "*" * i[:output].size
         target[:alterations] = "*" * i[:alterations].size
         target[:expected] = "*" * i[:expected].size
