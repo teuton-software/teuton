@@ -35,7 +35,7 @@ class CopySSH < ExecuteBase
         )
       end
       if sessions[host].instance_of? Net::SSH::Connection::Session
-        return copy_to(host, localfilename)
+        copy_to(host, localfilename)
       else
         "SSH: NO CONNECTION!"
       end
@@ -65,6 +65,6 @@ class CopySSH < ExecuteBase
       log("copy file: #{localfilename} => #{remotefilepath}", :error)
       return false
     end
-    return true
+    true
   end
 end
