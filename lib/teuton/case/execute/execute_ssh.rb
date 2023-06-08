@@ -35,7 +35,7 @@ class ExecuteSSH < ExecuteBase
       end
     end
 
-    text = ""
+    text = "NODATA"
     exitcode = 0
     begin
       if sessions[hostname].nil?
@@ -58,16 +58,19 @@ class ExecuteSSH < ExecuteBase
     rescue Errno::EHOSTUNREACH
       sessions[hostname] = :nosession
       conn_status[hostname] = :host_unreachable
+      text = "SSH: NO CONNECTION!"
       exitcode = -1
       log("Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       sessions[hostname] = :nosession
       conn_status[hostname] = :error_authentication_failed
+      text = "SSH: NO CONNECTION!"
       exitcode = -1
       log("SSH::AuthenticationFailed!", :error)
     rescue Net::SSH::HostKeyMismatch
       sessions[hostname] = :nosession
       conn_status[hostname] = :host_key_mismatch
+      text = "SSH: NO CONNECTION!"
       exitcode = -1
       log("SSH::HostKeyMismatch!", :error)
       log("* The destination server's fingerprint is not matching " \
@@ -79,6 +82,7 @@ class ExecuteSSH < ExecuteBase
       sessions[hostname] = :nosession
       conn_status[hostname] = :error
       exitcode = -1
+      text = "SSH: NO CONNECTION!"
       log("[#{e.class}] SSH on <#{username}@#{ip}>" \
           " exec: #{action[:command]}", :error)
     end
