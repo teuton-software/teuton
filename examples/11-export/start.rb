@@ -1,7 +1,7 @@
 group "Several output reports formats" do
-  target "Exits user david"
-  run "id david"
-  expect "david"
+  target "Exits user obiwan"
+  run "id obiwan"
+  expect ["uid", "gid", "obiwan"]
 end
 
 play do
