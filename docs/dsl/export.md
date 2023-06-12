@@ -25,8 +25,8 @@ end
 ## Options
 
 1. **format**: txt (default), html, yaml, json, colored_text (txt with colors).
-2. **preserve**: false (default), true.
-3. **feedback**: true (default), false
+2. **preserve**: false (default), true. Keep report old copies.
+3. **feedback**: true (default), false, Hide some fields from reports.
 
 ## Usage
 
@@ -40,3 +40,4 @@ end
 | 06 | `export format: 'colored_text'` or  `export format: :colored_text` | Export file using colored TXT ouput format |
 | 07 | `export preserve: true` | Export default format and preserve report copies |
 | 08 | `export format: 'html', preserve: true` or `export format: :html, preserve: true` | Export 'html' format and preserve report copies |
+| 09 | `export feedback: false` | With "feedback: false" some fields are hidden: command, alterations, expected and result |
