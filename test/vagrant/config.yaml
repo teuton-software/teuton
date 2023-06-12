@@ -1,4 +1,9 @@
+---
 :vms:
 - debian_1
 - debian_2
 - debian_3
+:log:
+  up: 92.549070828
+  halt: 21.211522459
+  status: 3.573908382
