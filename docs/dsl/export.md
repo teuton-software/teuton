@@ -24,9 +24,11 @@ end
 
 ## Options
 
-1. **format**: txt (default), html, yaml, json, colored_text (txt with colors).
-2. **preserve**: false (default), true. Keep report old copies.
-3. **feedback**: true (default), false, Hide some fields from reports.
+| Option | Values | Description |
+| ------ | ------ | ----------- |
+| format | **txt** (default), html, yaml, json, colored_text (txt with colors) |Output file format |
+| preserve | **false** (default), true | Keep report old copies |
+| feedback | **true** (default), false | Hide some fields from reports |
 
 ## Usage
 
