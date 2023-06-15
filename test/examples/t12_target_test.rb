@@ -1,14 +1,9 @@
 require "test/unit"
 require "yaml"
 
-class Examples01Test < Test::Unit::TestCase
-  def setup
-    @dirbase = File.join("test", "files")
-    @filepath = File.join(@dirbase, "test-01-target")
-  end
-
-  def test_example_test_01_target
-    filepath = @filepath
+class T11targetTest < Test::Unit::TestCase
+  def test_example_11_target
+    filepath = File.join("test", "files", "t12-target")
     testname, _resume, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]

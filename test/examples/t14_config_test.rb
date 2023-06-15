@@ -1,10 +1,10 @@
 require "test/unit"
 require "yaml"
 
-class TeutonExamplesTest < Test::Unit::TestCase
+class T12configTest < Test::Unit::TestCase
   def setup
     @dirbase = File.join("test", "files")
-    @filepath = File.join(@dirbase, "test-02-config")
+    @filepath = File.join(@dirbase, "t14-config")
   end
 
   def test_example_test_02_config

@@ -30,6 +30,8 @@ expect 'obiwan' # Expect previous run command output contains obiwan text
 | expect_nothing | no output lines expected |
 | expect /Obiwan\|obi-wan/ | one or more line/s with Obiwan or obi-wan. This example uses regular expresions. |
 | expect_exit NUMBER | Check exit code is NUMBER |
+| expect_ok          | Check exit code is 0 |
+| expect_fail        | Check exit code is > 0 |
 
 ## Advanced
 

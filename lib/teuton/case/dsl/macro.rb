@@ -2,7 +2,6 @@
 
 require_relative "../../utils/project"
 
-# DSL module methods: assert, missing_method
 module DSL
   ##
   # Invoke macro

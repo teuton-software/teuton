@@ -11,7 +11,6 @@ require_relative "play"
 require_relative "builtin/main"
 
 class Case
-  # Case: export, filename, grade, members,skip
   include DSL
   include Verbose
 

@@ -35,7 +35,7 @@ class ExecuteSSH < ExecuteBase
       end
     end
 
-    text = "NODATA"
+    text = "TEUTON_NODATA"
     exitcode = 0
     begin
       if sessions[hostname].nil?
@@ -49,28 +49,29 @@ class ExecuteSSH < ExecuteBase
           non_interactive: true
         )
       end
-      text = if sessions[hostname].instance_of? Net::SSH::Connection::Session
-        sessions[hostname].exec!(action[:command])
+      if sessions[hostname].instance_of? Net::SSH::Connection::Session
+        text = sessions[hostname].exec!(action[:command])
+        exitcode = text.exitstatus
       else
-        "SSH: NO CONNECTION!"
+        text = "TEUTON_ERROR_SSH_NO_CONNECTION"
+        exitcode = -1
       end
-      exitcode = text.exitstatus
     rescue Errno::EHOSTUNREACH
       sessions[hostname] = :nosession
       conn_status[hostname] = :host_unreachable
-      text = "SSH: NO CONNECTION!"
+      text = "TEUTON_ERROR_SSH_HOST_UNREACHABLE"
       exitcode = -1
       log("Host #{ip} unreachable!", :error)
     rescue Net::SSH::AuthenticationFailed
       sessions[hostname] = :nosession
       conn_status[hostname] = :error_authentication_failed
-      text = "SSH: NO CONNECTION!"
+      text = "TEUTON_ERROR_SSH_AUTH_FAILED"
       exitcode = -1
       log("SSH::AuthenticationFailed!", :error)
     rescue Net::SSH::HostKeyMismatch
       sessions[hostname] = :nosession
       conn_status[hostname] = :host_key_mismatch
-      text = "SSH: NO CONNECTION!"
+      text = "TEUTON_ERROR_SSH_HOST_KEY"
       exitcode = -1
       log("SSH::HostKeyMismatch!", :error)
       log("* The destination server's fingerprint is not matching " \
@@ -81,14 +82,13 @@ class ExecuteSSH < ExecuteBase
     rescue => e
       sessions[hostname] = :nosession
       conn_status[hostname] = :error
+      text = "TEUTON_ERROR_SSH"
       exitcode = -1
-      text = "SSH: NO CONNECTION!"
       log("[#{e.class}] SSH on <#{username}@#{ip}>" \
           " exec: #{action[:command]}", :error)
     end
-    output = encode_and_split(action[:encoding], text)
     result.exitcode = exitcode
-    result.content = output
+    result.content = encode_and_split(action[:encoding], text)
     result.content.compact!
   end
 end

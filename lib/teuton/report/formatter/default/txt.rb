@@ -94,8 +94,8 @@ class TXTFormatter < ArrayFormatter
       w "#{tab * 4}Output      : #{i[:output]}\n"
       w "#{tab * 4}Duration    : #{i[:duration]} (#{i[:conn_type]})\n"
       w "#{tab * 4}Alterations : #{i[:alterations]}\n"
-      w "#{tab * 4}Expected    : #{i[:expected]} (#{i[:expected].class})\n"
-      w "#{tab * 4}Result      : #{i[:result]} (#{i[:result].class})\n"
+      w "#{tab * 4}Expected    : #{i[:expected]}\n"
+      w "#{tab * 4}Result      : #{i[:result]}\n"
     end
   end
 end

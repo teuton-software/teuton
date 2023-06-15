@@ -17,8 +17,6 @@ class ApplicationTest < Test::Unit::TestCase
     assert_equal true, @app.verbose
 
     assert_equal true, @app.global == {}
-    assert_equal [], @app.groups
-    assert_equal [], @app.hall_of_fame
   end
 
   def test_quiet?

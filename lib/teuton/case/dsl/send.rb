@@ -21,8 +21,8 @@ module DSL
     localfilepath = File.join(@report.output_dir, filename)
     filename = args[:prefix].to_s + filename if args[:prefix]
 
-    remotefilepath = if args[:remote_dir]
-      File.join(args[:remote_dir], filename)
+    remotefilepath = if args[:dir]
+      File.join(args[:dir], filename)
     else
       File.join(".", filename)
     end
@@ -32,7 +32,7 @@ module DSL
       Net::SFTP.start(ip, username, password: password, port: port) do |sftp|
         sftp.upload!(localfilepath, remotefilepath)
       end
-      msg = Rainbow("==> File '#{remotefilepath}' of '#{get(:tt_members)}' has been copied").green
+      msg = Rainbow("==> Case #{get(:tt_members)}: report (#{remotefilepath}) copy to (#{ip})").green
       verboseln(msg)
     rescue
       msg = Rainbow("==> [FAIL] #{get(:tt_members)}: 'scp #{localfilepath}' to #{remotefilepath}").red

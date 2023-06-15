@@ -11,10 +11,7 @@ class Application
   attr_accessor :verbose
   attr_accessor :global # Global configuration params
   attr_accessor :ialias # Internal alias
-  attr_accessor :macros # Array of macros
-  attr_accessor :groups # Array of groups
   attr_accessor :uses # Array of uses
-  attr_accessor :hall_of_fame
   attr_accessor :project_path, :script_path, :config_path, :test_name
 
   def initialize
@@ -42,10 +39,7 @@ class Application
 
     @global = {}
     @ialias = {}
-    @macros = {}
-    @groups = []
     @uses = [] # TODO
-    @hall_of_fame = []
   end
 
   def debug

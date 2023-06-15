@@ -18,9 +18,13 @@ module DSL
   def expect2(cond, args = {})
     @action_counter += 1
     @action[:id] = @action_counter
-    @action[:check] = cond
-
-    @action[:result] = (args[:value] || @result.value)
+    if @result.exitcode < 0
+      @action[:check] = false
+      @action[:result] = @action[:output]
+    else
+      @action[:check] = cond
+      @action[:result] = (args[:value] || @result.value)
+    end
 
     @action[:alterations] = @result.alterations
     @action[:expected] = (args[:expected] || @result.expected)
@@ -54,6 +58,14 @@ module DSL
       expect_value = value
       (real_value == value.to_i)
     end
+    expect2 cond, value: real_value, expected: expect_value
+  end
+
+  def expect_fail
+    @result.alterations = "Read exit code"
+    real_value = result.exitcode
+    expect_value = "Greater than 0"
+    cond = (real_value > 0)
     expect2 cond, value: real_value, expected: expect_value
   end
 
@@ -93,6 +105,10 @@ module DSL
       result.find(input)
     end
     expect2 result.count.eq(1), args
+  end
+
+  def expect_ok
+    expect_exit 0
   end
 
   def weight(value = nil)

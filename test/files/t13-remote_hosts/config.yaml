@@ -1,0 +1,13 @@
+---
+global:
+  host1_username: vagrant
+  host1_password: vagrant
+cases:
+- tt_members: debian1
+  host1_ip: 192.168.1.201
+- tt_members: debian2
+  host1_ip: 192.168.1.202
+- tt_members: debian3
+  host1_ip: 192.168.1.203
+- tt_members: debian4
+  host1_ip: 192.168.1.204
