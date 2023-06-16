@@ -1,11 +1,11 @@
 group "Learn about targets" do
-  target "Create user root"
-  run "id root"
-  expect ["uid=", "(root)", "gid="]
+  target "Create user obiwan"
+  run "id obiwan"
+  expect ["uid=", "(obiwan)", "gid="]
 
   target "Delete user vader"
   run "id vader"
-  expect ["id:", "vader", "no exist"]
+  expect_fail
 end
 
 start do
