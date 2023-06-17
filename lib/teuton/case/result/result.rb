@@ -4,15 +4,6 @@ require_relative "ext_array"
 require_relative "ext_compare"
 require_relative "ext_filter"
 
-# This object contains data returned by remote/local execution
-# * initialize
-# * alterations
-# * content
-# * debug
-# * ok?
-# * reset
-# * restore
-# * value
 class Result
   attr_reader :content
   attr_accessor :exitcode
@@ -20,6 +11,15 @@ class Result
 
   def initialize
     reset
+  end
+
+  def reset
+    @content_backup = []
+    @content = []
+    @exitcode = -1
+    @value = nil
+    @expected = nil
+    @alterations = []
   end
 
   def alterations
@@ -47,15 +47,6 @@ class Result
 
   def expected
     @expected.to_s
-  end
-
-  def reset
-    @content_backup = []
-    @content = []
-    @exitcode = -1
-    @value = nil
-    @expected = nil
-    @alterations = []
   end
 
   def ok?

@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 module DSL
-  # expect, expect2, expect_any, expect_first, expect_last
-  # expect_nothing, expect_none, expect_one
-
   # expect <condition>, :weight => <value>
   def expect(input, args = {})
     if input.instance_of?(TrueClass) || input.instance_of?(FalseClass)
@@ -109,6 +106,12 @@ module DSL
 
   def expect_ok
     expect_exit 0
+  end
+
+  def expect_sequence(&block)
+    status = "Sequence OK"
+    cond = result.sequence(&block)
+    expect2 cond, value: status, expected: "Sequence OK"
   end
 
   def weight(value = nil)

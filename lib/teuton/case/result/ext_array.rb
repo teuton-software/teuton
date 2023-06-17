@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# This is an extension of Result class
 class Result
   def count
     @alterations << "count"
