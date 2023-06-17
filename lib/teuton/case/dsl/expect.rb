@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../result/sequence"
+
 module DSL
   # expect <condition>, :weight => <value>
   def expect(input, args = {})
@@ -109,9 +111,13 @@ module DSL
   end
 
   def expect_sequence(&block)
-    status = "Sequence OK"
-    cond = result.sequence(&block)
-    expect2 cond, value: status, expected: "Sequence OK"
+    ok = "Sequence OK"
+    err = "Sequence ERROR"
+    seq = Sequence.new(result.lines.dup)
+    cond = seq.is_valid?(&block)
+    status = err
+    status = ok if cond
+    expect2 cond, value: status, expected: ok
   end
 
   def weight(value = nil)

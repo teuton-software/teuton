@@ -5,7 +5,7 @@ group "Remote host" do
 
   target "Delete user vader"
   run "id vader", on: :host1
-  expect ["id:", "vader", "no exist"]
+  expect_fail
 end
 
 play do
