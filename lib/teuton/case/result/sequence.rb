@@ -1,6 +1,7 @@
 class Sequence
   def initialize(lines)
     @lines = lines
+    @alterations = []
   end
 
   def is_valid?(&block)
@@ -13,10 +14,15 @@ class Sequence
     found = 9999
     @lines.each_with_index do |line, index|
       if line.include? value
-        found = value
+        @alterations << "find(#{value})"
+        found = index
         break
       end
     end
     @indexes << found
+  end
+
+  def alterations
+    @alterations.join(" then ")
   end
 end

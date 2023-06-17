@@ -3,7 +3,15 @@ group "Examples: expect" do
   run "cat /etc/passwd"
   expect "/bin/zsh"
 
-  target "Expect text(root) in inly ONE output lines"
+  target "Expect text(root) in only ONE output lines"
   run "cat /etc/passwd"
   expect_one "/bin/zsh"
+
+  target "Expect sequence OK"
+  run "cat /etc/hosts"
+  expect_sequence do
+    find "127.0.0.1"
+    find "::1"
+    find "fe00::0"
+  end
 end

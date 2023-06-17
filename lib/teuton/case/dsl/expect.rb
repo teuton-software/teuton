@@ -113,8 +113,9 @@ module DSL
   def expect_sequence(&block)
     ok = "Sequence OK"
     err = "Sequence ERROR"
-    seq = Sequence.new(result.lines.dup)
+    seq = Sequence.new(result.content.dup)
     cond = seq.is_valid?(&block)
+    result.alterations = seq.alterations
     status = err
     status = ok if cond
     expect2 cond, value: status, expected: ok
