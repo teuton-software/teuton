@@ -4,7 +4,7 @@ require_relative "../../../lib/teuton/case/case"
 class ExpectRegexpTest < Test::Unit::TestCase
   def setup
     Project.init
-    Project.value[:global] = {tt_testname: "tXX_expect_string_test"}
+    Project.value[:global] = {tt_testname: "tXX_expect_regexp_test"}
     @case = Case.new({})
   end
 
