@@ -24,6 +24,8 @@ class ExpectNoneTest < Test::Unit::TestCase
 
     assert_equal true, action[:check]
     assert_equal 0, action[:result]
+    assert_equal "find((?-mix:bb)) & count", action[:alterations]
+    assert_equal "0", action[:expected]
   end
 
   def action = @case.action
