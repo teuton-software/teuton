@@ -36,16 +36,16 @@ class ExpectSequence
     @current_state = false
   end
 
-  def followed_by(value)
-    @expected << "followed_by(#{value})"
+  def next_with(value)
+    @expected << "next_with(#{value})"
 
     line = @lines[@last_index + 1]
     if line.include? value
-      @real << "followed_by(#{value})"
+      @real << "next_with(#{value})"
       @last_index += 1
       return
     end
-    @real << "no followed_by(#{value})"
+    @real << "no next_with(#{value})"
     index = get_index_of(value)
     @last_index = index unless index.nil?
     @current_state = false

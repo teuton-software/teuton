@@ -50,28 +50,52 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert action[:check]
   end
 
-  def test_expect_sequence_followed_by
+  def test_expect_sequence_find_string_fail
+    configure_result(@case, %w[a1 b2 c3 d4 e5])
+    @case.expect_sequence do
+      find "b2"
+      find "a1"
+      find "c3"
+    end
+    assert_equal false, action[:check]
+    assert_equal "find(b2) then no find(a1) then find(c3)", action[:result]
+    assert_equal "", action[:alterations]
+    assert_equal "find(b2) then find(a1) then find(c3)", action[:expected]
+  end
+
+  def test_expect_sequence_find_regexp_fail
+    configure_result(@case, %w[a1 b2 c3 d4 e5])
+    @case.expect_sequence do
+      find(/b2/)
+      find(/a1/)
+      find(/c3/)
+    end
+    assert_equal false, action[:check]
+    assert_equal "", action[:alterations]
+  end
+
+  def test_expect_sequence_next_with
     configure_result(@case, %w[a1 b2 c3 d4 e5])
     @case.expect_sequence do
       find "a1"
-      followed_by "b2"
-      followed_by "c3"
+      next_with "b2"
+      next_with "c3"
     end
     assert action[:check]
-    assert_equal "find(a1) then followed_by(b2) then followed_by(c3)", action[:result]
+    assert_equal "find(a1) then next_with(b2) then next_with(c3)", action[:result]
     assert_equal "", action[:alterations]
-    assert_equal "find(a1) then followed_by(b2) then followed_by(c3)", action[:expected]
+    assert_equal "find(a1) then next_with(b2) then next_with(c3)", action[:expected]
 
     configure_result(@case, %w[a1 b2 c3 d4 e5])
     @case.expect_sequence do
       find "a1"
-      followed_by "b2"
+      next_with "b2"
       find "e5"
     end
     assert action[:check]
-    assert_equal "find(a1) then followed_by(b2) then find(e5)", action[:result]
+    assert_equal "find(a1) then next_with(b2) then find(e5)", action[:result]
     assert_equal "", action[:alterations]
-    assert_equal "find(a1) then followed_by(b2) then find(e5)", action[:expected]
+    assert_equal "find(a1) then next_with(b2) then find(e5)", action[:expected]
   end
 
   def action = @case.action
