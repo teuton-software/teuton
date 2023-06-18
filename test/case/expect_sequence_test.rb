@@ -98,6 +98,32 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a1) then next_with(b2) then find(e5)", action[:expected]
   end
 
+  def test_expect_sequence_move_strings
+    configure_result(@case, %w[a1 b2 c3 d4 e5])
+    @case.expect_sequence do
+      find "a1"
+      move 1
+      next_with "c3"
+    end
+    assert action[:check]
+    assert_equal "find(a1) then move(1) then next_with(c3)", action[:result]
+    assert_equal "", action[:alterations]
+    assert_equal "find(a1) then move(1) then next_with(c3)", action[:expected]
+  end
+
+  def test_expect_sequence_move_strings_fail
+    configure_result(@case, %w[a1 b2 c3 d4 e5])
+    @case.expect_sequence do
+      find "c3"
+      move 3
+      next_with "e5"
+    end
+    assert_equal false, action[:check]
+    assert_equal "find(c3) then no move(3)", action[:result]
+    assert_equal "", action[:alterations]
+    assert_equal "find(c3) then move(3) then next_with(e5)", action[:expected]
+  end
+
   def action = @case.action
 
   def configure_result(acase, content)

@@ -24,6 +24,8 @@ class ExpectSequence
 
   def find(value)
     @expected << "find(#{value})"
+    return if @last_index > (@lines.size - 1)
+
     index = get_index_of(value)
 
     if index > @last_index
@@ -38,6 +40,7 @@ class ExpectSequence
 
   def next_with(value)
     @expected << "next_with(#{value})"
+    return if @last_index + 1 > (@lines.size - 1)
 
     line = @lines[@last_index + 1]
     if line.include? value
@@ -49,6 +52,17 @@ class ExpectSequence
     index = get_index_of(value)
     @last_index = index unless index.nil?
     @current_state = false
+  end
+
+  def move(value)
+    @last_index += value
+    @expected << "move(#{value})"
+    if @lines.size > @last_index + 1
+      @real << "move(#{value})"
+    else
+      @real << "no move(#{value})"
+      @current_state = false
+    end
   end
 
   def get_index_of(value)
