@@ -6,7 +6,8 @@ require_relative "../../lib/teuton/case/case"
 class CaseTest < Test::Unit::TestCase
   def setup
     Project.init
-    Project.value[:global] = {tt_testname: "demo"}
+    @testname = "tXX_casetest"
+    Project.value[:global] = {tt_testname: @testname}
     @case = Case.new({})
   end
 
@@ -16,8 +17,7 @@ class CaseTest < Test::Unit::TestCase
     assert_equal "No description!", @case.action[:description]
     assert_nil @case.action[:groupname]
     assert_equal [], @case.uniques
-    # assert_equal "case-0#{@case.id}", @case.report.filename
-    # assert_equal File.join("var", "demo"), @case.report.output_dir
+    assert_equal "case-#{@case.id}", @case.filename
   end
 
   def test_config
@@ -36,10 +36,10 @@ class CaseTest < Test::Unit::TestCase
 
     assert_equal params[:p1], c.get(:p1)
     assert_equal params[:p2], c.get(:p2)
-    assert_equal "demo", c.get(:tt_testname)
+    assert_equal @testname, c.get(:tt_testname)
     assert_equal params[:p1], c._p1
     assert_equal params[:p2], c._p2
-    assert_equal "demo", c._tt_testname
+    assert_equal @testname, c._tt_testname
   end
 
   def test_target
@@ -68,18 +68,22 @@ class CaseTest < Test::Unit::TestCase
   end
 
   def test_temfile
-    assert_equal "var/demo/tmp/#{@case.id}", @case.tempdir
-    assert_equal "var/demo/tmp/#{@case.id}/teuton.tmp", @case.tempfile
+    tempdir = File.join("var", @testname, "tmp", @case.id)
+    tempfile = File.join(tempdir, "teuton.tmp")
+    assert_equal tempdir, @case.tempdir
+    assert_equal tempfile, @case.tempfile
     assert_equal "/tmp", @case.remote_tempdir
     assert_equal "/tmp/teuton.tmp", @case.remote_tempfile
+
     @case.tempfile "othername"
-    assert_equal "var/demo/tmp/#{@case.id}", @case.tempdir
-    assert_equal "var/demo/tmp/#{@case.id}/othername", @case.tempfile
+    assert_equal tempdir, @case.tempdir
+    assert_equal File.join(tempdir, "othername"), @case.tempfile
     assert_equal "/tmp", @case.remote_tempdir
     assert_equal "/tmp/othername", @case.remote_tempfile
+
     @case.tempfile :default
-    assert_equal "var/demo/tmp/#{@case.id}", @case.tempdir
-    assert_equal "var/demo/tmp/#{@case.id}/teuton.tmp", @case.tempfile
+    assert_equal tempdir, @case.tempdir
+    assert_equal tempfile, @case.tempfile
     assert_equal "/tmp", @case.remote_tempdir
     assert_equal "/tmp/teuton.tmp", @case.remote_tempfile
   end

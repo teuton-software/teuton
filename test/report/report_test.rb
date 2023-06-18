@@ -21,5 +21,6 @@ class ReportTest < Test::Unit::TestCase
     assert_not_equal report2.head, report1.head
     assert_not_equal report2.lines, report1.lines
     assert_not_equal report2.tail, report1.tail
+    # assert_equal File.join("var", "demo"), report.output_dir
   end
 end
