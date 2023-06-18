@@ -17,7 +17,8 @@ class Result
     @content_backup = []
     @content = []
     @exitcode = -1
-    @value = nil
+
+    # @value = nil
     @expected = nil
     @alterations = []
   end
@@ -56,10 +57,10 @@ class Result
   def restore
     temp = @content_backup.clone
     reset
-    @content_backup = temp
-    @content = temp.clone
+    # @content_backup = temp
+    # @content = temp.clone
+    self.content = (temp)
   end
-  alias_method :restore!, :restore
 
   def value
     @content[0]

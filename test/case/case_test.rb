@@ -1,12 +1,10 @@
-#!/usr/bin/env ruby
-
 require "test/unit"
 require_relative "../../lib/teuton/case/case"
 
 class CaseTest < Test::Unit::TestCase
   def setup
     Project.init
-    @testname = "tXX_casetest"
+    @testname = "tXX_case_test"
     Project.value[:global] = {tt_testname: @testname}
     @case = Case.new({})
   end
