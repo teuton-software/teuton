@@ -1,28 +1,60 @@
 class ExpectSequence
   def initialize(lines)
     @lines = lines
-    @alterations = []
   end
 
   def is_valid?(&block)
-    @indexes = []
+    @expected = []
+    @real = []
+    @current_state = true
+    @last_index = -1
     instance_eval(&block)
-    @indexes == @indexes.sort
+    @current_state
   end
+
+  def expected
+    @expected.join(" then ")
+  end
+
+  def real
+    @real.join(" then ")
+  end
+
+  private
 
   def find(value)
-    found = 9999
-    @lines.each_with_index do |line, index|
-      if line.include? value
-        @alterations << "find(#{value})"
-        found = index
-        break
-      end
+    @expected << "find(#{value})"
+    index = get_index_of(value)
+
+    if index > @last_index
+      @real << "find(#{value})"
+      @last_index = index
+      return
     end
-    @indexes << found
+
+    @real << "no find(#{value})"
+    @current_state = false
   end
 
-  def alterations
-    @alterations.join(" then ")
+  def followed_by(value)
+    @expected << "followed_by(#{value})"
+
+    line = @lines[@last_index + 1]
+    if line.include? value
+      @real << "followed_by(#{value})"
+      @last_index += 1
+      return
+    end
+    @real << "no followed_by(#{value})"
+    index = get_index_of(value)
+    @last_index = index unless index.nil?
+    @current_state = false
+  end
+
+  def get_index_of(value)
+    @lines.each_with_index do |line, index|
+      return index if line.include? value
+    end
+    nil
   end
 end

@@ -11,7 +11,8 @@ group "Examples: expect" do
   run "cat /etc/hosts"
   expect_sequence do
     find "127.0.0.1"
-    find "::1"
-    find "fe00::0"
+    followed_by "# fallback"
+    find "# special"
+    followed_by "::1"
   end
 end

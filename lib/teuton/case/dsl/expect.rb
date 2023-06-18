@@ -4,14 +4,18 @@ require_relative "expect_exitcode"
 require_relative "expect_sequence"
 
 module DSL
-  # expect <condition>, :weight => <value>
+  # expect <condition>,
+  #      value: RealValue,
+  #   expected: ExpectedValue,
+  #     weight: float
+  #
   def expect(input, args = {})
     if input.instance_of?(TrueClass) || input.instance_of?(FalseClass)
       expect2(input, args)
     elsif input.instance_of?(String) || input.instance_of?(Regexp) || input.instance_of?(Array)
       expect_any input
     else
-      puts Rainbow("[TypeError] expect #{input} (#{input.class})").red
+      puts Rainbow("[ERROR] Case expect TypeError: expect #{input} (#{input.class})").red
     end
   end
 
@@ -84,13 +88,8 @@ module DSL
   end
 
   def expect_sequence(&block)
-    ok = "Sequence OK"
-    err = "Sequence ERROR"
     seq = ExpectSequence.new(result.content.dup)
     cond = seq.is_valid?(&block)
-    result.alterations = seq.alterations
-    status = err
-    status = ok if cond
-    expect2 cond, value: status, expected: ok
+    expect2 cond, value: seq.real, expected: seq.expected
   end
 end
