@@ -1,4 +1,4 @@
-class Sequence
+class ExpectSequence
   def initialize(lines)
     @lines = lines
     @alterations = []

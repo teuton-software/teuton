@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "sequence"
+require_relative "expect_sequence"
 
 module DSL
   # expect <condition>, :weight => <value>
@@ -113,7 +113,7 @@ module DSL
   def expect_sequence(&block)
     ok = "Sequence OK"
     err = "Sequence ERROR"
-    seq = Sequence.new(result.content.dup)
+    seq = ExpectSequence.new(result.content.dup)
     cond = seq.is_valid?(&block)
     result.alterations = seq.alterations
     status = err
