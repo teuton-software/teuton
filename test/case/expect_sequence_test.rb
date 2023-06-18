@@ -47,13 +47,13 @@ class ExpectSequenceTest < Test::Unit::TestCase
     configure_result(@case, %w[a1 b2 c3 d4 e5])
     @case.expect_sequence do
       find "a1"
-      followed_by "c3"
-      # find "e5"
+      followed_by "b2"
+      find "e5"
     end
-    assert_equal false, action[:check]
-    assert_equal "find(a1) then no followed_by(c3)", action[:result]
+    assert action[:check]
+    assert_equal "find(a1) then followed_by(b2) then find(e5)", action[:result]
     assert_equal "", action[:alterations]
-    assert_equal "find(a1) then followed_by(c3)", action[:expected]
+    assert_equal "find(a1) then followed_by(b2) then find(e5)", action[:expected]
   end
 
   def action = @case.action
