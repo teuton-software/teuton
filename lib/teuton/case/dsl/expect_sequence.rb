@@ -53,7 +53,14 @@ class ExpectSequence
 
   def get_index_of(value)
     @lines.each_with_index do |line, index|
-      return index if line.include? value
+      if value.is_a? String
+        return index if line.include? value
+      elsif value.is_a? Regexp
+        return index if value.match(line)
+      else
+        puts "[ERROR] expect_sequence #{value.class}"
+        exit 1
+      end
     end
     nil
   end
