@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../result/sequence"
+require_relative "sequence"
 
 module DSL
   # expect <condition>, :weight => <value>
@@ -119,16 +119,5 @@ module DSL
     status = err
     status = ok if cond
     expect2 cond, value: status, expected: ok
-  end
-
-  def weight(value = nil)
-    # Set weight value for the action
-    if value.nil?
-      @action[:weight]
-    elsif value == :default
-      @action[:weight] = 1.0
-    else
-      @action[:weight] = value.to_f
-    end
   end
 end
