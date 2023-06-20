@@ -1,5 +1,3 @@
-#!/usr/bin/ruby
-
 require "test/unit"
 require_relative "../../lib/teuton/case/config"
 
@@ -26,7 +24,11 @@ class ConfigTest < Test::Unit::TestCase
       suse1: :linux1,
       ip: [:ip_prefix, :number, ".32"]
     }
-    @config = Case::Config.new(local: @local, global: @global, alias: @ialias)
+    @config = Case::Config.new(
+      local: @local,
+      global: @global,
+      alias: @ialias
+    )
   end
 
   def test_global

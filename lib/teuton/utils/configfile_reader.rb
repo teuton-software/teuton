@@ -30,11 +30,15 @@ module ConfigFileReader
   def self.read_yaml(filepath)
     begin
       data = YAML.load(File.open(filepath))
+      # data = YAML.safe_load(
+      #   File.open(filepath),
+      #   permitted_classes: [Array, Date, Hash, Symbol]
+      # )
     rescue => e
-      $stderr.puts "\n" + ("=" * 80)
-      $stderr.puts "[ERROR] ConfigFileReader#read <#{filepath}>"
-      $stderr.puts "        I suggest to revise file format!"
-      $stderr.puts "        #{e.message}\n" + ("=" * 80)
+      warn "\n" + ("=" * 80)
+      warn "[ERROR] ConfigFileReader#read <#{filepath}>"
+      warn "        I suggest to revise file format!"
+      warn "        #{e.message}\n" + ("=" * 80)
       exit 1
     end
     data = convert_string_keys_to_symbol(data)

@@ -5,6 +5,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
   def setup
     Project.init
     Project.value[:global] = {tt_testname: "tXX_expect_sequence"}
+    Project.value[:verbose] = false
     @case = Case.new({})
   end
 
