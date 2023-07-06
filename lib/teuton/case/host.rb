@@ -14,7 +14,7 @@ class Case
 
     def get(id = nil)
       if id.nil?
-        init_nil
+        init_default
       else
         init(id)
       end
@@ -37,19 +37,27 @@ class Case
       @ip = @config.get("#{@id}_ip".to_sym).to_s
       @username = @config.get("#{@id}_username".to_sym).to_s
       @password = @config.get("#{@id}_password".to_sym).to_s
+
       @protocol = @config.get("#{@id}_protocol".to_sym).to_s.downcase
-      @protocol = "ssh" if @protocol == "nodata"
+      if @protocol == "nodata"
+        @protocol = if @ip == "localhost" || @ip.start_with?("127.0.0.")
+          "local"
+        else
+          "ssh"
+        end
+      end
+
       @port = @config.get("#{@id}_port".to_sym).to_i
       if @port.zero?
-        default = {"local" => 0, "ssh" => 22, "telnet" => 23, "NODATA" => 22}
+        default = {"local" => 0, "ssh" => 22, "telnet" => 23}
         @port = default[@protocol]
       end
       @route = @config.get("#{@id}_route".to_sym)
     end
 
-    def init_nil
-      @id = :localhost
-      @ip = "127.0.0.1"
+    def init_default
+      @id = :default
+      @ip = "localhost"
       @username = "NODATA"
       @password = "NODATA"
       @protocol = "local"
