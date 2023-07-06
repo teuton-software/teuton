@@ -8,16 +8,32 @@ class Case
     attr_reader :protocol
     attr_reader :route
 
-    def initialize(id, config)
-      @id = id.to_sym
-      @id2s = @id.to_s
+    def initialize(config)
       @config = config
-      reset
+    end
+
+    def get(id = nil)
+      if id.nil?
+        init_nil
+      else
+        init(id)
+      end
+      self
+    end
+
+    def to_s
+      data = {
+        id: id,
+        ip: ip, username: username, password: password,
+        port: port, protocol: protocol, route: route
+      }
+      data.to_s
     end
 
     private
 
-    def reset
+    def init(id)
+      @id = id.to_sym
       @ip = @config.get("#{@id}_ip".to_sym).to_s
       @username = @config.get("#{@id}_username".to_sym).to_s
       @password = @config.get("#{@id}_password".to_sym).to_s
@@ -31,13 +47,14 @@ class Case
       @route = @config.get("#{@id}_route".to_sym)
     end
 
-    def to_s
-      data = {
-        id: id,
-        ip: ip, username: username, password: password,
-        port: port, protocol: protocol, route: route
-      }
-      data.to_s
+    def init_nil
+      @id = :localhost
+      @ip = "127.0.0.1"
+      @username = "NODATA"
+      @password = "NODATA"
+      @protocol = "local"
+      @port = 0
+      @route = "NODATA"
     end
   end
 end

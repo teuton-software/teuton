@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+exitcode = ARGV.first.to_i
+puts "exitcode=#{exitcode}"
+exit exitcode

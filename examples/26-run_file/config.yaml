@@ -1,0 +1,9 @@
+---
+global:
+  host1_username: vagrant
+  host1_password: vagrant
+cases:
+- tt_members: Localhost
+  host1_ip: 127.0.0.1
+- tt_members: Remote1
+  host1_ip: 192.168.1.201

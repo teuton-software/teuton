@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+message = ARGV.first
+puts message
+exit 0

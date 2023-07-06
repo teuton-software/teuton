@@ -1,5 +1,5 @@
 module DSL
-  def host(id)
-    Case::Host.new(id, config)
+  def get_host(id)
+    Case::Host.new(config).get(id)
   end
 end
