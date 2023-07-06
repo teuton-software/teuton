@@ -2,16 +2,18 @@ require_relative "../../utils/project"
 
 module DSL
   def run_file(script, args = {})
-    # host = get_host(args[:host])
-    # if host.protocol == "local"
-    ip = config.get("#{args[:host]}_ip".to_sym)
-    # Copy script to remote host
-    if args[:host].nil? || ip == "127.0.0.1"
+    # ip = config.get("#{args[:host]}_ip".to_sym)
+    #if args[:host].nil? || ip == "127.0.0.1"
+    host = get_host(args[:on])
+    if host.protocol == "local"
       command = File.join(Project.value[:project_path], script)
-      puts "DEBUG #{ip} local run: #{command}"
     else
-      command = script
-      puts "DEBUG #{ip} remote run: #{command}"
+      # Copy script to remote host
+      items = script.split(" ")
+      items[0].gsub!(File::SEPARATOR, "_")
+      file = items[0]
+      command = items.join(" ")
+      puts "Uploading #{file} to #{host}"
     end
     run(command, args)
   end

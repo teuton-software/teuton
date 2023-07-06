@@ -7,3 +7,7 @@ cases:
   host1_ip: 127.0.0.1
 - tt_members: Remote1
   host1_ip: 192.168.1.201
+# - tt_members: Remote2
+#   host1_ip: 192.168.1.202
+# - tt_members: Remote3
+#   host1_ip: 192.168.1.203
