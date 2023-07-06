@@ -3,6 +3,8 @@ group "Learn about targets" do
   run "id obiwan"
   expect ["uid=", "(obiwan)", "gid="]
 
+  run_file "pwd"
+  
   target "Delete user vader"
   run "id vader"
   expect_fail
