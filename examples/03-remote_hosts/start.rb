@@ -1,4 +1,7 @@
 group "Remote host" do
+  h = host(:host1)
+  puts h
+
   target "Create user root"
   run "id root", on: :host1
   expect ["uid=", "(root)", "gid="]

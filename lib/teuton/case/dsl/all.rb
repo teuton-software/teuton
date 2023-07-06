@@ -1,5 +1,6 @@
 require_relative "expect"
 require_relative "getset"
+require_relative "host"
 require_relative "log"
 require_relative "macro"
 require_relative "run"

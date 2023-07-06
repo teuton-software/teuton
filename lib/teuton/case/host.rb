@@ -7,7 +7,8 @@ class Case
     attr_reader :port
 
     def initialize(id, config)
-      @id = id
+      @id = id.to_sym
+      @id2s = @id.to_s
       @config = config
       reset
     end
@@ -18,8 +19,15 @@ class Case
       @ip = @config.get("#{@id}_ip".to_sym).to_s
       @username = @config.get("#{@id}_username".to_sym).to_s
       @password = @config.get("#{@id}_password".to_sym).to_s
-      @port = @config.get("#{hostname}_port".to_sym).to_i
+      @port = @config.get("#{@id}_port".to_sym).to_i
       @port = 22 if @port.zero?
+    end
+
+    def to_s
+      data = { id: id, ip: ip, port: port,
+        username: username, password: password, 
+      }
+      data.to_s
     end
   end
 end
