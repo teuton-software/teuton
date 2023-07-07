@@ -4,9 +4,11 @@ require "yaml"
 
 action = ARGV.first
 if action.nil?
-  puts "Usage: #{$0} [up|halt|destroy|status]"
+  puts "Usage: #{$0} [up|halt|destroy|status] [filter]"
   exit 1
 end
+
+filter = ARGV[1] || :default
 
 dirpath = File.dirname(__FILE__)
 filepath = File.join(dirpath, "config.yaml")
@@ -17,6 +19,8 @@ config = YAML.safe_load(
 
 start_time = Time.now
 config[:vms].each do |vmname|
+  next if filter != :default && !filter.include?(vmname)
+
   vmdir = File.join(dirpath, vmname)
   cmd = "cd #{vmdir};vagrant #{action}"
   puts "==> #{cmd}".light_yellow
