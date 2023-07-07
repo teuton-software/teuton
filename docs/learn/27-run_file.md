@@ -2,17 +2,7 @@
 
 # DSL: run_file
 
-We already know the following sequence:
-
-```ruby
-target "Current user is member of docker group"
-run "groups", on: :host1
-expect "docker"
-```
-
-The `run` statement executes the specified command (groups) on the remote computer (:host1).
-
-Sometimes we need to run our own script on the remote computer. To do this we have to:
+We know the classic sequence `target/run/expect`, but sometimes we need to run our own script on the remote computer. To do this we have to:
 
 1. Upload a copy of the script to the remote computer
 2. and then run it. 
