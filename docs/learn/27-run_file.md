@@ -2,12 +2,12 @@
 
 # DSL: run_file
 
-We know the classic sequence `target/run/expect`, but sometimes we need to run our own script on the remote computer. To do this we have to:
+You know the classic sequence `target/run/expect`, but sometimes you need to run our own script files on the remote computer. So you have to:
 
-1. Upload a copy of the script to the remote computer
-2. and then run it. 
+1. Upload a copy of the script file to the remote host
+2. and then run it on remote host
 
-For this task we have created a new instruction called `run_file`.
+For this task you use a new instruction called `run_file`.
 
 ## Example
 
