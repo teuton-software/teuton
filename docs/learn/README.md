@@ -28,6 +28,9 @@ Learn how write your own Teuton tests:
 1. [RESULT object](22-result.md)
 1. [Test code](23-test-code.md)
 1. [Test SQL and database](24-test-sql.md)
+1. [expect vs result](25-expect-result.md) TODO
+1. [EXPECT_SEQUENCE](26-expdect_sequence.md) TODO
+1. [RUN_FILE](27-run_file.md)
 
 Mores examples at [teuton-tests](https://github.com/dvarrui/teuton-tests) GitHub repository.
 
