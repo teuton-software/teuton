@@ -2,7 +2,7 @@ require_relative "project"
 
 module Verbose
   def verboseln(text)
-    verbose(text + "\n")
+    verbose(text.to_s + "\n")
   end
 
   def verbose(text)
