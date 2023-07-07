@@ -10,7 +10,14 @@ run "groups", on: :host1
 expect "docker"
 ```
 
-The `run` statement executes the specified command (groups) on the remote computer (:host1). Buy sometimes we need to run our own script on the remote computer. To do this we have to (1) send a copy of the script to the remote computer and (2) then run it. For this task we have a new instruction called `run_file`.
+The `run` statement executes the specified command (groups) on the remote computer (:host1).
+
+Sometimes we need to run our own script on the remote computer. To do this we have to:
+
+1. Upload a copy of the script to the remote computer
+2. and then run it. 
+
+For this task we have created a new instruction called `run_file`.
 
 ## Example
 
