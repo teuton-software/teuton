@@ -2,10 +2,9 @@ ignore:
   - "examples/14-moodle_id/targets.rb"
   # Security/YAMLLoad: Prefer using `YAML.safe_load` over `YAML.load`.
   - "lib/teuton/utils/configfile_reader.rb"
+  # Style/Alias: Use `alias_method` instead of `alias`
   - "lib/teuton/case_manager/dsl.rb"
   - "lib/teuton/check/main.rb"
-  # - "lib/teuton/readme/dsl.rb"
-  # Style/Alias: Use `alias_method` instead of `alias`
   - "lib/teuton/readme/readme.rb" 
   - "lib/teuton/report/formatter/csv_formatter.rb"
   - "private/**/*"
