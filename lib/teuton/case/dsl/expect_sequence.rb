@@ -5,37 +5,82 @@ class ExpectSequence
 
   def is_valid?(&block)
     @expected = []
-    @real = []
-    @current_state = true
-    @last_index = -1
+    @states = [
+      {last_index: -1, steps: [], found: []}
+    ]
     instance_eval(&block)
-    @current_state
+    # Find better state and return true/false
+    @result = calculate_final_state
+    puts @result
+    @result[:ok]
   end
 
   def expected
-    @expected.join(" then ")
+    @expected.join(">")
   end
 
   def real
-    @real.join(" then ")
+    # From final result return evaluation progress
+    text = []
+    @result[:steps].each do |step|
+      index = text.size
+      text << if step
+        @expected[index]
+      else
+        "not #{@expected[index]}"
+      end
+    end
+    text.join(">")
   end
 
   private
 
+  def calculate_final_state
+    @states.each do |state|
+      state[:score] = (state[:steps].select { _1 }).size
+      state[:fails] = (state[:steps].select { !_1 }).size
+      state[:ok] = (state[:fails] == 0)
+    end
+    best = @states[0]
+    @states.each { |state| best = state if state[:score] > best[:score] }
+    best
+  end
+
   def find(value)
     @expected << "find(#{value})"
-    return if @last_index > (@lines.size - 1)
+    newstates = []
+    @states.each do |state|
+      last_index = state[:last_index]
 
-    index = get_index_of(value)
+      if last_index > (@lines.size - 1)
+        steps = state[:steps].clone
+        steps << false
+        newstates << {
+          last_index: last_index,
+          steps: steps,
+          found: state[:found].clone
+        }
+        next
+      end
 
-    if index > @last_index
-      @real << "find(#{value})"
-      @last_index = index
-      return
+      findindexes = get_indexes(value: value, from: last_index)
+      findindexes.each do |findindex|
+        found = state[:found].clone
+        found << findindex
+        steps = state[:steps].clone
+        steps << true
+        newstates << {
+          last_index: findindex,
+          steps: steps,
+          found: found
+        }
+      end
     end
-
-    @real << "no find(#{value})"
-    @current_state = false
+    @states = if newstates.size.zero?
+      @states.each { |state| state[:steps] << false }
+    else
+      newstates
+    end
   end
 
   def next_with(value)
@@ -65,17 +110,21 @@ class ExpectSequence
     end
   end
 
-  def get_index_of(value)
+  def get_indexes(value:, from:)
+    indexes = []
+
     @lines.each_with_index do |line, index|
+      next if index < from
+
       if value.is_a? String
-        return index if line.include? value
+        indexes << index if line.include? value
       elsif value.is_a? Regexp
-        return index if value.match(line)
+        indexes << index if value.match(line)
       else
         puts "[ERROR] expect_sequence #{value.class}"
         exit 1
       end
     end
-    nil
+    indexes
   end
 end
