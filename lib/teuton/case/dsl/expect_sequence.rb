@@ -85,18 +85,43 @@ class ExpectSequence
 
   def next_with(value)
     @expected << "next_with(#{value})"
-    return if @last_index + 1 > (@lines.size - 1)
+    newstates = []
 
-    line = @lines[@last_index + 1]
-    if line.include? value
-      @real << "next_with(#{value})"
-      @last_index += 1
-      return
+    @states.each do |state|
+      last_index = state[:last_index]
+
+      if last_index > (@lines.size - 1)
+        steps = state[:steps].clone
+        steps << false
+        newstates << {
+          last_index: last_index,
+          steps: steps,
+          found: state[:found].clone
+        }
+        next
+      end
+
+      last_index += 1
+      found = state[:found].clone
+      steps = state[:steps].clone
+      line = @lines[last_index]
+      if line.include?(value)
+        found << last_index
+        steps << true
+      else
+        steps << false
+      end
+      newstates << {
+        last_index: last_index,
+        steps: steps,
+        found: found
+      }
     end
-    @real << "no next_with(#{value})"
-    index = get_index_of(value)
-    @last_index = index unless index.nil?
-    @current_state = false
+    @states = if newstates.size.zero?
+      @states.each { |state| state[:steps] << false }
+    else
+      newstates
+    end
   end
 
   def move(value)
