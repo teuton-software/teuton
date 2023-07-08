@@ -63,6 +63,13 @@ Meaning of progress symbols:
 
 In the above example, localhost does not complete its targets 100% because the last target is set to run remote only.
 
+## Warning about remote names
+
+Local `script/show.sh` file is copied to remote machine as `tt_script_show.sh`, and then `run_file` execute `tt_script_show.sh`.
+
+* The `tt_` prefix is added to mark files that have been automatically uploaded as result of `run_file` action. When test finished these files can deleted.
+* The folder name becomes part of the remote file name. Because at the moment it is not possible to create directories on the remote computer in a platform-agnostic way.
+
 # DSL: upload
 
 `upload` is a dsl instruction, whose purpose is to upload files to the remote host. 
@@ -90,3 +97,9 @@ Example steps:
 2. Upload local file to remote host.
 3. Run script using Bash on remote host.
 4. Evaluate script output.
+
+## Warnings about remote folder
+
+Example:`upload "script/show.sh", to :host1`
+
+The local file `script/show.sh` will be copied into remote folder (`script`) on remote host (`host1`) but remote folder must already be created previously. Because at the moment it is not possible to create directories on the remote computer in a platform-agnostic way.
