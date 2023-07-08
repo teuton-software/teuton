@@ -9,7 +9,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     @case = Case.new({})
   end
 
-  def test_expect_sequence_find_strings_ok1
+  def test_expect_sequence_find_strings_ok01
     configure_result(@case, %w[a b c d e])
     @case.expect_sequence do
       find "a"
@@ -22,7 +22,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>find(b)>find(c)", action[:expected]
   end
 
-  def test_expect_sequence_find_strings_ok2
+  def test_expect_sequence_find_strings_ok02
     configure_result(@case, %w[e e e a b c])
     @case.expect_sequence do
       find "a"
@@ -35,7 +35,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>find(b)>find(c)", action[:expected]
   end
 
-  def test_expect_sequence_find_strings_ok3
+  def test_expect_sequence_find_strings_ok03
     configure_result(@case, %w[e a f b g c d])
     @case.expect_sequence do
       find "a"
@@ -48,7 +48,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>find(b)>find(c)", action[:expected]
   end
 
-  def test_expect_sequence_find_strings_ok4
+  def test_expect_sequence_find_strings_ok04
     configure_result(@case, %w[a b a b c c])
     @case.expect_sequence do
       find "a"
@@ -61,7 +61,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>find(b)>find(c)", action[:expected]
   end
 
-  def test_expect_sequence_find_strings_fail5
+  def test_expect_sequence_find_strings_fail05
     configure_result(@case, %w[a b e f a b])
     @case.expect_sequence do
       find "a"
@@ -74,7 +74,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>find(b)>find(c)", action[:expected]
   end
 
-  def test_expect_sequence_find_strings_fail6
+  def test_expect_sequence_find_strings_fail06
     configure_result(@case, %w[e a e c b])
     @case.expect_sequence do
       find "a"
@@ -87,7 +87,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>find(b)>find(c)", action[:expected]
   end
 
-  def test_expect_sequence_next_with_strings_ok7
+  def test_expect_sequence_next_with_strings_ok07
     configure_result(@case, %w[a a b e c])
     @case.expect_sequence do
       find "a"
@@ -100,7 +100,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>next_with(b)>find(c)", action[:expected]
   end
 
-  def test_expect_sequence_next_with_strings_ok8
+  def test_expect_sequence_next_with_strings_ok08
     configure_result(@case, %w[a b a b c c])
     @case.expect_sequence do
       find "a"
@@ -113,7 +113,7 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>next_with(b)>next_with(c)", action[:expected]
   end
 
-  def test_expect_sequence_next_with_strings_fail9
+  def test_expect_sequence_next_with_strings_fail09
     configure_result(@case, %w[a a b e c b c])
     @case.expect_sequence do
       find "a"
@@ -124,6 +124,47 @@ class ExpectSequenceTest < Test::Unit::TestCase
     assert_equal "find(a)>next_with(b)>not next_with(c)", action[:result]
     assert_equal "", action[:alterations]
     assert_equal "find(a)>next_with(b)>next_with(c)", action[:expected]
+  end
+
+  def test_expect_sequence_move_strings_ok10
+    configure_result(@case, %w[a e b e c e e])
+    @case.expect_sequence do
+      find "a"
+      move 1
+      next_with "b"
+      move 1
+      next_with "c"
+    end
+    assert action[:check]
+    assert_equal "find(a)>move(1)>next_with(b)>move(1)>next_with(c)", action[:result]
+    assert_equal "", action[:alterations]
+    assert_equal "find(a)>move(1)>next_with(b)>move(1)>next_with(c)", action[:expected]
+  end
+
+  def test_expect_sequence_move_strings_ok11
+    configure_result(@case, %w[e e a b e b e])
+    @case.expect_sequence do
+      find "a"
+      move 2
+      next_with "b"
+    end
+    assert action[:check]
+    assert_equal "find(a)>move(2)>next_with(b)", action[:result]
+    assert_equal "", action[:alterations]
+    assert_equal "find(a)>move(2)>next_with(b)", action[:expected]
+  end
+
+  def test_expect_sequence_move_strings_fail12
+    configure_result(@case, %w[e e a b b e b])
+    @case.expect_sequence do
+      find "a"
+      move 2
+      next_with "b"
+    end
+    assert_equal false, action[:check]
+    assert_equal "find(a)>move(2)>not next_with(b)", action[:result]
+    assert_equal "", action[:alterations]
+    assert_equal "find(a)>move(2)>next_with(b)", action[:expected]
   end
 
   def action = @case.action

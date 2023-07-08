@@ -9,9 +9,7 @@ class ExpectSequence
       {last_index: -1, steps: [], found: []}
     ]
     instance_eval(&block)
-    # Find better state and return true/false
-    @result = calculate_final_state
-    puts @result
+    @result = find_best_state
     @result[:ok]
   end
 
@@ -35,7 +33,7 @@ class ExpectSequence
 
   private
 
-  def calculate_final_state
+  def find_best_state
     @states.each do |state|
       state[:score] = (state[:steps].select { _1 }).size
       state[:fails] = (state[:steps].select { !_1 }).size
@@ -125,13 +123,25 @@ class ExpectSequence
   end
 
   def move(value)
-    @last_index += value
     @expected << "move(#{value})"
-    if @lines.size > @last_index + 1
-      @real << "move(#{value})"
+    newstates = []
+    @states.each do |state|
+      last_index = state[:last_index] + value.to_i
+
+      steps = state[:steps].clone
+      steps << !(last_index > (@lines.size - 1))
+
+      newstates << {
+        last_index: last_index,
+        steps: steps,
+        found: state[:found].clone
+      }
+    end
+
+    @states = if newstates.size.zero?
+      @states.each { |state| state[:steps] << false }
     else
-      @real << "no move(#{value})"
-      @current_state = false
+      newstates
     end
   end
 
@@ -141,15 +151,20 @@ class ExpectSequence
     @lines.each_with_index do |line, index|
       next if index < from
 
-      if value.is_a? String
-        indexes << index if line.include? value
-      elsif value.is_a? Regexp
-        indexes << index if value.match(line)
-      else
-        puts "[ERROR] expect_sequence #{value.class}"
-        exit 1
-      end
+      indexes << index if line_include_value?(line: line, value: value)
     end
     indexes
+  end
+
+  def line_include_value?(line:, value:)
+    if value.is_a? String
+      return true if line.include? value
+    elsif value.is_a? Regexp
+      return true << index if value.match(line)
+    else
+      puts "[ERROR] expect_sequence #{value.class}"
+      exit 1
+    end
+    false
   end
 end
