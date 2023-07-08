@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class Case
-  # Case class: play
-  # TODO: Encapsulate code into PlayManager class
-  # * play_in_parallel, play_in_sequence, fill_report, close_opened_sessions
   # READ: sessions, config, groups, action, report
   # TODO: groups from Project or from Case???
   def play
@@ -18,19 +15,18 @@ class Case
   end
   alias_method :start, :play
 
+  private
+
   def close_opened_sessions
     @sessions.each_value do |s|
       s.close if s.instance_of? Net::SSH::Connection::Session
     end
   end
 
-  private
-
   def play_groups_in_sequence
     verboseln "\n=> Starting case [#{@config.get(:tt_members)}]" if get(:tt_sequence) == true
     @groups.each do |t|
       @action[:groupname] = t[:name]
-      # TODO: @parent(case).instance_eval(&t[:block])
       instance_eval(&t[:block])
     end
   end

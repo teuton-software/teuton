@@ -33,11 +33,11 @@ Tree example:
         ├── start.rb
         └── target_2.rb
 
-# teuton/test_1/start.rb 
+# teuton/test_1/start.rb
 use "target_1"
 use "lib/target_A"
 
-play do 
+play do
   show
   export
 end
@@ -54,7 +54,7 @@ Host definition example:
   host1_image: "debian:latest"
   host1_name (default value) -> "testname_hostname_case01" as dockername
   host1_preffix: (Code added to docker name) "idp" -> "idp_hostname_case01"
- 
+
   host1_vol_rw: "_, _, _"
   host1_vol_ro: "_, _, _"
 
@@ -80,8 +80,16 @@ var
             ├── host1
             └── host2
 
----------------------------
+==================================
+Create DSL instructions that reads INI files. For example:
+
+target "Checking SMB configuration"
+goto :debian, :exec => "cat /etc/samba/smb.conf"
+expect result.section("public").param("path").equal("/var/samba/public.d")
+
+==================================
 * Verify XML export file ¿?
+* Sign reports generated with GPG... just to verify autenticity if needed.
 * Colorize vs Rainbow gem ¿?: By now only use Rainbow gem
 * Doc ngrok use. Use cases and tutorial
 * Doc host1_route combined with ngrok
@@ -99,4 +107,3 @@ var
 * Check DSL sequence target->run*->expect
 * Add/create doc videos
 * Use travis
-

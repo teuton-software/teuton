@@ -8,7 +8,8 @@ module Teuton
 
   def self.check(projectpath, options = {})
     Project.add_input_params(projectpath, options)
-    require_dsl_and_script("teuton/check/laboratory") # Define DSL
+    require_dsl_and_script("teuton/check/main")
+    require_relative "teuton/check/laboratory"
     lab = Laboratory.new(
       Project.value[:script_path],
       Project.value[:config_path]

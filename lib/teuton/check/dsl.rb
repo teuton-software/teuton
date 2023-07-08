@@ -13,7 +13,7 @@ class Laboratory
     verboseln format("(%03<targetid>d) target      %<desc>s", targetid: @targetid, desc: desc)
     verboseln "      weight      #{weight}"
   end
-  alias goal target
+  alias_method :goal, :target
 
   def expect(cond)
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
@@ -82,6 +82,10 @@ class Laboratory
     if args.nil? && block.nil?
       instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__) if a[a.size - 1] == "?"
     end
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    true
   end
 
   def gett(option)

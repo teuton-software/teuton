@@ -3,7 +3,7 @@ group "Examples: expect" do
   run "cat /etc/passwd"
   expect "/bin/zsh"
 
-  target "Expect text(root) in inly ONE output lines"
+  target "Expect text(root) in only ONE output lines"
   run "cat /etc/passwd"
   expect_one "/bin/zsh"
 end

@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../../lib/teuton/utils/result/result"
+require_relative "../../lib/teuton/case/result/result"
 
 class ResultTest < Test::Unit::TestCase
   def setup
@@ -16,30 +16,30 @@ class ResultTest < Test::Unit::TestCase
     r.content = @content
     assert_equal true, r.grep(filter).size.eq(@content.size)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal true, r.grep(filter).count.eq(@content.size)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal true, r.find(filter).size.eq(@content.size)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal true, r.find(filter).count.eq(@content.size)
     assert_equal "find(#{filter}) & count", r.alterations
 
-    r.restore!
+    r.restore
     assert_equal false, r.grep(filter).size.eq(0)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal false, r.grep(filter).count.eq(0)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal false, r.find(filter).size.eq(0)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal false, r.find(filter).count.eq(0)
     assert_equal "find(#{filter}) & count", r.alterations
 
-    r.restore!
+    r.restore
     assert_equal true, r.eq("line1")
   end
 
@@ -50,13 +50,13 @@ class ResultTest < Test::Unit::TestCase
     r.content = @content
     assert_equal false, r.grep(filter).size.neq(@content.size)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal false, r.grep(filter).count.neq(@content.size)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal false, r.find(filter).size.neq(@content.size)
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal false, r.find(filter).count.neq(@content.size)
     assert_equal "find(#{filter}) & count", r.alterations
   end
@@ -73,16 +73,16 @@ class ResultTest < Test::Unit::TestCase
     r.content = @content2
     assert_equal true, r.grep(filter1).count.eq(1)
     assert_equal "find([\"a\"]) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal true, r.find(filter2).count.eq(2)
     assert_equal "find([\"a\", \"2\"]) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal true, r.find(filter3).count.eq(4)
     assert_equal "find([\"a\", \"3\", \"4\", \"d\"]) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal true, r.find(filter4).count.eq(3)
     assert_equal "find([\"3\"]) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal true, r.find(filter5).count.eq(0)
     assert_equal "find([\"11\", \"d4\"]) & count", r.alterations
   end
@@ -93,13 +93,13 @@ class ResultTest < Test::Unit::TestCase
     r.content = @content
     assert_equal @result.grep(filter).size.value.to_i, @content.size
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal @result.grep(filter).count.value.to_i, @content.size
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal @result.find(filter).size.value.to_i, @content.size
     assert_equal "find(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal @result.find(filter).count.value.to_i, @content.size
     assert_equal "find(#{filter}) & count", r.alterations
   end
@@ -177,11 +177,11 @@ class ResultTest < Test::Unit::TestCase
     assert_nil @result.value
   end
 
-  def test_restore!
+  def test_restore
     assert_equal @content[0], @result.value
     @result.count
     assert_equal 3, @result.value.to_i
-    @result.restore!
+    @result.restore
     assert_equal @content[0], @result.value
   end
 
@@ -192,50 +192,52 @@ class ResultTest < Test::Unit::TestCase
     filter = "line1"
     assert_equal @result.since(filter).count.value.to_i, 3
     assert_equal "since(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal @result.since(filter).content, ["line1", "line2", "line3"]
     assert_equal "since(#{filter})", r.alterations
-    r.restore!
+    r.restore
     filter = "line2"
     assert_equal @result.since(filter).count.value.to_i, 2
     assert_equal "since(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal @result.since(filter).content, ["line2", "line3"]
     assert_equal "since(#{filter})", r.alterations
-    r.restore!
+    r.restore
     filter = "line3"
     assert_equal @result.since(filter).count.value.to_i, 1
     assert_equal "since(#{filter}) & count", r.alterations
-    r.restore!
+    r.restore
     assert_equal @result.since(filter).content, ["line3"]
     assert_equal "since(#{filter})", r.alterations
   end
 
   def test_until_string
-    r = @result
-    r.content = @content
+    result = @result
 
+    result.content = @content
     filter = "line1"
-    assert_equal @result.until(filter).count.value.to_i, 0
-    assert_equal "until(#{filter}) & count", r.alterations
-    r.restore!
-    assert_equal @result.until(filter).content, []
-    assert_equal "until(#{filter})", r.alterations
-    r.restore!
+    assert_equal 0, result.until(filter).count.value.to_i
+    assert_equal "until(#{filter}) & count", result.alterations
+    result.restore
+    assert_equal [], result.until(filter).content
+    assert_equal "until(#{filter})", result.alterations
+
+    result.restore
     filter = "line2"
-    assert_equal @result.until(filter).count.value.to_i, 1
-    assert_equal "until(#{filter}) & count", r.alterations
-    r.restore!
-    assert_equal @result.until(filter).content, ["line1"]
-    assert_equal "until(#{filter})", r.alterations
-    r.restore!
+    assert_equal 1, result.until(filter).count.value.to_i
+    assert_equal "until(#{filter}) & count", result.alterations
+    result.restore
+    assert_equal ["line1"], result.until(filter).content
+    assert_equal "until(#{filter})", result.alterations
+
+    result.restore
     filter = "line3"
-    assert_equal @result.until(filter).count.value.to_i, 2
-    assert_equal "until(#{filter}) & count", r.alterations
-    r.restore!
-    assert_equal @result.until(filter).content, ["line1", "line2"]
-    assert_equal "until(#{filter})", r.alterations
-    r.restore!
+    assert_equal 2, result.until(filter).count.value.to_i
+    assert_equal "until(#{filter}) & count", result.alterations
+    result.restore
+    assert_equal ["line1", "line2"], result.until(filter).content
+    assert_equal "until(#{filter})", result.alterations
+    result.restore
   end
 
   def test_ok

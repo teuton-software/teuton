@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# Result class extension
 class Result
-  # TODO: Error line 102 undefined include? method for 0 Fixnum...
   def find(filter)
     @alterations << "find(#{filter})"
     case filter.class.to_s

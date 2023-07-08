@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Extension of Result class
 class Result
   def eq(input)
     # Return true when content is equal than input

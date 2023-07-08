@@ -47,10 +47,11 @@ CASE RESULTS
 
 # Documentation
 
-* [Getting started](docs/learn/README.md)
-* [Language reference](docs/dsl/README.md)
-* [Commands](docs/commands/README.md)
 * [Installation](docs/install/README.md)
+* [Getting started](docs/learn/README.md)
+* [Examples](examples)
+* [Commands](docs/commands/README.md)
+* [Language reference](docs/dsl/README.md)
 
 > [Blogs and videos](docs/videos.md)
 

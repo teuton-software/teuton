@@ -1,17 +1,21 @@
 # frozen_string_literal: true
 
-module DSL
-  # expect, expect2, expect_any, expect_first, expect_last
-  # expect_nothing, expect_none, expect_one
+require_relative "expect_exitcode"
+require_relative "expect_sequence"
 
-  # expect <condition>, :weight => <value>
+module DSL
+  # expect <condition>,
+  #      value: RealValue,
+  #   expected: ExpectedValue,
+  #     weight: float
+  #
   def expect(input, args = {})
     if input.instance_of?(TrueClass) || input.instance_of?(FalseClass)
       expect2(input, args)
     elsif input.instance_of?(String) || input.instance_of?(Regexp) || input.instance_of?(Array)
       expect_any input
     else
-      puts Rainbow("[TypeError] expect #{input} (#{input.class})").red
+      puts Rainbow("[ERROR] Case expect TypeError: expect #{input} (#{input.class})").red
     end
   end
 
@@ -43,30 +47,6 @@ module DSL
       result.find(input)
     end
     expect2 result.count.gt(0), args
-  end
-
-  def expect_exit(value)
-    @result.alterations = "Read exit code"
-    real_value = result.exitcode
-    cond = if value.is_a? Range
-      expect_value = "With range #{value}"
-      value.to_a.include? real_value
-    elsif value.is_a? Array
-      expect_value = "Inside list #{value}"
-      value.include? real_value
-    else
-      expect_value = value
-      (real_value == value.to_i)
-    end
-    expect2 cond, value: real_value, expected: expect_value
-  end
-
-  def expect_fail
-    @result.alterations = "Read exit code"
-    real_value = result.exitcode
-    expect_value = "Greater than 0"
-    cond = (real_value > 0)
-    expect2 cond, value: real_value, expected: expect_value
   end
 
   def expect_first(input, args = {})
@@ -107,18 +87,9 @@ module DSL
     expect2 result.count.eq(1), args
   end
 
-  def expect_ok
-    expect_exit 0
-  end
-
-  def weight(value = nil)
-    # Set weight value for the action
-    if value.nil?
-      @action[:weight]
-    elsif value == :default
-      @action[:weight] = 1.0
-    else
-      @action[:weight] = value.to_f
-    end
+  def expect_sequence(&block)
+    seq = ExpectSequence.new(result.content.dup)
+    cond = seq.is_valid?(&block)
+    expect2 cond, value: seq.real, expected: seq.expected
   end
 end

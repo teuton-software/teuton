@@ -2,13 +2,14 @@
 
 require_relative "../utils/project"
 require_relative "../utils/verbose"
-require_relative "../utils/result/result"
 require_relative "../report/report"
 require_relative "dsl/all"
 require_relative "config"
 require_relative "close"
+# require_relative "builtin/main"
+require_relative "host"
 require_relative "play"
-require_relative "builtin/main"
+require_relative "result/result"
 
 class Case
   include DSL

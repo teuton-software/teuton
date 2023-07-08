@@ -2,11 +2,6 @@
 
 require_relative "../utils/project"
 
-# Class Case::Config
-# * get
-# * set
-# * unset
-# * missing_method
 class Case
   class Config
     # This class manage configuration for only one case

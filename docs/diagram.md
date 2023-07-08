@@ -9,15 +9,15 @@ subgraph user
   CLI --> Teuton
 end
 
-subgraph "create\nnew\nproject"
-  Teuton -- create --> Skeleton("Sekeleton\nFiles")
+subgraph "create new project"
+  Teuton -- create --> Skeleton("Skeleton\nFiles")
 end
 
-subgraph "Check\nproject files"
+subgraph "Check\nproject"
   Teuton -- check --> Laboratory("Laboratory\nDSL\nShow\nBuiltin!")
 end
 
-subgraph "Create readme\nfrom project"
+subgraph "Create\nproject readme"
   Teuton -- readme --> Readme("Readme\nDSL\nLang!")
 end
 
@@ -27,8 +27,8 @@ subgraph manager
   ReportManager --> HallOfFame
 end
 
-subgraph "case folder"
-  CaseManager --> Case("Case\nConfig\nClose\nPlay\nRunner\ncase/DSL\ncase/builtin!")
+subgraph "case"
+  CaseManager --> Case("Case\nConfig\nDSL\nPlay\nExecute\nResult\nClose\nbuiltin!")
 end
 
 subgraph utils
@@ -42,10 +42,10 @@ subgraph utils
   Readme --> Result("Result\next_array\next_compare\next_filter")
   Case --> Result
 
-  Laboratory --> Application
-  Readme --> Application
-  manager/DSL -- use/macros/groups --> Application("Application\nNameFileFinder")
-  Case --> Application
+  Laboratory --> Project
+  Readme --> Project
+  manager/DSL -- use/macros/groups --> Project("Project\nNameFileFinder")
+  Case --> Project
 end
 
 subgraph report

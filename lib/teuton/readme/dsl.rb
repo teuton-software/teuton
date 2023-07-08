@@ -22,7 +22,7 @@ class Readme
     weight = args[:weight].to_f if args[:weight]
     @action[:weight] = weight
   end
-  alias goal target
+  alias_method :goal, :target
 
   def goto(host = :localhost, args = {})
     unless host == :localhost
@@ -65,11 +65,11 @@ class Readme
     @current[:actions] << @action
     result.reset
   end
-  alias expect_any expect
-  alias expect_first expect
-  alias expect_last expect
-  alias expect_none expect
-  alias expect_one expect
+  alias_method :expect_any, :expect
+  alias_method :expect_first, :expect
+  alias_method :expect_last, :expect
+  alias_method :expect_none, :expect
+  alias_method :expect_one, :expect
 
   def get(value)
     unless @config[:global][value].nil?
@@ -90,7 +90,7 @@ class Readme
     if m[0] == "_"
       instance_eval("get(:#{m[1, m.size - 1]})", __FILE__, __LINE__)
     # elsif not Application.instance.macros[m].nil?
-    elsif not Project.value[:macros][m].nil?
+    elsif !Project.value[:macros][m].nil?
       puts "macro exec: #{m}"
       code = ""
       args[0].keys.each { |key| code += "set(:#{key}, '#{args[0][key]}')\n" }
@@ -106,10 +106,14 @@ class Readme
 
   def gett(value)
     a = get(value)
-    return "[#{value}](\#required-params)" if @cases_params.include? value
-    return "[#{value}](\#created-params)" if @setted_params[value]
-
-    "[#{a}](\#global-params)" if @global_params.include? value
+    if @cases_params.include? value
+      "[#{value}](#required-params)"
+    elsif @setted_params[value]
+      "[#{value}](#created-params)"
+    elsif @global_params.include? value
+      "[#{a}](#global-params)"
+    end
+    a
   end
 
   def set(key, value)

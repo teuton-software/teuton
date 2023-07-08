@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# DSL#get and DSL#set
 module DSL
   # Read param option from [running, config or global] Hash data
   def get(option)
