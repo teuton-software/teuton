@@ -7,7 +7,7 @@ You know the classic sequence `target/run/expect`, but sometimes you need to run
 1. Upload a copy of the script file to the remote host
 2. and then run it on remote host
 
-For this task you use a new instruction called `run_file`.
+**run_file** upload and execute your own local script on remote host.
 
 ## Example
 
@@ -35,9 +35,33 @@ run_file "bash show.sh Hello", on: :host1
 expect "Hello"
 ```
 
-> Resume:
-> * **run_file**: will upload and execute `show.sh` on remote host.
-> * `teuton example`: to run this example test.
+## Running example
+
+```
+❯ teuton examples/27-run_file 
+------------------------------------
+Started at 2023-07-08 09:10:13 +0100
+..Fuuu..u..u.u.u.u.u.uuu
+Finished in 1.244 seconds
+------------------------------------
+ 
+CASE RESULTS
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | Localhost | 67.0  |       |
+| 02   | Remote1   | 100.0 | ✔     |
+| 03   | Remote2   | 100.0 | ✔     |
+| 04   | Remote3   | 100.0 | ✔     |
++------+-----------+-------+-------+
+```
+
+Meaning of progress symbols:
+* `.`: check ok
+* `F`: check fail
+* `!`: connection fail
+* `u`: upload ok
+
+In the above example, localhost does not complete its targets 100% because the last target is set to run remote only.
 
 # DSL: upload
 
