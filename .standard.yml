@@ -4,8 +4,9 @@ ignore:
   - "lib/teuton/utils/configfile_reader.rb"
   - "lib/teuton/case_manager/dsl.rb"
   - "lib/teuton/check/main.rb"
-  - "lib/teuton/readme/dsl.rb"
-  - "lib/teuton/readme/readme.rb"
+  # - "lib/teuton/readme/dsl.rb"
+  # Style/Alias: Use `alias_method` instead of `alias`
+  - "lib/teuton/readme/readme.rb" 
   - "lib/teuton/report/formatter/csv_formatter.rb"
   - "private/**/*"
   - "test/manual/**/*"
