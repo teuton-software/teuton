@@ -1,4 +1,7 @@
 class ExpectSequence
+  attr_reader :result
+  attr_reader :states
+
   def initialize(lines)
     @lines = lines
   end

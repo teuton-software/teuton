@@ -1,7 +1,7 @@
 require "test/unit"
 require_relative "../../lib/teuton/case/case"
 
-class ExpectSequenceTest < Test::Unit::TestCase
+class ExpectSequenceCaseTest < Test::Unit::TestCase
   def setup
     Project.init
     Project.value[:global] = {tt_testname: "tXX_expect_sequence"}
