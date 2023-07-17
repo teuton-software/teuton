@@ -90,12 +90,12 @@ class ExpectSequenceClassTest < Test::Unit::TestCase
     es = ExpectSequence.new(%w[a a b e c])
     es.is_valid? do
       find "a"
-      next_with "b"
+      next_to "b"
       find "c"
     end
     assert es.result[:ok]
-    assert_equal "find(a)>next_with(b)>find(c)", es.real
-    assert_equal "find(a)>next_with(b)>find(c)", es.expected
+    assert_equal "find(a)>next_to(b)>find(c)", es.real
+    assert_equal "find(a)>next_to(b)>find(c)", es.expected
     assert_equal 3, es.result[:score]
     assert_equal 2, es.states.size
   end
@@ -104,12 +104,12 @@ class ExpectSequenceClassTest < Test::Unit::TestCase
     es = ExpectSequence.new(%w[a b a b c c])
     es.is_valid? do
       find "a"
-      next_with "b"
-      next_with "c"
+      next_to "b"
+      next_to "c"
     end
     assert es.result[:ok]
-    assert_equal "find(a)>next_with(b)>next_with(c)", es.real
-    assert_equal "find(a)>next_with(b)>next_with(c)", es.expected
+    assert_equal "find(a)>next_to(b)>next_to(c)", es.real
+    assert_equal "find(a)>next_to(b)>next_to(c)", es.expected
     assert_equal 3, es.result[:score]
     assert_equal 2, es.states.size
   end
@@ -118,12 +118,12 @@ class ExpectSequenceClassTest < Test::Unit::TestCase
     es = ExpectSequence.new(%w[a a b e c b c])
     es.is_valid? do
       find "a"
-      next_with "b"
-      next_with "c"
+      next_to "b"
+      next_to "c"
     end
     assert_equal false, es.result[:ok]
-    assert_equal "find(a)>next_with(b)>not next_with(c)", es.real
-    assert_equal "find(a)>next_with(b)>next_with(c)", es.expected
+    assert_equal "find(a)>next_to(b)>not next_to(c)", es.real
+    assert_equal "find(a)>next_to(b)>next_to(c)", es.expected
     assert_equal 2, es.result[:score]
     assert_equal 2, es.states.size
   end
@@ -132,14 +132,14 @@ class ExpectSequenceClassTest < Test::Unit::TestCase
     es = ExpectSequence.new(%w[a e b e c e e])
     es.is_valid? do
       find "a"
-      move 1
-      next_with "b"
-      move 1
-      next_with "c"
+      ignore 1
+      next_to "b"
+      ignore 1
+      next_to "c"
     end
     assert es.result[:ok]
-    assert_equal "find(a)>move(1)>next_with(b)>move(1)>next_with(c)", es.real
-    assert_equal "find(a)>move(1)>next_with(b)>move(1)>next_with(c)", es.expected
+    assert_equal "find(a)>ignore(1)>next_to(b)>ignore(1)>next_to(c)", es.real
+    assert_equal "find(a)>ignore(1)>next_to(b)>ignore(1)>next_to(c)", es.expected
     assert_equal 5, es.result[:score]
     assert_equal 1, es.states.size
   end
@@ -148,23 +148,23 @@ class ExpectSequenceClassTest < Test::Unit::TestCase
     es = ExpectSequence.new(%w[e e a b e b e])
     es.is_valid? do
       find "a"
-      move 2
-      next_with "b"
+      ignore 2
+      next_to "b"
     end
     assert es.result[:ok]
-    assert_equal "find(a)>move(2)>next_with(b)", es.real
-    assert_equal "find(a)>move(2)>next_with(b)", es.expected
+    assert_equal "find(a)>ignore(2)>next_to(b)", es.real
+    assert_equal "find(a)>ignore(2)>next_to(b)", es.expected
   end
 
   def test_expect_sequence_move_strings_fail12
     es = ExpectSequence.new(%w[e e a b b e b])
     es.is_valid? do
       find "a"
-      move 2
-      next_with "b"
+      ignore 2
+      next_to "b"
     end
     assert_equal false, es.result[:ok]
-    assert_equal "find(a)>move(2)>not next_with(b)", es.real
-    assert_equal "find(a)>move(2)>next_with(b)", es.expected
+    assert_equal "find(a)>ignore(2)>not next_to(b)", es.real
+    assert_equal "find(a)>ignore(2)>next_to(b)", es.expected
   end
 end

@@ -47,34 +47,40 @@ expect "obiwan" # Expect run command output will contain "obiwan"
 
 ## Evaluate sequence
 
-* **Simple sequence**. Valid example sequence: [a,b,c], [a,x,b,x,c], [x,a,b,x,c,x], etc.
+* **Simple sequence**. Validate sequences where the elements are in order. Use `find` statement to find each element of the sequence.
 
-```
+```ruby
+# Examples: [A,B,C], [A,s,B,s,C], [x,A,B,s,C,x], etc.
+
 expect_sequence do
-  find "a"
-  find "b"
-  find "c"
+  find "A"
+  find "B"
+  find "C"
 end
 ```
 
-* **Strict sequence**. Valid example sequence: [a,b,c], [x,a,b,c,x], etc.
+* **Strict sequence**. validate sequences where the elements are in strict consecutive order. First use `find` to find an element in the sequence and then `next_to` for the next element in strict order.
 
-```
+```ruby
+# Examples: [A,B,C], [x,A,B,C,x], etc.
+
 expect_sequence do
-  find "a"
-  next_with "b"
-  next_with "c"
+  find "A"
+  next_to "B"
+  next_to "C"
 end
 ```
 
-* **Strict sequence with jumps**. Valid example sequence: [a,b,s,c], [x,a,b,s,c,x], etc.
+* **Strict sequence with jumps**. Use `ignore N` to indicate that there are N lines between 2 elements of the sequence.
 
-```
+```ruby
+# Examples: [A,B,s,s,C], [x,A,B,s,s,C,x], etc.
+
 expect_sequence do
-  find "a"
-  next_with "b"
-  move 1
-  next_with "c"
+  find "A"
+  next_to "B"
+  ignore 2
+  next_to "C"
 end
 ```
 

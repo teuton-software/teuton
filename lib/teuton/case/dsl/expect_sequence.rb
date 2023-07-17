@@ -84,8 +84,8 @@ class ExpectSequence
     end
   end
 
-  def next_with(value)
-    @expected << "next_with(#{value})"
+  def next_to(value)
+    @expected << "next_to(#{value})"
     newstates = []
 
     @states.each do |state|
@@ -125,8 +125,8 @@ class ExpectSequence
     end
   end
 
-  def move(value)
-    @expected << "move(#{value})"
+  def ignore(value)
+    @expected << "ignore(#{value})"
     newstates = []
     @states.each do |state|
       last_index = state[:last_index] + value.to_i
