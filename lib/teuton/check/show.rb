@@ -122,7 +122,7 @@ class Laboratory
       st.add_row ["DSL Stats", "Count"]
       st.add_separator
       st.add_row ["Uses", Project.value[:uses].size]
-      Project.value[:uses].each { |filename| st.add_row [" * #{filename}", ""] }
+      Project.value[:uses].each { |filepath| st.add_row ["", filepath] }
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
       st.add_row ["Runs", @stats[:hosts]]
