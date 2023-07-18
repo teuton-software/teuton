@@ -21,11 +21,21 @@ class Laboratory
   def reset
     @result = Result.new
     @targetid = 0
-    @stats = {groups: 0, targets: 0, uniques: 0, gets: 0, logs: 0, sets: 0}
+    @stats = {
+      uses: 0,
+      groups: 0,
+      targets: 0,
+      hosts: 0,
+      uniques: 0,
+      logs: 0,
+      gets: 0,
+      sets: 0
+    }
     @gets = {}
     @sets = {}
     @hosts = {}
-    @requests = [] # REVISE this
+    @uploads = {}
     @verbose = Project.value[:verbose]
+    @target_begin = nil
   end
 end

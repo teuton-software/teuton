@@ -7,6 +7,10 @@ class Laboratory
   end
 
   def target(desc, args = {})
+    if @target_begin
+      puts Rainbow("WARN  Previous 'target' requires 'expect'").bright.yellow
+    end
+    @target_begin = true
     @stats[:targets] += 1
     @targetid += 1
     weight = args[:weight] || 1.0
@@ -16,46 +20,76 @@ class Laboratory
   alias_method :goal, :target
 
   def expect(cond)
+    unless @target_begin
+      puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
+    end
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect      #{cond} (#{cond.class})"
     verboseln ""
+    @target_begin = false
   end
 
   def expect_exit(cond)
-    verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
+    unless @target_begin
+      puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
+    end
     verboseln "      expect_exit #{cond} (#{cond.class})"
     verboseln ""
+    @target_begin = false
+  end
+
+  def expect_fail
+    unless @target_begin
+      puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
+    end
+    verboseln "      expect_fail"
+    verboseln ""
+    @target_begin = false
   end
 
   def expect_first(cond)
+    unless @target_begin
+      puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
+    end
     verboseln "      alter        #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_first #{cond} (#{cond.class})"
     verboseln ""
+    @target_begin = false
   end
 
   def expect_last(cond)
+    unless @target_begin
+      puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
+    end
     verboseln "      alter        #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_last #{cond} (#{cond.class})"
     verboseln ""
+    @target_begin = false
   end
 
   def expect_none(cond)
+    unless @target_begin
+      puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
+    end
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_none #{cond} (#{cond.class})"
     verboseln ""
+    @target_begin = false
   end
 
   def expect_one(cond)
+    unless @target_begin
+      puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
+    end
     verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_one  #{cond} (#{cond.class})"
     verboseln ""
+    @target_begin = false
   end
 
   def get(varname)
     @stats[:gets] += 1
-
     @gets[varname] = @gets[varname] ? (@gets[varname] + 1) : 1
-
     "get(#{varname})"
   end
 
@@ -77,23 +111,18 @@ class Laboratory
   def goto(host = :localhost, args = {})
     result.reset
     args[:on] = host unless args[:on]
-
-    if @hosts[host]
-      @hosts[host] += 1
-    else
-      @hosts[host] = 1
-    end
+    @hosts[host] = @hosts[host] ? (@hosts[host] + 1) : 1
     verboseln "      run         '#{args[:exec]}' on #{args[:on]}"
   end
 
   def upload(filename, args = {})
     host = args[:to]
     args.delete(:to)
-    if args == {}
-      custom = ""
+    custom = if args == {}
+      ""
     else
       values = args.map { "#{_1}=#{_2}" }
-      custom = "and #{values.join(",")}"
+      "and #{values.join(",")}"
     end
     verboseln "      upload      '#{filename}' to #{host} #{custom}"
   end

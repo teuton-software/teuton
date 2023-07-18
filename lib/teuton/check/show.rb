@@ -43,6 +43,9 @@ class Laboratory
       end
       instance_eval(&t[:block])
     end
+    if @target_begin
+      puts Rainbow("WARN  Last 'target' requires 'expect'\n").bright.yellow
+    end
   end
 
   def find_script_vars
@@ -114,7 +117,6 @@ class Laboratory
   ##
   # Display stats on screen
   def show_stats
-    @stats[:hosts] = 0
     @hosts.each_pair { |_k, v| @stats[:hosts] += v }
 
     my_screen_table = Terminal::Table.new do |st|
