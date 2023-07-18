@@ -70,7 +70,7 @@ class Laboratory
     @target_begin = false
   end
 
-  def expect_none(cond)
+  def expect_none(cond = nil, args = {})
     unless @target_begin
       puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
     end
@@ -78,6 +78,10 @@ class Laboratory
     verboseln "      expect_none #{cond} (#{cond.class})"
     verboseln ""
     @target_begin = false
+  end
+
+  def expect_nothing()
+    expect_none nil, {}
   end
 
   def expect_one(cond)
