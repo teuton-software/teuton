@@ -32,7 +32,7 @@ module DSL
   def method_missing(method, args = {})
     a = method.to_s
     if a.start_with?("_")
-      return instance_eval("get(:#{a[1, a.size - 1]})", __FILE__, __LINE__)
+      return instance_eval("get(:#{a[1, a.size]})", __FILE__, __LINE__)
     end
     return macro a[6, a.size], args if a[0, 6] == "macro_"
     macro a, args

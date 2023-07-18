@@ -10,9 +10,9 @@ define_macro "user_is_member_of", :user, :group do
   expect_one [get(:user), get(:group)]
 end
 
-define_macro "user_info", :user, :home do
-  home = get(:home) || "/home/#{get(:user)}"
-  target "#{get(:user)} user with #{home} HOME"
-  run "cat /etc/passwd"
-  expect_one ["#{get(:user)}:", ":#{home}:"]
-end
+# define_macro "user_info", :user, :home do
+#   home = get(:home) || "/home/#{get(:user)}"
+#   target "#{get(:user)} user with #{home} HOME"
+#   run "cat /etc/passwd"
+#   expect_one ["#{get(:user)}:", ":#{home}:"]
+# end

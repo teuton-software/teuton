@@ -1,6 +1,9 @@
 # frozen_string_literal: true
+require_relative "../case/dsl/macro"
 
 class Laboratory
+  include DSL # Include DSL/macro functions only
+
   # Include Teuton DSL keywords into Laboratory class
   def readme(_text)
     # Usefull for "teuton readme" command action.
@@ -128,19 +131,23 @@ class Laboratory
   end
 
   # Check macros and _get_vars
-  def method_missing(method, *args, &block)
-    a = method.to_s
-    # require "debug"; binding.break
-    if a.start_with?("_") && args.empty? && block.nil?
-      instance_eval("get(:#{a[1, a.size]})", __FILE__, __LINE__)
-    else
-      puts Rainbow("WARN  Unkown call '#{a}'").bright.yellow
-    end
-  end
+  # def method_missing(method, *args, &block)
+  #  a = method.to_s
+  #  if a.start_with?("_") && args.empty? && block.nil?
+  #    return instance_eval("get(:#{a[1, a.size]})", __FILE__, __LINE__)
+  #  elsif (a.start_with?("macro_") || a == "macro" ||
+  #    !Project.value[:macros][a].nil?)
+  #    puts "DEBUG: tenemos macro #{a}"
+  #    # return macro a[6, a.size], args if a[0, 6] == "macro_"
+  #    # macro a, args
+  #  else
+  #    puts Rainbow("WARN  Unkown call '#{a}'").bright.yellow
+  #  end
+  # end
 
-  def respond_to_missing?(method_name, include_private = false)
-    true
-  end
+  # def respond_to_missing?(method_name, include_private = false)
+  #   true
+  # end
 
   def gett(option)
     get(option)
@@ -159,12 +166,14 @@ class Laboratory
   end
 
   def set(key, value)
-    @stats[:sets] += 1
-
     key = ":" + key.to_s if key.instance_of? Symbol
     value = ":" + value.to_s if value.instance_of? Symbol
 
-    @sets[key] = value
-    "set(#{key},#{value})"
+    @stats[:sets] << "#{key}=#{value}"
+    puts "      set(#{key},#{value})"
+  end
+
+  def unset(key)
+    puts "      unset(#{key})"
   end
 end

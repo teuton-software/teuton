@@ -123,6 +123,10 @@ class Laboratory
       st.add_separator
       st.add_row ["Uses", Project.value[:uses].size]
       Project.value[:uses].each { |filepath| st.add_row ["", filepath] }
+      st.add_row ["Macros", Project.value[:macros].size]
+      Project.value[:macros].each_key { st.add_row ["", _1] }
+      st.add_row [" ", " "]
+
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
       st.add_row ["Runs", @stats[:hosts]]
@@ -137,10 +141,8 @@ class Laboratory
         list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
       end
 
-      st.add_row ["Sets", @stats[:sets]]
-      if @sets.count > 0
-        @sets.each_pair { |k, v| st.add_row [" * #{k}", v.to_s] }
-      end
+      st.add_row ["Sets", @stats[:sets].size]
+      @stats[:sets].each { st.add_row ["", _1] }
     end
     verboseln my_screen_table.to_s + "\n"
   end

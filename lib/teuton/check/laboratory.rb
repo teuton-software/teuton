@@ -28,7 +28,7 @@ class Laboratory
       uniques: 0,
       logs: 0,
       gets: 0,
-      sets: 0
+      sets: [],
     }
     @gets = {}
     @sets = {}
