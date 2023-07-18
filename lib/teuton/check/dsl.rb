@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative "../case/dsl/macro"
 
 class Laboratory
@@ -80,7 +81,7 @@ class Laboratory
     @target_begin = false
   end
 
-  def expect_nothing()
+  def expect_nothing
     expect_none nil, {}
   end
 
@@ -117,9 +118,8 @@ class Laboratory
 
   def goto(host = :localhost, args = {})
     result.reset
-    args[:on] = host unless args[:on]
-    @hosts[host] = @hosts[host] ? (@hosts[host] + 1) : 1
-    verboseln "      run         '#{args[:exec]}' on #{args[:on]}"
+    @stats[:hosts][host] = @stats[:hosts][host] ? (@stats[:hosts][host] + 1) : 1
+    verboseln "      run         '#{args[:exec]}' on #{host}"
   end
 
   def upload(filename, args = {})

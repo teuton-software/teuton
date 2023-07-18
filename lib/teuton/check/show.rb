@@ -49,7 +49,7 @@ class Laboratory
 
   def find_script_vars
     script_vars = [:tt_members]
-    @hosts.each_key do |k|
+    @stats[:hosts].each_key do |k|
       next if k == :localhost
 
       if k.instance_of? Symbol
@@ -116,8 +116,6 @@ class Laboratory
   ##
   # Display stats on screen
   def show_stats
-    @hosts.each_pair { |_k, v| @stats[:hosts] += v }
-
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ["DSL Stats", "Count"]
       st.add_separator
@@ -129,8 +127,8 @@ class Laboratory
 
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
-      st.add_row ["Runs", @stats[:hosts]]
-      @hosts.each_pair { |k, v| st.add_row [" * #{k}", v] }
+      st.add_row ["Runs", @stats[:hosts].size]
+      @stats[:hosts].each_pair { |k, v| st.add_row [" * #{k}", v] }
       st.add_row ["Uniques", @stats[:uniques]]
       st.add_row ["Logs", @stats[:uniques]]
       st.add_row [" ", " "]

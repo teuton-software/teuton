@@ -24,15 +24,14 @@ class Laboratory
     @stats = {
       groups: 0,
       targets: 0,
-      hosts: 0,
+      hosts: {},
       uniques: 0,
       logs: 0,
       gets: 0,
-      sets: [],
+      sets: []
     }
     @gets = {}
     @sets = {}
-    @hosts = {}
     @uploads = {}
     @verbose = Project.value[:verbose]
     @target_begin = nil
