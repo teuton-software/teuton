@@ -130,10 +130,12 @@ class Laboratory
   # Check macros and _get_vars
   def method_missing(method, *args, &block)
     a = method.to_s
-    if a.start_with?("_") && args.nil? && block.nil?
-      instance_eval("get(:#{a[0, a.size - 1]})", __FILE__, __LINE__) if a[a.size - 1] == "?"
+    # require "debug"; binding.break
+    if a.start_with?("_") && args.empty? && block.nil?
+      instance_eval("get(:#{a[1, a.size]})", __FILE__, __LINE__)
+    else
+      puts Rainbow("WARN  Unkown call '#{a}'").bright.yellow
     end
-    puts Rainbow("WARN  Unkown call '#{a}'").bright.yellow
   end
 
   def respond_to_missing?(method_name, include_private = false)
