@@ -22,7 +22,6 @@ class Laboratory
     @result = Result.new
     @targetid = 0
     @stats = {
-      uses: 0,
       groups: 0,
       targets: 0,
       hosts: 0,

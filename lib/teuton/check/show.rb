@@ -32,7 +32,6 @@ class Laboratory
   def process_content
     groups = Project.value[:groups]
     option = Project.value[:options]
-    @stats[:uses] = Project.value[:uses].size
     verboseln ""
     groups.each do |t|
       @stats[:groups] += 1
@@ -122,7 +121,8 @@ class Laboratory
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ["DSL Stats", "Count"]
       st.add_separator
-      st.add_row ["Uses", @stats[:uses]]
+      st.add_row ["Uses", Project.value[:uses].size]
+      Project.value[:uses].each { |filename| st.add_row [" * #{filename}", ""] }
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
       st.add_row ["Runs", @stats[:hosts]]
