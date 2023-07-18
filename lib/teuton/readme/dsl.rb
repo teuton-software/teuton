@@ -61,6 +61,15 @@ class Readme
     goto(host, args)
   end
 
+  def run_file(command, args = {})
+    host = :localhost
+    host = args[:on] if args[:on]
+    filename = command.split[1]
+    upload filename, on: host
+    run command, args = {}
+    goto(host, args)
+  end
+
   def expect(_cond, _args = {})
     @current[:actions] << @action
     result.reset

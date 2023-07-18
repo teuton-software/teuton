@@ -21,6 +21,12 @@ class Laboratory
     verboseln ""
   end
 
+  def expect_exit(cond)
+    verboseln "      alter       #{result.alterations}" unless result.alterations.empty?
+    verboseln "      expect_exit #{cond} (#{cond.class})"
+    verboseln ""
+  end
+
   def expect_first(cond)
     verboseln "      alter        #{result.alterations}" unless result.alterations.empty?
     verboseln "      expect_first #{cond} (#{cond.class})"
@@ -48,11 +54,7 @@ class Laboratory
   def get(varname)
     @stats[:gets] += 1
 
-    if @gets[varname]
-      @gets[varname] += 1
-    else
-      @gets[varname] = 1
-    end
+    @gets[varname] = @gets[varname] ? (@gets[varname] + 1) : 1
 
     "get(#{varname})"
   end
@@ -62,6 +64,14 @@ class Laboratory
     host = :localhost
     host = args[:on] if args[:on]
     goto(host, args)
+  end
+
+  def run_file(command, args = {})
+    host = :localhost
+    host = args[:on] if args[:on]
+    filename = command.split[1]
+    upload filename, to: host
+    run command, args
   end
 
   def goto(host = :localhost, args = {})
@@ -74,6 +84,18 @@ class Laboratory
       @hosts[host] = 1
     end
     verboseln "      run         '#{args[:exec]}' on #{args[:on]}"
+  end
+
+  def upload(filename, args = {})
+    host = args[:to]
+    args.delete(:to)
+    if args == {}
+      custom = ""
+    else
+      values = args.map { "#{_1}=#{_2}" }
+      custom = "and #{values.join(",")}"
+    end
+    verboseln "      upload      '#{filename}' to #{host} #{custom}"
   end
 
   # Check macros and _get_vars
