@@ -124,28 +124,43 @@ class Laboratory
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ["DSL Stats", "Count"]
       st.add_separator
-      st.add_row ["Uses", Project.value[:uses].size]
-      Project.value[:uses].each { |filepath| st.add_row ["", filepath] }
-      st.add_row ["Macros", Project.value[:macros].size]
-      Project.value[:macros].each_key { st.add_row ["", _1] }
-      st.add_row [" ", " "]
 
+      if Project.value[:uses].size.positive?
+          st.add_row ["Uses", Project.value[:uses].size]
+          Project.value[:uses].each { |filepath| st.add_row ["", filepath] }
+      end
+      if Project.value[:macros].size.positive?
+        st.add_row ["Macros", Project.value[:macros].size]
+        Project.value[:macros].each_key { st.add_row ["", _1] }
+      end
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
-      st.add_row ["Runs", @stats[:hosts].size]
+      runs = @stats[:hosts].values.inject(0) { |acc, item| acc + item }
+      st.add_row ["Runs", runs]
       @stats[:hosts].each_pair { |k, v| st.add_row [" * #{k}", v] }
-      st.add_row ["Uniques", @stats[:uniques]]
-      st.add_row ["Logs", @stats[:uniques]]
-      st.add_row [" ", " "]
-
-      st.add_row ["Gets", @stats[:gets]]
-      if @gets.count > 0
-        list = @gets.sort_by { |_k, v| v }
-        list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
+      if @stats[:uniques].positive?
+        st.add_row ["Uniques", @stats[:uniques]]
+      end
+      if @stats[:logs].positive?
+        st.add_row ["Logs", @stats[:logs]]
       end
 
-      st.add_row ["Sets", @stats[:sets].size]
-      @stats[:sets].each { st.add_row ["", _1] }
+      if @stats[:gets].positive?
+        st.add_row ["Gets", @stats[:gets]]
+        if @gets.count > 0
+          list = @gets.sort_by { |_k, v| v }
+          list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
+        end
+      end
+
+      if @stats[:sets].size.positive?
+        st.add_row ["Sets", @stats[:sets].size]
+        @stats[:sets].each { st.add_row ["", _1] }
+      end
+      if @stats[:uploads].size.positive?
+        st.add_row ["Uploads", @stats[:uploads].size]
+        @stats[:uploads].each { st.add_row ["", _1] }
+      end
     end
     verboseln my_screen_table.to_s + "\n"
   end

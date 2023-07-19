@@ -85,6 +85,10 @@ class Laboratory
     expect_none nil, {}
   end
 
+  def expect_ok
+    expect_exit 0
+  end
+
   def expect_one(cond)
     unless @target_begin
       puts Rainbow("WARN  'expect' with no previous 'target'").bright.yellow
@@ -122,18 +126,6 @@ class Laboratory
     verboseln "      run         '#{args[:exec]}' on #{host}"
   end
 
-  def upload(filename, args = {})
-    host = args[:to]
-    args.delete(:to)
-    custom = if args == {}
-      ""
-    else
-      values = args.map { "#{_1}=#{_2}" }
-      "and #{values.join(",")}"
-    end
-    verboseln "      upload      '#{filename}' to #{host} #{custom}"
-  end
-
   # Check macros and _get_vars
   # def method_missing(method, *args, &block)
   #  a = method.to_s
@@ -157,13 +149,6 @@ class Laboratory
     get(option)
   end
 
-  def unique(key, _value)
-    @stats[:uniques] += 1
-
-    verboseln "    ! Unique      value for <#{key}>"
-    verboseln ""
-  end
-
   def log(text = "", type = :info)
     @stats[:logs] += 1
     verboseln "      log    [#{type}]: " + text.to_s
@@ -177,7 +162,27 @@ class Laboratory
     puts "      set(#{key},#{value})"
   end
 
+  def upload(filename, args = {})
+    host = args[:to]
+    args.delete(:to)
+    custom = if args == {}
+      ""
+    else
+      values = args.map { "#{_1}=#{_2}" }
+      "and #{values.join(",")}"
+    end
+    @stats[:uploads] << filename
+    verboseln "      upload      '#{filename}' to #{host} #{custom}"
+  end
+
   def unset(key)
     puts "      unset(#{key})"
+  end
+
+  def unique(key, _value)
+    @stats[:uniques] += 1
+
+    verboseln "    ! Unique      value for <#{key}>"
+    verboseln ""
   end
 end
