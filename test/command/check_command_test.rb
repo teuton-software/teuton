@@ -32,6 +32,6 @@ class CheckCommandTest < Test::Unit::TestCase
     10-debug 11-export 12-preserve 13-feedback 14-moodle_id
     15-readme 16-include 17-alias 18-log 19-read_vars
     20-macros 21-exit_codes 22-result 23-test-code 24-test-sql
-    25-expect-result
+    25-expect-result 26-expect_sequence 27-run_file
   ]
 end

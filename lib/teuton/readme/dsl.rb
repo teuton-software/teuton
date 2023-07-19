@@ -77,8 +77,12 @@ class Readme
   alias_method :expect_any, :expect
   alias_method :expect_first, :expect
   alias_method :expect_last, :expect
-  alias_method :expect_none, :expect
   alias_method :expect_one, :expect
+
+  def expect_none(cond = nil)
+    expect(cond)
+  end
+  alias_method :expect_nothing, :expect_none
 
   def get(value)
     unless @config[:global][value].nil?
