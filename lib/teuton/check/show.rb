@@ -5,43 +5,10 @@ require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 
 class Checker
-  private
-
-  def find_script_vars
-    script_vars = [:tt_members]
-    @stats[:hosts].each_key do |k|
-      next if k == :localhost
-
-      if k.instance_of? Symbol
-        script_vars << (k.to_s + "_ip").to_sym
-        script_vars << (k.to_s + "_username").to_sym
-        script_vars << (k.to_s + "_password").to_sym
-      else
-        script_vars << k.to_s + "_ip"
-        script_vars << k.to_s + "_username"
-        script_vars << k.to_s + "_password"
-      end
-    end
-    @stats[:gets].keys { |k| script_vars << k }
-    script_vars
-  end
-
-  def recomended_config_content
-    Logger.warn "[WARN] Configfile not found"
-    Logger.debug "       #{@path[:config]}"
-    Logger.warn "[INFO] Recomended content:"
-    output = {global: nil, cases: []}
-    output[:cases][0] = {}
-    script_vars = find_script_vars
-    script_vars.each { |i| output[:cases][0][i] = "VALUE" }
-    Logger.debug YAML.dump(output)
-  end
-
   def recomended_panelconfig_content
-    output = {global: nil, cases: [{}]}
+    output = {"global" => nil, "cases" => [{}]}
     script_vars = find_script_vars
-    # script_vars.each { |i| output[:global][i] = "VALUE" }
-    script_vars.each { |i| output[:cases][0][i] = "VALUE" }
+    script_vars.each { |i| output["cases"][0][i.to_s] = "VALUE" }
     Logger.info YAML.dump(output)
   end
 
@@ -75,8 +42,6 @@ class Checker
     end
   end
 
-  ##
-  # Display stats on screen
   def show_stats
     my_screen_table = Terminal::Table.new do |st|
       st.add_row ["DSL Stats", "Count"]
@@ -118,5 +83,37 @@ class Checker
       end
     end
     Logger.info my_screen_table.to_s + "\n"
+  end
+
+  private
+
+  def find_script_vars
+    script_vars = [:tt_members]
+    @stats[:hosts].each_key do |k|
+      next if k == :localhost
+
+      if k.instance_of? Symbol
+        script_vars << (k.to_s + "_ip").to_sym
+        script_vars << (k.to_s + "_username").to_sym
+        script_vars << (k.to_s + "_password").to_sym
+      else
+        script_vars << k.to_s + "_ip"
+        script_vars << k.to_s + "_username"
+        script_vars << k.to_s + "_password"
+      end
+    end
+    @stats[:gets].keys { |k| script_vars << k }
+    script_vars
+  end
+
+  def recomended_config_content
+    Logger.warn "[WARN] Configfile not found"
+    Logger.debug "       #{@path[:config]}"
+    Logger.warn "[INFO] Recomended content:"
+    output = {"global" => nil, "cases" => []}
+    output["cases"][0] = {}
+    script_vars = find_script_vars
+    script_vars.each { |i| output["cases"][0][i.to_s] = "VALUE" }
+    Logger.debug YAML.dump(output)
   end
 end
