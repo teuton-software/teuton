@@ -1,3 +1,5 @@
+require_relative "expect_sequence"
+
 module CheckDSL
   def expect(cond)
     unless @target_begin
@@ -71,6 +73,17 @@ module CheckDSL
     end
     Logger.info "      alter       #{result.alterations}" unless result.alterations.empty?
     Logger.info "      expect_one  #{cond} (#{cond.class})"
+    Logger.info ""
+    @target_begin = false
+  end
+
+  def expect_sequence(&block)
+    unless @target_begin
+      Logger.warn "WARN  'expect' with no previous 'target'"
+    end
+    seq = CheckDSL::ExpectSequence.new
+    seq.is_valid?(&block)
+    Logger.info "      expect_sequence #{seq.expected}"
     Logger.info ""
     @target_begin = false
   end

@@ -1,5 +1,5 @@
 group "Learn about expect_sequence" do
-  target "Expect sequence OK"
+  target "Expect sequence 1 OK"
   run "cat /etc/hosts"
 
   expect_sequence do
@@ -9,6 +9,7 @@ group "Learn about expect_sequence" do
     next_to "::1"
   end
 
+  target "Expect sequence 2 OK"
   expect_sequence do
     ignore 19
     find "ff00::0"
