@@ -17,7 +17,7 @@ module CheckDSL
   def goto(host = :localhost, args = {})
     result.reset
     @stats[:hosts][host] = @stats[:hosts][host] ? (@stats[:hosts][host] + 1) : 1
-    verboseln "      run         '#{args[:exec]}' on #{host}"
+    Logger.info "      run         '#{args[:exec]}' on #{host}"
   end
 
   def upload(filename, args = {})
@@ -30,6 +30,6 @@ module CheckDSL
       "and #{values.join(",")}"
     end
     @stats[:uploads] << filename
-    verboseln "      upload      '#{filename}' to #{host} #{custom}"
+    Logger.info "      upload      '#{filename}' to #{host} #{custom}"
   end
 end

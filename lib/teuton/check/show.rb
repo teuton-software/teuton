@@ -7,14 +7,6 @@ require_relative "../utils/configfile_reader"
 class Checker
   private
 
-  def verbose(text)
-    print text if @verbose
-  end
-
-  def verboseln(text)
-    puts text if @verbose
-  end
-
   def find_script_vars
     script_vars = [:tt_members]
     @stats[:hosts].each_key do |k|
@@ -35,14 +27,14 @@ class Checker
   end
 
   def recomended_config_content
-    warn Rainbow("[WARN] Configfile not found").bright.yellow
-    warn Rainbow("       #{@path[:config]}").white
-    warn Rainbow("[INFO] Recomended content:").bright.yellow
+    Logger.warn "[WARN] Configfile not found"
+    Logger.debug "       #{@path[:config]}"
+    Logger.warn "[INFO] Recomended content:"
     output = {global: nil, cases: []}
     output[:cases][0] = {}
     script_vars = find_script_vars
     script_vars.each { |i| output[:cases][0][i] = "VALUE" }
-    verboseln Rainbow(YAML.dump(output)).white
+    Logger.debug YAML.dump(output)
   end
 
   def recomended_panelconfig_content
@@ -76,11 +68,8 @@ class Checker
         end
 
         unless setted
-          verbose Rainbow("  * Define ").red
-          verbose Rainbow(value).red.bright
-          verbose Rainbow(" value for Case[").red
-          verbose Rainbow(index).red.bright
-          verboseln Rainbow("] or set tt_skip = true").red
+          text = "  * Define '#{value}' value for Case[#{index}] or set tt_skip = true"
+          Logger.error text
         end
       end
     end
@@ -113,7 +102,7 @@ class Checker
       end
 
       if @stats[:gets].size.positive?
-        total = @stats[:gets].values.inject(0) { |acc, value| acc + value}
+        total = @stats[:gets].values.inject(0) { |acc, value| acc + value }
         st.add_row ["Gets", total]
         list = @stats[:gets].sort_by { |_k, v| v }
         list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
@@ -128,6 +117,6 @@ class Checker
         @stats[:uploads].each { st.add_row ["", _1] }
       end
     end
-    verboseln my_screen_table.to_s + "\n"
+    Logger.info my_screen_table.to_s + "\n"
   end
 end

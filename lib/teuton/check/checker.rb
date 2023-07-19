@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "../utils/project"
 require_relative "../case/dsl/macro"
 require_relative "../case/result/result"
+require_relative "../utils/project"
+require_relative "../utils/logger"
 require_relative "dsl/all"
 require_relative "show"
 
@@ -39,16 +40,16 @@ class Checker
   end
 
   def show
-    @verbose = true
+    Logger.verbose = true
     process_content
     show_stats
     revise_config_content
   end
 
   def show_onlyconfig
-    @verbose = false
+    Logger.verbose = false
     process_content
-    @verbose = true
+    Logger.verbose = true
     recomended_panelconfig_content
   end
 
@@ -58,22 +59,22 @@ class Checker
     groups = Project.value[:groups]
     option = Project.value[:options]
 
-    verboseln ""
+    Logger.info ""
     if Project.value[:uses].size.positive?
-      verboseln Terminal::Table.new { |st| st.add_row ["USE: external libraries"] }
-      Project.value[:uses].each_with_index { verboseln "      #{_2 + 1}. #{_1}" }
+      Logger.info Terminal::Table.new { |st| st.add_row ["USE: external libraries"] }
+      Project.value[:uses].each_with_index { Logger.info "      #{_2 + 1}. #{_1}" }
     end
     groups.each do |t|
       @stats[:groups] += 1
       unless option[:panel]
         msg = "GROUP: #{t[:name]}"
         my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
-        verboseln my_screen_table
+        Logger.info my_screen_table
       end
       instance_eval(&t[:block])
     end
     if @target_begin
-      puts Rainbow("WARN  Last 'target' requires 'expect'\n").bright.yellow
+      Logger.warn "WARN  Last 'target' requires 'expect'\n"
     end
   end
 end
