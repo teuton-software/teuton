@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../utils/project"
-require_relative "laboratory"
+# require_relative "laboratory"
 
 def use(filename)
   filename += ".rb"

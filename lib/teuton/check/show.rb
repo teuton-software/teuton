@@ -36,7 +36,7 @@ class Laboratory
     verboseln ""
     if Project.value[:uses].size.positive?
       verboseln Terminal::Table.new { |st| st.add_row ["USE: external libraries"] }
-      Project.value[:uses].each_with_index { verboseln "      #{(_2+1)}. #{_1}"}
+      Project.value[:uses].each_with_index { verboseln "      #{_2 + 1}. #{_1}" }
     end
     groups.each do |t|
       @stats[:groups] += 1

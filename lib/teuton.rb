@@ -9,7 +9,7 @@ module Teuton
   def self.check(projectpath, options = {})
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/check/main")
-    require_relative "teuton/check/laboratory"
+    require_relative "teuton/check/checker"
     lab = Laboratory.new(
       Project.value[:script_path],
       Project.value[:config_path]
