@@ -1,3 +1,4 @@
+require_relative "builtin"
 require_relative "expect"
 require_relative "getset"
 require_relative "run"

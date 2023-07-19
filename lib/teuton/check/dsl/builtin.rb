@@ -16,9 +16,7 @@ class Builtin
   end
 end
 
-# Laboratory
-# * service
-class Laboratory
+module CheckDSL
   def service(param)
     log "BUILTIN service(#{param})"
     @builtin ||= Builtin.new(self)
