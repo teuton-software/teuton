@@ -3,7 +3,7 @@
 require_relative "../utils/project"
 require_relative "../case/result/result"
 require_relative "show"
-require_relative "dsl"
+require_relative "dsl/dsl"
 require_relative "builtin"
 
 class Checker
