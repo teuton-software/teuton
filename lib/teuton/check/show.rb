@@ -1,11 +1,17 @@
 require "terminal-table"
 require "rainbow"
 
+require_relative "../utils/logger"
 require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 
-class Checker
-  def recomended_panelconfig_content
+class ShowCheck
+  def initialize(stats:, path:)
+    @stats = stats
+    @path = path
+  end
+
+  def suggest_config_content
     output = {"global" => nil, "cases" => [{}]}
     script_vars = find_script_vars
     script_vars.each { |i| output["cases"][0][i.to_s] = "VALUE" }
@@ -14,7 +20,10 @@ class Checker
 
   def revise_config_content
     unless File.exist?(@path[:config])
-      recomended_config_content
+      Logger.warn "[WARN] Configfile not found"
+      Logger.debug "       #{@path[:config]}"
+      Logger.warn "[INFO] Recomended content:"
+      suggest_config_content
       return
     end
 
@@ -104,16 +113,5 @@ class Checker
     end
     @stats[:gets].keys { |k| script_vars << k }
     script_vars
-  end
-
-  def recomended_config_content
-    Logger.warn "[WARN] Configfile not found"
-    Logger.debug "       #{@path[:config]}"
-    Logger.warn "[INFO] Recomended content:"
-    output = {"global" => nil, "cases" => []}
-    output["cases"][0] = {}
-    script_vars = find_script_vars
-    script_vars.each { |i| output["cases"][0][i.to_s] = "VALUE" }
-    Logger.debug YAML.dump(output)
   end
 end

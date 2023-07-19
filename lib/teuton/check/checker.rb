@@ -41,15 +41,17 @@ class Checker
   def show
     Logger.verbose = true
     process_content
-    show_stats
-    revise_config_content
+    cs = ShowCheck.new(stats: @stats, path: @path)
+    cs.show_stats
+    cs.revise_config_content
   end
 
   def show_onlyconfig
     Logger.verbose = false
     process_content
     Logger.verbose = true
-    recomended_panelconfig_content
+    cs = ShowCheck.new(stats: @stats, path: @path)
+    cs.suggest_config_content
   end
 
   private
