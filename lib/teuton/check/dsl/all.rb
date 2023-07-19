@@ -3,6 +3,11 @@ require_relative "getset"
 require_relative "run"
 
 module CheckDSL
+  def log(text = "", type = :info)
+    @stats[:logs] += 1
+    verboseln "      log    [#{type}]: " + text.to_s
+  end
+
   def readme(_text)
     # Usefull for "teuton readme" command action.
   end
@@ -19,11 +24,6 @@ module CheckDSL
     verboseln "      weight      #{weight}"
   end
   alias_method :goal, :target
-
-  def log(text = "", type = :info)
-    @stats[:logs] += 1
-    verboseln "      log    [#{type}]: " + text.to_s
-  end
 
   def unique(key, _value)
     @stats[:uniques] += 1
