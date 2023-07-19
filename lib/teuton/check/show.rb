@@ -42,7 +42,7 @@ class Checker
     script_vars = find_script_vars
     # script_vars.each { |i| output[:global][i] = "VALUE" }
     script_vars.each { |i| output[:cases][0][i] = "VALUE" }
-    verboseln YAML.dump(output)
+    Logger.info YAML.dump(output)
   end
 
   def revise_config_content
