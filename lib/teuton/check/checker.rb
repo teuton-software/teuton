@@ -34,8 +34,6 @@ class Checker
       sets: [],
       uploads: []
     }
-    @sets = {}
-    @uploads = {}
     @verbose = Project.value[:verbose]
     @target_begin = nil
   end
