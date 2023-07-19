@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 require_relative "../utils/project"
+require_relative "../case/dsl/macro"
 require_relative "../case/result/result"
 require_relative "show"
-require_relative "dsl/dsl"
+require_relative "dsl/all"
 require_relative "builtin"
 
 class Checker
+  include DSL # Include case/DSL/macro functions only
+  include CheckDSL
+
   attr_reader :result
 
   def initialize(script_path, config_path)
