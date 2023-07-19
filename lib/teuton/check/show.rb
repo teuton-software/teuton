@@ -102,13 +102,18 @@ class Laboratory
       script_vars.each do |value|
         next unless item[value].nil?
 
-        next unless @sets[":" + value.to_s].nil?
+        setted = false
+        @stats[:sets].each do |assign|
+          setted = true if assign.include?(":#{value}=")
+        end
 
-        verbose Rainbow("  * Define ").red
-        verbose Rainbow(value).red.bright
-        verbose Rainbow(" value for Case[").red
-        verbose Rainbow(index).red.bright
-        verboseln Rainbow("] or set tt_skip = true").red
+        unless setted
+          verbose Rainbow("  * Define ").red
+          verbose Rainbow(value).red.bright
+          verbose Rainbow(" value for Case[").red
+          verbose Rainbow(index).red.bright
+          verboseln Rainbow("] or set tt_skip = true").red
+        end
       end
     end
   end
