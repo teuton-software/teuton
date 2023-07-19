@@ -111,7 +111,7 @@ class ShowCheck
         script_vars << k.to_s + "_password"
       end
     end
-    @stats[:gets].keys { |k| script_vars << k }
+    @stats[:gets].keys.each { script_vars << _1 }
     script_vars
   end
 end
