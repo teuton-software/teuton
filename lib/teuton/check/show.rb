@@ -30,7 +30,7 @@ class Checker
         script_vars << k.to_s + "_password"
       end
     end
-    @gets.each_key { |k| script_vars << k }
+    @stats[:gets].keys { |k| script_vars << k }
     script_vars
   end
 
@@ -112,12 +112,11 @@ class Checker
         st.add_row ["Logs", @stats[:logs]]
       end
 
-      if @stats[:gets].positive?
-        st.add_row ["Gets", @stats[:gets]]
-        if @gets.count > 0
-          list = @gets.sort_by { |_k, v| v }
-          list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
-        end
+      if @stats[:gets].size.positive?
+        total = @stats[:gets].values.inject(0) { |acc, value| acc + value}
+        st.add_row ["Gets", total]
+        list = @stats[:gets].sort_by { |_k, v| v }
+        list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
       end
 
       if @stats[:sets].size.positive?

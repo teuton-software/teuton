@@ -30,11 +30,10 @@ class Checker
       hosts: {},
       uniques: 0,
       logs: 0,
-      gets: 0,
+      gets: {},
       sets: [],
       uploads: []
     }
-    @gets = {}
     @sets = {}
     @uploads = {}
     @verbose = Project.value[:verbose]

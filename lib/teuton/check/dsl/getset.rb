@@ -1,7 +1,7 @@
 module CheckDSL
   def get(varname)
-    @stats[:gets] += 1
-    @gets[varname] = @gets[varname] ? (@gets[varname] + 1) : 1
+    data = @stats[:gets]
+    data[varname] = data[varname] ? (data[varname] + 1) : 1
     "get(#{varname})"
   end
 
