@@ -2,34 +2,8 @@ require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 require_relative "../case/result/result"
 require_relative "../version"
-require_relative "dsl"
+require_relative "dsl/all"
 require_relative "lang"
-
-def use(filename)
-  filename += ".rb"
-  rbfiles = File.join(Project.value[:project_path], "**", filename)
-  files = Dir.glob(rbfiles)
-  use = []
-  files.sort.each { |f| use << f if f.include?(filename) }
-  require_relative use[0]
-  Project.value[:uses] << use[0]
-end
-
-def define_macro(name, *args, &block)
-  puts "macro: #{name}"
-  Project.value[:macros][name] = {args: args, block: block}
-end
-
-def group(name, &block)
-  Project.value[:groups] << {name: name, block: block}
-end
-alias task group
-
-def start(&block)
-  # don't do nothing
-end
-# alias_method "play", "start" # REVISE THIS
-alias play start
 
 class Readme
   # Creates README.md file from RB script file
@@ -122,7 +96,7 @@ class Readme
     @data[:groups].each do |group|
       next if group[:actions].empty?
 
-      puts "\n## #{group[:name].capitalize}\n\n"
+      puts "\n## #{group[:name].capitalize}\n"
       group[:readme].each { |line| puts "#{line}\n" }
       previous_host = nil
       group[:actions].each_with_index do |item, index|
