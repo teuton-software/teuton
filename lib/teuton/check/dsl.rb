@@ -2,7 +2,7 @@
 
 require_relative "../case/dsl/macro"
 
-class Laboratory
+class Checker
   include DSL # Include DSL/macro functions only
 
   # Include Teuton DSL keywords into Laboratory class

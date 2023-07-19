@@ -6,7 +6,7 @@ require_relative "show"
 require_relative "dsl"
 require_relative "builtin"
 
-class Laboratory
+class Checker
   attr_reader :result
 
   def initialize(script_path, config_path)

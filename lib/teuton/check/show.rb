@@ -4,7 +4,7 @@ require "rainbow"
 require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 
-class Laboratory
+class Checker
   def show
     @verbose = true
     process_content

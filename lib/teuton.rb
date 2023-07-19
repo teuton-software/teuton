@@ -10,14 +10,14 @@ module Teuton
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/check/main")
     require_relative "teuton/check/checker"
-    lab = Laboratory.new(
+    checker = Checker.new(
       Project.value[:script_path],
       Project.value[:config_path]
     )
     if options["onlyconfig"]
-      lab.show_onlyconfig
+      checker.show_onlyconfig
     else
-      lab.show
+      checker.show
     end
   end
 
