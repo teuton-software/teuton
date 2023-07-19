@@ -32,7 +32,12 @@ class Laboratory
   def process_content
     groups = Project.value[:groups]
     option = Project.value[:options]
+
     verboseln ""
+    if Project.value[:uses].size.positive?
+      verboseln Terminal::Table.new { |st| st.add_row ["USE: external libraries"] }
+      Project.value[:uses].each_with_index { verboseln "      #{(_2+1)}. #{_1}"}
+    end
     groups.each do |t|
       @stats[:groups] += 1
       unless option[:panel]
@@ -126,8 +131,7 @@ class Laboratory
       st.add_separator
 
       if Project.value[:uses].size.positive?
-          st.add_row ["Uses", Project.value[:uses].size]
-          Project.value[:uses].each { |filepath| st.add_row ["", filepath] }
+        st.add_row ["Uses", Project.value[:uses].size]
       end
       if Project.value[:macros].size.positive?
         st.add_row ["Macros", Project.value[:macros].size]
