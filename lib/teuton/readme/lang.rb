@@ -4,9 +4,9 @@ module Lang
   def self.get(key)
     lang = {}
     lang["en"] = {
-      version: "Teuton version : %s",
-      testname: "Test unit name : %s",
-      date: "Date           : %s",
+      version: "Version : %s",
+      testname: "Name    : %s",
+      date: "Date    : %s",
       hosts: "\n### Required hosts\n",
       params: "\n### Required params\n",
       goto: "\nGo to [%s](#required-hosts) host, and do next:\n",

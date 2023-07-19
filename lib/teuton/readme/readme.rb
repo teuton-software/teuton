@@ -6,6 +6,7 @@ require_relative "dsl/all"
 require_relative "lang"
 
 class Readme
+  include ReadmeDSL
   # Creates README.md file from RB script file
   attr_reader :result
   attr_reader :data
