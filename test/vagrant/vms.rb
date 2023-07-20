@@ -19,7 +19,7 @@ config = YAML.safe_load(
 
 start_time = Time.now
 config[:vms].each do |vmname|
-  next if filter != :default && !filter.include?(vmname)
+  next if filter != :default && !vmname.include?(filter)
 
   vmdir = File.join(dirpath, vmname)
   cmd = "cd #{vmdir};vagrant #{action}"
