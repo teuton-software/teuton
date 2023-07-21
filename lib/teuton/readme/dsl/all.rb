@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "expect"
 require_relative "getset"
 require_relative "run"
 
@@ -22,25 +23,6 @@ module ReadmeDSL
     @action[:weight] = weight
   end
   alias_method :goal, :target
-
-  def expect(_cond, _args = {})
-    @current[:actions] << @action
-    result.reset
-  end
-  alias_method :expect_any, :expect
-  alias_method :expect_first, :expect
-  alias_method :expect_last, :expect
-  alias_method :expect_one, :expect
-
-  def expect_fail
-    @current[:actions] << @action
-    result.reset
-  end
-   
-  def expect_none(cond = nil)
-    expect(cond)
-  end
-  alias_method :expect_nothing, :expect_none
 
   def unique(_key, _value)
     # don't do nothing

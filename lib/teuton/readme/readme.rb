@@ -87,8 +87,8 @@ class Readme
     unless @cases_params.empty?
       @cases_params.sort!
       puts Lang.get(:params)
+      puts "\nList of 'param: value' into config file.\n"
       @cases_params.uniq.each { |i| puts format("* %s", i) }
-      puts "\n> NOTE: Save every 'param: value' into config file."
     end
   end
 
