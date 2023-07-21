@@ -3,7 +3,7 @@ group "Using result object" do
   run "hostname"
   hostname = result.value
 
-  target "No #{hostname} user"
+  target "No user named as HOSTNAME"
   run "id hostname"
   expect_none hostname
 end

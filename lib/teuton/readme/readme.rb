@@ -2,11 +2,11 @@ require_relative "../utils/logger"
 require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 require_relative "../case/dsl/macro"
-require_relative "../case/result/result"
 require_relative "../case/dsl/macro"
 require_relative "../version"
 require_relative "dsl/all"
 require_relative "lang"
+require_relative "result"
 
 class Readme
   include DSL
@@ -35,7 +35,7 @@ class Readme
   def reset
     @config = ConfigFileReader.read(Project.value[:config_path])
     @verbose = Project.value[:verbose]
-    @result = Result.new
+    @result = Readme::Result.new
     @data = {}
     @data[:macros] = []
     @data[:groups] = []

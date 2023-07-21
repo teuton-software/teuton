@@ -12,7 +12,6 @@ def use(filename)
 end
 
 def define_macro(name, *args, &block)
-  puts "macro: #{name}"
   Project.value[:macros][name] = {args: args, block: block}
 end
 

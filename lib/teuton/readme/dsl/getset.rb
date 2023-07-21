@@ -26,4 +26,8 @@ module ReadmeDSL
   def set(key, value)
     @setted_params[key] = value
   end
+
+  def unset(_key)
+    # Nothing to do
+  end
 end
