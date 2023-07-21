@@ -45,22 +45,22 @@ module ReadmeDSL
     goto(host, args)
   end
 
-  def method_missing(method, *args, &block)
-    m = method.to_s
-    if m[0] == "_"
-      instance_eval("get(:#{m[1, m.size - 1]})", __FILE__, __LINE__)
+  # def method_missing(method, *args, &block)
+  #  m = method.to_s
+  #  if m[0] == "_"
+  #    instance_eval("get(:#{m[1, m.size - 1]})", __FILE__, __LINE__)
     # elsif not Application.instance.macros[m].nil?
-    elsif !Project.value[:macros][m].nil?
-      puts "macro exec: #{m}"
-      code = ""
-      args[0].keys.each { |key| code += "set(:#{key}, '#{args[0][key]}')\n" }
-      puts code
+  #  elsif !Project.value[:macros][m].nil?
+  #    puts "macro exec: #{m}"
+  #    code = ""
+#      args[0].keys.each { |key| code += "set(:#{key}, '#{args[0][key]}')\n" }
+#      puts code
       # instance_eval(code)
       # Application.instance.macros[m].call
-    end
-  end
+#    end
+#  end
 
-  def respond_to_missing?(method_name, include_private = false)
-    true
-  end
+#  def respond_to_missing?(method_name, include_private = false)
+#    true
+#  end
 end

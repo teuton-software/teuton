@@ -1,11 +1,14 @@
+require_relative "../utils/logger"
 require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
+require_relative "../case/dsl/macro"
 require_relative "../case/result/result"
 require_relative "../version"
 require_relative "dsl/all"
 require_relative "lang"
 
 class Readme
+  include DSL
   include ReadmeDSL
   # Creates README.md file from RB script file
   attr_reader :result
@@ -67,7 +70,7 @@ class Readme
     puts format(Lang.get(:version), Teuton::VERSION)
     puts "```"
     puts "\n"
-    puts "# #{Project.value[:test_name]}\n"
+    puts "# Test: #{Project.value[:test_name]}\n"
 
     i = 1
     unless @required_hosts.empty?
@@ -110,8 +113,12 @@ class Readme
 
         weight = ""
         weight = "(x#{item[:weight]}) " if item[:weight].to_i != 1
-        last = (item[:target].end_with?(".") ? "" : ".")
-        puts "* #{weight}#{item[:target]}#{last}"
+        unless item[:target].nil?
+          last = (item[:target].end_with?(".") ? "" : ".")
+          puts "* #{weight}#{item[:target]}#{last}"
+        else
+          Logger.error("ERROR 'target' missing!")
+        end
         item[:readme].each { |line| puts "    * #{line}\n" }
       end
     end

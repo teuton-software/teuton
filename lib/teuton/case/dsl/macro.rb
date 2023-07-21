@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../../utils/project"
+require_relative "../../utils/logger"
 
 module DSL
   ##
@@ -10,7 +11,9 @@ module DSL
   def macro(name, input = {})
     macros = Project.value[:macros]
     unless macros[name]
-      log("Macro #{name} not found!", :error)
+      msg = "DSL '#{name}' not found!"
+      log(msg, :error)
+      Logger.error("ERROR #{msg}")
       return
     end
     input.each_pair { |k, v| set(k, v) }
@@ -33,8 +36,9 @@ module DSL
     a = method.to_s
     if a.start_with?("_")
       return instance_eval("get(:#{a[1, a.size]})", __FILE__, __LINE__)
+    elsif a[0, 6] == "macro_"
+      return macro a[6, a.size], args
     end
-    return macro a[6, a.size], args if a[0, 6] == "macro_"
     macro a, args
   end
 
