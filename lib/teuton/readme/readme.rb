@@ -105,9 +105,6 @@ class Readme
           previous_host = item[:host] || "null"
           puts format(Lang.get(:goto), previous_host.upcase)
         end
-
-        # weight = ""
-        # weight = "(x#{item[:weight]}) " if item[:weight].to_i != 1
         weight = "(x#{item[:weight]}) "
         last = (item[:target].end_with?(".") ? "" : ".")
         puts "* #{weight}#{item[:target]}#{last}"

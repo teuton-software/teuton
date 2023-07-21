@@ -12,7 +12,6 @@ module CheckDSL
 
   def readme(text)
     @stats[:readmes] += 1
-
     Logger.info "      readme      #{text}"
   end
 

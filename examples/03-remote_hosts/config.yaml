@@ -1,7 +1,6 @@
 ---
 global:
   host1_username: root
-  domain: curso2324
 cases:
 - tt_members: student_1
   host1_ip: 192.168.1.201
