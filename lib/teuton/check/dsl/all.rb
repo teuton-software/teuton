@@ -6,7 +6,8 @@ require_relative "run"
 module CheckDSL
   def log(text = "", type = :info)
     @stats[:logs] += 1
-    Logger.info "      log    [#{type}]: " + text.to_s
+    prefix = (type == :info) ? "" : "#{type.to_s.upcase}: "
+    Logger.info "      log         #{prefix}" + text.to_s
   end
 
   def readme(_text)

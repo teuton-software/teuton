@@ -1,5 +1,7 @@
+require_relative "../utils/logger"
 require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
+require_relative "../case/dsl/macro"
 require_relative "../case/result/result"
 require_relative "../case/dsl/macro"
 require_relative "../version"
@@ -64,7 +66,7 @@ class Readme
     puts format(Lang.get(:version), Teuton::VERSION)
     puts "```"
     puts "\n"
-    puts "# #{Project.value[:test_name]}\n"
+    puts "# Test: #{Project.value[:test_name]}\n"
 
     i = 1
     unless @required_hosts.empty?
