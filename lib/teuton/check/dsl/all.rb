@@ -10,8 +10,10 @@ module CheckDSL
     Logger.info "      log         #{prefix}" + text.to_s
   end
 
-  def readme(_text)
-    # Usefull for "teuton readme" command action.
+  def readme(text)
+    @stats[:readmes] += 1
+
+    Logger.info "      readme      #{text}"
   end
 
   def target(desc, args = {})
@@ -30,7 +32,7 @@ module CheckDSL
   def unique(key, _value)
     @stats[:uniques] += 1
 
-    Logger.info "    ! Unique      value for <#{key}>"
+    Logger.info "      unique      value for <#{key}>"
     Logger.info ""
   end
 end

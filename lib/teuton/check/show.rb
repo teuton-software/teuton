@@ -74,6 +74,9 @@ class ShowCheck
       if @stats[:logs].positive?
         st.add_row ["Logs", @stats[:logs]]
       end
+      if @stats[:readmes].positive?
+        st.add_row ["Readmes", @stats[:readmes]]
+      end
 
       if @stats[:gets].size.positive?
         total = @stats[:gets].values.inject(0) { |acc, value| acc + value }

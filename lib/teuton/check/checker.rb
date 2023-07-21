@@ -28,9 +28,10 @@ class Checker
     @stats = {
       groups: 0,
       targets: 0,
-      hosts: {},
-      uniques: 0,
       logs: 0,
+      readmes: 0,
+      uniques: 0,
+      hosts: {},
       gets: {},
       sets: [],
       uploads: []
