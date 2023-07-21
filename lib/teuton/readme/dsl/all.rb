@@ -32,6 +32,11 @@ module ReadmeDSL
   alias_method :expect_last, :expect
   alias_method :expect_one, :expect
 
+  def expect_fail
+    @current[:actions] << @action
+    result.reset
+  end
+   
   def expect_none(cond = nil)
     expect(cond)
   end

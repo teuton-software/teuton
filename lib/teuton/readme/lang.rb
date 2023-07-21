@@ -4,9 +4,8 @@ module Lang
   def self.get(key)
     lang = {}
     lang["en"] = {
-      version: "Version : %s",
-      testname: "Name    : %s",
-      date: "Date    : %s",
+      version: "Teuton : %s",
+      date: "Date   : %s",
       hosts: "\n### Required hosts\n",
       params: "\n### Required params\n",
       goto: "\nGo to [%s](#required-hosts) host, and do next:\n",
@@ -14,9 +13,8 @@ module Lang
       created: "\nParams created during challenge execution:\n"
     }
     lang["es"] = {
-      version: "Versión de Teuton : %s",
-      testname: "Nombre del test   : %s",
-      date: "Fecha             : %s",
+      version: "Teuton : %s",
+      date: "Fecha  : %s",
       hosts: "\n### Máquinas que se necesitan\n",
       params: "\n### Parámetros de necesarios\n",
       goto: "\nIr a la máquina [%s](#required-hosts), y hacer lo siguiente:\n",

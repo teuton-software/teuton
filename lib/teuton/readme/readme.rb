@@ -63,7 +63,6 @@ class Readme
 
   def show_head
     puts "```"
-    puts format(Lang.get(:testname), Project.value[:test_name])
     puts format(Lang.get(:date), Time.now)
     puts format(Lang.get(:version), Teuton::VERSION)
     puts "```"
