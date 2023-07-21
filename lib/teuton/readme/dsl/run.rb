@@ -44,4 +44,8 @@ module ReadmeDSL
     run command, args = {}
     goto(host, args)
   end
+
+  def upload(filename, args = {})
+    # Nothing to do
+  end
 end

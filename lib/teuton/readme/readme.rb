@@ -35,7 +35,7 @@ class Readme
   def reset
     @config = ConfigFileReader.read(Project.value[:config_path])
     @verbose = Project.value[:verbose]
-    @result = Readme::Result.new
+    @result = ReadmeResult.new
     @data = {}
     @data[:macros] = []
     @data[:groups] = []

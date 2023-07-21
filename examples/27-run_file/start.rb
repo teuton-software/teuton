@@ -1,4 +1,4 @@
-use "macro"
+# use "macro"
 
 group "Learn about run_file" do
   target "Example 1: Running script exitcode"
@@ -14,9 +14,9 @@ group "Learn about run_file" do
   run "bash show.sh HelloWorld3", on: :host1
   expect "HelloWorld3"
 
-  target "Example 4: using macro"
-  run_script file: "script/show.sh", shell: "bash", args: "HelloWorld4", on: :host1
-  expect "HelloWorld4"
+  # target "Example 4: using macro"
+  # run_script file: "script/show.sh", shell: "bash", args: "HelloWorld4", on: :host1
+  # expect "HelloWorld4"
 
   upload "a.out", to: :host1
 end

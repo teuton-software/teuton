@@ -1,15 +1,7 @@
-class Readme
-  class Result
-    def debug
-      # Nothing to do
-    end
+require_relative "../case/result/result"
 
-    def value
-      "NODATA"
-    end
-
-    def reset
-      # Nothing to do
-    end
+class ReadmeResult< Result
+  def debug
+    # Nothing to do
   end
 end
