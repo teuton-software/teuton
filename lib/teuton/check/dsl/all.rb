@@ -20,7 +20,7 @@ module CheckDSL
     @target_begin = true
     @stats[:targets] += 1
     @targetid += 1
-    weight = args[:weight] || 1.0
+    weight = args[:weight] ? args[:weight].to_f : 1.0
     Logger.info format("(%03<targetid>d) target      %<desc>s", targetid: @targetid, desc: desc)
     Logger.info "      weight      #{weight}"
   end

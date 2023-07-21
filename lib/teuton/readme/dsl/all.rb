@@ -7,11 +7,9 @@ require_relative "run"
 module ReadmeDSL
   def readme(text)
     if @action[:target].nil?
-      # It's a group readme
-      @current[:readme] << text
+      @current[:readme] << text # It's a group readme
     else
-      # It's a target readme
-      @action[:readme] << text
+      @action[:readme] << text # It's a target readme
     end
   end
 
@@ -25,10 +23,10 @@ module ReadmeDSL
   alias_method :goal, :target
 
   def unique(_key, _value)
-    # don't do nothing
+    # Nothing to do
   end
 
   def log(text = "", type = :info)
-    @data[:logs] << "[#{type}]: " + text.to_s
+    # Nothing to do
   end
 end

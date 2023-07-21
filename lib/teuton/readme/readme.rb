@@ -1,19 +1,18 @@
 require_relative "../utils/project"
 require_relative "../utils/configfile_reader"
 require_relative "../case/result/result"
+require_relative "../case/dsl/macro"
 require_relative "../version"
 require_relative "dsl/all"
 require_relative "lang"
 
 class Readme
+  include DSL
   include ReadmeDSL
-  # Creates README.md file from RB script file
   attr_reader :result
   attr_reader :data
 
   def initialize(script_path, config_path)
-    # script_path Path to main rb file (start.rb)
-    # config_path Path to main config file (config.yaml)
     @path = {}
     @path[:script] = script_path
     @path[:dirname] = File.dirname(script_path)
@@ -32,13 +31,11 @@ class Readme
   private
 
   def reset
-    # app = Application.instance
     @config = ConfigFileReader.read(Project.value[:config_path])
     @verbose = Project.value[:verbose]
     @result = Result.new
     @data = {}
     @data[:macros] = []
-    @data[:logs] = []
     @data[:groups] = []
     @data[:play] = []
     reset_action
@@ -49,11 +46,11 @@ class Readme
   end
 
   def process_content
-    Project.value[:groups].each do |g|
-      @current = {name: g[:name], readme: [], actions: []}
+    Project.value[:groups].each do |group|
+      @current = {name: group[:name], readme: [], actions: []}
       @data[:groups] << @current
       reset_action
-      instance_eval(&g[:block])
+      instance_eval(&group[:block])
     end
   end
 
@@ -87,7 +84,6 @@ class Readme
     unless @cases_params.empty?
       @cases_params.sort!
       puts Lang.get(:params)
-      puts "\nList of 'param: value' into config file.\n"
       @cases_params.uniq.each { |i| puts format("* %s", i) }
     end
   end
@@ -108,8 +104,9 @@ class Readme
           puts format(Lang.get(:goto), previous_host.upcase)
         end
 
-        weight = ""
-        weight = "(x#{item[:weight]}) " if item[:weight].to_i != 1
+        # weight = ""
+        # weight = "(x#{item[:weight]}) " if item[:weight].to_i != 1
+        weight = "(x#{item[:weight]}) "
         last = (item[:target].end_with?(".") ? "" : ".")
         puts "* #{weight}#{item[:target]}#{last}"
         item[:readme].each { |line| puts "    * #{line}\n" }
@@ -118,21 +115,25 @@ class Readme
   end
 
   def show_tail
-    return if @global_params.empty?
+    return if (@global_params.size + @setted_params.size).zero?
 
     puts "\n---"
     puts "# ANEXO"
-    puts "\n## Global params"
-    puts Lang.get(:global)
-    puts "\n"
-    puts "| Global param | Value |"
-    puts "| --- | --- |"
-    @global_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
-    puts "\n## Created params"
-    puts Lang.get(:created)
-    puts "\n"
-    puts "| Created params | Value |"
-    puts "| --- | --- |"
-    @setted_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
+    puts "\n## Params"
+
+    if @global_params.size.positive?
+      puts Lang.get(:global_params)
+      puts "\n"
+      puts "| Param | Value |"
+      puts "| --- | --- |"
+      @global_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
+    end
+    if @setted_params.size.positive?
+      puts Lang.get(:created_params)
+      puts "\n"
+      puts "| Param | Value |"
+      puts "| --- | --- |"
+      @setted_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
+    end
   end
 end

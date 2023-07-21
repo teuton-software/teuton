@@ -9,8 +9,8 @@ module Lang
       hosts: "\n### Required hosts\n",
       params: "\n### Required params\n",
       goto: "\nGo to [%s](#required-hosts) host, and do next:\n",
-      global: "\nGlobal parameters that can be modified:\n",
-      created: "\nParams created during challenge execution:\n"
+      global_params: "\nGlobal parameters:\n",
+      created_params: "\nCreated during execution:\n"
     }
     lang["es"] = {
       version: "Teuton : %s",
@@ -18,8 +18,8 @@ module Lang
       hosts: "\n### Máquinas que se necesitan\n",
       params: "\n### Parámetros de necesarios\n",
       goto: "\nIr a la máquina [%s](#required-hosts), y hacer lo siguiente:\n",
-      global: "\nParámetros globales que pueden ser modificados:\n",
-      created: "\nParámetros creados durante la ejecución del reto:\n"
+      global_params: "\nParámetros globales que pueden ser modificados:\n",
+      created_params: "\nParámetros creados durante la ejecución del reto:\n"
     }
     # locale = Application.instance.options["lang"].downcase
     locale = Project.value[:options]["lang"].downcase
