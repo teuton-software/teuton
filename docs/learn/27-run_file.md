@@ -65,10 +65,7 @@ In the above example, localhost does not complete its targets 100% because the l
 
 ## Warning about remote names
 
-Local `script/show.sh` file is copied to remote machine as `tt_script_show.sh`, and then `run_file` execute `tt_script_show.sh`.
-
-* The `tt_` prefix is added to mark files that have been automatically uploaded as result of `run_file` action. When test finished these files can deleted.
-* The folder name becomes part of the remote file name. Because at the moment it is not possible to create directories on the remote computer in a platform-agnostic way.
+Local `script/show.sh` file is copied to remote machine as `script_show.sh`, and then `run_file` execute `script_show.sh`. The folder name becomes part of the remote file name. Because at the moment it is not possible to create directories on the remote computer in a platform-agnostic way.
 
 # DSL: upload
 
