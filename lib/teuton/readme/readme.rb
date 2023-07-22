@@ -105,11 +105,7 @@ class Readme
           puts format(Lang.get(:goto), previous_host.upcase)
         end
         weight = "(x#{item[:weight]}) "
-        last = if item[:target].end_with?(".") || item[:target].end_with?(":")
-          ""
-        else
-          "."
-        end
+        last = item[:target].end_with?(".", ":") ? "" : "."
         puts "* #{weight}#{item[:target]}#{last}"
         item[:readme].each { |line| puts "    * #{line}\n" }
       end
