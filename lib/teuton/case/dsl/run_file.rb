@@ -16,9 +16,8 @@ module DSL
       command = items.join(" ")
       run(command, args)
     elsif host.protocol == "ssh"
-      remotepath = items[1].gsub(File::SEPARATOR, "_")
-      upload items[1], remotepath: remotepath, to: host.id
-      items[1] = "./#{remotepath}"
+      upload items[1], to: host.id
+      items[1] = File.basename(items[1])
       command = items.join(" ")
       run(command, args)
     else

@@ -2,15 +2,15 @@ require_relative "../../utils/project"
 require_relative "../../utils/verbose"
 
 module DSL
-  def upload(localfiles, args = {})
-    localpaths = if File.absolute_path? localfiles
-      localfiles
+  def upload(localfilter, args = {})
+    abslocalfilter = if File.absolute_path? localfilter
+      localfilter
     else
-      File.join(Project.value[:project_path], localfiles)
+      File.join(Project.value[:project_path], localfilter)
     end
 
-    Dir.glob(localpaths).each do |localpath|
-      upload_one(localpath, args)
+    Dir.glob(abslocalfilter).each do |abslocalpath|
+      upload_one(abslocalpath, args)
     end
   end
 
@@ -19,11 +19,12 @@ module DSL
       Logger.err("ERROR upload requires to: XXX")
       exit 1
     end
-    localfile = File.basename(localpath)
+
     host = get_host(args[:to])
     if host.protocol == "ssh"
       begin
-        remotepath = args[:remotepath] || localfile
+        localfile = File.basename(localpath)
+        remotepath = args[:remotedir] ? File.join(args[:remotedir], localfile) : localfile
         Net::SFTP.start(
           host.ip, host.username, password: host.password, port: host.port
         ) { |sftp| sftp.upload!(localpath, remotepath) }
