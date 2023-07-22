@@ -21,4 +21,9 @@ module ReadmeDSL
     expect(cond)
   end
   alias_method :expect_nothing, :expect_none
+
+  def expect_sequence(&block)
+    @current[:actions] << @action
+    result.reset
+  end
 end
