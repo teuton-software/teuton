@@ -15,6 +15,10 @@ module DSL
   end
 
   def upload_one(localpath, args = {})
+    if args[:to].nil?
+      Logger.err("ERROR upload requires to: XXX")
+      exit 1
+    end
     localfile = File.basename(localpath)
     host = get_host(args[:to])
     if host.protocol == "ssh"
