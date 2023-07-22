@@ -10,7 +10,7 @@ group "Learn about run_file" do
   expect "HelloWorld2"
 
   target "Example 3: Upload file and then run it"
-  upload "script/show.sh", remotefile: "show.sh", to: :host1
+  upload "script/show.sh", remotepath: "show.sh", to: :host1
   run "bash show.sh HelloWorld3", on: :host1
   expect "HelloWorld3"
 

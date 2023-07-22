@@ -38,13 +38,13 @@ expect "Hello"
 ## Running example
 
 ```
-❯ teuton examples/27-run_file 
+❯ teuton examples/27-run_file
 ------------------------------------
 Started at 2023-07-08 09:10:13 +0100
 ..Fuuu..u..u.u.u.u.u.uuu
 Finished in 1.244 seconds
 ------------------------------------
- 
+
 CASE RESULTS
 +------+-----------+-------+-------+
 | CASE | MEMBERS   | GRADE | STATE |
@@ -72,22 +72,22 @@ Local `script/show.sh` file is copied to remote machine as `tt_script_show.sh`, 
 
 # DSL: upload
 
-`upload` is a dsl instruction, whose purpose is to upload files to the remote host. 
+`upload` is a dsl instruction, whose purpose is to upload files to the remote host.
 
 ```ruby
-  upload "FILENAME1", remotefile: "FILENAME2", to: :host1
+  upload "FILENAME1", remotepath: "FILENAME2", to: :host1
 ```
 
-In this example, 
+In this example,
 * `upload "FILENAME1"`, upload local file.
-* `remotefile: "FILENAME2"`, rename remote file. This parameter is optional. When not defined the remote filename is equal to local filename.
+* `remotepath: "FILENAME2"`, rename remote file. This parameter is optional. When not defined the remote filename is equal to local filename.
 * `to: :host1`, the remote host is identified by `host1`.
 
 ## Example
 
 ```ruby
   target "Upload file and then run it"
-  upload "script/show.sh", remotefile: "show.sh", to: :host1
+  upload "script/show.sh", remotepath: "show.sh", to: :host1
   run "bash show.sh HelloWorld2", on: :host1
   expect "HelloWorld2"
 ```

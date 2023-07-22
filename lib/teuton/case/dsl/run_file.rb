@@ -3,7 +3,7 @@ require_relative "../../utils/verbose"
 
 module DSL
   def upload(localfile, args = {})
-    localfilepath = if File.absolute_path? localfile
+    localpath = if File.absolute_path? localfile
       localfile
     else
       File.join(Project.value[:project_path], localfile)
@@ -12,13 +12,13 @@ module DSL
     host = get_host(args[:to])
     if host.protocol == "ssh"
       begin
-        remotefilepath = args[:remotefile] || localfile
+        remotepath = args[:remotepath] || localfile
         Net::SFTP.start(
           host.ip, host.username, password: host.password, port: host.port
-        ) { |sftp| sftp.upload!(localfilepath, remotefilepath) }
+        ) { |sftp| sftp.upload!(localpath, remotepath) }
         verbose(Rainbow("u").green)
       rescue => e
-        log("Upload #{localfile} to #{host.ip}:#{remotefilepath}", :warn)
+        log("Upload #{localfile} to #{host.ip}:#{remotepath}", :warn)
         log(e.to_s, :warn)
         verbose(Rainbow("!").green)
       end
@@ -42,9 +42,9 @@ module DSL
       command = items.join(" ")
       run(command, args)
     elsif host.protocol == "ssh"
-      remotefilepath = "tt_#{items[1].gsub(File::SEPARATOR, "_")}"
-      upload items[1], remotefile: remotefilepath, to: host.id
-      items[1] = "./#{remotefilepath}"
+      remotepath = items[1].gsub(File::SEPARATOR, "_")
+      upload items[1], remotepath: remotepath, to: host.id
+      items[1] = "./#{remotepath}"
       command = items.join(" ")
       run(command, args)
     else
