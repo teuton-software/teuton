@@ -9,19 +9,27 @@ if action.nil?
 end
 
 filter = ARGV[1] || :default
+vagrantfiles = Dir.glob("test/vagrant/**/Vagrantfile")
+vms = vagrantfiles.map { File.basename(File.dirname _1) }
 
-dirpath = File.dirname(__FILE__)
-filepath = File.join(dirpath, "config.yaml")
-config = YAML.safe_load(
-  File.read(filepath),
-  permitted_classes: [Array, Hash, Symbol]
-)
+# dirpath = File.dirname(__FILE__)
+# filepath = File.join(dirpath, "config.yaml")
+# config = YAML.safe_load(
+#   File.read(filepath),
+#  permitted_classes: [Array, Hash, Symbol]
+# )
+
+if action == 'list'
+  puts "VMS list:"
+  vms.each { puts "* #{_1}" }
+  exit 0
+end
 
 start_time = Time.now
-config[:vms].each do |vmname|
+vms.each do |vmname|
   next if filter != :default && !vmname.include?(filter)
 
-  vmdir = File.join(dirpath, vmname)
+  vmdir = File.join("test/vagrant", vmname)
   cmd = "cd #{vmdir};vagrant #{action}"
   puts "==> #{cmd}".light_yellow
   ok = system(cmd)
