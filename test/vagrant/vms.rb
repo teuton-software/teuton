@@ -10,7 +10,7 @@ end
 
 filter = ARGV[1] || :default
 vagrantfiles = Dir.glob("test/vagrant/**/Vagrantfile")
-vms = vagrantfiles.map { File.basename(File.dirname _1) }
+vms = vagrantfiles.map { File.basename(File.dirname(_1)) }
 
 # dirpath = File.dirname(__FILE__)
 # filepath = File.join(dirpath, "config.yaml")
@@ -19,7 +19,7 @@ vms = vagrantfiles.map { File.basename(File.dirname _1) }
 #  permitted_classes: [Array, Hash, Symbol]
 # )
 
-if action == 'list'
+if action == "list"
   puts "VMS list:"
   vms.each { puts "* #{_1}" }
   exit 0
