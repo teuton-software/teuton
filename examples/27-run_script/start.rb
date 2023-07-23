@@ -1,4 +1,4 @@
-use "example1"
+use "example"
 
 start do
   show

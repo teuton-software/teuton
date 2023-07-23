@@ -6,7 +6,7 @@ module CheckDSL
     goto(host, args)
   end
 
-  def run_file(command, args = {})
+  def run_script(command, args = {})
     host = :localhost
     host = args[:on] if args[:on]
     filename = command.split[1]

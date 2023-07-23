@@ -6,11 +6,6 @@ teuton run TEST --auto=5
 Execute TEST every 5 minutes
 
 ==========================
-target "Script Ok"
-run_file "scripts/check.sh", on: :host1
-expect_ok
-
-==========================
 table report!
 
 ==========================

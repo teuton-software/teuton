@@ -35,7 +35,7 @@ module DSL
         verbose(Rainbow("!").green)
       end
     elsif host.protocol != "local"
-      msg = Rainbow("==> [ERROR] run_file: Incorrect protocol(#{host.protocol})").red
+      msg = Rainbow("==> [ERROR] upload: Incorrect protocol(#{host.protocol})").red
       verboseln(msg)
     end
   end

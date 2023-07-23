@@ -2,10 +2,13 @@ require_relative "../../utils/project"
 require_relative "../../utils/verbose"
 
 module DSL
-  def run_file(script, args = {})
+  def run_script(script, args = {})
+    script = "#{args[:shell]} #{script}" if args[:shell]
+    script = "#{script} #{args[:args]} " if args[:args]
+
     items = script.split(" ")
     if items.size < 1
-      msg = Rainbow("==> [ERROR] run_file: Incorrect argument(#{command})").red
+      msg = Rainbow("==> [ERROR] run_script: Incorrect argument(#{command})").red
       verboseln(msg)
       return
     end
@@ -21,7 +24,7 @@ module DSL
       command = items.join(" ")
       run(command, args)
     else
-      msg = Rainbow("==> [ERROR] run_file: Incorrect protocol(#{host.protocol})").red
+      msg = Rainbow("==> [ERROR] run_script: Incorrect protocol(#{host.protocol})").red
       verboseln(msg)
     end
   end
