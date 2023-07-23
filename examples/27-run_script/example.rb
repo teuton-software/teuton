@@ -17,4 +17,9 @@ group "Learn about run_script" do
   target "Example 4: Running script show"
   run_script "script/show.sh", shell: "bash", args: "HelloWorld4", on: :host1
   expect "HelloWorld4"
+
+  target "Example 5: Default shell"
+  set(:shell, "bash")
+  run_script "script/show.sh", args: "HelloWorld4", on: :host1
+  expect "HelloWorld4"
 end
