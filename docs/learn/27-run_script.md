@@ -49,6 +49,16 @@ run_script "show.sh", shell: "bash", args: "Hello", on: :host1
 expect "Hello"
 ```
 
+Or setting shell default value:
+
+```ruby
+set(:shell, "bash")
+
+target "Mode 2: Upload script and execute on remote host"
+run_script "show.sh", args: "Hello", on: :host1
+expect "Hello"
+```
+
 ## Example running
 
 ```
