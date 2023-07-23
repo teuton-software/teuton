@@ -52,8 +52,7 @@ CASE RESULTS
 * [Examples](examples)
 * [Commands](docs/commands/README.md)
 * [Language reference](docs/dsl/README.md)
-
-> [Blogs and videos](docs/videos.md)
+* [Blogs and videos](docs/videos.md)
 
 # Contact
 

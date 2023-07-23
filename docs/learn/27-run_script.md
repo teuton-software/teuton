@@ -1,6 +1,6 @@
 [<<back](README.md)
 
-# DSL: run_file
+# DSL: run_script
 
 You know the classic sequence `target/run/expect`, but sometimes you need to run our own script files on the remote computer. So you have to:
 
@@ -9,7 +9,7 @@ You know the classic sequence `target/run/expect`, but sometimes you need to run
 
 **run_file** upload and execute your own local script on remote host.
 
-## Example
+## Example scripts
 
 Suppose we have the following files:
 ```
@@ -27,18 +27,30 @@ echo $MESSAGE
 exit 0
 ```
 
-Now we will define the `target/run_file/expect` sequence as follows:
+## Example using
+
+`run_script` is the DSL keyword in charge of uploading the script to the remote computer and executing it. When invoking run_script we have two styles: compact or separate components. Let's see
+
+**Compact invocation**: The "command" to execute contains the interpreter, the script, and the arguments.
 
 ```ruby
-target "Upload script and execute on remote host"
-run_file "bash show.sh Hello", on: :host1
+target "Mode 1: Upload script and execute on remote host"
+run_script "bash show.sh Hello", on: :host1
 expect "Hello"
 ```
 
-## Running example
+**Separate components**: pass the name of the script, the interpreter in charge of processing it and its arguments through separate parameters.
+
+```ruby
+target "Mode 2: Upload script and execute on remote host"
+run_script "show.sh", shell: "bash", args: "Hello", on: :host1
+expect "Hello"
+```
+
+## Example running
 
 ```
-❯ teuton examples/27-run_file
+❯ teuton examples/27-run_script
 ------------------------------------
 Started at 2023-07-08 09:10:13 +0100
 ..Fuuu..u..u.u.u.u.u.uuu
