@@ -16,7 +16,7 @@ Example: expect with regular expression to detect the sequence [a, b, c] within 
 expect /a.*?b.*?c/
 ```
 
-Regular expressions are very powerful but they are also complex to use.
+> Regular expressions are very powerful but they are also complex to use.
 
 To evaluate the occurrence of a certain sequence that takes place in different lines of the output we will use the new "expect_sequence" instruction.
 
