@@ -36,3 +36,42 @@ end
 ```
 
 > NOTE: expect_sequence can be useful for evaluating iptables firewall configurations where permission assignment order is relevant.
+
+## Evaluating different sequences
+
+* **Simple sequence**. Validate sequences where the elements are in order. Use `find` statement to find each element of the sequence.
+
+```ruby
+# Examples: [A,B,C], [A,s,B,s,C], [x,A,B,s,C,x], etc.
+
+expect_sequence do
+  find "A"
+  find "B"
+  find "C"
+end
+```
+
+* **Strict sequence**. validate sequences where the elements are in strict consecutive order. First use `find` to find an element in the sequence and then `next_to` for the next element in strict order.
+
+```ruby
+# Examples: [A,B,C], [x,A,B,C,x], etc.
+
+expect_sequence do
+  find "A"
+  next_to "B"
+  next_to "C"
+end
+```
+
+* **Strict sequence with jumps**. Use `ignore N` to indicate that there are N lines between 2 elements of the sequence.
+
+```ruby
+# Examples: [A,B,s,s,C], [x,A,B,s,s,C,x], etc.
+
+expect_sequence do
+  find "A"
+  next_to "B"
+  ignore 2
+  next_to "C"
+end
+```
