@@ -4,6 +4,8 @@
 
 Evaluate the occurrence of a certain sequence that takes place in different lines of the output.
 
+> Example files at [examples/26-expect_sequence](../../examples/26-expect_sequence)
+
 ## Description
 
 In the classic target/run/expect, the expect statement works by locating lines from the output of the previous command that meet certain criteria.
