@@ -5,14 +5,14 @@ module DSL
   def run_script(script, args = {})
     items = script.split(" ")
     if items.size == 1
-      shell = args[:shell] || (get(:shell)!="NODATA" ? get(:shell) : nil)
+      shell = args[:shell] || ((get(:shell) != "NODATA") ? get(:shell) : nil)
       script = "#{shell} #{script}" if shell
       script = "#{script} #{args[:args]} " if args[:args]
     end
 
     items = script.split(" ")
     if items.size < 1
-      msg = Rainbow("==> [ERROR] run_script: Incorrect argument(#{command})").red
+      msg = Rainbow("==> [ERROR] run_script: Incorrect command '#{command}'").red
       verboseln(msg)
       return
     end
