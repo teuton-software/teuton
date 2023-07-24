@@ -29,7 +29,7 @@ Learn how write your own Teuton tests:
 1. [Test code](23-test-code.md)
 1. [Test SQL and database](24-test-sql.md)
 1. [expect vs result](25-expect-result.md) TODO
-1. [EXPECT_SEQUENCE](26-expdect_sequence.md) TODO
+1. [EXPECT_SEQUENCE](26-expect_sequence.md)
 1. [RUN_SCRIPT](27-run_script.md)
 1. [UPLOAD](28-upload.md)
 
