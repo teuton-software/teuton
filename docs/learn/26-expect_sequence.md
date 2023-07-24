@@ -13,7 +13,7 @@ We can even (using regular expressions) detect if there is any line in the outpu
 
 ```ruby
 # Example:
-#   expect with regular expression to detect the sequence [a, b, c]
+#   expect with regular expression to detect [a, b, c] sequence
 #   within a line
 
 expect /a.*?b.*?c/
@@ -26,7 +26,7 @@ To evaluate the occurrence of a certain sequence that takes place in different l
 
 ```ruby
 # Example:
-#   expect_sequence to detect the sequence [a, b, c]
+#   expect_sequence to detect [a, b, c] sequence
 
 expect_sequence do
   find "a"
