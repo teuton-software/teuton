@@ -10,9 +10,12 @@ In the classic target/run/expect, the expect statement works by locating lines f
 
 We can even (using regular expressions) detect if there is any line in the output where a certain sequence appears.
 
-Example: expect with regular expression to detect the sequence [a, b, c] within a line
 
 ```ruby
+# Example:
+#   expect with regular expression to detect the sequence [a, b, c]
+#   within a line
+
 expect /a.*?b.*?c/
 ```
 
@@ -20,9 +23,11 @@ expect /a.*?b.*?c/
 
 To evaluate the occurrence of a certain sequence that takes place in different lines of the output we will use the new "expect_sequence" instruction.
 
-Example: expect_sequence to detect the sequence [a, b, c]
 
 ```ruby
+# Example:
+#   expect_sequence to detect the sequence [a, b, c]
+
 expect_sequence do
   find "a"
   find "b"
