@@ -101,3 +101,5 @@ DSL send:
 - [ADD] New DSL "upload". Upload local file to remote host. Example `upload "localfile", to: :host1`
 - [ADD] `teuton check` works with `expect_sequence`, `run_script` and `upload`.
 - [FIX] `teuton check` works fine with `macros`.
+- [ADD] `teuton readme` works with `expect_sequence`, `run_script` and `upload`.
+- [FIX] `teuton readme` works fine with `macros`.
