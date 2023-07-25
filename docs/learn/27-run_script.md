@@ -29,7 +29,7 @@ echo $MESSAGE
 exit 0
 ```
 
-## Example using
+## Usage examples
 
 `run_script` is the DSL keyword in charge of uploading the script to the remote computer and executing it. When invoking run_script we have two styles: compact or separate components. Let's see
 
@@ -59,7 +59,7 @@ run_script "show.sh", args: "Hello", on: :host1
 expect "Hello"
 ```
 
-## Example running
+## Running example
 
 ```
 ------------------------------------
