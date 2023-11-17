@@ -76,13 +76,23 @@ module ConfigFileReader
     else
       File.join(File.dirname(filepath), data[:global][:tt_include])
     end
-    files = Dir.glob(File.join(basedir, "**/*.yaml"))
-    files += Dir.glob(File.join(basedir, "**/*.yml"))
-    files += Dir.glob(File.join(basedir, "**/*.YAML"))
-    files += Dir.glob(File.join(basedir, "**/*.YML"))
+    exts = {
+      yaml: ['.yaml', '.YAML', '.yml', '.YML'],
+      json: ['.json', '.JSON']
+      }
+    files = Dir.glob(File.join(basedir, "**/*"))
     files.each { |file|
       begin
-        data[:cases] << YAML.load(File.open(file))
+        if exts[:yaml].include? File.extname(file)
+          data[:cases] << YAML.load(File.open(file))
+        elsif exts[:json].include? File.extname(file)
+          data[:cases] = JSON.parse(File.read(file), symbolize_names: true)
+        else
+          msg = "[ERROR] Loading configuration files: " \
+              " No yaml/json valid extension " \
+              " (#{file})"
+          warn msg
+        end
       rescue => e
         puts "\n" + ("=" * 80)
         puts "[ERROR] ConfigFileReader#read <#{file}>"

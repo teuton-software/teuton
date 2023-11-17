@@ -94,7 +94,7 @@ DSL send:
 - [UPDATE] Rename "remote_dir" send param to "dir".
 - [UPDATE] send output messages
 
-## [2.9.0] unrelease
+## [2.9.0] 20230726
 
 - [ADD] "expect_sequence" that check if sequence is present
 - [ADD] New DSL "run_script". Example: `run_script script, on: :host1`, upload script to host1 and then execute it on remote.
@@ -103,3 +103,7 @@ DSL send:
 - [FIX] `teuton check` works fine with `macros`.
 - [ADD] `teuton readme` works with `expect_sequence`, `run_script` and `upload`.
 - [FIX] `teuton readme` works fine with `macros`.
+
+## [2.9.1] 20231117
+
+- [FIX] Config option `tt_include` doubled readed data on Windows platforms.
