@@ -81,13 +81,14 @@ module ConfigFileReader
       json: ['.json', '.JSON']
       }
     files = Dir.glob(File.join(basedir, "**/*"))
-    files.each { |file|
+    files.each { |filename|
       begin
-        if exts[:yaml].include? File.extname(file)
-          data[:cases] << YAML.load(File.open(file))
-        elsif exts[:json].include? File.extname(file)
-          data[:cases] = JSON.parse(File.read(file), symbolize_names: true)
-        else
+        ext = File.extname(filename)
+        if exts[:yaml].include? ext
+          data[:cases] << YAML.load(File.open(filename))
+        elsif exts[:json].include? ext
+          data[:cases] = JSON.parse(File.read(filename), symbolize_names: true)
+        elsif File.file? filename
           msg = "[ERROR] Loading configuration files: " \
               " No yaml/json valid extension " \
               " (#{file})"
