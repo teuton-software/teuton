@@ -1,0 +1,4 @@
+.vagrant
+private*
+*.log
+*.box
