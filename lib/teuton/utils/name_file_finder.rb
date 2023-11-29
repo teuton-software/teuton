@@ -76,8 +76,9 @@ class NameFileFinder
     # SIMPLE MODE: We use script_path as main RB file
     # This must be fullpath to DSL script file
     if File.extname(script_path) != ".rb"
-      warn Rainbow("[ERROR] .rb extension required!").bright.red
-      warn Rainbow("        #{script_path}").white
+      warn Rainbow("[ERROR] Cannot find main file!").bright.red
+      warn Rainbow("        #{script_path}/start.rb").white
+      warn Rainbow("        or #{script_path}.rb").white
       exit 1
     end
 
