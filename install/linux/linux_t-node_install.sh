@@ -19,7 +19,7 @@ echo "- $distro distribution found"
 
 echo "[2/4.INFO] Installing PACKAGES..."
 [ $distro = "debian" ] && apt-get update && apt-get install -y ruby
-[ $distro = "fedora" ] && dnf upgrade && dnf install -y ruby
+[ $distro = "fedora" ] && dnf install -y ruby
 
 echo "[3/4.INFO] Installing teuton..."
 gem install teuton

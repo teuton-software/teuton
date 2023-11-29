@@ -28,6 +28,5 @@ systemctl disable sshd 2> /dev/null
 echo "[3/4.INFO] Uninstalling PACKAGES..."
 [ $distro = "opensuse" ] && zypper remove -y openssh
 [ $distro = "debian" ] && apt-get remove -y openssh-server sudo
-[ $distro = "fedora" ] && dnf remove -y openssh-server sudo
-
+[ $distro = "fedora" ] && dnf remove -y openssh-server
 echo "[4/4.INFO] Finish!"
