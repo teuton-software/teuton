@@ -107,3 +107,13 @@ DSL send:
 ## [2.9.1] 20231117
 
 - [FIX] Config option `tt_include` doubled readed data on Windows platforms.
+
+## [2.9.2] 20231201
+
+- [FIX] Change error message when running a non-existent challenge
+```
+❯ teuton run example/foo
+[ERROR] Cannot find main file!
+         /home/username/example/foo/start.rb
+         or /home/username/example/foo.rb
+```
