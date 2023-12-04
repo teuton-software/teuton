@@ -85,9 +85,19 @@ module ConfigFileReader
       begin
         ext = File.extname(filename)
         if exts[:yaml].include? ext
-          data[:cases] << YAML.load(File.open(filename))
+          begin
+            data[:cases] << YAML.load(File.open(filename))
+          rescue
+            msg = "[ERROR] Loading configuration file(#{filename})"
+            warn msg
+          end
         elsif exts[:json].include? ext
-          data[:cases] = JSON.parse(File.read(filename), symbolize_names: true)
+          begin
+            data[:cases] = JSON.parse(File.read(filename), symbolize_names: true)
+          rescue
+            msg = "[ERROR] Loading configuration file(#{filename})"
+            warn msg
+          end
         elsif File.file? filename
           msg = "[ERROR] Loading configuration files: " \
               " No yaml/json valid extension " \
