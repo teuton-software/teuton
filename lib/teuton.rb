@@ -1,5 +1,4 @@
 require_relative "teuton/utils/project"
-require "debug"
 
 module Teuton
   def self.create(path_to_new_dir)
