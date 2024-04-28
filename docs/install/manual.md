@@ -38,4 +38,4 @@ There are diferents Teuton [Modes of use](Modes of use). For every mode there ar
 
 * Install SSH server on your host.
 
-> How to [install SSH on Windows](windows-ssh)
+> How to [install SSH on Windows](s-node.md)
