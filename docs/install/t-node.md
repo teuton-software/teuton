@@ -13,7 +13,7 @@ Run `teuton version` to check the installed version.
 
 **Update**
 
-`gem teuton update`.
+`gem update teuton`.
 
 **Uninstall**
 
