@@ -5,7 +5,7 @@ module DSL
   def run_script(script, args = {})
     items = script.split(" ")
     if items.size == 1
-      shell = args[:shell] || ((get(:shell) != "NODATA") ? get(:shell) : nil)
+      shell = args[:shell] || (get(:shell) != "NODATA" ? get(:shell) : nil)
       script = "#{shell} #{script}" if shell
       script = "#{script} #{args[:args]} " if args[:args]
     end

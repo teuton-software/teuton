@@ -21,7 +21,7 @@ class Project
     @project[:ialias] = {} # Hash of Internal alias
     @project[:macros] = {} # Hash of macros
     @project[:groups] = [] # Array of groups
-    @project[:uses] = []   # TODO: Array of files used
+    @project[:uses] = [] # TODO: Array of used files
     @project[:hall_of_fame] = []
   end
 

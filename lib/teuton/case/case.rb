@@ -21,7 +21,7 @@ class Case
   attr_accessor :conn_status # Updated by ExecuteManager
 
   attr_reader :id
-  attr_reader :config   # Readed by ExecuteManager
+  attr_reader :config # Readed by ExecuteManager
   attr_reader :uniques
   attr_reader :skip
   @@id = "01" # First case ID value
