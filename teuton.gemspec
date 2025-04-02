@@ -27,11 +27,11 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.5.9"
 
-  s.add_runtime_dependency "rainbow", "~> 3.1" # 3.0
-  s.add_runtime_dependency "net-sftp", "~> 4.0" # 2.1
-  s.add_runtime_dependency "net-ssh", "~> 7.0" # 5.0
+  s.add_runtime_dependency "rainbow", "~> 3.1"
+  s.add_runtime_dependency "net-sftp", "~> 4.0"
+  s.add_runtime_dependency "net-ssh", "~> 7.2" # 7.0
   s.add_runtime_dependency "net-telnet", "~> 0.2" # 0.1
-  s.add_runtime_dependency "json_pure", "~> 2.6" # 2.2
-  s.add_runtime_dependency "thor", "~> 1.2"
+  s.add_runtime_dependency "json_pure", "~> 2.8" # 2.6
+  s.add_runtime_dependency "thor", "~> 1.3" # 1.2
   s.add_runtime_dependency "terminal-table", "~> 3.0" # 1.8
 end
