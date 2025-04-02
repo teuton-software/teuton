@@ -117,3 +117,7 @@ DSL send:
          /home/username/example/foo/start.rb
          or /home/username/example/foo.rb
 ```
+
+## [2.9.3] 20250402
+
+- [FIX] Error with telnet connections.
