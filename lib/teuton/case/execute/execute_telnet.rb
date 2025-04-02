@@ -17,7 +17,7 @@ class ExecuteTelnet < ExecuteBase
         h = Net::Telnet.new(
           "Host" => ip,
           "Timeout" => 30,
-          "Prompt" => /login|teuton|[$%#>]/
+          "Prompt" => /login|teuton|[$%#>]|PC1>/
         )
         # "Prompt" => Regexp.new(username[1, 40]))
         # "Prompt" => /[$%#>] \z/n)
@@ -31,18 +31,18 @@ class ExecuteTelnet < ExecuteBase
     rescue Net::OpenTimeout
       sessions[hostname] = :nosession
       conn_status[hostname] = :open_timeout
-      verbose Rainbow(Application.instance.letter[:error]).red.bright
+      # verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
       log(" └── Revise host IP!", :warn)
     rescue Net::ReadTimeout
       sessions[hostname] = :nosession
       conn_status[hostname] = :read_timeout
-      verbose Rainbow(Application.instance.letter[:error]).red.bright
+      # verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue => e
       sessions[hostname] = :nosession
       conn_status[hostname] = :error
-      verbose Rainbow(Application.instance.letter[:error]).red.bright
+      # verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<#{e.class}> doing telnet on <#{username}@#{ip}>" \
           " exec: #{action[:command]}", :error)
       log(" └── username=<#{username}>, password=<#{password}>," \

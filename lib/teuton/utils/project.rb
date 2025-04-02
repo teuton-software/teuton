@@ -1,5 +1,3 @@
-# Development in progress...
-
 require_relative "name_file_finder"
 
 class Project
