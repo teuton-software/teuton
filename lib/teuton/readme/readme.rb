@@ -71,8 +71,8 @@ class Readme
     unless @required_hosts.empty?
       puts Lang.get(:hosts)
       puts "\n"
-      puts "| ID | Host | Configuration |"
-      puts "| --- | --- | --- |"
+      puts "| ID  | Host | Configuration |"
+      puts "| --- | ---- | ------------- |"
       @required_hosts.each_pair do |k, v|
         c = []
         v.each_pair { |k2, v2| c << "#{k2}=#{v2}" }
@@ -123,14 +123,14 @@ class Readme
       puts Lang.get(:global_params)
       puts "\n"
       puts "| Param | Value |"
-      puts "| --- | --- |"
+      puts "| ----- | ----- |"
       @global_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
     end
     if @setted_params.size.positive?
       puts Lang.get(:created_params)
       puts "\n"
       puts "| Param | Value |"
-      puts "| --- | --- |"
+      puts "| ----- | ----- |"
       @setted_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
     end
   end
