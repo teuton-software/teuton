@@ -121,3 +121,7 @@ DSL send:
 ## [2.9.3] 20250402
 
 - [FIX] Error with telnet connections.
+
+## [2.9.x] 
+
+- [FIX] Improve the markdown output of the readme.
