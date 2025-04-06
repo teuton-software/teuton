@@ -129,9 +129,9 @@ class Readme
     if @setted_params.size.positive?
       puts Lang.get(:created_params)
       puts "\n"
-      puts "| Param | Value |"
-      puts "| ----- | ----- |"
-      @setted_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
+      puts "| Param |"
+      puts "| ----- |"
+      @setted_params.each_pair { |k, v| puts "|#{k}|" }
     end
   end
 end
