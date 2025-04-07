@@ -47,7 +47,7 @@ class ExecuteBase
       text = ec.convert(text)
     rescue => e
       puts "[ERROR] #{e}: Declare text encoding..."
-      puts "        run 'command', on: :host, :encoding => 'ISO-8859-1'"
+      puts "        run 'command', on: :host, encoding: 'ISO-8859-1'"
     end
 
     text.split("\n")

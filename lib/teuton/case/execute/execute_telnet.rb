@@ -9,24 +9,34 @@ class ExecuteTelnet < ExecuteBase
     action[:conn_type] = :telnet
     hostname = input_hostname.to_s
     ip = config.get((hostname + "_ip").to_sym)
-    username = config.get((hostname + "_username").to_sym).to_s
-    password = config.get((hostname + "_password").to_sym).to_s
+    port = config.get((hostname + "_port").to_sym)
+    mode = true
+    if port.to_i == 0
+      port = "23" 
+      mode = false
+    end
     text = ""
     begin
       if sessions[hostname].nil? || sessions[hostname] == :ok
         h = Net::Telnet.new(
           "Host" => ip,
+          "Port" => port,
+          "Telnetmode" => mode,
           "Timeout" => 30,
-          "Prompt" => /login|teuton|[$%#>]|PC1>/
+          "Prompt" => /login|teuton|[$%#>]/
         )
         # "Prompt" => Regexp.new(username[1, 40]))
         # "Prompt" => /[$%#>] \z/n)
-        h.login(username, password)
+        unless mode
+          username = config.get((hostname + "_username").to_sym).to_s
+          password = config.get((hostname + "_password").to_sym).to_s
+          h.login(username, password)
+        end
         h.cmd(action[:command]) { |i| text << i }
         h.close
         sessions[hostname] = :ok
       else
-        text = "TELNET: NO CONNECTION!"
+        text = "Telnet: NO CONNECTION!"
       end
     rescue Net::OpenTimeout
       sessions[hostname] = :nosession
