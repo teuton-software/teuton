@@ -38,8 +38,11 @@ class ExecuteBase
   def encode_and_split(encoding, text)
     # Convert text to UTF-8 deleting unknown chars
     text ||= "" # Ensure text is not nil
-    flag = [:default, "UTF-8"].include? encoding
-    return text.encode("UTF-8", invalid: :replace).split("\n") if flag
+
+    if [:default, "UTF-8"].include? encoding
+      text.encode!("UTF-8", invalid: :replace, :undef => :replace, :replace => '')
+      return text.split("\n") 
+    end
 
     # Convert text from input ENCODING to UTF-8
     ec = Encoding::Converter.new(encoding.to_s, "UTF-8")
