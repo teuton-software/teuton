@@ -1,7 +1,7 @@
 require "net/telnet"
-require "rainbow"
+# require "rainbow"
 require_relative "../../utils/project"
-require_relative "../../utils/verbose"
+# require_relative "../../utils/verbose"
 require_relative "execute_base"
 
 class ExecuteTelnet < ExecuteBase
@@ -16,6 +16,7 @@ class ExecuteTelnet < ExecuteBase
       mode = false
     end
     text = ""
+    exitcode = -1
     begin
       if sessions[hostname].nil? || sessions[hostname] == :ok
         h = Net::Telnet.new(
@@ -35,32 +36,28 @@ class ExecuteTelnet < ExecuteBase
         h.cmd(action[:command]) { |i| text << i }
         h.close
         sessions[hostname] = :ok
+        exitcode = 0
       else
         text = "Telnet: NO CONNECTION!"
       end
     rescue Net::OpenTimeout
       sessions[hostname] = :nosession
       conn_status[hostname] = :open_timeout
-      # verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<Net::OpenTimeout> doing <telnet #{ip}>", :error)
       log(" └── Revise host IP!", :warn)
     rescue Net::ReadTimeout
       sessions[hostname] = :nosession
       conn_status[hostname] = :read_timeout
-      # verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
     rescue => e
       sessions[hostname] = :nosession
       conn_status[hostname] = :error
-      # verbose Rainbow(Application.instance.letter[:error]).red.bright
       log(" ExceptionType=<#{e.class}> doing telnet on <#{username}@#{ip}>" \
           " exec: #{action[:command]}", :error)
       log(" └── username=<#{username}>, password=<#{password}>," \
           " ip=<#{ip}>, HOSTID=<#{hostname}>", :warn)
     end
-    output = encode_and_split(action[:encoding], text)
-    result.exitcode = -1
-    result.content = output
-    result.content.compact!
+    result.exitcode = exitcode
+    result.content = encode_and_split(action[:encoding], text)
   end
 end

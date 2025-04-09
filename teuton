@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+# require 'debug'
 require_relative "lib/teuton/cli"
 
 CLI.start(ARGV)

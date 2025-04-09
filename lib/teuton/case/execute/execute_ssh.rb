@@ -89,6 +89,5 @@ class ExecuteSSH < ExecuteBase
     end
     result.exitcode = exitcode
     result.content = encode_and_split(action[:encoding], text)
-    result.content.compact!
   end
 end

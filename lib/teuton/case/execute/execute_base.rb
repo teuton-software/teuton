@@ -39,6 +39,7 @@ class ExecuteBase
     # Convert text to UTF-8 deleting unknown chars
     text ||= "" # Ensure text is not nil
 
+    # TODO: text.gsub!('\r', '')
     if [:default, "UTF-8"].include? encoding
       text.encode!("UTF-8", invalid: :replace, :undef => :replace, :replace => '')
       return text.split("\n") 
@@ -53,6 +54,6 @@ class ExecuteBase
       puts "        run 'command', on: :host, encoding: 'ISO-8859-1'"
     end
 
-    text.split("\n")
+    text.split("\n").compact
   end
 end
