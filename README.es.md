@@ -15,7 +15,7 @@ El test de infraestructura es útil para:
 
 # Instalación
 
-Primero es necesario instalar `Ruby`y a continuación instalamos Teuton con:
+Primero es necesario tener instalado `Ruby`y a continuación instalamos Teuton con el siguiente comando:
 
 ```console
 gem install teuton
@@ -25,7 +25,7 @@ gem install teuton
 
 # Modo de uso
 
-Usamos el comando `teuton` para ejecutar el siguiente ejemplo:
+Usaremos el comando `teuton` para ejecutar los tests:
 
 ```console
 > teuton run examples/01-target
@@ -69,4 +69,4 @@ CASE RESULTS
 1. Haz "push" a la rama (`git push origin my-new-feature`)
 1. Crear un "pull request" nuevo.
 
-También puedes [crear issues](https://github.com/teuton-software/teuton/issues) con tus peticiones, incidencias o sugerencias.
+También se pueden [crear issues](https://github.com/teuton-software/teuton/issues) con peticiones, incidencias o sugerencias.
