@@ -29,9 +29,9 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "rainbow", "~> 3.1"
   s.add_runtime_dependency "net-sftp", "~> 4.0"
-  s.add_runtime_dependency "net-ssh", "~> 7.2" # 7.0
-  s.add_runtime_dependency "net-telnet", "~> 0.2" # 0.1
-  s.add_runtime_dependency "json_pure", "~> 2.8" # 2.6
-  s.add_runtime_dependency "thor", "~> 1.3" # 1.2
-  s.add_runtime_dependency "terminal-table", "~> 3.0" # 1.8
+  s.add_runtime_dependency "net-ssh", "~> 7.3"
+  s.add_runtime_dependency "net-telnet", "~> 0.2"
+  s.add_runtime_dependency "json_pure", "~> 2.8"
+  s.add_runtime_dependency "thor", "~> 1.3"
+  s.add_runtime_dependency "terminal-table", "~> 4.0"
 end
