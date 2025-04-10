@@ -38,8 +38,8 @@ class ExpectSequence
 
   def find_best_state
     @states.each do |state|
-      state[:score] = (state[:steps].select { _1 }).size
-      state[:fails] = (state[:steps].select { !_1 }).size
+      state[:score] = (state[:steps].select { it }).size
+      state[:fails] = (state[:steps].select { !it }).size
       state[:ok] = (state[:fails] == 0)
     end
     best = @states[0]

@@ -3,7 +3,7 @@ require_relative "../../../version"
 
 class XMLFormatter < BaseFormatter
   def initialize(report)
-    super(report)
+    super
     @ext = "xml"
   end
 

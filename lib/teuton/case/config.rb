@@ -55,7 +55,7 @@ class Case
       key2 = @ialias[words[0].to_sym]
       return "NODATA" unless key2
 
-      get("#{key2}_#{words[1]}".to_sym, level)
+      get(:"#{key2}_#{words[1]}", level)
     end
 
     def search_array_alias(keys, level)

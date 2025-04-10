@@ -14,11 +14,11 @@ module ReadmeDSL
   def gett(value)
     a = get(value)
     if @cases_params.include? value
-      "[#{value}](#required-params)"
+      "[" + value + "](#required-params)"
     elsif @setted_params[value]
-      "[#{value}](#created-params)"
+      "[" + value + "](#created-params)"
     elsif @global_params.include? value
-      "[#{a}](#global-params)"
+      "[" + a + "](#global-params)"
     end
     a
   end

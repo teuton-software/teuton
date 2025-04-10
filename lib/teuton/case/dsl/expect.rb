@@ -23,7 +23,7 @@ module DSL
     @action_counter += 1
     @action[:id] = @action_counter
     if @result.exitcode < 0
-      # When exitcode is less than zero, it is because there has been 
+      # When exitcode is less than zero, it is because there has been
       # an error in the remote connection (SSH or Telnet)
       @action[:check] = false
       @action[:result] = @action[:output]

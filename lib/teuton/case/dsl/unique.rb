@@ -4,6 +4,6 @@ module DSL
   def unique(key, value)
     return if value.nil?
 
-    @uniques << "#{key}=#{value}".to_sym
+    @uniques << :"#{key}=#{value}"
   end
 end

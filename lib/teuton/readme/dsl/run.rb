@@ -2,21 +2,21 @@ module ReadmeDSL
   def goto(host = :localhost, args = {})
     unless host == :localhost
       b = {}
-      a = "#{host}_ip".to_sym
+      a = :"#{host}_ip"
       if @config[:global][a].nil? && !@setted_params.include?(a)
         @cases_params << a
       end
       b[:ip] = @config[:global][a] if @config[:global][a]
       b[:ip] = @setted_params[a] if @setted_params[a]
 
-      a = "#{host}_username".to_sym
+      a = :"#{host}_username"
       if @config[:global][a].nil? && !@setted_params.include?(a)
         @cases_params << a
       end
       b[:username] = @config[:global][a] if @config[:global][a]
       b[:username] = @setted_params[a] if @setted_params[a]
 
-      a = "#{host}_password".to_sym
+      a = :"#{host}_password"
       if @config[:global][a].nil? && !@setted_params.include?(a)
         @cases_params << a
       end

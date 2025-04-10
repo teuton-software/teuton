@@ -41,8 +41,8 @@ class ExecuteBase
 
     # TODO: text.gsub!('\r', '')
     if [:default, "UTF-8"].include? encoding
-      text.encode!("UTF-8", invalid: :replace, :undef => :replace, :replace => '')
-      return text.split("\n") 
+      text.encode!("UTF-8", invalid: :replace, undef: :replace, replace: "")
+      return text.split("\n")
     end
 
     # Convert text from input ENCODING to UTF-8

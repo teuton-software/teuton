@@ -31,8 +31,8 @@ class ExecuteManager
   end
 
   def run_on(host)
-    protocol = config.get("#{host}_protocol".to_sym)
-    ip = config.get("#{host}_ip".to_sym)
+    protocol = config.get(:"#{host}_protocol")
+    ip = config.get(:"#{host}_ip")
 
     if protocol.to_s.downcase == "local" || host.to_s == "localhost"
       # Protocol force => local

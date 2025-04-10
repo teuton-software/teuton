@@ -3,7 +3,7 @@ require_relative "array"
 
 class YAMLFormatter < ArrayFormatter
   def initialize(report)
-    super(report)
+    super
     @ext = "yaml"
   end
 

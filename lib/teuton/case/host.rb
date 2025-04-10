@@ -34,11 +34,11 @@ class Case
 
     def init(id)
       @id = id.to_sym
-      @ip = @config.get("#{@id}_ip".to_sym).to_s
-      @username = @config.get("#{@id}_username".to_sym).to_s
-      @password = @config.get("#{@id}_password".to_sym).to_s
+      @ip = @config.get(:"#{@id}_ip").to_s
+      @username = @config.get(:"#{@id}_username").to_s
+      @password = @config.get(:"#{@id}_password").to_s
 
-      @protocol = @config.get("#{@id}_protocol".to_sym).to_s.downcase
+      @protocol = @config.get(:"#{@id}_protocol").to_s.downcase
       if @protocol == "nodata"
         @protocol = if @ip == "localhost" || @ip.start_with?("127.0.0.")
           "local"
@@ -47,12 +47,12 @@ class Case
         end
       end
 
-      @port = @config.get("#{@id}_port".to_sym).to_i
+      @port = @config.get(:"#{@id}_port").to_i
       if @port.zero?
         default = {"local" => 0, "ssh" => 22, "telnet" => 23}
         @port = default[@protocol]
       end
-      @route = @config.get("#{@id}_route".to_sym)
+      @route = @config.get(:"#{@id}_route")
     end
 
     def init_default

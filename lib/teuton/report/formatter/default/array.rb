@@ -3,7 +3,7 @@ require_relative "../../../utils/project"
 
 class ArrayFormatter < BaseFormatter
   def initialize(report)
-    super(report)
+    super
     @data = {}
   end
 

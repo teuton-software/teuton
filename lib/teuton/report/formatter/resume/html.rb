@@ -4,7 +4,7 @@ require_relative "yaml"
 
 class ResumeHTMLFormatter < ResumeYAMLFormatter
   def initialize(report)
-    super(report)
+    super
     @ext = "html"
     @data = {}
     basedir = File.join(File.dirname(__FILE__), "..", "..", "..")

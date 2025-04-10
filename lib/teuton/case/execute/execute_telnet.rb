@@ -12,7 +12,7 @@ class ExecuteTelnet < ExecuteBase
     port = config.get((hostname + "_port").to_sym)
     mode = true
     if port.to_i == 0
-      port = "23" 
+      port = "23"
       mode = false
     end
     text = ""

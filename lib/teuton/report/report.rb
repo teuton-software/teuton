@@ -28,7 +28,7 @@ class Report
     report = Report.new
     attrs = %i[id filename output_dir head lines tail format]
     attrs.each do |attr|
-      attr_set = "#{attr}=".to_sym
+      attr_set = :"#{attr}="
       report.send(attr_set, send(attr).clone)
     end
 
@@ -42,7 +42,7 @@ class Report
 
   def export_resume(options)
     format = options[:format]
-    @format = "resume_#{format}".to_sym
+    @format = :"resume_#{format}"
     options[:format] = @format
     filepath = File.join(@output_dir, @filename)
     Formatter.call(self, options, filepath)

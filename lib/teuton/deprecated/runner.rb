@@ -9,8 +9,8 @@ class Case
   # READ: @config
   # WRITE: @action, @result, @session
   def run_cmd_on(host)
-    protocol = @config.get("#{host}_protocol".to_sym)
-    ip = @config.get("#{host}_ip".to_sym)
+    protocol = @config.get(:"#{host}_protocol")
+    ip = @config.get(:"#{host}_ip")
 
     if protocol.to_s.downcase == "local" || host.to_s == "localhost"
       # Protocol force => local
@@ -59,24 +59,24 @@ class Case
   def run_cmd_remote_ssh(input_hostname)
     @action[:conn_type] = :ssh
     hostname = input_hostname.to_s
-    ip = @config.get("#{hostname}_ip".to_sym).to_s
-    username = @config.get("#{hostname}_username".to_sym).to_s
-    password = @config.get("#{hostname}_password".to_sym).to_s
-    port = @config.get("#{hostname}_port".to_sym).to_i
+    ip = @config.get(:"#{hostname}_ip").to_s
+    username = @config.get(:"#{hostname}_username").to_s
+    password = @config.get(:"#{hostname}_password").to_s
+    port = @config.get(:"#{hostname}_port").to_i
     port = 22 if port.zero?
 
-    unless @config.get("#{hostname}_route".to_sym) == "NODATA"
+    unless @config.get(:"#{hostname}_route") == "NODATA"
       # Reconfigure command with gateway. Example host1_route: IP.
       # hostname2 = hostname ¿not used?
       ip2 = ip
       username2 = username
       password2 = password
       command2 = @action[:command]
-      hostname = @config.get("#{hostname}_route".to_sym)
-      ip = @config.get("#{hostname}_ip".to_sym).to_s
-      username = @config.get("#{hostname}_username".to_sym).to_s
-      password = @config.get("#{hostname}_password".to_sym).to_s
-      ostype = @config.get("#{hostname}_ostype".to_sym).to_s
+      hostname = @config.get(:"#{hostname}_route")
+      ip = @config.get(:"#{hostname}_ip").to_s
+      username = @config.get(:"#{hostname}_username").to_s
+      password = @config.get(:"#{hostname}_password").to_s
+      ostype = @config.get(:"#{hostname}_ostype").to_s
 
       @action[:command] = if ostype.downcase.start_with? "win"
         "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
