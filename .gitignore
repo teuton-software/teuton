@@ -6,6 +6,8 @@ var
 .private*
 private*
 priv*
+
+checksums/
 pkg/
 sig/
 .vagrant/

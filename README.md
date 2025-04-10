@@ -8,10 +8,10 @@ _Create Unit Test for your machines. Test your infrastructure as code._
 
 ![logo](./docs/images/logo.png)
 
-Infrastructure test, useful for:
+The infrastructure test is useful for:
 * Sysadmin teachers who want to evaluate students remote machines.
-* Sysadmin apprentices who want to evaluate their learning process as a game.
-* Professional sysadmin who want to monitor remote machines.
+* Students who want to evaluate their learning process.
+* Professionals who want to monitor their remote machines.
 
 # Installation
 
@@ -28,7 +28,7 @@ gem install teuton
 Executing `teuton` command to run example test:
 
 ```console
-❯ teuton run examples/01-target
+> teuton run examples/01-target
 
 CASE RESULTS
 +------+-----------+-------+-------+
@@ -36,6 +36,8 @@ CASE RESULTS
 | 01   | anonymous | 100.0 | ✔     |
 +------+-----------+-------+-------+
 ```
+
+> More information about [commands](docs/commands/README.md)
 
 # Features
 
@@ -67,4 +69,4 @@ CASE RESULTS
 1. Push to the branch (`git push origin my-new-feature`)
 1. Create new Pull Request.
 
-You can also [create issues](https://github.com/teuton-software/teuton/issues) with your requests/incidences/suggestions.
+You can also [create issues](https://github.com/teuton-software/teuton/issues) with your requests, incidences or suggestions.
