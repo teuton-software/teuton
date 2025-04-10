@@ -14,30 +14,6 @@ Save case state or progress
 var/tesname/states.db ¿?
 
 ==========================
-use recursively search into parent folders
-Tree example:
-
-├── lib
-│   ├── target_A.rb
-│   └── target_B.rb
-└── teuton
-    ├── test_1
-    │   ├── start.rb
-    │   └── target_1.rb
-    └── test_2
-        ├── start.rb
-        └── target_2.rb
-
-# teuton/test_1/start.rb
-use "target_1"
-use "lib/target_A"
-
-play do
-  show
-  export
-end
-
-==========================
 Docker/podman integration
 Host definition example:
   host1_ip:
@@ -76,16 +52,7 @@ var
             └── host2
 
 ==================================
-Create DSL instructions that reads INI files. For example:
-
-target "Checking SMB configuration"
-goto :debian, :exec => "cat /etc/samba/smb.conf"
-expect result.section("public").param("path").equal("/var/samba/public.d")
-
-==================================
-* Verify XML export file ¿?
 * Sign reports generated with GPG... just to verify autenticity if needed.
-* Colorize vs Rainbow gem ¿?: By now only use Rainbow gem
 * Doc ngrok use. Use cases and tutorial
 * Doc host1_route combined with ngrok
 * Host object so "host(:debian)" return a Host object so
@@ -99,6 +66,4 @@ expect result.section("public").param("path").equal("/var/samba/public.d")
 
 * Implement "scp" over Telnet ¿?
 * Default port values ssh/telnet and default username values (root, Administrator)
-* Check DSL sequence target->run*->expect
-* Add/create doc videos
 * Use travis
