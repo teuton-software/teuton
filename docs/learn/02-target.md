@@ -8,7 +8,7 @@ A [target](../dsl/target.md) is a feature you want to check. Targets are defined
 
 * [target](dsl/target.md): Description of the element to be tested.
 * [run](../dsl/run.md): Execute a command `id obiwan` on localhost.
-* [expect](../&dsl/expect.md): Verify that the result contains expected value.
+* [expect](../dsl/expect.md): Verify that the result contains expected value.
 
 ```ruby
 group "Learn about targets" do
