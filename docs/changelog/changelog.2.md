@@ -122,6 +122,7 @@ DSL send:
 
 - [FIX] Error with telnet connections.
 
-## [2.9.x] 
+## [2.9.4] 20250410
 
 - [FIX] Improve the markdown output of the readme.
+- [FIX] Telnet exitcode

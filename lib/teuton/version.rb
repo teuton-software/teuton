@@ -1,5 +1,5 @@
 module Teuton
-  VERSION = "2.9.3"
+  VERSION = "2.9.4"
   APPNAME = "teuton"
   GEMNAME = "teuton"
   DOCKERNAME = "dvarrui/#{GEMNAME}"
