@@ -8,11 +8,11 @@ echo "----------------"
 echo    "Device         | $DEV"
 echo -n "Format N.N.N.N | IP? "
 read IP
-echo -n "Default 16     | Mask? "
+echo -n "Default 24     | Mask? "
 read MASK
 if [ -z $MASK ];
 then
-  MASK=16
+  MASK=24
 fi
 
 echo "----------------"

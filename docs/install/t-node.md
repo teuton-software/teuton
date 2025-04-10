@@ -4,24 +4,19 @@
 
 # 1. Recommended
 
-**Installation**
-
+Installation:
 1. Install Ruby on your system.
 2. `gem install teuton`
 
 Run `teuton version` to check the installed version.
 
-**Update**
-
-`gem update teuton`.
-
-**Uninstall**
-
-`gem uninstall teuton`.
+> NOTE:
+> * Update: `gem update teuton`.
+> * Uninstall: `gem uninstall teuton`.
 
 # 2. Problems
 
-Don't find `teuton` command (OpenSUSE distro, for example), try this:
+Sometimes we don't find `teuton` command (OpenSUSE distro, for example), so try this:
 
 Option A:
 * `ruby -v`, display your current ruby version. Suppose it is "2.5".
@@ -40,7 +35,7 @@ If you don't know how to install Ruby on your system, execute this script to run
 Run this command as `root` user:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/install/linux/linux_t-node_install.sh | bash
+wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/install/linux/t-node_install.sh | bash
 ```
 
 **T-node Windows installation**
@@ -52,7 +47,7 @@ Requirements:
 Run this command on **PowerShell (PS)** as `Administrator` user:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/install/windows/windows_t-node_install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/install/windows/t-node_install.ps1'))
 ```
 
 **T-node Mac OS X installation**
@@ -60,7 +55,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 Run this command as admin user (member of `admin` group):
 
 ```bash
-curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/install/mac/macosx_t-node_install.sh | bash
+curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/install/mac/t-node_install.sh | bash
 ```
 
 # 4. Vagrant/Docker

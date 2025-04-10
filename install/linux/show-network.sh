@@ -2,7 +2,6 @@
 # Show network
 
 echo "----- IP    -----"
-
 ip link 
 
 echo "----- Route ------"

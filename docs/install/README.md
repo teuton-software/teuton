@@ -2,14 +2,14 @@
 
 # Installation
 
-There are 2 types of nodes/hosts, so there are 2 installations:
+There are 2 types of nodes (hosts), so there are 2 installations:
 
 | ID | Software | Description |
 | -- | -------- | ----------- |
 | **T-node** | [Teuton installation](t-node.md) | T-NODE host monitors one or severals S-NODE hosts |
 | **S-node** | [SSH server installation](s-node.md) | S-NODE hosts are monitorized by T-NODE host |
 
-Read [modes of use](modes_of_use.md) to know more about differents T-NODE/S-NODE schemes.
+> Read [modes of use](modes_of_use.md) to know more about differents T-NODE/S-NODE schemes.
 
 ## Tested OS list
 

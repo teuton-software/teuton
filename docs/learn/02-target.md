@@ -28,17 +28,17 @@ end
 When the user exists, we expect this words: `uid=, (obiwan), gid=`.
 
 ```
-❯ id obiwan
+> id obiwan
 uid=1000(obiwan) gid=1000(obiwan) grupos=1000(obiwan)
 ```
 
 But when user does not exist, we expect different words: `id:, vader, no exist`.
 
 ```
-❯ id vader
+> id vader
 id: «vader»: no such user
 
-❯ echo $?
+> echo $?
 1
 
 ```
