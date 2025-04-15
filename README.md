@@ -70,3 +70,5 @@ CASE RESULTS
 1. Create new Pull Request.
 
 You can also [create issues](https://github.com/teuton-software/teuton/issues) with your requests, incidences or suggestions.
+
+> Read [Spanish documentation](docs/es/README.md)

@@ -1,12 +1,12 @@
 
-# TEUTON (ES)
+# TEUTON (ES) - (Documentación en progreso)
 
 [![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 
-_Crear test unitarios para tus máquinas y prueba tu infraestructura como si fuera código._
+_Crear test unitarios para tus máquinas y probar tu infraestructura como si fuera código._
 
-![logo](./docs/images/logo.png)
+![logo](../images/logo.png)
 
 El test de infraestructura es útil para:
 * Profesores de administración de sistemas que quieren evaluar a las máquinas remotas de los alumnos.
@@ -37,7 +37,7 @@ CASE RESULTS
 +------+-----------+-------+-------+
 ```
 
-> Más información sobre los [comandos](docs/commands/README.md)
+> Más información sobre los [comandos](../commands/README.md)
 
 # Características
 
@@ -49,12 +49,12 @@ CASE RESULTS
 
 # Documentación
 
-* [Instalación](docs/install/README.md)
-* [Aprender](docs/learn/README.md)
-* [Ejemplos](examples)
-* [Comandos](docs/commands/README.md)
-* [DSL](docs/dsl/README.md)
-* [Blogs y videos](docs/videos.md)
+* [Instalación](../install/README.md)
+* [Aprender](../learn/README.md)
+* [Ejemplos](../../examples)
+* [Comandos](../commands/README.md)
+* [DSL](../dsl/README.md)
+* [Blogs y videos](../videos.md)
 
 # Contacto
 

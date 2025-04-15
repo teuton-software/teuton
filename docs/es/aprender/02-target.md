@@ -2,38 +2,39 @@
 
 # target
 
-A [target](../dsl/target.md) is a feature you want to check. Targets are defined into `group` sections.
+Un [target](../../dsl/target.md) es el objetivo que queremos evaluar. Los objetivos se definen dentro de una sección `group`.
 
 ## Target definition
 
-Every evaluation has 3 parts:
-* [target](dsl/target.md): Description of the element to be tested.
-* [run](../dsl/run.md): Execute a command `id obiwan` on localhost.
-* [expect](../dsl/expect.md): Verify that the result contains expected value.
+Cada proceso de evaluación consta de 3 partes:
+
+* [target](../../dsl/target.md): Descripción del elemento que va a ser evaluado.
+* [run](../../dsl/run.md): Ejecutar el comando `id obiwan` en la máquina local.
+* [expect](../../dsl/expect.md): Verificar que el resultado del comando devuelve el valor esperado.
 
 ```ruby
-group "Learn about targets" do
+group "Aprender sobre los targets" do
 
-  target "Exist user obiwan"
+  target "Existe el usuario <obiwan>"
   run "id obiwan"
   expect ["uid=", "(obiwan)", "gid="]
 
-  target "Delete user vader"
+  target "No existe el usuario <vader>"
   run "id vader"
   expect_fail
 end
 ```
 
-> In this example, our localhost's OS is GNU/Linux (or any other compatible OS) because the command executed is `id obiwan`.
+> En este ejemplo estamo usando un SO GNU/Linux en la máquina local porque queremos ejecutar el comando `id obiwan`.
 
-When the user exists, we expect this words: `uid=, (obiwan), gid=`.
+Cuando el usuario existe, esperamos encontrar estas palabras en la salida del comando: `uid=, (obiwan), gid=`.
 
 ```
 > id obiwan
 uid=1000(obiwan) gid=1000(obiwan) grupos=1000(obiwan)
 ```
 
-But when user does not exist, we expect command fail.
+Pero cuando el usuario no existe, se esperan una salida de error.
 
 ```
 > id vader
@@ -44,12 +45,12 @@ id: «vader»: no such user
 
 ```
 
-## Execution section
+## Section de ejecución
 
-When we run this teuton test, the execution section (`play`) is processed. This seccion now contains this:
+Cuando se ejecuta el test, se procesa la sección `play`, la cual contiene las siguientes instrucciones:
 
-* [show](../dsl/show.md): display process information on screen.
-* [export](../dsl/export.md): build output reports.
+* [show](../../dsl/show.md): mostrar por pantalla información del proceso.
+* [export](../../dsl/export.md): generar informes de salida.
 
 ```ruby
 play do
@@ -58,9 +59,9 @@ play do
 end
 ```
 
-## Example
+## Ejemplo
 
-Execute this command to run the test:
+Usa este comando para ejecutar el test:
 
 ```console
 > teuton run examples/02-target
@@ -72,7 +73,7 @@ CASE RESULTS
 +------+-----------+-------+-------+
 ```
 
-Report files are created into `var/02-target/` folder:
+Los informes de salida se crean en la carpeta `var/02-target/`:
 
 ```console
 var
@@ -82,10 +83,11 @@ var
     └── resume.txt
 ```
 
-Let's see one report:
+Veamos el contenido:
 
 ```
-❯ cat var/02-target/case-01.txt
+> cat var/02-target/case-01.txt
+
 CONFIGURATION
 +-------------+-----------+
 | tt_members  | anonymous |
@@ -93,7 +95,6 @@ CONFIGURATION
 | tt_skip     | false     |
 | tt_testname | 02-target |
 +-------------+-----------+
-
 
 GROUPS
 - Learn about targets
