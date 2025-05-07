@@ -2,9 +2,11 @@
 # vi: set ft=ruby :
 
 NAME = "teuton-ubuntu"
+BOX = "ubuntu/focal64"
+
 Vagrant.configure("2") do |config|
   config.vm.define NAME do |i|
-    i.vm.box = "ubuntu/focal64"
+    i.vm.box = BOX
     i.vm.hostname = NAME
     # i.vm.network "public_network", bridge: [ "eth0" ]
     # i.vm.network "public_network", bridge: [ "wlan0" ]
