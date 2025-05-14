@@ -1,4 +1,5 @@
-require "json/pure"
+# require "json/pure"
+require "json"
 require_relative "array"
 
 class ResumeJSONFormatter < ResumeArrayFormatter

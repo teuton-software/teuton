@@ -1,5 +1,6 @@
+# require "json/pure"
+require "json"
 require "yaml"
-require "json/pure"
 
 ##
 # Functions that read data from ConfigFile using YAML or JSON formats
