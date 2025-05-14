@@ -126,3 +126,7 @@ DSL send:
 
 - [FIX] Improve the markdown output of the readme.
 - [FIX] Telnet exitcode
+
+## [2.9.5] 20250514
+
+- [FIX] `require "json_pure"`is deprecated. Use `json` gem instead of `json_pure`.
