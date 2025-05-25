@@ -6,7 +6,7 @@ USERNAME = "user3"
 
 Vagrant.configure("2") do |config|
   config.vm.define NAME do |i|
-    i.vm.box = "generic/debian10"
+    i.vm.box = "generic/debian12"
     i.vm.hostname = NAME
     # i.vm.synced_folder "./", "/vagrant"
     # i.vm.network "public_network", bridge: ["wlan0"], ip: "192.168.1.203"
