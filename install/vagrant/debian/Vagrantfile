@@ -4,7 +4,7 @@
 NAME = "teuton-debian"
 Vagrant.configure("2") do |config|
   config.vm.define NAME do |i|
-    i.vm.box = "generic/debian10"
+    i.vm.box = "generic/debian12"
     i.vm.hostname = NAME
     # i.vm.network "public_network", bridge: [ "eth0" ]
     # i.vm.network "public_network", bridge: [ "wlan0" ]
