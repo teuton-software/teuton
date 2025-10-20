@@ -20,6 +20,7 @@ require_relative "utils"
 class CaseManager
   include Utils
   include Verbose
+
   attr_reader :report, :cases
 
   def initialize

@@ -10,6 +10,7 @@ require_relative "result"
 class Readme
   include DSL
   include ReadmeDSL
+
   attr_reader :result
   attr_reader :data
 

@@ -26,7 +26,7 @@ class CaseManager
     @report.tail[:finish_time] = finish_time
     @report.tail[:duration] = finish_time - start_time
 
-    duration = format("%3.3f", (finish_time - start_time))
+    duration = format("%3.3f", finish_time - start_time)
     verboseln Rainbow("\nFinished in #{duration} seconds").green
     verboseln Rainbow("-" * 36).green
     verboseln " "
