@@ -6,36 +6,37 @@ Available command functions:
 1. [Show help](#1-show-help)
 2. [Show version](#2-show-version)
 3. [Create new test](#3-create-new-test)
-4. [Check teuton test](#4-check-teuton-test)
-5. [Run teuton test](#5-run-teuton-test)
+4. [Check test](#4-check-test)
+5. [Run test](#5-run-test)
+6. [Show test info as README file](#5-show-test-info-as-readme-file)
 
 # 1. Show help
 
-```bash
-teuton
-```
+Show help about teuton command functions.
 
 Example:
-
 ```bash
-> teuton
+$ teuton help
 Commands:
-  teuton [run] [OPTIONS] DIRECTORY  # Run challenge from directory
-  teuton check [OPTIONS] DIRECTORY  # Test or check challenge contents
+  teuton [run] [OPTIONS] DIRECTORY  # Run test from directory
+  teuton check [OPTIONS] DIRECTORY  # Check test and config file content
+  teuton config DIRECTORY           # Suggest configuration
   teuton help [COMMAND]             # Describe available commands or one specific command
   teuton new DIRECTORY              # Create skeleton for a new project
-  teuton readme DIRECTORY           # Create README.md file from challenge contents
+  teuton readme DIRECTORY           # Show README extracted from test contents
   teuton version                    # Show the program version
-
 ```
 
-Alias:
+Execute `teuton help FUNCTION_NAME` for more information.
 
+Alias:
 * `teuton h`
 * `teuton -h`
 * `teuton --help`
 
 # 2. Show version
+
+Show current version.
 
 ```bash
 teuton version
@@ -45,7 +46,7 @@ Example:
 
 ```bash
 $ teuton version                               
-teuton (version 2.2.0)
+teuton (version 2.9.5)
 ```
 
 Alias:
@@ -78,7 +79,7 @@ This command will create the next structure:
 | File/Directory  | Description    |
 | --------------- | -------------- |
 | foo             | Base directory |
-| foo/start.rb    | Main Script    |
+| foo/start.rb    | Main file with test definitions |
 | foo/config.yaml | YAML configuration file |
 
 Alias:
@@ -87,7 +88,7 @@ Alias:
 * `teuton -n foo`
 * `teuton --new foo`
 
-# 4. Check teuton test
+# 4. Check test
 
 ```console
 teuton check DIRPATH
@@ -110,7 +111,7 @@ Alias:
 * `teuton -c foo`
 * `teuton --check foo`
 
-# 5. Run teuton test
+# 5. Run test
 
 ```bash
 teuton run DIRPATH
@@ -124,7 +125,7 @@ Alias:
 
 * `teuton foo`
 
-# 6. Show README
+# 6. Show test info as README file
 
 ```bash
 teuton readme DIRPATH

@@ -25,7 +25,7 @@ gem install teuton
 
 # Usage
 
-Executing `teuton` command to run example test:
+Use `teuton run` command to run test:
 
 ```console
 > teuton run examples/01-target
