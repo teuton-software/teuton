@@ -8,11 +8,11 @@ Available command functions:
 3. [Create new test](#3-create-new-test)
 4. [Check test](#4-check-test)
 5. [Run test](#5-run-test)
-6. [Show test info as README file](#5-show-test-info-as-readme-file)
+6. [Show test info as README file](#6-show-test-info-as-readme-file)
 
 # 1. Show help
 
-Show help about teuton command functions.
+Show help about command functions.
 
 Example:
 ```bash
@@ -38,9 +38,7 @@ Alias:
 
 Show current version.
 
-```bash
-teuton version
-```
+Usage: `teuton version`
 
 Example:
 
@@ -57,16 +55,14 @@ Alias:
 
 # 3. Create new test
 
-Create teuton test skeleton.
+Create test skeleton.
 
-```bash
-teuton new foo
-```
+Usage: `teuton new foo`
 
 Example:
 
 ```console
-> teuton new foo
+$ teuton new foo
 
 [INFO] Creating foo project skeleton
 * Create dir        => foo
@@ -90,13 +86,11 @@ Alias:
 
 # 4. Check test
 
-```console
-teuton check DIRPATH
-```
+Check test and config files located into DIRPATH folder.
 
-Description: this command check teuton test and config files located into DIRPATH folder.
+Usage: `teuton check DIRPATH`
 
-[Example](example_check.md)
+[Example](check-example.md)
 
 | Command                      | Description |
 | ---------------------------- | ----------- |
@@ -113,29 +107,17 @@ Alias:
 
 # 5. Run test
 
-```bash
-teuton run DIRPATH
-```
-
-Description: this command run teuton test located into DIRPATH folder.
-
-[Example](example_run.md)
-
-Alias:
-
-* `teuton foo`
+Read about [how to run tests](howto-run-tests.md)
 
 # 6. Show test info as README file
 
-```bash
-teuton readme DIRPATH
-```
+Create a readme file for the exercise.
 
-Read test and config files content, and display information about
-what kind of problem/exercise it is going to be evaluated. The students need this
-information to resolv the problem/exercise into their machines.
+Usage: `teuton readme DIRPATH > README.md`
 
-The teacher could write this information or may use this command to generate automaticaly.
+This function reads test and config files, and generate Markdown output with guidelines and target descriptions.
+
+Students will need this information to resolv the proposed problem/exercise into their machines.
 
 Alias:
 * `teuton r DIRPATH`

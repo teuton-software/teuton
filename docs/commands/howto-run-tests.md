@@ -1,21 +1,25 @@
 
 [<< back](README.md)
 
+# Run test
+
+Run test located into DIRPATH folder.
+
+Usage: `teuton run DIRPATH`
+
+Alias: `teuton foo`
+
 1. [Run test](#1-run-test)
 2. [Command options](#2-command-options)
 3. [Choosing config file](#3-choosing-config-file)
 
 # 1. Run test
 
-Running Teuton test located into `example/01-target` folder.
+**Example**: Running Teuton test located into `example/01-target` folder.
 
 ```bash
-teuton run example/01-target
-```
+$ teuton run example/01-target
 
-Example:
-
-```bash
 ------------------------------------
 Started at 2023-01-21 13:32:24 +0000
 F
@@ -29,10 +33,12 @@ CASE RESULTS
 +------+-----------+-------+-------+
 ```
 
+> Output files are saved into `var/01-target` folder.
+
 # 2. Command options
 
 ```
-> teuton help run
+$ teuton help run
 
 Usage:
   teuton [run] [OPTIONS] DIRECTORY

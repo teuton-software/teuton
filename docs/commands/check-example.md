@@ -9,16 +9,12 @@
 | --cpath          | Specify path to config file | TEST-FOLDER/config.yaml |
 | --cname          | Specify name to config file | config.yaml |
 
-Usage:
-
-```
-teuton check PATH-TO-TEST-FOLDER
-```
+Usage: `teuton check PATH-TO-TEST-FOLDER`
 
 Example:
 
 ```bash
-❯ teuton check examples/02-target
+$ teuton check examples/02-target
 
 +----------------------------+
 | GROUP: Learn about targets |
