@@ -29,10 +29,7 @@ Commands:
 
 Execute `teuton help FUNCTION_NAME` for more information.
 
-Alias:
-* `teuton h`
-* `teuton -h`
-* `teuton --help`
+Alias: `teuton h`,`teuton -h`, `teuton --help`
 
 # 2. Show version
 
@@ -47,11 +44,7 @@ $ teuton version
 teuton (version 2.9.5)
 ```
 
-Alias:
-
-* `teuton v`
-* `teuton -v`
-* `teuton --version`
+Alias: `teuton v`, `teuton -v`, `teuton --version`
 
 # 3. Create new test
 
@@ -78,11 +71,7 @@ This command will create the next structure:
 | foo/start.rb    | Main file with test definitions |
 | foo/config.yaml | YAML configuration file |
 
-Alias:
-
-* `teuton n foo`
-* `teuton -n foo`
-* `teuton --new foo`
+Alias: `teuton n foo`, `teuton -n foo`, `teuton --new foo`
 
 # 4. Check test
 
@@ -99,11 +88,7 @@ Usage: `teuton check DIRPATH`
 | teuton check path/to/file/foo.rb | Test content of foo.rb and foo.yaml files. |
 | teuton check path/to/file/foo.rb --cname=demo | Test content of foo.rb and demo.yaml files.|
 
-Alias:
-
-* `teuton c foo`
-* `teuton -c foo`
-* `teuton --check foo`
+Alias: `teuton c foo`, `teuton -c foo`, `teuton --check foo`
 
 # 5. Run test
 

@@ -9,13 +9,13 @@ Usage: `teuton run DIRPATH`
 
 Alias: `teuton foo`
 
-1. [Run test](#1-run-test)
-2. [Command options](#2-command-options)
+1. [Example](#1-example)
+2. [Options](#2-options)
 3. [Choosing config file](#3-choosing-config-file)
 
-# 1. Run test
+# 1. Example
 
-**Example**: Running Teuton test located into `example/01-target` folder.
+Running Teuton test located into `example/01-target` folder.
 
 ```bash
 $ teuton run example/01-target
@@ -35,7 +35,7 @@ CASE RESULTS
 
 > Output files are saved into `var/01-target` folder.
 
-# 2. Command options
+# 2. Options
 
 ```
 $ teuton help run
