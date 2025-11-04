@@ -11,3 +11,4 @@ namespace :devel do
     names = %w[ssh make gcc ruby-devel]
     names.each { |name| system("apt-get install -y #{name}") }
   end
+end
