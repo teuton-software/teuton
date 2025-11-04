@@ -11,10 +11,3 @@ namespace :devel do
     names = %w[ssh make gcc ruby-devel]
     names.each { |name| system("apt-get install -y #{name}") }
   end
-
-  desc "Create symbolic link"
-  task :launcher do
-    puts "==> Creating symbolic link into /usr/local/bin"
-    system("ln -s #{Dir.pwd}/teuton /usr/local/bin/teuton")
-  end
-end
