@@ -1,7 +1,7 @@
 require "test/unit"
 require "yaml"
 
-class T12configTest < Test::Unit::TestCase
+class T14configTest < Test::Unit::TestCase
   def setup
     @dirbase = File.join("test", "files")
     @filepath = File.join(@dirbase, "t14-config")
@@ -88,7 +88,7 @@ class T12configTest < Test::Unit::TestCase
   private
 
   def execute_teuton_test(filepath, options = "")
-    cmd = "teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null"
+    cmd = "./teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null"
     system(cmd)
     testname = File.basename(filepath)
     filepath = File.join("var", testname, "resume.yaml")

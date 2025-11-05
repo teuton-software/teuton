@@ -1,8 +1,8 @@
 require "test/unit"
 require "yaml"
 
-class T11targetTest < Test::Unit::TestCase
-  def test_example_11_target
+class T12targetTest < Test::Unit::TestCase
+  def test_example_12_target
     filepath = File.join("test", "files", "t12-target")
     testname, _resume, data = execute_teuton_test filepath
 
@@ -34,7 +34,7 @@ class T11targetTest < Test::Unit::TestCase
   private
 
   def execute_teuton_test(filepath, options = "")
-    cmd = "teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null"
+    cmd = "./teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null"
     system(cmd)
     testname = File.basename(filepath)
     filepath = File.join("var", testname, "resume.yaml")
