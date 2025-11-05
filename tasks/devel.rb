@@ -23,10 +23,11 @@ namespace :devel do
     rubypath = `rbenv which ruby`.strip
     teutonpath = File.join(Dir.pwd, "teuton") 
 
-    puts "# File: /usr/local/bin/teuton"
     puts "# Created with: 'rake devel:launcher'"
+    puts "# - Copy this content into: #{launcherpath}"
+    puts "# - Then: chmod +x #{launcherpath}"
     puts "RUBYPATH=#{rubypath}"
     puts "TEUTONPATH=#{teutonpath}"
-    puts "$RUBY $TEUTON $@"
+    puts "$RUBYPATH $TEUTONPATH $@"
   end
 end
