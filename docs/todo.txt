@@ -17,17 +17,16 @@ var/tesname/states.db ¿?
 Docker/podman integration
 Host definition example:
   host1_ip:
-  host1_portr:
+  host1_port:
   host1_username:
   host1_password:
 
-  host1_type: docker/podman
-  host1_image: "debian:latest"
-  host1_name (default value) -> "testname_hostname_case01" as dockername
-  host1_preffix: (Code added to docker name) "idp" -> "idp_hostname_case01"
+  host1_docker_image: "debian:latest"
+  host1_docker_name (default value) -> "testname_hostname_case01" as dockername
+  host1_docker_preffix: (Code added to docker name) "idp" -> "idp_hostname_case01"
 
-  host1_vol_rw: "_, _, _"
-  host1_vol_ro: "_, _, _"
+  host1_docker_vol_rw: "_, _, _"
+  host1_docker_vol_ro: "_, _, _"
 
 * Folders to mount docker volumes
   Create temp folders for every case/host.
