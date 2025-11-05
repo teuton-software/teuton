@@ -4,12 +4,18 @@
 
 There are 2 types of nodes (hosts), so there are 2 installations:
 
-| ID | Software | Description |
-| -- | -------- | ----------- |
-| **T-node** | [Teuton installation](t-node.md) | T-NODE host monitors one or severals S-NODE hosts |
-| **S-node** | [SSH server installation](s-node.md) | S-NODE hosts are monitorized by T-NODE host |
+**T-NODE**
+[Teuton installation](t-node.md): T-NODE host monitors one or severals S-NODE hosts.
+1. Install Ruby on your system.
+2. `gem install teuton`
 
-> Read [modes of use](modes_of_use.md) to know more about differents T-NODE/S-NODE schemes.
+**S-NODE**
+* [SSH server installation](s-node.md): S-NODE hosts are monitorized by T-NODE host.
+1. Install SSH service.
+
+## Modes of use
+
+Read [modes of use](modes_of_use.md) to know more about differents T-NODE/S-NODE schemes.
 
 ## Tested OS list
 
