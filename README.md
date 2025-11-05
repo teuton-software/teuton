@@ -4,7 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 
-_Create Unit Test for your machines. Test your infrastructure as code._
+_Test your infrastructure as code._
 
 ![logo](./docs/images/logo.png)
 
@@ -25,7 +25,7 @@ gem install teuton
 
 # Usage
 
-Use `teuton run` command to run test:
+Use `teuton run TESTPATH` command to run test:
 
 ```console
 > teuton run examples/01-target
@@ -41,7 +41,7 @@ CASE RESULTS
 
 # Features
 
-* Simple DSL to define your tests: `target`, `run`,`expect` and more.
+* Use simple DSL to define your tests: `target`, `run`,`expect` and more.
 * Remote devices only require SSH or Telnet service installed.
 * Output format: txt, html, json, yaml, etc.
 * Multiplatform.
