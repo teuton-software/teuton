@@ -11,4 +11,22 @@ namespace :devel do
     names = %w[ssh make gcc ruby-devel]
     names.each { |name| system("apt-get install -y #{name}") }
   end
+
+  desc "Create /usr/local/bin/teuton"
+  task :launcher do
+    launcherpath = "/usr/local/bin/teuton"
+    if File.exist?(launcherpath)
+      warn "File exist! (#{launcherpath})"
+      exit 1
+    end
+
+    rubypath = `rbenv which ruby`.strip
+    teutonpath = File.join(Dir.pwd, "teuton") 
+
+    puts "# File: /usr/local/bin/teuton"
+    puts "# Created with: 'rake devel:launcher'"
+    puts "RUBYPATH=#{rubypath}"
+    puts "TEUTONPATH=#{teutonpath}"
+    puts "$RUBY $TEUTON $@"
+  end
 end
