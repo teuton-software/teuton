@@ -13,7 +13,7 @@ class ReadmeCommandTest < Test::Unit::TestCase
 
   def execute_readme(name)
     dir = File.join(@dirbase, name)
-    cmd = "teuton readme #{dir} > /dev/null"
+    cmd = "./teuton readme #{dir} > /dev/null"
     assert_equal true, system(cmd)
   end
 

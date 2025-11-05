@@ -13,7 +13,7 @@ class CheckCommandTest < Test::Unit::TestCase
 
   def execute_check(name)
     dir = File.join(@dirbase, name)
-    cmd = "teuton check #{dir} 2>/dev/null 1>/dev/null"
+    cmd = "./teuton check #{dir} 2>/dev/null 1>/dev/null"
     assert_equal true, system(cmd)
   end
 

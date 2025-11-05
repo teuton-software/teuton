@@ -14,10 +14,10 @@ class RunCommandTest < Test::Unit::TestCase
   def execute_run(name)
     dir = File.join(@dirbase, name)
 
-    cmd = "teuton run --quiet #{dir} > /dev/null"
+    cmd = "./teuton run --quiet #{dir} > /dev/null"
     assert_equal true, system(cmd)
 
-    cmd = "teuton #{dir} > /dev/null"
+    cmd = "./teuton #{dir} > /dev/null"
     assert_equal true, system(cmd)
   end
 

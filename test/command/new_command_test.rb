@@ -13,12 +13,12 @@ class NewCommandTest < Test::Unit::TestCase
   end
 
   def test_version
-    assert_equal true, system("teuton version > /dev/null")
+    assert_equal true, system("./teuton version > /dev/null")
   end
 
   def test_new
     dir = "delete.this.new"
-    cmd = "teuton new #{dir} > /dev/null"
+    cmd = "./teuton new #{dir} > /dev/null"
     assert_equal true, system(cmd)
 
     files = ["start.rb", "config.yaml"]
