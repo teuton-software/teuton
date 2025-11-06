@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require "colorize"
+require "rainbow"
 require "yaml"
 
 action = ARGV.first
@@ -31,10 +31,10 @@ vms.each do |vmname|
 
   vmdir = File.join("test/vagrant", vmname)
   cmd = "cd #{vmdir};vagrant #{action}"
-  puts "==> #{cmd}".light_yellow
+  puts Rainbow("==> #{cmd}").bright.yellow
   ok = system(cmd)
-  puts "==> #{cmd}".light_red unless ok
+  puts Rainbow("==> #{cmd}").bright.red unless ok
 end
 end_time = Time.now
 
-puts "==> Action (#{action}): #{end_time - start_time} secs".white
+puts Rainbow("==> Action (#{action}): #{end_time - start_time} secs").white
