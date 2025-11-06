@@ -14,20 +14,9 @@ Available command functions:
 
 Show help about command functions.
 
-Example:
-```bash
-$ teuton help
-Commands:
-  teuton [run] [OPTIONS] DIRECTORY  # Run test from directory
-  teuton check [OPTIONS] DIRECTORY  # Check test and config file content
-  teuton config DIRECTORY           # Suggest configuration
-  teuton help [COMMAND]             # Describe available commands or one specific command
-  teuton new DIRECTORY              # Create skeleton for a new project
-  teuton readme DIRECTORY           # Show README extracted from test contents
-  teuton version                    # Show the program version
-```
-
-Execute `teuton help FUNCTION_NAME` for more information.
+Usage: 
+* `teuton help`
+* `teuton help FUNCTION_NAME`
 
 Alias: `teuton h`,`teuton -h`, `teuton --help`
 
@@ -36,13 +25,6 @@ Alias: `teuton h`,`teuton -h`, `teuton --help`
 Show current version.
 
 Usage: `teuton version`
-
-Example:
-
-```bash
-$ teuton version                               
-teuton (version 2.9.5)
-```
 
 Alias: `teuton v`, `teuton -v`, `teuton --version`
 
@@ -75,7 +57,7 @@ Alias: `teuton n foo`, `teuton -n foo`, `teuton --new foo`
 
 # 4. Check test
 
-Check test and config files located into DIRPATH folder.
+Check test and config files from DIRPATH folder.
 
 Usage: `teuton check DIRPATH`
 
@@ -100,11 +82,6 @@ Create a readme file for the exercise.
 
 Usage: `teuton readme DIRPATH > README.md`
 
-This function reads test and config files, and generate Markdown output with guidelines and target descriptions.
+This function reads test and config files, and generate Markdown output with guidelines and target descriptions about the exercise.
 
-Students will need this information to resolv the proposed problem/exercise into their machines.
-
-Alias:
-* `teuton r DIRPATH`
-* `teuton -r DIRPATH`
-* `teuton --readme DIRPATH`
+Alias: `teuton r DIRPATH`, `teuton -r DIRPATH`, `teuton --readme DIRPATH`
