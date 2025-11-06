@@ -1,5 +1,5 @@
 ---
-:global:
+global:
   gateway: 192.168.1.255
   dns: 1.1.1.1
   domain: curso1516
