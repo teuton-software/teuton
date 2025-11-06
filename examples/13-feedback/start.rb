@@ -1,7 +1,7 @@
-group "Preserve output reports" do
-  target "Exits user david"
-  run "id david"
-  expect "david"
+group "Hide feedback messages from output" do
+  target "Service SSH disabled"
+  run "systemctl status sshd"
+  expect "disabled"
 end
 
 play do

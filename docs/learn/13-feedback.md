@@ -37,12 +37,13 @@ Executing `teuton run examples/13-feedback`, we get this output:
 
 ```
 GROUPS
-- Preserve output reports
+- Hide feedback messages from output
     01 (1.0/1.0)
-        Description : Exits user Obiwan
-        Command     : ********
-        Duration    : 0.002 (local)
-        Alterations : *******************
-        Expected    : ************** (String)
-        Result      : ******** (String)
+        Description : Service SSH disabled
+        Command     : *********************
+        Output      : *********
+        Duration    : 0.011 (local)
+        Alterations : **********************
+        Expected    : **************
+        Result      : ********
 ```
