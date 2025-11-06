@@ -1,7 +1,7 @@
 group "Preserve output reports" do
   target "Create user david"
   run "id david"
-  expect_ok 
+  expect_ok
 end
 
 play do
