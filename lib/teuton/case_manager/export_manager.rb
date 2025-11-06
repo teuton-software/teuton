@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rainbow"
+require_relative "../utils/project"
 
 ##
 # Execute "export" order: Export every case report
@@ -57,13 +58,20 @@ class ExportManager
   ##
   # Preserve output files for current project execution
   def preserve_files
-    app = Application.instance
+    srcdir = File.join(
+      Project.value[:output_basedir],
+      Project.value[:test_name]
+    )
+
     t = Time.now
-    data = {year: t.year, month: t.month, day: t.day, hour: t.hour, min: t.min, sec: t.sec}
+    data = {
+      year: t.year, month: t.month, day: t.day,
+      hour: t.hour, min: t.min, sec: t.sec
+    }
     subdir = format("%<year>s%<month>02d%<day>02d-" \
                     "%<hour>02d%<min>02d%<sec>02d", data)
-    logdir = File.join(app.output_basedir, app.global[:tt_testname], subdir)
-    srcdir = File.join(app.output_basedir, app.global[:tt_testname])
+    logdir = File.join(srcdir, subdir)
+
     puts "[INFO] Preserving files => #{logdir}"
     FileUtils.mkdir(logdir)
     Dir.glob(File.join(srcdir, "**.*")).each { |file| FileUtils.cp(file, logdir) }

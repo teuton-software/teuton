@@ -1,6 +1,5 @@
 require "rainbow"
 require "terminal-table"
-# require_relative "../utils/application"
 require_relative "../utils/project"
 
 # | Verbosity level | Description |
