@@ -130,3 +130,7 @@ DSL send:
 ## [2.9.5] 20250514
 
 - [FIX] `require "json_pure"`is deprecated. Use `json` gem instead of `json_pure`.
+
+## [2.9.6] 20251106
+
+- [FIX] Problem with `export preserve: true`. It was using old class Application. Now use Project class.
