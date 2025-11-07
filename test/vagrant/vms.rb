@@ -1,4 +1,8 @@
 #!/usr/bin/env ruby
+# Requirements:
+# - sudo systemctl start libvirtd
+# - groups
+# - sudo usermod -aG libvirt $USER
 require "rainbow"
 require "yaml"
 
