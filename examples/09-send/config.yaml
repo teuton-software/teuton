@@ -18,8 +18,8 @@ cases:
   hostname: hostname_3
   username: username_3
 - tt_members: profesor
-  host1_ip: 192.168.1.28
+  host1_ip: vm-debian13
   host1_username: profesor
   host1_password: profesor
-  hostname: leap
+  hostname: debian13
   username: profesor
