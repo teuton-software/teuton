@@ -17,3 +17,9 @@ cases:
   host1_password: secret_3
   hostname: hostname_3
   username: username_3
+- tt_members: profesor
+  host1_ip: 192.168.1.16
+  host1_username: profesor
+  host1_password: profesor
+  hostname: leap
+  username: profesor

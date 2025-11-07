@@ -134,3 +134,9 @@ DSL send:
 ## [2.9.6] 20251106
 
 - [FIX] Problem with `export preserve: true`. It was using old class Application. Now use Project class.
+
+## []
+
+- [FIX] `net-ssh` gem can't use `ssh-ed25519` security keys. Required gems added to gemspec: 
+  * ed25519 --version ~> "1.2"
+  * bcrypt_pbkdf --version "~> 1.0"
