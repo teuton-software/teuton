@@ -15,15 +15,11 @@ class Case
   include DSL
   include Verbose
 
-  attr_accessor :action # Updated by ExecuteManager
-  attr_accessor :result # Updated by ExecuteManager
-  attr_accessor :sessions # Updated by ExecuteManager
-  attr_accessor :conn_status # Updated by ExecuteManager
+  # Updated by ExecuteManager
+  attr_accessor :action, :result, :sessions, :conn_status
+  # Readed by ExecuteManager
+  attr_reader :id, :config, :uniques, :skip
 
-  attr_reader :id
-  attr_reader :config # Readed by ExecuteManager
-  attr_reader :uniques
-  attr_reader :skip
   @@id = "01" # First case ID value
 
   def initialize(config)

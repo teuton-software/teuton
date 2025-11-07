@@ -10,10 +10,10 @@ module DSL
     host = args[:copy_to].to_s
     return unless @conn_status[host].nil?
 
-    ip = get((host + "_ip").to_sym)
-    username = get((host + "_username").to_sym).to_s
-    password = get((host + "_password").to_sym).to_s
-    port = get((host + "_port").to_sym).to_i
+    ip = get(:"#{host}_ip")
+    username = get(:"#{host}_username").to_s
+    password = get(:"#{host}_password").to_s
+    port = get(:"#{host}_port").to_i
     port = 22 if port.zero?
 
     filename = "#{@report.filename}.#{@report.format}"
@@ -27,6 +27,9 @@ module DSL
       File.join(".", filename)
     end
 
+    send_logpath = File.join(Project.value[:output_basedir], Project.value[:test_name], "send.log")
+    send_logfile = File.open(send_logpath, "a")
+
     # Upload a file or directory to the remote host
     begin
       Net::SFTP.start(ip, username, password: password, port: port) do |sftp|
@@ -34,9 +37,11 @@ module DSL
       end
       msg = Rainbow("==> Case #{get(:tt_members)}: report (#{remotefilepath}) copy to (#{ip})").green
       verboseln(msg)
+      send_logfile.write "#{msg}\n"
     rescue
       msg = Rainbow("==> [FAIL] #{get(:tt_members)}: 'scp #{localfilepath}' to #{remotefilepath}").red
       verboseln(msg)
+      send_logfile.write "#{msg}\n"
     end
   end
 

@@ -63,9 +63,9 @@ class Project
     value[:config_path] = finder.config_path
     value[:test_name] = finder.test_name
 
-    unless value[:options]["case"].nil?
-      numbers = value[:options]["case"].split(",")
-      value[:options]["case"] = numbers.collect!(&:to_i)
-    end
+    return if value[:options]["case"].nil?
+
+    numbers = value[:options]["case"].split(",")
+    value[:options]["case"] = numbers.collect!(&:to_i)
   end
 end

@@ -18,7 +18,7 @@ cases:
   hostname: hostname_3
   username: username_3
 - tt_members: profesor
-  host1_ip: vm-debian13
+  host1_ip: test-host
   host1_username: profesor
   host1_password: profesor
   hostname: debian13
