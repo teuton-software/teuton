@@ -35,6 +35,7 @@ module Formatter
       xml: XMLFormatter,
       yaml: YAMLFormatter,
       moodle_csv: MoodleCSVFormatter,
+      resume_colored_text: ResumeColoredTextFormatter,
       resume_html: ResumeHTMLFormatter,
       resume_json: ResumeJSONFormatter,
       resume_txt: ResumeTXTFormatter,

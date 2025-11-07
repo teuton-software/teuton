@@ -12,7 +12,7 @@ class SendManager
   def call(cases, args)
     threads = []
     puts ""
-    write("-" * 50, :green)
+    write("-" * 47, :green)
     write(Time.new, :green)
     write("Sending files...#{args}", :green)
 
@@ -20,7 +20,7 @@ class SendManager
     threads.each(&:join)
 
     puts Rainbow("Sending finished!").green
-    puts Rainbow("-" * 50).green
+    puts Rainbow("-" * 47).green
   end
 
   private

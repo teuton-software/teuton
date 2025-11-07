@@ -3,11 +3,7 @@ require_relative "../utils/settings"
 require_relative "formatter/formatter"
 
 class Report
-  attr_accessor :id, :filename, :output_dir
-  attr_accessor :head
-  attr_accessor :lines
-  attr_accessor :tail
-  attr_accessor :format
+  attr_accessor :id, :filename, :output_dir, :head, :lines, :tail, :format
   attr_reader :history
 
   def initialize(id = "00")

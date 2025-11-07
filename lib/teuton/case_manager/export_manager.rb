@@ -22,9 +22,7 @@ class ExportManager
     end
 
     options = strings2symbols(args)
-    if options[:format].nil?
-      options[:format] = default_format
-    end
+    options[:format] = default_format if options[:format].nil?
 
     # Step 1: Export case reports
     threads = []
