@@ -21,5 +21,9 @@ Vagrant.configure("2") do |config|
       v.name = NAME
       v.memory = 2048
     end
+    # i.vm.provider "libvirt" do |v|
+    #   v.name = NAME
+    #   v.memory = 2048
+    # end
   end
 end
