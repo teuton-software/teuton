@@ -2,7 +2,7 @@
 
 module DSL
   # * send, tempfile, tempdir, remote_tempdir, remote_tempfile
-  def send(args = {})
+  def send(logfile, args = {})
     return if skip?
 
     return unless args[:copy_to]
@@ -22,26 +22,26 @@ module DSL
     filename = args[:prefix].to_s + filename if args[:prefix]
 
     remotefilepath = if args[:dir]
-      File.join(args[:dir], filename)
-    else
-      File.join(".", filename)
-    end
-
-    send_logpath = File.join(Project.value[:output_basedir], Project.value[:test_name], "send.log")
-    send_logfile = File.open(send_logpath, "a")
+                       File.join(args[:dir], filename)
+                     else
+                       File.join(".", filename)
+                     end
 
     # Upload a file or directory to the remote host
     begin
       Net::SFTP.start(ip, username, password: password, port: port) do |sftp|
         sftp.upload!(localfilepath, remotefilepath)
       end
-      msg = Rainbow("==> Case #{get(:tt_members)}: report (#{remotefilepath}) copy to (#{ip})").green
+      msg = Rainbow("==> [ OK ] Case #{get(:tt_members)}: report (#{remotefilepath}) copy to (#{ip})").green
       verboseln(msg)
-      send_logfile.write "#{msg}\n"
-    rescue
-      msg = Rainbow("==> [FAIL] #{get(:tt_members)}: 'scp #{localfilepath}' to #{remotefilepath}").red
+      logfile.write "#{msg}\n"
+      logfile.flush
+    rescue StandardError => e
+      msg = Rainbow("==> [FAIL] Case #{get(:tt_members)}: 'scp #{localfilepath}' to #{remotefilepath}").red
+      msg += "\n--> [ERROR] #{e}"
       verboseln(msg)
-      send_logfile.write "#{msg}\n"
+      logfile.write "#{msg}\n"
+      logfile.flush
     end
   end
 
