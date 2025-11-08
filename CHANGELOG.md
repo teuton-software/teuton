@@ -1,4 +1,4 @@
-## [2.9.7] 20251108
+## [2.10.0] 20251108
 
 - [FIX] `net-ssh` gem can't use `ssh-ed25519` security keys by default. It requires add gems to gemspec: 
   * ed25519 --version ~> "1.2"

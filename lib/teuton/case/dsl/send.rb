@@ -22,10 +22,10 @@ module DSL
     filename = args[:prefix].to_s + filename if args[:prefix]
 
     remotefilepath = if args[:dir]
-                       File.join(args[:dir], filename)
-                     else
-                       File.join(".", filename)
-                     end
+      File.join(args[:dir], filename)
+    else
+      File.join(".", filename)
+    end
 
     # Upload a file or directory to the remote host
     begin
@@ -36,7 +36,7 @@ module DSL
       verboseln(msg)
       logfile.write "#{msg}\n"
       logfile.flush
-    rescue StandardError => e
+    rescue => e
       msg = Rainbow("==> [FAIL] Case #{get(:tt_members)}: 'scp #{localfilepath}' to #{remotefilepath}").red
       msg += "\n--> [ERROR] #{e}"
       verboseln(msg)
