@@ -7,7 +7,7 @@ class SendManager
   end
 
   ##
-  # Execute "send" order: Send every case report
+  # Execute "send" order: Copy every case report to remote hosts
   # @param args (Hash) Send options
   def call(cases, args)
     threads = []
