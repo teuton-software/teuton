@@ -32,7 +32,8 @@ module DSL
       Net::SFTP.start(ip, username, password: password, port: port) do |sftp|
         sftp.upload!(localfilepath, remotefilepath)
       end
-      msg = Rainbow("==> [ OK ] Case #{get(:tt_members)}: report (#{remotefilepath}) copy to (#{ip})").green
+      # msg = Rainbow("==> [ OK ] Case #{get(:tt_members)}: report (#{remotefilepath}) copy to (#{ip})").green
+      msg = "==> [ OK ] Case #{get(:tt_members)}: report (#{remotefilepath}) copy to (#{ip})"
       verboseln(msg)
       logfile.write "#{msg}\n"
       logfile.flush

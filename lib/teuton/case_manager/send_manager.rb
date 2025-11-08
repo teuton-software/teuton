@@ -20,13 +20,14 @@ class SendManager
     threads.each(&:join)
 
     write("Finished!", :green)
-    puts Rainbow("-" * 70).green
+    puts "-" * 70
   end
 
   private
 
   def write(msg, color)
-    puts Rainbow(msg).color(color)
+    # puts Rainbow(msg).color(color)
+    puts msg
     @logfile.write "#{msg}\n"
     @logfile.flush
   end

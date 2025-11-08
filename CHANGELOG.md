@@ -1,3 +1,7 @@
+## [2.10.1] 20251108
+
+- [FIX] Refactor TXTFormatter class. Its not good idea to change Rainbow.enabled = true/false into threads.
+
 ## [2.10.0] 20251108
 
 - [FIX] `net-ssh` gem can't use `ssh-ed25519` security keys by default. It requires add gems to gemspec: 

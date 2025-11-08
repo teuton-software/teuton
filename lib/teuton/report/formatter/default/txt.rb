@@ -23,7 +23,7 @@ class TXTFormatter < ArrayFormatter
   private
 
   def process_config
-    w "#{colorize('CONFIGURATION', :bg_blue)}\n"
+    w "#{colorize("CONFIGURATION", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:config].sort.each do |key, value|
         st.add_row [key.to_s, value.to_s]
@@ -35,19 +35,19 @@ class TXTFormatter < ArrayFormatter
   def process_logs
     return if @data[:logs].empty?
 
-    w "#{colorize('LOGS', :bg_blue)}\n"
+    w "#{colorize("LOGS", :bg_blue)}\n"
     @data[:logs].each { |line| w "    #{line}\n" }
   end
 
   def process_groups
     return if @data[:groups].empty?
 
-    w "\n#{colorize('GROUPS', :bg_blue)}\n"
+    w "\n#{colorize("GROUPS", :bg_blue)}\n"
     @data[:groups].each { |g| process_group g }
   end
 
   def process_results
-    w "\n#{colorize('RESULTS', :bg_blue)}\n"
+    w "\n#{colorize("RESULTS", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:results].each do |key, value|
         st.add_row [key.to_s, value.to_s]
@@ -59,7 +59,7 @@ class TXTFormatter < ArrayFormatter
   def process_hof
     return if @data[:hall_of_fame].size < 3
 
-    w "\n#{colorize('HALL OF FAME', :bg_blue)}\n"
+    w "\n#{colorize("HALL OF FAME", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |st|
       @data[:hall_of_fame].each do |line|
         color = :green
