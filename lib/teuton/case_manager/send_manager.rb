@@ -12,15 +12,15 @@ class SendManager
   def call(cases, args)
     threads = []
     puts ""
-    write("-" * 47, :green)
-    write(Time.new, :green)
-    write("Sending files...#{args}", :green)
+    write("-" * 62, :green)
+    write("Started at #{Time.new}", :green)
+    write("Sending reports to reachable hosts. Options=#{args}", :green)
 
     cases.each { |c| threads << Thread.new { c.send(args) } }
     threads.each(&:join)
 
-    puts Rainbow("Sending finished!").green
-    puts Rainbow("-" * 47).green
+    puts Rainbow("Finished!").green
+    puts Rainbow("-" * 62).green
   end
 
   private
