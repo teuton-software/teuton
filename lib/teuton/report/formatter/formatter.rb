@@ -16,8 +16,8 @@ module Formatter
   def self.call(report, options, filename)
     klass = get(options[:format])
     if klass.nil?
-      puts Rainbow("[ERROR] Unkown format: #{options[:format]}").red
-      puts Rainbow("        export format: FORMAT").red
+      puts "[ERROR] Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>"
+      puts "        Available format values: colored_text, html, json, txt, or yaml"
       exit 1
     end
     formatter = klass.new(report)
