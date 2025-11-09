@@ -8,6 +8,11 @@ We call a device with Teuton installed as t-node. [T-NODE](t-node.md) host monit
 1. Install Ruby on your system.
 2. `gem install teuton`
 
+> If you are using ed25519 for the SSH server, then you may need:
+> * `gem install ed25519 -v 1.2`
+> * `gem install bcrypt_pbkdf -v 1.0`
+> This gems requires install `ruby-devel` OS package.
+
 **SSH server installation**
 
 We call e device with SSH/Telnet service as s-node. [S-NODE](s-node.md) hosts are monitorized by T-NODE host.
