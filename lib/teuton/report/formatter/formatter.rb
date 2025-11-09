@@ -38,7 +38,7 @@ module Formatter
     if klass.nil?
       puts "[ERROR] Formatter:"
       puts "        Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>"
-      puts "        Available formats: #{Formatter.available_formats.join(',')}."
+      puts "        Available formats: #{Formatter.available_formats.join(",")}."
       exit 1
     end
     formatter = klass.new(report)
