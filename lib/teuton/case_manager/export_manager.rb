@@ -2,6 +2,7 @@
 
 require "rainbow"
 require_relative "../utils/project"
+require_relative "../report/formatter/formatter"
 
 ##
 # Execute "export" order: Export every case report
@@ -14,25 +15,35 @@ class ExportManager
   # @param input (Hash) Selected export options
   def call(main_report, cases, args, default_format)
     if args.class != Hash
-      puts Rainbow("[ERROR] Export argument error!").red
+      puts Rainbow("[ERROR] ExportManager:").red
+      puts Rainbow("  Export argument error!").red
       puts Rainbow("  Revise: export #{args}").red
       puts Rainbow("  Use   : export format: 'txt'").red
       puts ""
       exit 1
     end
 
+    # Step 1: Validate options
     options = strings2symbols(args)
     options[:format] = default_format if options[:format].nil?
 
-    # Step 1: Export case reports
+    unless Formatter.available_formats.include? options[:format]
+      puts Rainbow("[WARN] ExportManager:").yellow.bright
+      puts Rainbow("       Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>.").yellow.bright
+      puts Rainbow("       Available formats: #{Formatter.available_formats.join(',')}.").yellow.bright
+      puts Rainbow("[INFO] Using default format <txt>.").yellow.bright
+      options[:format] = :txt
+    end
+
+    # Step 2: Export case reports
     threads = []
     cases.each { |c| threads << Thread.new { c.export(options) } }
     threads.each(&:join)
 
-    # Step 2: Export resume report
+    # Step 3: Export resume report
     main_report.export_resume(options)
 
-    # Step 3: Preserve files if required
+    # Step 4: Preserve files if required
     preserve_files if options[:preserve] == true
   end
 
@@ -45,10 +56,10 @@ class ExportManager
     args = {}
     input.each_pair do |key, value|
       args[key] = if value.instance_of? String
-        value.to_sym
-      else
-        value
-      end
+                    value.to_sym
+                  else
+                    value
+                  end
     end
     args
   end

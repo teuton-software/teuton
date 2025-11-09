@@ -13,11 +13,32 @@ require_relative "resume/yaml"
 require_relative "moodle_csv_formatter"
 
 module Formatter
+  LIST = {
+    colored_text: ColoredTextFormatter,
+    html: HTMLFormatter,
+    json: JSONFormatter,
+    txt: TXTFormatter,
+    xml: XMLFormatter,
+    yaml: YAMLFormatter,
+    moodle_csv: MoodleCSVFormatter,
+    resume_colored_text: ResumeColoredTextFormatter,
+    resume_html: ResumeHTMLFormatter,
+    resume_json: ResumeJSONFormatter,
+    resume_txt: ResumeTXTFormatter,
+    resume_xml: ResumeTXTFormatter, # TODO
+    resume_yaml: ResumeYAMLFormatter
+  }
+
+  def self.available_formats
+    LIST.keys.take(6)
+  end
+
   def self.call(report, options, filename)
     klass = get(options[:format])
     if klass.nil?
-      puts "[ERROR] Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>"
-      puts "        Available format values: colored_text, html, json, txt, or yaml"
+      puts "[ERROR] Formatter:"
+      puts "        Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>"
+      puts "        Available formats: #{Formatter.available_formats.join(',')}."
       exit 1
     end
     formatter = klass.new(report)
@@ -27,22 +48,7 @@ module Formatter
   end
 
   def self.get(format)
-    list = {
-      colored_text: ColoredTextFormatter,
-      html: HTMLFormatter,
-      json: JSONFormatter,
-      txt: TXTFormatter,
-      xml: XMLFormatter,
-      yaml: YAMLFormatter,
-      moodle_csv: MoodleCSVFormatter,
-      resume_colored_text: ResumeColoredTextFormatter,
-      resume_html: ResumeHTMLFormatter,
-      resume_json: ResumeJSONFormatter,
-      resume_txt: ResumeTXTFormatter,
-      resume_xml: ResumeTXTFormatter, # TODO
-      resume_yaml: ResumeYAMLFormatter
-    }
-    list[format]
+    LIST[format]
   end
 
   def self.hide_feedback(report)
