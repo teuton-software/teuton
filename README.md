@@ -21,8 +21,6 @@ Install Ruby and then:
 gem install teuton
 ```
 
-> Install Teuton as normal user: `gem install --user-install teuton`
-
 # Usage
 
 Use `teuton run TESTPATH` command to run test:
