@@ -13,11 +13,11 @@ end
 
 filter = ARGV[1] || :default
 vagrantfiles = Dir.glob("test/vagrant/**/Vagrantfile")
-vms = vagrantfiles.map { File.basename(File.dirname(it)) }
+vms = vagrantfiles.map { |value| File.basename(File.dirname(value)) }
 
 if action == "list"
   puts "VMS list:"
-  vms.each { puts "* #{it}" }
+  vms.each { |value| puts "* #{value}" }
   exit 0
 end
 
