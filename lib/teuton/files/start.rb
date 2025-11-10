@@ -1,7 +1,7 @@
-group "NAME-TO-CHANGE" do
-  target "DESC_TO-CHANGE"
-  run "COMMAND_TO-CHANGE"
-  expect "TEXT_TO-CHANGE"
+group "TOCHANGE" do
+  target "TOCHANGE"
+  run "TOCHANGE"
+  expect "TOCHANGE"
 end
 
 play do
