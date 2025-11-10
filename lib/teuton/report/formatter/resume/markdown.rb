@@ -4,7 +4,7 @@ class ResumeMarkdownFormatter < ResumeArrayFormatter
   MIN_HALL_OF_FAME = 3
 
   def initialize(report)
-    super(report)
+    super
     @ext = "md"
     @data = {}
   end
@@ -48,7 +48,7 @@ class ResumeMarkdownFormatter < ResumeArrayFormatter
     lines << "| ---- | ------- | ---- | ----- |"
     @data[:cases].each do |line|
       line[:conn_status].each_pair do |h, e|
-        lines << "| #{line[:id]} | #{line[:members]} | #{h} | #{e} |\n"
+        lines << "| #{line[:id]} | #{line[:members]} | #{h} | **#{e}** |\n"
       end
     end
 

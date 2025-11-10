@@ -73,7 +73,7 @@ class MarkdownFormatter < ArrayFormatter
     tab = "  "
     w "* **#{group[:title]}**\n"
     group[:targets].each do |i|
-      style = "_"
+      style = "**"
       style = "" if i[:check]
       w "#{tab * 1}* #{format("%02d", i[:target_id].to_i)}"
       text = "#{i[:score]}/#{i[:weight]}"
