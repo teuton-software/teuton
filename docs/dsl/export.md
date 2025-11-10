@@ -2,20 +2,16 @@
 
 # export
 
-Create reports and save then into `var/TEST-NAME` folder.
+Create output reports into `var/TESTNAME` folder.
 
-## Example
-
-Run export and build reports using txt output format by default:
-
+**Example 1**: Run export and build reports using default format (`txt`).
 ```ruby
 play do
   export
 end
 ```
 
-Run test and build reports using `html` output format:
-
+**Example 2**: Run test and build reports using `html` format.
 ```ruby
 play do
   export format: 'html'
@@ -26,9 +22,9 @@ end
 
 | Option | Values | Description |
 | ------ | ------ | ----------- |
-| format | **txt** (default), html, yaml, json, colored_text (txt with colors) |Output file format |
-| preserve | **false** (default), true | Keep report old copies |
-| feedback | **true** (default), false | Hide some fields from reports |
+| format | **txt** (default), html, yaml, json, markdown, colored_text (txt with colors) |Output file format |
+| preserve | **false** (default), true | Keep old report copies |
+| feedback | **true** (default), false | Hide feedback information from reports |
 
 ## Usage
 
