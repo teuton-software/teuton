@@ -1,6 +1,5 @@
 class ExpectSequence
-  attr_reader :result
-  attr_reader :states
+  attr_reader :result, :states
 
   def initialize(lines)
     @lines = lines
@@ -38,9 +37,9 @@ class ExpectSequence
 
   def find_best_state
     @states.each do |state|
-      state[:score] = state[:steps].select { it }.size
-      state[:fails] = state[:steps].select { !it }.size
-      state[:ok] = (state[:fails] == 0)
+      state[:score] = state[:steps].count { _1 }
+      state[:fails] = state[:steps].count { !it }
+      state[:ok] = state[:fails].zero?
     end
     best = @states[0]
     @states.each { |state| best = state if state[:score] > best[:score] }
