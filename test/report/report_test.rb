@@ -2,6 +2,11 @@ require "test/unit"
 require_relative "../../lib/teuton/report/report"
 
 class ReportTest < Test::Unit::TestCase
+  def test_init
+    report = Report.new
+    assert_equal "var", report.output_dir
+  end
+
   def test_clone
     report1 = Report.new
     report1.head = [1, 2, 3]
@@ -21,7 +26,6 @@ class ReportTest < Test::Unit::TestCase
     assert_not_equal report2.head, report1.head
     assert_not_equal report2.lines, report1.lines
     assert_not_equal report2.tail, report1.tail
-    # assert_equal File.join("var", "demo"), report.output_dir
   end
 
   def test_history
@@ -32,7 +36,6 @@ class ReportTest < Test::Unit::TestCase
       {check: true, weight: 1},
       {check: true, weight: 1}
     ]
-    report.tail[:unique_fault] = 0
 
     assert_equal "", report.history
     report.close
