@@ -23,4 +23,19 @@ class ReportTest < Test::Unit::TestCase
     assert_not_equal report2.tail, report1.tail
     # assert_equal File.join("var", "demo"), report.output_dir
   end
+
+  def test_history
+    report = Report.new
+    report.lines = [
+      {check: true, weight: 1},
+      {check: false, weight: 1},
+      {check: true, weight: 1},
+      {check: true, weight: 1}
+    ]
+    report.tail[:unique_fault] = 0
+
+    assert_equal "", report.history
+    report.close
+    assert_equal ".F..", report.history
+  end
 end

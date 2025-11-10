@@ -9,14 +9,12 @@ class Report
   def initialize(id = "00")
     @id = id
     @filename = "case-#{@id}"
-    # @output_dir = Application.instance.output_basedir
     @output_dir = Project.value[:output_basedir]
     @head = {}
     @lines = []
-    @tail = {}
-    # @history save 1 letter for every target.
+    @tail = {unique_fault: 0}
+    # [String] with 1 char for every target in @lines
     # For example: "..F." means: good, good, fail and good
-    # I will use this in the future stats manager.
     @history = ""
   end
 
@@ -55,10 +53,7 @@ class Report
   # * fail_weight
   # * fail_counter
   def close
-    max = 0.0
-    good = 0.0
-    fail = 0.0
-    fail_counter = 0
+    max = good = fails = fail_counter = 0
     @lines.each do |i|
       next unless i.instance_of? Hash
 
@@ -67,14 +62,14 @@ class Report
         good += i[:weight]
         @history += Settings.letter[:good]
       else
-        fail += i[:weight]
+        fails += i[:weight]
         fail_counter += 1
         @history += Settings.letter[:bad]
       end
     end
     @tail[:max_weight] = max
     @tail[:good_weight] = good
-    @tail[:fail_weight] = fail
+    @tail[:fail_weight] = fails
     @tail[:fail_counter] = fail_counter
 
     i = good.to_f / max
