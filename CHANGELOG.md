@@ -1,3 +1,8 @@
+## [2.10.4] 20251110
+
+- [FIX] Change new `it` arg by `_1` arg. Adapted to older ruby versions.
+- [REFACTOR] Formatters.
+
 ## [2.10.1] 20251108
 
 - [FIX] Refactor TXTFormatter class. Its not good idea to change Rainbow.enabled = true/false into threads.
