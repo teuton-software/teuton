@@ -2,6 +2,8 @@ require_relative "../base_formatter"
 require_relative "../../../utils/project"
 
 class ArrayFormatter < BaseFormatter
+  MIN_HALL_OF_FAME = 3
+
   def initialize(report)
     super
     @data = {}
@@ -89,7 +91,7 @@ class ArrayFormatter < BaseFormatter
 
   def build_hof_data
     @data[:hall_of_fame] = {}
-    return if Project.value[:options][:case_number] < 3
+    return if Project.value[:options][:case_number] < MIN_HALL_OF_FAME
 
     fame = {}
     Project.value[:hall_of_fame].each { |line| fame[line[0]] = line[1] }

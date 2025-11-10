@@ -98,10 +98,10 @@ class ShowReport
         if i.instance_of?(::Hash)
           value = 0.0
           value = i[:weight] if i[:check]
-          print tab + "%03d" % i[:id].to_i
-          print " (%2.1f" % value.to_f
-          print "/%2.1f" % i[:weight].to_f
-          puts ") %s" % i[:description].to_s
+          print tab + format("%03d", i[:id].to_i)
+          print format(" (%2.1f", value.to_f)
+          print format("/%2.1f", i[:weight].to_f)
+          puts format(") %s", i[:description].to_s)
         else
           puts "#{tab}=>  #{i}"
         end
@@ -130,7 +130,7 @@ class ShowReport
         st.add_row [line[0], line[1]]
       end
     end
-    puts "#{my_screen_table}\n"
+    puts "#{my_screen_table}\n\n"
   end
 
   def trim(input)

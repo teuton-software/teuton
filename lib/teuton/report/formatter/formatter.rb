@@ -51,12 +51,12 @@ module Formatter
     LIST[format]
   end
 
-  def self.hide_feedback(report)
-    report2 = report.clone
-    report2.groups.each do |group|
-      group.each do |item|
-        puts item
-      end
-    end
-  end
+  # def self.hide_feedback(report)
+  #  report2 = report.clone
+  #  report2.groups.each do |group|
+  #    group.each do |item|
+  #      puts item
+  #    end
+  #  end
+  # end
 end

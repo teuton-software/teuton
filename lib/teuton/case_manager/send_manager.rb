@@ -11,22 +11,20 @@ class SendManager
   # @param args (Hash) Send options
   def call(cases, args)
     threads = []
-    puts ""
-    write("-" * 70, :green)
-    write("Started at #{Time.new}", :green)
-    write("Sending reports to reachable hosts. Options=#{args}", :green)
+    puts Rainbow("SEND REPORTS").bright
+    write("-" * 70)
+    write("Started at #{Time.new}")
 
     cases.each { |c| threads << Thread.new { c.send(@logfile, args) } }
     threads.each(&:join)
 
-    write("Finished!", :green)
+    write("Finished!")
     puts "-" * 70
   end
 
   private
 
-  def write(msg, color)
-    # puts Rainbow(msg).color(color)
+  def write(msg)
     puts msg
     @logfile.write "#{msg}\n"
     @logfile.flush
