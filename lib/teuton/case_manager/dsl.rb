@@ -37,9 +37,9 @@ def use(filename)
   begin
     require_relative findfiles.first
     Project.value[:uses] << File.basename(findfiles.first)
-  rescue StandardError
-    puts "[ERROR] Unknown file : #{filename}"
-    puts "        Check line   : use '#{filename}'"
+  rescue => e
+    puts "[ERROR] #{e}:"
+    puts "        File not found! Fix line <use '#{filename}'>"
     exit 1
   end
 end
