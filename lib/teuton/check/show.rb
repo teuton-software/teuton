@@ -61,7 +61,7 @@ class ShowCheck
       end
       if Project.value[:macros].size.positive?
         st.add_row ["Macros", Project.value[:macros].size]
-        Project.value[:macros].each_key { st.add_row ["", it] }
+        Project.value[:macros].each_key { |value| st.add_row ["", value] }
       end
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
@@ -87,11 +87,12 @@ class ShowCheck
 
       if @stats[:sets].size.positive?
         st.add_row ["Sets", @stats[:sets].size]
-        @stats[:sets].each { st.add_row ["", it] }
+        @stats[:sets].each { |value| st.add_row ["", value] }
       end
       if @stats[:uploads].size.positive?
         st.add_row ["Uploads", @stats[:uploads].size]
-        @stats[:uploads].each { st.add_row ["", it] }
+        uploads = @stats[:uploads].select { _1 }
+        uploads.each { |value| st.add_row ["", value] }
       end
     end
     Logger.info my_screen_table.to_s + "\n"
@@ -114,7 +115,7 @@ class ShowCheck
         script_vars << k.to_s + "_password"
       end
     end
-    @stats[:gets].keys.each { script_vars << it }
+    @stats[:gets].keys.each { |value| script_vars << value }
     script_vars
   end
 end
