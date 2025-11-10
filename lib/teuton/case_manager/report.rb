@@ -9,8 +9,6 @@ class CaseManager
   # Open main report (resume report)
   # @param config_filepath (String)
   def open_main_report(config_filepath)
-    # app = Application.instance
-
     @report.head[:tt_title] = "Teuton (#{Teuton::VERSION})"
     @report.head[:tt_scriptname] = trim(Project.value[:script_path])
     @report.head[:tt_configfile] = trim(config_filepath)
@@ -31,7 +29,6 @@ class CaseManager
     verboseln Rainbow("-" * 36).green
     verboseln " "
 
-    # app = Application.instance
     @cases.each do |c|
       line = {}
       if c.skip?

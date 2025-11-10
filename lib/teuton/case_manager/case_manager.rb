@@ -3,20 +3,20 @@ require_relative "../report/report"
 require_relative "../utils/project"
 require_relative "../utils/verbose"
 require_relative "../utils/configfile_reader"
+require_relative "check_cases"
 require_relative "export_manager"
 require_relative "send_manager"
 require_relative "show_report"
-require_relative "check_cases"
 require_relative "report"
 require_relative "utils"
 
 # * initialize
 # * play
 # Split into several files:
-# * case_manager/check_cases
-# * case_manager/export
-# * case_manager/hall_of_fame
-# * case_manager/report
+# * check_cases
+# * export_manager
+# * send_manager
+# * show_report
 class CaseManager
   include Utils
   include Verbose
