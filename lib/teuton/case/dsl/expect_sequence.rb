@@ -8,7 +8,7 @@ class ExpectSequence
   def is_valid?(&block)
     @expected = []
     @states = [
-      { last_index: -1, steps: [], found: [] }
+      {last_index: -1, steps: [], found: []}
     ]
     instance_eval(&block)
     @result = find_best_state
@@ -25,10 +25,10 @@ class ExpectSequence
     @result[:steps].each do |step|
       index = text.size
       text << if step
-                @expected[index]
-              else
-                "not #{@expected[index]}"
-              end
+        @expected[index]
+      else
+        "not #{@expected[index]}"
+      end
     end
     text.join(">")
   end
@@ -38,7 +38,7 @@ class ExpectSequence
   def find_best_state
     @states.each do |state|
       state[:score] = state[:steps].count { _1 }
-      state[:fails] = state[:steps].count { !_1 }
+      state[:fails] = state[:steps].count { !it }
       state[:ok] = state[:fails].zero?
     end
     best = @states[0]
@@ -77,10 +77,10 @@ class ExpectSequence
       end
     end
     @states = if newstates.size.zero?
-                @states.each { |state| state[:steps] << false }
-              else
-                newstates
-              end
+      @states.each { |state| state[:steps] << false }
+    else
+      newstates
+    end
   end
 
   def next_to(value)
@@ -118,10 +118,10 @@ class ExpectSequence
       }
     end
     @states = if newstates.size.zero?
-                @states.each { |state| state[:steps] << false }
-              else
-                newstates
-              end
+      @states.each { |state| state[:steps] << false }
+    else
+      newstates
+    end
   end
 
   def ignore(value)
@@ -141,10 +141,10 @@ class ExpectSequence
     end
 
     @states = if newstates.size.zero?
-                @states.each { |state| state[:steps] << false }
-              else
-                newstates
-              end
+      @states.each { |state| state[:steps] << false }
+    else
+      newstates
+    end
   end
 
   def get_indexes(value:, from:)
