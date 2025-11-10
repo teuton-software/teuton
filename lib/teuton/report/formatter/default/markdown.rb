@@ -1,5 +1,3 @@
-require "terminal-table"
-require "rainbow"
 require_relative "array"
 
 class MarkdownFormatter < ArrayFormatter
@@ -22,7 +20,7 @@ class MarkdownFormatter < ArrayFormatter
   private
 
   def process_config
-    w "# CONFIGURATION\n"
+    w "# CONFIGURATION\n\n"
     w "| Param | Value |\n"
     w "| ----- | ----- |\n"
     @data[:config].sort.each { |key, value| w "| #{key} | #{value} |\n" }
@@ -32,7 +30,7 @@ class MarkdownFormatter < ArrayFormatter
   def process_logs
     return if @data[:logs].empty?
 
-    w "# LOGS\n"
+    w "# LOGS\n\n"
     @data[:logs].each { |line| w "* #{line}\n" }
     w "\n"
   end
@@ -40,13 +38,13 @@ class MarkdownFormatter < ArrayFormatter
   def process_groups
     return if @data[:groups].empty?
 
-    w "# GROUPS\n"
+    w "# GROUPS\n\n"
     @data[:groups].each { |g| process_group g }
     w "\n"
   end
 
   def process_results
-    w "RESULTS\n"
+    w "# RESULTS\n\n"
     w "| Param | Value |\n"
     w "| ----- | ----- |\n"
     @data[:results].sort.each { |key, value| w "| #{key} | #{value} |\n" }
@@ -56,7 +54,7 @@ class MarkdownFormatter < ArrayFormatter
   def process_hof
     return if @data[:hall_of_fame].size < 3
 
-    w "#HALL OF FAME\n"
+    w "# HALL OF FAME\n\n"
     w "| Grade | Amount |\n"
     w "| ----- | ------ |\n"
     @data[:hall_of_fame].each do |grade, amount|

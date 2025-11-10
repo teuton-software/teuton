@@ -2,12 +2,14 @@ require "rainbow"
 require_relative "default/colored_text"
 require_relative "default/html"
 require_relative "default/json"
+require_relative "default/markdown"
 require_relative "default/txt"
 require_relative "default/xml"
 require_relative "default/yaml"
 require_relative "resume/colored_text"
 require_relative "resume/html"
 require_relative "resume/json"
+require_relative "resume/markdown"
 require_relative "resume/txt"
 require_relative "resume/yaml"
 require_relative "moodle_csv_formatter"
@@ -17,6 +19,7 @@ module Formatter
     colored_text: ColoredTextFormatter,
     html: HTMLFormatter,
     json: JSONFormatter,
+    markdown: MarkdownFormatter,
     txt: TXTFormatter,
     xml: XMLFormatter,
     yaml: YAMLFormatter,
@@ -24,13 +27,14 @@ module Formatter
     resume_colored_text: ResumeColoredTextFormatter,
     resume_html: ResumeHTMLFormatter,
     resume_json: ResumeJSONFormatter,
+    resume_markdown: ResumeMarkdownFormatter,
     resume_txt: ResumeTXTFormatter,
     resume_xml: ResumeTXTFormatter, # TODO
     resume_yaml: ResumeYAMLFormatter
   }
 
   def self.available_formats
-    LIST.keys.take(6)
+    LIST.keys.take(7)
   end
 
   def self.call(report, options, filename)
