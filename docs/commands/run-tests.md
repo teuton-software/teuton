@@ -67,13 +67,13 @@ Options:
 
 # 3. Choosing config file
 
-**Default names**
+## 3.1 Default names
 
 By default, when you run `teuton run foo`, this will search for:
 * `foo/start.rb` test file and
 * `foo/config.yaml` config file.
 
-**Using cname param:**
+## 3.2 Using <cname> option
 
 It's posible execute `teuton run --cname=rock foo`, and choose diferent config file into projet folder:
 * `foo/start.rb` test file and
@@ -81,7 +81,7 @@ It's posible execute `teuton run --cname=rock foo`, and choose diferent config f
 
 > `cname` param searchs YAML config file into the same project folder.
 
-**Using cpath param**
+## 3.3 Using <cpath> option
 
 An also, it's posible execute `teuton run --cpath=/home/obiwan/startwars.yaml foo`, and choose config file using its absolute path:
 * `foo/start.rb` test file and
