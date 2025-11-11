@@ -67,26 +67,30 @@ Options:
 
 # 3. Choosing config file
 
-**Default names:**:
+**Default names**
+
 By default, when you run `teuton run foo`, this will search for:
 * `foo/start.rb` test file and
 * `foo/config.yaml` config file.
 
 **Using cname param:**
+
 It's posible execute `teuton run --cname=rock foo`, and choose diferent config file into projet folder:
 * `foo/start.rb` test file and
 * `foo/rock.yaml` config file.
 
 > `cname` param searchs YAML config file into the same project folder.
 
-**Using cpath param:**
-An also, it's posible execute `teuton run --cpath=/home/david/startwars.yaml foo`, and choose config file using its absolute path:
+**Using cpath param**
+
+An also, it's posible execute `teuton run --cpath=/home/obiwan/startwars.yaml foo`, and choose config file using its absolute path:
 * `foo/start.rb` test file and
-* `/home/david/starwars.yaml` config file.
+* `/home/obiwan/starwars.yaml` config file.
 
 > `cpath` param selects YAML config file, from the specified path.
 
-**Using diferent main rb name:**
+**Using diferent main rb name**
+
 When you execute `teuton run foo/mazingerz.rb`, this will search for:
 * `foo/mazingerz.rb` test file and
 * `foo/mazingerz.yaml` config file.

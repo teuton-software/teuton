@@ -4,6 +4,7 @@
 
 `send` is used to copy Teuton reports into remote machines.
 
+Usage:
 ```ruby
 start do
   export
@@ -11,9 +12,9 @@ start do
 end
 ```
 
-* `send` instruction must be execute after `export`. Reports must be generated before send them, of course.
+* `send` instruction must be execute after `export`, because report files must be generated before send them.
 * `host1`, label that identify remote host. This information must be configured into config file.
-* `send copy_to: :host1`, copy every case resport file into temp directory on remote host `host1`.
+* `send copy_to: :host1`, by default, the home folder of the user `host1_username` is used to copy report on the remote host (`host1_ip`).
 
 ## Options
 
@@ -50,9 +51,9 @@ start do
 end
 ```
 
-## Example: Using "dir" options
+## Example: Change remote dir using "dir" options
 
-Example 1: send `case-01-txt` file to default folder of remote remote host.
+This example sends `case-01-txt` file to default folder of remote host.
 
 ```ruby
 play do
@@ -62,11 +63,9 @@ play do
 end
 ```
 
-Result:
-
 ![](images/send-remote-dir-dot2.jpg)
 
-Example 2: send report file to "./Desktop" folder of remote host.
+Using `dir: "./Desktop"`, report files will be sent to remote host "./Desktop" folder.
 
 ```ruby
 play do
