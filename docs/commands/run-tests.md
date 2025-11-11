@@ -57,7 +57,7 @@ Options:
 | 01 | teuton foo           | Run foo/start.rb, with config file foo/config.yaml |
 | 02 | teuton run foo      | Run foo/start.rb, with config file foo/config.yaml |
 | 03 | teuton . | Run ./start.rb with ./config.yaml file |
-| 04 | teuton run --export=json foo | Run foo/start.rb and force json format during exporting. Others output formats availables are: txt, colored_text, json, yaml |
+| 04 | teuton run --export=json foo | Run foo/start.rb and force json format during exporting |
 | 05 | teuton run --cname=rock foo | Run foo/start.rb with foo/rock.yaml config file |
 | 06 | teuton foo/demo42.rb | Run foo/demo42.rb with foo/demo42.yaml config file |
 | 07 | teuton run --cpath=starwars/jedi.yaml foo | Run foo/start.rb with starwars/jedi.yaml config file |
