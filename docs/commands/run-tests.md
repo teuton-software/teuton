@@ -56,14 +56,12 @@ Options:
 | -- | -------------------- | ------------ |
 | 01 | teuton foo           | Run foo/start.rb, with config file foo/config.yaml |
 | 02 | teuton run foo      | Run foo/start.rb, with config file foo/config.yaml |
-| 03 | ruby teuton foo      | Same as 01 on Windows OS |
-| 04 | ruby teuton run foo | Same as 02 on WIndows OS |
-| 05 | teuton . | Run ./start.rb with ./config.yaml file |
-| 06 | teuton run --export=json foo | Run foo/start.rb and force json format during exporting. Others output formats availables are: txt, colored_text, json, yaml |
-| 07 | teuton run --cname=rock foo | Run foo/start.rb with foo/rock.yaml config file |
-| 08 | teuton foo/demo42.rb | Run foo/demo42.rb with foo/demo42.yaml config file |
-| 08 | teuton run --cpath=starwars/jedi.yaml foo | Run foo/start.rb with starwars/jedi.yaml config file |
-| 09 | teuton run --case=6,16 foo | Run foo/start.rb with foo/config.yaml config file but only for case id '06' and '16' |
+| 03 | teuton . | Run ./start.rb with ./config.yaml file |
+| 04 | teuton run --export=json foo | Run foo/start.rb and force json format during exporting. Others output formats availables are: txt, colored_text, json, yaml |
+| 05 | teuton run --cname=rock foo | Run foo/start.rb with foo/rock.yaml config file |
+| 06 | teuton foo/demo42.rb | Run foo/demo42.rb with foo/demo42.yaml config file |
+| 07 | teuton run --cpath=starwars/jedi.yaml foo | Run foo/start.rb with starwars/jedi.yaml config file |
+| 08 | teuton run --case=6,16 foo | Run foo/start.rb with foo/config.yaml config file but only for case id '06' and '16' |
 
 # 3. Choosing config file
 
