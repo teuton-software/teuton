@@ -67,7 +67,7 @@ Options:
 
 # 3. Choosing config file
 
-## 3.1 Default names
+## 3.1 Default file names
 
 By default, when you run `teuton run foo`, this will search for:
 * `foo/start.rb` test file and
@@ -89,7 +89,7 @@ An also, it's posible execute `teuton run --cpath=/home/obiwan/startwars.yaml fo
 
 > `cpath` param selects YAML config file, from the specified path.
 
-**Using diferent main rb name**
+## 3.4 Using diferent main rb name
 
 When you execute `teuton run foo/mazingerz.rb`, this will search for:
 * `foo/mazingerz.rb` test file and
