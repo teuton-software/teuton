@@ -17,7 +17,7 @@ Alias: `teuton foo`
 
 Running Teuton test located into `example/01-target` folder.
 
-```bash
+```
 $ teuton run example/01-target
 
 ------------------------------------

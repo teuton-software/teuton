@@ -1,24 +1,22 @@
 
 [<< back](README.md)
 
-# new test
+# New test
 
-Create skeleton for a new project: `teuton create foo`
+`teuton create foo` is a command function that creates skeleton for a new project. 
 
-Example:
+## Example
 
-```bash
+```
 $ teuton new foo
 
-[INFO] Creating foo project skeleton
+Creating foo project
 * Create dir        => foo
 * Create file       => foo/config.yaml
 * Create file       => foo/start.rb
 ```
 
 Read about [teuton create](../commands/README.md)
-
-> NOTA: It is posible to create these files by hand.
 
 This command will create:
 
@@ -28,4 +26,4 @@ This command will create:
 | foo/start.rb    | Main Script    |
 | foo/config.yaml | YAML configuration file |
 
-Now it is time to customize your targets.
+The next step is to personalize your targets.

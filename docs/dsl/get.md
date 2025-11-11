@@ -2,15 +2,11 @@
 
 # get
 
-`get` reads param value from configuration file.
+`get(PARAM)` keyword reads param value from configuration file.
 
-```ruby
-get(PARAM)
-```
+## Example 1: reading params
 
-## Example
-
-**Reading Example**. Suppose we have this `config.yaml` content:
+Suppose we have this `config.yaml` content:
 
 ```yaml
 ---
@@ -28,19 +24,23 @@ Supossing we are **case 01**, then:
 * `get(:username)` returns `obiwan`.
 * `get(:host1_username)`, returns `root`.
 
-**Writting example**: We also can create new temporal params:
+## Example 2: writting and reading params
+
+We also can create new temporal params:
 
 ```ruby
 set(:name, "Obiwan")
-var = get(:name)
+jediname = get(:name)
 ```
 
-So `var` value is "Obiwan".
+So `jediname` value is "Obiwan".
 
-**Simpler reading example**: Other ways or reading param values:
+## Example 3: reading alias
+
+Other ways or reading param values:
 
 ```ruby
-var = _name
+jediname = _name
 ```
 
-So `var` value is "Obiwan" too. `_name` is an alias of `get(:name)`.
+So `jediname` value is "Obiwan" too. `_name` is an alias of `get(:name)`.

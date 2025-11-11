@@ -13,7 +13,7 @@ Usage: `teuton check PATH-TO-TEST-FOLDER`
 
 Example:
 
-```bash
+```
 $ teuton check examples/02-target
 
 +----------------------------+

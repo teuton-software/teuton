@@ -1,6 +1,6 @@
 [<< back](README.md)
 
-# target
+# Target
 
 A [target](../dsl/target.md) is a feature you want to check. Targets are defined into `group` sections.
 
@@ -8,7 +8,7 @@ A [target](../dsl/target.md) is a feature you want to check. Targets are defined
 
 Every evaluation has 3 parts:
 * [target](dsl/target.md): Description of the element to be tested.
-* [run](../dsl/run.md): Execute a command `id obiwan` on localhost.
+* [run](../dsl/run.md): Execute a command on local or remote host.
 * [expect](../dsl/expect.md): Verify that the result contains expected value.
 
 ```ruby
@@ -24,24 +24,23 @@ group "Learn about targets" do
 end
 ```
 
-> In this example, our localhost's OS is GNU/Linux (or any other compatible OS) because the command executed is `id obiwan`.
+> In this example, our localhost's OS is GNU/Linux (or any other compatible OS), so the command executed is `id obiwan`.
 
 When the user exists, we expect this words: `uid=, (obiwan), gid=`.
 
 ```
-> id obiwan
+$ id obiwan
 uid=1000(obiwan) gid=1000(obiwan) grupos=1000(obiwan)
 ```
 
 But when user does not exist, we expect command fail.
 
 ```
-> id vader
+$ id vader
 id: «vader»: no such user
 
-> echo $?
+>$ echo $?
 1
-
 ```
 
 ## Execution section
@@ -62,8 +61,8 @@ end
 
 Execute this command to run the test:
 
-```console
-> teuton run examples/02-target
+```
+$ teuton run examples/02-target
 
 CASE RESULTS
 +------+-----------+-------+-------+
@@ -74,7 +73,7 @@ CASE RESULTS
 
 Report files are created into `var/02-target/` folder:
 
-```console
+```
 var
 └── 02-target
     ├── case-01.txt
@@ -85,7 +84,7 @@ var
 Let's see one report:
 
 ```
-❯ cat var/02-target/case-01.txt
+$ cat var/02-target/case-01.txt
 CONFIGURATION
 +-------------+-----------+
 | tt_members  | anonymous |
@@ -93,7 +92,6 @@ CONFIGURATION
 | tt_skip     | false     |
 | tt_testname | 02-target |
 +-------------+-----------+
-
 
 GROUPS
 - Learn about targets

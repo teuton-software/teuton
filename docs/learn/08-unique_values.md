@@ -2,7 +2,9 @@
 
 # Unique value
 
-* `unique NAME, VALUE` keyword defines unique values.
+`unique` keyword defines a value that must be unique in all cases.
+
+* Usage: `unique NAME, VALUE`. NAME is the param name, and VALUE is the value that must be unique.
 * All cases that do not comply with this requirement will obtain a score of 0 and it will be reflected in the reports.
 
 Example:
@@ -20,7 +22,7 @@ end
 Cheking test:
 
 ```
-❯ teuton check examples/08-unique_values
+$ teuton check examples/08-unique_values
 
 +--------------------------+
 | GROUP: Using file: users |

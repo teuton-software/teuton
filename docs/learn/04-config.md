@@ -2,20 +2,20 @@
 
 # config
 
-_It's good idea save dinamic data into config file._
+Our tests use config file to write dinamic data into separated file.
 
 By default, `config.yaml` is our config file. Example:
 
 ```yaml
 global:
 cases:
-- tt_members: name_student_1
+- tt_members: student_1
   username: david
-- tt_members: name_student_2
+- tt_members: student_2
   username: fran
 ```
 
-> **How to choose another config file?** Read this [document](../commands/example_run.md#3-choosing-config-file).
+> **How to choose another config file?** Read this [document](../commands/run-test.md#3-choosing-config-file).
 
 By default, `start.rb` it's our main execution file. Example:
 
@@ -29,19 +29,19 @@ group "Reading params from config file" do
 end
 ```
 
-* [get](../dsl/get.md) keyword read params from configuration file. It's posible personalize tests with diferent values for every case.
+* [get](../dsl/get.md) keyword read params values from configuration file. It's posible personalize tests with diferent values for every case.
 
 ## Example
 
-```console
-> teuton run examples/04-config
+```
+$ teuton run examples/04-config
 
 CASE RESULTS
-+------+----------------+-------+-------+
-| CASE | MEMBERS        | GRADE | STATE |
-| 01   | name_student_1 | 100.0 | ✔     |
-| 02   | name_student_2 | 0.0   | ?     |
-+------+----------------+-------+-------+
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | student_1 | 100.0 | ✔     |
+| 02   | student_2 | 0.0   | ?     |
++------+-----------+-------+-------+
 ```
 
 Reports:
@@ -57,16 +57,16 @@ var/04-config
 Let's see case 01 report.
 
 ```
-> more var/04-config/case-01.txt
+$ more var/04-config/case-01.txt
 
 CONFIGURATION
-+-------------+----------------+
-| tt_members  | name_student_1 |
-| tt_sequence | false          |
-| tt_skip     | false          |
-| tt_testname | 04-config      |
-| username    | david          |
-+-------------+----------------+
++-------------+------------+
+| tt_members  | student_1  |
+| tt_sequence | false      |
+| tt_skip     | false      |
+| tt_testname | 04-config  |
+| username    | david      |
++-------------+------------+
 
 GROUPS
 - Reading params from config file
@@ -95,10 +95,10 @@ RESULTS
 
 ## Using differents configuration files
 
-Example with 3 config files (yaml files):
+Example with 3 differents config files (yaml files):
 
 ```
-❯ tree examples/04-config
+$ tree examples/04-config
 
 examples/04-config
 ├── config.yaml
@@ -107,23 +107,21 @@ examples/04-config
 └── starwars.yaml
 ```
 
-Usign default config file (`config.yaml`):
-
+**Example 1**: Run test usign default config file (`config.yaml`).
 ```
-❯ teuton run examples/04-config
+$ teuton run examples/04-config
 
 CASE RESULTS
-+------+----------------+-------+-------+
-| CASE | MEMBERS        | GRADE | STATE |
-| 01   | name_student_1 | 100.0 | ✔     |
-| 02   | name_student_2 | 0.0   | ?     |
-+------+----------------+-------+-------+
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | student_1 | 100.0 | ✔     |
+| 02   | student_2 | 0.0   | ?     |
++------+-----------+-------+-------+
 ```
 
-Using `example/04-config/starwars.yaml`:
-
+**Example 2**: Run test using `example/04-config/starwars.yaml` config file. 
 ```
-❯ teuton run --cname=starwars examples/04-config
+$ teuton run --cname=starwars examples/04-config
 
 CASE RESULTS
 +------+------------+-------+-------+
@@ -133,10 +131,9 @@ CASE RESULTS
 +------+------------+-------+-------+
 ```
 
-Using `example/04-config/rock.yaml`:
-
+**Example 3**: Run test using `example/04-config/rock.yaml` config file.
 ```
-❯ teuton run --cpath=examples/04-config/rock.yaml examples/04-config
+$ teuton run --cpath=examples/04-config/rock.yaml examples/04-config
 
 CASE RESULTS
 +------+------------+-------+-------+

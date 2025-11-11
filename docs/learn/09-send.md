@@ -2,8 +2,7 @@
 
 # Send
 
-* [export](../dsl/export.md) keyword generate reports into diferents formats:
-* [send](../dsl/send.md) keyword send report copies to every remote host.
+`send` is a keyword used to copy the output report into remote host.
 
 ## Example
 
@@ -16,5 +15,6 @@ end
 ```
 
 * `show`, show process log on screen.
-* `export`, create reports with `txt` format.
-* `send copy_to: :host1`, copy output report into remote machine (host1).
+* [export](../dsl/export.md), create reports with `txt` format.
+* [send copy_to: :host1](../dsl/send.md), copy output report into remote machine (host1).
+* `host1`, is a set params defined into config file (host1_ip, host1_username, host1_password, etc.)

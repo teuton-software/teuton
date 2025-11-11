@@ -2,9 +2,10 @@
 
 # Export
 
-[export](../dsl/export.md) keyword generates reports into diferents formats.
+[export](../dsl/export.md) keyword generates output reports into diferents formats.
 
-Example:
+## Example
+
 ```ruby
 play do
   show
@@ -19,9 +20,9 @@ end
 * `export format: :html`, create reports with `html` format.
 * `export format: :json`, create reports with `json` format.
 
-Firs run `teuton examples/11-export`, then we have:
+Firs run `teuton examples/11-export`, then we have this files:
 
-```bash
+```
 $ tree var/11-export
 
 var/11-export

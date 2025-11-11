@@ -4,6 +4,8 @@
 
 To run test on remote host we have to define them into config file.
 
+## Example
+
 Let's see an example with:
 * 1 global param.
 * 3 cases with 3 params.
@@ -52,7 +54,7 @@ end
 Execution:
 
 ```
-> teuton run examples/03-remote_hosts
+$ teuton run examples/03-remote_hosts
 
 CASE RESULTS
 +------+-----------+-------+-------+
@@ -70,12 +72,12 @@ CONN ERRORS
 +------+-----------+-------+------------------+
 ```
 
-Notice that case-03 is 100% and conection works. It is running on localhost because has localhost IP (127.0.0.1)
+Notice that case-03 is 100% and conection works. It is running on localhost because has localhost IP (127.0.0.1).
 
 Results:
 
 ```
-❯ tree var/03-remote_hosts
+$ tree var/03-remote_hosts
 
 var/03-remote_hosts
 ├── case-01.txt
@@ -87,7 +89,7 @@ var/03-remote_hosts
 
 ## tt_skip param
 
-To disable a case, add skip param `tt_skip: true`.
-* `tt_skip` it is true by default.
+To disable a case, add skip param to config file. Example: `tt_skip: true`.
+* `tt_skip` it is false by default.
 * `tt_skip: false` ignore this case.
 * `tt_skip: true`, evaluate this case.

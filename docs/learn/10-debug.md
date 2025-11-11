@@ -2,10 +2,14 @@
 
 # debug
 
-* Debug your tests.
+`result.debug` is an instrucction used to debug your tests.
+
+## Introduction
+
+Tests grows and becames huge, with a lot of targets (That isn't a problem). Then, we organize them spliting into several files and invoke `use` keywork from our main rb file to load other files (That's good idea).
 
 ```
-> tree examples/10-debug
+$ tree examples/10-debug
 
 examples/10-debug
 ├── config.yaml
@@ -14,11 +18,9 @@ examples/10-debug
 └── start.rb
 ```
 
-Tests grows and becames huge, with a lot of targets (That isn't a problem). Then, we organize them spliting into several files and invoke `use` keywork from our main rb file to load other files (That's good idea).
+Sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton check DIRPATH`.
 
-Sometimes we need to verify or check rb file consistency and syntax, and we will do it with `teuton check PATH/TO/PROJECT/FOLDER`.
-
-## Debug
+## Explication
 
 Every time we invoke `run` keywork, an OS command is executed. The output is showed on screen and saved into **result** internal object.
 

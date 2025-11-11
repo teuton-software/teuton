@@ -3,10 +3,12 @@
 
 # check test
 
-Check Teuton check syntax and show statistics.
+`teuton check DIRPATH` is a command function that checks syntax and show statistics.
+
+## Example
 
 ```
-❯ teuton check examples/05-use     
+$ teuton check examples/05-use     
 
 +--------------------------+
 | GROUP: Using file: users |

@@ -2,14 +2,15 @@
 
 # use
 
-`use` keyword allow us organize huge amount of groups/targets into several files.
+`use` keyword allow us organize huge amount of groups/targets into differents files.
 
 ## Example
 
 > This example requires Windows OS on remote machine.
 
-```bash
-❯ tree examples/05-use
+```
+$ tree examples/05-use
+
 examples/05-use
 ├── lib
 │   ├── network.rb
@@ -18,7 +19,7 @@ examples/05-use
 └── start.rb
 ```
 
-* `start.rb` file is now splited into: `start.rb`, `users.rb` and `network.rb`.
+* The content is now splited into: `start.rb`, `users.rb` and `network.rb`.
 
 ```ruby
 # File: start.rb

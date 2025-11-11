@@ -2,7 +2,13 @@
 
 # Target weight
 
-* Changing default target weight:
+`weight` is param used by `target` keyword to define weight target value.
+
+## Example
+
+Changing default target weight:
+* The first target has the default weight (1.0).
+* The second target has a weight of 2.0.
 
 ```ruby
 # File: network.rb
@@ -18,15 +24,8 @@ group "Using file: network" do
 end
 ```
 
+Output:
 ```
-+--------------------------+
-| GROUP: Using file: users |
-+--------------------------+
-(001) target      Create user get(username)
-      weight      1.0
-      run         'id get(username)' on host1
-      expect      ["uid=", "(get(username))", "gid="] (Array)
-
 +----------------------------+
 | GROUP: Using file: network |
 +----------------------------+
