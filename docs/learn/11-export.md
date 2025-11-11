@@ -4,6 +4,8 @@
 
 [export](../dsl/export.md) keyword generates output reports into diferents formats.
 
+Available formats: colored_text, html, json, markdown, txt, xml, yaml.
+
 ## Example
 
 ```ruby

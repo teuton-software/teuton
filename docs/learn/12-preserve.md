@@ -1,15 +1,18 @@
 [<< back](README.md)
 
-# Example: 09-preserve
+# preserve
+
+`preserve` is an option of `export` keyword used to keep older report copies.
 
 Every time we run teuton test, older output report files are overwritten with new reports. if you want to preserve old versions then use `preserve`.
 
-With `preserve` option we keep older copies.
+Usage: `export preserve: true`
 
-1. [Execution section](#execution-section)
-2. [Result](#result)
+## Example
 
-## Execution section
+Example files in the `examples/12-preserve` folder.
+
+**Execution section**
 
 Take a look at our test execution section (Play):
 ```ruby
@@ -19,15 +22,15 @@ play do
 end
 ```
 
-> More information about [export](../dsl/execution/export.md) keyword.
+> More information about [export](../dsl/export.md) keyword.
 
-## Result
+**Result**
 
-Example, executing `teuton run example/09-preserve` twice:
+Example, executing `teuton run example/12-preserve` twice:
 
 ```
 var
-└── learn-09-preserve
+└── 12-preserve
     ├── 20200519-113035
     │   ├── case-01.txt
     │   ├── moodle.csv
@@ -41,4 +44,4 @@ var
     └── resume.txt
 ```
 
-* The first time test was launched at 11:30, and second at 12:30 the same day.
+The first time test was launched at 11:30, and second at 12:30 the same day.
