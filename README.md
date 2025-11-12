@@ -30,16 +30,21 @@ gem install teuton
 Use `teuton run TESTPATH` command to run test:
 
 ```console
-> teuton run examples/01-target
-
+$ teuton run examples/02-target
+------------------------------------
+Started at 2025-11-12 20:15:59 +0000
+F.
+Finished in 0.005 seconds
+------------------------------------
+ 
 CASE RESULTS
-+------+-----------+-------+-------+
-| CASE | MEMBERS   | GRADE | STATE |
-| 01   | anonymous | 100.0 | ✔     |
-+------+-----------+-------+-------+
++------+---------+-------+-------+
+| CASE | MEMBERS | GRADE | STATE |
+| 01   | VALUE   | 33.0  | ?     |
++------+---------+-------+-------+
 ```
 
-> More information about [commands](docs/commands/README.md)
+Consult the generated [output files](examples/02-target/output.d/)
 
 # Features
 

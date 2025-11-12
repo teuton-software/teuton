@@ -1,0 +1,41 @@
+CONFIGURATION
++-------------+-----------+
+| tt_members  | VALUE     |
+| tt_sequence | false     |
+| tt_skip     | false     |
+| tt_testname | 02-target |
++-------------+-----------+
+
+
+GROUPS
+- Learn about targets
+    01 (0.0/2.0)
+        Description : Create user obiwan
+        Command     : id obiwan
+        Output      : id: ‘obiwan’: no existe ese usuario
+        Duration    : 0.002 (local)
+        Alterations : find(uid=) & find((obiwan)) & find(gid=) & count
+        Expected    : Greater than 0
+        Result      : 0
+    02 (1.0/1.0)
+        Description : Delete user vader
+        Command     : id vader
+        Output      : id: ‘vader’: no existe ese usuario
+        Duration    : 0.002 (local)
+        Alterations : Read exit code
+        Expected    : Greater than 0
+        Result      : 1
+
+RESULTS
++--------------+---------------------------+
+| unique_fault | 0                         |
+| case_id      | 01                        |
+| start_time   | 2025-11-12 20:15:59 +0000 |
+| finish_time  | 2025-11-12 20:15:59 +0000 |
+| duration     | 0.004399074               |
+| max_weight   | 3.0                       |
+| good_weight  | 1.0                       |
+| fail_weight  | 2.0                       |
+| fail_counter | 1                         |
+| grade        | 33                        |
++--------------+---------------------------+
