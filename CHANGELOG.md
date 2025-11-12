@@ -1,6 +1,7 @@
 ## [2.11.0] 
 
 - [ADD] export using Markdown format with `export format: 'markdown'`
+- [ADD] export using XML format with `export format: 'xml'`
 
 ## [2.10.5-7] 
 

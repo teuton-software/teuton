@@ -10,5 +10,5 @@ end
 
 start do
   show
-  export
+  export format: :xml
 end

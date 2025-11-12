@@ -11,6 +11,7 @@ require_relative "resume/html"
 require_relative "resume/json"
 require_relative "resume/markdown"
 require_relative "resume/txt"
+require_relative "resume/xml"
 require_relative "resume/yaml"
 require_relative "moodle_csv_formatter"
 
@@ -29,7 +30,7 @@ module Formatter
     resume_json: ResumeJSONFormatter,
     resume_markdown: ResumeMarkdownFormatter,
     resume_txt: ResumeTXTFormatter,
-    resume_xml: ResumeTXTFormatter, # TODO
+    resume_xml: ResumeXMLFormatter,
     resume_yaml: ResumeYAMLFormatter
   }
 
