@@ -21,6 +21,10 @@ Install Ruby and then:
 gem install teuton
 ```
 
+> **NOTE**
+> * Install a specific version: `gem install teuton -v 2.9.2`.
+> * Information on available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/))
+
 # Usage
 
 Use `teuton run TESTPATH` command to run test:

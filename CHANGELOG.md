@@ -1,3 +1,7 @@
+## [2.11.0] 
+
+- [ADD] export using Markdown format with `export format: 'markdown'`
+
 ## [2.10.4] 20251110
 
 - [FIX] Change new `it` arg by `_1` arg. Adapted to older ruby versions.
