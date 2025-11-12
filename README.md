@@ -58,9 +58,9 @@ Consult the generated [output files](examples/02-target/output.d/)
 # Documentation
 
 * [Installation](docs/install/README.md)
-* [Learning the tool](docs/learn/README.md)
-* [Test Examples](examples)
-* [Teuton Commands](docs/commands/README.md)
+* [Learning](docs/learn/README.md)
+* [Examples](examples)
+* [Commands](docs/commands/README.md)
 * [Language reference](docs/dsl/README.md)
 * [Blogs and videos](docs/videos.md)
 
