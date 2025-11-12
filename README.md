@@ -22,8 +22,9 @@ gem install teuton
 ```
 
 > **NOTE**
-> * Install a specific version: `gem install teuton -v 2.9.2`.
-> * Information on available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/))
+> * Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/))
+> * Install a specific version: `gem install teuton -v VERSION`.
+> * Update: `gem update teuton`.
 
 # Usage
 
