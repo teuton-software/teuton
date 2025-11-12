@@ -25,7 +25,8 @@ Gem::Specification.new do |s|
   s.executables << "teuton"
   s.files = Dir.glob(File.join("lib", "**", "*.*"))
 
-  s.required_ruby_version = ">= 2.5.9"
+  s.required_ruby_version = ">= 3.2.8"
+  # The supported versions are 3.4, 3.3 and 3.2
 
   s.add_runtime_dependency "json_pure", "~> 2.8"
   s.add_runtime_dependency "net-sftp", "~> 4.0"
