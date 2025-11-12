@@ -1,10 +1,10 @@
 [<< back](README.md)
 
-# 18-log
+# log
 
-* `log TEXT`, save TEXT into output report.
+`log TEXT`, save TEXT into output report.
 
-Example
+## Example
 
 ```ruby
 group "Learning about log messages" do
@@ -20,6 +20,8 @@ group "Learning about log messages" do
   log "Hi, there!", :info
 end
 ```
+
+## Output
 
 Content of `var/18-log/case-01.txt` file.
 

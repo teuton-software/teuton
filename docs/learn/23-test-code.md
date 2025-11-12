@@ -44,11 +44,9 @@ global:
   folder: examples/23-test-code/code
 cases:
 - tt_members: student_1
-  sum_filename: 01/sum.py
-  mul_filename: 01/mul.py
+  filename: math_1.py
 - tt_members: student_2
-  sum_filename: 02/sum.py
-  mul_filename: 02/mul.py
+  filename: math_2.py
 ```
 
 * Copy students files into `code` subfolder.

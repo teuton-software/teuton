@@ -4,7 +4,7 @@
 
 Macros is a technique to make it easier to write and reuse code.
 
-**Example**
+## Example
 
 * We start from a set of repeated targets.
 
@@ -22,7 +22,7 @@ run "id david"
 expect_one "david"
 ```
 
-* Define a macro with the repeated block:
+* So we define a macro with the repeated block:
 
 ```ruby
 define_macro "user_exists", :name do
@@ -32,7 +32,7 @@ define_macro "user_exists", :name do
 end
 ```
 
-* Replace the previous targets with macro calls. There are 3 ways to invoke the macro:
+* Then replace the previous targets with macro calls.
 
 ```ruby
 user_exists(name: "fran")
@@ -40,7 +40,9 @@ user_exists(name: "root")
 user_exists(name: "david")
 ```
 
-**Notice**: There are 3 ways to invoke the macro:
+## Invoking macros
+
+There are 3 ways to invoke the macro:
 
 ```ruby
 user_exists(name: "fran")

@@ -4,7 +4,9 @@
 
 To get paramm values from the configuration file we already have the `get` statement. Example, to read `dirname` we do `get(:dirname)`.
 
-**Example 1:** Using `get` to get values.
+## Example 1: get
+
+Using `get` to get/read values from config file.
 
 ```ruby
   # "get(:dirname)" reads dirname var from config file
@@ -15,7 +17,9 @@ To get paramm values from the configuration file we already have the `get` state
 
 Since the "get" instruction is frequently used, It is good to have a fast path. Let's see another shorter way to read variables using the "_" operator.
 
-**Example 2:** Using `_` to read vars.
+## Example 2: `_VARNAME` 
+
+Using `_VARNAME` to get/read values from config file.
 
 ```ruby
   # "_dirname" is equivalet to "get(:dirname)"
@@ -26,7 +30,7 @@ Since the "get" instruction is frequently used, It is good to have a fast path. 
 
 The Teuton language is a DSL built on top of the Ruby programming language, so we can also use variables like any programming language.
 
-**Example 3:** Using variables.
+## Example 3: Using variables
 
 ```ruby
   # "dirname" is a variable

@@ -1,6 +1,6 @@
 [<< back](README.md)
 
-# Export
+# export
 
 [export](../dsl/export.md) keyword generates output reports into diferents formats.
 

@@ -2,7 +2,9 @@
 
 # include
 
-Use `tt-include` to include several config files into your main config file.
+Use `tt-include` configuration param to include several config files into your main config file.
+
+## Description
 
 Until now, all the examples we have seen use one configuration file (`config.yaml`) that contain all the parameters required by the test. It is possible to save configuration distributed among several files.
 
@@ -18,9 +20,11 @@ Suppose we have the following file structure.
 └── start.rb
 ```
 
-`config.yaml` will be the main config file. We have defined `tt_include` parameter with a folder wich contains more configuration files.
+`config.yaml` will be the main config file. Then we define `tt_include` parameter with a folder wich contains more configuration files.
 
-In this example the contents of all files in `moreconfigfiles` folder will be included when reading the config parameters:
+In this example the contents of all files into `moreconfigfiles` folder will be included when reading the config parameters:
+
+## Config files
 
 ```yaml
 ---
@@ -28,19 +32,6 @@ In this example the contents of all files in `moreconfigfiles` folder will be in
 :global:
   :tt_include: moreconfigfiles
 :cases:
-```
-
-If we execute the test we will see that 3 cases are processed. Which are defined in the files `file01.yaml`, `02/file02.yaml` and `file03.yml`.
-
-
-```
-CASE RESULTS
-+------+---------+-------+-------+
-| CASE | MEMBERS | GRADE | STATE |
-| 01   | file02  | 0.0   | ?     |
-| 02   | file01  | 100.0 | ✔     |
-| 03   | file03  | 0.0   | ?     |
-+------+---------+-------+-------+
 ```
 
 Config files into `moreconfigfiles` folder:
@@ -61,4 +52,18 @@ Config files into `moreconfigfiles` folder:
 # moreconfigfiles/file03.yml
 :tt_members: file03
 :username: vader
+```
+
+## Output
+
+If we execute the test we will see that 3 cases are processed. Which are defined in the files `file01.yaml`, `02/file02.yaml` and `file03.yml`.
+
+```
+CASE RESULTS
++------+---------+-------+-------+
+| CASE | MEMBERS | GRADE | STATE |
+| 01   | file02  | 0.0   | ?     |
+| 02   | file01  | 100.0 | ✔     |
+| 03   | file03  | 0.0   | ?     |
++------+---------+-------+-------+
 ```

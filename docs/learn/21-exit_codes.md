@@ -2,9 +2,9 @@
 
 # Example: exit_codes
 
-`result` stores information from the last command executed by a "run" action. [Offers many functions](../dsl/definition/result.md)) that transforms output data, and also exitcode is captured.
+`result` stores information from the last command executed by a "run" action. [Offers many functions](../dsl/result.md)) that transforms output data, and also exitcode is captured.
 
-## Example
+## Example 1: ok and fail
 
 ```ruby
   target "Exist user root (exit code ok)"
@@ -16,7 +16,7 @@
   expect_exit 1
 ```
 
-## More examples
+## Example 2: range and array
 
 ```ruby
   target "Using a range"
