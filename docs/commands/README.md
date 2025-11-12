@@ -74,7 +74,7 @@ Alias: `teuton c foo`, `teuton -c foo`, `teuton --check foo`
 
 # 5. Run test
 
-Read about [how to run tests](run-tests.md)
+Read about how to [run tests](run-tests.md)
 
 # 6. Show test info as README file
 

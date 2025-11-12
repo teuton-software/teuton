@@ -57,9 +57,9 @@ Consult the generated [output files](examples/02-target/output.d/)
 # Documentation
 
 * [Installation](docs/install/README.md)
-* [Getting started](docs/learn/README.md)
-* [Examples](examples)
-* [Commands](docs/commands/README.md)
+* [Learning the tool](docs/learn/README.md)
+* [Test Examples](examples)
+* [Teuton Commands](docs/commands/README.md)
 * [Language reference](docs/dsl/README.md)
 * [Blogs and videos](docs/videos.md)
 
@@ -77,5 +77,3 @@ Consult the generated [output files](examples/02-target/output.d/)
 1. Create new Pull Request.
 
 You can also [create issues](https://github.com/teuton-software/teuton/issues) with your requests, incidences or suggestions.
-
-> Read [Spanish documentation](docs/es/README.md)
