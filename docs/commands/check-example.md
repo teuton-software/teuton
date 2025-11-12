@@ -19,34 +19,31 @@ $ teuton check examples/02-target
 +----------------------------+
 | GROUP: Learn about targets |
 +----------------------------+
-(001) target      Create user david
+(001) target      Create user obiwan
+      weight      2.0
+      run         'id obiwan' on localhost
+      expect      ["uid=", "(obiwan)", "gid="] (Array)
+
+(002) target      Delete user vader
       weight      1.0
-      run         'id david' on localhost
-      expect      david (String)
+      run         'id vader' on localhost
+      expect_fail
 
 +--------------+-------+
 | DSL Stats    | Count |
 +--------------+-------+
 | Groups       | 1     |
-| Targets      | 1     |
-| Runs         | 1     |
-|  * localhost | 1     |
-| Uniques      | 0     |
-| Logs         | 0     |
-|              |       |
-| Gets         | 0     |
-| Sets         | 0     |
+| Targets      | 2     |
+| Runs         | 2     |
+|  * localhost | 2     |
 +--------------+-------+
-+----------------------+
-| Revising CONFIG file |
-+----------------------+
 [WARN] Configfile not found
-       /home/david/proy/repos/teuton.d/teuton/examples/02-target/config.yaml
+       /home/.../examples/02-target/config.yaml
 [INFO] Recomended content:
 ---
-:global:
-:cases:
-- :tt_members: VALUE
+global:
+cases:
+- tt_members: VALUE
 ```
 
 The check process notifies that
