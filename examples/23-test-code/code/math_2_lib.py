@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# File: code/math_2.py
+# File: code/math_2_lib.py
 
 def sum(num1, num2):
     return num1 + num2

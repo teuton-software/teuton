@@ -5,6 +5,6 @@ cases:
 - tt_members: student_1_python
   filename: math_1.py
 - tt_members: student_2_python
-  filename: math_2b.py
+  filename: math_2.py
 - tt_members: student_3_ruby
   filename: math_3.rb

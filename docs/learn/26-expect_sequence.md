@@ -23,8 +23,7 @@ expect /a.*?b.*?c/
 
 > Regular expressions are very powerful but they are also complex to use.
 
-To evaluate the occurrence of a certain sequence that takes place in different lines of the output we will use the new "expect_sequence" instruction.
-
+To evaluate the occurrence of a certain sequence that takes place in different lines of the output we use the "expect_sequence" instruction.
 
 ```ruby
 # Example:
@@ -37,11 +36,13 @@ expect_sequence do
 end
 ```
 
-> NOTE: expect_sequence can be useful for evaluating iptables firewall configurations where permission assignment order is relevant.
+> NOTE: `expect_sequence` can be useful for evaluating iptables firewall configurations where permission assignment order is relevant.
 
-## Evaluating different sequences
+## Usage
 
-* **Simple sequence**. Validate sequences where the elements are in order. Use `find` statement to find each element of the sequence.
+### Simple sequence
+
+Validate sequences where the elements are in order. Use `find` statement to find each element of the sequence.
 
 ```ruby
 # Examples: [A,B,C], [A,s,B,s,C], [x,A,B,s,C,x], etc.
@@ -53,7 +54,9 @@ expect_sequence do
 end
 ```
 
-* **Strict sequence**. validate sequences where the elements are in strict consecutive order. First use `find` to find an element in the sequence and then `next_to` for the next element in strict order.
+### Strict sequence
+
+Validate sequences where the elements are in strict consecutive order. First use `find` to find an element in the sequence and then `next_to` for the next element in strict order.
 
 ```ruby
 # Examples: [A,B,C], [x,A,B,C,x], etc.
@@ -65,7 +68,9 @@ expect_sequence do
 end
 ```
 
-* **Strict sequence with jumps**. Use `ignore N` to indicate that there are N lines between 2 elements of the sequence.
+### Strict sequence with jumps
+
+Use `ignore N` to indicate that there are N lines between 2 elements of the sequence.
 
 ```ruby
 # Examples: [A,B,s,s,C], [x,A,B,s,s,C,x], etc.

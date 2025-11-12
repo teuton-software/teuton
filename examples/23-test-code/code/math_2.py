@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# File: code/math_1.py
+# File: code/math_2.py
 
-from math_2a import *
+from math_2_lib import *
 import sys
 
 num1 = int(sys.argv[1])

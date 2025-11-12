@@ -21,6 +21,7 @@
 | expect_exit NUMBER | Exit code is NUMBER |
 | expect_ok          | Exit code 0 |
 | expect_fail        | Exit code > 0 |
+| expect_sequence    | Validates sequences |
 
 > Learn more about [expect](../dsl/expect.md)
 

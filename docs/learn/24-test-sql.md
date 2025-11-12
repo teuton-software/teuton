@@ -1,14 +1,15 @@
 [<<back](README.md)
 
-# Test SQL and database
+# Test SQL and database content
 
-**Exercise**
+## Exercise
 
-* Ask students to make a Sqlite Database. Create a table called `characters` with `name` varchar, and `rol` varchar.
-* Database example:
+* Ask students to make a Sqlite Database. 
+* Create a table called `characters` with `name` varchar, and `rol` varchar.
 
+Database example:
 ```
-❯ sqlite3 examples/24-test-sql/database_01.db
+$ sqlite3 examples/24-test-sql/database_01.db
 
 sqlite> .schema characters
 CREATE TABLE characters ( name varchar(255), rol varchar(255));
@@ -17,20 +18,20 @@ sqlite> select * from characters;
 Obiwan|Jedi
 ```
 
-* Query example:
+* Ask students to create SQL queries inside a file. For example: select all Jedi characters.
 
 ```
-❯ cat examples/24-test-sql/query_01.sql
+$ cat examples/24-test-sql/query_01.sql
 
 select * from characters where rol='Jedi';
 ```
 
-**Teuton test**
+## Teuton test
 
-* Define targets:
+Define targets (start.rb file):
 
 ```ruby
-group "Test SQL and database" do
+group "Test SQL and database content" do
   database = "#{get(:folder)}/#{get(:database)}"
   query = "#{get(:folder)}/#{get(:query)}"
 
@@ -44,26 +45,26 @@ group "Test SQL and database" do
 end
 ```
 
-* Configure params:
+Configure params (config.yaml file):
 
 ```yaml
 ---
 global:
   folder: examples/24-test-sql
 cases:
-- tt_members: student_1_name
+- tt_members: student_1
   database: database_01.db
   query: query_01.sql
 ```
 
-**Test output**
+## Run test
 
 ```
-❯ teuton examples/24-test-sql                                   
+$ teuton examples/24-test-sql                                   
 
 CASE RESULTS
-+------+----------------+-------+-------+
-| CASE | MEMBERS        | GRADE | STATE |
-| 01   | student_1_name | 100.0 | ✔     |
-+------+----------------+-------+-------+
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | student_1 | 100.0 | ✔     |
++------+-----------+-------+-------+
 ```
