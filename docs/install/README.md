@@ -11,6 +11,8 @@ _T-NODE is a host with Teuton installed. Monitors one or severals S-NODE hosts._
 
 Other ways of [Teuton installation](t-node.md).
 
+---
+
 ## SSH server installation
 
 _S-NODE is a host with SSH/Telnet service installed. S-NODE hosts are monitorized by T-NODE host._
