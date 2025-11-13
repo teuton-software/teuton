@@ -2,9 +2,10 @@
 
 # Installation
 
-**Teuton installation**
+## Teuton installation
 
-We call a device with Teuton installed as t-node. [T-NODE](t-node.md) host monitors one or severals S-NODE hosts.
+_T-NODE is a host with Teuton installed. Monitors one or severals S-NODE hosts._
+
 1. Install Ruby on your system.
 2. `gem install teuton`
 
@@ -13,26 +14,42 @@ We call a device with Teuton installed as t-node. [T-NODE](t-node.md) host monit
 > * `gem install bcrypt_pbkdf -v 1.0`
 > This gems requires install `ruby-devel` OS package.
 
-**SSH server installation**
+Other ways of [Teuton installation](t-node.md).
 
-We call e device with SSH/Telnet service as s-node. [S-NODE](s-node.md) hosts are monitorized by T-NODE host.
-1. Install SSH service.
+## SSH server installation
+
+_S-NODE is a hot with SSH/Telnet service installed. S-NODE hosts are monitorized by T-NODE host._
+
+Install SSH server on every machine with S-NODE role.
+
+**GNU/Linux installation**
+
+Run this command as `root` user:
+
+```bash
+wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/install/linux/s-node_install.sh | bash
+```
+
+**Windows installation**
+
+Requirements:
+* Windows 7+ / Windows Server 2003+
+* PowerShell v2+
+
+Run this command on **PowerShell (PS)** as `Administrator` user:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/install/windows/s-node_install.ps1'))
+```
+
+**Mac OS X installation**
+
+Run this command as `root` user:
+
+```bash
+curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/install/mac/s-node_install.sh | bash
+```
+
+## Modes of use
 
 Read [modes of use](modes_of_use.md) to know more about differents T-NODE/S-NODE schemes.
-
-## Tested OS list
-
-| Type      | O.S.      | Version        | Arch   | T-node | S-node |
-| --------- | --------- | -------------- | ------ | ------ | ------ |
-| GNU/Linux | CentOS    | 7              | x86-64 |        |        |
-|           | Debian    | 9.7.0          | x86-64 | Ok     |        |
-|           | Fedora    | Workstation 29 | x84-64 | Ok     |        |
-|           | LinuxMint | 18.3           | x86-64 | Ok     |        |
-|           | openSUSE  | Leap 15        | x86-64 | Ok     | Ok     |
-|           | openSUSE  | Tumbleweed     | x86-64 | Ok     | Ok     |
-|           | Ubuntu    | 18.04          | x86-64 | Ok     | Ok     |
-| Microsoft | Windows   | 7 Enterprise   | x86    | Ok     |        |
-|           | Windows   | 10 Pro         | x86-64 | Ok     | Ok     |
-|           | Windows   | Server 2012 R2 | x86-64 |        |        |
-| Apple     | Mac OS X  | Capitán (10.11.6) | x86-64 | Ok  | Ok     |
-|           | Mac OS X  | Sierra (10.12)    | x86-64 | Ok  |        |
