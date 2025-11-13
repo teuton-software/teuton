@@ -57,10 +57,10 @@ Consult the generated [output files](examples/02-target/output.d/)
 # Documentation
 
 * [Installation](docs/install/README.md)
-* [Learning](docs/learn/README.md)
-* [Examples](examples)
-* [Commands](docs/commands/README.md)
-* [Language reference](docs/dsl/README.md)
+* [Learning](docs/learn/README.md). How to create tests by example 
+* [Test examples](examples)
+* [Using Teuton by commands](docs/commands/README.md)
+* [Language reference](docs/dsl/README.md). DSL used to define tests.
 * [Modes of use](docs/modes_of_use.md)
 * [Blogs and videos](docs/videos.md)
 
