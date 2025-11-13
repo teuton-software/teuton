@@ -1,4 +1,3 @@
-
 require_relative "array"
 
 class XMLFormatter < ArrayFormatter
@@ -100,6 +99,6 @@ class XMLFormatter < ArrayFormatter
 
   def sanitize(text)
     # Replace & by &amp;
-    text.gsub('&', '&amp;')
+    text.gsub("&", "&amp;")
   end
 end
