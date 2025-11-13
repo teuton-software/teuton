@@ -10,6 +10,8 @@ require_relative "../utils/project"
 # | 3               | Show final values |
 # | 4               | Show Initial values |
 class ShowReport
+  MIN_HALL_OF_FAME = 3
+
   def initialize(report)
     @report = report
   end
@@ -122,7 +124,7 @@ class ShowReport
 
   def show_hall_of_fame
     hall_of_fame = Project.value[:hall_of_fame]
-    return if hall_of_fame.size < 3
+    return if hall_of_fame.size < MIN_HALL_OF_FAME
 
     puts Rainbow("HALL OF FAME").bright
     my_screen_table = Terminal::Table.new do |st|

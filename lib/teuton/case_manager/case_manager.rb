@@ -7,6 +7,7 @@ require_relative "check_cases"
 require_relative "export_manager"
 require_relative "send_manager"
 require_relative "show_report"
+require_relative "stats_manager"
 require_relative "report"
 require_relative "utils"
 
@@ -33,12 +34,14 @@ class CaseManager
     # Execute "play" order: Start every single case test
     check_cases!
     instance_eval(&block)
-    # Run export if user pass option command "--export=json"
+    # Run export if user pass option command "--export=FORMAT"
     i = Project.value[:options]["export"]
     export(format: i.to_sym) unless i.nil?
     # Accept "configfile" param REVISE There exists?
     i = Project.value[:options]["configfile"]
     export(format: i.to_sym) unless i.nil?
+    # TODO: Export Stats
+    # StatsManager.new.call(@cases)
   end
 
   def export(args = {})
