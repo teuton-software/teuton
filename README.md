@@ -22,8 +22,7 @@ gem install teuton
 ```
 
 > **NOTE**
-> * Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/))
-> * Install a specific version: `gem install teuton -v VERSION`.
+> * Install a specific version: `gem install teuton -v VERSION`. Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/)).
 > * Update: `gem update teuton`.
 
 # Usage
@@ -62,6 +61,7 @@ Consult the generated [output files](examples/02-target/output.d/)
 * [Examples](examples)
 * [Commands](docs/commands/README.md)
 * [Language reference](docs/dsl/README.md)
+* [Modes of use](docs/modes_of_use.md)
 * [Blogs and videos](docs/videos.md)
 
 # Contact
