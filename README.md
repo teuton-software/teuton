@@ -21,9 +21,8 @@ Install Ruby and then:
 gem install teuton
 ```
 
-> **NOTE**
-> * Install a specific version: `gem install teuton -v VERSION`. Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/)).
-> * Update: `gem update teuton`.
+* Install a specific version: `gem install teuton -v VERSION`. Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/)).
+* Update: `gem update teuton`.
 
 # Usage
 
