@@ -8,9 +8,9 @@ class StatsManager
     write "STATS"
     write("Started at #{Time.new}")
 
-    targets = {}
+    # targets = {}
     cases.each do |acase|
-      puts acase.results
+      write acase.id
     end
 
     write("Finished!")

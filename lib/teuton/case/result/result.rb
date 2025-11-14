@@ -17,10 +17,8 @@ class Result
     @content_backup = []
     @content = []
     @exitcode = -1
-
-    # @value = nil
-    @expected = nil
     @alterations = []
+    @expected = nil
   end
 
   def alterations
