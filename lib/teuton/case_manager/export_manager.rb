@@ -15,10 +15,9 @@ class ExportManager
   # @param input (Hash) Selected export options
   def call(main_report, cases, args, default_format)
     if args.class != Hash
-      puts Rainbow("[ERROR] ExportManager:").red
-      puts Rainbow("  Export argument error!").red
-      puts Rainbow("  Revise: export #{args}").red
-      puts Rainbow("  Use   : export format: 'txt'").red
+      puts Rainbow("[ERROR] ExportManager: export argument error!").red
+      puts Rainbow("[ERROR] Revise line <export #{args}>").red
+      puts Rainbow("[ERROR] Replace by <export format: 'txt'>").red
       puts ""
       exit 1
     end
@@ -28,10 +27,10 @@ class ExportManager
     options[:format] = default_format if options[:format].nil?
 
     unless Formatter.available_formats.include? options[:format]
-      puts Rainbow("[WARN] ExportManager:").yellow.bright
-      puts Rainbow("       Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>.").yellow.bright
-      puts Rainbow("       Available formats: #{Formatter.available_formats.join(", ")}.").yellow.bright
-      puts Rainbow("[INFO] Using default format <txt>.").yellow.bright
+      puts Rainbow("[WARN] ExportManager: Unkown format!").yellow.bright
+      puts Rainbow("[WARN] Fix line <export format: #{options[:format]}>").yellow.bright
+      puts Rainbow("[INFO] Available formats: #{Formatter.available_formats.join(", ")}.").white.bright
+      puts Rainbow("[INFO] Using default format <txt>.").white.bright
       options[:format] = :txt
     end
 
