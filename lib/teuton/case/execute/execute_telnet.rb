@@ -1,7 +1,5 @@
 require "net/telnet"
-# require "rainbow"
 require_relative "../../utils/project"
-# require_relative "../../utils/verbose"
 require_relative "execute_base"
 
 class ExecuteTelnet < ExecuteBase
