@@ -2,7 +2,7 @@ require "net/ssh"
 require "net/sftp"
 require "rainbow"
 require_relative "../../utils/project"
-require_relative "../../utils/verbose"
+# require_relative "../../utils/verbose"
 require_relative "execute_base"
 
 class ExecuteSSH < ExecuteBase

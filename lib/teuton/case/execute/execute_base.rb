@@ -1,5 +1,3 @@
-require_relative "../../utils/verbose"
-
 class ExecuteBase
   include Verbose
 
@@ -50,8 +48,9 @@ class ExecuteBase
     begin
       text = ec.convert(text)
     rescue => e
-      puts "[ERROR] #{e}: Declare text encoding..."
-      puts "        run 'command', on: :host, encoding: 'ISO-8859-1'"
+      puts "[ERROR] ExecuteBase: #{e}"
+      puts "[ERROR] Declare text encoding. Example:"
+      puts "[ERROR] run 'command', on: :host, encoding: 'ISO-8859-1'"
     end
 
     text.split("\n").compact
