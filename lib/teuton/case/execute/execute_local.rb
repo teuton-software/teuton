@@ -5,6 +5,8 @@ require_relative "../../utils/verbose"
 require_relative "execute_base"
 
 class ExecuteLocal < ExecuteBase
+  include Verbose
+
   def call
     action[:conn_type] = :local
     response = my_execute(action[:command], action[:encoding])
@@ -19,9 +21,10 @@ class ExecuteLocal < ExecuteBase
       text, status = Open3.capture2e(cmd)
       exitcode = status.exitstatus
     rescue => e
-      verbose Rainbow("!").green
       text = e.to_s
+      log("cmd=<#{cmd}> => #{text}", :error)
       exitcode = 1
+      verbose Rainbow("!").green
     end
     content = encode_and_split(encoding, text)
     {exitcode: exitcode, content: content}

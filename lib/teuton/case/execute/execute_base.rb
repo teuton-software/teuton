@@ -1,6 +1,4 @@
 class ExecuteBase
-  include Verbose
-
   def initialize(parent)
     @parent = parent
     # READ: @config, cmd = action[:command]
