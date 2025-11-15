@@ -40,7 +40,6 @@ class Checker
   end
 
   def show(onlyconfig)
-    onlyconfig = false if onlyconfig.nil?
     if onlyconfig
       show_onlyconfig
     else
