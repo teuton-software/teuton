@@ -41,7 +41,7 @@ class CaseManager
     i = Project.value[:options]["configfile"]
     export(format: i.to_sym) unless i.nil?
     # TODO: Export Stats
-    StatsManager.new.call(@cases)
+    # StatsManager.new.call(@cases)
   end
 
   def export(args = {})
