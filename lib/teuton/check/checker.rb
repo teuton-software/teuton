@@ -39,7 +39,18 @@ class Checker
     @target_begin = nil
   end
 
-  def show
+  def show(onlyconfig)
+    onlyconfig = false if onlyconfig.nil?
+    if onlyconfig
+      show_onlyconfig
+    else
+      show_default
+    end
+  end
+
+  private
+
+  def show_default
     Logger.verbose = true
     process_content
     cs = ShowCheck.new(stats: @stats, path: @path)
@@ -54,8 +65,6 @@ class Checker
     cs = ShowCheck.new(stats: @stats, path: @path)
     cs.suggest_config_content
   end
-
-  private
 
   def process_content
     groups = Project.value[:groups]

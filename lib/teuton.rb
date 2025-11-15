@@ -14,11 +14,7 @@ module Teuton
       Project.value[:script_path],
       Project.value[:config_path]
     )
-    if options["onlyconfig"]
-      checker.show_onlyconfig
-    else
-      checker.show
-    end
+    checker.show(options["onlyconfig"])
   end
 
   def self.run(projectpath, options = {})
