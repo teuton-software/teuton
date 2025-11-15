@@ -9,7 +9,7 @@ require_relative "send_manager"
 require_relative "show_report"
 require_relative "stats_manager"
 require_relative "report"
-require_relative "utils"
+# require_relative "utils"
 
 # * initialize
 # * play
@@ -19,7 +19,7 @@ require_relative "utils"
 # * send_manager
 # * show_report
 class CaseManager
-  include Utils
+  # include Utils
   include Verbose
 
   attr_reader :report, :cases
