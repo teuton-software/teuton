@@ -37,7 +37,7 @@ module DSL
     @report.lines << @action.clone
     weight(1.0)
 
-    c = Settings.letter[:bad]
+    c = Settings.letter[:fail]
     c = Settings.letter[:good] if cond
     verbose Rainbow(c).green
   end

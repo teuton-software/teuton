@@ -36,7 +36,7 @@ class CaseManager
           skip: true,
           id: "-",
           grade: 0.0,
-          letter: "S",
+          letter: Settings.letter(:skip),
           members: "-",
           conn_status: {},
           moodle_id: "",
