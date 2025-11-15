@@ -28,7 +28,7 @@ module DSL
         Net::SFTP.start(
           host.ip, host.username, password: host.password, port: host.port
         ) { |sftp| sftp.upload!(localpath, remotepath) }
-        verbose(Rainbow("u").green)
+        verbose(Rainbow(Settings.letter(:upload)).green)
       rescue => e
         log("Upload #{localfile} to #{host.ip}:#{remotepath}", :warn)
         log(e.to_s, :warn)
