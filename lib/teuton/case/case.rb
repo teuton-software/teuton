@@ -47,7 +47,6 @@ class Case
     @verbose = Project.value[:verbose]
 
     @tmpdir = File.join("var", @config.get(:tt_testname), "tmp", @id.to_s)
-    # ensure_dir @tmpdir # REVISE: When we will need this? Samba?
 
     @unique_values = {}
     @result = Result.new

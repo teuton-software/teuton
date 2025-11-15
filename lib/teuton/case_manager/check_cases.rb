@@ -1,3 +1,4 @@
+require "fileutils"
 require_relative "hall_of_fame"
 require_relative "../utils/project"
 
@@ -16,7 +17,7 @@ class CaseManager
 
     # Create out dir
     outdir = app[:global][:tt_outdir] || File.join("var", app[:global][:tt_testname])
-    ensure_dir outdir
+    FileUtils.mkdir_p(outdir) unless Dir.exist?(outdir)
     @report.output_dir = outdir
 
     # Fill report head
