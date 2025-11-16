@@ -13,12 +13,8 @@ module CheckCasesExtension
         next if acase.skip
 
         grade = acase.grade
-        label = if celebrities[grade]
-          celebrities[grade] + "*"
-        else
-          "*"
-        end
-        celebrities[grade] = label
+        celebrities[grade] = "" if celebrities[grade].nil?
+        celebrities[grade] += "*"
       end
 
       Project.value[:options][:case_number] = @cases.size
