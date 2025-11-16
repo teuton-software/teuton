@@ -3,13 +3,12 @@ require_relative "../report/report"
 require_relative "../utils/project"
 require_relative "../utils/verbose"
 require_relative "../utils/configfile_reader"
-require_relative "check_cases"
+require_relative "ext/check_cases"
+require_relative "ext/report"
 require_relative "export_manager"
 require_relative "send_manager"
 require_relative "show_report"
 require_relative "stats_manager"
-require_relative "report"
-# require_relative "utils"
 
 # * initialize
 # * play
@@ -19,10 +18,10 @@ require_relative "report"
 # * send_manager
 # * show_report
 class CaseManager
-  # include Utils
   include Verbose
 
-  attr_reader :report, :cases
+  # attr_reader :report
+  # attr_reader :cases
 
   def initialize
     @cases = []
@@ -60,4 +59,7 @@ class CaseManager
   def show(options = {verbose: 1})
     ShowReport.new(@report).call(options[:verbose])
   end
+
+  #  private
+  #  include CheckCases
 end

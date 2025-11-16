@@ -1,9 +1,11 @@
 require "fileutils"
-require_relative "hall_of_fame"
-require_relative "../utils/project"
+require_relative "../hall_of_fame"
+require_relative "../../utils/project"
 
 class CaseManager
   private
+
+  # module CheckCases
 
   def check_cases!
     # Start checking every single case

@@ -1,6 +1,6 @@
 require "rainbow"
-require_relative "../utils/project"
-require_relative "../utils/settings"
+require_relative "../../utils/project"
+require_relative "../../utils/settings"
 
 class CaseManager
   private
@@ -14,7 +14,7 @@ class CaseManager
     @report.head[:tt_configfile] = trim(config_filepath)
     @report.head[:tt_pwd] = Project.value[:running_basedir]
     @report.head[:tt_debug] = true if @debug
-    @report.head[:tt_uses] = Project.value[:uses].join(", ") # TO-REVISE
+    @report.head[:tt_uses] = Project.value[:uses].join(", ")
     @report.head.merge!(Project.value[:global])
   end
 
