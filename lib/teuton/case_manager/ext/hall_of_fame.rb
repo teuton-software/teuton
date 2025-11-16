@@ -1,6 +1,6 @@
-require_relative "../utils/project"
+require_relative "../../utils/project"
 
-class CaseManager
+module CheckCasesExtension
   class HallOfFame
     def initialize(cases)
       @cases = cases

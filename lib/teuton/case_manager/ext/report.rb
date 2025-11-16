@@ -2,9 +2,7 @@ require "rainbow"
 require_relative "../../utils/project"
 require_relative "../../utils/settings"
 
-class CaseManager
-  private
-
+module ReportExtension
   ##
   # Open main report (resume report)
   # @param config_filepath (String)

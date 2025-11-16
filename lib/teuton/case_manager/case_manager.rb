@@ -20,9 +20,6 @@ require_relative "stats_manager"
 class CaseManager
   include Verbose
 
-  # attr_reader :report
-  # attr_reader :cases
-
   def initialize
     @cases = []
     @report = Report.new(0)
@@ -60,6 +57,8 @@ class CaseManager
     ShowReport.new(@report).call(options[:verbose])
   end
 
-  #  private
-  #  include CheckCases
+  private
+
+  include CheckCasesExtension
+  include ReportExtension
 end

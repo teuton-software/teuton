@@ -1,6 +1,8 @@
 
 ## TO-DO
 
+HallOfFame test
+
 New features:
 - Teuton readme --lang=es and export files with other langs
 - Snode Dockerfile with SSH server
