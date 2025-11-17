@@ -7,7 +7,7 @@ require_relative "ext/check_cases"
 require_relative "ext/report"
 require_relative "export_manager"
 require_relative "send_manager"
-require_relative "show_report"
+require_relative "show_resume_report"
 require_relative "stats_manager"
 
 # * initialize
@@ -54,7 +54,7 @@ class CaseManager
   end
 
   def show(options = {verbose: 1})
-    ShowReport.new(@report).call(options[:verbose])
+    ShowResumeReport.new(@report).call(options[:verbose])
   end
 
   private

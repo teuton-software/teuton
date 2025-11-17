@@ -9,7 +9,7 @@ require_relative "../utils/project"
 # | 2               | Show hall of fame |
 # | 3               | Show final values |
 # | 4               | Show Initial values |
-class ShowReport
+class ShowResumeReport
   MIN_HALL_OF_FAME = 3
 
   def initialize(report)
