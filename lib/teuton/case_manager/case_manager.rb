@@ -1,8 +1,6 @@
-require_relative "../case/case"
 require_relative "../report/report"
 require_relative "../utils/project"
 require_relative "../utils/verbose"
-require_relative "../utils/configfile_reader"
 require_relative "ext/check_cases"
 require_relative "ext/report"
 require_relative "export_manager"
