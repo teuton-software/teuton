@@ -59,7 +59,7 @@ class XMLFormatter < ArrayFormatter
   end
 
   def process_hof
-    return if @data[:hall_of_fame].size < 3
+    return if @data[:hall_of_fame].empty?
 
     w "  <hall_of_fame>\n"
     w "| Grade | Amount |\n"
