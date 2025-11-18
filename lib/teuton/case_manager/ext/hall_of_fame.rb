@@ -19,7 +19,6 @@ module CheckCasesExtension
         celebrities[grade] += "*"
       end
 
-      Project.value[:options][:case_number] = @cases.size
       sorted_list = celebrities.sort_by { |key, _value| key }
       Project.value[:hall_of_fame] = (sorted_list.size < MIN_HALL_OF_FAME) ? [] : sorted_list.reverse
     end
