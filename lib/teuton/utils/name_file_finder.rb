@@ -41,7 +41,7 @@ class NameFileFinder
     # COMPLEX MODE: We use start.rb as main RB file
     script_path = File.join(folder_path, "start.rb")
     unless File.exist? script_path
-      warn Rainbow("[ERROR] File not found: #{script_path}").bright.red
+      warn Rainbow("[ERROR] Main script file not found! <#{script_path}>").bright.red
       exit 1
     end
 
@@ -76,9 +76,9 @@ class NameFileFinder
     # SIMPLE MODE: We use script_path as main RB file
     # This must be fullpath to DSL script file
     if File.extname(script_path) != ".rb"
-      warn Rainbow("[ERROR] Cannot find main file!").bright.red
-      warn Rainbow("        #{script_path}/start.rb").white
-      warn Rainbow("        or #{script_path}.rb").white
+      warn Rainbow("[ERROR] Main script file not found!").bright.red
+      warn Rainbow("[ERROR] Not found <#{script_path}/start.rb>").white
+      warn Rainbow("[ERROR] Not found <#{script_path}.rb>").white
       exit 1
     end
 
