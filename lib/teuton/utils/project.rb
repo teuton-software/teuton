@@ -16,7 +16,7 @@ class Project
       "panel" => false,
       "quiet" => false
     }
-    @project[:verbose] = true
+    @project[:verbose] = true # Enable/disable screen outputs
     @project[:global] = {} # Hash of Global configuration params
     @project[:ialias] = {} # Hash of Internal alias
     @project[:macros] = {} # Hash of macros
@@ -31,19 +31,11 @@ class Project
 
   init
 
-  # def self.name
-  #   value[:name]
-  # end
-
   def self.quiet?
     return true if value[:options]["quiet"]
     return true unless value[:verbose]
 
     false
-  end
-
-  def self.verbose
-    value[:verbose]
   end
 
   ##
