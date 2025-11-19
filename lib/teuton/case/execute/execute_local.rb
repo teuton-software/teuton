@@ -15,7 +15,7 @@ class ExecuteLocal < ExecuteBase
   end
 
   def my_execute(cmd, encoding = "UTF-8")
-    return {exitcode: 0, content: ""} if Project.debug?
+    return {exitcode: 0, content: ""} if Project.value[:debug]
 
     begin
       text, status = Open3.capture2e(cmd)

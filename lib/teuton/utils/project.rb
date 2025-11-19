@@ -1,5 +1,7 @@
 require_relative "name_file_finder"
 
+##
+# Class is used to store global parameters of the running project
 class Project
   def self.init
     @project = {}
@@ -7,7 +9,7 @@ class Project
     @project[:output_basedir] = "var"
     @project[:name] = "teuton"
     @project[:format] = :txt # Default export format
-    @project[:debug] = false
+    @project[:debug] = false # Disable/enable local executions
     @project[:options] = { # Default input options
       "color" => true,
       "lang" => "en",

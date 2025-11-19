@@ -7,7 +7,7 @@ class ProjectTest < Test::Unit::TestCase
   end
 
   def test_init_params
-    assert_equal false, Project.debug?
+    assert_equal false, Project.value[:debug]
     assert_equal true, Project.verbose
 
     v = Project.value

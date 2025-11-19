@@ -11,7 +11,7 @@ module ReportExtension
     @report.head[:tt_scriptname] = trim(Project.value[:script_path])
     @report.head[:tt_configfile] = trim(config_filepath)
     @report.head[:tt_pwd] = Project.value[:running_basedir]
-    @report.head[:tt_debug] = true if @debug
+    @report.head[:tt_debug] = true if Project.value[:debug]
     @report.head[:tt_uses] = Project.value[:uses].join(", ")
     @report.head.merge!(Project.value[:global])
   end
