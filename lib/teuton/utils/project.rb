@@ -22,7 +22,7 @@ class Project
     @project[:macros] = {} # Hash of macros
     @project[:groups] = [] # Array of groups
     @project[:uses] = [] # Array of used files into test
-    @project[:hall_of_fame] = []
+    @project[:hall_of_fame] = [] # Hall of fame content
   end
 
   def self.value
@@ -31,9 +31,9 @@ class Project
 
   init
 
-  def self.debug?
-    value[:debug]
-  end
+  # def self.debug?
+  #   value[:debug]
+  # end
 
   def self.name
     value[:name]
