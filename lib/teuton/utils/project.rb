@@ -31,13 +31,9 @@ class Project
 
   init
 
-  # def self.debug?
-  #   value[:debug]
+  # def self.name
+  #   value[:name]
   # end
-
-  def self.name
-    value[:name]
-  end
 
   def self.quiet?
     return true if value[:options]["quiet"]
