@@ -13,10 +13,10 @@ class ExportManager
   # @param main_report (Report)
   # @param cases (Array)
   # @param input (Hash) Selected export options
-  def call(main_report, cases, args, default_format)
+  def call(main_report, cases, args)
     if args.class != Hash
-      puts Rainbow("[ERROR] ExportManager: export argument error!").red
-      puts Rainbow("[ERROR] Revise line <export #{args}>").red
+      puts Rainbow("[ERROR] ExportManager: argument error!").red
+      puts Rainbow("[ERROR] Fix line <export #{args}>").red
       puts Rainbow("[ERROR] Replace by <export format: 'txt'>").red
       puts ""
       exit 1
@@ -24,7 +24,9 @@ class ExportManager
 
     # Step 1: Validate options
     options = strings2symbols(args)
-    options[:format] = default_format if options[:format].nil?
+    if options[:format].nil?
+      options[:format] = Project.value[:format]
+    end
 
     unless Formatter.available_formats.include? options[:format]
       puts Rainbow("[WARN] ExportManager: Unkown format!").yellow.bright
@@ -78,10 +80,10 @@ class ExportManager
     }
     subdir = format("%<year>s%<month>02d%<day>02d-" \
                     "%<hour>02d%<min>02d%<sec>02d", data)
-    logdir = File.join(srcdir, subdir)
+    preserve_dir = File.join(srcdir, subdir)
 
-    puts "[INFO] Preserving files => #{logdir}"
-    FileUtils.mkdir(logdir)
-    Dir.glob(File.join(srcdir, "**.*")).each { |file| FileUtils.cp(file, logdir) }
+    puts "[INFO] Preserving files => #{preserve_dir}"
+    FileUtils.mkdir(preserve_dir)
+    Dir.glob(File.join(srcdir, "**.*")).each { |file| FileUtils.cp(file, preserve_dir) }
   end
 end

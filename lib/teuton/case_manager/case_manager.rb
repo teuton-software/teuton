@@ -39,12 +39,7 @@ class CaseManager
   end
 
   def export(args = {})
-    ExportManager.new.call(
-      @report,
-      @cases,
-      args,
-      Project.value[:format]
-    )
+    ExportManager.new.call(@report, @cases, args)
   end
 
   def send(args = {})

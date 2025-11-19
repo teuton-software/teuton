@@ -1,4 +1,5 @@
 require "rainbow"
+require_relative "../utils/project"
 
 class SendManager
   def initialize

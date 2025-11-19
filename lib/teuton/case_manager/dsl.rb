@@ -1,8 +1,7 @@
 require_relative "../utils/project"
 require_relative "case_manager"
 
-# DSL instructions that apply equally to all cases.
-# Therefore, they are stored globally in the case manager.
+# DSL instructions that apply to all cases. Stored globally in the case manager.
 # * define_macro
 # * group
 # * play
@@ -38,8 +37,9 @@ def use(filename)
     require_relative findfiles.first
     Project.value[:uses] << File.basename(findfiles.first)
   rescue => e
-    puts "[ERROR] #{e}:"
-    puts "        File not found! Fix line <use '#{filename}'>"
+    puts "[ERROR] case_manager/dsl: #{e}"
+    puts "[ERROR] File not found!"
+    puts "[ERROR] Fix line <use '#{filename}'>"
     exit 1
   end
 end
