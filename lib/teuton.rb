@@ -35,8 +35,7 @@ module Teuton
     begin
       require_relative Project.value[:script_path]
     rescue => e
-      warn e
-      warn Rainbow.new("[ERROR] #{e}:").bright.red
+      warn Rainbow.new("[ERROR] require_dsl_and_script: <#{e}>").bright.red
       warn Rainbow.new("[ERROR] Reading file #{Project.value[:script_path]}").bright.red
       exit 1
     end
