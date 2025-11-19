@@ -1,4 +1,3 @@
-# require "json/pure"
 require "json"
 require "yaml"
 
@@ -17,11 +16,11 @@ module ConfigFileReader
       data[:cases] = [{tt_members: "anonymous"}]
       return data
     end
-    return read_yaml(filepath) if File.extname(filepath) == ".yaml"
+    return read_yaml(filepath) if [".yaml", ".yml"].include? File.extname(filepath)
 
     return read_json(filepath) if File.extname(filepath) == ".json"
 
-    raise "[ERROR] ConfigFileReader: #{filepath}"
+    raise "[ERROR] ConfigFileReader.read: <#{filepath}>. Unkown extension!"
   end
 
   ##
@@ -37,9 +36,9 @@ module ConfigFileReader
       # )
     rescue => e
       warn "\n" + ("=" * 80)
-      warn "[ERROR] ConfigFileReader#read <#{filepath}>"
-      warn "        I suggest to revise file format!"
-      warn "        #{e.message}\n" + ("=" * 80)
+      warn "[ERROR] ConfigFileReader.read_yaml: #{e}"
+      warn "[ERROR] Revise file content! <#{filepath}>"
+      warn ("=" * 80) + "\n"
       exit 1
     end
     data = convert_string_keys_to_symbol(data)
