@@ -30,10 +30,6 @@ module ConfigFileReader
   def self.read_yaml(filepath)
     begin
       data = YAML.load(File.open(filepath))
-      # data = YAML.safe_load(
-      #   File.open(filepath),
-      #   permitted_classes: [Array, Date, Hash, Symbol]
-      # )
     rescue => e
       warn "\n" + ("=" * 80)
       warn "[ERROR] ConfigFileReader.read_yaml: #{e}"
@@ -77,9 +73,9 @@ module ConfigFileReader
       File.join(File.dirname(filepath), data[:global][:tt_include])
     end
     exts = {
-      yaml: ['.yaml', '.YAML', '.yml', '.YML'],
-      json: ['.json', '.JSON']
-      }
+      yaml: [".yaml", ".YAML", ".yml", ".YML"],
+      json: [".json", ".JSON"]
+    }
     files = Dir.glob(File.join(basedir, "**/*"))
     files.each { |filename|
       begin
@@ -88,27 +84,26 @@ module ConfigFileReader
           begin
             data[:cases] << YAML.load(File.open(filename))
           rescue
-            msg = "[ERROR] Loading configuration file(#{filename})"
+            msg = "[ERROR] Loading configuration file! <#{filename}>"
             warn msg
           end
         elsif exts[:json].include? ext
           begin
             data[:cases] = JSON.parse(File.read(filename), symbolize_names: true)
           rescue
-            msg = "[ERROR] Loading configuration file(#{filename})"
+            msg = "[ERROR] Loading configuration file! <#{filename}>"
             warn msg
           end
         elsif File.file? filename
-          msg = "[ERROR] Loading configuration files: " \
-              " No yaml/json valid extension " \
-              " (#{file})"
+          msg = "[ERROR] Loading configuration files! <#{file}>\n"
+          msg += "[ERROR] No yaml or json extension!"
           warn msg
         end
       rescue => e
         puts "\n" + ("=" * 80)
-        puts "[ERROR] ConfigFileReader#read <#{file}>"
-        puts "        I suggest to revise file format!"
-        puts "        #{e.message}\n" + ("=" * 80)
+        puts "[ERROR] ConfigFileReader.read_included_files!: #{e} "
+        puts "[ERROR] Reevise file content! <#{file}>"
+        puts ("=" * 80) + "\n"
       end
     }
   end
