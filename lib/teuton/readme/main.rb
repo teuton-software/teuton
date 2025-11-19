@@ -7,8 +7,8 @@ def use(filename)
   files = Dir.glob(rbfiles)
   use = []
   files.sort.each { |f| use << f if f.include?(filename) }
-  require_relative use[0]
-  Project.value[:uses] << use[0]
+  require_relative use.first
+  Project.value[:uses] << use.first
 end
 
 def define_macro(name, *args, &block)

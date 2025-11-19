@@ -6,9 +6,9 @@ class Project
     @project[:running_basedir] = Dir.getwd
     @project[:output_basedir] = "var"
     @project[:name] = "teuton"
-    @project[:format] = :txt
+    @project[:format] = :txt # Default export format
     @project[:debug] = false
-    @project[:options] = {
+    @project[:options] = { # Default input options
       "color" => true,
       "lang" => "en",
       "panel" => false,
@@ -19,7 +19,7 @@ class Project
     @project[:ialias] = {} # Hash of Internal alias
     @project[:macros] = {} # Hash of macros
     @project[:groups] = [] # Array of groups
-    @project[:uses] = [] # TODO: Array of used files
+    @project[:uses] = [] # Array of used files into test
     @project[:hall_of_fame] = []
   end
 
