@@ -3,21 +3,26 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
 
+# Run tests excluding slow tests
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"
-  t.libs << "lib"
+  t.test_files = FileList["test/**/*_test.rb"].exclude(/slow_|test_slow/)
+end
+
+# Run all tests
+Rake::TestTask.new(:test_all) do |t|
+  t.libs << "test"
   t.test_files = FileList["test/**/*_test.rb"]
 end
 
 require "standard/rake"
-task default: %i[test standard]
-
 require_relative "tasks/docker"
 require_relative "tasks/devel"
 
-desc "Default: run tests"
+desc "Default: run tests and standard"
 task :default do
   Rake::Task["test"].invoke
+  Rake::Task["standard"].invoke
 end
 
 desc "Help"
