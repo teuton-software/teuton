@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../../lib/teuton/utils/configfile_reader"
+require_relative "../../lib/teuton/utils/config_file_reader"
 
 class ConfigFileReaderTest < Test::Unit::TestCase
   def test_t01_read_config

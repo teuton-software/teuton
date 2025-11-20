@@ -1,7 +1,7 @@
 require "fileutils"
 require_relative "hall_of_fame"
 require_relative "../../case/case"
-require_relative "../../utils/configfile_reader"
+require_relative "../../utils/config_file_reader"
 require_relative "../../utils/project"
 
 module CheckCasesExtension

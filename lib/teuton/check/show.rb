@@ -3,7 +3,7 @@ require "rainbow"
 
 require_relative "../utils/logger"
 require_relative "../utils/project"
-require_relative "../utils/configfile_reader"
+require_relative "../utils/config_file_reader"
 
 class ShowCheck
   def initialize(stats:, path:)
