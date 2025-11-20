@@ -20,7 +20,7 @@ class ShowResumeReport
     return if Project.quiet?
 
     show_initial_configurations if verbose > 2
-    if filename.to_s.include? "resume"
+    if @report.filename.to_s.include? "resume"
       show_resume
     else
       show_targets_history
@@ -31,26 +31,10 @@ class ShowResumeReport
 
   private
 
-  def filename
-    @report.filename
-  end
-
-  def head
-    @report.head
-  end
-
-  def lines
-    @report.lines
-  end
-
-  def tail
-    @report.tail
-  end
-
   def show_initial_configurations
     puts Rainbow("INITIAL CONFIGURATIONS").bright
     my_screen_table = Terminal::Table.new do |st|
-      head.each do |key, value|
+      @report.head.each do |key, value|
         st.add_row [key.to_s, trim(value)]
       end
     end
@@ -66,7 +50,7 @@ class ShowResumeReport
     puts Rainbow("CASE RESULTS").bright
     my_screen_table = Terminal::Table.new do |st|
       st.add_row %w[CASE MEMBERS GRADE STATE]
-      lines.each do |line|
+      @report.lines.each do |line|
         st.add_row [line[:id], line[:members], line[:grade], line[:letter]]
       end
     end
@@ -75,13 +59,13 @@ class ShowResumeReport
 
   def show_conn_status
     errors = 0
-    lines.each { |line| errors += line[:conn_status].size }
+    @report.lines.each { |line| errors += line[:conn_status].size }
     return if errors.zero?
 
     puts Rainbow("CONN ERRORS").bright
     my_screen_table = Terminal::Table.new do |st|
       st.add_row %w[CASE MEMBERS HOST ERROR]
-      lines.each do |line|
+      @report.lines.each do |line|
         line[:conn_status].each_pair do |host, error|
           st.add_row [line[:id], line[:members], host, Rainbow(error).red.bright]
         end
@@ -93,10 +77,10 @@ class ShowResumeReport
   def show_targets_history
     tab = "  "
     puts Rainbow("CASE RESULTS").bright
-    if lines.size == 1
+    if @report.lines.size == 1
       puts lines[0]
     else
-      lines.each do |i|
+      @report.lines.each do |i|
         if i.instance_of?(::Hash)
           value = 0.0
           value = i[:weight] if i[:check]
@@ -115,7 +99,7 @@ class ShowResumeReport
   def show_final_values
     puts Rainbow("FINAL VALUES").bright
     my_screen_table = Terminal::Table.new do |st|
-      tail.each do |key, value|
+      @report.tail.each do |key, value|
         st.add_row [key.to_s, value.to_s]
       end
     end
