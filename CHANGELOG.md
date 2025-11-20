@@ -2,6 +2,8 @@
 
 - [ADD] export using Markdown format with `export format: 'markdown'`
 - [ADD] export using XML format with `export format: 'xml'`
+- Refactoring code files.
+- [ADD] Config file documentation.
 
 ## [2.10.5-7] 
 
