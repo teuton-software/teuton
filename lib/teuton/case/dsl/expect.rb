@@ -15,7 +15,7 @@ module DSL
     elsif input.instance_of?(String) || input.instance_of?(Regexp) || input.instance_of?(Array)
       expect_any input
     else
-      puts Rainbow("[ERROR] Case expect TypeError: expect #{input} (#{input.class})").red
+      puts Rainbow("[ERROR] Case expect TypeError: <expect #{input} (#{input.class})>").red
     end
   end
 
