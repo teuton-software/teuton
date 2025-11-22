@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Teuton Config Server</title>
+</head>
+<body>
+    <h1>Teuton Config Server</h1>
+    <p>Your settings have been sent:</p>
+
+    <table>
+      <thead><tr><th>Param</th><th>Value</th></tr></thead>
+      <tbody>
+      <% params.each do |key, value| %>
+        <tr><td><%= key %></td><td><%= value %></td></tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <p>Thank you!</p>
+    <a href="javascript:history.back()">Back</a>
+</body>
+
+<style>
+  table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+  }
+
+  /* Aplicamos el borde a las cabeceras (th) y celdas (td) */
+  table th, 
+  table td {
+    border: 1px solid #ccc; /* Borde de 1px, sólido, en gris claro */
+    padding: 8px;           /* Espacio interno para que el contenido respire */
+    text-align: left;       /* Alineación del texto */
+  }
+  
+  /* Estilo opcional para la cabecera (thead) para resaltarla */
+  table thead th {
+    background-color: #f2f2f2; 
+    font-weight: bold;
+  }
+</style>
+</html>
