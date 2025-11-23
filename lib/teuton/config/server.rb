@@ -1,9 +1,14 @@
 #!/usr/bin/env ruby
+
 require "sinatra"
+require_relative "../utils/config_file_reader"
 
 get "/" do
-  @names = ["tt_members", "host1_ip", "host1_username", "host1_password"]
-  erb :form
+  filename = "examples/03-remote_hosts/config.yaml"
+  filepath = File.join(Dir.pwd, filename)
+  data = ConfigFileReader.read_yaml(filepath)
+  names = data[:cases][0].keys
+  erb :form, locals: { :names => names }
 end
 
 post "/submit" do
