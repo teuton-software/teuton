@@ -2,7 +2,7 @@ require "json"
 require "yaml"
 
 ##
-# Functions that read data from ConfigFile using YAML or JSON formats
+# Read config file content. Available file formats: YAML or JSON
 module ConfigFileReader
   ##
   # Read config file
