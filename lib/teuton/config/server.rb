@@ -8,7 +8,7 @@ get "/" do
   filepath = File.join(Dir.pwd, filename)
   data = ConfigFileReader.read_yaml(filepath)
   names = data[:cases][0].keys
-  erb :form, locals: { :names => names }
+  erb :form, locals: {names: names}
 end
 
 post "/submit" do
