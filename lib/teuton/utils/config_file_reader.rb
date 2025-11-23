@@ -31,10 +31,8 @@ module ConfigFileReader
     begin
       data = YAML.load(File.open(filepath))
     rescue => e
-      warn "\n" + ("=" * 80)
       warn "[ERROR] ConfigFileReader.read_yaml: #{e}"
       warn "[ERROR] Revise file content! <#{filepath}>"
-      warn ("=" * 80) + "\n"
       exit 1
     end
     data = convert_string_keys_to_symbol(data)
@@ -100,10 +98,8 @@ module ConfigFileReader
           warn msg
         end
       rescue => e
-        puts "\n" + ("=" * 80)
         puts "[ERROR] ConfigFileReader.read_included_files!: #{e} "
         puts "[ERROR] Reevise file content! <#{file}>"
-        puts ("=" * 80) + "\n"
       end
     }
   end

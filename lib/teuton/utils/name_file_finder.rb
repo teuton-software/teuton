@@ -10,8 +10,8 @@ class NameFileFinder
   def initialize(options = {})
     @options = options
     @project_path = nil
-    @script_path = nil
-    @config_path = nil
+    @script_path = nil # Path to DSL script file
+    @config_path = nil # Path to YAML config file
     @test_name = nil
   end
 
@@ -21,14 +21,11 @@ class NameFileFinder
   def find_filenames_for(relprojectpath)
     projectpath = File.absolute_path(relprojectpath)
 
-    # Define:
-    #   script_path, must contain fullpath to DSL script file
-    #   config_path, must contain fullpath to YAML config file
     if File.directory?(projectpath)
-      # COMPLEX MODE: We use start.rb as main RB file
+      # COMPLEX MODE: main RB file is <start.rb>
       find_filenames_from_directory(projectpath)
     else
-      # SIMPLE MODE: We use pathtofile as main RB file
+      # SIMPLE MODE: main RB file is We <pathtofile>
       find_filenames_from_rb(projectpath)
     end
     true
@@ -37,8 +34,8 @@ class NameFileFinder
   private
 
   def find_filenames_from_directory(folder_path)
-    # Find project filenames from input folder path
-    # COMPLEX MODE: We use start.rb as main RB file
+    # Find project filenames into directory <folder path>
+    # COMPLEX MODE: main RB file is <start.rb>
     script_path = File.join(folder_path, "start.rb")
     unless File.exist? script_path
       warn Rainbow("[ERROR] Main script file not found! <#{script_path}>").bright.red
@@ -53,8 +50,8 @@ class NameFileFinder
   end
 
   def find_configfilename_from_directory(folder_path)
-    # Find project config filename from input folder path
-    # COMPLEX MODE: We use config.yaml by default
+    # Find project config filename into directory <folder path>
+    # COMPLEX MODE: By default <config.yaml> is the confing file
     config_path = ""
 
     if options["cpath"].nil?

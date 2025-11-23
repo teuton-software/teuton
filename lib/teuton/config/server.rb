@@ -2,12 +2,16 @@
 
 require "sinatra"
 require_relative "../utils/config_file_reader"
+require_relative "../utils/name_file_finder"
 
 get "/" do
-  filename = "examples/03-remote_hosts/config.yaml"
-  filepath = File.join(Dir.pwd, filename)
-  data = ConfigFileReader.read_yaml(filepath)
-  names = data[:cases][0].keys
+  projectpath = "examples/03-remote_hosts"
+  finder = NameFileFinder.new
+  finder.find_filenames_for(projectpath)
+  config_path = finder.config_path
+
+  data = ConfigFileReader.read(config_path)
+  names = data[:cases].first.keys
   erb :form, locals: {names: names}
 end
 
