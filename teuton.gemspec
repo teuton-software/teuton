@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "puma", "~> 7.1" # sinatra
   s.add_runtime_dependency "rackup", "~> 2.2" # sinatra
   s.add_runtime_dependency "rainbow", "~> 3.1"
-  s.add_runtime_dependency "sinatra" , "~> 4.2" # sinatra
+  s.add_runtime_dependency "sinatra", "~> 4.2" # sinatra
   s.add_runtime_dependency "terminal-table", "~> 4.0"
   s.add_runtime_dependency "thor", "~> 1.3"
   # s.add_runtime_dependency("ed25519", "~> 1.2") # Require ruby-devel package
