@@ -39,7 +39,7 @@ The `cases` section contains specific parameters for each case.
 
 ## Global section vs cases section
 
-Config file example:
+Example:
 
 ```yaml
 # File: examples/03-remote_hosts/config.yaml
@@ -58,7 +58,6 @@ cases:
   host1_password: secret_3
 ```
 
-In the aboce example:
 * The parameter `host1_username` is defined in the global section, so all cases will read the same value. Example: `get(:host1_username) == "root"`.
 * The parameters `tt_members`, `host1_ip`, and `host1_password` are defined in each case. So, every student has diferents values. The student number 1 will have one value, student number 2 another, and so on.
 
