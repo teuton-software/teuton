@@ -39,7 +39,7 @@ The `cases` section contains specific parameters for each case.
 
 ## Global section vs cases section
 
-Example:
+**Example:**
 
 ```yaml
 # File: examples/03-remote_hosts/config.yaml
@@ -65,7 +65,7 @@ It is posible to add as many parameters as you need. But remember that parameter
 
 ## Reserved params
 
-It is posible to add all the parameters you need into your configuration file, but some parameter names are reserved. Reserved parameter names begin with prefix `tt_`.
+It is posible to add all the parameters you need into your configuration file, but some parameter names has special meaning. Reserved parameter names begin with prefix `tt_`.
 
 | Param name        | Section | Required | Descripction |
 | ----------------- | ------- | -------- | ------------ |
@@ -76,7 +76,9 @@ It is posible to add all the parameters you need into your configuration file, b
 
 ## Host properties
 
-Defining host properties:
+Parameters used to define the properties of each host must begin with an identifier (HOSTID).
+
+Lits of available host properties:
 
 | Param name      | Required | Default value | Description |
 | --------------- | -------- | ------------- | ----------- |
@@ -87,9 +89,9 @@ Defining host properties:
 | HOSTID_port     | No       | 22/23         | Default value: 22 (ssh), 23 (telnet) |
 | HOSTID_route    | No       |               | This option is used to configure a gateway to access HOSTID |
 
-We will create as many host configurations as different machines are required to complete the activity.
+We can create as many host configurations as different devices are required to complete the activity.
 
-**Example**: each student needs two hosts for the activity, one web server and the other as web cliente, so we'll have HOSTID `server`and HOSTID `client`:
+**Example**: If each student needs two hosts for the activity, one web server and the other as web cliente, we need to define 2 hosts: one with HOSTID `server`and the other wiht HOSTID `client`:
 
 ```yaml
 global:
@@ -103,7 +105,7 @@ cases:
   client_password: david_secret_1
 ```
 
-Or we'll have HOSTID `host1` and HOSTID `host2`.
+Or we can use other names, for example one with HOSTID `host1` and the other with HOSTID `host2`.
 
 ```yaml
 global:
@@ -116,5 +118,3 @@ cases:
   host2_username: david 
   host2_password: david_secret_1
 ```
-
-
