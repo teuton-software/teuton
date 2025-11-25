@@ -5,14 +5,18 @@ require_relative "../utils/config_file_reader"
 require_relative "../utils/name_file_finder"
 
 class ConfigServer < Sinatra::Base
-  get "/" do
+  def initialize
+    super
+
     projectpath = "examples/03-remote_hosts"
     finder = NameFileFinder.new
     finder.find_filenames_for(projectpath)
     config_path = finder.config_path
+    @config = ConfigFileReader.read(config_path)
+  end
 
-    data = ConfigFileReader.read(config_path)
-    names = data[:cases].first.keys
+  get "/" do
+    names = @config[:cases].first.keys
     erb :form, locals: {names: names}
   end
 
