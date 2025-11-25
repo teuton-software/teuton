@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require "sinatra/base"
 require_relative "../utils/config_file_reader"
 require_relative "../utils/name_file_finder"
@@ -26,8 +24,6 @@ class ConfigServer < Sinatra::Base
   end
 
   at_exit do
-    puts "Closing ConfigServer"
+    puts "[INFO] Closing ConfigServer"
   end
 end
-
-ConfigServer.run!

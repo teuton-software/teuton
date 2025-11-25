@@ -38,13 +38,23 @@ class CLI < Thor
   end
 
   map ["co", "-co", "--config"] => "config"
-  desc "config DIRECTORY", "Suggest configuration"
+  option :server, type: :boolean
+  desc "config [OPTIONS] DIRECTORY", "Suggest configuration or run server"
   long_desc <<~LONGDESC
-    config [OPTIONS] DIRECTORY", "Suggest configuration"
-  LONGDESC
+    config DIRECTORY, "Suggest the content of the configuration file based on the test"
+
+    config --server DIRECTORY, "Init Config Server. Students connect and help to build config file content"
+
+    LONGDESC
   def config(projectpath)
-    opt = {"onlyconfig" => true}
-    Teuton.check(projectpath, opt)
+    if options[:server]
+      # Init Config Server: students connect and help to build config file content
+      Teuton.server(projectpath)
+    else
+      # Check Test: suggest the content of the configuration file based on the test
+      opt = {"onlyconfig" => true}
+      Teuton.check(projectpath, opt)
+    end
   end
 
   map ["--readme"] => "readme"
