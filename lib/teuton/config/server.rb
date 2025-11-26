@@ -3,6 +3,9 @@ require_relative "../utils/config_file_reader"
 require_relative "../utils/name_file_finder"
 
 class ConfigServer < Sinatra::Base
+  set :bind, '0.0.0.0'
+  set :port, 8080
+
   def initialize
     super
 
@@ -20,6 +23,8 @@ class ConfigServer < Sinatra::Base
 
   post "/submit" do
     # Los datos del formulario se encuentran en el objeto 'params'
+    params[:tt_request_ip] = request.ip 
+    puts "[DEBUG] #{params}"
     erb :feedback
   end
 
