@@ -45,7 +45,7 @@ class CLI < Thor
 
     config --server DIRECTORY, "Init Config Server. Students connect and help to build config file content"
 
-    LONGDESC
+  LONGDESC
   def config(projectpath)
     if options[:server]
       # Init Config Server: students connect and help to build config file content

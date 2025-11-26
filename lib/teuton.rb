@@ -30,8 +30,7 @@ module Teuton
   end
 
   def self.server(projectpath)
-    puts "[INFO] Starting configuration web server..."
-    puts "[INFO] Project: <#{projectpath}>"
+    $PROJECTPATH = projectpath
     require_relative "teuton/config/server"
     ConfigServer.run!
   end
