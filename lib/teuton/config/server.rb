@@ -14,6 +14,7 @@ class ConfigServer < Sinatra::Base
     finder.find_filenames_for(projectpath)
     config_path = finder.config_path
     @config = ConfigFileReader.read(config_path)
+    @data = {}
   end
 
   get "/" do
@@ -23,8 +24,9 @@ class ConfigServer < Sinatra::Base
 
   post "/submit" do
     # Los datos del formulario se encuentran en el objeto 'params'
-    params[:tt_request_ip] = request.ip 
-    puts "[DEBUG] #{params}"
+    @data[ request.ip ] = params
+    puts "[DEBUG] (#{@data.size}) #{params}"
+    puts @data
     erb :feedback
   end
 
