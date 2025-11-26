@@ -30,9 +30,8 @@ module Teuton
   end
 
   def self.server(projectpath)
-    $PROJECTPATH = projectpath
     require_relative "teuton/config/server"
-    ConfigServer.run!
+    ConfigServer.set_projectpath(projectpath).run!
   end
 
   private_class_method def self.require_dsl_and_script(dslpath)

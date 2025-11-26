@@ -6,17 +6,21 @@ class ConfigServer < Sinatra::Base
   set :bind, "0.0.0.0"
   set :port, 8080
 
+  def self.set_projectpath(projectpath)
+    @@projectpath = projectpath
+    self
+  end
+
   def initialize
     super
-    @projectpath = $PROJECTPATH
     finder = NameFileFinder.new
-    finder.find_filenames_for(@projectpath)
+    finder.find_filenames_for(@@projectpath)
     config_path = finder.config_path
     @config = ConfigFileReader.read(config_path)
     @data = {}
 
     puts "==> [INFO] Starting configuration web server..."
-    puts "==> [INFO] Project: <#{@projectpath}>"
+    puts "==> [INFO] Project: <#{@@projectpath}>"
   end
 
   get "/" do
@@ -29,10 +33,15 @@ class ConfigServer < Sinatra::Base
     @data[request.ip] = params
     @data[request.ip][:tt_request_ip] = request.ip
     puts "==> [INFO] Data received from #{request.ip} (Total #{@data.size}) "
+    save_config(@data[request.ip])
     erb :feedback
   end
 
   at_exit do
     puts "==> [INFO] Closing ConfigServer"
+  end
+
+  def save_config(data)
+    puts "==> Saving: #{data.to_s}"
   end
 end
