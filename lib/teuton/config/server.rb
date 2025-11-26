@@ -42,6 +42,6 @@ class ConfigServer < Sinatra::Base
   end
 
   def save_config(data)
-    puts "==> Saving: #{data.to_s}"
+    puts "==> Saving: #{data}"
   end
 end
