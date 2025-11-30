@@ -87,7 +87,7 @@ module ConfigFileReader
           end
         elsif exts[:json].include? ext
           begin
-            data[:cases] = JSON.parse(File.read(filename), symbolize_names: true)
+            data[:cases] << JSON.parse(File.read(filename), symbolize_names: true)
           rescue
             msg = "[ERROR] Loading configuration file! <#{filename}>"
             warn msg
