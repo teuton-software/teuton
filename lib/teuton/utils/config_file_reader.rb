@@ -90,7 +90,7 @@ module ConfigFileReader
           warn "[ERROR] Loading configuration file! <#{filename}>"
         end
       elsif File.file? filename
-        warn "[WARN] Ignored config file <#{filename}>. No yaml or json extension!"
+        warn "[WARN] Ignore config file <#{filename}>. No yaml or json extension!"
       end
     }
   end
