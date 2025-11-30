@@ -2,6 +2,29 @@ require "test/unit"
 require_relative "../../lib/teuton/utils/config_file_reader"
 
 class ConfigFileReaderTest < Test::Unit::TestCase
+  def setup
+    super
+    # Save original method and redefine 'warn'
+    Kernel.module_eval do
+      unless private_instance_methods.include?(:original_warn)
+        alias_method :original_warn, :warn
+      end
+
+      def warn(*msgs)
+        # Nothing to do
+      end
+    end
+  end
+
+  def teardown
+    super
+    # Restore orginal definitions
+    Kernel.module_eval do
+      alias_method :warn, :original_warn
+      remove_method :original_warn
+    end
+  end
+
   def test_t01_read_yaml_config_with_strings
     filepath = File.join("test", "files", "t01-read-config", "demo.yaml")
     data = ConfigFileReader.read(filepath)

@@ -74,32 +74,23 @@ module ConfigFileReader
       yaml: [".yaml", ".YAML", ".yml", ".YML"],
       json: [".json", ".JSON"]
     }
-    files = Dir.glob(File.join(basedir, "**/*"))
-    files.each { |filename|
-      begin
-        ext = File.extname(filename)
-        if exts[:yaml].include? ext
-          begin
-            data[:cases] << YAML.load(File.open(filename))
-          rescue
-            msg = "[ERROR] Loading configuration file! <#{filename}>"
-            warn msg
-          end
-        elsif exts[:json].include? ext
-          begin
-            data[:cases] << JSON.parse(File.read(filename), symbolize_names: true)
-          rescue
-            msg = "[ERROR] Loading configuration file! <#{filename}>"
-            warn msg
-          end
-        elsif File.file? filename
-          msg = "[ERROR] Loading configuration files! <#{file}>\n"
-          msg += "[ERROR] No yaml or json extension!"
-          warn msg
+    filenames = Dir.glob(File.join(basedir, "**/*"))
+    filenames.each { |filename|
+      ext = File.extname(filename)
+      if exts[:yaml].include? ext
+        begin
+          data[:cases] << YAML.load(File.open(filename))
+        rescue
+          warn "[ERROR] Loading configuration file! <#{filename}>"
         end
-      rescue => e
-        puts "[ERROR] ConfigFileReader.read_included_files!: #{e} "
-        puts "[ERROR] Reevise file content! <#{file}>"
+      elsif exts[:json].include? ext
+        begin
+          data[:cases] << JSON.parse(File.read(filename), symbolize_names: true)
+        rescue
+          warn "[ERROR] Loading configuration file! <#{filename}>"
+        end
+      elsif File.file? filename
+        warn "[WARN] Ignored config file <#{filename}>. No yaml or json extension!"
       end
     }
   end
