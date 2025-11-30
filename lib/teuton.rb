@@ -25,13 +25,16 @@ module Teuton
   def self.readme(projectpath, options = {})
     Project.add_input_params(projectpath, options)
     require_dsl_and_script("teuton/readme/main")
-    readme = Readme.new(Project.value[:script_path], Project.value[:config_path])
+    readme = Readme.new(
+      Project.value[:script_path],
+      Project.value[:config_path]
+    )
     readme.show
   end
 
   def self.server(projectpath)
     require_relative "teuton/config/server"
-    ConfigServer.set_projectpath(projectpath).run!
+    ConfigServer.with(projectpath).run!
   end
 
   private_class_method def self.require_dsl_and_script(dslpath)
