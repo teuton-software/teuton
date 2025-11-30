@@ -2,5 +2,4 @@
 # File: config.yaml
 global:
   tt_include: config.d
-  tt_sequence: true
 cases:

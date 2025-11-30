@@ -40,7 +40,7 @@ module ConfigFileReader
     data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
     read_included_files!(filepath, data)
-    data
+    convert_string_keys_to_symbol(data)
   end
 
   ##
@@ -54,7 +54,7 @@ module ConfigFileReader
     data[:alias] = data[:alias] || {}
     data[:cases] = data[:cases] || []
     read_included_files!(filepath, data)
-    data
+    convert_string_keys_to_symbol(data)
   end
 
   ##
