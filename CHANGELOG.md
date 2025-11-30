@@ -1,9 +1,10 @@
 ## [2.11.0] 
 
+- Refactoring code files.
 - [ADD] export using Markdown format with `export format: 'markdown'`
 - [ADD] export using XML format with `export format: 'xml'`
-- Refactoring code files.
-- [ADD] Config file documentation.
+- [ADD] `teuton config --server PATH/TO/PROJECT` function. Students help teacher to fill configuration file.
+- [UPDATE] Documentation: Config file documentation.
 
 ## [2.10.5-7] 
 
