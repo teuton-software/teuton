@@ -37,7 +37,8 @@ class ExportManager
     end
 
     # Step 2: Export case reports
-    if Project.value(:tt_sequence)
+    binding.break
+    if Project.value[:global][:tt_sequence]
       cases.each { |c| c.export(options) }
     else
       threads = []
