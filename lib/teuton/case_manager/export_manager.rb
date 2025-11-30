@@ -37,9 +37,13 @@ class ExportManager
     end
 
     # Step 2: Export case reports
-    threads = []
-    cases.each { |c| threads << Thread.new { c.export(options) } }
-    threads.each(&:join)
+    if Project.value(:tt_sequence)
+      cases.each { |c| c.export(options) }
+    else
+      threads = []
+      cases.each { |c| threads << Thread.new { c.export(options) } }
+      threads.each(&:join)
+    end
 
     # Step 3: Export resume report
     main_report.export_resume(options)
