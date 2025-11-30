@@ -1,4 +1,5 @@
 ---
 :global:
 :cases:
-- :tt_members: student1
+- :tt_members: student_1
+- :tt_members: student_2

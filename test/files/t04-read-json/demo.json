@@ -1,4 +1,9 @@
 {
-  "global":null,
-  "cases":[{"tt_members":"student1"}]
+  "global": {},
+  "cases":[
+    {"tt_members":"student_1"},
+    {"tt_members":"student_2"},
+    {"tt_members":"student_3"},
+    {"tt_members":"student_4"}
+  ]
 }
