@@ -13,8 +13,8 @@ class ConfigServer < Sinatra::Base
     @@config_filepath = finder.config_path
     @@config = ConfigFileReader.read(@@config_filepath)
 
-    self.run!
-    self.save_global_config
+    run!
+    save_global_config
   end
 
   def self.save_global_config
@@ -46,7 +46,6 @@ class ConfigServer < Sinatra::Base
 
   at_exit do
     puts "==> [INFO] Closing ConfigServer"
-
   end
 
   def save_case_config(data)
