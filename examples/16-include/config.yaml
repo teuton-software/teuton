@@ -1,5 +1,6 @@
 ---
 # File: config.yaml
 global:
-  tt_include: include_this_files
+  tt_include: config.d
+  tt_sequence: true
 cases:
