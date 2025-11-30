@@ -34,7 +34,7 @@ module Teuton
 
   def self.server(projectpath)
     require_relative "teuton/config/server"
-    ConfigServer.with(projectpath).run!
+    ConfigServer.configure_project(projectpath)
   end
 
   private_class_method def self.require_dsl_and_script(dslpath)
