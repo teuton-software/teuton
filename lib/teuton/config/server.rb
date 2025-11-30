@@ -6,8 +6,9 @@ class ConfigServer < Sinatra::Base
   set :bind, "0.0.0.0"
   set :port, 8080
 
-  def self.set_projectpath(projectpath)
+  def self.with(projectpath)
     @@projectpath = projectpath
+
     self
   end
 
@@ -15,8 +16,7 @@ class ConfigServer < Sinatra::Base
     super
     finder = NameFileFinder.new
     finder.find_filenames_for(@@projectpath)
-    config_path = finder.config_path
-    @config = ConfigFileReader.read(config_path)
+    @config = ConfigFileReader.read(finder.config_path)
     @data = {}
 
     puts "==> [INFO] Starting configuration web server..."
@@ -29,8 +29,7 @@ class ConfigServer < Sinatra::Base
   end
 
   post "/submit" do
-    # Los datos del formulario se encuentran en el objeto 'params'
-    @data[request.ip] = params
+    @data[request.ip] = params.clone
     @data[request.ip][:tt_request_ip] = request.ip
     puts "==> [INFO] Data received from #{request.ip} (Total #{@data.size}) "
     save_config(@data[request.ip])
@@ -42,6 +41,9 @@ class ConfigServer < Sinatra::Base
   end
 
   def save_config(data)
-    puts "==> Saving: #{data}"
+    folder = File.join(@@projectpath, "config.d")
+    Dir.mkdir(folder) unless Dir.exist?(folder)
+    filepath = File.join(folder, "remote_#{data[:tt_request_ip]}.yaml")
+    File.write(filepath, data.to_yaml)
   end
 end
