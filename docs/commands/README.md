@@ -2,15 +2,45 @@
 
 # Commands
 
-Available command functions:
-1. [Show help](#1-show-help)
-2. [Show version](#2-show-version)
-3. [Create new test](#3-create-new-test)
-4. [Check test](#4-check-test)
-5. [Run test](#5-run-test)
-6. [Show test info as README file](#6-show-test-info-as-readme-file)
+```
+$ teuton
+Commands:
+  teuton [run] [OPTIONS] DIRECTORY   # Run test from directory
+  teuton check [OPTIONS] DIRECTORY   # Check test and config file content
+  teuton config [OPTIONS] DIRECTORY  # Suggest configuration or run server
+  teuton help [COMMAND]              # Describe available commands or one specific command
+  teuton new DIRECTORY               # Create skeleton for a new project
+  teuton readme DIRECTORY            # Show README extracted from test contents
+  teuton version                     # Show the program version
+```
 
-# 1. Show help
+Available command functions:
+1. [run](run.md)
+2. [check](#2-check)
+3. [config](config.md)
+4. [help](#4-help)
+5. [new](#5-new)
+6. [readme](#6-readme)
+7. [version](#7-version)
+
+# 2. check
+
+Check test and config files from DIRPATH folder.
+
+Usage: `teuton check DIRPATH`
+
+[Example](check.md)
+
+| Command                      | Description |
+| ---------------------------- | ----------- |
+| teuton check PATH/TO/DIR/foo | Test content of start.rb and config.yaml files. |
+| teuton check PATH/TO/DIR/foo --cname=demo | Test content of start.rb and demo.yaml files. |
+| teuton check PATH/TO/FILE/foo.rb | Test content of foo.rb and foo.yaml files. |
+| teuton check PATH/TO/FILE/foo.rb --cname=demo | Test content of foo.rb and demo.yaml files.|
+
+Alias: `teuton c foo`, `teuton -c foo`, `teuton --check foo`
+
+# 4. help
 
 Show help about command functions.
 
@@ -20,17 +50,9 @@ Usage:
 
 Alias: `teuton h`,`teuton -h`, `teuton --help`
 
-# 2. Show version
+# 5. new
 
-Show current version.
-
-Usage: `teuton version`
-
-Alias: `teuton v`, `teuton -v`, `teuton --version`
-
-# 3. Create new test
-
-Create test skeleton.
+Create the skeleton of a new project.
 
 Usage: `teuton new foo`
 
@@ -55,33 +77,20 @@ This command will create the next structure:
 
 Alias: `teuton n foo`, `teuton -n foo`, `teuton --new foo`
 
-# 4. Check test
+# 6.  readme
 
-Check test and config files from DIRPATH folder.
-
-Usage: `teuton check DIRPATH`
-
-[Example](check-example.md)
-
-| Command                      | Description |
-| ---------------------------- | ----------- |
-| teuton check path/to/dir/foo | Test content of start.rb and config.yaml files. |
-| teuton check path/to/dir/foo --cname=demo | Test content of start.rb and demo.yaml files. |
-| teuton check path/to/file/foo.rb | Test content of foo.rb and foo.yaml files. |
-| teuton check path/to/file/foo.rb --cname=demo | Test content of foo.rb and demo.yaml files.|
-
-Alias: `teuton c foo`, `teuton -c foo`, `teuton --check foo`
-
-# 5. Run test
-
-Read about how to [run tests](run-tests.md)
-
-# 6. Show test info as README file
-
-Create a readme file for the exercise.
+Show test info as README file. Useful for create a readme file for the exercise.
 
 Usage: `teuton readme DIRPATH > README.md`
 
 This function reads test and config files, and generate Markdown output with guidelines and target descriptions about the exercise.
 
 Alias: `teuton r DIRPATH`, `teuton -r DIRPATH`, `teuton --readme DIRPATH`
+
+# 7. version
+
+Show current version.
+
+Usage: `teuton version`
+
+Alias: `teuton v`, `teuton -v`, `teuton --version`

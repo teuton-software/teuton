@@ -1,13 +1,15 @@
 [<< back](README.md)
 
-# Check Teuton Test
+# Check example
 
-| Param            | Description            | Default value |
-| ---------------- | ---------------------- | ------------- |
-| --no-panelconfig | Show check information | Enabled |
-| --panelconfig    | Only show config file recomended content | Disabled |
-| --cpath          | Specify path to config file | TEST-FOLDER/config.yaml |
-| --cname          | Specify name to config file | config.yaml |
+Options:
+
+| Param            | Description                              | Default value |
+| ---------------- | ---------------------------------------- | ------------- |
+| --no-panelconfig | Show check information                   | Enabled       |
+| --panelconfig    | Only show config file recomended content | Disabled      |
+| --cpath          | Specify path to config file              | PATH/TO/config.yaml |
+| --cname          | Specify name to config file              | config.yaml   |
 
 Usage: `teuton check PATH-TO-TEST-FOLDER`
 
@@ -38,7 +40,7 @@ $ teuton check examples/02-target
 |  * localhost | 2     |
 +--------------+-------+
 [WARN] Configfile not found
-       /home/.../examples/02-target/config.yaml
+       .../examples/02-target/config.yaml
 [INFO] Recomended content:
 ---
 global:
