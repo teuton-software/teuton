@@ -4,6 +4,7 @@ require_relative "../utils/config_file_reader"
 require_relative "../utils/name_file_finder"
 
 class ConfigServer < Sinatra::Base
+  LINE_SIZE = 50
   PORT = 8080
   REQUEST_IP_PARAM_NAME = :tt_request_ip
   set :bind, "0.0.0.0"
@@ -32,15 +33,16 @@ class ConfigServer < Sinatra::Base
     super
     @data = {}
 
-    puts "-" * 50
-    puts "   ConfigServer URL -> http://#{get_local_ip}:#{PORT}\n\n"
-    puts "   Project path = #{@@projectpath}"
-    puts "   Global params"
-    @@config[:global].each { |key, value| puts "    * #{key} = #{value}" }
-    puts "   Cases params"
+    puts "-" * LINE_SIZE
+    puts "   ConfigServer URL: " + Rainbow("http://#{get_local_ip}:#{PORT}").bright
+    puts ""
+    print "   Project path : #{@@projectpath}"
+    print "   Global params (#{@@config[:global].size})"
+    @@config[:global].each { |key, value| print "   * #{key} : #{value}" }
     @@config[:cases].first.delete(REQUEST_IP_PARAM_NAME)
-    @@config[:cases].first.keys.each { |key| puts "    * #{key}" }
-    puts "-" * 50
+    print "   Cases params (#{@@config[:cases].first.size})"
+    @@config[:cases].first.keys.each { |key| print "   * #{key}" }
+    puts "-" * LINE_SIZE
   end
 
   get "/" do
@@ -51,13 +53,13 @@ class ConfigServer < Sinatra::Base
   post "/submit" do
     @data[request.ip] = params.clone
     @data[request.ip][REQUEST_IP_PARAM_NAME] = request.ip
-    puts "==> [DATA #{@data.size}] Received from #{request.ip}"
+    puts "==> [RECEIVED #{@data.size}] Data from #{request.ip}"
     save_case_config(@data[request.ip])
     erb :feedback
   end
 
   at_exit do
-    puts "[INFO] Closing ConfigServer"
+    puts "-" * LINE_SIZE
   end
 
   def save_case_config(data)
@@ -95,5 +97,9 @@ class ConfigServer < Sinatra::Base
     end
   rescue SocketError
     "127.0.0.1"
+  end
+
+  def print(msg)
+    puts Rainbow(msg).white
   end
 end
