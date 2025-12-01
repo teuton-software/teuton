@@ -1,5 +1,5 @@
 require "sinatra/base"
-require 'socket'
+require "socket"
 require_relative "../utils/config_file_reader"
 require_relative "../utils/name_file_finder"
 
@@ -33,14 +33,18 @@ class ConfigServer < Sinatra::Base
     @data = {}
 
     puts "-" * 50
-    puts "   ConfigServer URL : http://#{get_local_ip}:#{PORT}"
-    puts "   Project path     : #{@@projectpath}"
+    puts "   ConfigServer URL -> http://#{get_local_ip}:#{PORT}\n\n"
+    puts "   Project path = #{@@projectpath}"
+    puts "   Global params"
+    @@config[:global].each { |key, value| puts "    * #{key} = #{value}" }
+    puts "   Cases params"
+    @@config[:cases].first.delete(REQUEST_IP_PARAM_NAME)
+    @@config[:cases].first.keys.each { |key| puts "    * #{key}" }
     puts "-" * 50
   end
 
   get "/" do
     names = @@config[:cases].first.keys
-    names.delete(REQUEST_IP_PARAM_NAME)
     erb :form, locals: {names: names}
   end
 
@@ -83,14 +87,13 @@ class ConfigServer < Sinatra::Base
   end
 
   private
-  
+
   def get_local_ip
     UDPSocket.open do |s|
-      s.connect '208.67.222.222', 1
+      s.connect "208.67.222.222", 1
       s.addr.last
     end
   rescue SocketError
     "127.0.0.1"
   end
-
 end
