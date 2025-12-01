@@ -4,7 +4,7 @@ require_relative "../utils/config_file_reader"
 require_relative "../utils/name_file_finder"
 
 class ConfigServer < Sinatra::Base
-  LINE_SIZE = 50
+  LINE = "-" * 50
   PORT = 8080
   REQUEST_IP_PARAM_NAME = :tt_request_ip
   set :bind, "0.0.0.0"
@@ -33,7 +33,7 @@ class ConfigServer < Sinatra::Base
     super
     @data = {}
 
-    puts "-" * LINE_SIZE
+    print LINE
     puts "   ConfigServer URL: " + Rainbow("http://#{get_local_ip}:#{PORT}").bright
     puts ""
     print "   Project path : #{@@projectpath}"
@@ -42,7 +42,7 @@ class ConfigServer < Sinatra::Base
     @@config[:cases].first.delete(REQUEST_IP_PARAM_NAME)
     print "   Cases params (#{@@config[:cases].first.size})"
     @@config[:cases].first.keys.each { |key| print "   * #{key}" }
-    puts "-" * LINE_SIZE
+    print LINE
   end
 
   get "/" do
@@ -59,7 +59,7 @@ class ConfigServer < Sinatra::Base
   end
 
   at_exit do
-    puts "-" * LINE_SIZE
+    puts LINE
   end
 
   def save_case_config(data)
