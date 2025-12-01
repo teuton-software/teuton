@@ -1,11 +1,13 @@
 require "sinatra/base"
+require 'socket'
 require_relative "../utils/config_file_reader"
 require_relative "../utils/name_file_finder"
 
 class ConfigServer < Sinatra::Base
-  set :bind, "0.0.0.0"
-  set :port, 8080
+  PORT = 8080
   REQUEST_IP_PARAM_NAME = :tt_request_ip
+  set :bind, "0.0.0.0"
+  set :port, PORT
 
   def self.configure_project(projectpath)
     @@projectpath = projectpath
@@ -30,8 +32,10 @@ class ConfigServer < Sinatra::Base
     super
     @data = {}
 
-    puts "==> [INFO] Starting configuration web server..."
-    puts "==> [INFO] Project: <#{@@projectpath}>"
+    puts "-" * 50
+    puts "   ConfigServer URL : http://#{get_local_ip}:#{PORT}"
+    puts "   Project path     : #{@@projectpath}"
+    puts "-" * 50
   end
 
   get "/" do
@@ -43,19 +47,19 @@ class ConfigServer < Sinatra::Base
   post "/submit" do
     @data[request.ip] = params.clone
     @data[request.ip][REQUEST_IP_PARAM_NAME] = request.ip
-    puts "==> [INFO] Data received from #{request.ip} (Total #{@data.size}) "
+    puts "==> [DATA #{@data.size}] Received from #{request.ip}"
     save_case_config(@data[request.ip])
     erb :feedback
   end
 
   at_exit do
-    puts "==> [INFO] Closing ConfigServer"
+    puts "[INFO] Closing ConfigServer"
   end
 
   def save_case_config(data)
     folder = File.join(@@projectpath, "config.d")
     Dir.mkdir(folder) unless Dir.exist?(folder)
-    filepath = File.join(folder, "remote_#{data[:tt_request_ip]}.yaml")
+    filepath = File.join(folder, "remote_#{data[REQUEST_IP_PARAM_NAME]}.yaml")
     File.write(filepath, data.to_h.to_yaml)
   end
 
@@ -76,6 +80,17 @@ class ConfigServer < Sinatra::Base
       output[key2] = value2
     end
     output
+  end
+
+  private
+  
+  def get_local_ip
+    UDPSocket.open do |s|
+      s.connect '208.67.222.222', 1
+      s.addr.last
+    end
+  rescue SocketError
+    "127.0.0.1"
   end
 
 end
