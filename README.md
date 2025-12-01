@@ -24,23 +24,54 @@ gem install teuton
 * Install a specific version: `gem install teuton -v VERSION`. Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/)).
 * Update: `gem update teuton`.
 
-# Usage
+# Quickstart
 
-Use `teuton run TESTPATH` command to run test:
+**Create** your test
+
+```
+$ cat examples/02-target/start.rb 
+group "Learn about targets" do
+  target "Create user obiwan", weight: 2
+  run "id obiwan"
+  expect ["uid=", "(obiwan)", "gid="]
+
+  target "Delete user vader"
+  run "id vader"
+  expect_fail
+end
+
+start do
+  show
+  export
+end
+```
+
+**Usage**: `teuton run TESTPATH` command to run test:
 
 ```console
 $ teuton run examples/02-target
 ------------------------------------
-Started at 2025-11-12 20:15:59 +0000
+Started at 2025-12-01 18:14:44 +0000
 F.
 Finished in 0.005 seconds
 ------------------------------------
  
 CASE RESULTS
-+------+---------+-------+-------+
-| CASE | MEMBERS | GRADE | STATE |
-| 01   | VALUE   | 33.0  | ?     |
-+------+---------+-------+-------+
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | anonymous | 33.0  | ?     |
++------+-----------+-------+-------+
+```
+
+**Output**: reports saved into `var/TESTPATH` folder.
+
+```
+$ tree var 
+var
+└── 02-target
+    ├── case-01.txt
+    ├── moodle.csv
+    └── resume.txt
 ```
 
 Consult the generated [output files](examples/02-target/output.d/)
@@ -49,7 +80,7 @@ Consult the generated [output files](examples/02-target/output.d/)
 
 * Use simple DSL to define your tests: `target`, `run`,`expect` and more.
 * Remote devices only require SSH or Telnet service installed.
-* Output format: txt, html, json, yaml, etc.
+* Output format: txt, html, json, yaml, markdown, etc.
 * Multiplatform.
 * [Free Software License](LICENSE).
 
