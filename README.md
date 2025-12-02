@@ -21,15 +21,12 @@ Install Ruby and then:
 gem install teuton
 ```
 
-* Install a specific version: `gem install teuton -v VERSION`. Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/)).
-* Update: `gem update teuton`.
-
 # Quickstart
 
-**Create** your test
+**Create** your test file:
 
-```
-$ cat examples/02-target/start.rb 
+```ruby
+# File: examples/02-target/start.rb 
 group "Learn about targets" do
   target "Create user obiwan", weight: 2
   run "id obiwan"
@@ -46,7 +43,7 @@ start do
 end
 ```
 
-**Usage**: `teuton run TESTPATH` command to run test:
+**Usage**: Run test with `teuton run TESTPATH`.
 
 ```console
 $ teuton run examples/02-target
@@ -63,7 +60,7 @@ CASE RESULTS
 +------+-----------+-------+-------+
 ```
 
-**Output**: reports saved into `var/TESTPATH` folder.
+**Output**: reports saved into `var/TESTNAME` folder.
 
 ```
 $ tree var 
@@ -97,7 +94,7 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [new](docs/commands/new.md)
     * [readme](docs/commands/readme.md)
 * [Learning guide](docs/learn/README.md). Learning to create tests by examples.
-* [Test examples](examples). The learning guide is based on these examples.
+* [Examples](examples). The learning guide is based on these examples.
 * [Configuration file](docs/config_file.md)
 * [DSL - Language reference](docs/dsl/README.md). DSL used to define tests.
     * [expect](docs/dsl/expect.md)

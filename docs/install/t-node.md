@@ -9,6 +9,7 @@ _T-NODE is a host with Teuton installed. Monitors one or severals S-NODE hosts._
 
 > NOTE:
 > * Show current version: `teuton version`.
+> * Install a specific version: `gem install teuton -v VERSION`. Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/)).
 > * Update: `gem update teuton`.
 > * Uninstall: `gem uninstall teuton`.
 
