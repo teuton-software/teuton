@@ -60,8 +60,7 @@ foo
    ConfigServer URL: http://192.168.1.42:8080
 
    Project path : foo
-   Global params (1)
-   * tt_include : config.d
+   Global params (0)
    Cases params (2)
    * tt_members
    * tt_moodle_id
@@ -79,14 +78,17 @@ Use Ctrl-C to stop
 ```
 
 * Now students connect to host 192.168.1.42 and send their configuracion values.
+* Student host:
 
 ![](images/config01.png)
+
+* Teacher host:
 
 ![](images/config02.png)
 
 * When all students submit their data, the teacher presses CTRL-C to end the service
 * The received data is saved in separate files within the `config.d` subfolder
-
+* Project files:
 ```
 foo
 ├── config.d
@@ -98,6 +100,9 @@ foo
 ```
 
 * And now the main configuration file (config.yaml) has the following content:
+    * Global param `tt_include: config.d`. 
+    * No cases in main config file. Read case data from files into `config.d` subfolder.
+
 ```yaml
 ---
 global:
