@@ -1,6 +1,17 @@
 [<< back](README.md)
 
-# Check example
+# check
+
+_Check test and config files from test folder._
+
+Usage: `teuton check PATH/TO/DIR`
+
+| Command                      | Description |
+| ---------------------------- | ----------- |
+| teuton check PATH/TO/DIR/foo | Test content of start.rb and config.yaml files. |
+| teuton check PATH/TO/DIR/foo --cname=demo | Test content of start.rb and demo.yaml files. |
+| teuton check PATH/TO/FILE/foo.rb | Test content of foo.rb and foo.yaml files. |
+| teuton check PATH/TO/FILE/foo.rb --cname=demo | Test content of foo.rb and demo.yaml files.|
 
 Options:
 
@@ -11,9 +22,9 @@ Options:
 | --cpath          | Specify path to config file              | PATH/TO/config.yaml |
 | --cname          | Specify name to config file              | config.yaml   |
 
-Usage: `teuton check PATH-TO-TEST-FOLDER`
+Alias: `teuton c foo`, `teuton -c foo`, `teuton --check foo`
 
-Example:
+## Example
 
 ```
 $ teuton check examples/02-target
