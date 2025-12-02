@@ -86,12 +86,31 @@ Consult the generated [output files](examples/02-target/output.d/)
 
 # Documentation
 
-* [Installation](docs/install/README.md)
-* [Using Teuton by commands](docs/commands/README.md)
-* [Learning guide](docs/learn/README.md). How to create tests using examples.
+* Installation
+    * [Teuton installation](docs/install/t-node.md)
+    * [SSH/Telnet installation](docs/install/s-node.md)
+* Teuton commands
+    * [run](docs/commands/run.md)
+    * [check](docs/commands/check.md)
+    * [config](docs/commands/config.md)
+    * [help](docs/commands/help.md)
+    * [new](docs/commands/new.md)
+    * [readme](docs/commands/readme.md)
+* [Learning guide](docs/learn/README.md). Learning to create tests by examples.
 * [Test examples](examples). The learning guide is based on these examples.
 * [Configuration file](docs/config_file.md)
 * [DSL - Language reference](docs/dsl/README.md). DSL used to define tests.
+    * [expect](docs/dsl/expect.md)
+    * [export](docs/dsl/export.md)
+    * [get](docs/dsl/get.md)
+    * [group](docs/dsl/group.md)
+    * [play](docs/dsl/play.md)
+    * [result](docs/dsl/result.md)
+    * [run](docs/dsl/run.md)
+    * [send](docs/dsl/send.md)
+    * [set](docs/dsl/set.md)
+    * [show](docs/dsl/show.md)
+    * [target](docs/dsl/target.md)
 * [Modes of use](docs/modes_of_use.md): Classroom, contest, standalone.
 * [Blogs and videos](docs/videos.md)
 

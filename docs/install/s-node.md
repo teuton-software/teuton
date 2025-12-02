@@ -1,21 +1,12 @@
 [<< back](../../README.md)
 
-# Installation
-
-## Teuton installation
-
-_T-NODE is a host with Teuton installed. Monitors one or severals S-NODE hosts._
-
-1. Install Ruby on your system.
-2. `gem install teuton`
-
-Other ways of [Teuton installation](t-node.md).
-
----
-
-## SSH server installation
+# S-NODE Installation
 
 _S-NODE is a host with SSH/Telnet service installed. S-NODE hosts are monitorized by T-NODE host._
+
+S-NODES needs to have the SSH or Telnet service installed.
+
+## SSH server installation
 
 **SSH GNU/Linux installation**
 
