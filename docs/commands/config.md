@@ -54,6 +54,15 @@ foo
 └── start.rb
 ```
 
+```yaml
+# File: foo/config.yaml
+---
+global:
+cases:
+- tt_members: TOCHANGE
+  tt_moodle_id: TOCHANGE
+```
+
 * `teuton config --server foo`, init config server.
 ```
 --------------------------------------------------
