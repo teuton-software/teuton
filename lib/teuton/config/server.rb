@@ -90,7 +90,7 @@ class ConfigServer < Sinatra::Base
     warn "..."
     warn "cases:"
     warn "- tt_member: TOCHANGE"
-    warn "..."   
+    warn "..."
     exit 1
   end
 
