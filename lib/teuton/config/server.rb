@@ -16,60 +16,20 @@ class ConfigServer < Sinatra::Base
     finder.find_filenames_for(@@projectpath)
     @@config_filepath = finder.config_path
     @@config = ConfigFileReader.read(@@config_filepath)
+    @@config[:global][:tt_include] = @@config[:global][:tt_include] || "config.d"
 
     run!
     save_global_config
   end
 
   def self.save_global_config
-    @@config[:global][:tt_include] = "config.d"
     @@config[:cases] = []
     @@config.delete(:alias) if @@config[:alias].empty?
     data = convert_symbol_keys_to_string(@@config)
     File.write(@@config_filepath, data.to_yaml)
   end
 
-  def initialize
-    super
-    @data = {}
-
-    print LINE
-    puts "   ConfigServer URL: " + Rainbow("http://#{get_local_ip}:#{PORT}").bright
-    puts ""
-    print "   Project path : #{@@projectpath}"
-    print "   Global params (#{@@config[:global].size})"
-    @@config[:global].each { |key, value| print "   * #{key} : #{value}" }
-    @@config[:cases].first.delete(REQUEST_IP_PARAM_NAME)
-    print "   Cases params (#{@@config[:cases].first.size})"
-    @@config[:cases].first.keys.each { |key| print "   * #{key}" }
-    print LINE
-  end
-
-  get "/" do
-    names = @@config[:cases].first.keys
-    erb :form, locals: {names: names}
-  end
-
-  post "/submit" do
-    @data[request.ip] = params.clone
-    @data[request.ip][REQUEST_IP_PARAM_NAME] = request.ip
-    puts "==> [RECEIVED #{@data.size}] Data from #{request.ip}"
-    save_case_config(@data[request.ip])
-    erb :feedback
-  end
-
-  at_exit do
-    puts LINE
-  end
-
-  def save_case_config(data)
-    folder = File.join(@@projectpath, "config.d")
-    Dir.mkdir(folder) unless Dir.exist?(folder)
-    filepath = File.join(folder, "remote_#{data[REQUEST_IP_PARAM_NAME]}.yaml")
-    File.write(filepath, data.to_h.to_yaml)
-  end
-
-  private_class_method def self.convert_symbol_keys_to_string(input)
+  def self.convert_symbol_keys_to_string(input)
     return input if input.class != Hash
 
     output = {}
@@ -88,7 +48,51 @@ class ConfigServer < Sinatra::Base
     output
   end
 
+  def initialize
+    super
+    @data = {}
+
+    show_warning_and_exit if @@config[:cases].size.zero?
+    @@config[:cases].first.delete(REQUEST_IP_PARAM_NAME)
+    show_banner
+  end
+
+  get "/" do
+    names = @@config[:cases].first.keys
+    erb :form, locals: {names: names}
+  end
+
+  post "/submit" do
+    @data[request.ip] = params.clone
+    @data[request.ip][REQUEST_IP_PARAM_NAME] = request.ip
+    puts "==> [RECEIVED #{@data.size}] Data from #{request.ip}"
+    save_case_config(@data[request.ip])
+    erb :feedback
+  end
+
   private
+
+  def show_banner
+    print LINE
+    puts "   ConfigServer URL: " + Rainbow("http://#{get_local_ip}:#{PORT}").bright
+    puts ""
+    print "   Project path : #{@@projectpath}"
+    print "   Global params (#{@@config[:global].size})"
+    @@config[:global].each { |key, value| print "   * #{key} : #{value}" }
+    print "   Cases params (#{@@config[:cases].first.size})"
+    @@config[:cases].first.keys.each { |key| print "   * #{key}" }
+    print LINE
+  end
+
+  def show_warning_and_exit
+    warn "[ERROR] ConfigServer: Define at least one case param. Example:"
+    warn "# File: #{@@config_filepath}"
+    warn "..."
+    warn "cases:"
+    warn "- tt_member: TOCHANGE"
+    warn "..."   
+    exit 1
+  end
 
   def get_local_ip
     UDPSocket.open do |s|
@@ -101,5 +105,12 @@ class ConfigServer < Sinatra::Base
 
   def print(msg)
     puts Rainbow(msg).white
+  end
+
+  def save_case_config(data)
+    folder = File.join(@@projectpath, @@config[:global][:tt_include])
+    Dir.mkdir(folder) unless Dir.exist?(folder)
+    filepath = File.join(folder, "remote_#{data[REQUEST_IP_PARAM_NAME]}.yaml")
+    File.write(filepath, data.to_h.to_yaml)
   end
 end
