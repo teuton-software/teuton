@@ -4,18 +4,9 @@ require "yaml"
 ##
 # Read config file content. Available file formats: YAML or JSON
 module ConfigFileReader
-  ##
-  # Read config file
-  # @param filepath (String) Path to config file
-  # @return Hash with config data
   def self.read(filepath)
-    unless File.exist?(filepath)
-      data = {}
-      data[:global] = {}
-      data[:alias] = {}
-      data[:cases] = [{tt_members: "anonymous"}]
-      return data
-    end
+    return minimum_configuration_with_one_case unless File.exist?(filepath)
+
     return read_yaml(filepath) if [".yaml", ".yml"].include? File.extname(filepath)
 
     return read_json(filepath) if File.extname(filepath) == ".json"
@@ -23,10 +14,14 @@ module ConfigFileReader
     raise "[ERROR] ConfigFileReader.read: <#{filepath}>. Unkown extension!"
   end
 
-  ##
-  # Read YAML config file
-  # @param filepath (String) Path to YAML config file
-  # @return Hash with config data
+  def self.minimum_configuration_with_one_case
+    data = {}
+    data[:global] = {}
+    data[:alias] = {}
+    data[:cases] = [{tt_members: "anonymous"}]
+    data
+  end
+
   def self.read_yaml(filepath)
     begin
       data = YAML.load(File.open(filepath))
@@ -43,10 +38,6 @@ module ConfigFileReader
     convert_string_keys_to_symbol(data)
   end
 
-  ##
-  # Read JSON config file
-  # @param filepath (String) Path to JSON config file
-  # @return Hash with config data
   def self.read_json(filepath)
     data = JSON.parse(File.read(filepath), symbolize_names: true)
     data = convert_string_keys_to_symbol(data)
@@ -57,11 +48,7 @@ module ConfigFileReader
     convert_string_keys_to_symbol(data)
   end
 
-  ##
-  # Read all configuration files from "filepath" folder.
-  # @param filepath (String) Folder with config files
-  # @param data (Hash) Input configuration
-  private_class_method def self.read_included_files!(filepath, data)
+  def self.read_included_files!(filepath, data)
     return if data[:global][:tt_include].nil?
 
     include_dir = data[:global][:tt_include]
@@ -76,26 +63,53 @@ module ConfigFileReader
     }
     filenames = Dir.glob(File.join(basedir, "**/*"))
     filenames.each { |filename|
+      puts relative_path(filename)
       ext = File.extname(filename)
       if exts[:yaml].include? ext
-        begin
-          data[:cases] << YAML.load(File.open(filename))
-        rescue
-          warn "[ERROR] Loading configuration file! <#{filename}>"
-        end
+        case_params = read_included_yaml_file(filename)
+        case_params[:tt_source_file] = filename
+        data[:cases] << case_params
       elsif exts[:json].include? ext
-        begin
-          data[:cases] << JSON.parse(File.read(filename), symbolize_names: true)
-        rescue
-          warn "[ERROR] Loading configuration file! <#{filename}>"
-        end
+        case_params = read_included_json_file(filename)
+        case_params[:tt_source_file] = filename
+        data[:cases] << case_params
       elsif File.file? filename
         warn "[WARN] Ignore config file <#{filename}>. No yaml or json extension!"
       end
     }
   end
 
-  private_class_method def self.convert_string_keys_to_symbol(input)
+  def self.read_included_yaml_file(filepath)
+    begin
+      data = YAML.load(File.open(filepath))
+    rescue => e
+      warn "[ERROR] ConfigFileReader.read_included_yaml: #{e}"
+      warn "[ERROR] Loading configuration file! <#{filename}>"
+      exit 1
+    end
+    convert_string_keys_to_symbol(data)
+  end
+
+  def self.read_included_json_file(filepath)
+    begin
+      data = JSON.parse(File.read(filepath), symbolize_names: true)
+    rescue => e
+      warn "[ERROR] ConfigFileReader.read_included_json: #{e}"
+      warn "[ERROR] Loading configuration file! <#{filename}>"
+      exit 1
+    end
+    convert_string_keys_to_symbol(data)
+  end
+
+  def self.relative_path(filepath)
+    if filepath.start_with?(Dir.pwd)
+      filepath[Dir.pwd.length, filepath.length]
+    else
+      filepath
+    end
+  end
+
+  def self.convert_string_keys_to_symbol(input)
     return input if input.class != Hash
 
     output = {}
