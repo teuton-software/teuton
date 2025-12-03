@@ -61,22 +61,24 @@ module ConfigFileReader
       yaml: [".yaml", ".YAML", ".yml", ".YML"],
       json: [".json", ".JSON"]
     }
-    filenames = Dir.glob(File.join(basedir, "**/*"))
-    filenames.each { |filename|
-      puts relative_path(filename)
-      ext = File.extname(filename)
-      if exts[:yaml].include? ext
-        case_params = read_included_yaml_file(filename)
-        case_params[:tt_source_file] = filename
+    filepaths = Dir.glob(File.join(basedir, "**/*"))
+    filepaths.each { |filepath|
+      ext = File.extname(filepath)
+      if File.directory?(filepath)
+        next
+      elsif exts[:yaml].include? ext
+        case_params = read_included_yaml_file(filepath)
+        case_params[:tt_source_file] = relative_path(filepath)
         data[:cases] << case_params
       elsif exts[:json].include? ext
-        case_params = read_included_json_file(filename)
-        case_params[:tt_source_file] = filename
+        case_params = read_included_json_file(filepath)
+        case_params[:tt_source_file] = relative_path(filepath)
         data[:cases] << case_params
-      elsif File.file? filename
+      elsif File.file? filepath
         warn "[WARN] Ignore config file <#{filename}>. No yaml or json extension!"
+        next
       end
-    }
+  }
   end
 
   def self.read_included_yaml_file(filepath)
