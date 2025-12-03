@@ -97,13 +97,9 @@ module ConfigFileReader
       if File.directory?(filepath)
         next
       elsif is_yaml_file? filepath
-        case_params = read_included_yaml_file(filepath)
-        case_params[:tt_source_file] = relative_path(filepath)
-        data[:cases] << case_params
+        data[:cases] << read_included_yaml_file(filepath)
       elsif is_json_file? filepath
-        case_params = read_included_json_file(filepath)
-        case_params[:tt_source_file] = relative_path(filepath)
-        data[:cases] << case_params
+        data[:cases] << read_included_json_file(filepath)
       elsif File.file? filepath
         warn "[WARN] Ignore config file <#{filepath}>. No yaml or json extension!"
         next
@@ -119,6 +115,7 @@ module ConfigFileReader
       warn "[ERROR] Loading configuration file! <#{filename}>"
       exit 1
     end
+    data[:tt_source_file] = relative_path(filepath)
     convert_string_keys_to_symbol(data)
   end
 
@@ -130,6 +127,7 @@ module ConfigFileReader
       warn "[ERROR] Loading configuration file! <#{filename}>"
       exit 1
     end
+    data[:tt_source_file] = relative_path(filepath)
     convert_string_keys_to_symbol(data)
   end
 
