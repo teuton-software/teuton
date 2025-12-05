@@ -9,7 +9,7 @@ def use(filename)
   use = []
   files.sort.each { |f| use << f if f.include?(filename) }
   require_relative use.first
-  Project.value[:uses] << use.first
+  Project.value[:uses] << Project.relative_path(use.first)
 end
 
 def group(name, &block)
