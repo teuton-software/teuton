@@ -29,7 +29,7 @@ Option B:
 
 If you don't know how to install Ruby on your system, execute this script to run automatical installation for your OS.
 
-**GNU/Linux installation**
+### 2.1 GNU/Linux installation
 
 Run this command as `root` user:
 
@@ -37,7 +37,7 @@ Run this command as `root` user:
 wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/install/linux/t-node_install.sh | bash
 ```
 
-**Windows installation**
+### 2.2 Windows installation
 
 Requirements:
 * Windows 7+ / Windows Server 2003+
@@ -49,7 +49,7 @@ Run this command on **PowerShell (PS)** as `Administrator` user:
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/install/windows/t-node_install.ps1'))
 ```
 
-**Mac OS X installation**
+### 2.3 Mac OS X installation
 
 Run this command as admin user (member of `admin` group):
 
