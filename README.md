@@ -87,14 +87,14 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [Teuton installation](docs/install/t-node.md)
     * [SSH/Telnet installation](docs/install/s-node.md)
 * Teuton commands
-    * [run](docs/commands/run.md)
-    * [check](docs/commands/check.md)
-    * [config](docs/commands/config.md)
-    * [help](docs/commands/help.md)
-    * [new](docs/commands/new.md)
-    * [readme](docs/commands/readme.md)
-* [Learning guide](docs/learn/README.md). Learning to create tests by examples.
-* [Examples](examples). The learning guide is based on these examples.
+    * [teuton config](docs/commands/config.md)
+    * [teuton check](docs/commands/check.md)
+    * [teuton help](docs/commands/help.md)
+    * [teuton new](docs/commands/new.md)
+    * [teuton readme](docs/commands/readme.md)
+    * [teuton run](docs/commands/run.md)
+* [Learning guide](docs/learn/README.md). Learning to create tests by doing.
+* [Learning Examples](examples). The learning guide is based on these examples.
 * [Configuration file](docs/config_file.md)
 * [DSL - Language reference](docs/dsl/README.md). DSL used to define tests.
     * [expect](docs/dsl/expect.md)
