@@ -6,7 +6,6 @@ require_relative "../utils/name_file_finder"
 class ConfigServer < Sinatra::Base
   LINE = "-" * 50
   PORT = 8080
-  REQUEST_IP_PARAM_NAME = :tt_request_ip
   set :bind, "0.0.0.0"
   set :port, PORT
 
@@ -23,7 +22,10 @@ class ConfigServer < Sinatra::Base
   end
 
   def self.save_global_config
-    @@config[:cases] = []
+    all_cases = @@config[:cases].clone
+    @@config[:cases] = all_cases.select do |c| 
+      (c[:tt_source_file].nil? && c[:tt_source_ip].nil?)
+    end
     @@config.delete(:alias) if @@config[:alias].empty?
     data = convert_symbol_keys_to_string(@@config)
     File.write(@@config_filepath, data.to_yaml)
@@ -53,7 +55,8 @@ class ConfigServer < Sinatra::Base
     @data = {}
 
     show_warning_and_exit if @@config[:cases].size.zero?
-    @@config[:cases].first.delete(REQUEST_IP_PARAM_NAME)
+    @@config[:cases].first.delete(:tt_source_ip)
+    @@config[:cases].first.delete(:tt_source_file)
     show_banner
   end
 
@@ -63,10 +66,11 @@ class ConfigServer < Sinatra::Base
   end
 
   post "/submit" do
-    @data[request.ip] = params.clone
-    @data[request.ip][REQUEST_IP_PARAM_NAME] = request.ip
-    puts "==> [RECEIVED #{@data.size}] Data from #{request.ip}"
-    save_case_config(@data[request.ip])
+    ip = request.ip
+    @data[ip] = params.clone
+    @data[ip][:tt_source_ip] = ip
+    puts "==> [RECEIVED DATA #{@data.size}] from #{ip}"
+    save_case_config(@data[ip])
     erb :feedback
   end
 
@@ -110,7 +114,7 @@ class ConfigServer < Sinatra::Base
   def save_case_config(data)
     folder = File.join(@@projectpath, @@config[:global][:tt_include])
     Dir.mkdir(folder) unless Dir.exist?(folder)
-    filepath = File.join(folder, "remote_#{data[REQUEST_IP_PARAM_NAME]}.yaml")
+    filepath = File.join(folder, "from_#{data[:tt_source_ip]}.yaml")
     File.write(filepath, data.to_h.to_yaml)
   end
 end
