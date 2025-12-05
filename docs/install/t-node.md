@@ -2,7 +2,7 @@
 
 # T-NODE installation
 
-_T-NODE is a host with Teuton installed. Monitors one or severals S-NODE hosts._
+_T-NODE is a host with Teuton installed. T-NODE monitors one or severals S-NODE hosts._
 
 1. Install Ruby on your system.
 2. `gem install teuton`
