@@ -23,8 +23,8 @@ class ConfigServer < Sinatra::Base
 
   def self.save_global_config
     all_cases = @@config[:cases].clone
-    @@config[:cases] = all_cases.select do |c| 
-      (c[:tt_source_file].nil? && c[:tt_source_ip].nil?)
+    @@config[:cases] = all_cases.select do |c|
+      c[:tt_source_file].nil? && c[:tt_source_ip].nil?
     end
     @@config.delete(:alias) if @@config[:alias].empty?
     data = convert_symbol_keys_to_string(@@config)
