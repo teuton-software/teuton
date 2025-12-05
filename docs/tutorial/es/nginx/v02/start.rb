@@ -3,7 +3,6 @@
 use "nginx"
 
 start do
-  show 
-  export 
+  show
+  export
 end
-  

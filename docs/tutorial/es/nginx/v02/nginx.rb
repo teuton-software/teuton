@@ -9,6 +9,6 @@ group "Comprobar el servicio web Nginx" do
 
   target "Comprobar que index.html contiene el texto 'Hola Mundo!'", weight: 5
   readme "Se asume que Nginx está instalado en su ruta por defecto."
-  run "cat /var/www/html/index.html" , on: :webserver
+  run "cat /var/www/html/index.html", on: :webserver
   expect "Hola Mundo!"
 end
