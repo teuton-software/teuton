@@ -55,14 +55,11 @@ class ConfigServer < Sinatra::Base
     @data = {}
 
     show_warning_and_exit if @@config[:cases].size.zero?
-    @@config[:cases].first.delete(:tt_source_ip)
-    @@config[:cases].first.delete(:tt_source_file)
     show_banner
   end
 
   get "/" do
-    names = @@config[:cases].first.keys
-    erb :form, locals: {names: names}
+    erb :form, locals: {param_names: get_param_names_to_configure}
   end
 
   post "/submit" do
@@ -83,18 +80,26 @@ class ConfigServer < Sinatra::Base
     print "   Project path : #{@@projectpath}"
     print "   Global params (#{@@config[:global].size})"
     @@config[:global].each { |key, value| print "   * #{key} : #{value}" }
-    print "   Cases params (#{@@config[:cases].first.size})"
-    @@config[:cases].first.keys.each { |key| print "   * #{key}" }
+    print "   Cases params (#{get_param_names_to_configure.size})"
+    get_param_names_to_configure.each { |key| print "   * #{key}" }
     print LINE
   end
 
   def show_warning_and_exit
-    warn "[ERROR] ConfigServer: Define at least one case param. Example:"
-    warn "# File: #{@@config_filepath}"
-    warn "..."
-    warn "cases:"
+    warn Rainbow("[ERROR] ConfigServer: Parameter names are missing!").bright.red
+    warn Rainbow("[OPTION 1] Create one case with some params. Example:").bright.yellow
+    warn Rainbow("# File: #{@@config_filepath}").white
+    warn Rainbow("...").white
+    warn Rainbow("cases:").white
     warn "- tt_member: TOCHANGE"
-    warn "..."
+    warn "- param_name: TOCHANGE"
+    warn Rainbow("...").white
+    warn Rainbow("[OPTION 2] Or configure tt_include to read config files from subfolder. Example:").bright.yellow
+    warn Rainbow("# File: #{@@config_filepath}").white
+    warn Rainbow("global:").white
+    warn "- tt_include: TOCHANGE"
+    warn Rainbow("cases:").white
+    warn Rainbow("...").white
     exit 1
   end
 
@@ -105,6 +110,13 @@ class ConfigServer < Sinatra::Base
     end
   rescue SocketError
     "127.0.0.1"
+  end
+
+  def get_param_names_to_configure
+    param_names = @@config[:cases].first.keys
+    param_names.delete(:tt_source_ip)
+    param_names.delete(:tt_source_file)
+    param_names
   end
 
   def print(msg)
