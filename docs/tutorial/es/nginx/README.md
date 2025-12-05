@@ -159,11 +159,12 @@ Ahora hay que incluir un fichero de configuración para especificar la configura
 ---
 global:
 cases:
-- tt_members: VALUE
-  nginx_ip: VALUE
-  nginx_username: VALUE
-  nginx_password: VALUE
+- tt_members: TOCHANGE
+  webserver_ip: TOCHANGE
+  webserver_username: TOCHANGE
+  webserver_password: TOCHANGE
 ```
 
-_¡Guau! ¡Qué bueno!_ Después de leer el test, él es capaz de deducir los parámetros que hacen falta para cada alumno (case).
+> A partir del contenido del test, Teuton es capaz de deducir los parámetros que se necesitan para su ejecución.
 
+Ahora personalizamos los valores de los parámetros:
