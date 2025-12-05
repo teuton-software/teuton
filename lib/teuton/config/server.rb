@@ -15,7 +15,7 @@ class ConfigServer < Sinatra::Base
     finder = NameFileFinder.new
     finder.find_filenames_for(@@projectpath)
     @@config_filepath = finder.config_path
-    @@config = ConfigFileReader.read(@@config_filepath)
+    @@config = ConfigFileReader.call(@@config_filepath)
     @@config[:global][:tt_include] = @@config[:global][:tt_include] || "config.d"
 
     run!

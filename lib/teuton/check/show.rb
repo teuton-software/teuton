@@ -28,7 +28,7 @@ class ShowCheck
     end
 
     script_vars = find_script_vars
-    config_vars = ConfigFileReader.read(@path[:config])
+    config_vars = ConfigFileReader.call(@path[:config])
     config_vars[:global]&.each_key { |k| script_vars.delete(k) }
     config_vars[:alias]&.each_key { |k| script_vars.delete(k) }
 

@@ -9,7 +9,7 @@ module CheckCasesExtension
     # Start checking every single case
     app = Project.value
     # Load configurations from config file
-    configdata = ConfigFileReader.read(Project.value[:config_path])
+    configdata = ConfigFileReader.call(Project.value[:config_path])
     app[:ialias] = configdata[:alias]
     app[:global] = configdata[:global]
     app[:global][:tt_testname] = app[:global][:tt_testname] || app[:test_name]

@@ -4,14 +4,14 @@ require "yaml"
 ##
 # Read config file content. Available file formats: YAML or JSON
 module ConfigFileReader
-  def self.read(filepath)
+  def self.call(filepath)
     return minimum_configuration_with_one_case unless File.exist?(filepath)
 
     return read_yaml(filepath) if [".yaml", ".yml"].include? File.extname(filepath)
 
     return read_json(filepath) if File.extname(filepath) == ".json"
 
-    raise "[ERROR] ConfigFileReader.read: <#{filepath}>. Unkown extension!"
+    raise "[ERROR] ConfigFileReader.call: <#{filepath}>. Unkown extension!"
   end
 
   def self.convert_string_keys_to_symbol(input)

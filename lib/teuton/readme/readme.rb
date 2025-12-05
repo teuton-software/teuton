@@ -33,7 +33,7 @@ class Readme
   private
 
   def reset
-    @config = ConfigFileReader.read(Project.value[:config_path])
+    @config = ConfigFileReader.call(Project.value[:config_path])
     @verbose = Project.value[:verbose]
     @result = ReadmeResult.new
     @data = {}
