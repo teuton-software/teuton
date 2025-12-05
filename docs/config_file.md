@@ -4,9 +4,7 @@
 
 By default, Teuton projects use `config.yaml` as configuration file.
 
-Our tests may or may not have a configuration file. It is common to have a configuration file to easily adapt the test execution to different hosts, environments or situations.
-
-For example, we adapt the config file for each course for the different students we are going to evaluate.
+Our tests may or may not have a configuration file. It is common to have a configuration file to easily adapt the test execution to different hosts, environments or situations. For example: adapt the config file for each course for the different students we are going to evaluate.
 
 ## Creating new project
 
