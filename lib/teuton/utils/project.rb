@@ -58,4 +58,12 @@ class Project
     numbers = value[:options]["case"].split(",")
     value[:options]["case"] = numbers.collect!(&:to_i)
   end
+
+  def self.relative_path(filepath)
+    if filepath.start_with?(Dir.pwd)
+      filepath[Dir.pwd.length + 1, filepath.length]
+    else
+      filepath
+    end
+  end
 end
