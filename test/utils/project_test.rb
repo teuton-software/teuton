@@ -28,4 +28,8 @@ class ProjectTest < Test::Unit::TestCase
     v[:options]["quiet"] = true
     assert_equal true, Project.quiet?
   end
+
+  def test_relative_path
+    assert_equal "test/utils/project_test.rb", Project.relative_path(__FILE__)
+  end
 end
