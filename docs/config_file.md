@@ -74,6 +74,7 @@ It is posible to add all the parameters you need into your configuration file, b
 | **tt_sequence**      | global  | Optional     | By default, all cases are evaluated in parallel unless sequential mode is enabled. Sequential mode is useful for debugging processes.|
 | **tt_source_ip**     | cases   | Auto         | Automatically filled in during remote setup. This value is completed when the student sends their configuration remotely.|
 | **tt_source_file**   | cases   | Auto         | Automatically filled in during the configuration loading. This value is populated when the configuration files from the folder defined by the tt_include parameter are read. |
+| **tt_skip**          |         | Optional     | False by default. To skip a case and not evaluate it, set the value to true. |
 | **tt_testname**      | global  | Optional     | Customize your test name |
 
 ## Host properties
