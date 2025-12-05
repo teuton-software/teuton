@@ -101,9 +101,9 @@ Use Ctrl-C to stop
 ```
 foo
 ├── config.d
-│   ├── remote_127.0.0.1.yaml
-│   ├── remote_192.168.1.14.yaml
-│   └── remote_192.168.1.28.yaml
+│   ├── from_127.0.0.1.yaml
+│   ├── from_192.168.1.14.yaml
+│   └── from_192.168.1.28.yaml
 ├── config.yaml
 └── start.rb
 ```
