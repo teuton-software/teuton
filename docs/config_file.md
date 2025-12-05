@@ -93,6 +93,8 @@ Lits of available host properties:
 
 We can create as many host configurations as different devices are required to complete the activity.
 
+If `HOSTID_password` is not defined, then SSH connection will use the SSH keys.
+
 **Example**: If each student needs two hosts for the activity, one web server and the other as web cliente, we need to define 2 hosts: one with HOSTID `server`and the other wiht HOSTID `client`:
 
 ```yaml
