@@ -17,11 +17,11 @@ class Project
       "quiet" => false
     }
     @project[:verbose] = true # Enable/disable screen outputs
-    @project[:global] = {} # Hash of Global configuration params
+    @project[:global] = {}
     @project[:ialias] = {} # Hash of Internal alias
-    @project[:macros] = {} # Hash of macros
-    @project[:groups] = [] # Array of groups
-    @project[:uses] = [] # Array of used files into test
+    @project[:macros] = {}
+    @project[:groups] = []
+    @project[:uses] = []
     @project[:hall_of_fame] = [] # Hall of fame content
   end
 
