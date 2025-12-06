@@ -56,7 +56,7 @@ $ teuton check examples/02-target
 ---
 global:
 cases:
-- tt_members: VALUE
+- tt_members: TOCHANGE
 ```
 
 The check process notifies that

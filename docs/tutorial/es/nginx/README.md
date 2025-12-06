@@ -175,7 +175,7 @@ global:
 cases:
 # Máquina del alumno 1
 - tt_members: Alumno 1
-  webserver_ip: 192.168.122.16
+  webserver_ip: 192.168.122.254
   webserver_username: alumno1
   webserver_password: secret1
 ```

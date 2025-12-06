@@ -37,10 +37,10 @@ end
 ---
 global:
 cases:
-- tt_members: VALUE
-  host1_ip: VALUE
-  host1_username: VALUE
-  host1_password: VALUE
+- tt_members: TOCHANGE
+  host1_ip: TOCHANGE
+  host1_username: TOCHANGE
+  host1_password: TOCHANGE
 ```
 
 ## Init Config Server
