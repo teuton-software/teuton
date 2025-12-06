@@ -4,7 +4,7 @@
 
 Vamos a hacer un tutorial de cómo crear un test para checkear la instalación de un servidor web Nginx.
 
-## 1. Prompt para la IA generativa
+## 1. Consultamos a la IA generativa
 
 _¿Cómo no? En estos tiempos todo el mundo está hablando de la IA generativa. Así que vamos a usarla para que nos ayude con el test de Teuton? ;-)_
 
@@ -65,7 +65,7 @@ start do
 end
 ```
 
-## 2. Refinamos manualmente los comentarios
+## 2. Refinamos manualmente
 
 Vamos a realizar algunos cambios manualmente:
 * Vamos a poner los textos en español.
@@ -98,11 +98,11 @@ end
 > * `teuton readme PATH/TO/FOLDER` para ver cómo se genera el enunciado asociado a la práctica.
 > * `teutob check PATH/TO/FOLDER` para comprobar que no hay fallos en la sintaxis, etc.
 
-## 3. Seguimos refinando y añadiendo fichero de configuración
+## 3. Añadimos un fichero de configuración
 
-Para tener mayor legibilidad en el futuro, el primer refinamiento que vamos a realizar es separar los tests del script principal. 
-* `start.rb`: Script principal
-* `nginx.rb`: Tests específicos de Nginx
+* Para tener mayor legibilidad en el futuro, el primer refinamiento que vamos a realizar es separar los tests específicos de Nginx de las instrucciones del script principal. 
+    1. `start.rb`: Script principal
+    2. `nginx.rb`: Tests específicos de Nginx
 
 ```ruby
 # File: start.rb (Script principal)
@@ -132,7 +132,7 @@ group "Comprobar el servicio web Nginx" do
 end
 ```
 
-* Ahora mismo, el test se ejecuta directamente en la máquina `localhost`, pero vamos a modificarlo para que se pueda ejecutar en las máquinas remotas de nuestros alumnos.
+Ahora mismo, el test se ejecuta directamente en la máquina `localhost`, pero vamos a modificarlo para que se pueda ejecutar en las máquinas remotas de nuestros alumnos.
 * Modificamos la instrucción `run` para indicar dónde se tiene que ejecutar el comando: `run COMMAND, on: :webserver`. El nombre de host `:webserver` es completamente arbitrario. Lo ideal es poner algo significativo para nosotros como: `nginx` `server`, `host1`,  `linux`, etc. Cualquiera valdría.
 
 ```ruby
@@ -152,8 +152,9 @@ group "Comprobar el servicio web Nginx" do
 end
 ```
 
-Ahora hay que incluir un fichero de configuración para especificar la configuración específica de cada una de las máquinas de nuestros alumnos, que son las que queremos evaluar realmente.
-* Nos vamos a ayudar del comando `teuton config PATH/FOLDER` para que nos sugiera un contenido a partir del test anterior.
+Tenemos que incluir un fichero de configuración para especificar la configuración específica de cada una de las máquinas de nuestros alumnos, que son las que queremos evaluar realmente.
+
+* A partir del contenido del test, Teuton es capaz de deducir los parámetros que se necesitan para su ejecución. Para ello usamos el comando `teuton config PATH/FOLDER`.
 
 ```yaml
 ---
@@ -165,9 +166,7 @@ cases:
   webserver_password: TOCHANGE
 ```
 
-> A partir del contenido del test, Teuton es capaz de deducir los parámetros que se necesitan para su ejecución.
-
-* Ahora personalizamos los valores:
+* Personalizamos los valores de los parámetros:
 
 ```yaml
 ---
@@ -198,12 +197,11 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
-* El alumno 1 tiene una nota final de 0. Esto es porque todavía no ha realizado la práctica.
+El alumno 1 tiene una nota final de 0. Esto es porque todavía no ha realizado la práctica.
 
-> **NOTA**: Como profesores, mientras estamos diseñando el test, es muy útil tener una MV que haga de la máquina del alumno para ir haciendo las pruebas durante el proceso.
+Como profesores, mientras estamos diseñando el test, es muy útil tener una MV que haga de la máquina del alumno para ir haciendo las pruebas durante el proceso. Por motivos didácticos, vamos a añadir una segunda MV (del alumno2), para simular que tenemos un grupo de clase donde tenemos que a un alumno le sale la práctica mal y a otro bien.
 
-Por motivos didácticos, vamos a añadir una segunda MV (del alumno2), para simular que tenemos un grupo de clase donde tenemos que a un alumno le sale la práctica mal y a otro bien.
-* Entonces ampliamos el fichero de configuración con 2 cases:
+* Ampliamos el fichero de configuración con 2 cases:
 
 ```yaml
 ---
@@ -223,9 +221,9 @@ cases:
 
 > **NOTA**: 
 > * Los valores de las IP son los de mis MV ahora pero pueden ser diferentes. 
-> * Estoy usando el hipervisor KVM para crear las MV dentro de máquina real, pero se pueden usar otros como VirtualBox, Qemu, Parallel, Hyper-V, includo contenedores con SSH en ejecución.
+> * Estoy usando el hipervisor KVM para crear las MV dentro de máquina real, pero se pueden usar otros como VirtualBox, Qemu, Parallel, Hyper-V, incluso contenedores con SSH en ejecución, máquinas reales, Raspberry PI, etc.
 
-* Este es el resultado esperado al ejecutar el test cuando nuestros alumnos todavía no han realizado la práctica:
+* Ejecutamos el test. De momento todas las notas están a 0 porque los alumnos todavía no han realizado la práctica:
 ```
 $ teuton run nginx/v02 
 ------------------------------------
@@ -244,9 +242,9 @@ CASE RESULTS
 
 ## 5. Optimizando el fichero de configuración
 
-Ahora mismo, sólo tenemos dos alumnos (cases) registrados en el fichero de configuración, pero sabemos que este número va a aumentar bastante. También vemos que tenemos unos parámetros con valores repetidos en cada case: `webserver_username: user` y `webserver_password: secret`.
+Ahora sólo tenemos dos alumnos (cases) en el fichero de configuración, pero sabemos que este número va a aumentar bastante cuando lo llevemos al aula. También vemos que tenemos unos parámetros con valores repetidos en cada case: `webserver_username: user` y `webserver_password: secret`.
 
-Para no repetirnos (DRY: Don't repeat Yourself) usamos también la sección `global` de la siguiente forma:
+Para no repetirnos (_DRY: Don't repeat Yourself_) usamos la sección `global` de la siguiente forma:
 
 ```yaml
 ---
@@ -262,9 +260,9 @@ cases:
   webserver_ip: 192.168.122.108
 ```
 
-## 6. Haciendo la práctica
+## 6. Empezamos con la práctica
 
-Por motivos didácticos, me voy a convertir en el alumno2 y voy a ir haciendo la práctica sólo en su MV para que pueda obtener la máxima puntuación mientras que el alumno1 se queda en 0.
+Por motivos didácticos, me voy a convertir en el alumno2 y voy a ir haciendo la práctica sólo en su MV para que pueda obtener la máxima puntuación mientras que el alumno1 se quedará en 0 (_Sólo es una simulación_).
 
 * Voy a la MV de alumno2.
 * Lo primero que pide el enunciado es instalar el servidor web nginx. Como al alumno2 tiene una SO Debian, haremos como root `apt install nginx`.
@@ -286,7 +284,7 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
-El alumno2 ha subido un poco la nota, pero tiene un valor extraño de un 38%, o lo que es lo mismo un 3,8. ¿De dónde sale ese valor?
+El alumno2 ha subido un poco la nota, pero tiene un valor extraño de un 38%, o lo que es lo mismo un 3,8. _¿De dónde sale ese valor?_
 
 ## 7. Puntuaciones y pesos
 
@@ -297,15 +295,15 @@ El test ahora mismo tiene los siguientes objetivos (`targets`)
 | 01     | Comprobar el estado del servicio Nginx                   | 3    |
 | 02     | Comprobar que index.html contiene el texto 'Hola Mundo!' | 5    |
 
-Si se completa el 100% de los targets entonces se obtiene un total de 8 puntos (3+5), por lo tanto, si sólo se completan 3 de 8 tenemos un grado de cumplimiento del 38% (3,8) 
+Si se completa el 100% de los targets entonces se obtiene un total de 8 puntos (3+5), por lo tanto, si sólo se completan 3 de 8 tenemos un grado de cumplimiento del 38% (3,8).
 ```
 Fórmula aplicada      : (3/8) * 100 = 37,5
 Redondeando nos queda : 38
 ```
 
-Es muy posible que no nos covenzan los valores actuales de los pesos (`weight`), es normal, de hecho no los hemos puesto nosotros. Fue Gemini cuando le preguntamos el que nos hizo esa sugerencia.
+Es muy posible que no gusten los valores actuales de los pesos (`weight`), es normal, de hecho no los hemos puesto nosotros. Fue Gemini, en respuesta a nuestro prompt, el que nos hizo esa sugerencia.
 
-* Cambiemos los pesos según nuestro criterio. Si no sabemos que poner, no pongas pesos y por defecto todos los targets tendrán el mismo peso (weight: 1). Como profesor, lo normal es darle más peso a los targets que consideramos más importantes.
+* Cambiemos los pesos según nuestro criterio. Si no sabemos que valores poner, entonces no pongas pesos y por defecto todos los targets tendrán el mismo peso (weight: 1). Como profesor, lo normal es darle más peso a los targets que consideramos más importantes, pero esto lo iremos ajustando a medida que dominamos la materia que enseñamos.
 
 ```
 ...
@@ -352,15 +350,15 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
-_El test lo tenemos listo para llevar al aula con nuestros alumnos._
+_El test lo tenemos preparado para llevar al aula._
 
 ## 9. Vamos a personalizar el test
 
-Cuando empezamos con estas prácticas, es bastante común, que el profesor prepare una MV base para los alumnos y que luego se clone esta MV base para cada uno. De modo que al empezar todos tengan exactamente lo mismo.
+Cuando empezamos con estas prácticas de laboratorio, es común, que el profesor prepare una MV base para los alumnos, y que luego se clone esta MV base para cada alumno. De modo que al empezar todos tienen exactamente el mismo entorno.
 
-También podemos partir de una MV base similar pero donde cada alumno debe realizar una serie de personalizaciones para que las MV de cada uno se vayan diferenciando poco a poco y prevenir que un alumno presente una MV clonada de un compañero.
+También podemos partir de una MV base común, pero donde cada alumno debe realizar una serie de personalizaciones para que las MV de cada alumno se diferencien entre sí y prevenir que un alumno presente una MV clonada de un compañero como trabajo propio.
 
-De modo que vamos a añadir un poco de personalización a las máquinas. Los alumnos, como parte de la práctica, tendrá que personalizar sus máquinas para que cada uno tenga usuario y passwords diferentes.
+De modo que vamos a añadir un poco de personalización a las máquinas. Los alumnos, como parte de la práctica, tendrán que personalizar sus máquinas para que cada uno tenga usuario y passwords diferentes.
 
 * Modificamos el fichero de configuración para que los usuarios/passwords de cada MV sean diferentes:
 
@@ -380,9 +378,8 @@ cases:
   webserver_password: secret2
 ```
 
-* Por motivos didácticos, vamos a quitar todos los pesos, o lo que es lo mismo que todos tengan valor 1.
-
-* Modificamos el segundo target para que el mensaje que aparezca en la página web sea difernte para cada alumno/MV, mostrando algo como "Hola Alumno 1!" para al alumno1 y "Hola Alumno 2" para el alumno2. Hemos cambiado la instrucción `expect`.
+* Por motivos didácticos, vamos a quitar todos los pesos, o lo que es lo mismo que todos los targets tengan paso 1.
+* Ampliamos la personalización, modificando el segundo target para que el texto de la página web sea diferente para cada alumno/MV, mostrando algo como "Hola Alumno 1!" para al alumno1 y "Hola Alumno 2" para el alumno2. Para ello cambiamos la instrucción `expect`.
 
 ```ruby
   target "Comprobar que index.html contiene el texto 'Hola Mundo!'"
@@ -391,6 +388,147 @@ cases:
   expect "Hola #{get(:tt_members)}!"
 ```
 
-La instrucción `expect` debe evaluar la presencia de un determinado contenido ("Hola STUDENT_NAME!") en la página web. Pero como el valor de STUDENT_NAME es diferente para cada case (alumno) no lo podemos poner fijo, sino que debemos leerlo del fichero de configuración con `get(:tt_members)` y de esta forma se obtiene un valor diferente para cada case (alumno).
+La instrucción `expect` debe evaluar la presencia de un determinado contenido ("Hola STUDENT_NAME!") en la página web. Pero como el valor de STUDENT_NAME es diferente para cada case (alumno) no lo podemos poner fijo, sino que debemos leerlo de la configuración con la instrucción `get(:tt_members)`. De esta forma se obtiene un valor diferente para cada case (alumno).
 
 > **SUGERENCIA**: Cuanta mayor personalización añadamos a nuestros tests, más complicado (pero no imposible) les será a los alumnnos "copiar" el trabajo de otros mediante el clonado de MV.
+
+## 10. Nos llevamos el test al aula
+
+Ya, tenemos listo el test y el fichero de configuración. Nos lo llevamos al aula para usarlo en producción.
+
+Ejecutamos el test:
+* **Al comienzo de la sesión**: Ejecutamos el test simplemente para validar que hay conectividad con todas las MV de los alumnos aunque en este momento todas las notas estén a 0.
+* **Durante la sesión**: De forma opcional, podemos ir ejecutando el test para ir monitorizando cómo van avanzando los alumnos.
+* **Al final de la sesión**: Al finalizar la sesión ejecutamos el test por última vez para quedarnos con el resultado final.
+
+> Cada vez que se ejecuta el test y se guardan los resultados en `var/TESNAME/case-*.txt`, se sobreescriben los ficheros de ejecuciones anteriores.
+
+## 11. Configurar a todos los alumnos
+
+Para nuestra simulación, mientras diseñábamos el test, creamos la configuración para 2 alumnos ficticios. Pero cuando querramos ejecutar el test en el aula hay que añadir las configuraciones de todos los alumnos.
+
+Tenemos varias formas de hacerlo:
+* **Lo decide el profesor manualmente**: Una posibilidad es que pongamos la configuración de cada alumnos según el criterio del profesor y los alumnos deben adaptar sus MV (IP, username, password) seǵun lo que haya determinado el profesor.
+* **Lo comunica el alumno y el profesor lo actualiza manualmente**: Otra opción es que cada alumno le indique al profesor los valores de configuración para que el profesor actualice el fichero de confifuración manualmente.
+* **Lo comunica el alumno y se actualiza automáticamente**: Una tercera opción es que el profesor utilice la utilidad `teuton config --server PATH/TO/FOLDER`, y que sea cada alumno el que proporcione los valores de su configuración.
+
+Veamos en mas detalle esta última opción.
+
+* El profesor inicia el servidor de configuración:
+
+```
+$ teuton config --server nginx/v04.final 
+--------------------------------------------------
+   ConfigServer URL: http://192.168.1.28:8080
+
+   Project path : nginx/v04.final
+   Global params (1)
+   * tt_include : config.d
+   Cases params (4)
+   * tt_members
+   * webserver_ip
+   * webserver_username
+   * webserver_password
+--------------------------------------------------
+== Sinatra (v4.2.1) has taken the stage on 8080 for development with backup from Puma
+Puma starting in single mode...
+* Puma version: 7.1.0 ("Neon Witch")
+* Ruby version: ruby 3.2.8 (2025-03-26 revision 13f495dc2c) [x86_64-linux]
+*  Min threads: 0
+*  Max threads: 5
+*  Environment: development
+*          PID: 8268
+* Listening on http://0.0.0.0:8080
+Use Ctrl-C to stop
+```
+
+* Cada alumno, desde su MV, abre el navegador con URL `http://TEACHER_IP:8080`
+* Cada alumno, rellena el formulario con sus datos:
+
+![](form.png)
+
+* Cuando todos los alumnos envían sus datos, el profesor pulsa CTRL+C para cerrar el servicio de configuración remota. Vemos que se nos ha creado un subdirectorio dentro de nuestro test (`config.d`) donde se han ido guardando los ficheros con la configuración enviada por cada alumno.
+
+```
+$ tree nginx/v04.final 
+nginx/v04.final
+├── config.d
+│   ├── from_192.168.122.101.yaml
+│   └── from_192.168.122.102.yaml
+├── config.yaml
+├── nginx.rb
+└── start.rb
+```
+
+* Además el fichero de configuración principal incluye el parámetro `tt_include: config.d` para indicaar que además de la configuración de `config.yaml` debemos incluir como parte de la configuración todos los ficheros del directorio `config.d`.
+
+```yaml
+---
+global:
+  tt_include: config.d
+cases:
+- tt_members: Alumno 1
+  webserver_ip: 192.168.122.254
+  webserver_username: alumno1
+  webserver_password: secret1
+- tt_members: Alumno 2
+  webserver_ip: 192.168.122.108
+  webserver_username: alumno2
+  webserver_password: secret2
+```
+
+
+
+## 12. Problemas de conexión
+
+Si al ejecutar el test nos encontramos con la siguiente salida:
+```
+$ teuton run nginx/v03.custom   
+------------------------------------
+Started at 2025-12-06 20:12:16 +0000
+FFFF
+Finished in 30.033 seconds
+------------------------------------
+ 
+CASE RESULTS
++------+----------+-------+-------+
+| CASE | MEMBERS  | GRADE | STATE |
+| 01   | Alumno 1 | 0.0   | ?     |
+| 02   | Alumno 2 | 0.0   | ?     |
++------+----------+-------+-------+
+
+CONN ERRORS
++------+----------+-----------+-------+
+| CASE | MEMBERS  | HOST      | ERROR |
+| 01   | Alumno 1 | webserver | error |
+| 02   | Alumno 2 | webserver | error |
++------+----------+-----------+-------+
+```
+
+Vemos que todas las puntuaciones están a 0, y que aparecen errores de conexión a la máquina `webserver`de todos los alumnos. Para obtener más información sobre el problema de la conexión, podemos consultar el informe de cada alumno. Por ejemplo `var/TESTNAME/case-01.txt`.
+
+```
+CONFIGURATION
++--------------------+-----------------+
+| tt_members         | Alumno 1        |
+| tt_sequence        | false           |
+| tt_skip            | false           |
+| tt_testname        | v03.custom      |
+| webserver_ip       | 192.168.122.254 |
+| webserver_password | secret1         |
+| webserver_username | alumno1         |
++--------------------+-----------------+
+
+LOGS
+    [20:12:46] ERROR: [Net::SSH::ConnectionTimeout] SSH on <alumno1@192.168.122.254> exec: systemctl status nginx
+
+GROUPS
+- Comprobar el servicio web Nginx
+    01 (0.0/1.0)
+        Description : Comprobar el estado del servicio Nginx
+```
+
+Podemos ver cómo en la sección LOGS nos dice que hay un error `SSH::ConnectionTimeout` al intentar acceder vía SSH con el equipo del alumno1. En este caso, el problema se debe a que los alumnos todavía no han encendido sus MV.
+
+Una vez que todos han encendido sus MV procedemos con normalidad.
+
