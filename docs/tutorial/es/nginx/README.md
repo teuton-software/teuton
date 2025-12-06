@@ -477,9 +477,11 @@ cases:
   webserver_password: secret2
 ```
 
+_¡Ya tenemos el test y la configuración listos para trabajar en el aula!_
 
+---
 
-## 12. Problemas de conexión
+## ANEXO: Problemas de conexión
 
 Si al ejecutar el test nos encontramos con la siguiente salida:
 ```
@@ -508,27 +510,12 @@ CONN ERRORS
 Vemos que todas las puntuaciones están a 0, y que aparecen errores de conexión a la máquina `webserver`de todos los alumnos. Para obtener más información sobre el problema de la conexión, podemos consultar el informe de cada alumno. Por ejemplo `var/TESTNAME/case-01.txt`.
 
 ```
-CONFIGURATION
-+--------------------+-----------------+
-| tt_members         | Alumno 1        |
-| tt_sequence        | false           |
-| tt_skip            | false           |
-| tt_testname        | v03.custom      |
-| webserver_ip       | 192.168.122.254 |
-| webserver_password | secret1         |
-| webserver_username | alumno1         |
-+--------------------+-----------------+
-
+...
 LOGS
     [20:12:46] ERROR: [Net::SSH::ConnectionTimeout] SSH on <alumno1@192.168.122.254> exec: systemctl status nginx
-
-GROUPS
-- Comprobar el servicio web Nginx
-    01 (0.0/1.0)
-        Description : Comprobar el estado del servicio Nginx
+...
 ```
 
-Podemos ver cómo en la sección LOGS nos dice que hay un error `SSH::ConnectionTimeout` al intentar acceder vía SSH con el equipo del alumno1. En este caso, el problema se debe a que los alumnos todavía no han encendido sus MV.
+Podemos ver cómo en la sección LOGS nos dice que hay un error `SSH::ConnectionTimeout` al intentar acceder vía SSH con el equipo del alumno1.
 
-Una vez que todos han encendido sus MV procedemos con normalidad.
-
+El problema se debe a que los alumnos todavía no han encendido sus MV. Una vez que todos enciendan sus MV prodemos seguir con normalidad.
