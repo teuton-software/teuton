@@ -1,3 +1,5 @@
+# File: start.rb (Script principal)
+
 group "Comprobar el servicio web Nginx" do
   readme "* Necesitamos un SO GNU/Linux basado en systemd. Por ejemplo: OpenSUSE, Debian, etc."
 

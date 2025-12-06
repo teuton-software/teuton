@@ -176,8 +176,8 @@ cases:
 # Máquina del alumno 1
 - tt_members: Alumno 1
   webserver_ip: 192.168.122.254
-  webserver_username: alumno1
-  webserver_password: secret1
+  webserver_username: user
+  webserver_password: secret
 ```
 
 ## 4. Ejecutamos el test sobre las máquinas remotas
@@ -198,17 +198,281 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
-* El alumno tiene una nota final de 0. Esto es porque todavía no ha realizado la práctica.
+* El alumno 1 tiene una nota final de 0. Esto es porque todavía no ha realizado la práctica.
 
-## 5. Haciendo la práctica
+> **NOTA**: Como profesores, mientras estamos diseñando el test, es muy útil tener una MV que haga de la máquina del alumno para ir haciendo las pruebas durante el proceso.
 
-Me voy a convertir en el alumno1 y voy a ir haciendo la práctica.
+Por motivos didácticos, vamos a añadir una segunda MV (del alumno2), para simular que tenemos un grupo de clase donde tenemos que a un alumno le sale la práctica mal y a otro bien.
+* Entonces ampliamos el fichero de configuración con 2 cases:
 
-* Lo primero que pide el enunciado es instalar el servidor web nginx. Como al alumno1 tiene una SO Debian
+```yaml
+---
+global:
+cases:
+# Máquina del alumno 1
+- tt_members: Alumno 1
+  webserver_ip: 192.168.122.254
+  webserver_username: user
+  webserver_password: secret
+# Máquina del alumno 2
+- tt_members: Alumno 2
+  webserver_ip: 192.168.122.108
+  webserver_username: user
+  webserver_password: secret
+```
+
+> **NOTA**: 
+> * Los valores de las IP son los de mis MV ahora pero pueden ser diferentes. 
+> * Estoy usando el hipervisor KVM para crear las MV dentro de máquina real, pero se pueden usar otros como VirtualBox, Qemu, Parallel, Hyper-V, includo contenedores con SSH en ejecución.
+
+* Este es el resultado esperado al ejecutar el test cuando nuestros alumnos todavía no han realizado la práctica:
+```
+$ teuton run nginx/v02 
+------------------------------------
+Started at 2025-12-06 16:25:10 +0000
+FFFF
+Finished in 0.601 seconds
+------------------------------------
+ 
+CASE RESULTS
++------+----------+-------+-------+
+| CASE | MEMBERS  | GRADE | STATE |
+| 01   | Alumno 1 | 0.0   | ?     |
+| 02   | Alumno 2 | 0.0   | ?     |
++------+----------+-------+-------+
+```
+
+## 5. Optimizando el fichero de configuración
+
+Ahora mismo, sólo tenemos dos alumnos (cases) registrados en el fichero de configuración, pero sabemos que este número va a aumentar bastante. También vemos que tenemos unos parámetros con valores repetidos en cada case: `webserver_username: user` y `webserver_password: secret`.
+
+Para no repetirnos (DRY: Don't repeat Yourself) usamos también la sección `global` de la siguiente forma:
+
+```yaml
+---
+global:
+  webserver_username: user
+  webserver_password: secret
+cases:
+# Máquina del alumno 1
+- tt_members: Alumno 1
+  webserver_ip: 192.168.122.254
+# Máquina del alumno 2
+- tt_members: Alumno 2
+  webserver_ip: 192.168.122.108
+```
+
+## 6. Haciendo la práctica
+
+Por motivos didácticos, me voy a convertir en el alumno2 y voy a ir haciendo la práctica sólo en su MV para que pueda obtener la máxima puntuación mientras que el alumno1 se queda en 0.
+
+* Voy a la MV de alumno2.
+* Lo primero que pide el enunciado es instalar el servidor web nginx. Como al alumno2 tiene una SO Debian, haremos como root `apt install nginx`.
+* Ejecutamos los tests para ver el cambio:
+
+```
+$ teuton run nginx/v02 
+------------------------------------
+Started at 2025-12-06 16:41:11 +0000
+F.FF
+Finished in 0.581 seconds
+------------------------------------
+ 
+CASE RESULTS
++------+----------+-------+-------+
+| CASE | MEMBERS  | GRADE | STATE |
+| 01   | Alumno 1 | 0.0   | ?     |
+| 02   | Alumno 2 | 38.0  | ?     |
++------+----------+-------+-------+
+```
+
+El alumno2 ha subido un poco la nota, pero tiene un valor extraño de un 38%, o lo que es lo mismo un 3,8. ¿De dónde sale ese valor?
+
+## 7. Puntuaciones y pesos
+
+El test ahora mismo tiene los siguientes objetivos (`targets`)
+
+| Target | Descripción                                              | Peso |
+| ------ | -------------------------------------------------------- | ---- |
+| 01     | Comprobar el estado del servicio Nginx                   | 3    |
+| 02     | Comprobar que index.html contiene el texto 'Hola Mundo!' | 5    |
+
+Si se completa el 100% de los targets entonces se obtiene un total de 8 puntos (3+5), por lo tanto, si sólo se completan 3 de 8 tenemos un grado de cumplimiento del 38% (3,8) 
+```
+Fórmula aplicada      : (3/8) * 100 = 37,5
+Redondeando nos queda : 38
+```
+
+Es muy posible que no nos covenzan los valores actuales de los pesos (`weight`), es normal, de hecho no los hemos puesto nosotros. Fue Gemini cuando le preguntamos el que nos hizo esa sugerencia.
+
+* Cambiemos los pesos según nuestro criterio. Si no sabemos que poner, no pongas pesos y por defecto todos los targets tendrán el mismo peso (weight: 1). Como profesor, lo normal es darle más peso a los targets que consideramos más importantes.
+
+```
+...
+  target "Comprobar el estado del servicio Nginx", weight: 4
+...
+  target "Comprobar que index.html contiene el texto 'Hola Mundo!'", weight: 6
+...
+```
+
+```
+$ teuton run nginx/v02
+------------------------------------
+Started at 2025-12-06 16:53:14 +0000
+.FFF
+Finished in 0.542 seconds
+------------------------------------
+ 
+CASE RESULTS
++------+----------+-------+-------+
+| CASE | MEMBERS  | GRADE | STATE |
+| 01   | Alumno 1 | 0.0   | ?     |
+| 02   | Alumno 2 | 40.0  | ?     |
++------+----------+-------+-------+
+```
+
+## 8. Continuamos con la práctica
+
+Seguimos haciendo la práctica en la MV del alumno2. 
+* Ahora toca resolver el segundo target: "Comprobar que index.html contiene el texto 'Hola Mundo!'".
+* Ejecutamos el test:
+```
+$ teuton run nginx/v02
+------------------------------------
+Started at 2025-12-06 16:59:08 +0000
+.F.F
+Finished in 0.642 seconds
+------------------------------------
+ 
+CASE RESULTS
++------+----------+-------+-------+
+| CASE | MEMBERS  | GRADE | STATE |
+| 01   | Alumno 1 | 0.0   | ?     |
+| 02   | Alumno 2 | 100.0 | ✔     |
++------+----------+-------+-------+
+```
+
+_El test lo tenemos listo para llevar al aula con nuestros alumnos._
+
+## 9. Vamos a personalizar el test
+
+Cuando empezamos con estas prácticas, es bastante común, que el profesor prepare una MV base para los alumnos y que luego se clone esta MV base para cada uno. De modo que al empezar todos tengan exactamente lo mismo.
+
+También podemos partir de una MV base similar pero donde cada alumno debe realizar una serie de personalizaciones para que las MV de cada uno se vayan diferenciando poco a poco y prevenir que un alumno presente una MV clonada de un compañero.
+
+De modo que vamos a añadir un poco de personalización a las máquinas. Los alumnos, como parte de la práctica, tendrá que personalizar sus máquinas para que cada uno tenga usuario y passwords diferentes.
+
+* Modificamos el fichero de configuración para que los usuarios/passwords de cada MV sean diferentes:
+
+```yaml
+---
+global:
+cases:
+# Máquina del alumno 1
+- tt_members: Alumno 1
+  webserver_ip: 192.168.122.254
+  webserver_username: alumno1
+  webserver_password: secret1
+# Máquina del alumno 2
+- tt_members: Alumno 2
+  webserver_ip: 192.168.122.108
+  webserver_username: alumno2
+  webserver_password: secret2
+```
+
+* Por motivos didácticos, vamos a quitar todos los pesos, o lo que es lo mismo que todos tengan valor 1.
+
+* Modificamos el segundo target para que el mensaje que aparezca en la página web sea difernte para cada alumno/MV, mostrando algo como "Hola alumno1!"
+
+```ruby
+# File: custom.rb (Tests específicos de la personalización de la MV)
+
+group "Comprobar la personalización de la MV" do
+  target "Comprobar que existe el usuario del alumno"
+  run "id alumno1", on: :webserver
+  expect_ok
+end
+```
+
+* Incluimos la refencia a este fichero en el script principal.
+```ruby
+# File: start.rb (Script principal)
+
+use "nginx"
+use "custom"
+
+start do
+  show
+  export
+end
+```
+
+> **NOTA**: Hemos introducido la instrucción `expect_ok` que devuelve true si el comando `id alumno1` se ejecuta correctamente. Si el usuario no existe, el comando falla y por tanto el resultado es false.
+
+* Ejecutamos el test:
+```❯ teuton run nginx/v03.custom
+------------------------------------
+Started at 2025-12-06 17:30:14 +0000
+F.F..F
+Finished in 0.697 seconds
+------------------------------------
+ 
+CASE RESULTS
++------+----------+-------+-------+
+| CASE | MEMBERS  | GRADE | STATE |
+| 01   | Alumno 1 | 33.0  | ?     |
+| 02   | Alumno 2 | 67.0  |       |
++------+----------+-------+-------+
+```
+
+Aparece algo inesperado, el alumno1 mejora su puntuación pero al alumno2 la empeora. Analizar o depurar el proceso se puede complicar pero podemos consultar los informes que se generan:
+
+```
+$ tree var 
+var
+└── v03.custom
+    ├── case-01.txt
+    ├── case-02.txt
+    ├── moodle.csv
+    └── resume.txt
+```
+
+* El informe `var/v03.custom/case.01-txt` corresponde al alumno1 y vemos que de los 3 targets, sólo ha acertado al crear el usuario `alumno1`.
+* Recordar que como hemos puesto todos los pesos a 1. Como el alumno1 consigió 1 de 3 entonces su nota en 33% (3,3).
+* El informe `var/v03.custom/case-02.txt` corresponde al alumno2 y vemos que de los 3 targets, acierta todos menos el último correspndiente a crear el usuario `alumno1`. ¡Aquí está el problema! 
+* Recordar que como hemos puesto todos los pesos a 1. Como el alumno2 consigió 2 de 3 entonces su nota es 67% (6,7).
+
+La instrucción `run "id USERNAME", on: :webserver` debe rehacerse de tal manera que USERNAME sea "alumno1" para case 1 y "alumno2" para el case 2. Es necesario por tanto, leer los parámetros de configuración en la creación del comando a ejecutar. Para leer los parámetros de configuración usamos la instrucción `get`. En este caso sería: `get(:webserver_username)`.
+
+Reconstruimos la instrucción `run` de la siguiente forma: 
+```
+   run "id " + get(:webserver_username), on: :webserver
+```
+
+* Ejecutamos el test:
+```
+$ teuton run nginx/v03.custom   
+------------------------------------
+Started at 2025-12-06 17:42:26 +0000
+.F.F..
+Finished in 0.590 seconds
+------------------------------------
+ 
+CASE RESULTS
++------+----------+-------+-------+
+| CASE | MEMBERS  | GRADE | STATE |
+| 01   | Alumno 1 | 33.0  | ?     |
+| 02   | Alumno 2 | 100.0 | ✔     |
++------+----------+-------+-------+
+```
+
+> **NOTA**: Cuanta mayor personalización añadamos a nuestros tests, más complicado (pero no imposible) les será a los alumnnos "copiar" el trabajo de otros mediante el clonado de MV.
 
 ---
 # EN CONSTRUCCTION!
 ---
+
+debian-b: 192.168.122.108
 
 ## 4. Problema de conexión con el host remoto
 
