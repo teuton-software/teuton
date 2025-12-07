@@ -133,7 +133,7 @@ end
 ```
 
 Ahora mismo, el test se ejecuta directamente en la máquina `localhost`, pero vamos a modificarlo para que se pueda ejecutar en las máquinas remotas de nuestros alumnos.
-* Modificamos la instrucción `run` para indicar dónde se tiene que ejecutar el comando: `run COMMAND, on: :webserver`. El nombre de host `:webserver` es completamente arbitrario. Lo ideal es poner algo significativo para nosotros como: `nginx` `server`, `host1`,  `linux`, etc. Cualquiera valdría.
+* Modificamos la instrucción `run` para indicar dónde se tiene que ejecutar el comando: `run COMMAND, on: :webserver`. El nombre de host `webserver` es completamente arbitrario. Lo ideal es poner algo significativo para nosotros como: `nginx` `server`, `host1`,  `linux`, etc. Cualquiera valdría.
 
 ```ruby
 # File: nginx.rb (Tests específicos de Nginx)
@@ -329,6 +329,8 @@ CASE RESULTS
 +------+----------+-------+-------+
 ```
 
+> Si no sabes que pesos poner, no pongas ninguno, o lo que es lo mismo que todos los targets tengan peso 1.
+
 ## 8. Continuamos con la práctica
 
 Seguimos haciendo la práctica en la MV del alumno2. 
@@ -349,8 +351,6 @@ CASE RESULTS
 | 02   | Alumno 2 | 100.0 | ✔     |
 +------+----------+-------+-------+
 ```
-
-_El test lo tenemos preparado para llevar al aula._
 
 ## 9. Vamos a personalizar el test
 
@@ -392,27 +392,18 @@ La instrucción `expect` debe evaluar la presencia de un determinado contenido (
 
 > **SUGERENCIA**: Cuanta mayor personalización añadamos a nuestros tests, más complicado (pero no imposible) les será a los alumnnos "copiar" el trabajo de otros mediante el clonado de MV.
 
-## 10. Nos llevamos el test al aula
+_El test está listo para llevarlo al aula, ahora nos falta completar el fichero de configuración con datos reales de nuestros alumnos._
 
-Ya, tenemos listo el test y el fichero de configuración. Nos lo llevamos al aula para usarlo en producción.
-
-Ejecutamos el test:
-* **Al comienzo de la sesión**: Ejecutamos el test simplemente para validar que hay conectividad con todas las MV de los alumnos aunque en este momento todas las notas estén a 0.
-* **Durante la sesión**: De forma opcional, podemos ir ejecutando el test para ir monitorizando cómo van avanzando los alumnos.
-* **Al final de la sesión**: Al finalizar la sesión ejecutamos el test por última vez para quedarnos con el resultado final.
-
-> Cada vez que se ejecuta el test y se guardan los resultados en `var/TESNAME/case-*.txt`, se sobreescriben los ficheros de ejecuciones anteriores.
-
-## 11. Configurar a todos los alumnos
+## 10. Completar la configuración con datos reales
 
 Para nuestra simulación, mientras diseñábamos el test, creamos la configuración para 2 alumnos ficticios. Pero cuando querramos ejecutar el test en el aula hay que añadir las configuraciones de todos los alumnos.
 
-Tenemos varias formas de hacerlo:
-* **Lo decide el profesor manualmente**: Una posibilidad es que pongamos la configuración de cada alumnos según el criterio del profesor y los alumnos deben adaptar sus MV (IP, username, password) seǵun lo que haya determinado el profesor.
-* **Lo comunica el alumno y el profesor lo actualiza manualmente**: Otra opción es que cada alumno le indique al profesor los valores de configuración para que el profesor actualice el fichero de confifuración manualmente.
-* **Lo comunica el alumno y se actualiza automáticamente**: Una tercera opción es que el profesor utilice la utilidad `teuton config --server PATH/TO/FOLDER`, y que sea cada alumno el que proporcione los valores de su configuración.
+Tenemos varias formas de hacerlo, según el estilo de cada docente:
+* **Lo decide el profesor manualmente**: Una posibilidad es que pongamos la configuración de cada alumno según el criterio del profesor y los alumnos deben adaptar sus MV (IP, username, password) seǵun lo que haya determinado el profesor.
+* **Lo decide el alumno y el profesor lo actualiza manualmente**: Otra opción es que cada alumno le indique al profesor los valores de configuración para que el profesor actualice el fichero de configuración manualmente. Esto es un poco "pesado" si hay muchos alumnos. Una posibilidad es que los alumnos envíen al profesor un YAML con su configuración, profesor los guarda en la carpeta `config.d` y mediante el parámetro `tt_include: config.d`, todos los ficheros en la carpeta se incluirán como parte de la configuración del test.
+* **Lo comunica el alumno en remoteo y se actualiza automáticamente**: Una tercera opción es que el profesor utilice el servicio `teuton config --server PATH/TO/FOLDER`, y de esta forma cada alumno proporciona los valores de su configuración, los cuales se irán guardando automáticamente.
 
-Veamos en mas detalle esta última opción.
+Veamos en detalle esta última opción.
 
 * El profesor inicia el servidor de configuración:
 
@@ -443,11 +434,11 @@ Use Ctrl-C to stop
 ```
 
 * Cada alumno, desde su MV, abre el navegador con URL `http://TEACHER_IP:8080`
-* Cada alumno, rellena el formulario con sus datos:
+* Cada alumno, rellena el formulario web con sus datos:
 
 ![](form.png)
 
-* Cuando todos los alumnos envían sus datos, el profesor pulsa CTRL+C para cerrar el servicio de configuración remota. Vemos que se nos ha creado un subdirectorio dentro de nuestro test (`config.d`) donde se han ido guardando los ficheros con la configuración enviada por cada alumno.
+* Cuando todos los alumnos envían sus datos, el profesor pulsa CTRL+C para cerrar el servicio de configuración remota. Vemos que se nos ha creado un subdirectorio dentro de nuestro test (`config.d`) donde se han ido guardando los ficheros con la configuración enviada por cada alumno. Cada envío remoto queda registrado con la IP desde donde se realizó.
 
 ```
 $ tree nginx/v04.final 
@@ -460,7 +451,7 @@ nginx/v04.final
 └── start.rb
 ```
 
-* Además el fichero de configuración principal incluye el parámetro `tt_include: config.d` para indicaar que además de la configuración de `config.yaml` debemos incluir como parte de la configuración todos los ficheros del directorio `config.d`.
+* Además, en el fichero de configuración principal, se crea el parámetro `tt_include: config.d` para indicaar que además del contenido de `config.yaml` debemos incluir como parte de la configuración todos los ficheros del subdirectorio `config.d`.
 
 ```yaml
 ---
@@ -477,7 +468,18 @@ cases:
   webserver_password: secret2
 ```
 
-_¡Ya tenemos el test y la configuración listos para trabajar en el aula!_
+_¡Ya tenemos el test y las configuraciones listas para trabajar en el aula!_
+
+## 11. Sesión de trabajo en el aula
+
+Ya, tenemos listo el test y el fichero de configuración. Nos lo llevamos al aula para usarlo en producción.
+
+Ejecutamos el test:
+* **Al comienzo de la sesión**: Ejecutamos el test simplemente para validar que hay conectividad con todas las MV de los alumnos aunque en este momento todas las notas estén a 0.
+* **Durante la sesión**: De forma opcional, podemos ir ejecutando el test para ir monitorizando cómo van avanzando los alumnos.
+* **Al final de la sesión**: Al finalizar la sesión ejecutamos el test por última vez para quedarnos con el resultado final.
+
+> Cada vez que se ejecuta el test y se guardan los resultados en `var/TESNAME/case-*.txt`, se sobreescriben los ficheros de ejecuciones anteriores.
 
 ---
 
