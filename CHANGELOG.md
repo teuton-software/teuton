@@ -2,6 +2,10 @@
 
 - [ADD] export using Markdown format with `export format: 'markdown'`
 
+## [2.10.8]
+
+- [FIX] Error teuton readme crash getset with symbol values
+
 ## [2.10.5-7] 
 
 - Downgrade required ruby version from 3.4.X to 3.1.X.
