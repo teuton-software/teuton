@@ -12,6 +12,7 @@ module ReadmeDSL
   end
 
   def gett(value)
+    # TODO: add test
     a = get(value)
     if @cases_params.include? value
       "[#{value}](#required-params)"
