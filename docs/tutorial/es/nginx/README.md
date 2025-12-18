@@ -5,7 +5,7 @@
 Vamos a hacer un tutorial de cómo crear un test para checkear la instalación de un servidor web Nginx.
 
 Esquema de clase:
-```
+```mermaid
 graph TD
     %% Definición de los nodos
     P["profesor(teuton)"]
