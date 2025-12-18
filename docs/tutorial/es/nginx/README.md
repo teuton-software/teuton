@@ -9,7 +9,7 @@ Esquema de clase:
 graph TD
     %% Definición de los nodos
     P["profesor(teuton)"]
-    R(( Green ))
+    R(( Network ))
     A1["alumno1(ssh)"]
     A2["alumno2(ssh)"]
     An["alumnoN(ssh)"]
@@ -21,7 +21,7 @@ graph TD
     R --- An
 
     %% Estilos (Opcional)
-    style P fill:#f9f,stroke:#333,stroke-width:2px
+    style P fill:#aaffaa,stroke:#006400,stroke-width:2px,color:#000
     style R fill:#fff,stroke:#333,stroke-dasharray: 5 5
 ```
 
