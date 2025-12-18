@@ -405,6 +405,8 @@ Tenemos varias formas de hacerlo, según el estilo de cada docente:
 
 Veamos en detalle esta última opción.
 
+## 11. FUNCION EXPERIMENTAL: Servidor de configuración
+
 * El profesor inicia el servidor de configuración:
 
 ```
@@ -470,7 +472,7 @@ cases:
 
 _¡Ya tenemos el test y las configuraciones listas para trabajar en el aula!_
 
-## 11. Sesión de trabajo en el aula
+## 12. Sesión de trabajo en el aula
 
 Ya, tenemos listo el test y el fichero de configuración. Nos lo llevamos al aula para usarlo en producción.
 
