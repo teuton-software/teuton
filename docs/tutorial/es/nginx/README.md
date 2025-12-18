@@ -9,14 +9,16 @@ Esquema de clase:
 graph TD
     %% Definición de los nodos
     P["profesor(teuton)"]
-    R(( Red ))
+    R(( Green ))
     A1["alumno1(ssh)"]
     A2["alumno2(ssh)"]
+    An["alumnoN(ssh)"]
 
     %% Conexiones
     P --- R
     R --- A1
     R --- A2
+    R --- An
 
     %% Estilos (Opcional)
     style P fill:#f9f,stroke:#333,stroke-width:2px
