@@ -4,6 +4,25 @@
 
 Vamos a hacer un tutorial de cómo crear un test para checkear la instalación de un servidor web Nginx.
 
+Esquema de clase:
+```
+graph TD
+    %% Definición de los nodos
+    P["profesor(teuton)"]
+    R(( Red ))
+    A1["alumno1(ssh)"]
+    A2["alumno2(ssh)"]
+
+    %% Conexiones
+    P --- R
+    R --- A1
+    R --- A2
+
+    %% Estilos (Opcional)
+    style P fill:#f9f,stroke:#333,stroke-width:2px
+    style R fill:#fff,stroke:#333,stroke-dasharray: 5 5
+```
+
 ## 1. Consultamos a la IA generativa
 
 _¿Cómo no? En estos tiempos todo el mundo está hablando de la IA generativa. Así que vamos a usarla para que nos ayude con el test de Teuton? ;-)_
