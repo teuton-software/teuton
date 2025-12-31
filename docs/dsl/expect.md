@@ -11,7 +11,7 @@ Let's see some examples:
 ```ruby
 target "Exist user obiwan"
 run "id obiwan"
-expect "obiwan" # Expect run command output will contain "obiwan"
+expect_ok
 ```
 
 ## Simple evaluations
