@@ -1,3 +1,5 @@
+# File: config.yaml
+# Desc: configutarion file
 ---
 global:
   host1_username: root
