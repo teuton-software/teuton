@@ -97,8 +97,10 @@ run    'cat /etc/passwd'
 
 Then we can check result with:
 
-* **expect result.find(/obiwan|kenobi/).count.eq(1)**, expect there exists only 1 line with "obiwan" or "kenobi".
-* **expect result.find(/darth/).find(/vader/).count.gt(2)**, expect there exists more than 2 lines with texts "darth" and "vader".
-* **expect result.not_find('#').find('yoda').count.lt(3)**, expects there exists less than 3 lines with text "yoda" and without "#" symbol.
+```ruby
+expect result.find(/obiwan|kenobi/).count.eq(1)       # only 1 line with "obiwan" or "kenobi".
+expect result.find(/darth/).find(/vader/).count.gt(2) # more than 2 lines with texts "darth" and "vader".
+expect result.not_find('#').find('yoda').count.lt(3)  # less than 3 lines with text "yoda" and without "#" symbol.
+```
 
 Read more about [result](result.md) object.
