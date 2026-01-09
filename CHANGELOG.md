@@ -1,6 +1,6 @@
+
 ## [2.11.0] 
 
-- [FEATURE] `teuton config --server PATH/TO/PROJECT` function. Students help teacher to fill configuration file.
 - [DOC] New `teuton config` documentation.
 - [FEATURE] export using Markdown format with `export format: 'markdown'`
 - [FEATURE] export using XML format with `export format: 'xml'`
