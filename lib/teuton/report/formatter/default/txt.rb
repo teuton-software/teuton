@@ -57,7 +57,7 @@ class TXTFormatter < ArrayFormatter
   end
 
   def process_hof
-    return if @data[:hall_of_fame].size < 3
+    return if @data[:hall_of_fame].empty?
 
     w "\n#{colorize("HALL OF FAME", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |st|

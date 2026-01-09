@@ -1,6 +1,6 @@
 [<< back](README.md)
 
-# Feedback
+# feedback
 
 Exporting with false feedback option `export feedback: false`, hide some items from output reports. Hiden items: command, alterations, expected and result.
 

@@ -13,83 +13,42 @@ Execute command on localhost and save output into result object.
 run "id COMMAND"
 ```
 
-## Alias
-
-In fact it's the same as doing next:
-
+Alias:
 ```ruby
 run "COMMAND", on: :localhost
-```
-
-```ruby
 run "COMMAND", on: 127.0.0.1
-```
-
-```ruby
 run "COMMAND", on: 'localhost'
 ```
 
-## Example
+* This instruction execute "COMMAND" command on local machine, and save results into **result** object.
+* Local machine is where the Teuton program is running.
 
-```ruby
-run "id david"
-```
-
-* This instruction execute "id david" command on local machine, and save results into **result** object.
-* Local machine is where the `Teuton` program is running.
-
----
 # Remote run
 
 Connect to remote host and executes command. The command output is saved into **result** object.
 
 ```ruby
-run "COMMAND", on: :hostID
+run "COMMAND", on: :HOSTID
 ```
 
-* This example connect to remote host identified by `hostID`. Then we execute the command into it and save the output commadn into result object.
-* Label `hostID` identifies specific machine. Host information (ip, username, password, protocol) cames from config file.
+* This example connect to remote host identified by `HOSTID`. Then we execute the command into it and save the output commadn into result object.
+* Label `HOSTID` identifies specific machine. Host information (ip, username, password, protocol) cames from config file.
 
-## Alias
-
-I know that programers dislike `goto` sentence, but this is diferent. Think of it as english speaker, not as developer.
-
+**Example**:
 ```ruby
-on :hostID, run: "COMMAND"
+# Execute `id obiwan` comand into remote host `:tatooine`.
+run "id obiwan", on: :tatooine
 ```
 
-```ruby
-goto :hostID, :exec => "COMMAND"
-```
+## Protocols
 
-## Examples
-
-Execute `id obiwan` comand into remote host `:linux1`.
-
-```ruby
-run "id obiwan", on: :linux1
-```
-
-## Deprecated
-
-```ruby
-run "id obiwan", :on => :linux1
-on :linux1, run: "id obiwan"
-on :linux1, :run => "id obiwan"
-goto :linux1, exec: "id obiwan"
-goto :linux1, :exec => "id obiwan"
-```
-
-## Protocol
-
-**SSH connection**
+### SSH connection
 
 Invoking `run` sentence, will open SSH session with remote host by default.
-This config files examples do the same:
 
-Sample 1. By default, SSH connection is established with remote host:
+**Example 1**. By default, SSH connection is established with remote host:
 
-```
+```yaml
 ---
 :config:
 ---
@@ -101,9 +60,9 @@ Sample 1. By default, SSH connection is established with remote host:
   :host1_password: secret
 ```
 
-Sample 2. `host1_protocol: ssh` force SSH connection with remote host:
+**Example 2**. `host1_protocol: ssh` force SSH connection with remote host:
 
-```
+```yaml
 ---
 :config:
 ---
@@ -116,11 +75,13 @@ Sample 2. `host1_protocol: ssh` force SSH connection with remote host:
   :host1_protocol: ssh
 ```
 
-**Telnet connection**: Open Telnet remote session.
+### Telnet connection
+
+Open Telnet session with remote host.
 
 `host1_protocol: telnet` force Telnet connection with remote host:
 
-```
+```yaml
 ---
 :global:
 :cases:
@@ -131,23 +92,25 @@ Sample 2. `host1_protocol: ssh` force SSH connection with remote host:
   :host1_protocol: telnet
 ```
 
-**Localhost**: When hostname value is "localhost", or host IP is "127.0.0.X", then
-Teuton will assume that you want to run your command on local system, and no remote session is opened.
-This examples are the same:
+### Localhost
 
+When host is "localhost", or `host_ip: 127.0.0.*` , then Teuton will assume that you want to run your command on local system, and no remote session is opened.
+
+Examples:
 ```
 run "id david"
+run "id david", on: :localhost
+run "id david", on: 'localhost'
 ```
 
-And
+### SSH to localhost
 
-```
-goto :localhost, :exec => "id david"
-```
+Force SSH session to localhost.
 
-**SSH to localhost**: Force SSH session to localhost:
+Iw you need to force SSH connection to localhost, then set param `host1_protocol: ssh`.
 
-```
+Example:
+```yaml
 ---
 :global:
 :cases:

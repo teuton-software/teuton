@@ -3,7 +3,7 @@ require "rainbow"
 
 require_relative "../utils/logger"
 require_relative "../utils/project"
-require_relative "../utils/configfile_reader"
+require_relative "../utils/config_file_reader"
 
 class ShowCheck
   def initialize(stats:, path:)
@@ -14,7 +14,7 @@ class ShowCheck
   def suggest_config_content
     output = {"global" => nil, "cases" => [{}]}
     script_vars = find_script_vars
-    script_vars.each { |i| output["cases"][0][i.to_s] = "VALUE" }
+    script_vars.each { |i| output["cases"][0][i.to_s] = "TOCHANGE" }
     Logger.info YAML.dump(output)
   end
 
@@ -28,7 +28,7 @@ class ShowCheck
     end
 
     script_vars = find_script_vars
-    config_vars = ConfigFileReader.read(@path[:config])
+    config_vars = ConfigFileReader.call(@path[:config])
     config_vars[:global]&.each_key { |k| script_vars.delete(k) }
     config_vars[:alias]&.each_key { |k| script_vars.delete(k) }
 

@@ -4,10 +4,10 @@ require_relative "../../lib/teuton/utils/name_file_finder"
 
 class NameFileFinderTest < Test::Unit::TestCase
   def test_relpath_simple_mode_find_filenames_for
-    dirpath = File.join("test", "files", "t01-read-config")
     Project.value[:verbose] = false
 
     # Simple mode, files exists
+    dirpath = File.join("test", "files", "t01-read-config")
     finder = NameFileFinder.new
     finder.find_filenames_for(File.join(dirpath, "demo.rb"))
 
@@ -24,10 +24,10 @@ class NameFileFinderTest < Test::Unit::TestCase
   end
 
   def test_abspath_simple_mode_find_filenames_for
-    dirpath = File.join("test", "files", "t01-read-config")
     Project.value[:verbose] = false
 
     # Simple mode, files exists (using absolute path)
+    dirpath = File.join("test", "files", "t01-read-config")
     basedir = Project.value[:running_basedir]
     absolute_path = File.join(basedir, dirpath, "demo.rb")
     finder = NameFileFinder.new
@@ -44,10 +44,10 @@ class NameFileFinderTest < Test::Unit::TestCase
   end
 
   def test_complex_mode_dir_empty
-    dirpath = File.join("test", "files", "t02-read-config")
     Project.value[:verbose] = false
 
     # Complex mode, dir empty
+    dirpath = File.join("test", "files", "t02-read-config")
     finder = NameFileFinder.new
     finder.find_filenames_for(dirpath)
     basedir = Project.value[:running_basedir]
@@ -63,10 +63,10 @@ class NameFileFinderTest < Test::Unit::TestCase
   end
 
   def test_complex_mode_files_exist
-    dirpath = File.join("test", "files", "t03-read-yaml")
     Project.value[:verbose] = false
 
     # Complex mode, files exist
+    dirpath = File.join("test", "files", "t03-read-yaml")
     finder = NameFileFinder.new
     finder.find_filenames_for(dirpath)
     basedir = Project.value[:running_basedir]
@@ -82,10 +82,10 @@ class NameFileFinderTest < Test::Unit::TestCase
   end
 
   def test_json_simple_mode_find_filenames_for
-    dirpath = File.join("test", "files", "t04-read-json")
     Project.value[:verbose] = false
 
     # Simple mode, files exists with JSON
+    dirpath = File.join("test", "files", "t04-read-json")
     finder = NameFileFinder.new
     finder.find_filenames_for(File.join(dirpath, "demo.rb"))
     basedir = Project.value[:running_basedir]
@@ -101,10 +101,10 @@ class NameFileFinderTest < Test::Unit::TestCase
   end
 
   def test_complex_mode_files_exist_with_json
-    dirpath = File.join("test", "files", "t05-read-json")
     Project.value[:verbose] = false
 
     # Complex mode, files exists with JSON
+    dirpath = File.join("test", "files", "t05-read-json")
     finder = NameFileFinder.new
     finder.find_filenames_for(dirpath)
     basedir = Project.value[:running_basedir]

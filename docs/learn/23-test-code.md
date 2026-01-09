@@ -4,10 +4,20 @@
 
 Let's test code using teuton.
 
-**Example:**
+## Exercise
 
-* Ask students to make a program that performs addition and multiplication.
-* Define targets `sum` and `mul`:
+Ask students to make a program that performs addition and multiplication.
+
+Usage:
+```
+$ examples/23-test-code/code/math_1.py 3 4
+Sum = 7
+Mul = 12
+```
+
+## Example
+
+Define targets `sum` and `mul`:
 
 ```ruby
 # File: start.rb
@@ -25,7 +35,7 @@ group "Test code example" do
 end
 ```
 
-* Define config params:
+Define config params:
 
 ```yaml
 # File: config.yaml
@@ -36,14 +46,14 @@ cases:
 - tt_members: student_1
   filename: math_1.py
 - tt_members: student_2
-  filename: math_2b.py
+  filename: math_2.py
 ```
 
-* Put students files into `code` folder.
+* Copy students files into `code` subfolder.
 * Now run Teuton test:
 
 ```
-❯ teuton examples/23-test-code
+$ teuton examples/23-test-code
 
 CASE RESULTS
 +------+-----------+-------+-------+

@@ -52,7 +52,7 @@ class MarkdownFormatter < ArrayFormatter
   end
 
   def process_hof
-    return if @data[:hall_of_fame].size < 3
+    return if @data[:hall_of_fame].empty?
 
     w "# HALL OF FAME\n\n"
     w "| Grade | Amount |\n"

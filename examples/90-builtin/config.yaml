@@ -1,11 +1,11 @@
 ---
-:global:
-:cases:
-- :tt_members: Student 01
-  :host1_ip: localhost
-  :host1_username: profesor
-  :host1_password: profesor
-- :tt_members: Student 02
-  :host1_ip: 192.168.43.229
-  :host1_username: root
-  :host1_password: profesor
+global:
+cases:
+- tt_members: Student 01
+  host1_ip: localhost
+  host1_username: profesor
+  host1_password: profesor
+- tt_members: Student 02
+  host1_ip: 192.168.43.229
+  host1_username: root
+  host1_password: profesor

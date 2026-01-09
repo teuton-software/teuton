@@ -8,8 +8,8 @@ namespace :devel do
 
   desc "Debian installation"
   task :debian do
-    names = %w[ssh make gcc ruby-devel]
-    names.each { |name| system("apt-get install -y #{name}") }
+    names = %w[ssh make gcc ruby-dev]
+    names.each { |name| system("apt install -y #{name}") }
   end
 
   desc "Create /usr/local/bin/teuton"

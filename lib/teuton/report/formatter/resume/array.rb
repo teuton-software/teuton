@@ -38,9 +38,7 @@ class ResumeArrayFormatter < BaseFormatter
 
   def build_hof_data
     fame = {}
-    if Project.value[:options][:case_number] > 2
-      Project.value[:hall_of_fame].each { |line| fame[line[0]] = line[1] }
-    end
+    Project.value[:hall_of_fame].each { |line| fame[line[0]] = line[1] }
     @data[:hall_of_fame] = fame
   end
 end

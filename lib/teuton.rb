@@ -14,21 +14,17 @@ module Teuton
       Project.value[:script_path],
       Project.value[:config_path]
     )
-    if options["onlyconfig"]
-      checker.show_onlyconfig
-    else
-      checker.show
-    end
+    checker.show(options["onlyconfig"] || false)
   end
 
   def self.run(projectpath, options = {})
     Project.add_input_params(projectpath, options)
-    require_dsl_and_script("teuton/case_manager/dsl") # Define DSL
+    require_dsl_and_script("teuton/case_manager/dsl")
   end
 
   def self.readme(projectpath, options = {})
     Project.add_input_params(projectpath, options)
-    require_dsl_and_script("teuton/readme/main") # Define DSL
+    require_dsl_and_script("teuton/readme/main")
     readme = Readme.new(
       Project.value[:script_path],
       Project.value[:config_path]
@@ -36,14 +32,19 @@ module Teuton
     readme.show
   end
 
+  def self.server(projectpath)
+    require_relative "teuton/config/server"
+    ConfigServer.configure_project(projectpath)
+  end
+
   private_class_method def self.require_dsl_and_script(dslpath)
+    # Load DSL file and then load script file
     require_relative dslpath
     begin
       require_relative Project.value[:script_path]
     rescue => e
-      warn e
-      warn Rainbow.new("[FAIL ] Reading file #{Project.value[:script_path]}").red
-      warn Rainbow.new("[ERROR] Syntax Error!").red
+      warn Rainbow.new("[ERROR] require_dsl_and_script: <#{e}>").bright.red
+      warn Rainbow.new("[ERROR] Reading file #{Project.value[:script_path]}").bright.red
       exit 1
     end
   end

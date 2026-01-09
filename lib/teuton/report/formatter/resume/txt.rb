@@ -55,13 +55,13 @@ class ResumeTXTFormatter < ResumeArrayFormatter
       st.add_row %w[CASE MEMBERS HOST ERROR]
       @data[:cases].each do |line|
         line[:conn_status].each_pair do |h, e|
-          st.add_row [line[:id], line[:members], h, e]
+          st.add_row [line[:id], line[:members], h, colorize(e, :red_bright)]
         end
       end
     end
     return unless my_screen_table.rows.size > 1
 
-    w "#{colorize("CONN ERRORS", :bg_red)}\n#{my_screen_table}\n\n"
+    w "#{colorize("CONN ERRORS", :bg_blue)}\n#{my_screen_table}\n\n"
   end
 
   def process_results
@@ -100,6 +100,8 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     case option
     when :bg_blue
       Rainbow(text).bg(:blue)
+    when :bg_red
+      Rainbow(text).bg(:red)
     when :blue_bright
       Rainbow(text).blue.bright
     when :bright
@@ -108,6 +110,8 @@ class ResumeTXTFormatter < ResumeArrayFormatter
       Rainbow(text).color(:green)
     when :red
       Rainbow(text).color(:red)
+    when :red_bright
+      Rainbow(text).red.bright
     else
       puts "[ERROR] ResumeTXTFormatter#colorize option=#{option}"
       exit 1

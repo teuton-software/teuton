@@ -10,13 +10,12 @@ module DSL
   # @param args (Hash)
   def run(command, args = {})
     args[:exec] = command.to_s
-    host = :localhost
-    host = args[:on] if args[:on]
+    host = args[:on] || :localhost
     goto(host, args)
   end
 
   # Run command from the host identify as "host"
-  # goto :host1, :execute => "command"
+  # goto :host1, execute: "command"
   def goto(host = :localhost, args = {})
     @result.reset
     args[:on] = host unless args[:on]

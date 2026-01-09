@@ -21,28 +21,54 @@ Install Ruby and then:
 gem install teuton
 ```
 
-> **NOTE**
-> * Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/))
-> * Install a specific version: `gem install teuton -v VERSION`.
-> * Update: `gem update teuton`.
+# Quickstart
 
-# Usage
+**Create** your test file:
 
-Use `teuton run TESTPATH` command to run test:
+```ruby
+# File: examples/02-target/start.rb 
+group "Learn about targets" do
+  target "Create user obiwan", weight: 2
+  run "id obiwan"
+  expect ["uid=", "(obiwan)", "gid="]
+
+  target "Delete user vader"
+  run "id vader"
+  expect_fail
+end
+
+start do
+  show
+  export
+end
+```
+
+**Usage**: Run test with `teuton run TESTPATH`.
 
 ```console
 $ teuton run examples/02-target
 ------------------------------------
-Started at 2025-11-12 20:15:59 +0000
+Started at 2025-12-01 18:14:44 +0000
 F.
 Finished in 0.005 seconds
 ------------------------------------
  
 CASE RESULTS
-+------+---------+-------+-------+
-| CASE | MEMBERS | GRADE | STATE |
-| 01   | VALUE   | 33.0  | ?     |
-+------+---------+-------+-------+
++------+-----------+-------+-------+
+| CASE | MEMBERS   | GRADE | STATE |
+| 01   | anonymous | 33.0  | ?     |
++------+-----------+-------+-------+
+```
+
+**Output**: reports saved into `var/TESTNAME` folder.
+
+```
+$ tree var 
+var
+└── 02-target
+    ├── case-01.txt
+    ├── moodle.csv
+    └── resume.txt
 ```
 
 Consult the generated [output files](examples/02-target/output.d/)
@@ -51,17 +77,38 @@ Consult the generated [output files](examples/02-target/output.d/)
 
 * Use simple DSL to define your tests: `target`, `run`,`expect` and more.
 * Remote devices only require SSH or Telnet service installed.
-* Output format: txt, html, json, yaml, etc.
+* Output format: txt, html, json, yaml, markdown, etc.
 * Multiplatform.
 * [Free Software License](LICENSE).
 
 # Documentation
 
-* [Installation](docs/install/README.md)
-* [Learning](docs/learn/README.md)
-* [Examples](examples)
-* [Commands](docs/commands/README.md)
-* [Language reference](docs/dsl/README.md)
+* Installation
+    * [Teuton installation](docs/install/t-node.md)
+    * [SSH/Telnet installation](docs/install/s-node.md)
+* Teuton commands
+    * [teuton config](docs/commands/config.md)
+    * [teuton check](docs/commands/check.md)
+    * [teuton help](docs/commands/help.md)
+    * [teuton new](docs/commands/new.md)
+    * [teuton readme](docs/commands/readme.md)
+    * [teuton run](docs/commands/run.md)
+* [Learning guide](docs/learn/README.md). Learning to create tests by doing.
+* [Learning Examples](examples). The learning guide is based on these examples.
+* [Configuration file](docs/config_file.md)
+* [DSL - Language reference](docs/dsl/README.md). DSL used to define tests.
+    * [expect](docs/dsl/expect.md)
+    * [export](docs/dsl/export.md)
+    * [get](docs/dsl/get.md)
+    * [group](docs/dsl/group.md)
+    * [play](docs/dsl/play.md)
+    * [result](docs/dsl/result.md)
+    * [run](docs/dsl/run.md)
+    * [send](docs/dsl/send.md)
+    * [set](docs/dsl/set.md)
+    * [show](docs/dsl/show.md)
+    * [target](docs/dsl/target.md)
+* [Modes of use](docs/modes_of_use.md): Classroom, contest, standalone.
 * [Blogs and videos](docs/videos.md)
 
 # Contact

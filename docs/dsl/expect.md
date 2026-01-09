@@ -2,7 +2,7 @@
 
 # expect
 
-Compare the obtained result with the expected one. This comparation process is registered into final report.
+Compare the obtained result with the expected one. This result is registered into final report.
 
 ## Example
 
@@ -11,7 +11,7 @@ Let's see some examples:
 ```ruby
 target "Exist user obiwan"
 run "id obiwan"
-expect "obiwan" # Expect run command output will contain "obiwan"
+expect_ok
 ```
 
 ## Simple evaluations

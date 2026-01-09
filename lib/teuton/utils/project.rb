@@ -1,26 +1,28 @@
 require_relative "name_file_finder"
 
+##
+# Class is used to store global parameters of the running project
 class Project
   def self.init
     @project = {}
     @project[:running_basedir] = Dir.getwd
     @project[:output_basedir] = "var"
     @project[:name] = "teuton"
-    @project[:format] = :txt
-    @project[:debug] = false
-    @project[:options] = {
+    @project[:format] = :txt # Default export format
+    @project[:debug] = false # Disable/enable local executions
+    @project[:options] = { # Default input options
       "color" => true,
       "lang" => "en",
       "panel" => false,
       "quiet" => false
     }
-    @project[:verbose] = true
-    @project[:global] = {} # Hash of Global configuration params
+    @project[:verbose] = true # Enable/disable screen outputs
+    @project[:global] = {}
     @project[:ialias] = {} # Hash of Internal alias
-    @project[:macros] = {} # Hash of macros
-    @project[:groups] = [] # Array of groups
-    @project[:uses] = [] # TODO: Array of used files
-    @project[:hall_of_fame] = []
+    @project[:macros] = {}
+    @project[:groups] = []
+    @project[:uses] = []
+    @project[:hall_of_fame] = [] # Hall of fame content
   end
 
   def self.value
@@ -29,23 +31,11 @@ class Project
 
   init
 
-  def self.debug?
-    value[:debug]
-  end
-
-  def self.name
-    value[:name]
-  end
-
   def self.quiet?
     return true if value[:options]["quiet"]
     return true unless value[:verbose]
 
     false
-  end
-
-  def self.verbose
-    value[:verbose]
   end
 
   ##
@@ -67,5 +57,13 @@ class Project
 
     numbers = value[:options]["case"].split(",")
     value[:options]["case"] = numbers.collect!(&:to_i)
+  end
+
+  def self.relative_path(filepath)
+    if filepath.start_with?(Dir.pwd)
+      filepath[Dir.pwd.length + 1, filepath.length]
+    else
+      filepath
+    end
   end
 end

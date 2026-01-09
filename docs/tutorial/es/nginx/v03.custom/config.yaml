@@ -1,0 +1,13 @@
+---
+global:
+cases:
+# Máquina del alumno 1
+- tt_members: Alumno 1
+  webserver_ip: 192.168.122.254
+  webserver_username: alumno1
+  webserver_password: secret1
+# Máquina del alumno 2
+- tt_members: Alumno 2
+  webserver_ip: 192.168.122.108
+  webserver_username: alumno2
+  webserver_password: secret2

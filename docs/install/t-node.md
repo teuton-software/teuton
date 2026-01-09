@@ -1,20 +1,19 @@
-[<< back](README.md)
+[<< back](../../README.md)
 
 # T-NODE installation
 
-# 1. Recommended
+_T-NODE is a host with Teuton installed. T-NODE monitors one or severals S-NODE hosts._
 
-Installation:
 1. Install Ruby on your system.
 2. `gem install teuton`
 
-Run `teuton version` to check the installed version.
-
 > NOTE:
+> * Show current version: `teuton version`.
+> * Install a specific version: `gem install teuton -v VERSION`. Available versions ([rubygems.org/gems/teuton](https://rubygems.org/gems/teuton/)).
 > * Update: `gem update teuton`.
 > * Uninstall: `gem uninstall teuton`.
 
-# 2. Problems
+## 1. Problems
 
 Sometimes we don't find `teuton` command (OpenSUSE distro, for example), so try this:
 
@@ -26,11 +25,11 @@ Option B:
 * `find /usr/lib64/ruby -name teuton`, to find absolute path to teuton command.
 * `sudo ln -s /PATH/TO/bin/teuton /usr/local/bin/teuton`, to create symbolic link to teuton command.
 
-# 3. Installation scripts
+## 2. Installation scripts
 
 If you don't know how to install Ruby on your system, execute this script to run automatical installation for your OS.
 
-**GNU/Linux installation**
+### 2.1 GNU/Linux installation
 
 Run this command as `root` user:
 
@@ -38,7 +37,7 @@ Run this command as `root` user:
 wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/install/linux/t-node_install.sh | bash
 ```
 
-**Windows installation**
+### 2.2 Windows installation
 
 Requirements:
 * Windows 7+ / Windows Server 2003+
@@ -50,7 +49,7 @@ Run this command on **PowerShell (PS)** as `Administrator` user:
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/install/windows/t-node_install.ps1'))
 ```
 
-**Mac OS X installation**
+### 2.3 Mac OS X installation
 
 Run this command as admin user (member of `admin` group):
 
@@ -58,11 +57,11 @@ Run this command as admin user (member of `admin` group):
 curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/install/mac/t-node_install.sh | bash
 ```
 
-# 4. Vagrant and Docker installation
+## 3. Vagrant and Docker installation
 
 Choose this way if you plan to install Teuton into virtual machines or containers, and you are familiar with Vagrant and Docker technologies.
 
-## 4.1 Install using Vagrant
+## 3.1 Install using Vagrant
 
 * First, install `Vagrant` and `VirtualBox` on your host.
 * Create directory for vagrant project. For example, `mkdir teuton-vagrant`.
@@ -70,7 +69,7 @@ Choose this way if you plan to install Teuton into virtual machines or container
 * Choose and download [Vagrantfile](../../install/vagrant).
 * Run `vagrant up` to create your Virtual Machine.
 
-## 4.2 Install using Docker
+## 3.2 Install using Docker
 
 First:
 * Install `docker` on your host.
@@ -79,13 +78,13 @@ Second, choose:
 * Pulling docker image from remote or
 * Rebuild local docker image.
 
-## 4.2 Pulling docker images from remote
+## 3.2 Pulling docker images from remote
 
 Run this command to pull **dvarrui/teuton** image from Docker Hub and create "teuton" container:
 
 `docker run --name teuton -v /home/teuton -i -t dvarrui/teuton /bin/bash`
 
-## 4.2 Rebuild local docker image
+## 3.2 Rebuild local docker image
 
 1. Create Dockerfile like this:
 
@@ -112,7 +111,7 @@ CMD ["/bin/bash"]
 
 > Notice `/home/teuton` folder is persistent volume.
 
-# 5. Source code
+## 4. Source code
 
 If you want to install Teuton by your own, or there are not installation scripts for your OS, and you don't want to use Vagrant then... here you have information how to install all the required packages for Teuton.
 
@@ -132,9 +131,9 @@ Manual installation:
 1. Move into Teuton folder
     * Run `cd teuton`
 1. Gems installation.
-    * `rake install:gems`, to install required gems.
+    * `rake install`, to install required gems.
 1. Only for developers
-    * Run `rake install:debian` or
-    * `rake install:opensuse`, install gem for developers.
+    * Run `rake devel:debian` or
+    * `rake devel:opensuse`, install gem for developers.
 1. Final check
     * `rake`

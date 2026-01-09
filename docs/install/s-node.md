@@ -1,12 +1,14 @@
-[<< back](README.md)
+[<< back](../../README.md)
 
-# S-NODE installation
+# S-NODE Installation
 
-Install SSH server on every machine with S-NODE role.
+_S-NODE is a host with SSH/Telnet service installed. S-NODE hosts are monitorized by T-NODE host._
 
-**S-node**: Host where SSH server is installed. This hosts are monitorized by T-NODE host.
+S-NODES needs to have the SSH or Telnet service installed.
 
-**GNU/Linux installation**
+## SSH server installation
+
+**SSH GNU/Linux installation**
 
 Run this command as `root` user:
 
@@ -14,7 +16,7 @@ Run this command as `root` user:
 wget -qO- https://raw.githubusercontent.com/teuton-software/teuton/master/install/linux/s-node_install.sh | bash
 ```
 
-**Windows installation**
+**SSH Windows installation**
 
 Requirements:
 * Windows 7+ / Windows Server 2003+
@@ -26,7 +28,7 @@ Run this command on **PowerShell (PS)** as `Administrator` user:
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/teuton-software/teuton/master/install/windows/s-node_install.ps1'))
 ```
 
-**Mac OS X installation**
+**SSH Mac OS X installation**
 
 Run this command as `root` user:
 

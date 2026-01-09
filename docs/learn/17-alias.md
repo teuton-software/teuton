@@ -1,10 +1,10 @@
 [<< back](README.md)
 
-# Example: 14-alias
+# alias
 
 By using aliases we can adapt a configuration file, so that it can be used with many different tests.
 
-## Exanation
+## Example
 
 Suppose we have a test like the following:
 

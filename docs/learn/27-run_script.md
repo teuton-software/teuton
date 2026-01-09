@@ -11,7 +11,7 @@ You know the classic sequence `target/run/expect`, but sometimes you need to run
 
 > Example files at [examples/27-run_file](../../examples/27-run_script)
 
-## Example scripts
+## Example files
 
 Suppose we have the following files:
 ```
@@ -29,11 +29,13 @@ echo $MESSAGE
 exit 0
 ```
 
-## Usage examples
+## Usage
 
 `run_script` is the DSL keyword in charge of uploading the script to the remote computer and executing it. When invoking run_script we have two styles: compact or separate components. Let's see
 
-**Compact invocation**: The "command" to execute contains the interpreter, the script, and the arguments.
+### Compact invocation
+
+The "command" string executed contains the interpreter, the script, and the arguments. Example: `"bash show.sh Hello"`.
 
 ```ruby
 target "Mode 1: Upload script and execute on remote host"
@@ -41,7 +43,9 @@ run_script "bash show.sh Hello", on: :host1
 expect "Hello"
 ```
 
-**Separate components**: pass the name of the script, the interpreter in charge of processing it and its arguments through separate parameters.
+### Separate components
+
+Pass the script name, interpreter, and its arguments using separate parameters.
 
 ```ruby
 target "Mode 2: Upload script and execute on remote host"
@@ -49,12 +53,14 @@ run_script "show.sh", shell: "bash", args: "Hello", on: :host1
 expect "Hello"
 ```
 
+### Separate components and defaut shell
+
 Or setting shell default value:
 
 ```ruby
 set(:shell, "bash")
 
-target "Mode 2: Upload script and execute on remote host"
+target "Mode 3: Upload script and execute on remote host"
 run_script "show.sh", args: "Hello", on: :host1
 expect "Hello"
 ```

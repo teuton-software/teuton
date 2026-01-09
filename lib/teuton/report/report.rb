@@ -64,7 +64,7 @@ class Report
       else
         fails += i[:weight]
         fail_counter += 1
-        @history += Settings.letter[:bad]
+        @history += Settings.letter[:fail]
       end
     end
     @tail[:max_weight] = max

@@ -13,32 +13,37 @@ class ExportManager
   # @param main_report (Report)
   # @param cases (Array)
   # @param input (Hash) Selected export options
-  def call(main_report, cases, args, default_format)
+  def call(main_report, cases, args)
     if args.class != Hash
-      puts Rainbow("[ERROR] ExportManager:").red
-      puts Rainbow("  Export argument error!").red
-      puts Rainbow("  Revise: export #{args}").red
-      puts Rainbow("  Use   : export format: 'txt'").red
+      puts Rainbow("[ERROR] ExportManager: argument error!").red
+      puts Rainbow("[ERROR] Fix line <export #{args}>").red
+      puts Rainbow("[ERROR] Replace by <export format: 'txt'>").red
       puts ""
       exit 1
     end
 
     # Step 1: Validate options
     options = strings2symbols(args)
-    options[:format] = default_format if options[:format].nil?
+    if options[:format].nil?
+      options[:format] = Project.value[:format]
+    end
 
     unless Formatter.available_formats.include? options[:format]
-      puts Rainbow("[WARN] ExportManager:").yellow.bright
-      puts Rainbow("       Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>.").yellow.bright
-      puts Rainbow("       Available formats: #{Formatter.available_formats.join(", ")}.").yellow.bright
-      puts Rainbow("[INFO] Using default format <txt>.").yellow.bright
+      puts Rainbow("[WARN] ExportManager: Unkown format!").yellow.bright
+      puts Rainbow("[WARN] Fix line <export format: #{options[:format]}>").yellow.bright
+      puts Rainbow("[INFO] Available formats: #{Formatter.available_formats.join(", ")}.").white.bright
+      puts Rainbow("[INFO] Using default format <txt>.").white.bright
       options[:format] = :txt
     end
 
     # Step 2: Export case reports
-    threads = []
-    cases.each { |c| threads << Thread.new { c.export(options) } }
-    threads.each(&:join)
+    if Project.value[:global][:tt_sequence]
+      cases.each { |c| c.export(options) }
+    else
+      threads = []
+      cases.each { |c| threads << Thread.new { c.export(options) } }
+      threads.each(&:join)
+    end
 
     # Step 3: Export resume report
     main_report.export_resume(options)
@@ -79,10 +84,10 @@ class ExportManager
     }
     subdir = format("%<year>s%<month>02d%<day>02d-" \
                     "%<hour>02d%<min>02d%<sec>02d", data)
-    logdir = File.join(srcdir, subdir)
+    preserve_dir = File.join(srcdir, subdir)
 
-    puts "[INFO] Preserving files => #{logdir}"
-    FileUtils.mkdir(logdir)
-    Dir.glob(File.join(srcdir, "**.*")).each { |file| FileUtils.cp(file, logdir) }
+    puts "[INFO] Preserving files => #{preserve_dir}"
+    FileUtils.mkdir(preserve_dir)
+    Dir.glob(File.join(srcdir, "**.*")).each { |file| FileUtils.cp(file, preserve_dir) }
   end
 end

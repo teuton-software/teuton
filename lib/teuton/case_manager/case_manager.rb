@@ -1,14 +1,12 @@
-require_relative "../case/case"
 require_relative "../report/report"
 require_relative "../utils/project"
 require_relative "../utils/verbose"
-require_relative "../utils/configfile_reader"
-require_relative "check_cases"
+require_relative "ext/check_cases"
+require_relative "ext/report"
 require_relative "export_manager"
 require_relative "send_manager"
-require_relative "show_report"
-require_relative "report"
-require_relative "utils"
+require_relative "show_resume_report"
+require_relative "stats_manager"
 
 # * initialize
 # * play
@@ -18,10 +16,7 @@ require_relative "utils"
 # * send_manager
 # * show_report
 class CaseManager
-  include Utils
   include Verbose
-
-  attr_reader :report, :cases
 
   def initialize
     @cases = []
@@ -33,21 +28,18 @@ class CaseManager
     # Execute "play" order: Start every single case test
     check_cases!
     instance_eval(&block)
-    # Run export if user pass option command "--export=json"
+    # Run export if user pass option command "--export=FORMAT"
     i = Project.value[:options]["export"]
     export(format: i.to_sym) unless i.nil?
     # Accept "configfile" param REVISE There exists?
     i = Project.value[:options]["configfile"]
     export(format: i.to_sym) unless i.nil?
+    # TODO: Export Stats
+    # StatsManager.new.call(@cases)
   end
 
   def export(args = {})
-    ExportManager.new.call(
-      @report,
-      @cases,
-      args,
-      Project.value[:format]
-    )
+    ExportManager.new.call(@report, @cases, args)
   end
 
   def send(args = {})
@@ -55,6 +47,11 @@ class CaseManager
   end
 
   def show(options = {verbose: 1})
-    ShowReport.new(@report).call(options[:verbose])
+    ShowResumeReport.new(@report).call(options[:verbose])
   end
+
+  private
+
+  include CheckCasesExtension
+  include ReportExtension
 end

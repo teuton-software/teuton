@@ -7,8 +7,8 @@ class ProjectTest < Test::Unit::TestCase
   end
 
   def test_init_params
-    assert_equal false, Project.debug?
-    assert_equal true, Project.verbose
+    assert_equal false, Project.value[:debug]
+    assert_equal true, Project.value[:verbose]
 
     v = Project.value
     assert_equal "var", v[:output_basedir]
@@ -20,12 +20,16 @@ class ProjectTest < Test::Unit::TestCase
   def test_quiet?
     v = Project.value
     v[:verbose] = false
-    assert_equal false, Project.verbose
+    assert_equal false, Project.value[:verbose]
     assert_equal true, Project.quiet?
     v[:verbose] = true
-    assert_equal true, Project.verbose
+    assert_equal true, Project.value[:verbose]
     assert_equal false, Project.quiet?
     v[:options]["quiet"] = true
     assert_equal true, Project.quiet?
+  end
+
+  def test_relative_path
+    assert_equal "test/utils/project_test.rb", Project.relative_path(__FILE__)
   end
 end

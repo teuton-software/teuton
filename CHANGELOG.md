@@ -1,6 +1,11 @@
+
 ## [2.11.0] 
 
-- [ADD] export using Markdown format with `export format: 'markdown'`
+- [DOC] New `teuton config` documentation.
+- [FEATURE] export using Markdown format with `export format: 'markdown'`
+- [FEATURE] export using XML format with `export format: 'xml'`
+- [DOC] New Config file documentation.
+- Refactoring code files.
 
 ## [2.10.8]
 
