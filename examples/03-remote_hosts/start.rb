@@ -1,3 +1,5 @@
+# File: start.rb
+# Desc: test definitions
 group "Remote host" do
   target "Create user root"
   run "id root", on: :host1
