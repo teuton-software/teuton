@@ -36,17 +36,23 @@
 
 Consultar en el repostorio `teuton-panel`. EN PROCESO!!!
 
-* config: 
-    * Acceptar http y curl
-    * config/remote: accept-remote-config. activar/desactivar configuraciones remotas
+* config cases IMPORTANTE: 
+    * config/remote: 
+      * accept-remote-config. activar/desactivar configuraciones remotas
+      * Acceptar post formulario y vía get curl con ruta.
     * config/list: mostrar listado con info de alumnos
-* run:
-    * Aceptar http y curl
-    * run/case: Activar/desactivar peticiones de ejecución remotas: accept-remote-runcase
-    * run/every: repeticiones en bucle de I iteraciones, cada T tiempo.
-* readme/doc:
+    * Elegir ubicación de almacenamiento de las configuraciones
+* run BAJA PRIORIDAD:
+    * Ejecutar por el profesor
+        * Todos
+        * a una selección
+    * El alumno solicita su propia ejecución vía curl
+    * every: repeticiones en bucle de I iteraciones, cada T tiempo.
+    * Elegir ubicación de almacenamiento de los informes
+    * Al finalizar cada ejecución se muestre un listado con los resultados
+* readme/doc BAJA PRIORIDAD:
     * activar auto "teuton doc" a página web para los alumnos.
-* panel:
+* config panel:
     * panel/new: crear fichero de configuración del panel
     * panel/save: save configuración del panel
 
