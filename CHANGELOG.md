@@ -1,4 +1,8 @@
 
+## [3.0.0] 20260420
+
+- Change license to MPL-2.
+
 ## [2.11.0] 
 
 - [DOC] New `teuton config` documentation.
