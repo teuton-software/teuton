@@ -4,6 +4,7 @@
 
 **Cambios menores:**
 
+* Revisar (tests): result.grep(a).grep(b)
 * "Limpiar" las funciones "deprecated"
 * Cambiar "teuton readme" por "teuton doc".
     * Modificar código, documentación y los ejemplos
