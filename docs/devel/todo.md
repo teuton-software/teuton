@@ -40,7 +40,7 @@ Consultar en el repostorio `teuton-panel`. EN PROCESO!!!
 * config cases IMPORTANTE: 
     * config/remote: 
       * accept-remote-config. activar/desactivar configuraciones remotas
-      * Acceptar post formulario y vía get curl con ruta.
+      * Aceptar post formulario y vía get curl con ruta.
     * config/list: mostrar listado con info de alumnos
     * Elegir ubicación de almacenamiento de las configuraciones
 * run BAJA PRIORIDAD:
