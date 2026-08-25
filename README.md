@@ -83,16 +83,16 @@ Consult the generated [output files](examples/02-target/output.d/)
 
 # Documentation
 
-* Installation
-    * [Teuton installation](docs/install/t-node.md)
-    * [SSH/Telnet installation](docs/install/s-node.md)
-* Teuton commands
-    * [teuton config](docs/commands/config.md): suggest config file.
-    * [teuton check](docs/commands/check.md): check test syntax.
-    * [teuton help](docs/commands/help.md): show command help.
-    * [teuton new](docs/commands/new.md): create new test.
-    * [teuton readme](docs/commands/readme.md): generate test documentation.
-    * [teuton run](docs/commands/run.md): run test.
+1. Installation
+    1.1. [Teuton installation](docs/install/t-node.md)
+    1.2. [SSH/Telnet installation](docs/install/s-node.md)
+2 Teuton commands
+    2.1. [teuton config](docs/commands/config.md): suggest config file.
+    2.2. [teuton check](docs/commands/check.md): check test syntax.
+    2.3. [teuton help](docs/commands/help.md): show command help.
+    2.4. [teuton new](docs/commands/new.md): create new test.
+    2.5. [teuton readme](docs/commands/readme.md): generate test documentation.
+    2.6. [teuton run](docs/commands/run.md): run test.
 * [Learning guide](docs/learn/README.md). Learn writing your own tests. [Examples](examples).
     1. [Create NEW test](docs/learn/01-cmd_new.md)
     2. [Evaluate TARGET](docs/learn/02-target.md)
