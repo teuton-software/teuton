@@ -87,14 +87,41 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [Teuton installation](docs/install/t-node.md)
     * [SSH/Telnet installation](docs/install/s-node.md)
 * Teuton commands
-    * [teuton config](docs/commands/config.md)
-    * [teuton check](docs/commands/check.md)
-    * [teuton help](docs/commands/help.md)
-    * [teuton new](docs/commands/new.md)
-    * [teuton readme](docs/commands/readme.md)
-    * [teuton run](docs/commands/run.md)
-* [Learning guide](docs/learn/README.md). Learning to create tests by doing.
-* [Learning Examples](examples). The learning guide is based on these examples.
+    * [teuton config](docs/commands/config.md): suggest config file.
+    * [teuton check](docs/commands/check.md): check test syntax.
+    * [teuton help](docs/commands/help.md): show command help.
+    * [teuton new](docs/commands/new.md): create new test.
+    * [teuton readme](docs/commands/readme.md): generate test documentation.
+    * [teuton run](docs/commands/run.md): run test.
+* [Learning guide](docs/learn/README.md). Learn writing your own tests. [Examples](examples).
+    1. [Create NEW test](docs/learn/01-cmd_new.md)
+    1. [Evaluate TARGET](docs/learn/02-target.md)
+    1. [Check REMOTE HOSTS](docs/learn/03-remote_hosts.md)
+    1. [Read CONFIG file](docs/learn/04-config.md)
+    1. [Use several files](docs/learn/05-use.md)
+    1. [CHECK test syntax](docs/learn/06-cmd_check.md)
+    1. [Target WEIGHT](docs/learn/07-target_weight.md)
+    1. [UNIQUE values](docs/learn/08-unique_values.md)
+    1. [SEND report copies to remote hosts](docs/learn/09-send.md)
+    1. [DEBUG results](docs/learn/10-debug.md)
+    1. [Export other FORMATS](docs/learn/11-export.md)
+    1. [PRESERVE old reports](docs/learn/12-preserve.md)
+    1. [Hide FEEDBACK from reports](docs/learn/13-feedback.md)
+    1. [MOODLE](docs/learn/14-moodle_id.md)
+    1. [Build README from test](docs/learn/15-readme.md)
+    1. [INCLUDE more configuration files](docs/learn/16-include.md)
+    1. [ALIAS](docs/learn/17-alias.md)
+    1. [LOG messages](docs/learn/18-log.md)
+    1. [Don't get params, just read vars](docs/learn/19-read_vars.md)
+    1. [MACROS](docs/learn/20-macros.md)
+    1. [Checking exit codes](docs/learn/21-exit_codes.md)
+    1. [RESULT object](docs/learn/22-result.md)
+    1. [How to test code](docs/learn/23-test-code.md)
+    1. [How to test SQL and database](docs/learn/24-test-sql.md)
+    1. [expect vs result](docs/learn/25-expect-result.md) TODO
+    1. [EXPECT_SEQUENCE](docs/learn/26-expect_sequence.md)
+    1. [RUN_SCRIPT](docs/learn/27-run_script.md)
+    1. [UPLOAD](docs/learn/28-upload.md)
 * [Configuration file](docs/config_file.md)
 * [DSL - Language reference](docs/dsl/README.md). DSL used to define tests.
     * [expect](docs/dsl/expect.md)
