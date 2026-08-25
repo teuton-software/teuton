@@ -1,4 +1,8 @@
 
+## 20260825
+
+- Refactor README links.
+
 ## [3.0.0] 20260420
 
 - Change license to MPL-2.
