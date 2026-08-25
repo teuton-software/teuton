@@ -124,17 +124,17 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [UPLOAD](docs/learn/28-upload.md)
 4. [Configuration file](docs/config_file.md)
 5. [DSL - Language reference](docs/dsl/README.md). DSL used to define tests.
-    * [expect](docs/dsl/expect.md)
-    * [export](docs/dsl/export.md)
-    * [get](docs/dsl/get.md)
-    * [group](docs/dsl/group.md)
-    * [play](docs/dsl/play.md)
-    * [result](docs/dsl/result.md)
-    * [run](docs/dsl/run.md)
-    * [send](docs/dsl/send.md)
-    * [set](docs/dsl/set.md)
-    * [show](docs/dsl/show.md)
-    * [target](docs/dsl/target.md)
+    * [expect](docs/dsl/expect.md): check run output with expectations.
+    * [export](docs/dsl/export.md): save evaluation reports.
+    * [get](docs/dsl/get.md): read config params.
+    * [group](docs/dsl/group.md): group targets.
+    * [play](docs/dsl/play.md): starts main execution.
+    * [result](docs/dsl/result.md): contains run output.
+    * [run](docs/dsl/run.md): execute command on local/remote host.
+    * [send](docs/dsl/send.md): send reports into remote machines.
+    * [set](docs/dsl/set.md): write new param.
+    * [show](docs/dsl/show.md): show progress on screen.
+    * [target](docs/dsl/target.md): define new target.
 6. [Modes of use](docs/modes_of_use.md): Classroom, contest, standalone.
 7. [Blogs and videos](docs/videos.md)
 
