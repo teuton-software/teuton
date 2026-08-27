@@ -136,7 +136,7 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [show](docs/dsl/show.md): show progress on screen.
     * [target](docs/dsl/target.md): define new target.
 6. [Modes of use](docs/modes_of_use.md): Classroom, contest, standalone.
-7. [Blogs and videos](docs/videos.md)
+7. [More information](docs/more.md)
 
 # Contact
 
