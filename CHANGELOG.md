@@ -1,7 +1,8 @@
 
-## 20260825
+## 20260827
 
-- Refactor README links.
+- Refactor `docs/devel/todo.md`.
+- Refactor `README.md` links.
 
 ## [3.0.0] 20260420
 
