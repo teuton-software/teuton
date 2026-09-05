@@ -170,48 +170,20 @@ var
     * Documentación en https://readthedocs.org/ ??
 * FEATURE: Auto Parse new input format, and detect parse errors
 
+## 4.5 Async or Ractors
+
+Expandir el modo de ejecución y medir rendimiento:
+
+- Secuencial
+- Hilos
+- Fibras
+- Actores
+
 # 5. Proyectos
 
-Empezó como un nuevo feature pero por su dimensión, funcionalidad y características ha derivado en su propio proyecto indepemndiente:
+Ideas que emepzaron como un nuevo feature pero por sus dimensiones, funcionalidades y características van ha derivar a su propio proyecto independiente:
 
-* La gema `teuton-panel`
-
-## 5.1. Nueva gema teuton-panel (v2.0.0)
-
-> Consultar en el repostorio `teuton-panel`. EN PROCESO!!!
-
-Este TO-DO debería estar en el propio repo de la nueva gema.
-
-* Crear nueva gema `teuton-panel` (v2) que sustituirá la versión obsoleta actual.
-* Modificar/ampliar las funciones de `teuton config` para facilitar el trabajo a `teuton-panel`.
-    * tt_include
-    * tt_include_params
-    * aplanar/desaplanar config file.
-* En las pruebas hemos usado `sinatra` para implementarlo.
-
-Funcionalidades del interfaz web:
-
-* config cases: 
-    * config/remote: 
-      * accept-remote-config. activar/desactivar configuraciones remotas
-      * Aceptar post formulario y vía get curl con ruta.
-    * config/list: mostrar listado con info de alumnos
-    * Elegir ubicación de almacenamiento de las configuraciones
-* run:
-    * Ejecutar por el profesor
-        * Todos
-        * Una selección de cases
-        * every: repeticiones en bucle de I iteraciones, cada T tiempo.
-    * El alumno solicita su propia ejecución vía curl
-    * Elegir ubicación de almacenamiento de los informes
-    * Al finalizar cada ejecución se muestre un listado con los resultados
-* readme/doc:
-    * activar auto "teuton doc" a página web para los alumnos.
-* config panel:
-    * panel/new: crear fichero de configuración del panel
-    * panel/save: save configuración del panel
-
-## 5.2 Editor de tests
+## 5.1 Editor de tests
 
 * Editor de tests ?! .... lo veo complejo... a menos que se empiece por una versión simplificada..
 * El DSL es tan sencillo que no le veo sentido a un editor de retos.
