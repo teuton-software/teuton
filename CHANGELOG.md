@@ -1,6 +1,7 @@
 
-## 20260827
+## [3.0.1] 20261007
 
+- [FIX] do not invoke the creation of Rainbow objects.
 - Refactor `docs/devel/todo.md`.
 - Refactor `README.md` links.
 
