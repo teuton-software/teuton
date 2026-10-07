@@ -41,7 +41,8 @@ module Teuton
     # Load DSL file and then load script file
     require_relative dslpath
     begin
-      require_relative Project.value[:script_path]
+      mainscriptfile = Project.value[:script_path]
+      require_relative mainscriptfile
     rescue StandardError => e
       warn Rainbow("[ERROR] require_dsl_and_script: <#{e}>").bright.red
       warn Rainbow("[ERROR] Reading file #{Project.value[:script_path]}").bright.red

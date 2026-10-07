@@ -34,7 +34,7 @@ module ReportExtension
           skip: true,
           id: "-",
           grade: 0.0,
-          letter: Settings.letter(:skip),
+          letter: Settings.letter[:skip],
           members: "-",
           conn_status: {},
           moodle_id: "",
@@ -42,7 +42,7 @@ module ReportExtension
         }
       else
         line[:skip] = false
-        line[:id] = format("%<id>02d", {id: c.id.to_i})
+        line[:id] = format("%<id>02d", { id: c.id.to_i })
         line[:letter] = Settings.letter[:cross] if c.grade.zero?
         line[:letter] = Settings.letter[:error] if c.grade < 50.0
         line[:letter] = Settings.letter[:ok] if c.grade.to_i == 100
