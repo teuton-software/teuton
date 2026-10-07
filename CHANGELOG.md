@@ -1,14 +1,16 @@
 
-## [3.0.2] 202610xx
+## [3.0.2] 20261007
 
-- [FIX] Error when `tt_skip: true`.
+- [FIX] issue #48
+- [chore] issue #47 Error message with more information
+- [FIX] issue #45: Error when `tt_skip: true`.
 - [FIX] Error when `upload()`.
 
 ## [3.0.1] 20261007
 
 - [FIX] do not invoke the creation of Rainbow objects.
-- Refactor `docs/devel/todo.md`.
-- Refactor `README.md` links.
+- [Refactor] `docs/devel/todo.md`.
+- [Refactor] `README.md` links.
 
 ## [3.0.0] 20260420
 
