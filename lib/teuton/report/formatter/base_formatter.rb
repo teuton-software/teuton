@@ -30,7 +30,7 @@ class BaseFormatter
 
   def trim(input)
     output = input.to_s
-    output = "...#{input[input.size - 50, input.size]}" if output.size > 65
+    output = "...#{input[-50, input.size]}" if output.size > 65
     output.to_s
   end
 end
