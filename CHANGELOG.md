@@ -1,4 +1,9 @@
 
+## [3.0.2] 202610xx
+
+- [FIX] Error when `tt_skip: true`.
+- [FIX] Error when `upload()`.
+
 ## [3.0.1] 20261007
 
 - [FIX] do not invoke the creation of Rainbow objects.

@@ -44,8 +44,11 @@ module Teuton
       mainscriptfile = Project.value[:script_path]
       require_relative mainscriptfile
     rescue StandardError => e
-      warn Rainbow("[ERROR] require_dsl_and_script: <#{e}>").bright.red
-      warn Rainbow("[ERROR] Reading file #{Project.value[:script_path]}").bright.red
+      warn Rainbow("[ERROR] Processing #{mainscriptfile}").red.bright
+      warn Rainbow("[ERROR] #{e}").bright.red
+      e.backtrace&.first(3)&.each do |line|
+        warn Rainbow("[ERROR]   #{line}").bright.red
+      end
       exit 1
     end
   end
