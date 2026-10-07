@@ -11,7 +11,7 @@ class ConfigFileReaderTest < Test::Unit::TestCase
     $VERBOSE = nil
 
     Kernel.module_eval do
-      unless private_instance_methods.include?(:original_warn)
+      unless private_method_defined?(:original_warn)
         alias_method :original_warn, :warn
       end
 
