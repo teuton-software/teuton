@@ -1,4 +1,8 @@
 
+## [3.0.3] 202610xx
+
+- [FIX] issue #49: Cleaning up obsolete references Teuton.server in Teuton. The method has been completely transferred to the "teuton-panel" gem.
+
 ## [3.0.2] 20261007
 
 - [FIX] issue #48
