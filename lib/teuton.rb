@@ -1,5 +1,5 @@
 require_relative "teuton/utils/project"
-require_relative "teuton/version"
+# require_relative "teuton/version"
 
 module Teuton
   def self.create(path_to_new_dir)
@@ -44,7 +44,7 @@ module Teuton
     begin
       mainscriptfile = Project.value[:script_path]
       require_relative mainscriptfile
-    rescue StandardError => e
+    rescue => e
       warn Rainbow("[ERROR] #{e}").bright.red
       e.backtrace&.first(3)&.each do |line|
         warn Rainbow("[ERROR]   #{line}").red
