@@ -32,11 +32,6 @@ module Teuton
     readme.show
   end
 
-  def self.server(projectpath)
-    require_relative "teuton/config/server"
-    ConfigServer.configure_project(projectpath)
-  end
-
   private_class_method def self.require_dsl_and_script(dslpath)
     # Load DSL file and then load script file
     require_relative dslpath
