@@ -1,6 +1,7 @@
 require "rainbow"
 require_relative "../../utils/project"
 require_relative "../../utils/settings"
+require_relative "../../version"
 
 module ReportExtension
   ##
@@ -42,7 +43,7 @@ module ReportExtension
         }
       else
         line[:skip] = false
-        line[:id] = format("%<id>02d", { id: c.id.to_i })
+        line[:id] = format("%<id>02d", {id: c.id.to_i})
         line[:letter] = Settings.letter[:cross] if c.grade.zero?
         line[:letter] = Settings.letter[:error] if c.grade < 50.0
         line[:letter] = Settings.letter[:ok] if c.grade.to_i == 100
