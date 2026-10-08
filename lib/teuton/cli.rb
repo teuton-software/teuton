@@ -44,7 +44,7 @@ class CLI < Thor
   LONGDESC
   def config(projectpath)
     # Check Test: suggest the content of the configuration file based on the test
-    opt = {"onlyconfig" => true}
+    opt = { "onlyconfig" => true }
     Teuton.check(projectpath, opt)
   end
 
@@ -112,5 +112,9 @@ class CLI < Thor
   def respond_to_missing?(method_name, include_private = false)
     # Respond to missing methods name
     super
+  end
+
+  def self.exit_on_failure?
+    true
   end
 end
