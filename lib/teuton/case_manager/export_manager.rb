@@ -24,14 +24,12 @@ class ExportManager
 
     # Step 1: Validate options
     options = strings2symbols(args)
-    if options[:format].nil?
-      options[:format] = Project.value[:format]
-    end
+    options[:format] = Project.value[:format] if options[:format].nil?
 
     unless Formatter.available_formats.include? options[:format]
       puts Rainbow("[WARN] ExportManager: Unkown format!").yellow.bright
       puts Rainbow("[WARN] Fix line <export format: #{options[:format]}>").yellow.bright
-      puts Rainbow("[INFO] Available formats: #{Formatter.available_formats.join(", ")}.").white.bright
+      puts Rainbow("[INFO] Available formats: #{Formatter.available_formats.join(', ')}.").white.bright
       puts Rainbow("[INFO] Using default format <txt>.").white.bright
       options[:format] = :txt
     end
@@ -61,10 +59,10 @@ class ExportManager
     args = {}
     input.each_pair do |key, value|
       args[key] = if value.instance_of? String
-        value.to_sym
-      else
-        value
-      end
+                    value.to_sym
+                  else
+                    value
+                  end
     end
     args
   end
@@ -74,7 +72,7 @@ class ExportManager
   def preserve_files
     srcdir = File.join(
       Project.value[:output_basedir],
-      Project.value[:test_name]
+      Project.value[:testname]
     )
 
     t = Time.now

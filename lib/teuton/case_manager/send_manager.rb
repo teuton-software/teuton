@@ -3,7 +3,7 @@ require_relative "../utils/project"
 
 class SendManager
   def initialize
-    logpath = File.join(Project.value[:output_basedir], Project.value[:test_name], "send.log")
+    logpath = File.join(Project.value[:output_basedir], Project.value[:testname], "send.log")
     @logfile = File.open(logpath, "a")
   end
 

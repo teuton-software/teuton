@@ -1,18 +1,14 @@
 require "rainbow"
 
 class NameFileFinder
-  attr_reader :options
-  attr_reader :project_path
-  attr_reader :script_path
-  attr_reader :config_path
-  attr_reader :test_name
+  attr_reader :options, :project_path, :script_path, :config_path, :testname
 
   def initialize(options = {})
     @options = options
     @project_path = nil
     @script_path = nil # Path to DSL script file
     @config_path = nil # Path to YAML config file
-    @test_name = nil
+    @testname = nil
   end
 
   ##
@@ -44,7 +40,7 @@ class NameFileFinder
 
     @project_path = folder_path
     @script_path = script_path
-    @test_name = folder_path.split(File::SEPARATOR)[-1]
+    @testname = folder_path.split(File::SEPARATOR)[-1]
 
     find_configfilename_from_directory(folder_path)
   end
@@ -59,9 +55,7 @@ class NameFileFinder
       # Config name file is introduced by cname arg option from teuton command
       config_name = options["cname"] unless options["cname"].nil?
       config_path = File.join(folder_path, "#{config_name}.json")
-      unless File.exist? config_path
-        config_path = File.join(folder_path, "#{config_name}.yaml")
-      end
+      config_path = File.join(folder_path, "#{config_name}.yaml") unless File.exist? config_path
     else
       # Config path file is introduced by cpath arg option from teuton command
       config_path = options["cpath"]
@@ -81,7 +75,7 @@ class NameFileFinder
 
     @project_path = File.dirname(script_path)
     @script_path = script_path
-    @test_name = File.basename(script_path, ".rb")
+    @testname = File.basename(script_path, ".rb")
     find_configfilenames_from_rb(script_path)
   end
 
@@ -95,9 +89,7 @@ class NameFileFinder
       config_name = options["cname"] unless options["cname"].nil?
 
       config_path = File.join(@project_path, config_name + ".json")
-      unless File.exist? config_path
-        config_path = File.join(@project_path, config_name + ".yaml")
-      end
+      config_path = File.join(@project_path, config_name + ".yaml") unless File.exist? config_path
     else
       # Config path file is introduced by cpath arg option from teuton command
       config_path = options["cpath"]

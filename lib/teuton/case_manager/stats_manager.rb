@@ -2,7 +2,7 @@ require_relative "../utils/project"
 
 class StatsManager
   def initialize
-    filepath = File.join(Project.value[:output_basedir], Project.value[:test_name], "stats.txt")
+    filepath = File.join(Project.value[:output_basedir], Project.value[:testname], "stats.txt")
     @file = File.open(filepath, "w")
   end
 

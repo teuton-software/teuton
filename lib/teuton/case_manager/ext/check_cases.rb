@@ -8,23 +8,26 @@ require "debug"
 module CheckCasesExtension
   def check_cases!
     # Start checking every single case
-    app = Project.value
+    pv = Project.value
     # Load configurations from config file
-    configdata = ConfigFileReader.call(Project.value[:config_path])
-    app[:ialias] = configdata[:alias]
-    app[:global] = configdata[:global]
-    app[:global][:tt_sequence] = false if app[:global][:tt_sequence].nil?
+    configdata = ConfigFileReader.call(pv[:config_path])
+    pv[:ialias] = configdata[:alias]
+    pv[:global] = configdata[:global]
+    pv[:global][:tt_sequence] = false if pv[:global][:tt_sequence].nil?
+    running_basedir = "#{pv[:running_basedir]}/"
+    pv[:global][:tt_script_path] = pv[:script_path].gsub(running_basedir, "")
+    pv[:global][:tt_config_path] = pv[:config_path].gsub(running_basedir, "")
 
-    app[:test_name] = app[:global][:tt_test_name] if app[:global][:tt_test_name]
-    app[:output_dir] = (app[:global][:tt_output_dir] || File.join(app[:output_basedir], app[:test_name]))
+    pv[:testname] = pv[:global][:tt_testname] if pv[:global][:tt_testname]
+    pv[:output_dir] = (pv[:global][:tt_output_dir] || File.join(pv[:output_basedir], pv[:testname]))
 
     # Create out dir
-    output_dir = app[:output_dir]
+    output_dir = pv[:output_dir]
     FileUtils.mkdir_p(output_dir) unless Dir.exist?(output_dir)
     @report.output_dir = output_dir
 
     # Fill report head
-    open_main_report(app[:config_path])
+    open_main_report(pv[:config_path])
 
     # create cases and run
     configdata[:cases].each { |config| @cases << Case.new(config) }

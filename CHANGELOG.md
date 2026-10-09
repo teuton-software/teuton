@@ -4,7 +4,8 @@
 - [chore] change license to AGPL
 - [chore] add feature into examples
 - [docs] add new feat
-- [feat] Params tt_output_dir and tt_test_name are used to name output folder"
+- [refactor] output_dir, tt_output_dir, testname, tt_testname.
+- [feat] Params tt_output_dir and tt_testname are used to name output folder"
 
 ## [3.0.3] 20261008
 

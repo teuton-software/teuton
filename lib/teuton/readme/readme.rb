@@ -11,8 +11,7 @@ class Readme
   include DSL
   include ReadmeDSL
 
-  attr_reader :result
-  attr_reader :data
+  attr_reader :result, :data
 
   def initialize(script_path, config_path)
     @path = {}
@@ -49,7 +48,7 @@ class Readme
 
   def process_content
     Project.value[:groups].each do |group|
-      @current = {name: group[:name], readme: [], actions: []}
+      @current = { name: group[:name], readme: [], actions: [] }
       @data[:groups] << @current
       reset_action
       instance_eval(&group[:block])
@@ -57,7 +56,7 @@ class Readme
   end
 
   def reset_action
-    @action = {readme: []}
+    @action = { readme: [] }
   end
 
   def show_head
@@ -66,7 +65,7 @@ class Readme
     puts format(Lang.get(:version), Teuton::VERSION)
     puts "```"
     puts "\n"
-    puts "# Test: #{Project.value[:test_name]}\n"
+    puts "# Test: #{Project.value[:testname]}\n"
 
     i = 1
     unless @required_hosts.empty?
@@ -77,17 +76,17 @@ class Readme
       @required_hosts.each_pair do |k, v|
         c = []
         v.each_pair { |k2, v2| c << "#{k2}=#{v2}" }
-        puts "| #{i} | #{k.upcase} | #{c.join(", ")} |"
+        puts "| #{i} | #{k.upcase} | #{c.join(', ')} |"
         i += 1
       end
       puts "\n> NOTE: SSH Service installation is required on every host."
     end
 
-    unless @cases_params.empty?
-      @cases_params.sort!
-      puts Lang.get(:params)
-      @cases_params.uniq.each { |i| puts format("* %s", i) }
-    end
+    return if @cases_params.empty?
+
+    @cases_params.sort!
+    puts Lang.get(:params)
+    @cases_params.uniq.each { |i| puts format("* %s", i) }
   end
 
   def show_content
@@ -98,9 +97,7 @@ class Readme
       group[:readme].each { |line| puts "#{line}\n" }
       previous_host = nil
       group[:actions].each_with_index do |item, index|
-        if item[:host].nil? && index.positive?
-          item[:host] = group[:actions][0][:host]
-        end
+        item[:host] = group[:actions][0][:host] if item[:host].nil? && index.positive?
         if previous_host.nil? || item[:host] != previous_host
           previous_host = item[:host] || "null"
           puts format(Lang.get(:goto), previous_host.upcase)
@@ -127,12 +124,12 @@ class Readme
       puts "| ----- | ----- |"
       @global_params.each_pair { |k, v| puts "|#{k}|#{v}|" }
     end
-    if @setted_params.size.positive?
-      puts Lang.get(:created_params)
-      puts "\n"
-      puts "| Param |"
-      puts "| ----- |"
-      @setted_params.each_pair { |k, v| puts "|#{k}|" }
-    end
+    return unless @setted_params.size.positive?
+
+    puts Lang.get(:created_params)
+    puts "\n"
+    puts "| Param |"
+    puts "| ----- |"
+    @setted_params.each_pair { |k, v| puts "|#{k}|" }
   end
 end

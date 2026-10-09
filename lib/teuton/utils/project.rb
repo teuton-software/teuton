@@ -7,6 +7,7 @@ class Project
     @project = {}
     @project[:running_basedir] = Dir.getwd
     @project[:output_basedir] = "var"
+    @project[:output_dir] = @project[:output_basedir]
     @project[:name] = "teuton"
     @project[:format] = :txt # Default export format
     @project[:debug] = false # Disable/enable local executions
@@ -51,7 +52,7 @@ class Project
     value[:project_path] = finder.project_path
     value[:script_path] = finder.script_path
     value[:config_path] = finder.config_path
-    value[:test_name] = finder.test_name
+    value[:testname] = finder.testname
 
     return if value[:options]["case"].nil?
 
