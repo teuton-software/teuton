@@ -1,4 +1,11 @@
 
+## [3.1.0] 20261009
+
+- [chore] change license to AGPL
+- [chore] add feature into examples
+- [docs] add new feat
+- [feat] Params tt_output_dir and tt_test_name are used to name output folder"
+
 ## [3.0.3] 20261008
 
 - [FIX] issue #50
