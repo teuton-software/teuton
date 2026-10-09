@@ -3,6 +3,7 @@ require_relative "hall_of_fame"
 require_relative "../../case/case"
 require_relative "../../utils/config_file_reader"
 require_relative "../../utils/project"
+require "debug"
 
 module CheckCasesExtension
   def check_cases!
@@ -12,13 +13,15 @@ module CheckCasesExtension
     configdata = ConfigFileReader.call(Project.value[:config_path])
     app[:ialias] = configdata[:alias]
     app[:global] = configdata[:global]
-    app[:global][:tt_testname] = app[:global][:tt_testname] || app[:test_name]
     app[:global][:tt_sequence] = false if app[:global][:tt_sequence].nil?
 
+    app[:test_name] = app[:global][:tt_test_name] if app[:global][:tt_test_name]
+    app[:output_dir] = (app[:global][:tt_output_dir] || File.join(app[:output_basedir], app[:test_name]))
+
     # Create out dir
-    outdir = app[:global][:tt_outdir] || File.join("var", app[:global][:tt_testname])
-    FileUtils.mkdir_p(outdir) unless Dir.exist?(outdir)
-    @report.output_dir = outdir
+    output_dir = app[:output_dir]
+    FileUtils.mkdir_p(output_dir) unless Dir.exist?(output_dir)
+    @report.output_dir = output_dir
 
     # Fill report head
     open_main_report(app[:config_path])

@@ -34,7 +34,7 @@ class Case
 
     # Define Case Report
     @report = Report.new(@id)
-    @report.output_dir = File.join("var", @config.global[:tt_testname])
+    @report.output_dir = Project.value[:output_dir]
 
     # Default configuration
     @skip = false
@@ -45,7 +45,7 @@ class Case
     end
     @verbose = Project.value[:verbose]
 
-    @tmpdir = File.join("var", @config.get(:tt_testname), "tmp", @id.to_s)
+    @tmpdir = File.join(Project.value[:output_dir], "tmp", @id.to_s)
 
     @unique_values = {}
     @result = Result.new
@@ -85,5 +85,5 @@ class Case
     @report.head[:tt_members] || "noname"
   end
 
-  alias_method :skip?, :skip
+  alias skip? skip
 end
