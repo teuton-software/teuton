@@ -1,5 +1,6 @@
 ---
 global:
+  tt_output_dir: var/04-config/rock
 cases:
 - tt_members: AC/DC band
   username: acdc

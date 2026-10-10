@@ -8,6 +8,7 @@ By default, `config.yaml` is our config file. Example:
 
 ```yaml
 global:
+  tt_output_dir: var/04-config/default
 cases:
 - tt_members: student_1
   username: david
@@ -15,7 +16,7 @@ cases:
   username: fran
 ```
 
-> **How to choose another config file?** Read this [document](../commands/run-test.md#3-choosing-config-file).
+> **How to choose another config file?** Read this [document](../commands/run.md#3-choosing-config-file).
 
 By default, `start.rb` it's our main execution file. Example:
 
@@ -47,7 +48,7 @@ CASE RESULTS
 Reports:
 
 ```
-var/04-config
+var/04-config/default
 ├── case-01.txt
 ├── case-02.txt
 ├── moodle.csv
@@ -57,57 +58,56 @@ var/04-config
 Let's see case 01 report.
 
 ```
-$ more var/04-config/case-01.txt
+$ more var/04-config/default/case-01.txt
 
 CONFIGURATION
-+-------------+------------+
-| tt_members  | student_1  |
-| tt_sequence | false      |
-| tt_skip     | false      |
-| tt_testname | 04-config  |
-| username    | david      |
-+-------------+------------+
++----------------+--------------------------------+
+| tt_config_path | examples/04-config/config.yaml |
+| tt_members     | student_1                      |
+| tt_output_dir  | var/04-config/default          |
+| tt_script_path | examples/04-config/start.rb    |
+| tt_sequence    | false                          |
+| tt_skip        | false                          |
+| username       | david                          |
++----------------+--------------------------------+
+
 
 GROUPS
 - Reading params from config file
     01 (1.0/1.0)
         Description : Create user david
         Command     : id david
-        Duration    : 0.002 (local)
-        Alterations : find(david) & count
-        Expected    : Greater than 0 (String)
-        Result      : 1 (Integer)
+        Output      : uid=1000(david) gid=1000(david) grupos=1000(david),478(wheel),...
+        Duration    : 0.005 (local)
+        Alterations : find(uid=) & find((david)) & find(gid=) & count
+        Expected    : Greater than 0
+        Result      : 1
 
 RESULTS
 +--------------+---------------------------+
-| case_id      | 01                        |
-| start_time   | 2023-01-25 20:46:13 +0000 |
-| finish_time  | 2023-01-25 20:46:13 +0000 |
-| duration     | 0.001778546               |
 | unique_fault | 0                         |
+| case_id      | 01                        |
+| start_time   | 2026-10-10 17:05:22 +0100 |
+| finish_time  | 2026-10-10 17:05:22 +0100 |
+| duration     | 0.005137538               |
 | max_weight   | 1.0                       |
 | good_weight  | 1.0                       |
-| fail_weight  | 0.0                       |
+| fail_weight  | 0                         |
 | fail_counter | 0                         |
 | grade        | 100                       |
-+--------------+---------------------------+```
++--------------+---------------------------+
 ```
 
 ## Using differents configuration files
 
-Example with 3 differents config files (yaml files):
+Execute the same test but using diferents config files. Config files available:
 
-```
-$ tree examples/04-config
+* config.yaml
+* rock.yaml
+* starwars.yaml
 
-examples/04-config
-├── config.yaml
-├── rock.yaml
-├── start.rb
-└── starwars.yaml
-```
+**Example 1**: Run test usign default config file (`config.yaml`). Output files saved in `tt_output_dir: var/04-config/defautl`.
 
-**Example 1**: Run test usign default config file (`config.yaml`).
 ```
 $ teuton run examples/04-config
 
@@ -119,7 +119,8 @@ CASE RESULTS
 +------+-----------+-------+-------+
 ```
 
-**Example 2**: Run test using `example/04-config/starwars.yaml` config file. 
+**Example 2**: Run test using `example/04-config/starwars.yaml` config file. Output files saved in `tt_output_dir: var/04-config/starwars`.
+
 ```
 $ teuton run --cname=starwars examples/04-config
 
@@ -131,7 +132,8 @@ CASE RESULTS
 +------+------------+-------+-------+
 ```
 
-**Example 3**: Run test using `example/04-config/rock.yaml` config file.
+**Example 3**: Run test using `example/04-config/rock.yaml` config file. Output files saved in `tt_output_dir: var/04-config/rock`.
+
 ```
 $ teuton run --cpath=examples/04-config/rock.yaml examples/04-config
 

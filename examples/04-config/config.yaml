@@ -1,4 +1,5 @@
 global:
+  tt_output_dir: var/04-config/default
 cases:
 - tt_members: student_1
   username: david

@@ -1,5 +1,6 @@
 ---
 global:
+  tt_output_dir: var/04-config/starwars
 cases:
 - tt_members: Yoda
   username: yoda
