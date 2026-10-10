@@ -21,10 +21,10 @@ cases:
 - tt_members: student_2
   host1_ip: 192.168.1.202
   host1_password: secret_2
+  tt_skip: true
 - tt_members: student_3
   host1_ip: 127.0.0.1
   host1_password: secret_3
-  tt_skip: true
 ```
 
 Every remote host defines its owns params:
@@ -73,7 +73,11 @@ CONN ERRORS
 
 ```
 
-Notice that case-03 is 100% and conection works. It is running on localhost because has localhost IP (127.0.0.1).
+Notice that:
+
+* `case-01` is 0% because remote host is unreachable.
+* `case-02` is 0% because `tt_skip: true` param.
+* `case-03` is 100% and conection works. It is running on localhost because has localhost IP (127.0.0.1).
 
 Results:
 
@@ -90,6 +94,11 @@ var/03-remote_hosts
 ## tt_skip param
 
 To disable a case, add skip param to config file. Example: `tt_skip: true`.
-* `tt_skip` it is false by default.
-* `tt_skip: false` ignore this case.
-* `tt_skip: true`, evaluate this case.
+
+* By default, `tt_skip: false`, so all cases are processed.
+* `tt_skip: false`
+    - defined in `case` section, ignore that case.
+    - defined in `global` section, ignore all cases by default.
+* `tt_skip: true`
+    - defined in `case` section, evaluate that case.
+    - defined in `global` section, evaluate all cases by default.
