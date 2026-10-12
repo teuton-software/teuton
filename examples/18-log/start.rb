@@ -11,6 +11,12 @@ group "Learning about log messages" do
   log "Hi, there!", :info
 end
 
+group "Log: Array, Hash" do
+  log "-------------"
+  log "Array values : #{get(:values1)}"
+  log "Hash values  : #{get(:values2)}"
+end
+
 play do
   show
   export

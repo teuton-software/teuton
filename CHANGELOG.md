@@ -1,6 +1,7 @@
 
-## [3.2.0] 202610xx
+## [3.2.0] 20261013
 
+- [feat/fix] accept Array and Hash config params from `config.yaml`.
 - [chore] From now KVM is used instead of Vagrant. Remove all Vagrant references. 
 
 ## [3.1.0] 20261012
