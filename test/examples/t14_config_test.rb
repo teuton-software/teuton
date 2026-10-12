@@ -10,10 +10,9 @@ class T14configTest < Test::Unit::TestCase
   def test_example_test_02_config
     filepath = @filepath
     configfile = File.join(filepath, "config.yaml")
-    testname, _resume, data = execute_teuton_test filepath
+    _resume, data = execute_teuton_test filepath
 
-    assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
-    assert_equal testname, data[:config][:tt_testname]
+    assert_equal File.join(filepath, "start.rb"), data[:config][:tt_script_path]
     assert_equal configfile, data[:config][:tt_configfile]
 
     assert_equal 2, data[:cases].size
@@ -36,10 +35,9 @@ class T14configTest < Test::Unit::TestCase
   def test_example_test_02_config_with_cname_rock
     filepath = @filepath
     configfile = File.join(filepath, "rock.yaml")
-    testname, _resume, data = execute_teuton_test(filepath, "--cname=rock")
+    _resume, data = execute_teuton_test(filepath, "--cname=rock")
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
-    assert_equal testname, data[:config][:tt_testname]
     assert_equal configfile, data[:config][:tt_configfile]
 
     assert_equal 2, data[:cases].size
@@ -62,10 +60,9 @@ class T14configTest < Test::Unit::TestCase
   def test_example_learn_02_config_with_cpath_starwars
     filepath = @filepath
     configfile = File.join(filepath, "starwars.yaml")
-    testname, _resume, data = execute_teuton_test(filepath, "--cpath=#{configfile}")
+    _resume, data = execute_teuton_test(filepath, "--cpath=#{configfile}")
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_scriptname]
-    assert_equal testname, data[:config][:tt_testname]
     assert_equal configfile, data[:config][:tt_configfile]
 
     assert_equal 2, data[:cases].size
@@ -93,7 +90,7 @@ class T14configTest < Test::Unit::TestCase
     testname = File.basename(filepath)
     filepath = File.join("var", testname, "resume.yaml")
     data = YAML.unsafe_load(File.read(filepath))
-    [testname, filepath, data]
+    [filepath, data]
   end
 
   def read_case_report(id, testname)

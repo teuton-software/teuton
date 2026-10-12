@@ -113,4 +113,8 @@ class CLI < Thor
     # Respond to missing methods name
     super
   end
+
+  def self.exit_on_failure?
+    true
+  end
 end

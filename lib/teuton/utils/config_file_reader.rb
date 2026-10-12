@@ -93,7 +93,7 @@ module ConfigFileReader
       File.join(File.dirname(filepath), data[:global][:tt_include])
     end
     filepaths = Dir.glob(File.join(basedir, "**/*"))
-    filepaths.each { |filepath|
+    filepaths.each do |filepath|
       if File.directory?(filepath)
         next
       elsif is_yaml_file? filepath
@@ -104,15 +104,16 @@ module ConfigFileReader
         warn "[WARN] Ignore config file <#{filepath}>. No yaml or json extension!"
         next
       end
-    }
+    end
   end
 
   def self.read_included_yaml_file(filepath)
     begin
       data = YAML.load(File.open(filepath))
     rescue => e
-      warn "[ERROR] ConfigFileReader.read_included_yaml: #{e}"
-      warn "[ERROR] Loading configuration file! <#{filename}>"
+      warn "[ERROR] Reading configurations from yaml:"
+      warn "[ERROR] - File : #{filepath}"
+      warn "[ERROR] - Type : #{e}"
       exit 1
     end
     data[:tt_source_file] = relative_path(filepath)
@@ -123,8 +124,9 @@ module ConfigFileReader
     begin
       data = JSON.parse(File.read(filepath), symbolize_names: true)
     rescue => e
-      warn "[ERROR] ConfigFileReader.read_included_json: #{e}"
-      warn "[ERROR] Loading configuration file! <#{filename}>"
+      warn "[ERROR] Reading configurations from json:"
+      warn "[ERROR] - File : #{filepath}"
+      warn "[ERROR] - Type : #{e}"
       exit 1
     end
     data[:tt_source_file] = relative_path(filepath)

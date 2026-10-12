@@ -60,3 +60,31 @@ group "Using file: network" do
   expect "www.google.es has address "
 end
 ```
+
+## `tt_testname` param
+
+The `tt_testname: 05-import_files` param changes the default test name.
+
+```yaml
+# File: config.yaml
+---
+global:
+  host1_username: root
+  tt_testname: '05-import_files'
+cases:
+...
+```
+
+So, output files are saved into `var/05-import_files` instead of `05-use`:
+
+```
+> tree var 
+
+var
+└── 05-import_files
+    ├── case-01.txt
+    ├── case-02.txt
+    ├── case-03.txt
+    ├── moodle.csv
+    └── resume.txt
+```

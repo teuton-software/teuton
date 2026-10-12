@@ -18,7 +18,7 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal a, finder.project_path
     assert_equal b, finder.script_path
     assert_equal c, finder.config_path
-    assert_equal "demo", finder.test_name
+    assert_equal "demo", finder.testname
 
     Project.value[:verbose] = true
   end
@@ -38,7 +38,7 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal a, finder.project_path
     assert_equal b, finder.script_path
     assert_equal c, finder.config_path
-    assert_equal "demo", finder.test_name
+    assert_equal "demo", finder.testname
 
     Project.value[:verbose] = true
   end
@@ -57,7 +57,7 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal a, finder.project_path
     assert_equal b, finder.script_path
     assert_equal c, finder.config_path
-    assert_equal "t02-read-config", finder.test_name
+    assert_equal "t02-read-config", finder.testname
 
     Project.value[:verbose] = true
   end
@@ -76,7 +76,7 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal a, finder.project_path
     assert_equal b, finder.script_path
     assert_equal c, finder.config_path
-    assert_equal "t03-read-yaml", finder.test_name
+    assert_equal "t03-read-yaml", finder.testname
 
     Project.value[:verbose] = true
   end
@@ -95,7 +95,7 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal a, finder.project_path
     assert_equal b, finder.script_path
     assert_equal c, finder.config_path
-    assert_equal "demo", finder.test_name
+    assert_equal "demo", finder.testname
 
     Project.value[:verbose] = true
   end
@@ -114,7 +114,7 @@ class NameFileFinderTest < Test::Unit::TestCase
     assert_equal a, finder.project_path
     assert_equal b, finder.script_path
     assert_equal c, finder.config_path
-    assert_equal "t05-read-json", finder.test_name
+    assert_equal "t05-read-json", finder.testname
 
     Project.value[:verbose] = true
   end

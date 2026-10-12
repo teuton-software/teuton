@@ -1,6 +1,7 @@
 require "rainbow"
 require_relative "../../utils/project"
 require_relative "../../utils/settings"
+require_relative "../../version"
 
 module ReportExtension
   ##
@@ -34,7 +35,7 @@ module ReportExtension
           skip: true,
           id: "-",
           grade: 0.0,
-          letter: Settings.letter(:skip),
+          letter: Settings.letter[:skip],
           members: "-",
           conn_status: {},
           moodle_id: "",

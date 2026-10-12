@@ -3,7 +3,7 @@ require_relative "lib/teuton/version"
 Gem::Specification.new do |s|
   s.name = Teuton::GEMNAME
   s.version = Teuton::VERSION
-  s.license = "MPL-2.0"
+  s.license = "AGPL-3.0"
   s.authors = ["David Vargas Ruiz"]
   s.email = "teuton.software@protonmail.com"
 

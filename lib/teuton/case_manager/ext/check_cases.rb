@@ -7,27 +7,23 @@ require_relative "../../utils/project"
 module CheckCasesExtension
   def check_cases!
     # Start checking every single case
-    app = Project.value
     # Load configurations from config file
     configdata = ConfigFileReader.call(Project.value[:config_path])
-    app[:ialias] = configdata[:alias]
-    app[:global] = configdata[:global]
-    app[:global][:tt_testname] = app[:global][:tt_testname] || app[:test_name]
-    app[:global][:tt_sequence] = false if app[:global][:tt_sequence].nil?
+    Project.add_config(configdata)
 
     # Create out dir
-    outdir = app[:global][:tt_outdir] || File.join("var", app[:global][:tt_testname])
-    FileUtils.mkdir_p(outdir) unless Dir.exist?(outdir)
-    @report.output_dir = outdir
+    output_dir = Project.value[:output_dir]
+    FileUtils.mkdir_p(output_dir) unless Dir.exist?(output_dir)
+    @report.output_dir = output_dir
 
     # Fill report head
-    open_main_report(app[:config_path])
+    open_main_report(Project.value[:config_path])
 
     # create cases and run
     configdata[:cases].each { |config| @cases << Case.new(config) }
     start_time = run_all_cases # run cases
 
-    # TODO: merge these 2 methdos
+    # TODO: merge these 2 methods
     # TODO: CloseManager.call ???
     uniques = collect_uniques_for_all_cases
     close_reports_for_all_cases(uniques)

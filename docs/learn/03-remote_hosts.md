@@ -21,21 +21,22 @@ cases:
 - tt_members: student_2
   host1_ip: 192.168.1.202
   host1_password: secret_2
+  tt_skip: true
 - tt_members: student_3
   host1_ip: 127.0.0.1
   host1_password: secret_3
 ```
 
-Every remote host definition require some params:
+Every remote host defines its owns params:
 
-| Param | Description    | Default value |
-| ----- | -------------- | ------------- |
-| ip    | Remote host IP | |
-| port  | Remote host port | 22 |
+| Param    | Description         | Default value  |
+| -------- | ------------------- | -------------- |
+| ip       | Remote host IP      | IP or hostname |
+| port     | Remote host port    | 22             |
 | username | Remote user account | Not required with public SSH id |
 | password | Remote user pasword | Not required with public SSH id |
-| protocol | SSH or Telner | SSH |
-| route | Defines host2 used as gateway to reach host | |
+| protocol | SSH or Telnet       | SSH            |
+| route    | Defines intermediate host used as gateway to reach principal host | |
 
 ## Definition section
 
@@ -55,12 +56,12 @@ Execution:
 
 ```
 $ teuton run examples/03-remote_hosts
-
+ 
 CASE RESULTS
 +------+-----------+-------+-------+
 | CASE | MEMBERS   | GRADE | STATE |
 | 01   | student_1 | 0.0   | ?     |
-| 02   | student_2 | 0.0   | ?     |
+| -    | -         | 0.0   | S     |
 | 03   | student_3 | 100.0 | ✔     |
 +------+-----------+-------+-------+
 
@@ -68,11 +69,15 @@ CONN ERRORS
 +------+-----------+-------+------------------+
 | CASE | MEMBERS   | HOST  | ERROR            |
 | 01   | student_1 | host1 | host_unreachable |
-| 02   | student_2 | host1 | host_unreachable |
 +------+-----------+-------+------------------+
+
 ```
 
-Notice that case-03 is 100% and conection works. It is running on localhost because has localhost IP (127.0.0.1).
+Notice that:
+
+* `case-01` is 0% because remote host is unreachable.
+* `case-02` is 0% because `tt_skip: true` param.
+* `case-03` is 100% and conection works. It is running on localhost because has localhost IP (127.0.0.1).
 
 Results:
 
@@ -81,7 +86,6 @@ $ tree var/03-remote_hosts
 
 var/03-remote_hosts
 ├── case-01.txt
-├── case-02.txt
 ├── case-03.txt
 ├── moodle.csv
 └── resume.txt
@@ -90,6 +94,11 @@ var/03-remote_hosts
 ## tt_skip param
 
 To disable a case, add skip param to config file. Example: `tt_skip: true`.
-* `tt_skip` it is false by default.
-* `tt_skip: false` ignore this case.
-* `tt_skip: true`, evaluate this case.
+
+* By default, `tt_skip: false`, so all cases are processed.
+* `tt_skip: false`
+    - defined in `case` section, ignore that case.
+    - defined in `global` section, ignore all cases by default.
+* `tt_skip: true`
+    - defined in `case` section, evaluate that case.
+    - defined in `global` section, evaluate all cases by default.

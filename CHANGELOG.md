@@ -1,9 +1,30 @@
 
+## [3.1.0] 20261012
+
+- [chore] change license to AGPL-3.0.
+- [test] add new feat tests
+- [docs] add new feat docs and examples
+- [refactor] output_dir, tt_output_dir, testname, tt_testname.
+- [feat] Params tt_output_dir and tt_testname are used to name output folder
+
+## [3.0.3] 20261008
+
+- [FIX] issue #50
+- [FIX] issue #52
+- [FIX] issue #49: Cleaning up obsolete references Teuton.server in Teuton. The method has been completely transferred to the "teuton-panel" gem.
+
+## [3.0.2] 20261007
+
+- [FIX] issue #48
+- [chore] issue #47 Error message with more information
+- [FIX] issue #45: Error when `tt_skip: true`.
+- [FIX] Error when `upload()`.
+
 ## [3.0.1] 20261007
 
-- [FIX] do not invoke the creation of Rainbow objects.
-- Refactor `docs/devel/todo.md`.
-- Refactor `README.md` links.
+- [FIX] issue #44: do not invoke the creation of Rainbow objects.
+- [Refactor] `docs/devel/todo.md`.
+- [Refactor] `README.md` links.
 
 ## [3.0.0] 20260420
 
