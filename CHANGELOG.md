@@ -1,11 +1,11 @@
 
-## [3.1.0] 20261009
+## [3.1.0] 20261012
 
-- [chore] change license to AGPL
-- [chore] add feature into examples
-- [docs] add new feat
+- [chore] change license to AGPL-3.0.
+- [test] add new feat tests
+- [docs] add new feat docs and examples
 - [refactor] output_dir, tt_output_dir, testname, tt_testname.
-- [feat] Params tt_output_dir and tt_testname are used to name output folder"
+- [feat] Params tt_output_dir and tt_testname are used to name output folder
 
 ## [3.0.3] 20261008
 
