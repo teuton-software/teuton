@@ -11,7 +11,7 @@ module ConfigFileReader
 
     return read_json(filepath) if File.extname(filepath) == ".json"
 
-    raise "[ERROR] ConfigFileReader.call: <#{filepath}>. Unkown extension!"
+    raise Rainbow("[ERROR] ConfigFileReader.call: <#{filepath}>. Unkown extension!").bright.red
   end
 
   def self.convert_string_keys_to_symbol(input)
@@ -37,7 +37,7 @@ module ConfigFileReader
     data = {}
     data[:global] = {}
     data[:alias] = {}
-    data[:cases] = [{tt_members: "anonymous"}]
+    data[:cases] = [{ tt_members: "anonymous" }]
     data
   end
 
@@ -60,9 +60,9 @@ module ConfigFileReader
   def self.read_yaml(filepath)
     begin
       data = YAML.load(File.open(filepath))
-    rescue => e
-      warn "[ERROR] ConfigFileReader.read_yaml: #{e}"
-      warn "[ERROR] Revise file content! <#{filepath}>"
+    rescue StandardError => e
+      warn Rainbow("[ERROR] ConfigFileReader.read_yaml: #{e}").bright.red
+      warn Rainbow("[ERROR] Revise file content! <#{filepath}>").white
       exit 1
     end
     data = convert_string_keys_to_symbol(data)
@@ -88,10 +88,10 @@ module ConfigFileReader
 
     include_dir = data[:global][:tt_include]
     basedir = if include_dir == File.absolute_path(include_dir)
-      include_dir
-    else
-      File.join(File.dirname(filepath), data[:global][:tt_include])
-    end
+                include_dir
+              else
+                File.join(File.dirname(filepath), data[:global][:tt_include])
+              end
     filepaths = Dir.glob(File.join(basedir, "**/*"))
     filepaths.each do |filepath|
       if File.directory?(filepath)
@@ -110,10 +110,10 @@ module ConfigFileReader
   def self.read_included_yaml_file(filepath)
     begin
       data = YAML.load(File.open(filepath))
-    rescue => e
-      warn "[ERROR] Reading configurations from yaml:"
-      warn "[ERROR] - File : #{filepath}"
-      warn "[ERROR] - Type : #{e}"
+    rescue StandardError => e
+      warn Rainbow("[ERROR] Reading configurations from yaml:").bright.red
+      warn Rainbow("[ERROR] - File : #{filepath}").white
+      warn Rainbow("[ERROR] - Type : #{e}").white
       exit 1
     end
     data[:tt_source_file] = relative_path(filepath)
@@ -123,10 +123,10 @@ module ConfigFileReader
   def self.read_included_json_file(filepath)
     begin
       data = JSON.parse(File.read(filepath), symbolize_names: true)
-    rescue => e
-      warn "[ERROR] Reading configurations from json:"
-      warn "[ERROR] - File : #{filepath}"
-      warn "[ERROR] - Type : #{e}"
+    rescue StandardError => e
+      warn Rainbow("[ERROR] Reading configurations from json:").bright.red
+      warn Rainboe("[ERROR] - File : #{filepath}").white
+      warn Rainbow("[ERROR] - Type : #{e}").white
       exit 1
     end
     data[:tt_source_file] = relative_path(filepath)

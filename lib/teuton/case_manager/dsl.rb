@@ -36,10 +36,10 @@ def use(filename)
   begin
     require_relative findfiles.first
     Project.value[:uses] << File.basename(findfiles.first)
-  rescue => e
-    puts "[ERROR] case_manager/dsl: #{e}"
-    puts "[ERROR] File not found!"
-    puts "[ERROR] Fix line <use '#{filename}'>"
+  rescue StandardError => e
+    warn Rainbow("[ERROR] case_manager/dsl: #{e}").bright.red
+    warn Rainbow("[ERROR] File not found!").white
+    warn Rainbow("[ERROR] Fix line <use '#{filename}'>").white
     exit 1
   end
 end

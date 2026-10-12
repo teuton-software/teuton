@@ -5,14 +5,14 @@ module DSL
   def run_script(script, args = {})
     items = script.split(" ")
     if items.size == 1
-      shell = args[:shell] || ((get(:shell) != "NODATA") ? get(:shell) : nil)
+      shell = args[:shell] || (get(:shell) != "NODATA" ? get(:shell) : nil)
       script = "#{shell} #{script}" if shell
       script = "#{script} #{args[:args]} " if args[:args]
     end
 
     items = script.split(" ")
-    if items.size < 1
-      msg = Rainbow("==> [ERROR] run_script: Incorrect command '#{command}'").red
+    if items.empty?
+      msg = Rainbow("[ERROR] run_script: Incorrect command '#{command}'").bright.red
       verboseln(msg)
       return
     end
@@ -28,7 +28,7 @@ module DSL
       command = items.join(" ")
       run(command, args)
     else
-      msg = Rainbow("==> [ERROR] run_script: Incorrect protocol(#{host.protocol})").red
+      msg = Rainbow("[ERROR] run_script: Incorrect protocol(#{host.protocol})").bright.red
       verboseln(msg)
     end
   end

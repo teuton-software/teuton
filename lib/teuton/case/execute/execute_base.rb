@@ -45,10 +45,10 @@ class ExecuteBase
     ec = Encoding::Converter.new(encoding.to_s, "UTF-8")
     begin
       text = ec.convert(text)
-    rescue => e
-      puts "[ERROR] ExecuteBase: #{e}"
-      puts "[ERROR] Declare text encoding. Example:"
-      puts "[ERROR] run 'command', on: :host, encoding: 'ISO-8859-1'"
+    rescue StandardError => e
+      warn Rainbow("[ERROR] ExecuteBase: #{e}").bright.red
+      warn Rainbow("[ERROR] Declare text encoding. Example:").white
+      warn Rainbw("[ERROR] run 'command', on: :host, encoding: 'ISO-8859-1'").white
     end
 
     text.split("\n").compact

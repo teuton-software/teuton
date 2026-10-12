@@ -41,9 +41,9 @@ module Formatter
   def self.call(report, options, filename)
     klass = get(options[:format])
     if klass.nil?
-      puts "[ERROR] Formatter:"
-      puts "        Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>"
-      puts "        Available formats: #{Formatter.available_formats.join(",")}."
+      warn Rainbow("[ERROR] Formatter:").bright.red
+      warn Rainbow("[ERROR] - Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>").white
+      warn Rainbow("[ERROR] - Available formats: #{Formatter.available_formats.join(',')}.").white
       exit 1
     end
     formatter = klass.new(report)
