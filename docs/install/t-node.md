@@ -57,19 +57,9 @@ Run this command as admin user (member of `admin` group):
 curl -sL https://raw.githubusercontent.com/teuton-software/teuton/master/install/mac/t-node_install.sh | bash
 ```
 
-## 3. Vagrant and Docker installation
+## 3. Docker installation
 
-Choose this way if you plan to install Teuton into virtual machines or containers, and you are familiar with Vagrant and Docker technologies.
-
-## 3.1 Install using Vagrant
-
-* First, install `Vagrant` and `VirtualBox` on your host.
-* Create directory for vagrant project. For example, `mkdir teuton-vagrant`.
-* Move into that directory: `cd teuton-vagrant`.
-* Choose and download [Vagrantfile](../../install/vagrant).
-* Run `vagrant up` to create your Virtual Machine.
-
-## 3.2 Install using Docker
+## 3.1 Installation
 
 First:
 * Install `docker` on your host.
@@ -84,7 +74,7 @@ Run this command to pull **dvarrui/teuton** image from Docker Hub and create "te
 
 `docker run --name teuton -v /home/teuton -i -t dvarrui/teuton /bin/bash`
 
-## 3.2 Rebuild local docker image
+## 3.3 Rebuild local docker image
 
 1. Create Dockerfile like this:
 
@@ -113,7 +103,7 @@ CMD ["/bin/bash"]
 
 ## 4. Source code
 
-If you want to install Teuton by your own, or there are not installation scripts for your OS, and you don't want to use Vagrant then... here you have information how to install all the required packages for Teuton.
+If you want to install Teuton by your own, or there are not installation scripts for your OS, here you have information how to install all the required packages for Teuton.
 
 Manual installation:
 1. Git installation

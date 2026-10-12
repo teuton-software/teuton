@@ -7,7 +7,6 @@
 * Revisar (tests): result.grep(a).grep(b)
 * "Limpiar" las funciones "deprecated"
 * Aplicar las recomendaciones del informe de seguridad de Andrés.
-* Eliminar/limpiar toda referencia a Vagrant.
 * verify get(:key) and get('key') works fine!
 * Formatter: xml
 
@@ -71,7 +70,7 @@ libs/module
 
 Modificar el DSL/configuración para mejorar la integración con los contenidores Docker/podman:
 
-> * Docker en vez de vagrant?? → https://www.cloudbees.com/blog/ssh-into-a-docker-container-how-to-execute-your-commands
+> * Docker?? → https://www.cloudbees.com/blog/ssh-into-a-docker-container-how-to-execute-your-commands
 
 Host definition example:
 
@@ -147,7 +146,6 @@ var
 * Unify messages ERROR, INFO, WARN. etc
 * **TEST**:
     * HallOfFame test
-    * actualizar las pruebas con vagrant para la versión actual. Mejora de la calidad del código (Todo lo de Vagrant debería estar deprecated).
 
 ## 4.3 FEATURE - SAVE STATE
 

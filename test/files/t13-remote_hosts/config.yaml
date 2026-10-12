@@ -1,7 +1,7 @@
 ---
 global:
-  host1_username: vagrant
-  host1_password: vagrant
+  host1_username: user
+  host1_password: secret
 cases:
 - tt_members: debian1
   host1_ip: 192.168.1.201

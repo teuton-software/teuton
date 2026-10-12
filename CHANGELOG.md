@@ -1,4 +1,8 @@
 
+## [3.2.0] 202610xx
+
+- [chore] From now KVM is used instead of Vagrant. Remove all Vagrant references. 
+
 ## [3.1.0] 20261012
 
 - [chore] change license to AGPL-3.0.
@@ -277,7 +281,6 @@ group "GROUPNAME" do
 
 * Use Bundler to install gems instead of rake.
 * It will be usefull use sysadming-game as gem? And install it with `gem install teuton`.
-* Vagrant: test how to use vagrant machines as case hosts.
 
 **Info sobre novedades de la versión 2.1**
 
