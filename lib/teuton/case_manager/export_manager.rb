@@ -29,7 +29,7 @@ class ExportManager
     unless Formatter.available_formats.include? options[:format]
       puts Rainbow("[WARN] ExportManager: Unkown format!").yellow.bright
       puts Rainbow("[WARN] Fix line <export format: #{options[:format]}>").yellow.bright
-      puts Rainbow("[INFO] Available formats: #{Formatter.available_formats.join(', ')}.").white.bright
+      puts Rainbow("[INFO] Available formats: #{Formatter.available_formats.join(", ")}.").white.bright
       puts Rainbow("[INFO] Using default format <txt>.").white.bright
       options[:format] = :txt
     end
@@ -59,10 +59,10 @@ class ExportManager
     args = {}
     input.each_pair do |key, value|
       args[key] = if value.instance_of? String
-                    value.to_sym
-                  else
-                    value
-                  end
+        value.to_sym
+      else
+        value
+      end
     end
     args
   end

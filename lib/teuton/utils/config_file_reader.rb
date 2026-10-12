@@ -37,7 +37,7 @@ module ConfigFileReader
     data = {}
     data[:global] = {}
     data[:alias] = {}
-    data[:cases] = [{ tt_members: "anonymous" }]
+    data[:cases] = [{tt_members: "anonymous"}]
     data
   end
 
@@ -60,7 +60,7 @@ module ConfigFileReader
   def self.read_yaml(filepath)
     begin
       data = YAML.load(File.open(filepath))
-    rescue StandardError => e
+    rescue => e
       warn Rainbow("[ERROR] ConfigFileReader.read_yaml: #{e}").bright.red
       warn Rainbow("[ERROR] Revise file content! <#{filepath}>").white
       exit 1
@@ -88,10 +88,10 @@ module ConfigFileReader
 
     include_dir = data[:global][:tt_include]
     basedir = if include_dir == File.absolute_path(include_dir)
-                include_dir
-              else
-                File.join(File.dirname(filepath), data[:global][:tt_include])
-              end
+      include_dir
+    else
+      File.join(File.dirname(filepath), data[:global][:tt_include])
+    end
     filepaths = Dir.glob(File.join(basedir, "**/*"))
     filepaths.each do |filepath|
       if File.directory?(filepath)
@@ -110,7 +110,7 @@ module ConfigFileReader
   def self.read_included_yaml_file(filepath)
     begin
       data = YAML.load(File.open(filepath))
-    rescue StandardError => e
+    rescue => e
       warn Rainbow("[ERROR] Reading configurations from yaml:").bright.red
       warn Rainbow("[ERROR] - File : #{filepath}").white
       warn Rainbow("[ERROR] - Type : #{e}").white
@@ -123,7 +123,7 @@ module ConfigFileReader
   def self.read_included_json_file(filepath)
     begin
       data = JSON.parse(File.read(filepath), symbolize_names: true)
-    rescue StandardError => e
+    rescue => e
       warn Rainbow("[ERROR] Reading configurations from json:").bright.red
       warn Rainboe("[ERROR] - File : #{filepath}").white
       warn Rainbow("[ERROR] - Type : #{e}").white

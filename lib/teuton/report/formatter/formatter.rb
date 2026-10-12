@@ -43,7 +43,7 @@ module Formatter
     if klass.nil?
       warn Rainbow("[ERROR] Formatter:").bright.red
       warn Rainbow("[ERROR] - Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>").white
-      warn Rainbow("[ERROR] - Available formats: #{Formatter.available_formats.join(',')}.").white
+      warn Rainbow("[ERROR] - Available formats: #{Formatter.available_formats.join(",")}.").white
       exit 1
     end
     formatter = klass.new(report)
