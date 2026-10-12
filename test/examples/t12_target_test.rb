@@ -4,7 +4,7 @@ require "yaml"
 class T12targetTest < Test::Unit::TestCase
   def test_example_12_target
     filepath = File.join("test", "files", "t12-target")
-    testname, resume, data = execute_teuton_test filepath
+    testname, _, data = execute_teuton_test filepath
 
     assert_equal File.join(filepath, "start.rb"), data[:config][:tt_script_path]
 

@@ -8,32 +8,23 @@ require "debug"
 module CheckCasesExtension
   def check_cases!
     # Start checking every single case
-    pv = Project.value
     # Load configurations from config file
-    configdata = ConfigFileReader.call(pv[:config_path])
-    pv[:ialias] = configdata[:alias]
-    pv[:global] = configdata[:global]
-    pv[:global][:tt_sequence] = false if pv[:global][:tt_sequence].nil?
-    running_basedir = "#{pv[:running_basedir]}/"
-    pv[:global][:tt_script_path] = pv[:script_path].gsub(running_basedir, "")
-    pv[:global][:tt_config_path] = pv[:config_path].gsub(running_basedir, "")
-
-    pv[:testname] = pv[:global][:tt_testname] if pv[:global][:tt_testname]
-    pv[:output_dir] = (pv[:global][:tt_output_dir] || File.join(pv[:output_basedir], pv[:testname]))
+    configdata = ConfigFileReader.call(Project.value[:config_path])
+    Project.add_config(configdata)
 
     # Create out dir
-    output_dir = pv[:output_dir]
+    output_dir = Project.value[:output_dir]
     FileUtils.mkdir_p(output_dir) unless Dir.exist?(output_dir)
     @report.output_dir = output_dir
 
     # Fill report head
-    open_main_report(pv[:config_path])
+    open_main_report(Project.value[:config_path])
 
     # create cases and run
     configdata[:cases].each { |config| @cases << Case.new(config) }
     start_time = run_all_cases # run cases
 
-    # TODO: merge these 2 methdos
+    # TODO: merge these 2 methods
     # TODO: CloseManager.call ???
     uniques = collect_uniques_for_all_cases
     close_reports_for_all_cases(uniques)

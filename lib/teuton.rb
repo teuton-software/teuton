@@ -8,7 +8,7 @@ module Teuton
   end
 
   def self.check(projectpath, options = {})
-    Project.add_input_params(projectpath, options)
+    Project.add_options(projectpath, options)
     require_dsl_and_script("teuton/check/main")
     require_relative "teuton/check/checker"
     checker = Checker.new(
@@ -19,12 +19,12 @@ module Teuton
   end
 
   def self.run(projectpath, options = {})
-    Project.add_input_params(projectpath, options)
+    Project.add_options(projectpath, options)
     require_dsl_and_script("teuton/case_manager/dsl")
   end
 
   def self.readme(projectpath, options = {})
-    Project.add_input_params(projectpath, options)
+    Project.add_options(projectpath, options)
     require_dsl_and_script("teuton/readme/main")
     readme = Readme.new(
       Project.value[:script_path],
@@ -39,7 +39,7 @@ module Teuton
     begin
       mainscriptfile = Project.value[:script_path]
       require_relative mainscriptfile
-    rescue StandardError => e
+    rescue => e
       warn Rainbow("[ERROR] #{e}").bright.red
       e.backtrace&.first(3)&.each do |line|
         warn Rainbow("[ERROR]   #{line}").red

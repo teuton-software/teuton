@@ -3,9 +3,12 @@ require_relative "../../lib/teuton/case/case"
 
 class CaseTest < Test::Unit::TestCase
   def setup
-    Project.init
     @testname = "tXX_case_test"
+    Project.init
     Project.value[:global] = {tt_testname: @testname}
+    Project.value[:testname] = @testname
+    Project.value[:output_dir] = File.join("var", @testname)
+
     @case = Case.new({})
   end
 

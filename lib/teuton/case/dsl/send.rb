@@ -52,14 +52,14 @@ module DSL
     name = input
     name = "teuton.tmp" if input == :default
 
-    @action[:tempfile] = File.join(@tmpdir, name)
+    @action[:tempfile] = File.join(@tempdir, name)
     @action[:remote_tempfile] = File.join(remote_tempdir, name)
 
     @action[:tempfile]
   end
 
   def tempdir
-    @tmpdir
+    @tempdir
   end
 
   def remote_tempfile

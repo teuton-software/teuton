@@ -43,7 +43,7 @@ class Project
   # Preprocess input options:
   # * Convert input case options String to an Array of integers
   # * Read color input option
-  def self.add_input_params(projectpath, options)
+  def self.add_options(projectpath, options)
     value[:options].merge! options
     Rainbow.enabled = value[:options]["color"]
 
@@ -58,6 +58,19 @@ class Project
 
     numbers = value[:options]["case"].split(",")
     value[:options]["case"] = numbers.collect!(&:to_i)
+  end
+
+  def self.add_config(configdata)
+    # Load configurations from config file
+    value[:ialias] = configdata[:alias]
+    value[:global] = configdata[:global]
+    value[:global][:tt_sequence] = false if value[:global][:tt_sequence].nil?
+    running_basedir = "#{value[:running_basedir]}/"
+    value[:global][:tt_script_path] = value[:script_path].gsub(running_basedir, "")
+    value[:global][:tt_config_path] = value[:config_path].gsub(running_basedir, "")
+
+    value[:testname] = value[:global][:tt_testname] if value[:global][:tt_testname]
+    value[:output_dir] = (value[:global][:tt_output_dir] || File.join(value[:output_basedir], value[:testname]))
   end
 
   def self.relative_path(filepath)

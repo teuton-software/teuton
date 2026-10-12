@@ -45,7 +45,7 @@ class Case
     end
     @verbose = Project.value[:verbose]
 
-    @tmpdir = File.join(Project.value[:output_dir], "tmp", @id.to_s)
+    @tempdir = File.join(Project.value[:output_dir], "tmp", @id.to_s)
 
     @unique_values = {}
     @result = Result.new
@@ -85,5 +85,5 @@ class Case
     @report.head[:tt_members] || "noname"
   end
 
-  alias skip? skip
+  alias_method :skip?, :skip
 end
