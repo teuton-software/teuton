@@ -62,8 +62,8 @@ class Project
 
   def self.add_config(configdata)
     # Load configurations from config file
-    value[:ialias] = configdata[:alias]
-    value[:global] = configdata[:global]
+    value[:ialias] = configdata[:alias] || {}
+    value[:global] = configdata[:global] || {}
     value[:global][:tt_sequence] = false if value[:global][:tt_sequence].nil?
     running_basedir = "#{value[:running_basedir]}/"
     value[:global][:tt_script_path] = value[:script_path].gsub(running_basedir, "")
