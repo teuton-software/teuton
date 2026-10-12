@@ -39,7 +39,7 @@ module Teuton
     begin
       mainscriptfile = Project.value[:script_path]
       require_relative mainscriptfile
-    rescue StandardError => e
+    rescue => e
       warn Rainbow("[ERROR] #{e}").bright.red
       e.backtrace&.first(3)&.each do |line|
         warn Rainbow("[ERROR]   #{line}").red
