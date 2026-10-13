@@ -69,7 +69,7 @@ module CheckCasesExtension
   # 3) And order to build hall of fame
   def close_reports_for_all_cases(uniques)
     threads = []
-    @cases.each { |c| threads << Thread.new { c.close uniques } }
+    @cases.each { |c| threads << Thread.new { c.close(uniques) } }
     threads.each(&:join)
 
     HallOfFame.new(@cases).call
