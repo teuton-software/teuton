@@ -20,10 +20,10 @@ class Case
   # Readed by ExecuteManager
   attr_reader :id, :config, :uniques, :skip
 
-  @current_id = "00" # First case ID value
+  @current_case_id = "00" # First case ID value
 
   def self.next_id
-    @current_id = @current_id.next
+    @current_case_id = @current_case_id.next
   end
 
   def initialize(config)
