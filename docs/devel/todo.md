@@ -45,7 +45,7 @@ Ampliar las estadísticas de salida en el report `resume`:
 
 Nueva feature "eventos".
 
-* La idea está documentada mejor en el enlace siguiente.
+* La idea está desarrollada en el enlace siguiente.
 * [Propuesta](https://github.com/dvarrui/teuton-book/blob/main/docs/03.eventos/index.md)
 
 Idea antigua: `ensure`

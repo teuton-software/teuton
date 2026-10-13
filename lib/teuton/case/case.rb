@@ -20,7 +20,11 @@ class Case
   # Readed by ExecuteManager
   attr_reader :id, :config, :uniques, :skip
 
-  @@id = "01" # First case ID value
+  @current_id = "00" # First case ID value
+
+  def self.next_id
+    @current_id = @current_id.next
+  end
 
   def initialize(config)
     @config = Case::Config.new(
@@ -28,9 +32,7 @@ class Case
       global: Project.value[:global]
     )
     @groups = Project.value[:groups]
-
-    @id = @@id
-    @@id = @@id.next
+    @id = Case.next_id
 
     # Define Case Report
     @report = Report.new(@id)
