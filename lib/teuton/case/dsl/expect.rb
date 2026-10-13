@@ -22,7 +22,7 @@ module DSL
   def expect2(cond, args = {})
     @action_counter += 1
     @action[:id] = @action_counter
-    if @result.exitcode < 0
+    if @result.exitcode.negative?
       # When exitcode is less than zero, it is because there has been
       # an error in the remote connection (SSH or Telnet)
       @action[:check] = false
