@@ -13,7 +13,7 @@ class Case
     fill_report(start_time, Time.now)
     close_opened_sessions
   end
-  alias_method :start, :play
+  alias start play
 
   private
 
@@ -25,18 +25,18 @@ class Case
 
   def play_groups_in_sequence
     verboseln "\n==> Running case [#{@config.get(:tt_members)}]" if get(:tt_sequence) == true
-    @groups.each do |t|
-      @action[:groupname] = t[:name]
-      instance_eval(&t[:block])
+    @groups.each do |group|
+      @action.groupname = group[:name]
+      instance_eval(&group[:block])
     end
   end
 
   def play_groups_in_parallel
     verboseln "Running case [#{@config.get(:tt_members)}]"
-    @groups.each do |t|
-      verbose "* Processing [#{t[:name]}] "
-      @action[:groupname] = t[:name]
-      instance_eval(&t[:block])
+    @groups.each do |group|
+      verbose "* Processing [#{group[:name]}] "
+      @action.groupname = group[:name]
+      instance_eval(&group[:block])
       verbose "\n"
     end
     verboseln "\n"

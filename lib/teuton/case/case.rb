@@ -4,6 +4,7 @@ require_relative "../utils/project"
 require_relative "../utils/verbose"
 require_relative "../report/report"
 require_relative "dsl/all"
+require_relative "action"
 require_relative "config"
 require_relative "close"
 # require_relative "builtin/main"
@@ -51,13 +52,15 @@ class Case
 
     @unique_values = {}
     @result = Result.new
-    @action_counter = 0
-    @action = {
-      id: 0,
-      weight: 1.0,
-      description: "No description!",
-      groupname: nil
-    }
+    # TODO
+    # @action_counter = 0
+    # @action = {
+    #   id: 0,
+    #   weight: 1.0,
+    #   description: "No description!",
+    #   groupname: nil
+    # }
+    @action = Action.new
     @uniques = []
     @sessions = {} # Store opened sessions for this case
     @conn_status = {}
@@ -87,5 +90,5 @@ class Case
     @report.head[:tt_members] || "noname"
   end
 
-  alias_method :skip?, :skip
+  alias skip? skip
 end

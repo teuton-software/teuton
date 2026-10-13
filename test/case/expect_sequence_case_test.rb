@@ -4,7 +4,7 @@ require_relative "../../lib/teuton/case/case"
 class ExpectSequenceCaseTest < Test::Unit::TestCase
   def setup
     Project.init
-    Project.value[:global] = {tt_testname: "tXX_expect_sequence"}
+    Project.value[:global] = { tt_testname: "tXX_expect_sequence" }
     Project.value[:verbose] = false
     @case = Case.new({})
   end
@@ -16,10 +16,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       find "b"
       find "c"
     end
-    assert action[:check]
-    assert_equal "find(a)>find(b)>find(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>find(b)>find(c)", action[:expected]
+    assert action.check
+    assert_equal "find(a)>find(b)>find(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>find(b)>find(c)", action.expected
   end
 
   def test_expect_sequence_find_strings_ok02
@@ -29,10 +29,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       find "b"
       find "c"
     end
-    assert action[:check]
-    assert_equal "find(a)>find(b)>find(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>find(b)>find(c)", action[:expected]
+    assert action.check
+    assert_equal "find(a)>find(b)>find(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>find(b)>find(c)", action.expected
   end
 
   def test_expect_sequence_find_strings_ok03
@@ -42,10 +42,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       find "b"
       find "c"
     end
-    assert action[:check]
-    assert_equal "find(a)>find(b)>find(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>find(b)>find(c)", action[:expected]
+    assert action.check
+    assert_equal "find(a)>find(b)>find(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>find(b)>find(c)", action.expected
   end
 
   def test_expect_sequence_find_strings_ok04
@@ -55,10 +55,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       find "b"
       find "c"
     end
-    assert action[:check]
-    assert_equal "find(a)>find(b)>find(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>find(b)>find(c)", action[:expected]
+    assert action.check
+    assert_equal "find(a)>find(b)>find(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>find(b)>find(c)", action.expected
   end
 
   def test_expect_sequence_find_strings_fail05
@@ -68,10 +68,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       find "b"
       find "c"
     end
-    assert_equal false, action[:check]
-    assert_equal "find(a)>find(b)>not find(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>find(b)>find(c)", action[:expected]
+    assert_equal false, action.check
+    assert_equal "find(a)>find(b)>not find(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>find(b)>find(c)", action.expected
   end
 
   def test_expect_sequence_find_strings_fail06
@@ -81,10 +81,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       find "b"
       find "c"
     end
-    assert_equal false, action[:check]
-    assert_equal "find(a)>find(b)>not find(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>find(b)>find(c)", action[:expected]
+    assert_equal false, action.check
+    assert_equal "find(a)>find(b)>not find(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>find(b)>find(c)", action.expected
   end
 
   def test_expect_sequence_next_with_strings_ok07
@@ -94,10 +94,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       next_to "b"
       find "c"
     end
-    assert action[:check]
-    assert_equal "find(a)>next_to(b)>find(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>next_to(b)>find(c)", action[:expected]
+    assert action.check
+    assert_equal "find(a)>next_to(b)>find(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>next_to(b)>find(c)", action.expected
   end
 
   def test_expect_sequence_next_with_strings_ok08
@@ -107,10 +107,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       next_to "b"
       next_to "c"
     end
-    assert action[:check]
-    assert_equal "find(a)>next_to(b)>next_to(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>next_to(b)>next_to(c)", action[:expected]
+    assert action.check
+    assert_equal "find(a)>next_to(b)>next_to(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>next_to(b)>next_to(c)", action.expected
   end
 
   def test_expect_sequence_next_with_strings_fail09
@@ -120,10 +120,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       next_to "b"
       next_to "c"
     end
-    assert_equal false, action[:check]
-    assert_equal "find(a)>next_to(b)>not next_to(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>next_to(b)>next_to(c)", action[:expected]
+    assert_equal false, action.check
+    assert_equal "find(a)>next_to(b)>not next_to(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>next_to(b)>next_to(c)", action.expected
   end
 
   def test_expect_sequence_move_strings_ok10
@@ -135,10 +135,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       ignore 1
       next_to "c"
     end
-    assert action[:check]
-    assert_equal "find(a)>ignore(1)>next_to(b)>ignore(1)>next_to(c)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>ignore(1)>next_to(b)>ignore(1)>next_to(c)", action[:expected]
+    assert action.check
+    assert_equal "find(a)>ignore(1)>next_to(b)>ignore(1)>next_to(c)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>ignore(1)>next_to(b)>ignore(1)>next_to(c)", action.expected
   end
 
   def test_expect_sequence_move_strings_ok11
@@ -148,10 +148,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       ignore 2
       next_to "b"
     end
-    assert action[:check]
-    assert_equal "find(a)>ignore(2)>next_to(b)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>ignore(2)>next_to(b)", action[:expected]
+    assert action.check
+    assert_equal "find(a)>ignore(2)>next_to(b)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>ignore(2)>next_to(b)", action.expected
   end
 
   def test_expect_sequence_move_strings_fail12
@@ -161,10 +161,10 @@ class ExpectSequenceCaseTest < Test::Unit::TestCase
       ignore 2
       next_to "b"
     end
-    assert_equal false, action[:check]
-    assert_equal "find(a)>ignore(2)>not next_to(b)", action[:result]
-    assert_equal "", action[:alterations]
-    assert_equal "find(a)>ignore(2)>next_to(b)", action[:expected]
+    assert_equal false, action.check
+    assert_equal "find(a)>ignore(2)>not next_to(b)", action.result
+    assert_equal "", action.alterations
+    assert_equal "find(a)>ignore(2)>next_to(b)", action.expected
   end
 
   def action = @case.action

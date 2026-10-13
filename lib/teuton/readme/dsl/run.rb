@@ -3,30 +3,24 @@ module ReadmeDSL
     unless host == :localhost
       b = {}
       a = :"#{host}_ip"
-      if @config[:global][a].nil? && !@setted_params.include?(a)
-        @cases_params << a
-      end
+      @cases_params << a if @config[:global][a].nil? && !@setted_params.include?(a)
       b[:ip] = @config[:global][a] if @config[:global][a]
       b[:ip] = @setted_params[a] if @setted_params[a]
 
       a = :"#{host}_username"
-      if @config[:global][a].nil? && !@setted_params.include?(a)
-        @cases_params << a
-      end
+      @cases_params << a if @config[:global][a].nil? && !@setted_params.include?(a)
       b[:username] = @config[:global][a] if @config[:global][a]
       b[:username] = @setted_params[a] if @setted_params[a]
 
       a = :"#{host}_password"
-      if @config[:global][a].nil? && !@setted_params.include?(a)
-        @cases_params << a
-      end
+      @cases_params << a if @config[:global][a].nil? && !@setted_params.include?(a)
       b[:password] = @config[:global][a] if @config[:global][a]
       b[:password] = @setted_params[a] if @setted_params[a]
 
       @required_hosts[host.to_s] = b
     end
-    @action[:host] = host
-    @action[:exec] = args[:exec] || "noexec"
+    @action.host = host
+    @action.exec = args[:exec] || "noexec"
   end
 
   def run(command, args = {})

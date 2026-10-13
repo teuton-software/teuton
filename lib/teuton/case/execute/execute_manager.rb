@@ -5,7 +5,7 @@ require_relative "execute_telnet"
 class ExecuteManager
   def initialize(parent)
     @parent = parent
-    # READ: @config, cmd = action[:command]
+    # READ: @config, cmd = action.command
     # WRITE: @action, @result, @session
     # my_execute, encode_and_split methods?
   end
@@ -13,7 +13,7 @@ class ExecuteManager
   def call(host)
     start_time = Time.now
     run_on(host)
-    action[:duration] = (Time.now - start_time).round(3)
+    action.duration = (Time.now - start_time).round(3)
   end
 
   private
@@ -34,16 +34,16 @@ class ExecuteManager
     protocol = config.get(:"#{host}_protocol")
     ip = config.get(:"#{host}_ip")
 
-    if protocol.to_s.downcase == "local" || host.to_s == "localhost"
+    if protocol.to_s.casecmp("local").zero? || host.to_s == "localhost"
       # Protocol force => local
       ExecuteLocal.new(@parent).call
-    elsif protocol.to_s.downcase == "ssh"
+    elsif protocol.to_s.casecmp("ssh").zero?
       # Protocol force => ssh
       ExecuteSSH.new(@parent).call(host)
-    elsif protocol.to_s.downcase == "telnet"
+    elsif protocol.to_s.casecmp("telnet").zero?
       # Protocol force => telnet
       ExecuteTelnet.new(@parent).call(host)
-    elsif ip.to_s.downcase == "localhost" || ip.to_s.include?("127.0.0.")
+    elsif ip.to_s.casecmp("localhost").zero? || ip.to_s.include?("127.0.0.")
       # run_cmd_localhost
       ExecuteLocal.new(@parent).call
     elsif ip == "NODATA"

@@ -20,21 +20,23 @@ module DSL
   end
 
   def expect2(cond, args = {})
-    @action_counter += 1
-    @action[:id] = @action_counter
+    # TODO
+    # @action_counter += 1
+    # @action[:id] = @action_counter
+    @action.next
     if @result.exitcode.negative?
       # When exitcode is less than zero, it is because there has been
       # an error in the remote connection (SSH or Telnet)
-      @action[:check] = false
-      @action[:result] = @action[:output]
+      @action.check = false
+      @action.result = @action.output
     else
-      @action[:check] = cond
-      @action[:result] = (args[:value] || @result.value)
+      @action.check = cond
+      @action.result = (args[:value] || @result.value)
     end
 
-    @action[:alterations] = @result.alterations
-    @action[:expected] = (args[:expected] || @result.expected)
-    @report.lines << @action.clone
+    @action.alterations = @result.alterations
+    @action.expected = (args[:expected] || @result.expected)
+    @report.lines << @action.to_h
     weight(1.0)
 
     c = Settings.letter[:fail]

@@ -19,17 +19,17 @@ module DSL
   def goto(host = :localhost, args = {})
     @result.reset
     args[:on] = host unless args[:on]
-    @action[:command] = args[:execute].to_s if args[:execute]
-    @action[:command] = args[:exec].to_s if args[:exec]
+    @action.command = args[:execute].to_s if args[:execute]
+    @action.command = args[:exec].to_s if args[:exec]
     tempfile(args[:tempfile]) if args[:tempfile]
-    @action[:encoding] = args[:encoding] || "UTF-8"
+    @action.encoding = args[:encoding] || "UTF-8"
 
     ExecuteManager.new(self).call(host)
-    @action[:output] = if @result.content.size < 2
-      @result.value.clone
-    else
-      "(#{@result.content.size} lines)"
-    end
+    @action.output = if @result.content.size < 2
+                       @result.value.clone
+                     else
+                       "(#{@result.content.size} lines)"
+                     end
   end
-  alias_method :on, :goto
+  alias on goto
 end
