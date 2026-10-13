@@ -1,4 +1,8 @@
 
+## [3.3.0] - 202610xx
+
+- [REFACTOR] Case.close.
+
 ## [3.2.0] 20261013
 
 - [feat/fix] accept Array and Hash config params from `config.yaml`.

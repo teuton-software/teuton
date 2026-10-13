@@ -5,7 +5,7 @@ class Case
     # Invoked from check_cases!
 
     fails = 0
-    @uniques.each do |key|
+    uniques.each do |key|
       next unless uniques[key].include?(id) && uniques[key].count > 1
 
       fails += 1
