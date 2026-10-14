@@ -13,20 +13,20 @@ class ExpectNoneTest < Test::Unit::TestCase
     configure_result(@case, %w[a b b c])
     @case.expect_none "d"
 
-    assert action[:check]
-    assert_equal 0, action[:result]
-    assert_equal "find(d) & count", action[:alterations]
-    assert_equal "0", action[:expected]
+    assert action.check
+    assert_equal 0, action.result
+    assert_equal "find(d) & count", action.alterations
+    assert_equal "0", action.expected
   end
 
   def test_expect_none_regexp
     configure_result(@case, %w[aa ab ac bc])
     @case.expect_none(/bb/)
 
-    assert_equal true, action[:check]
-    assert_equal 0, action[:result]
-    assert_equal "find((?-mix:bb)) & count", action[:alterations]
-    assert_equal "0", action[:expected]
+    assert_equal true, action.check
+    assert_equal 0, action.result
+    assert_equal "find((?-mix:bb)) & count", action.alterations
+    assert_equal "0", action.expected
   end
 
   def action = @case.action

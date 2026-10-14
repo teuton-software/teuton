@@ -13,38 +13,38 @@ class ExpectOneTest < Test::Unit::TestCase
     configure_result(@case, %w[a b b c])
     @case.expect "a"
 
-    assert action[:check]
-    assert_equal 1, action[:result]
-    assert_equal "find(a) & count", action[:alterations]
-    assert_equal "Greater than 0", action[:expected]
+    assert action.check
+    assert_equal 1, action.result
+    assert_equal "find(a) & count", action.alterations
+    assert_equal "Greater than 0", action.expected
 
     configure_result(@case, %w[a b b c])
     @case.expect_one "a"
-    assert action[:check]
-    assert_equal 1, action[:result]
+    assert action.check
+    assert_equal 1, action.result
 
     configure_result(@case, %w[a b b c])
     @case.expect_one "b"
-    assert_equal false, action[:check]
-    assert_equal 2, action[:result]
+    assert_equal false, action.check
+    assert_equal 2, action.result
 
     configure_result(@case, %w[a b b c])
     @case.expect_one "d"
-    assert_equal false, action[:check]
-    assert_equal 0, action[:result]
+    assert_equal false, action.check
+    assert_equal 0, action.result
   end
 
   def test_expect_one_regexp
     configure_result(@case, %w[aa ab ac bc])
     @case.expect_one(/a/)
 
-    assert_equal false, action[:check]
-    assert_equal 3, action[:result]
+    assert_equal false, action.check
+    assert_equal 3, action.result
 
     configure_result(@case, %w[aa ab ac bc])
     @case.expect_one(/ab/)
-    assert action[:check]
-    assert_equal 1, action[:result]
+    assert action.check
+    assert_equal 1, action.result
   end
 
   def action = @case.action

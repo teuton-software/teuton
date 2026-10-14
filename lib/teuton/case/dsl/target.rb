@@ -14,5 +14,5 @@ module DSL
     weight(w)
   end
 
-  alias goal target # DEPRECATE
+  alias_method :goal, :target # DEPRECATE
 end

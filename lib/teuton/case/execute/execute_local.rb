@@ -15,18 +15,18 @@ class ExecuteLocal < ExecuteBase
   end
 
   def my_execute(cmd, encoding = "UTF-8")
-    return { exitcode: 0, content: "" } if Project.value[:debug]
+    return {exitcode: 0, content: ""} if Project.value[:debug]
 
     begin
       text, status = Open3.capture2e(cmd)
       exitcode = status.exitstatus
-    rescue StandardError => e
+    rescue => e
       text = e.to_s
       log("cmd=<#{cmd}> => #{text}", :error)
       exitcode = 1
       verbose Rainbow("!").green
     end
     content = encode_and_split(encoding, text)
-    { exitcode: exitcode, content: content }
+    {exitcode: exitcode, content: content}
   end
 end

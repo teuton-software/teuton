@@ -26,10 +26,10 @@ module DSL
 
     ExecuteManager.new(self).call(host)
     @action.output = if @result.content.size < 2
-                       @result.value.clone
-                     else
-                       "(#{@result.content.size} lines)"
-                     end
+      @result.value.clone
+    else
+      "(#{@result.content.size} lines)"
+    end
   end
-  alias on goto
+  alias_method :on, :goto
 end
