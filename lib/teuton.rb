@@ -1,5 +1,4 @@
 require_relative "teuton/utils/project"
-# require_relative "teuton/version"
 
 module Teuton
   def self.create(path_to_new_dir)

@@ -13,7 +13,7 @@ group "Comprobar el servicio web Nginx" do
   expect "Hola Mundo!"
 end
 
-start do
+play do
   show
   export
 end

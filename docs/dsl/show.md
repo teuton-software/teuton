@@ -5,7 +5,7 @@
 When all tests are finished, the `show` command displays information on the screen about the final results.
 
 ```ruby
-start do
+play do
   show
 end
 ```
@@ -18,7 +18,7 @@ end
 | `show verbose: NUMBER` | NUMBER is the value of the verbose level |
 
 ```ruby
-start do
+play do
   show verbose: 1
 end
 ```

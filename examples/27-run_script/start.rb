@@ -1,6 +1,6 @@
 use "example"
 
-start do
+play do
   show
   export
 end

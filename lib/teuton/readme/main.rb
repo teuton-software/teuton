@@ -12,16 +12,23 @@ def use(filename)
 end
 
 def define_macro(name, *args, &block)
-  Project.value[:macros][name] = {args: args, block: block}
+  Project.value[:macros][name] = { args: args, block: block }
 end
 
 def group(name, &block)
-  Project.value[:groups] << {name: name, block: block}
+  Project.value[:groups] << { name: name, block: block }
 end
-alias task group
 
-def start(&block)
+def task(...)
+  warn Rainbow("[DEPRECATED] Replace 'task' by 'group'").yellow
+  group(...)
+end
+
+def play(&block)
   # don't do nothing
 end
-# alias_method "play", "start" # REVISE THIS
-alias play start
+
+def start(...)
+  warn Rainbow("[DEPRECATED] Replace `start' by' play'").yellow
+  play(...)
+end

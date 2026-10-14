@@ -9,7 +9,7 @@ require_relative "lang"
 require_relative "result"
 
 class Readme
-  include DSL
+  include DSL # Used by case/dsl/macro
   include ReadmeDSL
 
   attr_reader :result, :data

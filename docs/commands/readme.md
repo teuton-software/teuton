@@ -28,7 +28,7 @@ group "Learn about targets" do
   expect_fail
 end
 
-start do
+play do
   show
   export
 end

@@ -43,7 +43,7 @@ Usando la siguiente plantilla de ejemplo de la herramienta Teuton:
   expect_fail
 end
 
-start do
+play do
   show
   export
 end
@@ -80,7 +80,7 @@ group "Nginx Web Service Checks" do
   expect ["Hola Mundo!"]
 end
 
-start do
+play do
   show 
   export 
 end
@@ -109,7 +109,7 @@ group "Comprobar el servicio web Nginx" do
   expect "Hola Mundo!"
 end
 
-start do
+play do
   show 
   export 
 end
@@ -129,7 +129,7 @@ end
 # File: start.rb (Script principal)
 use "nginx"
 
-start do
+play do
   show 
   export 
 end

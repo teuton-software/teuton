@@ -6,7 +6,7 @@
 
 Usage:
 ```ruby
-start do
+play do
   export
   send copy_to: :host1
 end
@@ -31,7 +31,7 @@ If you export several files using differents output formats, you will use severa
 In this example we export html and txt files, but only send txt to remote hosts:
 
 ```ruby
-start do
+play do
   export format: :json
   export format: :txt
 
@@ -42,7 +42,7 @@ end
 If you want to send every exported output file, then do like this:
 
 ```ruby
-start do
+play do
   export format: :html
   send copy_to: :host1
 

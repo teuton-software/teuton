@@ -13,19 +13,19 @@ end
 alias def_macro define_macro
 alias defmacro define_macro
 
-# Define a group of [target/run/expect]s
-# @param name (String) Group name
-# @param block (Block) Tests code
 def group(name, &block)
   Project.value[:groups] << { name: name, block: block }
 end
 alias task group
 
 def play(&block)
-  # Start test
   CaseManager.new.play(&block)
 end
-alias start play
+
+def start(...)
+  warn Rainbow("[DEPRECATED] Replace 'start do' by `play do'")
+  play(...)
+end
 
 def use(filename)
   filename += ".rb"

@@ -4,7 +4,7 @@ group "Learn about targets" do
   expect "root"
 end
 
-start do
+play do
   show
   export
 end

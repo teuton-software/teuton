@@ -2,7 +2,7 @@
 
 use "nginx"
 
-start do
+play do
   show
   export
 end
