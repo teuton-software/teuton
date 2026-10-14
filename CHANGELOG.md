@@ -1,7 +1,7 @@
 
 ## [3.3.0] - 202610xx
 
-- [REFACTOR] Case.close.
+- [REFACTOR] Case#close, Case::Action, Readme(Case::Action).
 
 ## [3.2.0] 20261013
 

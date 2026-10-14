@@ -3,12 +3,6 @@ require_relative "../../lib/teuton/case/case"
 
 class CaseTest < Test::Unit::TestCase
   def setup
-    # @testname = "tXX_case_test"
-    # Project.init
-    # Project.value[:global] = {tt_testname: @testname}
-    # Project.value[:testname] = @testname
-    # Project.value[:output_dir] = File.join("var", @testname)
-
     @testname = "t13-remote_hosts"
     configdata = {global: {tt_testname: @testname}}
     Project.init
@@ -16,7 +10,6 @@ class CaseTest < Test::Unit::TestCase
     Project.add_options(mainproject, {})
     Project.add_config(configdata)
 
-    Case::Action.reset
     @case = Case.new({})
   end
 

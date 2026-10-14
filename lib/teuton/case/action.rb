@@ -1,31 +1,23 @@
 class Case
   class Action
-    BASE_ID = -1
-    @current_id = BASE_ID
-
-    def self.next_id
-      @current_id += 1
-    end
-
-    def self.reset
-      @current_id = BASE_ID
-    end
-
     attr_reader :id
     attr_accessor :groupname, :description, :weight, :asset,
       :command, :encoding, :host, :exec, :conn_type, :duration,
       :result, :output, :alterations, :expected,
-      :check, :tempfile, :remote_tempfile
+      :check, :tempfile, :remote_tempfile,
+      :readme
 
     def initialize
-      @id = Action.next_id
+      @id = 0
       @groupname = nil
       @description = "No description!"
       @weight = 1.0
+      @readme = []
     end
 
     def next
-      @id = Action.next_id
+      @id += 1
+      self
     end
 
     def to_h

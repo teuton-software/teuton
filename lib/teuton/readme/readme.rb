@@ -1,6 +1,7 @@
 require_relative "../utils/logger"
 require_relative "../utils/project"
 require_relative "../utils/config_file_reader"
+require_relative "../case/action"
 require_relative "../case/dsl/macro"
 require_relative "../version"
 require_relative "dsl/all"
@@ -39,6 +40,7 @@ class Readme
     @data[:macros] = []
     @data[:groups] = []
     @data[:play] = []
+    @action = Case::Action.new
     reset_action
     @setted_params = {}
     @cases_params = []
@@ -56,7 +58,7 @@ class Readme
   end
 
   def reset_action
-    @action = {readme: []}
+    @action.readme = []
   end
 
   def show_head
@@ -96,16 +98,16 @@ class Readme
       puts "\n## #{group[:name].capitalize}\n"
       group[:readme].each { |line| puts "#{line}\n" }
       previous_host = nil
-      group[:actions].each_with_index do |item, index|
-        item[:host] = group[:actions][0][:host] if item[:host].nil? && index.positive?
-        if previous_host.nil? || item[:host] != previous_host
-          previous_host = item[:host] || "null"
+      group[:actions].each_with_index do |a, index|
+        a[:host] = group[:actions][0][:host] if a[:host].nil? && index.positive?
+        if previous_host.nil? || a[:host] != previous_host
+          previous_host = a[:host] || "null"
           puts format(Lang.get(:goto), previous_host.upcase)
         end
-        weight = "(x#{item[:weight]}) "
-        last = item[:target].end_with?(".", ":") ? "" : "."
-        puts "* #{weight}#{item[:target]}#{last}"
-        item[:readme].each { |line| puts "    * #{line}\n" }
+        weight = "(x#{a[:weight]}) "
+        last = a[:description].end_with?(".", ":") ? "" : "."
+        puts "* #{weight}#{a[:description]}#{last}"
+        # FIXME: a[:readme].each { |line| puts "    * #{line}\n" }
       end
     end
   end

@@ -6,19 +6,21 @@ require_relative "run"
 
 module ReadmeDSL
   def readme(text)
-    if @action[:target].nil?
+    if @action.description.nil?
       @current[:readme] << text # It's a group readme
     else
-      @action[:readme] << text # It's a target readme
+      @action.readme << text # It's a target readme
     end
   end
 
   def target(desc, args = {})
-    previous_host = @action[:host]
-    @action = {target: desc, host: previous_host, readme: []}
+    previous_host = @action.host
+    @action.description = desc
+    @action.host = previous_host
+    @action.readme = []
     weight = 1.0
     weight = args[:weight].to_f if args[:weight]
-    @action[:weight] = weight
+    @action.weight = weight
   end
   alias_method :goal, :target
 

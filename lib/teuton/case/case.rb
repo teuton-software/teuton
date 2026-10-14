@@ -52,14 +52,6 @@ class Case
 
     @unique_values = {}
     @result = Result.new
-    # TODO
-    # @action_counter = 0
-    # @action = {
-    #   id: 0,
-    #   weight: 1.0,
-    #   description: "No description!",
-    #   groupname: nil
-    # }
     @action = Action.new
     @uniques = []
     @sessions = {} # Store opened sessions for this case
