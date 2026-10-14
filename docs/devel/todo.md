@@ -9,6 +9,7 @@
 * Aplicar las recomendaciones del informe de seguridad de Andrés.
 * verify get(:key) and get('key') works fine!
 * Formatter: xml
+* Revisar la utilidad de action.assets al generar README.
 
 # 2. Documentacion
 
