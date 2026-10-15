@@ -50,7 +50,7 @@ class Readme
 
   def process_content
     Project.value[:groups].each do |group|
-      @current = { name: group[:name], readme: [], actions: [] }
+      @current = {name: group[:name], readme: [], actions: []}
       @data[:groups] << @current
       @action.reset
       instance_eval(&group[:block])
@@ -74,7 +74,7 @@ class Readme
       @required_hosts.each_pair do |k, v|
         c = []
         v.each_pair { |k2, v2| c << "#{k2}=#{v2}" }
-        puts "| #{i} | #{k.upcase} | #{c.join(', ')} |"
+        puts "| #{i} | #{k.upcase} | #{c.join(", ")} |"
         i += 1
       end
       puts "\n> NOTE: SSH Service installation is required on every host."
