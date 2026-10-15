@@ -2,7 +2,6 @@
 
 class Case
   # READ: sessions, config, groups, action, report
-  # TODO: groups from Project or from Case???
   def play
     if skip?
       verbose Rainbow("S").green

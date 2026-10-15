@@ -29,11 +29,11 @@ class CaseManager
     check_cases!
     instance_eval(&block)
     # Run export if user pass option command "--export=FORMAT"
-    i = Project.value[:options]["export"]
-    export(format: i.to_sym) unless i.nil?
+    option = Project.value[:options]["export"]
+    export(format: option.to_sym) unless option.nil?
     # Accept "configfile" param REVISE There exists?
-    i = Project.value[:options]["configfile"]
-    export(format: i.to_sym) unless i.nil?
+    option = Project.value[:options]["configfile"]
+    export(format: option.to_sym) unless option.nil?
     # TODO: Export Stats
     # StatsManager.new.call(@cases)
   end
