@@ -205,31 +205,9 @@ def run
   end
 end
 ```
-* **Paso 3: Capturar las excepciones en CLI**
 
-```ruby
-#!/usr/bin/env ruby
-# bin/teuton
-
-require "teuton"
-
-begin
-  # Aquí llamas al punto de entrada de tu CLI (por ejemplo, Thor, GLI o tu propio parser)
-  Teuton::CLI.start(ARGV)
-rescue Teuton::Error => e
-  # Si es un error controlado de tu gema, mostramos el mensaje y salimos con 1
-  warn "Error: #{e.message}"
-  exit 1
-rescue StandardError => e
-  # Opcional: Para errores no controlados (bugs imprevistos en tu código)
-  warn "Error inesperado: #{e.message}"
-  # Si quieres ver el stacktrace completo solo si hay modo debug:
-  # raise e if ENV["DEBUG"]
-  exit 1
-end
-```
-
-* **Integración con Thor**
+* Paso 3: Capturar las excepciones en CLI
+* Integración con Thor
 
 1. Hacer que Thor devuelva un código de salida 1 en errores de Thor
 

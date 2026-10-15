@@ -5,6 +5,9 @@ require_relative "lib/teuton/cli"
 
 begin
   Teuton::CLI.start(ARGV)
+rescue Interrupt
+  puts "\nExecution cancelled by the user."
+  exit 130
 rescue Teuton::MainScriptNotFoundError => e
   warn "Error: #{e.message}"
   exit 1

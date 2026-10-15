@@ -16,12 +16,12 @@ class Logger
   end
 
   def self.warn(message)
-    text = Rainbow(message).bright.yellow
+    text = Rainbow("Warn: #{message}").bright.yellow
     Kernel.warn text if @verbose
   end
 
   def self.error(message)
-    text = Rainbow(message).bright.red
+    text = Rainbow("Error: #{message}").bright.red
     Kernel.warn text if @verbose
   end
 

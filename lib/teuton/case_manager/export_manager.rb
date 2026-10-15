@@ -14,23 +14,17 @@ class ExportManager
   # @param cases (Array)
   # @param input (Hash) Selected export options
   def call(main_report, cases, args)
-    if args.class != Hash
-      warn Rainbow("[ERROR] ExportManager: argument error!").bright.red
-      warn Rainbow("[ERROR] Fix line <export #{args}>").white
-      warn Rainbow("[ERROR] Replace by <export format: 'txt'>").white
-      warn ""
-      exit 1
-    end
+    raise Teuton::ExportArgumentError, args if args.class != Hash
 
     # Step 1: Validate options
     options = strings2symbols(args)
     options[:format] = Project.value[:format] if options[:format].nil?
 
     unless Formatter.available_formats.include? options[:format]
-      puts Rainbow("[WARN] ExportManager: Unkown format!").yellow.bright
-      puts Rainbow("[WARN] Fix line <export format: #{options[:format]}>").yellow.bright
-      puts Rainbow("[INFO] Available formats: #{Formatter.available_formats.join(", ")}.").white.bright
-      puts Rainbow("[INFO] Using default format <txt>.").white.bright
+      Logger.warn "ExportManager: Unkown format!"
+      Logger.warn "Fix line <export format: #{options[:format]}>"
+      Logger.info "Available formats: #{Formatter.available_formats.join(", ")}."
+      Logger.info "Using default format <txt>."
       options[:format] = :txt
     end
 
@@ -84,7 +78,7 @@ class ExportManager
                     "%<hour>02d%<min>02d%<sec>02d", data)
     preserve_dir = File.join(srcdir, subdir)
 
-    puts "[INFO] Preserving files => #{preserve_dir}"
+    Logger.info "Preserving files => #{preserve_dir}"
     FileUtils.mkdir(preserve_dir)
     Dir.glob(File.join(srcdir, "**.*")).each { |file| FileUtils.cp(file, preserve_dir) }
   end

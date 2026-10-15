@@ -164,8 +164,7 @@ class ExpectSequence
     elsif value.is_a? Regexp
       return true << index if value.match(line)
     else
-      puts Rainbow("[ERROR] expect_sequence #{value.class}").bright.red
-      exit 1
+      raise Teuton::UnexpectedSequenceTypeError, value.class
     end
     false
   end
