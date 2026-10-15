@@ -250,30 +250,6 @@ end
 
 3. Capturar excepciones en el ejecutable bin/teuton
 
-```ruby
-#!/usr/bin/env ruby
-# bin/teuton
-
-require "teuton"
-
-begin
-  # Thor ejecuta el comando indicado por los argumentos
-  Teuton::CLI.start(ARGV)
-rescue Teuton::Error => e
-  # Capturamos únicamente los errores previstos de tu gema
-  warn "Error: #{e.message}"
-  exit 1
-rescue Interrupt
-  # Opcional: Manejar si el usuario cancela con Ctrl+C
-  puts "\nEjecución cancelada por el usuario."
-  exit 130
-rescue StandardError => e
-  # Capturamos cualquier bug imprevisto para mostrarlo o depurarlo
-  warn "Error inesperado: #{e.message}"
-  exit 1
-end
-```
-
 # 5. Proyectos
 
 Ideas que emepzaron como un nuevo feature pero por sus dimensiones, funcionalidades y características van ha derivar a su propio proyecto independiente:
