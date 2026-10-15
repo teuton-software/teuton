@@ -37,9 +37,6 @@ def use(filename)
     require_relative findfiles.first
     Project.value[:uses] << File.basename(findfiles.first)
   rescue StandardError => e
-    warn Rainbow("[ERROR] case_manager/dsl: #{e}").bright.red
-    warn Rainbow("[ERROR] File not found!").white
-    warn Rainbow("[ERROR] Fix line <use '#{filename}'>").white
-    exit 1
+    raise Teuton::CaseManagerDslError.new(e, filename)
   end
 end

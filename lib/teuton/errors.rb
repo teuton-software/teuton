@@ -1,8 +1,28 @@
 module Teuton
   class Error < StandardError; end
+
+  class CaseManagerDslError < Error
+    attr_reader :original_error, :filename
+
+    def initialize(original_error, filename)
+      @original_error = original_error
+      @filename = filename
+      super(build_message)
+    end
+
+    private
+
+    def build_message
+      <<~MSG.strip
+        case_manager/dsl: #{@original_error}
+        File not found! Fix line <use '#{@filename}'>
+      MSG
+    end
+  end
+
   class ConfigurationError < Error; end
-  class ExecutionError < Error; end
   class InputError < Error; end
+  class ExecutionError < Error; end
 
   class ExportArgumentError < Error
     attr_reader :args
@@ -48,4 +68,6 @@ module Teuton
       super("expect_sequence #{value_class}")
     end
   end
+
+  class UploadArgumentError < ArgumentError; end
 end

@@ -4,10 +4,10 @@ require_relative "../../utils/verbose"
 module DSL
   def upload(localfilter, args = {})
     abslocalfilter = if File.absolute_path? localfilter
-      localfilter
-    else
-      File.join(Project.value[:project_path], localfilter)
-    end
+                       localfilter
+                     else
+                       File.join(Project.value[:project_path], localfilter)
+                     end
 
     Dir.glob(abslocalfilter).each do |abslocalpath|
       upload_one(abslocalpath, args)
@@ -15,10 +15,7 @@ module DSL
   end
 
   def upload_one(localpath, args = {})
-    if args[:to].nil?
-      Logger.err("ERROR upload requires to: XXX")
-      exit 1
-    end
+    raise ArgumentError, "upload requires 'to: XXX'" if args[:to].nil?
 
     host = get_host(args[:to])
     if host.protocol == "ssh"
@@ -29,7 +26,7 @@ module DSL
           host.ip, host.username, password: host.password, port: host.port
         ) { |sftp| sftp.upload!(localpath, remotepath) }
         verbose(Rainbow(Settings.letter[:upload]).green)
-      rescue => e
+      rescue StandardError => e
         log("Upload #{localfile} to #{host.ip}:#{remotepath}", :warn)
         log(e.to_s, :warn)
         verbose(Rainbow("!").green)

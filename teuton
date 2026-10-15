@@ -9,6 +9,10 @@ begin
 rescue Interrupt
   puts "\nExecution cancelled by the user."
   exit 130
+rescue Teuton::CaseManagerDslError => e
+  lines = e.message.split("\n")
+  warn "Error: #{lines[0]}"
+  warn Rainbow("Error: #{lines[1]}").white
 rescue Teuton::MainScriptNotFoundError => e
   warn "Error: #{e.message}"
 rescue Teuton::Error => e
