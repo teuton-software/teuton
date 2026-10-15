@@ -20,9 +20,6 @@ module DSL
   end
 
   def expect2(cond, args = {})
-    # TODO
-    # @action_counter += 1
-    # @action[:id] = @action_counter
     @action.next
     if @result.exitcode.negative?
       # When exitcode is less than zero, it is because there has been

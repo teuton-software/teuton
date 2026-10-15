@@ -6,7 +6,7 @@ require_relative "execute_base"
 
 class ExecuteSSH < ExecuteBase
   def call(input_hostname)
-    action[:conn_type] = :ssh
+    action.conn_type = :ssh
     hostname = input_hostname.to_s
     ip = config.get(:"#{hostname}_ip").to_s
     username = config.get(:"#{hostname}_username").to_s
@@ -20,18 +20,18 @@ class ExecuteSSH < ExecuteBase
       ip2 = ip
       username2 = username
       password2 = password
-      command2 = action[:command]
+      command2 = action.command
       hostname = config.get(:"#{hostname}_route")
       ip = config.get(:"#{hostname}_ip").to_s
       username = config.get(:"#{hostname}_username").to_s
       password = config.get(:"#{hostname}_password").to_s
       ostype = config.get(:"#{hostname}_ostype").to_s
 
-      action[:command] = if ostype.downcase.start_with? "win"
-        "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
-      else
-        "sshpass -p #{password2} #{username2}@#{ip2} #{command2}"
-      end
+      action.command = if ostype.downcase.start_with? "win"
+                         "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
+                       else
+                         "sshpass -p #{password2} #{username2}@#{ip2} #{command2}"
+                       end
     end
 
     text = "TEUTON_NODATA"
@@ -49,7 +49,7 @@ class ExecuteSSH < ExecuteBase
         )
       end
       if sessions[hostname].instance_of? Net::SSH::Connection::Session
-        text = sessions[hostname].exec!(action[:command])
+        text = sessions[hostname].exec!(action.command)
         exitcode = text.exitstatus
       else
         text = "TEUTON_ERROR_SSH_NO_CONNECTION"
@@ -78,15 +78,15 @@ class ExecuteSSH < ExecuteBase
       log("* Remove the existing entry in your local known_hosts file", :error)
       log("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' " \
           "-R #{ip}", :error)
-    rescue => e
+    rescue StandardError => e
       sessions[hostname] = :nosession
       conn_status[hostname] = :error
       text = "TEUTON_ERROR_SSH"
       exitcode = -1
       log("[#{e.class}] SSH on <#{username}@#{ip}>" \
-          " exec: #{action[:command]}", :error)
+          " exec: #{action.command}", :error)
     end
     result.exitcode = exitcode
-    result.content = encode_and_split(action[:encoding], text)
+    result.content = encode_and_split(action.encoding, text)
   end
 end

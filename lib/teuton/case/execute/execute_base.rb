@@ -1,7 +1,7 @@
 class ExecuteBase
   def initialize(parent)
     @parent = parent
-    # READ: @config, cmd = action[:command]
+    # READ: @config, cmd = action.command
     # WRITE: @action, @result, @session
   end
 
@@ -45,7 +45,7 @@ class ExecuteBase
     ec = Encoding::Converter.new(encoding.to_s, "UTF-8")
     begin
       text = ec.convert(text)
-    rescue => e
+    rescue StandardError => e
       warn Rainbow("[ERROR] ExecuteBase: #{e}").bright.red
       warn Rainbow("[ERROR] Declare text encoding. Example:").white
       warn Rainbw("[ERROR] run 'command', on: :host, encoding: 'ISO-8859-1'").white

@@ -178,6 +178,124 @@ Expandir el modo de ejecución y medir rendimiento:
 - Fibras
 - Actores
 
+## 4.6 Excepciones vs exit 
+
+La buena práctica es la separación de responsabilidades:
+
+* La librería nunca debe hacer exit ni abort. Su trabajo es exclusivamente levantar excepciones personalizadas cuando algo sale mal.
+* El ejecutable (CLI) es el único que debe capturar esas excepciones, mostrarlas de forma amigable por la terminal y decidir cuándo terminar el proceso con exit 1.
+
+* **Paso 1: Definir excepciones personalizadas**: 
+
+```ruby
+# lib/teuton/errors.rb
+module Teuton
+  class Error < StandardError; end
+  class ConfigurationError < Error; end
+  class ExecutionError < Error; end
+end
+```
+* **Paso 2: Reemplazar los exit 1 en la librería por `raise`**
+
+```ruby
+# lib/teuton/runner.rb
+def run
+  if invalid_config?
+    raise Teuton::ConfigurationError, "Configuración inválida"
+  end
+end
+```
+* **Paso 3: Capturar las excepciones en CLI**
+
+```ruby
+#!/usr/bin/env ruby
+# bin/teuton
+
+require "teuton"
+
+begin
+  # Aquí llamas al punto de entrada de tu CLI (por ejemplo, Thor, GLI o tu propio parser)
+  Teuton::CLI.start(ARGV)
+rescue Teuton::Error => e
+  # Si es un error controlado de tu gema, mostramos el mensaje y salimos con 1
+  warn "Error: #{e.message}"
+  exit 1
+rescue StandardError => e
+  # Opcional: Para errores no controlados (bugs imprevistos en tu código)
+  warn "Error inesperado: #{e.message}"
+  # Si quieres ver el stacktrace completo solo si hay modo debug:
+  # raise e if ENV["DEBUG"]
+  exit 1
+end
+```
+
+* **Integración con Thor**
+
+1. Hacer que Thor devuelva un código de salida 1 en errores de Thor
+
+```ruby
+# lib/teuton/cli.rb
+require "thor"
+
+module Teuton
+  class CLI < Thor
+    # Esto asegura que si Thor falla internamente (ej: comandos/opciones inválidas),
+    # el programa salga con código 1 en lugar de 0.
+    def self.exit_on_failure?
+      true
+    end
+
+    desc "run", "Ejecuta un script de Teuton"
+    def run
+      # Aquí llamas a la lógica de tu gema
+      # Si hay un error, tu lógica lanzará una excepción (ej: Teuton::Error)
+      Teuton::Runner.new.execute
+    end
+  end
+end
+```
+
+2. Lanzar excepciones personalizadas en la lógica de tu librería.
+
+```ruby
+# lib/teuton/runner.rb
+module Teuton
+  class Runner
+    def execute
+      if algun_error_detectado?
+        raise Teuton::Error, "Ocurrió un error al ejecutar los tests"
+      end
+    end
+  end
+end
+```
+
+3. Capturar excepciones en el ejecutable bin/teuton
+
+```ruby
+#!/usr/bin/env ruby
+# bin/teuton
+
+require "teuton"
+
+begin
+  # Thor ejecuta el comando indicado por los argumentos
+  Teuton::CLI.start(ARGV)
+rescue Teuton::Error => e
+  # Capturamos únicamente los errores previstos de tu gema
+  warn "Error: #{e.message}"
+  exit 1
+rescue Interrupt
+  # Opcional: Manejar si el usuario cancela con Ctrl+C
+  puts "\nEjecución cancelada por el usuario."
+  exit 130
+rescue StandardError => e
+  # Capturamos cualquier bug imprevisto para mostrarlo o depurarlo
+  warn "Error inesperado: #{e.message}"
+  exit 1
+end
+```
+
 # 5. Proyectos
 
 Ideas que emepzaron como un nuevo feature pero por sus dimensiones, funcionalidades y características van ha derivar a su propio proyecto independiente:

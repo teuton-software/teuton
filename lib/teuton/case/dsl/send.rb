@@ -22,10 +22,10 @@ module DSL
     filename = args[:prefix].to_s + filename if args[:prefix]
 
     remotefilepath = if args[:dir]
-      File.join(args[:dir], filename)
-    else
-      File.join(".", filename)
-    end
+                       File.join(args[:dir], filename)
+                     else
+                       File.join(".", filename)
+                     end
 
     # Upload a file or directory to the remote host
     begin
@@ -37,7 +37,7 @@ module DSL
       verboseln(msg)
       logfile.write "#{msg}\n"
       logfile.flush
-    rescue => e
+    rescue StandardError => e
       msg = Rainbow("==> [FAIL] Case #{get(:tt_members)}: 'scp #{localfilepath}' to #{remotefilepath}").yellow
       msg += "\n--> [ERROR] #{e}"
       verboseln(msg)
@@ -46,17 +46,18 @@ module DSL
     end
   end
 
-  def tempfile(input = nil)
-    return @action[:tempfile] if input.nil?
-
-    name = input
-    name = "teuton.tmp" if input == :default
-
-    @action.tempfile = File.join(@tempdir, name)
-    @action.remote_tempfile = File.join(remote_tempdir, name)
-
-    @action.tempfile
-  end
+  # DEPRECATED
+  # def tempfile(input = nil)
+  #  return @action :tempfile if input.nil?
+  #
+  #  name = input
+  #  name = "teuton.tmp" if input == :default
+  #
+  #  @action.tempfile = File.join(@tempdir, name)
+  #  @action.remote_tempfile = File.join(remote_tempdir, name)
+  #
+  #  @action.tempfile
+  # end
 
   def tempdir
     @tempdir
