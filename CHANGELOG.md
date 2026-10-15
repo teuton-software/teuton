@@ -1,5 +1,5 @@
 
-## [3.2.1] - 202610xx
+## [3.2.1] - 20261015
 
 - [REFACTOR] Replace `exit 1`by exceptions.
 - [DEPRECATED] Remove `tempfile` and `remote_tempfile`.
