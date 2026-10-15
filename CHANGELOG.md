@@ -1,6 +1,7 @@
 
 ## [3.3.0] - 202610xx
 
+- [DEPRECATED] Remove `tempfile` and `remote_tempfile`.
 - [DEPRECATED] Replace `start do` by `play do`.
 - [REFACTOR] Case class: Case#close, Case::Action
 - [REFACTOR] Readme class:  Readme::Action.

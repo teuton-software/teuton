@@ -28,10 +28,10 @@ class ExecuteSSH < ExecuteBase
       ostype = config.get(:"#{hostname}_ostype").to_s
 
       action.command = if ostype.downcase.start_with? "win"
-                         "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
-                       else
-                         "sshpass -p #{password2} #{username2}@#{ip2} #{command2}"
-                       end
+        "echo y | plink #{username2}@#{ip2} -ssh -pw #{password2} \"#{command2}\""
+      else
+        "sshpass -p #{password2} #{username2}@#{ip2} #{command2}"
+      end
     end
 
     text = "TEUTON_NODATA"
@@ -78,7 +78,7 @@ class ExecuteSSH < ExecuteBase
       log("* Remove the existing entry in your local known_hosts file", :error)
       log("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' " \
           "-R #{ip}", :error)
-    rescue StandardError => e
+    rescue => e
       sessions[hostname] = :nosession
       conn_status[hostname] = :error
       text = "TEUTON_ERROR_SSH"

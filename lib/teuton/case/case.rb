@@ -56,7 +56,6 @@ class Case
     @uniques = []
     @sessions = {} # Store opened sessions for this case
     @conn_status = {}
-    tempfile :default
   end
 
   def export(format)

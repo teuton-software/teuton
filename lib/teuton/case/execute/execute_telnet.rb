@@ -47,7 +47,7 @@ class ExecuteTelnet < ExecuteBase
       sessions[hostname] = :nosession
       conn_status[hostname] = :read_timeout
       log(" ExceptionType=<Net::ReadTimeout> doing <telnet #{ip}>", :error)
-    rescue StandardError => e
+    rescue => e
       sessions[hostname] = :nosession
       conn_status[hostname] = :error
       log(" ExceptionType=<#{e.class}> doing telnet on <#{username}@#{ip}>" \

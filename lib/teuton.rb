@@ -36,15 +36,8 @@ module Teuton
   private_class_method def self.require_dsl_and_script(dslpath)
     # Load DSL file and then load script file
     require_relative dslpath
-    begin
-      mainscriptfile = Project.value[:script_path]
-      require_relative mainscriptfile
-    rescue StandardError => e
-      warn Rainbow("[ERROR] #{e}").bright.red
-      e.backtrace&.first(3)&.each do |line|
-        warn Rainbow("[ERROR]   #{line}").white
-      end
-      exit 1
-    end
+
+    mainscriptfile = Project.value[:script_path]
+    require_relative mainscriptfile
   end
 end

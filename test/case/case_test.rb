@@ -69,27 +69,6 @@ class CaseTest < Test::Unit::TestCase
     assert_equal 1.0, @case.weight
   end
 
-  def test_temfile
-    tempdir = File.join("var", @testname, "tmp", @case.id)
-    File.join(tempdir, "teuton.tmp")
-    assert_equal tempdir, @case.tempdir
-    # assert_equal tempfile, @case.tempfile TODO
-    assert_equal "/tmp", @case.remote_tempdir
-    assert_equal "/tmp/teuton.tmp", @case.remote_tempfile
-
-    @case.tempfile "othername"
-    assert_equal tempdir, @case.tempdir
-    # assert_equal File.join(tempdir, "othername"), @case.tempfile TODO
-    assert_equal "/tmp", @case.remote_tempdir
-    assert_equal "/tmp/othername", @case.remote_tempfile
-
-    @case.tempfile :default
-    assert_equal tempdir, @case.tempdir
-    # assert_equal tempfile, @case.tempfile TODO
-    assert_equal "/tmp", @case.remote_tempdir
-    assert_equal "/tmp/teuton.tmp", @case.remote_tempfile
-  end
-
   def test_skip
     assert_equal false, @case.skip
   end

@@ -21,7 +21,6 @@ module DSL
     args[:on] = host unless args[:on]
     @action.command = args[:execute].to_s if args[:execute]
     @action.command = args[:exec].to_s if args[:exec]
-    tempfile(args[:tempfile]) if args[:tempfile]
     @action.encoding = args[:encoding] || "UTF-8"
 
     ExecuteManager.new(self).call(host)
