@@ -3,12 +3,12 @@ require "rainbow"
 class Logger
   @verbose = true
 
-  def self.verbose=(value)
-    @verbose = value
+  class << self
+    attr_writer :verbose
   end
 
-  def self.verbose
-    @verbose
+  class << self
+    attr_reader :verbose
   end
 
   def self.info(message)
@@ -17,16 +17,16 @@ class Logger
 
   def self.warn(message)
     text = Rainbow(message).bright.yellow
-    info(text)
+    Kernel.warn text if @verbose
   end
 
   def self.error(message)
     text = Rainbow(message).bright.red
-    info(text)
+    Kernel.warn text if @verbose
   end
 
   def self.debug(message)
     text = Rainbow(message).white
-    info(text)
+    puts text if @verbose
   end
 end
