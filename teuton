@@ -14,7 +14,7 @@ rescue Teuton::Error => e
     warn Rainbow("Error:   #{line}").white
   end
   exit 1
-rescue StandardError => e
+rescue => e
   warn "Unexpected error: #{e.message}"
   raise e if ENV["DEBUG"]
 
