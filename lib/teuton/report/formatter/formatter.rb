@@ -41,10 +41,10 @@ module Formatter
   def self.call(report, options, filename)
     klass = get(options[:format])
     if klass.nil?
-      warn Rainbow("[ERROR] Formatter:").bright.red
-      warn Rainbow("[ERROR] - Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>").white
-      warn Rainbow("[ERROR] - Available formats: #{Formatter.available_formats.join(",")}.").white
-      exit 1
+      Logger.warn "Formatter:"
+      Logger.warn "- Unkown format <#{options[:format]}>. Fix line <export format: FORMAT>"
+      Logger.warn "- Available formats: #{Formatter.available_formats.join(",")}."
+      return
     end
     formatter = klass.new(report)
     formatter.init(filename)
@@ -55,13 +55,4 @@ module Formatter
   def self.get(format)
     LIST[format]
   end
-
-  # def self.hide_feedback(report)
-  #  report2 = report.clone
-  #  report2.groups.each do |group|
-  #    group.each do |item|
-  #      puts item
-  #    end
-  #  end
-  # end
 end

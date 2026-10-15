@@ -13,6 +13,7 @@ rescue Teuton::CaseManagerDslError => e
   lines = e.message.split("\n")
   warn "Error: #{lines[0]}"
   warn Rainbow("Error: #{lines[1]}").white
+  warn Rainbow("Error: #{lines[2]}").white
 rescue Teuton::MainScriptNotFoundError => e
   warn "Error: #{e.message}"
 rescue Teuton::Error => e
@@ -20,7 +21,7 @@ rescue Teuton::Error => e
   e.backtrace&.first(3)&.each do |line|
     warn Rainbow("Error:   #{line}").white
   end
-rescue StandardError => e
+rescue => e
   warn "Unexpected error: #{e.message}"
   raise e if ENV["DEBUG"]
 

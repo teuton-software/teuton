@@ -23,8 +23,8 @@ class ExportManager
     unless Formatter.available_formats.include? options[:format]
       Logger.warn "ExportManager: Unkown format!"
       Logger.warn "Fix line <export format: #{options[:format]}>"
-      Logger.info "Available formats: #{Formatter.available_formats.join(", ")}."
-      Logger.info "Using default format <txt>."
+      Logger.warn "Available formats: #{Formatter.available_formats.join(", ")}."
+      Logger.warn "Using default format <txt>."
       options[:format] = :txt
     end
 

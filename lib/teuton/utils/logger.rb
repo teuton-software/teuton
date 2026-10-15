@@ -11,8 +11,13 @@ class Logger
     attr_reader :verbose
   end
 
+  def self.puts(message)
+    Kernel.puts message if @verbose
+  end
+
   def self.info(message)
-    puts message if @verbose
+    text = Rainbow("Info: #{message}").white
+    Kernel.puts text if @verbose
   end
 
   def self.warn(message)
