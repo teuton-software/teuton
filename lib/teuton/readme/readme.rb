@@ -1,9 +1,9 @@
 require_relative "../utils/logger"
 require_relative "../utils/project"
 require_relative "../utils/config_file_reader"
-require_relative "../case/action"
 require_relative "../case/dsl/macro"
 require_relative "../version"
+require_relative "action"
 require_relative "dsl/all"
 require_relative "lang"
 require_relative "result"
@@ -40,7 +40,7 @@ class Readme
     @data[:macros] = []
     @data[:groups] = []
     @data[:play] = []
-    @action = Case::Action.new
+    @action = Action.new
     reset_action
     @setted_params = {}
     @cases_params = []
@@ -50,15 +50,11 @@ class Readme
 
   def process_content
     Project.value[:groups].each do |group|
-      @current = {name: group[:name], readme: [], actions: []}
+      @current = { name: group[:name], readme: [], actions: [] }
       @data[:groups] << @current
-      reset_action
+      @action.reset
       instance_eval(&group[:block])
     end
-  end
-
-  def reset_action
-    @action.readme = []
   end
 
   def show_head
@@ -78,7 +74,7 @@ class Readme
       @required_hosts.each_pair do |k, v|
         c = []
         v.each_pair { |k2, v2| c << "#{k2}=#{v2}" }
-        puts "| #{i} | #{k.upcase} | #{c.join(", ")} |"
+        puts "| #{i} | #{k.upcase} | #{c.join(', ')} |"
         i += 1
       end
       puts "\n> NOTE: SSH Service installation is required on every host."
@@ -107,7 +103,7 @@ class Readme
         weight = "(x#{a[:weight]}) "
         last = a[:description].end_with?(".", ":") ? "" : "."
         puts "* #{weight}#{a[:description]}#{last}"
-        # FIXME: a[:readme].each { |line| puts "    * #{line}\n" }
+        a[:readme].each { |line| puts "    * #{line}\n" }
       end
     end
   end
