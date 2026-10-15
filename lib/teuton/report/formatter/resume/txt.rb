@@ -113,8 +113,8 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     when :red_bright
       Rainbow(text).red.bright
     else
-      puts "[ERROR] ResumeTXTFormatter#colorize option=#{option}"
-      exit 1
+      Logger.warn "[ResumeTXTFormatter] colorize option=#{option}"
+      text
     end
   end
 end

@@ -14,6 +14,15 @@ rescue Teuton::CaseManagerDslError => e
   warn "Error: #{lines[0]}"
   warn Rainbow("Error: #{lines[1]}").white
   warn Rainbow("Error: #{lines[2]}").white
+rescue Teuton::ConfigFileReadError => e
+  lines = e.message.split("\n")
+  warn Rainbow("Eroor: #{lines[0]}")
+  warn Rainbow("Error: #{lines[1]}").white
+rescue Teuton::ConfigReadYamlError => e
+  lines = e.message.split("\n")
+  warn Rainbow("Error: #{lines[0]}")
+  warn Rainbow("Error: #{lines[1]}").white
+  warn Rainbow("Error: #{lines[2]}").white
 rescue Teuton::MainScriptNotFoundError => e
   warn "Error: #{e.message}"
 rescue Teuton::Error => e

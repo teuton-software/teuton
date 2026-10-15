@@ -112,8 +112,8 @@ class TXTFormatter < ArrayFormatter
     when :red
       Rainbow(text).color(:red)
     else
-      puts Rainbow("[ERROR] TXTFormatter#colorize option=#{option}").bright.red
-      exit 1
+      Logger.warn "[TXTFormatter] colorize option=#{option}"
+      text
     end
   end
 end

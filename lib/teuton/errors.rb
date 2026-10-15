@@ -21,6 +21,46 @@ module Teuton
   end
 
   class ConfigurationError < Error; end
+
+  class ConfigFileReadError < Error
+    attr_reader :original_error, :filepath
+
+    def initialize(original_error, filepath)
+      @original_error = original_error
+      @filepath = filepath
+      super(build_message)
+    end
+
+    private
+
+    def build_message
+      <<~MSG.strip
+        ConfigFileReader.read_yaml: #{@original_error}
+        Revise file content! <#{@filepath}>
+      MSG
+    end
+  end
+
+  class ConfigReadYamlError < Error
+    attr_reader :filepath, :original_error
+
+    def initialize(filepath, original_error)
+      @filepath = filepath
+      @original_error = original_error
+      super(build_message)
+    end
+
+    private
+
+    def build_message
+      <<~MSG.strip
+        Reading configurations from yaml:
+        - File : #{@filepath}
+        - Type : #{@original_error}
+      MSG
+    end
+  end
+
   class InputError < Error; end
   class ExecutionError < Error; end
 

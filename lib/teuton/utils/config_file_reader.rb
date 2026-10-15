@@ -61,9 +61,7 @@ module ConfigFileReader
     begin
       data = YAML.load(File.open(filepath))
     rescue => e
-      warn Rainbow("[ERROR] ConfigFileReader.read_yaml: #{e}").bright.red
-      warn Rainbow("[ERROR] Revise file content! <#{filepath}>").white
-      exit 1
+      raise Teuton::ConfigFileReadError.new(e, filepath)
     end
     data = convert_string_keys_to_symbol(data)
     data[:global] = data[:global] || {}
@@ -111,10 +109,7 @@ module ConfigFileReader
     begin
       data = YAML.load(File.open(filepath))
     rescue => e
-      warn Rainbow("[ERROR] Reading configurations from yaml:").bright.red
-      warn Rainbow("[ERROR] - File : #{filepath}").white
-      warn Rainbow("[ERROR] - Type : #{e}").white
-      exit 1
+      raise Teuton::ConfigReadYamlError.new(filepath, e)
     end
     data[:tt_source_file] = relative_path(filepath)
     convert_string_keys_to_symbol(data)
