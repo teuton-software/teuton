@@ -11,31 +11,25 @@ rescue Interrupt
   exit 130
 rescue Teuton::CaseManagerDslError => e
   lines = e.message.split("\n")
-  warn "Error: #{lines[0]}"
-  warn Rainbow("Error: #{lines[1]}").white
-  warn Rainbow("Error: #{lines[2]}").white
-rescue Teuton::ConfigFileReadError => e
+  head = lines.shift
+  warn "Error | #{head}"
+  lines.each { |line| warn Rainbow("Error| #{line}").white }
+rescue Teuton::ConfigFileError => e
   lines = e.message.split("\n")
-  warn Rainbow("Eroor: #{lines[0]}")
-  warn Rainbow("Error: #{lines[1]}").white
-rescue Teuton::ConfigReadYamlError => e
-  lines = e.message.split("\n")
-  warn Rainbow("Error: #{lines[0]}")
-  warn Rainbow("Error: #{lines[1]}").white
-  warn Rainbow("Error: #{lines[2]}").white
+  head = lines.shift
+  warn "Error | #{head}"
+  lines.each { |line| warn Rainbow("Error| #{line}").white }
 rescue Teuton::MainScriptNotFoundError => e
-  warn "Error: #{e.message}"
+  warn "Error | #{e.message}"
 rescue Teuton::Error => e
   warn "Controlled error: #{e.message}"
   e.backtrace&.first(3)&.each do |line|
-    warn Rainbow("Error:   #{line}").white
+    warn Rainbow("Error |   #{line}").white
   end
 rescue => e
   warn "Unexpected error: #{e.message}"
   raise e if ENV["DEBUG"]
 
-  e.backtrace&.first(3)&.each do |line|
-    warn Rainbow("Error:   #{line}").white
-  end
+  e.backtrace&.first(3)&.each { |line| warn Rainbow("Error |   #{line}").white }
 end
 exit 1

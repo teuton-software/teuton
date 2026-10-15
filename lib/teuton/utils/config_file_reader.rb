@@ -61,7 +61,7 @@ module ConfigFileReader
     begin
       data = YAML.load(File.open(filepath))
     rescue => e
-      raise Teuton::ConfigFileReadError.new(e, filepath)
+      raise Teuton::ConfigFileError.new(filepath, e)
     end
     data = convert_string_keys_to_symbol(data)
     data[:global] = data[:global] || {}
@@ -109,7 +109,7 @@ module ConfigFileReader
     begin
       data = YAML.load(File.open(filepath))
     rescue => e
-      raise Teuton::ConfigReadYamlError.new(filepath, e)
+      raise Teuton::ConfigFileError.new(filepath, e)
     end
     data[:tt_source_file] = relative_path(filepath)
     convert_string_keys_to_symbol(data)
@@ -119,10 +119,7 @@ module ConfigFileReader
     begin
       data = JSON.parse(File.read(filepath), symbolize_names: true)
     rescue => e
-      warn Rainbow("[ERROR] Reading configurations from json:").bright.red
-      warn Rainboe("[ERROR] - File : #{filepath}").white
-      warn Rainbow("[ERROR] - Type : #{e}").white
-      exit 1
+      raise Teuton::ConfigFileError.new(filepath, e)
     end
     data[:tt_source_file] = relative_path(filepath)
     convert_string_keys_to_symbol(data)
