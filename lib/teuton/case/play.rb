@@ -12,7 +12,7 @@ class Case
     fill_report(start_time, Time.now)
     close_opened_sessions
   end
-  alias_method :start, :play
+  alias start play
 
   private
 

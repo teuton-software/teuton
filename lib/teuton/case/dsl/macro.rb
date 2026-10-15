@@ -11,9 +11,9 @@ module DSL
   def macro(name, input = {})
     macros = Project.value[:macros]
     unless macros[name]
-      msg = "DSL '#{name}' not found!"
+      msg = "Unknown DSL keyword '#{name}'"
       log(msg, :error)
-      Logger.error("ERROR #{msg}")
+      Logger.error("Error: #{msg}")
       return
     end
     input.each_pair { |k, v| set(k, v) }
@@ -22,7 +22,7 @@ module DSL
       errors << i if get(i) == "NODATA"
     end
     if errors.count > 0
-      log("Macro #{name} => required params #{errors.join(",")}", :error)
+      log("Macro #{name} => required params #{errors.join(',')}", :error)
     else
       instance_eval(&macros[name][:block])
     end
@@ -39,6 +39,7 @@ module DSL
     elsif a[0, 6] == "macro_"
       return macro a[6, a.size], args
     end
+
     macro a, args
   end
 

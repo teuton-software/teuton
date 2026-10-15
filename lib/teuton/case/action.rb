@@ -2,15 +2,14 @@ class Case
   class Action
     attr_reader :id
     attr_accessor :groupname, :description, :weight, :asset,
-      :command, :encoding, :host, :exec, :conn_type, :duration,
-      :result, :output, :alterations, :expected, :check
+                  :command, :encoding, :host, :exec, :conn_type, :duration,
+                  :result, :output, :alterations, :expected, :check
 
     def initialize
       @id = 0
       @groupname = nil
       @description = "No description!"
       @weight = 1.0
-      @readme = []
     end
 
     def next
