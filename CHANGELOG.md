@@ -1,6 +1,7 @@
 
 ## [3.2.1] - 202610xx
 
+- [REFACTOR] Replace `exit 1`by exceptions.
 - [DEPRECATED] Remove `tempfile` and `remote_tempfile`.
 - [DEPRECATED] Replace `start do` by `play do`.
 - [REFACTOR] Case class: Case#close, Case::Action
