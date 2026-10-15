@@ -38,6 +38,8 @@ module Teuton
     require_relative dslpath
 
     mainscriptfile = Project.value[:script_path]
+    raise MainScriptNotFoundError.new(mainscriptfile) unless File.exist?(mainscriptfile)
+
     require_relative mainscriptfile
   end
 end

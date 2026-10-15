@@ -5,14 +5,17 @@ require_relative "lib/teuton/cli"
 
 begin
   Teuton::CLI.start(ARGV)
-rescue Teuton::Error => e
+rescue Teuton::MainScriptNotFoundError => e
   warn "Error: #{e.message}"
+  exit 1
+rescue Teuton::Error => e
+  warn "Controlled error: #{e.message}"
   e.backtrace&.first(3)&.each do |line|
     warn Rainbow("Error:   #{line}").white
   end
   exit 1
-rescue => e
-  warn "Error inesperado: #{e.message}"
+rescue StandardError => e
+  warn "Unexpected error: #{e.message}"
   raise e if ENV["DEBUG"]
 
   e.backtrace&.first(3)&.each do |line|

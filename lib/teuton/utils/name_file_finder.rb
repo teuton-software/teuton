@@ -1,4 +1,4 @@
-require "rainbow"
+require_relative "logger"
 
 class NameFileFinder
   attr_reader :options, :project_path, :script_path, :config_path, :testname
@@ -33,10 +33,7 @@ class NameFileFinder
     # Find project filenames into directory <folder path>
     # COMPLEX MODE: main RB file is <start.rb>
     script_path = File.join(folder_path, "start.rb")
-    unless File.exist? script_path
-      Logger.error "[ERROR] Main script file not found! <#{script_path}>"
-      exit 1
-    end
+    raise Teuton::MainScriptNotFoundError, script_path unless File.exist? script_path
 
     @project_path = folder_path
     @script_path = script_path
@@ -66,12 +63,7 @@ class NameFileFinder
   def find_filenames_from_rb(script_path)
     # SIMPLE MODE: We use script_path as main RB file
     # This must be fullpath to DSL script file
-    if File.extname(script_path) != ".rb"
-      warn Rainbow("[ERROR] Main script file not found!").bright.red
-      warn Rainbow("[ERROR] Not found <#{script_path}/start.rb>").white
-      warn Rainbow("[ERROR] Not found <#{script_path}.rb>").white
-      exit 1
-    end
+    raise Teuton::MainScriptNotFoundError, script_path if File.extname(script_path) != ".rb"
 
     @project_path = File.dirname(script_path)
     @script_path = script_path
