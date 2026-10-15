@@ -20,7 +20,7 @@ def group(name, &block)
 end
 
 def task(...)
-  warn Rainbow("[DEPRECATED] Replace 'task' by 'group'").yellow
+  Logger.warn "[DEPRECATED] Replace 'task' by 'group'"
   group(...)
 end
 
@@ -29,6 +29,6 @@ def play(&block)
 end
 
 def start(...)
-  warn Rainbow("[DEPRECATED] Replace `start' by' play'").yellow
+  Logger.warn "[DEPRECATED] Replace `start' by' play'"
   play(...)
 end

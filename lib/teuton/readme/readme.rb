@@ -41,7 +41,6 @@ class Readme
     @data[:groups] = []
     @data[:play] = []
     @action = Action.new
-    reset_action
     @setted_params = {}
     @cases_params = []
     @global_params = {}

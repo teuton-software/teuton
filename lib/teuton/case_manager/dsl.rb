@@ -23,7 +23,7 @@ def play(&block)
 end
 
 def start(...)
-  warn Rainbow("[DEPRECATED] Replace 'start do' by `play do'")
+  Logger.warn "[DEPRECATED] Replace 'start do' by `play do'"
   play(...)
 end
 

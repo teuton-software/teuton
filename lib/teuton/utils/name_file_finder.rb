@@ -34,7 +34,7 @@ class NameFileFinder
     # COMPLEX MODE: main RB file is <start.rb>
     script_path = File.join(folder_path, "start.rb")
     unless File.exist? script_path
-      warn Rainbow("[ERROR] Main script file not found! <#{script_path}>").bright.red
+      Logger.error "[ERROR] Main script file not found! <#{script_path}>"
       exit 1
     end
 
