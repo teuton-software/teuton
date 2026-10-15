@@ -2,7 +2,8 @@
 ## [3.3.0] - 202610xx
 
 - [DEPRECATED] Replace `start do` by `play do`.
-- [REFACTOR] Case#close, Case::Action, Readme(Case::Action).
+- [REFACTOR] Case class: Case#close, Case::Action
+- [REFACTOR] Readme class:  Readme::Action.
 
 ## [3.2.0] 20261013
 
