@@ -13,7 +13,7 @@ module DSL
     unless macros[name]
       msg = "Unknown DSL keyword '#{name}'"
       log(msg, :error)
-      Logger.warn("Warn: #{msg}")
+      Logger.warn(msg)
       return
     end
     input.each_pair { |k, v| set(k, v) }
@@ -22,7 +22,7 @@ module DSL
       errors << i if get(i) == "NODATA"
     end
     if errors.count > 0
-      log("Macro #{name} => required params #{errors.join(",")}", :error)
+      log("Macro #{name} => required params #{errors.join(',')}", :error)
     else
       instance_eval(&macros[name][:block])
     end
