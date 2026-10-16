@@ -1,10 +1,7 @@
 require "rainbow"
 
 module DSL
-  ##
-  # Record log message
-  # @param text (String)
-  # @param type (Symbol) Values :info, :warn or :error
+  # type => :info, :warn or :error
   def log(text = "", type = :info)
     s = " INFO"
     s = Rainbow("WARN!").color(:yellow) if type == :warn
@@ -15,5 +12,4 @@ module DSL
     msg = "[#{f}] #{text}" if s == ""
     @report.lines << msg
   end
-  # alias_method :msg, :log
 end

@@ -1,3 +1,4 @@
+require_relative "event"
 require_relative "expect"
 require_relative "getset"
 require_relative "host"

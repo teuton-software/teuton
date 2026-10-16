@@ -16,7 +16,11 @@ alias defmacro define_macro
 def group(name, &block)
   Project.value[:groups] << { name: name, block: block }
 end
-alias task group
+
+def task(...)
+  Logger.warn("Keyword deprecated: Replace 'task' by 'group'.")
+  group(...)
+end
 
 def play(&block)
   CaseManager.new.play(&block)

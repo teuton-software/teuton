@@ -19,12 +19,13 @@ class Project
       "quiet" => false
     }
     @project[:verbose] = true # Enable/disable screen outputs
-    @project[:global] = {}
     @project[:ialias] = {} # Hash of Internal alias
-    @project[:macros] = {}
+    @project[:events] = []
+    @project[:global] = {}
     @project[:groups] = []
-    @project[:uses] = []
     @project[:hall_of_fame] = [] # Hall of fame content
+    @project[:macros] = {}
+    @project[:uses] = []
   end
 
   def self.value
