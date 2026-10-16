@@ -12,7 +12,7 @@ class ShowCheck
   end
 
   def suggest_config_content
-    output = {"global" => nil, "cases" => [{}]}
+    output = { "global" => nil, "cases" => [{}] }
     script_vars = find_script_vars
     script_vars.each { |i| output["cases"][0][i.to_s] = "TOCHANGE" }
     Logger.puts YAML.dump(output)
@@ -52,40 +52,42 @@ class ShowCheck
   end
 
   def show_stats
-    my_screen_table = Terminal::Table.new do |st|
-      st.add_row ["DSL Stats", "Count"]
-      st.add_separator
+    Logger.puts ""
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
+      t.add_row ["DSL Stats", "Count"]
+      t.add_separator
 
-      st.add_row ["Uses", Project.value[:uses].size] if Project.value[:uses].size.positive?
+      t.add_row ["Uses", Project.value[:uses].size] if Project.value[:uses].size.positive?
       if Project.value[:macros].size.positive?
-        st.add_row ["Macros", Project.value[:macros].size]
-        Project.value[:macros].each_key { |value| st.add_row ["", value] }
+        t.add_row ["Macros", Project.value[:macros].size]
+        Project.value[:macros].each_key { |value| t.add_row ["", value] }
       end
-      st.add_row ["Groups", @stats[:groups]]
-      st.add_row ["Targets", @stats[:targets]]
-      st.add_row ["Events", @stats[:events]] if @stats[:events].positive?
+      t.add_row ["Groups", @stats[:groups]]
+      t.add_row ["Targets", @stats[:targets]]
+      t.add_row ["Events", @stats[:events]] if @stats[:events].positive?
       runs = @stats[:hosts].values.sum
-      st.add_row ["Runs", runs]
-      @stats[:hosts].each_pair { |k, v| st.add_row [" * #{k}", v] }
-      st.add_row ["Uniques", @stats[:uniques]] if @stats[:uniques].positive?
-      st.add_row ["Logs", @stats[:logs]] if @stats[:logs].positive?
-      st.add_row ["Readmes", @stats[:readmes]] if @stats[:readmes].positive?
+      t.add_row ["Runs", runs]
+      @stats[:hosts].each_pair { |k, v| t.add_row [" * #{k}", v] }
+      t.add_row ["Uniques", @stats[:uniques]] if @stats[:uniques].positive?
+      t.add_row ["Logs", @stats[:logs]] if @stats[:logs].positive?
+      t.add_row ["Readmes", @stats[:readmes]] if @stats[:readmes].positive?
 
       if @stats[:gets].size.positive?
         total = @stats[:gets].values.sum
-        st.add_row ["Gets", total]
+        t.add_row ["Gets", total]
         list = @stats[:gets].sort_by { |_k, v| v }
-        list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
+        list.reverse_each { |item| t.add_row [" * #{item[0]}", item[1].to_s] }
       end
 
       if @stats[:sets].size.positive?
-        st.add_row ["Sets", @stats[:sets].size]
-        @stats[:sets].each { |value| st.add_row ["", value] }
+        t.add_row ["Sets", @stats[:sets].size]
+        @stats[:sets].each { |value| t.add_row ["", value] }
       end
       if @stats[:uploads].size.positive?
-        st.add_row ["Uploads", @stats[:uploads].size]
+        t.add_row ["Uploads", @stats[:uploads].size]
         uploads = @stats[:uploads].select { _1 }
-        uploads.each { |value| st.add_row ["", value] }
+        uploads.each { |value| t.add_row ["", value] }
       end
     end
     Logger.puts my_screen_table.to_s + "\n"
