@@ -34,6 +34,8 @@ module DSL
     @action.alterations = @result.alterations
     @action.expected = (args[:expected] || @result.expected)
     # TODO: ActionManager in progress...
+    # @action_manager.add(@action.clone)
+    # @action_manager.trigger_events!
     @report.lines << @action.to_h
     weight(1.0)
 

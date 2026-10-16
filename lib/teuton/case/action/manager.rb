@@ -7,6 +7,12 @@ module Case
       @events = []
     end
 
+    def trigger_events!
+      @events.each do |event|
+        # TODO: Do something
+      end
+    end
+
     def to_h
       # Export all actions as an Array of Hash
     end
