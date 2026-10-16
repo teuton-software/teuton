@@ -9,10 +9,12 @@ class Report
   def initialize(id = "00")
     @id = id
     @filename = "case-#{@id}"
-    @output_dir = Project.value[:output_basedir]
+    @output_dir = Project.value[:output_dir]
+
     @head = {}
     @lines = []
     @tail = {unique_fault: 0}
+    # TODO
     # [String] with 1 char for every target in @lines
     # For example: "..F." means: good, good, fail and good
     @history = ""

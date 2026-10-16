@@ -31,12 +31,9 @@ class Case
       local: config,
       global: Project.value[:global]
     )
-    @groups = Project.value[:groups]
     @id = Case.next_id
-
-    # Define Case Report
+    @groups = Project.value[:groups]
     @report = Report.new(@id)
-    @report.output_dir = Project.value[:output_dir]
 
     # Default configuration
     @skip = false
@@ -80,5 +77,5 @@ class Case
     @report.head[:tt_members] || "noname"
   end
 
-  alias skip? skip
+  alias_method :skip?, :skip
 end
