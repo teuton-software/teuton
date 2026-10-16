@@ -57,10 +57,6 @@ module ReportExtension
     end
   end
 
-  ##
-  # Trim string text when is too long
-  # @param input (String)
-  # @return String
   def trim(input)
     return input unless input.to_s.start_with? Dir.pwd.to_s
     return input if input == Dir.pwd.to_s

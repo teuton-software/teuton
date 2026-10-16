@@ -42,9 +42,8 @@ class Case
       @skip = true
       @skip = false if Project.value[:options]["case"].include? @id.to_i
     end
-    @verbose = Project.value[:verbose]
-
     @tempdir = File.join(Project.value[:output_dir], "tmp", @id.to_s)
+    @verbose = Project.value[:verbose]
 
     @unique_values = {}
     @result = Result.new

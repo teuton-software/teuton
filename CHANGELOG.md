@@ -1,4 +1,8 @@
 
+## [3.2.2] - 202610xx
+
+- [REFACTOR] Case and Report classes.
+
 ## [3.2.1] - 20261015
 
 - [REFACTOR] Replace `exit 1`by exceptions.
