@@ -73,7 +73,7 @@ class Checker
     Logger.puts ""
     if Project.value[:uses].size.positive?
       Logger.puts(Terminal::Table.new do |t|
-        t.style = { border: :unicode }
+        t.style = {border: :unicode}
         t.add_row ["USE: external libraries"]
       end)
       Project.value[:uses].each_with_index { Logger.puts "      #{_2 + 1}. #{_1}" }
@@ -83,7 +83,7 @@ class Checker
       unless option[:panel]
         msg = "GROUP: #{t[:name]}"
         my_screen_table = Terminal::Table.new do |t|
-          t.style = { border: :unicode }
+          t.style = {border: :unicode}
           t.add_row [msg]
         end
         Logger.puts my_screen_table

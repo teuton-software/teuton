@@ -25,24 +25,24 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   private
 
   def process_config
-    w "#{colorize(' CONFIGURATION', :bg_blue)}\n"
+    w "#{colorize(" CONFIGURATION", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:config].each { |key, value| t.add_row [key.to_s, trim(value)] }
     end
     w "#{my_screen_table}\n\n"
   end
 
   def process_cases
-    w "#{colorize(' CASES', :bg_blue)}\n"
+    w "#{colorize(" CASES", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS GRADE STATE]
       @data[:cases].each do |line|
         t.add_row [
           line[:id],
           line[:members],
-          format("  %<grade>3d", { grade: line[:grade] }),
+          format("  %<grade>3d", {grade: line[:grade]}),
           line[:letter]
         ]
       end
@@ -52,7 +52,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
 
   def process_conn_errors
     my_screen_table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS HOST ERROR]
       @data[:cases].each do |line|
         line[:conn_status].each_pair do |h, e|
@@ -62,13 +62,13 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     end
     return unless my_screen_table.rows.size > 1
 
-    w "#{colorize(' CONN ERRORS', :bg_blue)}\n#{my_screen_table}\n\n"
+    w "#{colorize(" CONN ERRORS", :bg_blue)}\n#{my_screen_table}\n\n"
   end
 
   def process_results
-    w "#{colorize(' RESULTS', :bg_blue)}\n"
+    w "#{colorize(" RESULTS", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:results].each { |key, value| t.add_row([key.to_s, value.to_s]) }
     end
     w "#{my_screen_table}\n\n"
@@ -77,9 +77,9 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   def process_hof
     return if @data[:hall_of_fame].size < MIN_HALL_OF_FAME
 
-    w "#{colorize(' HALL OF FAME', :bg_blue)}\n"
+    w "#{colorize(" HALL OF FAME", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:hall_of_fame].each do |line|
         color = :green
         color = :red if line[0] < 50
