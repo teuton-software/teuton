@@ -63,6 +63,7 @@ class ShowCheck
       end
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
+      st.add_row ["Events", @stats[:events]] if @stats[:events].positive?
       runs = @stats[:hosts].values.sum
       st.add_row ["Runs", runs]
       @stats[:hosts].each_pair { |k, v| st.add_row [" * #{k}", v] }

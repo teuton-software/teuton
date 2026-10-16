@@ -4,11 +4,10 @@ require_relative "getset"
 require_relative "run"
 
 module CheckDSL
-  def event(...) # , &block)
-    return
-    # args = on: XXX, when: XXX
+  def event(**args) # , &block)
     @stats[:events] += 1
-    Logger.puts "      event on: #{args[:on]}, when: #{args[:when]}"
+    # args = on: XXX, when: XXX
+    Logger.puts "      event       on: #{args[:on]}, when: #{args[:when]}"
   end
 
   def log(text = "", type = :info)
