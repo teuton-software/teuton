@@ -16,12 +16,11 @@ class Case
   include DSL
   include Verbose
 
-  # Updated by ExecuteManager
+  # INFO: Used by ExecuteManager
   attr_accessor :action, :result, :sessions, :conn_status
-  # Readed by ExecuteManager
   attr_reader :id, :config, :uniques, :skip
 
-  @current_case_id = "00" # First case ID value
+  @current_case_id = Project.value[:base_case_id]
 
   def self.next_id
     @current_case_id = @current_case_id.next
@@ -81,5 +80,5 @@ class Case
     @report.head[:tt_members] || "noname"
   end
 
-  alias_method :skip?, :skip
+  alias skip? skip
 end

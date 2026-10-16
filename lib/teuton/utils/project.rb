@@ -8,6 +8,7 @@ class Project
     @project[:running_basedir] = Dir.getwd
     @project[:output_basedir] = "var"
     @project[:output_dir] = @project[:output_basedir]
+    @project[:base_case_id] = "00"
     @project[:name] = "teuton"
     @project[:format] = :txt # Default export format
     @project[:debug] = false # Disable/enable local executions
