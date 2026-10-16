@@ -25,24 +25,24 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   private
 
   def process_config
-    w "#{colorize("CONFIGURATION", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |st|
-      @data[:config].each do |key, value|
-        st.add_row [key.to_s, trim(value)]
-      end
+    w "#{colorize(' CONFIGURATION', :bg_blue)}\n"
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
+      @data[:config].each { |key, value| t.add_row [key.to_s, trim(value)] }
     end
     w "#{my_screen_table}\n\n"
   end
 
   def process_cases
-    w "#{colorize("CASES", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |st|
-      st.add_row %w[CASE MEMBERS GRADE STATE]
+    w "#{colorize(' CASES', :bg_blue)}\n"
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
+      t.add_row %w[CASE MEMBERS GRADE STATE]
       @data[:cases].each do |line|
-        st.add_row [
+        t.add_row [
           line[:id],
           line[:members],
-          format("  %<grade>3d", {grade: line[:grade]}),
+          format("  %<grade>3d", { grade: line[:grade] }),
           line[:letter]
         ]
       end
@@ -51,25 +51,25 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   end
 
   def process_conn_errors
-    my_screen_table = Terminal::Table.new do |st|
-      st.add_row %w[CASE MEMBERS HOST ERROR]
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
+      t.add_row %w[CASE MEMBERS HOST ERROR]
       @data[:cases].each do |line|
         line[:conn_status].each_pair do |h, e|
-          st.add_row [line[:id], line[:members], h, colorize(e, :red_bright)]
+          t.add_row [line[:id], line[:members], h, colorize(e, :red_bright)]
         end
       end
     end
     return unless my_screen_table.rows.size > 1
 
-    w "#{colorize("CONN ERRORS", :bg_blue)}\n#{my_screen_table}\n\n"
+    w "#{colorize(' CONN ERRORS', :bg_blue)}\n#{my_screen_table}\n\n"
   end
 
   def process_results
-    w "#{colorize("RESULTS", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |st|
-      @data[:results].each do |key, value|
-        st.add_row [key.to_s, value.to_s]
-      end
+    w "#{colorize(' RESULTS', :bg_blue)}\n"
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
+      @data[:results].each { |key, value| t.add_row([key.to_s, value.to_s]) }
     end
     w "#{my_screen_table}\n\n"
   end
@@ -77,8 +77,9 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   def process_hof
     return if @data[:hall_of_fame].size < MIN_HALL_OF_FAME
 
-    w "#{colorize("HALL OF FAME", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |st|
+    w "#{colorize(' HALL OF FAME', :bg_blue)}\n"
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
       @data[:hall_of_fame].each do |line|
         color = :green
         color = :red if line[0] < 50
@@ -88,7 +89,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
           text1 = colorize(text1, :bright)
           text2 = colorize(text2, :bright)
         end
-        st.add_row [text1, text2]
+        t.add_row [text1, text2]
       end
     end
     w "#{my_screen_table}\n"

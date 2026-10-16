@@ -23,11 +23,10 @@ class TXTFormatter < ArrayFormatter
   private
 
   def process_config
-    w "#{colorize("CONFIGURATION", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |st|
-      @data[:config].sort.each do |key, value|
-        st.add_row [key.to_s, value.to_s]
-      end
+    w "#{colorize(' CONFIGURATION', :bg_blue)}\n"
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
+      @data[:config].sort.each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
     w "#{my_screen_table}\n\n"
   end
@@ -35,23 +34,22 @@ class TXTFormatter < ArrayFormatter
   def process_logs
     return if @data[:logs].empty?
 
-    w "#{colorize("LOGS", :bg_blue)}\n"
+    w "#{colorize(' LOGS', :bg_blue)}\n"
     @data[:logs].each { |line| w "    #{line}\n" }
   end
 
   def process_groups
     return if @data[:groups].empty?
 
-    w "\n#{colorize("GROUPS", :bg_blue)}\n"
+    w "\n#{colorize(' GROUPS', :bg_blue)}\n"
     @data[:groups].each { |g| process_group g }
   end
 
   def process_results
-    w "\n#{colorize("RESULTS", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |st|
-      @data[:results].each do |key, value|
-        st.add_row [key.to_s, value.to_s]
-      end
+    w "\n#{colorize(' RESULTS', :bg_blue)}\n"
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
+      @data[:results].each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
     w "#{my_screen_table}\n"
   end
@@ -59,8 +57,9 @@ class TXTFormatter < ArrayFormatter
   def process_hof
     return if @data[:hall_of_fame].empty?
 
-    w "\n#{colorize("HALL OF FAME", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |st|
+    w "\n#{colorize(' HALL OF FAME', :bg_blue)}\n"
+    my_screen_table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
       @data[:hall_of_fame].each do |line|
         color = :green
         color = :red if line[0] < 50
@@ -70,7 +69,7 @@ class TXTFormatter < ArrayFormatter
           text1 = colorize(text1, :bright)
           text2 = colorize(text2, :bright)
         end
-        st.add_row [text1, text2]
+        t.add_row [text1, text2]
       end
     end
     w "#{my_screen_table}\n"
@@ -80,7 +79,7 @@ class TXTFormatter < ArrayFormatter
 
   def process_group(group)
     tab = "  "
-    w "- #{colorize(group[:title], :blue_bright)}\n"
+    w " * #{colorize(group[:title], :blue_bright)}\n"
     group[:targets].each do |i|
       color = :red
       color = :green if i[:check]
