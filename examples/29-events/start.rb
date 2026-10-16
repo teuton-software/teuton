@@ -3,7 +3,7 @@ group "TOCHANGE" do
   run "id vader"
   expect_ok
 
-  event on: 'last_target', when: 'fail' do
+  event on: "last_target", when: "fail" do
     log "OK"
   end
 end

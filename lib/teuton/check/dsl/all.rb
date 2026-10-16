@@ -12,7 +12,7 @@ module CheckDSL
 
   def log(text = "", type = :info)
     @stats[:logs] += 1
-    prefix = type == :info ? "" : "#{type.to_s.upcase}: "
+    prefix = (type == :info) ? "" : "#{type.to_s.upcase}: "
     Logger.puts "      log         #{prefix}" + text.to_s
   end
 
@@ -30,7 +30,7 @@ module CheckDSL
     Logger.puts format("(%03<targetid>d) target      %<desc>s", targetid: @targetid, desc: desc)
     Logger.puts "      weight      #{weight}"
   end
-  alias goal target
+  alias_method :goal, :target
 
   def unique(key, _value)
     @stats[:uniques] += 1

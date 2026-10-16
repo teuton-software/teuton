@@ -22,7 +22,7 @@ module ReadmeDSL
     weight = args[:weight].to_f if args[:weight]
     @action.weight = weight
   end
-  alias goal target
+  alias_method :goal, :target
 
   def event(*args, &block)
     # TODO

@@ -12,7 +12,7 @@ class ShowCheck
   end
 
   def suggest_config_content
-    output = { "global" => nil, "cases" => [{}] }
+    output = {"global" => nil, "cases" => [{}]}
     script_vars = find_script_vars
     script_vars.each { |i| output["cases"][0][i.to_s] = "TOCHANGE" }
     Logger.puts YAML.dump(output)

@@ -24,11 +24,11 @@ module CheckDSL
     host = args[:to]
     args.delete(:to)
     custom = if args == {}
-               ""
-             else
-               values = args.map { "#{_1}=#{_2}" }
-               "and #{values.join(',')}"
-             end
+      ""
+    else
+      values = args.map { "#{_1}=#{_2}" }
+      "and #{values.join(",")}"
+    end
     @stats[:uploads] << filename
     Logger.puts "      upload      '#{filename}' to #{host} #{custom}"
   end
