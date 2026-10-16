@@ -2,60 +2,48 @@ require_relative "expect_sequence"
 
 module CheckDSL
   def expect(cond)
-    unless @target_begin
-      Logger.warn "WARN  'expect' with no previous 'target'"
-    end
-    Logger.info "      alter       #{result.alterations}" unless result.alterations.empty?
-    Logger.info "      expect      #{cond} (#{cond.class})"
-    Logger.info ""
+    Logger.warn "WARN  'expect' with no previous 'target'" unless @target_begin
+    Logger.puts "      alter       #{result.alterations}" unless result.alterations.empty?
+    Logger.puts "      expect      #{cond} (#{cond.class})"
+    Logger.puts ""
     @target_begin = false
   end
 
   def expect_exit(cond)
-    unless @target_begin
-      Logger.warn "WARN  'expect' with no previous 'target'"
-    end
-    Logger.info "      expect_exit #{cond} (#{cond.class})"
-    Logger.info ""
+    Logger.warn "WARN  'expect' with no previous 'target'" unless @target_begin
+    Logger.puts "      expect_exit #{cond} (#{cond.class})"
+    Logger.puts ""
     @target_begin = false
   end
 
   def expect_fail
-    unless @target_begin
-      Logger.warn "WARN  'expect' with no previous 'target'"
-    end
-    Logger.info "      expect_fail"
-    Logger.info ""
+    Logger.warn "WARN  'expect' with no previous 'target'" unless @target_begin
+    Logger.puts "      expect_fail"
+    Logger.puts ""
     @target_begin = false
   end
 
   def expect_first(cond)
-    unless @target_begin
-      Logger.warn "WARN  'expect' with no previous 'target'"
-    end
-    Logger.info "      alter        #{result.alterations}" unless result.alterations.empty?
-    Logger.info "      expect_first #{cond} (#{cond.class})"
-    Logger.info ""
+    Logger.warn "WARN  'expect' with no previous 'target'" unless @target_begin
+    Logger.puts "      alter        #{result.alterations}" unless result.alterations.empty?
+    Logger.puts "      expect_first #{cond} (#{cond.class})"
+    Logger.puts ""
     @target_begin = false
   end
 
   def expect_last(cond)
-    unless @target_begin
-      Logger.warn "WARN  'expect' with no previous 'target'"
-    end
-    Logger.info "      alter        #{result.alterations}" unless result.alterations.empty?
-    Logger.info "      expect_last #{cond} (#{cond.class})"
-    Logger.info ""
+    Logger.warn "WARN  'expect' with no previous 'target'" unless @target_begin
+    Logger.puts "      alter        #{result.alterations}" unless result.alterations.empty?
+    Logger.puts "      expect_last #{cond} (#{cond.class})"
+    Logger.puts ""
     @target_begin = false
   end
 
   def expect_none(cond = nil, args = {})
-    unless @target_begin
-      Logger.warn "WARN  'expect' with no previous 'target'"
-    end
-    Logger.info "      alter       #{result.alterations}" unless result.alterations.empty?
-    Logger.info "      expect_none #{cond} (#{cond.class})"
-    Logger.info ""
+    Logger.warn "WARN  'expect' with no previous 'target'" unless @target_begin
+    Logger.puts "      alter       #{result.alterations}" unless result.alterations.empty?
+    Logger.puts "      expect_none #{cond} (#{cond.class})"
+    Logger.puts ""
     @target_begin = false
   end
 
@@ -68,23 +56,19 @@ module CheckDSL
   end
 
   def expect_one(cond)
-    unless @target_begin
-      Logger.warn "WARN  'expect' with no previous 'target'"
-    end
-    Logger.info "      alter       #{result.alterations}" unless result.alterations.empty?
-    Logger.info "      expect_one  #{cond} (#{cond.class})"
-    Logger.info ""
+    Logger.warn "WARN  'expect' with no previous 'target'" unless @target_begin
+    Logger.puts "      alter       #{result.alterations}" unless result.alterations.empty?
+    Logger.puts "      expect_one  #{cond} (#{cond.class})"
+    Logger.puts ""
     @target_begin = false
   end
 
   def expect_sequence(&block)
-    unless @target_begin
-      Logger.warn "WARN  'expect' with no previous 'target'"
-    end
+    Logger.warn "WARN  'expect' with no previous 'target'" unless @target_begin
     seq = CheckDSL::ExpectSequence.new
     seq.is_valid?(&block)
-    Logger.info "      expect_sequence #{seq.expected}"
-    Logger.info ""
+    Logger.puts "      expect_sequence #{seq.expected}"
+    Logger.puts ""
     @target_begin = false
   end
 end

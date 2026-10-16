@@ -4,34 +4,39 @@ require_relative "getset"
 require_relative "run"
 
 module CheckDSL
+  def event(...) # , &block)
+    return
+    # args = on: XXX, when: XXX
+    @stats[:events] += 1
+    Logger.puts "      event on: #{args[:on]}, when: #{args[:when]}"
+  end
+
   def log(text = "", type = :info)
     @stats[:logs] += 1
-    prefix = (type == :info) ? "" : "#{type.to_s.upcase}: "
-    Logger.info "      log         #{prefix}" + text.to_s
+    prefix = type == :info ? "" : "#{type.to_s.upcase}: "
+    Logger.puts "      log         #{prefix}" + text.to_s
   end
 
   def readme(text)
     @stats[:readmes] += 1
-    Logger.info "      readme      #{text}"
+    Logger.puts "      readme      #{text}"
   end
 
   def target(desc, args = {})
-    if @target_begin
-      Logger.warn "WARN  Previous 'target' requires 'expect'"
-    end
+    Logger.warn "WARN  Previous 'target' requires 'expect'" if @target_begin
     @target_begin = true
     @stats[:targets] += 1
     @targetid += 1
     weight = args[:weight] ? args[:weight].to_f : 1.0
-    Logger.info format("(%03<targetid>d) target      %<desc>s", targetid: @targetid, desc: desc)
-    Logger.info "      weight      #{weight}"
+    Logger.puts format("(%03<targetid>d) target      %<desc>s", targetid: @targetid, desc: desc)
+    Logger.puts "      weight      #{weight}"
   end
-  alias_method :goal, :target
+  alias goal target
 
   def unique(key, _value)
     @stats[:uniques] += 1
 
-    Logger.info "      unique      value for <#{key}>"
-    Logger.info ""
+    Logger.puts "      unique      value for <#{key}>"
+    Logger.puts ""
   end
 end

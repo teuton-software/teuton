@@ -28,6 +28,7 @@ class Checker
     @stats = {
       groups: 0,
       targets: 0,
+      events: 0,
       logs: 0,
       readmes: 0,
       uniques: 0,
@@ -69,22 +70,23 @@ class Checker
     groups = Project.value[:groups]
     option = Project.value[:options]
 
-    Logger.info ""
+    Logger.puts ""
     if Project.value[:uses].size.positive?
-      Logger.info Terminal::Table.new { |st| st.add_row ["USE: external libraries"] }
-      Project.value[:uses].each_with_index { Logger.info "      #{_2 + 1}. #{_1}" }
+      Logger.puts(Terminal::Table.new { |st| st.add_row ["USE: external libraries"] })
+      Project.value[:uses].each_with_index { Logger.puts "      #{_2 + 1}. #{_1}" }
     end
     groups.each do |t|
       @stats[:groups] += 1
       unless option[:panel]
         msg = "GROUP: #{t[:name]}"
         my_screen_table = Terminal::Table.new { |st| st.add_row [msg] }
-        Logger.info my_screen_table
+        Logger.puts my_screen_table
+        Logger.puts ""
       end
       instance_eval(&t[:block])
     end
-    if @target_begin
-      Logger.warn "WARN  Last 'target' requires 'expect'\n"
-    end
+    return unless @target_begin
+
+    Logger.warn "Last 'target' requires 'expect'\n"
   end
 end

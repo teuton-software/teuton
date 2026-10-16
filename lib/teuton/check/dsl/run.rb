@@ -17,19 +17,19 @@ module CheckDSL
   def goto(host = :localhost, args = {})
     result.reset
     @stats[:hosts][host] = @stats[:hosts][host] ? (@stats[:hosts][host] + 1) : 1
-    Logger.info "      run         '#{args[:exec]}' on #{host}"
+    Logger.puts "      run         '#{args[:exec]}' on #{host}"
   end
 
   def upload(filename, args = {})
     host = args[:to]
     args.delete(:to)
     custom = if args == {}
-      ""
-    else
-      values = args.map { "#{_1}=#{_2}" }
-      "and #{values.join(",")}"
-    end
+               ""
+             else
+               values = args.map { "#{_1}=#{_2}" }
+               "and #{values.join(',')}"
+             end
     @stats[:uploads] << filename
-    Logger.info "      upload      '#{filename}' to #{host} #{custom}"
+    Logger.puts "      upload      '#{filename}' to #{host} #{custom}"
   end
 end

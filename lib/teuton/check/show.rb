@@ -12,17 +12,17 @@ class ShowCheck
   end
 
   def suggest_config_content
-    output = {"global" => nil, "cases" => [{}]}
+    output = { "global" => nil, "cases" => [{}] }
     script_vars = find_script_vars
     script_vars.each { |i| output["cases"][0][i.to_s] = "TOCHANGE" }
-    Logger.info YAML.dump(output)
+    Logger.puts YAML.dump(output)
   end
 
   def revise_config_content
     unless File.exist?(@path[:config])
-      Logger.warn "[WARN] Configfile not found"
-      Logger.debug "       #{@path[:config]}"
-      Logger.warn "[INFO] Recomended content:"
+      Logger.warn "Configfile not found"
+      Logger.debug "- File: #{@path[:config]}"
+      Logger.info "Recomended content:"
       suggest_config_content
       return
     end
@@ -56,30 +56,22 @@ class ShowCheck
       st.add_row ["DSL Stats", "Count"]
       st.add_separator
 
-      if Project.value[:uses].size.positive?
-        st.add_row ["Uses", Project.value[:uses].size]
-      end
+      st.add_row ["Uses", Project.value[:uses].size] if Project.value[:uses].size.positive?
       if Project.value[:macros].size.positive?
         st.add_row ["Macros", Project.value[:macros].size]
         Project.value[:macros].each_key { |value| st.add_row ["", value] }
       end
       st.add_row ["Groups", @stats[:groups]]
       st.add_row ["Targets", @stats[:targets]]
-      runs = @stats[:hosts].values.inject(0) { |acc, item| acc + item }
+      runs = @stats[:hosts].values.sum
       st.add_row ["Runs", runs]
       @stats[:hosts].each_pair { |k, v| st.add_row [" * #{k}", v] }
-      if @stats[:uniques].positive?
-        st.add_row ["Uniques", @stats[:uniques]]
-      end
-      if @stats[:logs].positive?
-        st.add_row ["Logs", @stats[:logs]]
-      end
-      if @stats[:readmes].positive?
-        st.add_row ["Readmes", @stats[:readmes]]
-      end
+      st.add_row ["Uniques", @stats[:uniques]] if @stats[:uniques].positive?
+      st.add_row ["Logs", @stats[:logs]] if @stats[:logs].positive?
+      st.add_row ["Readmes", @stats[:readmes]] if @stats[:readmes].positive?
 
       if @stats[:gets].size.positive?
-        total = @stats[:gets].values.inject(0) { |acc, value| acc + value }
+        total = @stats[:gets].values.sum
         st.add_row ["Gets", total]
         list = @stats[:gets].sort_by { |_k, v| v }
         list.reverse_each { |item| st.add_row [" * #{item[0]}", item[1].to_s] }
@@ -95,7 +87,7 @@ class ShowCheck
         uploads.each { |value| st.add_row ["", value] }
       end
     end
-    Logger.info my_screen_table.to_s + "\n"
+    Logger.puts my_screen_table.to_s + "\n"
   end
 
   private

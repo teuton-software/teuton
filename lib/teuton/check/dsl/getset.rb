@@ -14,10 +14,10 @@ module CheckDSL
     value = ":" + value.to_s if value.instance_of? Symbol
 
     @stats[:sets] << "#{key}=#{value}"
-    Logger.info "      set(#{key},#{value})"
+    Logger.puts "      set(#{key},#{value})"
   end
 
   def unset(key)
-    Logger.info "      unset(#{key})"
+    Logger.puts "      unset(#{key})"
   end
 end

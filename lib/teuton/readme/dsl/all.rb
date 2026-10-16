@@ -22,7 +22,13 @@ module ReadmeDSL
     weight = args[:weight].to_f if args[:weight]
     @action.weight = weight
   end
-  alias_method :goal, :target
+  alias goal target
+
+  def event(*args, &block)
+    # TODO
+    # args = on: XXX, when: XXX
+    # Project.value[:events] << {args: args, block: block}
+  end
 
   def unique(_key, _value)
     # Nothing to do
