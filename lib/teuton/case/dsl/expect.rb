@@ -33,6 +33,7 @@ module DSL
 
     @action.alterations = @result.alterations
     @action.expected = (args[:expected] || @result.expected)
+    # TODO: ActionManager in progress...
     @report.lines << @action.to_h
     weight(1.0)
 

@@ -4,7 +4,7 @@ require_relative "../utils/project"
 require_relative "../utils/verbose"
 require_relative "../report/report"
 require_relative "dsl/all"
-require_relative "action"
+require_relative "action/action"
 require_relative "config"
 require_relative "close"
 # require_relative "builtin/main"
@@ -60,7 +60,6 @@ class Case
   end
 
   def filename
-    # called from: close_main_report
     @report.filename
   end
 
