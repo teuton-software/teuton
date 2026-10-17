@@ -6,7 +6,7 @@ class RunCommandTest < Test::Unit::TestCase
     @dirbase = File.join(filedirname, "..", "..", "examples")
   end
 
-  def old test_run_examples
+  def old(test_run_examples)
     puts ""
     @examples.each { |name| execute_run name }
   end
@@ -24,7 +24,7 @@ class RunCommandTest < Test::Unit::TestCase
   def self.autocreate_methods_with(names)
     names.each do |name|
       class_eval %{
-        def test_run_#{name.tr("-", "_")}
+        def test_run_#{name.tr('-', '_')}
           execute_run('#{name}')
         end}, __FILE__, __LINE__ - 3
     end
@@ -35,5 +35,6 @@ class RunCommandTest < Test::Unit::TestCase
     11-export 13-feedback 14-moodle_id
     15-readme 16-include 17-alias 18-log 19-read_vars
     21-exit_codes 22-result 23-test-code 24-test-sql
+    25-expect-result 26-expect_sequence 29-events
   ]
 end
