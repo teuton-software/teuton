@@ -5,11 +5,11 @@ class Case
     # Invoked from check_cases!
 
     fails = 0
-    uniques.each do |key|
-      next unless uniques[key].include?(id) && uniques[key].count > 1
+    uniques.each_pair do |key, values|
+      next unless values&.include?(id) && (values&.count&.> 1)
 
       fails += 1
-      log_unique_message(key, uniques[key])
+      log_unique_message(key, values)
     end
     @report.tail[:unique_fault] = fails
     @report.close
@@ -22,7 +22,7 @@ class Case
     begin
       log("   ├── Value     => #{key}", :error)
       log("   └── Conflicts => #{value}", :error)
-    rescue => e
+    rescue StandardError => e
       log(key, :error)
       log(e.to_s, :error)
     end

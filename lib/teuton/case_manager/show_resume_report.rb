@@ -32,12 +32,12 @@ class ShowResumeReport
   private
 
   def show_initial_configurations
-    puts Rainbow(" INITIAL CONFIGURATIONS").bright
-    my_screen_table = Terminal::Table.new do |t|
+    Logger.puts Rainbow(" INITIAL CONFIGURATIONS").bright
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       @report.head.each { |key, value| t.add_row [key.to_s, trim(value)] }
     end
-    puts "#{my_screen_table}\n\n"
+    Logger.puts "#{table}\n\n"
   end
 
   def show_resume
@@ -46,15 +46,15 @@ class ShowResumeReport
   end
 
   def show_case_list
-    puts Rainbow(" CASE RESULTS").bright
-    my_screen_table = Terminal::Table.new do |t|
+    Logger.puts Rainbow(" CASE RESULTS").bright
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS GRADE STATE]
       @report.lines.each do |line|
         t.add_row [line[:id], line[:members], line[:grade], line[:letter]]
       end
     end
-    puts "#{my_screen_table}\n\n"
+    Logger.puts "#{table}\n\n"
   end
 
   def show_conn_status
@@ -63,21 +63,21 @@ class ShowResumeReport
     return if errors.zero?
 
     Logger.puts Rainbow(" CONN ERRORS").bright
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS HOST ERROR]
       @report.lines.each do |line|
         line[:conn_status].each_pair do |host, error|
-          t.add_row [line[:id], line[:members], host, Rainbow(error).red.bright]
+          t.add_row [line[:id], line[:members], host, Rainbow(error).blue.bright]
         end
       end
     end
-    Logger.puts "#{my_screen_table}\n\n"
+    Logger.puts "#{table}\n\n"
   end
 
   def show_targets_history
     tab = "  "
-    puts Rainbow(" CASE RESULTS").bright
+    Logger.puts Rainbow(" CASE RESULTS").bright
     if @report.lines.size == 1
       puts lines[0]
     else
@@ -94,16 +94,16 @@ class ShowResumeReport
         end
       end
     end
-    puts "\n\n"
+    Logger.puts "\n\n"
   end
 
   def show_final_values
     Logger.puts Rainbow(" FINAL VALUES").bright
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       @report.tail.each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
-    Logger.puts "#{my_screen_table}\n\n"
+    Logger.puts "#{table}\n\n"
   end
 
   def show_hall_of_fame
@@ -111,11 +111,11 @@ class ShowResumeReport
     return if hall_of_fame.size < MIN_HALL_OF_FAME
 
     Logger.puts Rainbow(" HALL OF FAME").bright
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       hall_of_fame.each { |line| t.add_row [line[0], line[1]] }
     end
-    Logger.puts "#{my_screen_table}\n\n"
+    Logger.puts "#{table}\n\n"
   end
 
   def trim(input)

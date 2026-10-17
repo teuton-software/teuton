@@ -53,7 +53,7 @@ class ShowCheck
 
   def show_stats
     Logger.puts ""
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       t.add_row ["DSL Stats", "Count"]
       t.add_separator
@@ -90,7 +90,7 @@ class ShowCheck
         uploads.each { |value| t.add_row ["", value] }
       end
     end
-    Logger.puts my_screen_table.to_s + "\n"
+    Logger.puts "#{table}\n"
   end
 
   private

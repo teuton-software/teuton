@@ -23,43 +23,43 @@ class TXTFormatter < ArrayFormatter
   private
 
   def process_config
-    w "#{colorize(" CONFIGURATION", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+    w "#{colorize(' CONFIGURATION', :bg_blue)}\n"
+    table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
       @data[:config].sort.each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
-    w "#{my_screen_table}\n\n"
+    w "#{table}\n\n"
   end
 
   def process_logs
     return if @data[:logs].empty?
 
-    w "#{colorize(" LOGS", :bg_blue)}\n"
-    @data[:logs].each { |line| w "    #{line}\n" }
+    w "#{colorize(' LOGS', :bg_blue)}\n"
+    @data[:logs].each { |line| w "   #{line}\n" }
   end
 
   def process_groups
     return if @data[:groups].empty?
 
-    w "\n#{colorize(" GROUPS", :bg_blue)}\n"
+    w "\n#{colorize(' GROUPS', :bg_blue)}\n"
     @data[:groups].each { |g| process_group g }
   end
 
   def process_results
-    w "\n#{colorize(" RESULTS", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+    w "\n#{colorize(' RESULTS', :bg_blue)}\n"
+    table = Terminal::Table.new do |t|
+      t.style = { border: :unicode }
       @data[:results].each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
-    w "#{my_screen_table}\n"
+    w "#{table}\n"
   end
 
   def process_hof
     return if @data[:hall_of_fame].empty?
 
-    w "\n#{colorize(" HALL OF FAME", :bg_blue)}\n"
+    w "\n#{colorize(' HALL OF FAME', :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+      t.style = { border: :unicode }
       @data[:hall_of_fame].each do |line|
         color = :green
         color = :red if line[0] < 50
@@ -79,20 +79,25 @@ class TXTFormatter < ArrayFormatter
 
   def process_group(group)
     tab = "  "
-    w " * #{colorize(group[:title], :blue_bright)}\n"
+    w " \u{25B6} #{colorize(group[:title], :blue_bright)}\n"
     group[:targets].each do |i|
-      color = :red
-      color = :green if i[:check]
-      w tab * 2 + format("%02d", i[:target_id].to_i)
+      if i[:check]
+        color = :green
+        symbol = Settings.letter[:ok]
+      else
+        color = :red
+        symbol = Settings.letter[:cross]
+      end
+      w tab * 1 + format(" #{symbol} %02d", i[:target_id].to_i)
       text = "#{i[:score]}/#{i[:weight]}"
       w " (#{colorize(text, color)})\n"
-      w "#{tab * 4}Description : #{i[:description]}\n"
-      w "#{tab * 4}Command     : #{i[:command]}\n"
-      w "#{tab * 4}Output      : #{i[:output]}\n"
-      w "#{tab * 4}Duration    : #{i[:duration]} (#{i[:conn_type]})\n"
-      w "#{tab * 4}Alterations : #{i[:alterations]}\n"
-      w "#{tab * 4}Expected    : #{i[:expected]}\n"
-      w "#{tab * 4}Result      : #{i[:result]}\n"
+      w "#{tab * 4}Description │ #{i[:description]}\n"
+      w "#{tab * 4}Command     │ #{i[:command]}\n"
+      w "#{tab * 4}Output      │ #{i[:output]}\n"
+      w "#{tab * 4}Duration    │ #{i[:duration]} (#{i[:conn_type]})\n"
+      w "#{tab * 4}Alterations │ #{i[:alterations]}\n"
+      w "#{tab * 4}Expected    │ #{i[:expected]}\n"
+      w "#{tab * 4}Result      │ #{i[:result]}\n"
     end
   end
 

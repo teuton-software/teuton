@@ -26,16 +26,16 @@ class ResumeTXTFormatter < ResumeArrayFormatter
 
   def process_config
     w "#{colorize(" CONFIGURATION", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       @data[:config].each { |key, value| t.add_row [key.to_s, trim(value)] }
     end
-    w "#{my_screen_table}\n\n"
+    w "#{table}\n\n"
   end
 
   def process_cases
     w "#{colorize(" CASES", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS GRADE STATE]
       @data[:cases].each do |line|
@@ -47,11 +47,11 @@ class ResumeTXTFormatter < ResumeArrayFormatter
         ]
       end
     end
-    w "#{my_screen_table}\n\n"
+    w "#{table}\n\n"
   end
 
   def process_conn_errors
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS HOST ERROR]
       @data[:cases].each do |line|
@@ -60,25 +60,25 @@ class ResumeTXTFormatter < ResumeArrayFormatter
         end
       end
     end
-    return unless my_screen_table.rows.size > 1
+    return unless table.rows.size > 1
 
-    w "#{colorize(" CONN ERRORS", :bg_blue)}\n#{my_screen_table}\n\n"
+    w "#{colorize(" CONN ERRORS", :bg_blue)}\n#{table}\n\n"
   end
 
   def process_results
     w "#{colorize(" RESULTS", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       @data[:results].each { |key, value| t.add_row([key.to_s, value.to_s]) }
     end
-    w "#{my_screen_table}\n\n"
+    w "#{table}\n\n"
   end
 
   def process_hof
     return if @data[:hall_of_fame].size < MIN_HALL_OF_FAME
 
     w "#{colorize(" HALL OF FAME", :bg_blue)}\n"
-    my_screen_table = Terminal::Table.new do |t|
+    table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       @data[:hall_of_fame].each do |line|
         color = :green
@@ -92,7 +92,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
         t.add_row [text1, text2]
       end
     end
-    w "#{my_screen_table}\n"
+    w "#{table}\n"
   end
 
   def colorize(text, option)
