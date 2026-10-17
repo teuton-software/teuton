@@ -1,6 +1,7 @@
 
 ## [3.2.2] - 202610xx
 
+- [FEAT] Update ASCII table with unicode border.
 - [REFACTOR] Case and Report classes.
 
 ## [3.2.1] - 20261015

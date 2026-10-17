@@ -1,4 +1,4 @@
-group "Practice events" do
+group "Work with events" do
   target "Create user vader"
   run "id vader"
   expect_ok

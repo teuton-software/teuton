@@ -20,7 +20,6 @@ class Project
     }
     @project[:verbose] = true # Enable/disable screen outputs
     @project[:ialias] = {} # Hash of Internal alias
-    @project[:events] = []
     @project[:global] = {}
     @project[:groups] = []
     @project[:hall_of_fame] = [] # Hall of fame content

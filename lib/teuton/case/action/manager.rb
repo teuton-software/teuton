@@ -1,4 +1,4 @@
-module Case
+class Case
   class ActionManager
     attr_reader :actions, :events
 
