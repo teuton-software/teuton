@@ -3,7 +3,7 @@ group "Work with events" do
   run "id vader"
   expect_ok
 
-  event on: "last_target", when: "fail" do
+  event on: :last_target, when: :failed do
     log "OK"
   end
 end

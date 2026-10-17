@@ -1,5 +1,8 @@
 class Case
   class ActionManager
+    OBJECTS = %i[last_target every_target all_targets].freeze
+    CONDITIONS = %i[failed is_ok].freeze
+    ACTIONS = %i[scores_to_zero stop log].freeze
     attr_reader :actions, :events
 
     def initialize
@@ -11,6 +14,12 @@ class Case
       @events.each do |event|
         # TODO: Do something
       end
+    end
+
+    def scores_to_zero
+    end
+
+    def stop
     end
 
     def to_h
