@@ -23,9 +23,9 @@ class TXTFormatter < ArrayFormatter
   private
 
   def process_config
-    w "#{colorize(' CONFIGURATION', :bg_blue)}\n"
+    w "#{colorize(" CONFIGURATION", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:config].sort.each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
     w "#{table}\n\n"
@@ -34,21 +34,21 @@ class TXTFormatter < ArrayFormatter
   def process_logs
     return if @data[:logs].empty?
 
-    w "#{colorize(' LOGS', :bg_blue)}\n"
+    w "#{colorize(" LOGS", :bg_blue)}\n"
     @data[:logs].each { |line| w "   #{line}\n" }
   end
 
   def process_groups
     return if @data[:groups].empty?
 
-    w "\n#{colorize(' GROUPS', :bg_blue)}\n"
+    w "\n#{colorize(" GROUPS", :bg_blue)}\n"
     @data[:groups].each { |g| process_group g }
   end
 
   def process_results
-    w "\n#{colorize(' RESULTS', :bg_blue)}\n"
+    w "\n#{colorize(" RESULTS", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:results].each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
     w "#{table}\n"
@@ -57,9 +57,9 @@ class TXTFormatter < ArrayFormatter
   def process_hof
     return if @data[:hall_of_fame].empty?
 
-    w "\n#{colorize(' HALL OF FAME', :bg_blue)}\n"
+    w "\n#{colorize(" HALL OF FAME", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:hall_of_fame].each do |line|
         color = :green
         color = :red if line[0] < 50
