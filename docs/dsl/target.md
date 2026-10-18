@@ -17,17 +17,3 @@ By default weight is `1.0`, but it's posible specified other values:
 ```ruby
 target "Write here your description", weight: 2.5
 ```
-
-## [DEPRECATED] Alias
-
-`goal` keyword is an alias of `target`. So it's the same:
-
-```ruby
-target "Write here your description"
-```
-
-or
-
-```ruby
-goal "Write here your description"
-```

@@ -9,10 +9,12 @@ module DSL
 
   def target(desc, args = {})
     @action.description = desc.to_s
-    @action.asset = args[:asset].to_s if args[:asset]
     w = args[:weight] || 1.0
     weight(w)
   end
 
-  alias_method :goal, :target # DEPRECATE
+  def goal(...)
+    Logger.warn("Keyword deprecated: Replace 'goal' by 'target'.")
+    target(...)
+  end
 end

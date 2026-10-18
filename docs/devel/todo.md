@@ -1,15 +1,13 @@
 [<< back](../../README.md)
 
-# Roadmap Teuton v3.0.0 - 2026
+# Roadmap Teuton v3.3.0 - 2026
 
 # 1. Revisar
 
 * Revisar (tests): result.grep(a).grep(b)
-* "Limpiar" las funciones "deprecated"
 * Aplicar las recomendaciones del informe de seguridad de Andrés.
 * verify get(:key) and get('key') works fine!
 * Formatter: xml
-* Revisar la utilidad de action.assets al generar README.
 
 # 2. Documentacion
 

@@ -20,7 +20,7 @@ def group(name, &block)
 end
 
 def task(...)
-  Logger.warn "[DEPRECATED] Replace 'task' by 'group'"
+  Logger.warn "Keyword deprecated: Replace 'task' by 'group'"
   group(...)
 end
 
@@ -29,6 +29,6 @@ def play(&block)
 end
 
 def start(...)
-  Logger.warn "[DEPRECATED] Replace `start' by' play'"
+  Logger.warn "Keyword deprecated: Replace `start' by' play'"
   play(...)
 end

@@ -27,7 +27,7 @@ def play(&block)
 end
 
 def start(...)
-  Logger.warn "[DEPRECATED] Replace 'start do' by `play do'"
+  Logger.warn "Keywaord deprecaed: Replace 'start do' by `play do'"
   play(...)
 end
 
