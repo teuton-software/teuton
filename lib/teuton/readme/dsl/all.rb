@@ -22,7 +22,11 @@ module ReadmeDSL
     weight = args[:weight].to_f if args[:weight]
     @action.weight = weight
   end
-  alias_method :goal, :target
+
+  def goal(...)
+    Logger.warn("Keyword deprecated: Replace 'goal' by 'target'.")
+    target(...)
+  end
 
   def event(*args, &block)
     # TODO

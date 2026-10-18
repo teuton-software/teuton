@@ -52,7 +52,7 @@ class CaseActionTest < Test::Unit::TestCase
     assert_equal "Target 1 description A", @case.action.description
     assert_equal 2.5, @case.weight
 
-    @case.goal "Target 1 description B"
+    @case.target "Target 1 description B"
     assert_equal "Target 1 description B", @case.action.description
     assert_equal 1.0, @case.weight
 

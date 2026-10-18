@@ -30,7 +30,11 @@ module CheckDSL
     Logger.puts format("(%03<targetid>d) target      %<desc>s", targetid: @targetid, desc: desc)
     Logger.puts "      weight      #{weight}"
   end
-  alias_method :goal, :target
+
+  def goal(...)
+    Logger.warn("Keyword deprecated: Replace 'goal' by 'target'.")
+    target(...)
+  end
 
   def unique(key, _value)
     @stats[:uniques] += 1
