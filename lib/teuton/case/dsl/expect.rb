@@ -20,7 +20,7 @@ module DSL
   end
 
   def expect2(cond, args = {})
-    @action.next
+    @action = @action_manager.new_action
     if @result.exitcode.negative?
       # When exitcode is less than zero, it is because there has been
       # an error in the remote connection (SSH or Telnet)
@@ -34,8 +34,7 @@ module DSL
     @action.alterations = @result.alterations
     @action.expected = (args[:expected] || @result.expected)
     # TODO: ActionManager in progress...
-    # @action_manager.add(@action.clone)
-    # @action_manager.trigger_events!
+    @action_manager.trigger_events!
     @report.lines << @action.to_h
     weight(1.0)
 
