@@ -4,7 +4,7 @@ require_relative "../utils/project"
 require_relative "../utils/verbose"
 require_relative "../report/report"
 require_relative "dsl/all"
-require_relative "action/action"
+# require_relative "action/action"
 require_relative "action/manager"
 require_relative "config"
 require_relative "close"
@@ -48,8 +48,8 @@ class Case
 
     @unique_values = {}
     @result = Result.new
-    @action = Action.new
     @action_manager = ActionManager.new
+    @action = @action_manager.new_action
     @uniques = []
     @sessions = {} # Store opened sessions for this case
     @conn_status = {}
