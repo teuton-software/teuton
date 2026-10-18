@@ -3,18 +3,18 @@ module DSL
     object = args[:on]
     unless Case::ActionManager::OBJECTS.include? object
       Logger.warn "Incorrect argument in event on: #{object} ..."
-      Logger.info "Valid OBJECTS: #{Case::ActionManager::OBJECTS.join(',')}"
+      Logger.info "Valid OBJECTS: #{Case::ActionManager::OBJECTS.join(",")}"
       return
     end
     condition = args[:when]
     unless Case::ActionManager::CONDITIONS.include? condition
       Logger.warn "Incorrect argument in event on: :#{object} when: #{condition}"
-      Logger.info "Valid CONDITIONS: #{Case::ActionManager::CONDITIONS.join(',')}"
+      Logger.info "Valid CONDITIONS: #{Case::ActionManager::CONDITIONS.join(",")}"
       return
     end
 
     if object == :every_target
-      @action_manager.events << { args: args, block: block }
+      @action_manager.events << {args: args, block: block}
     else
       # last_target, all_targets
       log "Event triggered on: #{object}, when: #{condition} Target #{@action.id}"

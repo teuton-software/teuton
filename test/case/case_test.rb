@@ -1,7 +1,7 @@
 require "test/unit"
 require_relative "../../lib/teuton/case/case"
 
-class CaseTest < Test::Unit::TestCase
+class CaseActionTest < Test::Unit::TestCase
   def setup
     @testname = "t13-remote_hosts"
     configdata = {global: {tt_testname: @testname}}
@@ -56,9 +56,9 @@ class CaseTest < Test::Unit::TestCase
     assert_equal "Target 1 description B", @case.action.description
     assert_equal 1.0, @case.weight
 
-    @case.target "Target 1 description C", asset: "assets/README.md", weight: 3.3
-    assert_equal "assets/README.md", @case.action.asset
-    assert_equal 3.3, @case.weight
+    @case.target "Target 1 description C", weight: -3.3
+    assert_equal "Target 1 description C", @case.action.description
+    assert_equal(-3.3, @case.weight)
   end
 
   def test_weigth

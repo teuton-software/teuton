@@ -1,15 +1,20 @@
 class Case
   class Action
     attr_reader :id
-    attr_accessor :groupname, :description, :weight, :asset,
-      :command, :encoding, :host, :exec, :conn_type, :duration,
-      :result, :output, :alterations, :expected, :check
+    attr_accessor :groupname, :description, :weight,
+      :command, :encoding, :host, :exec,
+      :conn_type, :duration,
+      :result, :output,
+      :alterations, :expected, :check
+    attr_writer :score
 
     def initialize
       @id = 0
       @groupname = nil
       @description = "No description!"
       @weight = 1.0
+      @check = false
+      @score = nil
     end
 
     def next
@@ -17,14 +22,22 @@ class Case
       self
     end
 
+    def score
+      return @score unless @score.nil?
+      return 0.0 if @check == false
+
+      @weight
+    end
+
     def to_h
       {
         id: id,
-        groupname: groupname, description: description, weight: weight, asset: asset,
+        groupname: groupname, description: description, weight: weight,
         command: command, encoding: encoding, host: host, exec: exec,
         conn_type: conn_type, duration: duration,
         result: result, output: output,
-        alterations: alterations, expected: expected, check: check
+        alterations: alterations, expected: expected, check: check,
+        score: score
       }
     end
   end
