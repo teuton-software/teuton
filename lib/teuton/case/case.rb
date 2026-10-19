@@ -49,7 +49,7 @@ class Case
     @unique_values = {}
     @result = Result.new
     @action_manager = ActionManager.new
-    @action = @action_manager.new_action
+    @action = @action_manager.current_action
     @uniques = []
     @sessions = {} # Store opened sessions for this case
     @conn_status = {}
@@ -77,5 +77,5 @@ class Case
     @report.head[:tt_members] || "noname"
   end
 
-  alias_method :skip?, :skip
+  alias skip? skip
 end

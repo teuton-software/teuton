@@ -2,24 +2,19 @@ class Case
   class Action
     attr_reader :id
     attr_accessor :groupname, :description, :weight,
-      :command, :encoding, :host, :exec,
-      :conn_type, :duration,
-      :result, :output,
-      :alterations, :expected, :check
+                  :command, :encoding, :host, :exec,
+                  :conn_type, :duration,
+                  :result, :output,
+                  :alterations, :expected, :check
     attr_writer :score
 
-    def initialize
-      @id = 0
+    def initialize(id = 0)
+      @id = id
       @groupname = nil
       @description = "No description!"
       @weight = 1.0
       @check = false
       @score = nil
-    end
-
-    def next
-      @id += 1
-      self
     end
 
     def score

@@ -9,9 +9,10 @@ class Case
     attr_reader :actions, :events, :current_action
 
     def initialize
+      @current_action = Action.new(0)
       @actions = []
-      @current_action = nil
-      @events = {runonce: [], repeat: []}
+      @actions << @current_action
+      @events = { runonce: [], repeat: [] }
       @stopped = false
     end
 
@@ -21,12 +22,11 @@ class Case
     def check_event(...)
     end
 
-    def new_action
-      @current_action = if @current_action.nil?
-        Action.new
-      else
-        @current_action.next
-      end
+    def next_action
+      new_action = Action.new(@current_action.id + 1)
+      new_action.groupname = @current_action.groupname
+      new_action.description = @current_action.description
+      @current_action = new_action
       @actions << @current_action
       @current_action
     end

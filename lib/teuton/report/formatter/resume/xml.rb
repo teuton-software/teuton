@@ -61,10 +61,10 @@ class ResumeXMLFormatter < ResumeArrayFormatter
     end
     lines << "  </conn_errors>"
 
-    if lines.size > 2
-      w lines.join("\n")
-      w "\n"
-    end
+    return unless lines.size > 2
+
+    w lines.join("\n")
+    w "\n\n"
   end
 
   def process_results

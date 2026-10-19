@@ -36,6 +36,8 @@ class T12targetTest < Test::Unit::TestCase
     cmd = "./teuton run #{options} --no-color --export=yaml #{filepath} > /dev/null"
     system(cmd)
     testname = File.basename(filepath)
+    dirname = File.join("var", testname)
+    Dir.mkdir(dirname) unless File.exist?(dirname)
     filepath = File.join("var", testname, "resume.yaml")
     data = YAML.unsafe_load(File.read(filepath))
     [testname, filepath, data]
