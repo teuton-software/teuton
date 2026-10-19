@@ -39,8 +39,8 @@ class ArrayFormatter < BaseFormatter
         next
       end
 
-      value = 0.0
-      value = line[:weight] if line[:check]
+      # value = 0.0
+      # value = line[:weight] if line[:check]
       if line[:groupname] != title
         # Add currentgroup
         groups << { title: title, targets: targets } unless title.nil?
@@ -50,21 +50,8 @@ class ArrayFormatter < BaseFormatter
       end
 
       target = {}
-      target[:target_id] = format("%<id>02d", id: line[:id])
-      target[:id] = format("%<id>02d", id: line[:id])
-      target[:check] = line[:check]
-      target[:score] = line[:score] # value
-      target[:weight] = line[:weight]
-      target[:description] = line[:description]
-
-      target[:conn_type] = line[:conn_type]
-      target[:duration] = line[:duration]
-
-      target[:command] = line[:command]
-      target[:output] = line[:output]
-      target[:alterations] = line[:alterations]
-      target[:expected] = line[:expected]
-      target[:result] = line[:result]
+      target[:target_id] = format("%<id>02d", id: target[:id])
+      target = line
 
       if options[:feedback] == false
         target[:command] = "*" * line[:command].size
