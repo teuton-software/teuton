@@ -4,31 +4,26 @@ require_relative "../execute/execute_manager"
 
 module DSL
   ##
-  # DSL run and goto
-  # run: It's the same as goto :localhost
+  # DSL run
   # @param command (String)
   # @param args (Hash)
   def run(command, args = {})
-    args[:exec] = command.to_s
-    host = args[:on] || :localhost
-    goto(host, args)
-  end
-
-  # Run command from the host identify as "host"
-  # goto :host1, execute: "command"
-  def goto(host = :localhost, args = {})
-    @result.reset
-    args[:on] = host unless args[:on]
-    @action.command = args[:execute].to_s if args[:execute]
-    @action.command = args[:exec].to_s if args[:exec]
+    @action.command = command.to_s
+    @action.host = args[:on] || :localhost
     @action.encoding = args[:encoding] || "UTF-8"
 
-    ExecuteManager.new(self).call(host)
+    @result.reset
+
+    ExecuteManager.new(self).call(@action.host)
     @action.output = if @result.content.size < 2
-      @result.value.clone
-    else
-      "(#{@result.content.size} lines)"
-    end
+                       @result.value.clone
+                     else
+                       "(#{@result.content.size} lines)"
+                     end
   end
-  alias_method :on, :goto
+
+  def goto(...)
+    Logger.warn "Keyword DSL deprecated! <goto>"
+    run(...)
+  end
 end
