@@ -33,51 +33,52 @@ class ArrayFormatter < BaseFormatter
     groups = []
     title = nil
     targets = []
-    @lines.each do |i|
-      unless i.instance_of? Hash
-        @data[:logs] << i.to_s # Add log line
+    @lines.each do |line|
+      unless line.instance_of? Hash
+        @data[:logs] << line.to_s # Add log line
         next
       end
 
       value = 0.0
-      value = i[:weight] if i[:check]
-      if i[:groupname] != title
+      value = line[:weight] if line[:check]
+      if line[:groupname] != title
         # Add currentgroup
-        groups << {title: title, targets: targets} unless title.nil?
+        groups << { title: title, targets: targets } unless title.nil?
         # Create new group
-        title = i[:groupname]
+        title = line[:groupname]
         targets = []
       end
 
       target = {}
-      target[:target_id] = format("%<id>02d", id: i[:id])
-      target[:check] = i[:check]
-      target[:score] = value
-      target[:weight] = i[:weight]
-      target[:description] = i[:description]
+      target[:target_id] = format("%<id>02d", id: line[:id])
+      target[:id] = format("%<id>02d", id: line[:id])
+      target[:check] = line[:check]
+      target[:score] = line[:score] # value
+      target[:weight] = line[:weight]
+      target[:description] = line[:description]
 
-      target[:conn_type] = i[:conn_type]
-      target[:duration] = i[:duration]
+      target[:conn_type] = line[:conn_type]
+      target[:duration] = line[:duration]
 
-      target[:command] = i[:command]
-      target[:output] = i[:output]
-      target[:alterations] = i[:alterations]
-      target[:expected] = i[:expected]
-      target[:result] = i[:result]
+      target[:command] = line[:command]
+      target[:output] = line[:output]
+      target[:alterations] = line[:alterations]
+      target[:expected] = line[:expected]
+      target[:result] = line[:result]
 
       if options[:feedback] == false
-        target[:command] = "*" * i[:command].size
-        i[:output] = "" if i[:output].nil?
-        target[:output] = "*" * i[:output].size
-        target[:alterations] = "*" * i[:alterations].size
-        target[:expected] = "*" * i[:expected].size
-        target[:result] = "*" * i[:result].size
+        target[:command] = "*" * line[:command].size
+        line[:output] = "" if line[:output].nil?
+        target[:output] = "*" * line[:output].size
+        target[:alterations] = "*" * line[:alterations].size
+        target[:expected] = "*" * line[:expected].size
+        target[:result] = "*" * line[:result].size
       end
 
       targets << target
     end
 
-    groups << {title: title, targets: targets} unless title.nil?
+    groups << { title: title, targets: targets } unless title.nil?
     @data[:groups] = groups
   end
 

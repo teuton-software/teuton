@@ -15,12 +15,11 @@ module DSL
     elsif input.instance_of?(String) || input.instance_of?(Regexp) || input.instance_of?(Array)
       expect_any input
     else
-      puts Rainbow("[ERROR] Case expect TypeError: <expect #{input} (#{input.class})>").bright.red
+      Logger.warn "Case expect TypeError: <expect #{input} (#{input.class})>"
     end
   end
 
   def expect2(cond, args = {})
-    @action = @action_manager.next_action
     if @result.exitcode.negative?
       # When exitcode is less than zero, it is because there has been
       # an error in the remote connection (SSH or Telnet)
@@ -36,7 +35,8 @@ module DSL
     # TODO: ActionManager in progress...
     @action_manager.trigger_events!
     @report.lines << @action.to_h
-    weight(1.0)
+    @action = @action_manager.next_action
+    # TODO: weight(1.0)
 
     c = Settings.letter[:fail]
     c = Settings.letter[:good] if cond

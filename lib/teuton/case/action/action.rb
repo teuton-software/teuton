@@ -8,7 +8,7 @@ class Case
                   :alterations, :expected, :check
     attr_writer :score
 
-    def initialize(id = 0)
+    def initialize(id = 1)
       @id = id
       @groupname = nil
       @description = "No description!"
