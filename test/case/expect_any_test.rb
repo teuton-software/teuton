@@ -4,7 +4,7 @@ require_relative "../../lib/teuton/case/case"
 class ExpectAnyTest < Test::Unit::TestCase
   def setup
     Project.init
-    Project.value[:global] = {tt_testname: "tXX_expect_any_test"}
+    Project.value[:global] = { tt_testname: "tXX_expect_any_test" }
     Project.value[:verbose] = false
     @case = Case.new({})
   end
@@ -12,7 +12,8 @@ class ExpectAnyTest < Test::Unit::TestCase
   def test_expect_any_string
     configure_result(@case, %w[a b b c])
     @case.expect_any "a"
-    assert action.check
+    puts "DEBUG #{action.class} #{action}"
+    assert_equal true, action.check
     assert_equal 1, action.result
     assert_equal "find(a) & count", action.alterations
     assert_equal "Greater than 0", action.expected
@@ -33,7 +34,7 @@ class ExpectAnyTest < Test::Unit::TestCase
   def test_expect_any_regexp
     configure_result(@case, %w[aa ab ac bc])
     @case.expect_any(/aa/)
-    assert action.check
+    assert_equal true, action.check
     assert_equal 1, action.result
     assert_equal "find((?-mix:aa)) & count", action.alterations
     assert_equal "Greater than 0", action.expected
