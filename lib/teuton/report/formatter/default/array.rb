@@ -50,8 +50,8 @@ class ArrayFormatter < BaseFormatter
       end
 
       target = {}
-      target[:target_id] = format("%<id>02d", id: target[:id])
       target = line
+      target[:target_id] = format("%<id>02d", id: line[:id])
 
       if options[:feedback] == false
         target[:command] = "*" * line[:command].size

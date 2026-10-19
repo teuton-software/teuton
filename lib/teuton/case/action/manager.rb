@@ -9,7 +9,7 @@ class Case
     attr_reader :actions, :events, :current_action
 
     def initialize
-      @current_action = Action.new(0)
+      @current_action = Action.new
       @actions = []
       @actions << @current_action
       @events = { runonce: [], repeat: [] }
