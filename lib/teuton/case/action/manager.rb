@@ -9,9 +9,8 @@ class Case
     attr_reader :actions, :events, :current_action
 
     def initialize
-      @current_action = Action.new
+      @current_action = nil
       @actions = []
-      @actions << @current_action
       @events = { runonce: [], repeat: [] }
       @stopped = false
     end
@@ -22,23 +21,25 @@ class Case
     def check_event(...)
     end
 
+    def last_action
+      @actions.last
+    end
+
     def next_action
-      new_action = Action.new(@current_action.id + 1)
-      new_action.groupname = @current_action.groupname
-      new_action.description = @current_action.description
-      @current_action = new_action
+      if @current_action.nil?
+        @current_action = Action.new(1)
+        return @current_action
+      end
+
       @actions << @current_action
+      @current_action = Action.new(last_action.id + 1)
+      @current_action.groupname = last_action.groupname
+      @current_action.description = last_action.description
       @current_action
     end
 
     def stopped?
       @stopped
-    end
-
-    def trigger_events!
-      @events[:repeat].each do |event|
-        # TODO: Do something
-      end
     end
 
     def scores_to_zero
@@ -51,6 +52,12 @@ class Case
 
     def to_h
       @actions.map { _1.to_h }
+    end
+
+    def trigger_events!
+      @events[:repeat].each do |event|
+        # TODO: Do something
+      end
     end
   end
 end
