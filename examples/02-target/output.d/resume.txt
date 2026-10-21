@@ -1,25 +1,26 @@
-CONFIGURATION
-+---------------+----------------------------------------+
-| tt_title      | Teuton (2.10.7)                        |
-| tt_scriptname | examples/02-target/start.rb            |
-| tt_configfile | examples/02-target/config.yaml         |
-| tt_pwd        | /home/david/proy/repos/teuton.d/teuton |
-| tt_uses       |                                        |
-| tt_testname   | 02-target                              |
-| tt_sequence   | false                                  |
-+---------------+----------------------------------------+
+ CONFIGURATION
+┌────────────────┬────────────────────────────────────────┐
+│ tt_title       │ Teuton (3.2.1)                         │
+│ tt_scriptname  │ examples/02-target/start.rb            │
+│ tt_configfile  │ examples/02-target/config.yaml         │
+│ tt_pwd         │ /home/david/proy/repos/teuton.d/teuton │
+│ tt_uses        │                                        │
+│ tt_sequence    │ false                                  │
+│ tt_script_path │ examples/02-target/start.rb            │
+│ tt_config_path │ examples/02-target/config.yaml         │
+└────────────────┴────────────────────────────────────────┘
 
-CASES
-+------+---------+-------+-------+
-| CASE | MEMBERS | GRADE | STATE |
-| 01   | VALUE   |    33 | ?     |
-+------+---------+-------+-------+
+ CASES
+┌──────┬───────────┬───────┬───────┐
+│ CASE │ MEMBERS   │ GRADE │ STATE │
+│ 01   │ anonymous │    33 │ ?     │
+└──────┴───────────┴───────┴───────┘
 
-RESULTS
-+--------------+---------------------------+
-| unique_fault | 0                         |
-| start_time   | 2025-11-12 20:15:59 +0000 |
-| finish_time  | 2025-11-12 20:15:59 +0000 |
-| duration     | 0.005064398               |
-+--------------+---------------------------+
+ RESULTS
+┌──────────────┬───────────────────────────┐
+│ unique_fault │ 0                         │
+│ start_time   │ 2026-10-21 17:05:49 +0100 │
+│ finish_time  │ 2026-10-21 17:05:49 +0100 │
+│ duration     │ 0.005376875               │
+└──────────────┴───────────────────────────┘
 

@@ -46,18 +46,18 @@ end
 **Usage**: Run test with `teuton run TESTPATH`.
 
 ```console
-$ teuton run examples/02-target
+$ teutonx examples/02-target 
 ------------------------------------
-Started at 2025-12-01 18:14:44 +0000
+Started at 2026-10-21 17:05:49 +0100
 F.
 Finished in 0.005 seconds
 ------------------------------------
  
-CASE RESULTS
-+------+-----------+-------+-------+
-| CASE | MEMBERS   | GRADE | STATE |
-| 01   | anonymous | 33.0  | ?     |
-+------+-----------+-------+-------+
+ CASE RESULTS
+┌──────┬───────────┬───────┬───────┐
+│ CASE │ MEMBERS   │ GRADE │ STATE │
+│ 01   │ anonymous │ 33.0  │ ?     │
+└──────┴───────────┴───────┴───────┘
 ```
 
 **Output**: reports saved into `var/TESTNAME` folder.
