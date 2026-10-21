@@ -8,7 +8,7 @@ Evaluate the occurrence of a certain sequence that takes place in different line
 
 ## Description
 
-In the classic target/run/expect, the expect statement works by locating lines from the output of the previous command that meet certain criteria.
+In the classic "target/run/expect", the expect statement works by locating lines from the output of the previous command that meet certain criteria.
 
 We can even (using regular expressions) detect if there is any line in the output where a certain sequence appears.
 

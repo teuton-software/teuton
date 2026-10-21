@@ -4,9 +4,8 @@ group "Learn about expect_sequence" do
   run "cat /etc/hosts"
   expect_sequence do
     find "127.0.0.1"
-    next_to "# fallback"
+    next_to "127.0.0.2"
     find "# special"
-    next_to "::1"
   end
 
   target "File /etc/hosts with sequence 2:"
