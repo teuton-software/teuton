@@ -19,7 +19,7 @@ class Case
 
   # INFO: Used by ExecuteManager
   attr_accessor :action, :result, :sessions, :conn_status
-  attr_reader :id, :config, :uniques, :skip
+  attr_reader :id, :config, :uniques, :skip, :action_manager
 
   @current_case_id = Project.value[:base_case_id]
 
@@ -69,6 +69,10 @@ class Case
     return 0.0 if skip
 
     @report.tail[:grade]
+  end
+
+  def last_action
+    @action_manager.actions.last
   end
 
   def members

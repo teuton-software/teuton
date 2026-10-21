@@ -50,7 +50,7 @@ class Case
     end
 
     def to_h
-      # Export all actions as an Array of Hash
+      @actions.map { _1.to_h }
     end
   end
 end

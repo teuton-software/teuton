@@ -12,7 +12,9 @@ class ExpectAnyTest < Test::Unit::TestCase
   def test_expect_any_string
     configure_result(@case, %w[a b b c])
     @case.expect_any "a"
-    puts "DEBUG #{action.class} #{action}"
+    @case.action_manager.actions.pop
+    action = @case.last_action
+
     assert_equal true, action.check
     assert_equal 1, action.result
     assert_equal "find(a) & count", action.alterations
@@ -20,6 +22,9 @@ class ExpectAnyTest < Test::Unit::TestCase
 
     configure_result(@case, %w[a b b c])
     @case.expect_any "b"
+    @case.action_manager.actions.pop
+    action = @case.last_action
+
     assert action.check
     assert_equal 2, action.result
   end
@@ -27,6 +32,9 @@ class ExpectAnyTest < Test::Unit::TestCase
   def test_expect_any_string_fail
     configure_result(@case, %w[a b b c])
     @case.expect_any "d"
+    @case.action_manager.actions.pop
+    action = @case.last_action
+
     assert_equal false, action.check
     assert_equal 0, action.result
   end
@@ -34,6 +42,9 @@ class ExpectAnyTest < Test::Unit::TestCase
   def test_expect_any_regexp
     configure_result(@case, %w[aa ab ac bc])
     @case.expect_any(/aa/)
+    @case.action_manager.actions.pop
+    action = @case.last_action
+
     assert_equal true, action.check
     assert_equal 1, action.result
     assert_equal "find((?-mix:aa)) & count", action.alterations
@@ -41,6 +52,9 @@ class ExpectAnyTest < Test::Unit::TestCase
 
     configure_result(@case, %w[aa ab ac bc])
     @case.expect_any(/a/)
+    @case.action_manager.actions.pop
+    action = @case.last_action
+
     assert action.check
     assert_equal 3, action.result
 
@@ -53,11 +67,12 @@ class ExpectAnyTest < Test::Unit::TestCase
   def test_expect_any_regexp_fail
     configure_result(@case, %w[aa ab ac bc])
     @case.expect_any(/d/)
+    @case.action_manager.actions.pop
+    action = @case.last_action
+
     assert_equal false, action.check
     assert_equal 0, action.result
   end
-
-  def action = @case.action
 
   def configure_result(acase, content)
     acase.result.content = content
