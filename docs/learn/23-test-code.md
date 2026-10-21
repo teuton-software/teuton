@@ -43,22 +43,25 @@ Define config params:
 global:
   folder: examples/23-test-code/code
 cases:
-- tt_members: student_1
+- tt_members: student_1_python
   filename: math_1.py
-- tt_members: student_2
+- tt_members: student_2_python
   filename: math_2.py
+- tt_members: student_3_ruby
+  filename: math_3.rb
 ```
 
 * Copy students files into `code` subfolder.
 * Now run Teuton test:
 
 ```
-$ teuton examples/23-test-code
-
-CASE RESULTS
-+------+-----------+-------+-------+
-| CASE | MEMBERS   | GRADE | STATE |
-| 01   | student_1 | 100.0 | ✔     |
-| 02   | student_2 | 100.0 | ✔     |
-+------+-----------+-------+-------+
+$ teuton examples/23-test-code 
+ 
+ CASE RESULTS
+┌──────┬──────────────────┬───────┬───────┐
+│ CASE │ MEMBERS          │ GRADE │ STATE │
+│ 01   │ student_1_python │ 100.0 │ ✔     │
+│ 02   │ student_2_python │ 100.0 │ ✔     │
+│ 03   │ student_3_ruby   │ 100.0 │ ✔     │
+└──────┴──────────────────┴───────┴───────┘
 ```
