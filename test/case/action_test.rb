@@ -16,4 +16,15 @@ class CaseActionTest < Test::Unit::TestCase
     action.weight = 2.3
     assert_equal 2.3, action.score
   end
+
+  def test_to_hash
+    action = Case::Action.new
+    data1 = { id: 1, groupname: nil, description: "No description!", weight: 1.0 }
+    data2 = action.to_h
+
+    assert_equal data1[:id], data2[:id]
+    assert_equal data1[:groupname], data2[:groupname]
+    assert_equal data1[:description], data2[:description]
+    assert_equal data1[:weight], data2[:weight]
+  end
 end
