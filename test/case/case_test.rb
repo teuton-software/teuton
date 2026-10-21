@@ -4,7 +4,7 @@ require_relative "../../lib/teuton/case/case"
 class CaseActionTest < Test::Unit::TestCase
   def setup
     @testname = "t13-remote_hosts"
-    configdata = { global: { tt_testname: @testname } }
+    configdata = {global: {tt_testname: @testname}}
     Project.init
     mainproject = "test/files/#{@testname}"
     Project.add_options(mainproject, {})
@@ -23,7 +23,7 @@ class CaseActionTest < Test::Unit::TestCase
   end
 
   def test_config
-    params = { p1: 1, p2: "p2" }
+    params = {p1: 1, p2: "p2"}
     c = Case.new(params)
     assert_equal params[:p1], c.config.get(:p1)
     assert_equal params[:p2], c.config.get(:p2)

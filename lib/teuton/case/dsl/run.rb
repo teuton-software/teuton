@@ -16,10 +16,10 @@ module DSL
 
     ExecuteManager.new(self).call(@action.host)
     @action.output = if @result.content.size < 2
-                       @result.value.clone
-                     else
-                       "(#{@result.content.size} lines)"
-                     end
+      @result.value.clone
+    else
+      "(#{@result.content.size} lines)"
+    end
   end
 
   def goto(...)

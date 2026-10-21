@@ -23,7 +23,6 @@ class T12targetTest < Test::Unit::TestCase
     assert_equal 1.0, targets[0][:score]
     assert_equal 1.0, targets[0][:weight]
     assert_equal "Create user root", targets[0][:description]
-    puts targets[0]
     assert_equal "id root 2>/dev/null", targets[0][:command]
     assert_equal :local, targets[0][:conn_type]
     assert_equal "find(root) & count", targets[0][:alterations]

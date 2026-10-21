@@ -43,13 +43,11 @@ class ArrayFormatter < BaseFormatter
       # value = line[:weight] if line[:check]
       if line[:groupname] != title
         # Add currentgroup
-        groups << { title: title, targets: targets } unless title.nil?
+        groups << {title: title, targets: targets} unless title.nil?
         # Create new group
         title = line[:groupname]
         targets = []
       end
-
-      target = {}
       target = line
       target[:target_id] = format("%<id>02d", id: line[:id])
 
@@ -65,7 +63,7 @@ class ArrayFormatter < BaseFormatter
       targets << target
     end
 
-    groups << { title: title, targets: targets } unless title.nil?
+    groups << {title: title, targets: targets} unless title.nil?
     @data[:groups] = groups
   end
 

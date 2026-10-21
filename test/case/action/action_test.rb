@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../../lib/teuton/case/action/action"
+require_relative "../../../lib/teuton/case/action/action"
 
 class CaseActionTest < Test::Unit::TestCase
   def test_action_attr_and_score
@@ -19,7 +19,7 @@ class CaseActionTest < Test::Unit::TestCase
 
   def test_to_hash
     action = Case::Action.new
-    data1 = { id: 1, groupname: nil, description: "No description!", weight: 1.0 }
+    data1 = {id: 1, groupname: nil, description: "No description!", weight: 1.0}
     data2 = action.to_h
 
     assert_equal data1[:id], data2[:id]

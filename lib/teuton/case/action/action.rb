@@ -2,10 +2,10 @@ class Case
   class Action
     attr_reader :id
     attr_accessor :groupname, :description, :weight,
-                  :command, :encoding, :host, :exec,
-                  :conn_type, :duration,
-                  :result, :output,
-                  :alterations, :expected, :check
+      :command, :encoding, :host, :exec,
+      :conn_type, :duration,
+      :result, :output,
+      :alterations, :expected, :check
     attr_writer :score
 
     def initialize(id = 1)

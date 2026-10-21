@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../../lib/teuton/case/action/manager"
+require_relative "../../../lib/teuton/case/action/manager"
 
 class CaseActionManagerTest < Test::Unit::TestCase
   def test_initialize
@@ -36,7 +36,7 @@ class CaseActionManagerTest < Test::Unit::TestCase
     a.description = "First action"
     a = am.next_action
     a.description = "Second action"
-    a = am.next_action
+    am.next_action
 
     assert_equal "First action", am.to_h[0][:description]
     assert_equal "Second action", am.to_h[1][:description]

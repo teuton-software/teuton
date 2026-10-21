@@ -32,7 +32,7 @@ module DSL
 
     @action.alterations = @result.alterations
     @action.expected = (args[:expected] || @result.expected)
-    # TODO: ActionManager in progress...
+
     @action_manager.trigger_events!
     @report.lines << @action.to_h
     @action = @action_manager.next_action

@@ -1,4 +1,4 @@
-group "Learn about targets" do
+group "t12: Learn about targets" do
   target "Create user root"
   run "id root 2>/dev/null"
   expect "root"

@@ -1,10 +1,10 @@
 require "test/unit"
-require_relative "../../lib/teuton/case/case"
+require_relative "../../../lib/teuton/case/case"
 
 class ExpectOneTest < Test::Unit::TestCase
   def setup
     Project.init
-    Project.value[:global] = { tt_testname: "tXX_expect_one_test" }
+    Project.value[:global] = {tt_testname: "tXX_expect_one_test"}
     Project.value[:verbose] = false
   end
 

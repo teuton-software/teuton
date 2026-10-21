@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../../lib/teuton/case/dsl/expect_sequence"
+require_relative "../../../lib/teuton/case/dsl/expect_sequence"
 
 class ExpectSequenceClassTest < Test::Unit::TestCase
   def test_expect_sequence_find_strings_ok01
