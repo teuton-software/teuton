@@ -62,9 +62,9 @@ cases:
 ```
 $ teuton examples/24-test-sql                                   
 
-CASE RESULTS
-+------+-----------+-------+-------+
-| CASE | MEMBERS   | GRADE | STATE |
-| 01   | student_1 | 100.0 | ✔     |
-+------+-----------+-------+-------+
+ CASE RESULTS
+┌──────┬────────────────┬───────┬───────┐
+│ CASE │ MEMBERS        │ GRADE │ STATE │
+│ 01   │ student_1_name │ 100.0 │ ✔     │
+└──────┴────────────────┴───────┴───────┘
 ```

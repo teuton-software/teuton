@@ -90,8 +90,11 @@ CONN ERRORS
 +------+---------+-------+------------------+
 ```
 
-Meaning of progress symbols:
-* `.`: check ok
-* `F`: check fail
-* `!`: connection fail
-* `u`: upload ok
+**Meaning of progress symbols**
+
+| Symbol | Description     |
+| ------ | --------------- |
+| `.`    | check ok        |
+| `F`    | check fail      |
+| `!`    | connection fail |
+| `u`    | upload ok       |
