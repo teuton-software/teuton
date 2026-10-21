@@ -1,6 +1,7 @@
 
-## [3.3.x] - 202610xx
+## [3.3.0] - 20261021
 
+- [DOC] Update command output.
 - [DEPRECATED] Remove "target :assets" funtion. It must be into "readme :assets".
 - [FEAT] Update ASCII table with unicode border.
 - [REFACTOR] Case and Report classes.
