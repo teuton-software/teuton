@@ -73,22 +73,22 @@ class Checker
     Logger.puts ""
     if Project.value[:uses].size.positive?
       table = Terminal::Table.new do |t|
-        t.style = {border: :unicode}
+        t.style = { border: :unicode }
         t.add_row ["USE: external libraries"]
       end
       Logger.puts table
       Project.value[:uses].each_with_index { Logger.puts "      #{_2 + 1}. #{_1}" }
+      Logger.puts ""
     end
     groups.each do |t|
       @stats[:groups] += 1
       unless option[:panel]
         msg = "GROUP: #{t[:name]}"
         table = Terminal::Table.new do |t|
-          t.style = {border: :unicode}
+          t.style = { border: :unicode }
           t.add_row [msg]
         end
         Logger.puts table
-        Logger.puts ""
       end
       instance_eval(&t[:block])
     end

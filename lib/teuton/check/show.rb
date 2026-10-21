@@ -12,7 +12,7 @@ class ShowCheck
   end
 
   def suggest_config_content
-    output = {"global" => nil, "cases" => [{}]}
+    output = { "global" => nil, "cases" => [{}] }
     script_vars = find_script_vars
     script_vars.each { |i| output["cases"][0][i.to_s] = "TOCHANGE" }
     Logger.puts YAML.dump(output)
@@ -52,9 +52,8 @@ class ShowCheck
   end
 
   def show_stats
-    Logger.puts ""
     table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+      t.style = { border: :unicode }
       t.add_row ["DSL Stats", "Count"]
       t.add_separator
 
