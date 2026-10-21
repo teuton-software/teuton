@@ -6,69 +6,72 @@ class ExpectAnyTest < Test::Unit::TestCase
     Project.init
     Project.value[:global] = { tt_testname: "tXX_expect_any_test" }
     Project.value[:verbose] = false
-    @case = Case.new({})
   end
 
   def test_expect_any_string
-    configure_result(@case, %w[a b b c])
-    @case.expect_any "a"
-    @case.action_manager.actions.pop
-    action = @case.last_action
+    acase = Case.new({})
+
+    configure_result(acase, %w[a b b c])
+    acase.expect_any "a"
+    action = acase.last_action
 
     assert_equal true, action.check
     assert_equal 1, action.result
     assert_equal "find(a) & count", action.alterations
     assert_equal "Greater than 0", action.expected
 
-    configure_result(@case, %w[a b b c])
-    @case.expect_any "b"
-    @case.action_manager.actions.pop
-    action = @case.last_action
+    configure_result(acase, %w[a b b c])
+    acase.expect_any "b"
+    action = acase.last_action
 
     assert action.check
     assert_equal 2, action.result
   end
 
   def test_expect_any_string_fail
-    configure_result(@case, %w[a b b c])
-    @case.expect_any "d"
-    @case.action_manager.actions.pop
-    action = @case.last_action
+    acase = Case.new({})
+
+    configure_result(acase, %w[a b b c])
+    acase.expect_any "d"
+    action = acase.last_action
 
     assert_equal false, action.check
     assert_equal 0, action.result
   end
 
   def test_expect_any_regexp
-    configure_result(@case, %w[aa ab ac bc])
-    @case.expect_any(/aa/)
-    @case.action_manager.actions.pop
-    action = @case.last_action
+    acase = Case.new({})
+
+    configure_result(acase, %w[aa ab ac bc])
+    acase.expect_any(/aa/)
+    action = acase.last_action
 
     assert_equal true, action.check
     assert_equal 1, action.result
     assert_equal "find((?-mix:aa)) & count", action.alterations
     assert_equal "Greater than 0", action.expected
 
-    configure_result(@case, %w[aa ab ac bc])
-    @case.expect_any(/a/)
-    @case.action_manager.actions.pop
-    action = @case.last_action
+    configure_result(acase, %w[aa ab ac bc])
+    acase.expect_any(/a/)
+    action = acase.last_action
 
     assert action.check
     assert_equal 3, action.result
 
-    configure_result(@case, %w[aa ab ac bc])
-    @case.expect_any(/a|b/)
+    configure_result(acase, %w[aa ab ac bc])
+    acase.expect_any(/a|b/)
+    action = acase.last_action
+
     assert action.check
     assert_equal 4, action.result
   end
 
   def test_expect_any_regexp_fail
-    configure_result(@case, %w[aa ab ac bc])
-    @case.expect_any(/d/)
-    @case.action_manager.actions.pop
-    action = @case.last_action
+    acase = Case.new({})
+
+    configure_result(acase, %w[aa ab ac bc])
+    acase.expect_any(/d/)
+    action = acase.last_action
 
     assert_equal false, action.check
     assert_equal 0, action.result
