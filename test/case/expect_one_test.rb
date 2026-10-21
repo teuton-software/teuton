@@ -4,50 +4,59 @@ require_relative "../../lib/teuton/case/case"
 class ExpectOneTest < Test::Unit::TestCase
   def setup
     Project.init
-    Project.value[:global] = {tt_testname: "tXX_expect_one_test"}
+    Project.value[:global] = { tt_testname: "tXX_expect_one_test" }
     Project.value[:verbose] = false
-    @case = Case.new({})
   end
 
   def test_expect_one_string
-    configure_result(@case, %w[a b b c])
-    @case.expect "a"
+    acase = Case.new({})
+    configure_result(acase, %w[a b b c])
+    acase.expect "a"
+    action = acase.last_action
 
     assert action.check
     assert_equal 1, action.result
     assert_equal "find(a) & count", action.alterations
     assert_equal "Greater than 0", action.expected
 
-    configure_result(@case, %w[a b b c])
-    @case.expect_one "a"
+    configure_result(acase, %w[a b b c])
+    acase.expect_one "a"
+    action = acase.last_action
+
     assert action.check
     assert_equal 1, action.result
 
-    configure_result(@case, %w[a b b c])
-    @case.expect_one "b"
+    configure_result(acase, %w[a b b c])
+    acase.expect_one "b"
+    action = acase.last_action
+
     assert_equal false, action.check
     assert_equal 2, action.result
 
-    configure_result(@case, %w[a b b c])
-    @case.expect_one "d"
+    configure_result(acase, %w[a b b c])
+    acase.expect_one "d"
+    action = acase.last_action
+
     assert_equal false, action.check
     assert_equal 0, action.result
   end
 
   def test_expect_one_regexp
-    configure_result(@case, %w[aa ab ac bc])
-    @case.expect_one(/a/)
+    acase = Case.new({})
+    configure_result(acase, %w[aa ab ac bc])
+    acase.expect_one(/a/)
+    action = acase.last_action
 
     assert_equal false, action.check
     assert_equal 3, action.result
 
-    configure_result(@case, %w[aa ab ac bc])
-    @case.expect_one(/ab/)
+    configure_result(acase, %w[aa ab ac bc])
+    acase.expect_one(/ab/)
+    action = acase.last_action
+
     assert action.check
     assert_equal 1, action.result
   end
-
-  def action = @case.action
 
   def configure_result(acase, content)
     acase.result.content = content
