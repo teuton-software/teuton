@@ -40,13 +40,13 @@ module Teuton
       end
 
       map ["co", "-co", "--config"] => "config"
-      desc "config [OPTIONS] DIRECTORY", "Suggest configuration."
+      desc "config DIRECTORY", "Suggest configuration."
       long_desc <<~LONGDESC
         config DIRECTORY, "Suggest the content of the configuration file based on the test"
       LONGDESC
       def config(projectpath)
         # Check Test: suggest the content of the configuration file based on the test
-        opt = {"onlyconfig" => true}
+        opt = { "onlyconfig" => true }
         Teuton.check(projectpath, opt)
       end
 

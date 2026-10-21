@@ -27,11 +27,12 @@ Alias: `teuton c foo`, `teuton -c foo`, `teuton --check foo`
 ## Example
 
 ```
-$ teuton check examples/02-target
+$ teuton check examples/02-target 
 
-+----------------------------+
-| GROUP: Learn about targets |
-+----------------------------+
+┌────────────────────────────┐
+│ GROUP: Learn about targets │
+└────────────────────────────┘
+
 (001) target      Create user obiwan
       weight      2.0
       run         'id obiwan' on localhost
@@ -42,17 +43,18 @@ $ teuton check examples/02-target
       run         'id vader' on localhost
       expect_fail
 
-+--------------+-------+
-| DSL Stats    | Count |
-+--------------+-------+
-| Groups       | 1     |
-| Targets      | 2     |
-| Runs         | 2     |
-|  * localhost | 2     |
-+--------------+-------+
-[WARN] Configfile not found
-       .../examples/02-target/config.yaml
-[INFO] Recomended content:
+
+┌──────────────┬───────┐
+│ DSL Stats    │ Count │
+├──────────────┼───────┤
+│ Groups       │ 1     │
+│ Targets      │ 2     │
+│ Runs         │ 2     │
+│  * localhost │ 2     │
+└──────────────┴───────┘
+Warn | Configfile not found
+- File: ../examples/02-target/config.yaml
+Info | Recomended content:
 ---
 global:
 cases:

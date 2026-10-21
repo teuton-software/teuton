@@ -15,23 +15,33 @@ Alias: `teuton h`,`teuton -h`, `teuton --help`
 Commands:
   teuton [run] [OPTIONS] DIRECTORY   # Run test from directory
   teuton check [OPTIONS] DIRECTORY   # Check test and config file content
-  teuton config [OPTIONS] DIRECTORY  # Suggest configuration or run server
+  teuton config [OPTIONS] DIRECTORY  # Suggest configuration.
   teuton help [COMMAND]              # Describe available commands or one specific command
   teuton new DIRECTORY               # Create skeleton for a new project
   teuton readme DIRECTORY            # Show README extracted from test contents
+  teuton tree                        # Print a tree of all available commands
   teuton version                     # Show the program version
 ```
 
-**Example**: `teuton help config`
+**Example**: `teuton help check`
+
 ```
 Usage:
-  teuton config [OPTIONS] DIRECTORY
+  teuton check [OPTIONS] DIRECTORY
 
 Options:
-  [--server], [--no-server], [--skip-server]  
+  [--onlyconfig], [--no-onlyconfig], [--skip-onlyconfig]  
+  [--color], [--no-color], [--skip-color]                 
+  [--cname=CNAME]                                         
+  [--cpath=CPATH]                                         
 
 Description:
-  config DIRECTORY, "Suggest the content of the configuration file based on the test"
+  (1) teuton check PATH/TO/DIR , Check content of start.rb and config.yaml files.
 
-  config --server DIRECTORY, "Init Config Server. Students connect and help to build config file content"
-```
+  (2) teuton check PATH/TO/DIR --cname=demo , Check content of start.rb and demo.yaml files:
+
+  (3) teuton check PATH/TO/DIR --onlyconfig , Only show config file recomendations
+
+  (4) teuton check PATH/TO/DIR/foo.rb , Check content of foo.rb and foo.yaml files.
+
+  (5) teuton check PATH/TO/DIR/foo.rb --cname=demo , Check content of foo.rb and demo.yaml files.```
