@@ -55,22 +55,21 @@ end
 Execution:
 
 ```
-$ teuton run examples/03-remote_hosts
+$ teutonx examples/03-remote_hosts 
  
-CASE RESULTS
-+------+-----------+-------+-------+
-| CASE | MEMBERS   | GRADE | STATE |
-| 01   | student_1 | 0.0   | ?     |
-| -    | -         | 0.0   | S     |
-| 03   | student_3 | 100.0 | ✔     |
-+------+-----------+-------+-------+
+ CASE RESULTS
+┌──────┬───────────┬───────┬───────┐
+│ CASE │ MEMBERS   │ GRADE │ STATE │
+│ 01   │ student_1 │ 0.0   │ ?     │
+│ -    │ -         │ 0.0   │ S     │
+│ 03   │ student_3 │ 100.0 │ ✔     │
+└──────┴───────────┴───────┴───────┘
 
-CONN ERRORS
-+------+-----------+-------+------------------+
-| CASE | MEMBERS   | HOST  | ERROR            |
-| 01   | student_1 | host1 | host_unreachable |
-+------+-----------+-------+------------------+
-
+ CONN ERRORS
+┌──────┬───────────┬───────┬──────────────────┐
+│ CASE │ MEMBERS   │ HOST  │ ERROR            │
+│ 01   │ student_1 │ host1 │ host_unreachable │
+└──────┴───────────┴───────┴──────────────────┘
 ```
 
 Notice that:
