@@ -46,7 +46,7 @@ module Teuton
       LONGDESC
       def config(projectpath)
         # Check Test: suggest the content of the configuration file based on the test
-        opt = { "onlyconfig" => true }
+        opt = {"onlyconfig" => true}
         Teuton.check(projectpath, opt)
       end
 
