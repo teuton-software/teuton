@@ -106,24 +106,13 @@ CMD ["/bin/bash"]
 If you want to install Teuton by your own, or there are not installation scripts for your OS, here you have information how to install all the required packages for Teuton.
 
 Manual installation:
-1. Git installation
-    * Install Git.
-    * Run `git --version` to show current version
-1. Ruby installation
-    * Install ruby.
-    * Run `ruby -v` to show current version (2.1.3p242+)
-1. Rake installation
-    * Run `gem install rake`, then
-    * `rake --version` to show current version (10.4.2+).
-1. Download this project
-    * (a) `git clone https://github.com/dvarrui/teuton.git` or
-    * (b) Download and unzip [file](https://github.com/dvarrui/teuton-panel/archive/master.zip).
-1. Move into Teuton folder
-    * Run `cd teuton`
-1. Gems installation.
-    * `rake install`, to install required gems.
-1. Only for developers
-    * Run `rake devel:debian` or
-    * `rake devel:opensuse`, install gem for developers.
-1. Final check
-    * `rake`
+
+1. Install Git. Run `git --version` to show current version
+1. Install ruby. Run `ruby -v` to show current version (3.2.8)
+1. Install Rake (`gem install rake`), then `rake --version` to show current version (13.4.2).
+1. Clone repo `git clone https://github.com/dvarrui/teuton.git` or download and unzip.
+1. Move into Teuton folder: `cd teuton`
+1. Install gems: `rake install`. 
+1. Only Debian OS: `rake devel:debian`.
+1. Obly OpenSUSE OS: `rake devel:opensuse`.
+1. Final check: `rake`
