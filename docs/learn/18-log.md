@@ -53,49 +53,50 @@ end
 Content of `var/18-log/case-01.txt` file.
 
 ```txt
-CONFIGURATION
-+----------------+-----------------------------------+
-| tt_config_path | examples/18-log/config.yaml       |
-| tt_members     | TOCHANGE                          |
-| tt_script_path | examples/18-log/start.rb          |
-| tt_sequence    | false                             |
-| tt_skip        | false                             |
-| values1        | ["A1", "B1", "C1"]                |
-| values2        | {:p1=>"A2", :p2=>"B2", :p3=>"C2"} |
-+----------------+-----------------------------------+
+❯ cat var/18-log/case-01.txt 
+ CONFIGURATION
+┌────────────────┬───────────────────────────────────┐
+│ tt_config_path │ examples/18-log/config.yaml       │
+│ tt_members     │ TOCHANGE                          │
+│ tt_script_path │ examples/18-log/start.rb          │
+│ tt_sequence    │ false                             │
+│ tt_skip        │ false                             │
+│ values1        │ ["A1", "B1", "C1"]                │
+│ values2        │ {:p1=>"A2", :p2=>"B2", :p3=>"C2"} │
+└────────────────┴───────────────────────────────────┘
 
 LOGS
-    [22:35:04]  INFO: Using log messages.
-    [22:35:04]  INFO: uid=1000(david) gid=1000(david) grupos=1000(david),478(wheel),464(vboxusers),108(libvirt),107(qemu),462(vagrant),460(docker),452(ollama)
-    [22:35:04] ERROR: Problem detected!
-    [22:35:04] WARN!: This is a warning
-    [22:35:04]  INFO: Hi, there!
-    [22:35:04]  INFO: -------------
-    [22:35:04]  INFO: Array values : ["A1", "B1", "C1"]
-    [22:35:04]  INFO: Hash values  : {:p1=>"A2", :p2=>"B2", :p3=>"C2"}
+   [22:00:21]  INFO| Using log messages.
+   [22:00:21]  INFO| uid=1000(david) gid=1000(david) grupos=1000(david),478(wheel),464(vboxusers),108(libvirt),107(qemu),462(vagrant),460(docker),452(ollama)
+   [22:00:21] ERROR| Problem detected!
+   [22:00:21]  WARN| This is a warning
+   [22:00:21]  INFO| Hi, there!
+   [22:00:21]  INFO| -------------
+   [22:00:21]  INFO| Array values : ["A1", "B1", "C1"]
+   [22:00:21]  INFO| Hash values  : {:p1=>"A2", :p2=>"B2", :p3=>"C2"}
 
-GROUPS
-- Learning about log messages
-    01 (1.0/1.0)
-        Description : Create user david
-        Command     : id david
-        Output      : uid=1000(david) gid=1000(david) grupos=1000(david),478(wheel),464(vboxusers),108(libvirt),107(qemu),462(vagrant),460(docker),452(ollama)
-        Duration    : 0.005 (local)
-        Alterations : find(david) & count
-        Expected    : Greater than 0
-        Result      : 1
-
-RESULTS
-+--------------+---------------------------+
-| unique_fault | 0                         |
-| case_id      | 01                        |
-| start_time   | 2026-10-12 22:35:04 +0100 |
-| finish_time  | 2026-10-12 22:35:04 +0100 |
-| duration     | 0.004786563               |
-| max_weight   | 1.0                       |
-| good_weight  | 1.0                       |
-| fail_weight  | 0                         |
-| fail_counter | 0                         |
-| grade        | 100                       |
-+--------------+---------------------------+
+ GROUPS
+ ▶ Learning about log messages
+   ✔ 01 (1.0/1.0)   ┌──
+        Description │ Create user david
+        Command     │ id david
+        Output      │ uid=1000(david) gid=1000(david) grupos=1000(david),478(wheel),464(vboxusers),108(libvirt),107(qemu),462(vagrant),460(docker),452(ollama)
+        Duration    │ 0.005 (local)
+        Alterations │ find(david) & count
+        Expected    │ Greater than 0
+        Result      │ 1
+                    └──
+ RESULTS
+┌──────────────┬───────────────────────────┐
+│ unique_fault │ 0                         │
+│ case_id      │ 01                        │
+│ start_time   │ 2026-10-21 21:57:57 +0100 │
+│ finish_time  │ 2026-10-21 21:57:57 +0100 │
+│ duration     │ 0.005315073               │
+│ max_weight   │ 1.0                       │
+│ good_weight  │ 1.0                       │
+│ fail_weight  │ 0                         │
+│ fail_counter │ 0                         │
+│ grade        │ 100                       │
+└──────────────┴───────────────────────────┘
 ```
