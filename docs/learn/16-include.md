@@ -59,11 +59,11 @@ Config files into `moreconfigfiles` folder:
 If we execute the test we will see that 3 cases are processed. Which are defined in the files `file01.yaml`, `02/file02.yaml` and `file03.yml`.
 
 ```
-CASE RESULTS
-+------+---------+-------+-------+
-| CASE | MEMBERS | GRADE | STATE |
-| 01   | file02  | 0.0   | ?     |
-| 02   | file01  | 100.0 | ✔     |
-| 03   | file03  | 0.0   | ?     |
-+------+---------+-------+-------+
+ CASE RESULTS
+┌──────┬────────────┬───────┬───────┐
+│ CASE │ MEMBERS    │ GRADE │ STATE │
+│ 01   │ student_02 │ 0.0   │ ?     │
+│ 02   │ student_01 │ 100.0 │ ✔     │
+│ 03   │ student_03 │ 0.0   │ ?     │
+└──────┴────────────┴───────┴───────┘
 ```

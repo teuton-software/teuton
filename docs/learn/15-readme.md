@@ -43,8 +43,8 @@ Content of `example/15-readme/README.md` file.
 ---
 
 ```
-Date   : 2025-11-12 22:11:47 +0000
-Teuton : 2.10.7
+Date   : 2026-10-21 21:54:49 +0100
+Teuton : 3.2.1
 ```
 
 # Test: 15-readme

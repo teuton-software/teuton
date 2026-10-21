@@ -22,19 +22,26 @@ end
 Cheking test:
 
 ```
-$ teuton check examples/08-unique_values
+$ teuton check examples/08-unique_values 
 
-+--------------------------+
-| GROUP: Using file: users |
-+--------------------------+
+┌─────────────────────────┐
+│ USE: external libraries │
+└─────────────────────────┘
+      1. examples/08-unique_values/lib/users.rb
+      2. examples/08-unique_values/lib/network.rb
+      3. examples/08-unique_values/lib/unique.rb
+
+┌──────────────────────────┐
+│ GROUP: Using file: users │
+└──────────────────────────┘
 (001) target      Create user get(username)
       weight      1.0
       run         'id get(username)' on host1
       expect      get(username) (String)
 
-+----------------------------+
-| GROUP: Using file: network |
-+----------------------------+
+┌────────────────────────────┐
+│ GROUP: Using file: network │
+└────────────────────────────┘
 (002) target      Update computer name with get(hostname)
       weight      1.0
       run         'hostname' on host1
@@ -45,28 +52,23 @@ $ teuton check examples/08-unique_values
       run         'host www.google.es' on host1
       expect      www.google.es has address  (String)
 
-+-------------------------------+
-| GROUP: Unique value: hostname |
-+-------------------------------+
+┌───────────────────────────────┐
+│ GROUP: Unique value: hostname │
+└───────────────────────────────┘
       run         'hostname -f' on host1
-    ! Unique      value for <Host name>
+      unique      value for <Host name>
 
-+-------------+-------+
-| DSL Stats   | Count |
-+-------------+-------+
-| Groups      | 3     |
-| Targets     | 3     |
-| Runs        | 4     |
-|  * host1    | 4     |
-| Uniques     | 1     |
-| Logs        | 1     |
-|             |       |
-| Gets        | 5     |
-|  * username | 3     |
-|  * hostname | 2     |
-| Sets        | 0     |
-+-------------+-------+
-+----------------------+
-| Revising CONFIG file |
-+----------------------+
+┌─────────────┬───────┐
+│ DSL Stats   │ Count │
+├─────────────┼───────┤
+│ Uses        │ 3     │
+│ Groups      │ 3     │
+│ Targets     │ 3     │
+│ Runs        │ 4     │
+│  * host1    │ 4     │
+│ Uniques     │ 1     │
+│ Gets        │ 5     │
+│  * username │ 3     │
+│  * hostname │ 2     │
+└─────────────┴───────┘
 ```

@@ -26,9 +26,9 @@ end
 
 Output:
 ```
-+----------------------------+
-| GROUP: Using file: network |
-+----------------------------+
+┌────────────────────────────┐
+│ GROUP: Using file: network │
+└────────────────────────────┘
 (002) target      Update computer name with get(hostname)
       weight      1.0
       run         'hostname' on host1

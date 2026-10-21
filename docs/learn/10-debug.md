@@ -45,3 +45,39 @@ end
 ```
 
 `result.debug` it's usefull when you are verifying command output captured by Teuton.
+
+## Output example
+
+```
+$ teuton examples/10-debug 
+------------------------------------
+Started at 2026-10-21 21:50:52 +0100
+
+******************** [DEBUG] count=6 ********************
+ 0: PING 192.168.1.1 (192.168.1.1) 56(84) bytes de datos.
+ 1: 64 bytes desde 192.168.1.1: icmp_seq=1 ttl=64 tiempo=2.22 ms
+ 2: 
+ 3: --- 192.168.1.1 estadísticas ping ---
+ 4: 1 paquetes transmitidos, 1 recibidos, 0% packet loss, time 0ms
+ 5: rtt min/avg/max/mdev = 2.220/2.220/2.220/0.000 ms
+*********************************************************
+.
+******************** [DEBUG] count=1 ********************
+ 0: 1
+*********************************************************
+FFFFFF
+Finished in 35.898 seconds
+------------------------------------
+ 
+ CASE RESULTS
+┌──────┬───────────┬───────┬───────┐
+│ CASE │ MEMBERS   │ GRADE │ STATE │
+│ 01   │ student_1 │ 14.0  │ ?     │
+└──────┴───────────┴───────┴───────┘
+
+ CONN ERRORS
+┌──────┬───────────┬─────────┬───────┐
+│ CASE │ MEMBERS   │ HOST    │ ERROR │
+│ 01   │ student_1 │ windows │ error │
+└──────┴───────────┴─────────┴───────┘
+```

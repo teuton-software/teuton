@@ -37,13 +37,14 @@ Executing `teuton run examples/13-feedback`, we get this output:
 
 ```
 GROUPS
-- Hide feedback messages from output
-    01 (1.0/1.0)
-        Description : Service SSH disabled
-        Command     : *********************
-        Output      : *********
-        Duration    : 0.011 (local)
-        Alterations : **********************
-        Expected    : **************
-        Result      : ********
+ ▶ Hide feedback messages from output
+   ✔ 01 (1.0/1.0)   ┌──
+        Description │ Service SSH disabled
+        Command     │ *********************
+        Output      │ *********
+        Duration    │ 0.008 (local)
+        Alterations │ **********************
+        Expected    │ **************
+        Result      │ ********
+                    └──
 ```
