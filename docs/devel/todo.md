@@ -11,7 +11,6 @@
 
 # 2. Documentacion
 
-* Nuevo repo `teuton-book`: para documentación, tutoriales en español.
 * Documentar y hacer videos. Tener foros de la comunidad o presencia en reddit o stackoverflow.... o algo parecido???
 * Snode Dockerfile with SSH server
 * **ngrok**:
