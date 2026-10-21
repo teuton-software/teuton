@@ -13,7 +13,6 @@ class ExpectTest < Test::Unit::TestCase
 
     configure_result(acase, %w[a b b c])
     acase.expect "a"
-    acase.action_manager.actions.pop
     action = acase.last_action
 
     assert action.check
@@ -23,7 +22,6 @@ class ExpectTest < Test::Unit::TestCase
 
     configure_result(acase, %w[a b b c])
     acase.expect "b"
-    acase.action_manager.actions.pop
     action = acase.last_action
 
     assert action.check
@@ -31,7 +29,6 @@ class ExpectTest < Test::Unit::TestCase
 
     configure_result(acase, %w[a b b c])
     acase.expect "c"
-    acase.action_manager.actions.pop
     action = acase.last_action
 
     assert action.check
@@ -43,7 +40,6 @@ class ExpectTest < Test::Unit::TestCase
 
     configure_result(acase, %w[a b b c])
     acase.expect "d"
-    acase.action_manager.actions.pop
     action = acase.last_action
 
     assert_equal false, action.check
@@ -55,7 +51,6 @@ class ExpectTest < Test::Unit::TestCase
 
     configure_result(acase, %w[aa ab ac bc])
     acase.expect(/aa/)
-    acase.action_manager.actions.pop
     action = acase.last_action
 
     assert action.check
@@ -65,7 +60,6 @@ class ExpectTest < Test::Unit::TestCase
 
     configure_result(acase, %w[aa ab ac bc])
     acase.expect(/a/)
-    acase.action_manager.actions.pop
     action = acase.last_action
 
     assert action.check
@@ -73,7 +67,6 @@ class ExpectTest < Test::Unit::TestCase
 
     configure_result(acase, %w[aa ab ac bc])
     acase.expect(/a|b/)
-    acase.action_manager.actions.pop
     action = acase.last_action
 
     assert action.check
@@ -85,7 +78,6 @@ class ExpectTest < Test::Unit::TestCase
 
     configure_result(acase, %w[aa ab ac bc])
     acase.expect(/d/)
-    acase.action_manager.actions.pop
     action = acase.last_action
 
     assert_equal false, action.check
