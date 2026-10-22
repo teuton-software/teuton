@@ -11,7 +11,7 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = {runonce: [], repeat: []}
+      @events = { runonce: [], repeat: [] }
       @stopped = false
     end
 
@@ -19,6 +19,11 @@ class Case
     end
 
     def check_event(...)
+    end
+
+    def exec_block_event(&block)
+      args = {}
+      instance_exec(**args, &block) if block
     end
 
     def last_action
@@ -48,6 +53,7 @@ class Case
 
     def stop
       @stop_test = true
+      Logger.warn("stop()!")
     end
 
     def to_h

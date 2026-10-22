@@ -4,8 +4,12 @@ group "Work with events" do
   expect_ok
 
   event on: :last_target, when: :failed do
-    log "OK"
+    stop
   end
+
+  target "Create user quigon"
+  run "id quigon"
+  expect_fail
 end
 
 play do
