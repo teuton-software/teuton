@@ -1,4 +1,4 @@
-group "Learn about targets" do
+group "Practicing targets" do
   target "Create user obiwan", weight: 2
   run "id obiwan"
   expect ["uid=", "(obiwan)", "gid="]

@@ -9,7 +9,7 @@
 
 
  GROUPS
- ▶ Learn about targets
+ ▶ Practicing targets
    ✖ 01 (0.0/2.0)   ┌──
         Description │ Create user obiwan
         Command     │ id obiwan
@@ -31,9 +31,9 @@
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-21 17:05:49 +0100 │
-│ finish_time  │ 2026-10-21 17:05:49 +0100 │
-│ duration     │ 0.004790611               │
+│ start_time   │ 2026-10-22 08:15:06 +0100 │
+│ finish_time  │ 2026-10-22 08:15:06 +0100 │
+│ duration     │ 0.004107299               │
 │ max_weight   │ 3.0                       │
 │ good_weight  │ 1.0                       │
 │ fail_weight  │ 2.0                       │

@@ -1,6 +1,6 @@
  CONFIGURATION
 ┌────────────────┬────────────────────────────────────────┐
-│ tt_title       │ Teuton (3.2.1)                         │
+│ tt_title       │ Teuton (3.3.0)                         │
 │ tt_scriptname  │ examples/02-target/start.rb            │
 │ tt_configfile  │ examples/02-target/config.yaml         │
 │ tt_pwd         │ /home/david/proy/repos/teuton.d/teuton │
@@ -19,8 +19,8 @@
  RESULTS
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
-│ start_time   │ 2026-10-21 17:05:49 +0100 │
-│ finish_time  │ 2026-10-21 17:05:49 +0100 │
-│ duration     │ 0.005376875               │
+│ start_time   │ 2026-10-22 08:15:06 +0100 │
+│ finish_time  │ 2026-10-22 08:15:06 +0100 │
+│ duration     │ 0.004877634               │
 └──────────────┴───────────────────────────┘
 
