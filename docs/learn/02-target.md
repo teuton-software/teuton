@@ -67,7 +67,7 @@ $ teuton examples/02-target
  CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
 │ CASE │ MEMBERS   │ GRADE │ STATE │
-│ 01   │ anonymous │ 33.0  │ ?     │
+│ 01   │ anonymous │ 67.0  │       │
 └──────┴───────────┴───────┴───────┘
 ```
 
@@ -85,7 +85,6 @@ Let's see one report:
 
 ```
 $ cat var/02-target/case-01.txt
-
  CONFIGURATION
 ┌────────────────┬────────────────────────────────┐
 │ tt_config_path │ examples/02-target/config.yaml │
@@ -95,9 +94,10 @@ $ cat var/02-target/case-01.txt
 │ tt_skip        │ false                          │
 └────────────────┴────────────────────────────────┘
 
+
  GROUPS
- ▶ Learn about targets
-   ✖ 01 (0.0/2.0)   ┌──
+ ▶ Practicing targets
+   ✖ 01 (0.0/1.0)   ┌──
         Description │ Create user obiwan
         Command     │ id obiwan
         Output      │ id: «obiwan»: no existe ese usuario
@@ -105,7 +105,7 @@ $ cat var/02-target/case-01.txt
         Alterations │ find(uid=) & find((obiwan)) & find(gid=) & count
         Expected    │ Greater than 0
         Result      │ 0
-   ✔ 02 (1.0/1.0)   ├──
+   ✔ 02 (2.0/2.0)   ├──
         Description │ Delete user vader
         Command     │ id vader
         Output      │ id: «vader»: no existe ese usuario
@@ -118,13 +118,13 @@ $ cat var/02-target/case-01.txt
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-21 21:32:24 +0100 │
-│ finish_time  │ 2026-10-21 21:32:24 +0100 │
-│ duration     │ 0.004153712               │
+│ start_time   │ 2026-10-22 08:18:10 +0100 │
+│ finish_time  │ 2026-10-22 08:18:10 +0100 │
+│ duration     │ 0.004569779               │
 │ max_weight   │ 3.0                       │
-│ good_weight  │ 1.0                       │
-│ fail_weight  │ 2.0                       │
+│ good_weight  │ 2.0                       │
+│ fail_weight  │ 1.0                       │
 │ fail_counter │ 1                         │
-│ grade        │ 33                        │
+│ grade        │ 67                        │
 └──────────────┴───────────────────────────┘
 ```

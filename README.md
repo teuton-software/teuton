@@ -28,11 +28,11 @@ gem install teuton
 ```ruby
 # File: examples/02-target/start.rb 
 group "Practicing targets" do
-  target "Create user obiwan", weight: 2
+  target "Create user obiwan"
   run "id obiwan"
   expect ["uid=", "(obiwan)", "gid="]
 
-  target "Delete user vader"
+  target "Delete user vader", weight: 2
   run "id vader"
   expect_fail
 end
