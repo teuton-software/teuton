@@ -36,6 +36,9 @@ class Case
         return @current_action
       end
 
+      if @stopped
+        # TODO
+      end
       @actions << @current_action
       @current_action = Action.new(last_action.id + 1)
       @current_action.groupname = last_action.groupname
@@ -52,7 +55,7 @@ class Case
     end
 
     def stop
-      @stop_test = true
+      @stopped = true
       Logger.warn("stop()!")
     end
 
