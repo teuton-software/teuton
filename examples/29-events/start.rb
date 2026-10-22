@@ -1,13 +1,14 @@
-group "Work with events" do
+group "Events: stop" do
   target "Create user vader"
   run "id vader"
   expect_ok
 
   event on: :last_target, when: :failed do
     stop
+    scores_to_zero
   end
 
-  target "Create user quigon"
+  target "Delete user quigon"
   run "id quigon"
   expect_fail
 end

@@ -36,9 +36,6 @@ class Case
         return @current_action
       end
 
-      if @stopped
-        # TODO
-      end
       @actions << @current_action
       @current_action = Action.new(last_action.id + 1)
       @current_action.groupname = last_action.groupname
@@ -51,12 +48,11 @@ class Case
     end
 
     def scores_to_zero
-      @action.each { |action| action.score = 0 }
+      @actions.each { |action| action.score = 0 }
     end
 
     def stop
       @stopped = true
-      Logger.warn("stop()!")
     end
 
     def to_h
@@ -67,6 +63,20 @@ class Case
       @events[:repeat].each do |event|
         # TODO: Do something
       end
+
+      return unless @stopped
+
+      @current_action.description = "NODATA"
+      @current_action.command = ""
+      @current_action.exec = ""
+      @current_action.conn_type = "?"
+      @current_action.duration = "?"
+      @current_action.result = "NODATA"
+      @current_action.output = ""
+      @current_action.alterations = ""
+      @current_action.expected = ""
+      @current_action.check = false
+      @current_action.score = 0.0
     end
   end
 end
