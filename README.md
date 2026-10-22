@@ -6,7 +6,7 @@
 
 _Test your infrastructure as code._
 
-![logo](./docs/images/logo-v3-64x64.png)
+![logo](./docs/images/logo-v3-128x128.png)
 
 The infrastructure test is useful for:
 * Sysadmin teachers who want to evaluate students remote machines.
