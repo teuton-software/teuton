@@ -9,7 +9,10 @@
 
 # Videos
 
-> By now there are no English videos. We are sorry!
+> By now there are no English videos. Sorry!
+
+Teuton v3.0:
+* [RubySur Agosto 2026 - Test de Infraestructura Teuton](https://www.youtube.com/live/JW4T3cTyG5A?si=bt356lypKlrr_YLK)
 
 Teuton v2.1:
 * [Apuntes FP Informática - I Congreso Virtual - Mayo 2020](https://youtu.be/RxIV26BAoGo)
