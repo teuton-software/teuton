@@ -4,9 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/teuton.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/teuton)
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 
-_Test your infrastructure as code._
-
-![logo](./docs/images/logo-v3-64x64.png)
+_Test your infrastructure as code._ ![logo](./docs/images/logo-v3-64x64.png)
 
 The infrastructure test is useful for:
 * Sysadmin teachers who want to evaluate students remote machines.
