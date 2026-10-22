@@ -1,7 +1,7 @@
 
 # TEUTON
 
-[![Gem Version](https://badge.fury.io/rb/teuton.svg)](https://badge.fury.io/rb/teuton)
+[![Gem Version](https://badge.fury.io/rb/teuton.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/teuton)
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 
 _Test your infrastructure as code._
