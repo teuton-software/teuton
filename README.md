@@ -5,6 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 
 _Test your infrastructure as code._ 
+
 ![logo](./docs/images/logo-v3-64x64.png)
 
 The infrastructure test is useful for:
