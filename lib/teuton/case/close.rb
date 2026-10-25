@@ -3,9 +3,7 @@
 class Case
   def close(uniques)
     # Invoked from check_cases!
-    @action_manager.close
-    @action_manager.actions.each { |action| @report.lines << action.to_h }
-    @report.tail[:grade] = @action_manager.score
+    @action_manager.close(@report)
 
     fails = 0
     uniques.each_pair do |key, values|

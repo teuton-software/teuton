@@ -21,9 +21,34 @@ class Case
     def check_event(...)
     end
 
-    def close
+    def close(report)
       trigger_events!
       @current_action = nil
+
+      # Calculate final values
+      @grade = @max_weight = @good_weight = @fails_weight = @fail_counter = 0
+      @history = ""
+
+      @actions.each do |action|
+        @max_weight += action.weight if action.weight.positive?
+
+        if action.check
+          @good_weight += action.weight
+          @history += Settings.letter[:good]
+        else
+          @fails_weight += action.weight
+          @fail_counter += 1
+          @history += Settings.letter[:fail]
+        end
+      end
+
+      report.lines += @actions.map(&:to_h)
+
+      report.tail[:max_weight] = @max_weight
+      report.tail[:good_weight] = @good_weight
+      report.tail[:fail_weight] = @fails_weight
+      report.tail[:fail_counter] = @fail_counter
+      report.tail[:grade] = calculate_grade(report)
     end
 
     def exec_block_event(&block)
@@ -56,10 +81,6 @@ class Case
       @actions.each { |action| action.score = 0.0 }
     end
 
-    def score
-      @actions.map { _1.score }.sum
-    end
-
     def stop
       @stopped = true
     end
@@ -86,6 +107,17 @@ class Case
       @current_action.expected = ""
       @current_action.check = false
       @current_action.score = 0.0
+    end
+
+    private
+
+    def calculate_grade(report)
+      value = @good_weight.to_f / @max_weight
+      value = 0.0 if value.nan?
+      @grade = (100.0 * value).round
+
+      @grade = 0.0 if report.tail[:unique_fault].positive?
+      @grade
     end
   end
 end
