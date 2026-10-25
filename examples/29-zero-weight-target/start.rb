@@ -1,4 +1,4 @@
-group "Target weight" do
+group "Zero weight target" do
   target "Target 1: ok"
   run "id root"
   expect_ok
