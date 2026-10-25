@@ -113,9 +113,14 @@ class Case
     private
 
     def calculate_grade(report)
-      value = @good_weight.to_f / @max_weight
-      value = 0.0 if value.nan?
-      @grade = (100.0 * value).round
+      regular_score = @good_weight.to_f / @max_weight
+      0.0 if regular_score.nan?
+
+      current_good_weight = @actions.map { _1.score }.sum
+      current_score = current_good_weight.to_f / @max_weight
+      current_score = 0.0 if current_score.nan?
+
+      @grade = (100.0 * current_score).round
 
       @grade = 0.0 if report.tail[:unique_fault].positive?
       @grade

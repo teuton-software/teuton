@@ -1,9 +1,13 @@
 group "Events: stop" do
-  target "Target ok"
+  target "Target 1: ok"
   run "id root"
   expect_ok
 
-  target "Target fail"
+  target "Target 2: ok"
+  run "id root"
+  expect_ok
+
+  target "Target 3: fail"
   run "id vader"
   expect_ok
 
@@ -11,7 +15,7 @@ group "Events: stop" do
     stop
   end
 
-  target "Target ok"
+  target "Target 4: ok"
   run "id root"
   expect_ok
 end
