@@ -1,4 +1,11 @@
 
+## [3.4.0] - 202610xx
+
+- [DOC] Learn about new examples: targe weight(29, 30), events (31, 32, 33).
+- [DOC] New examples: Target weight (29, 30), events (31, 32, 33).
+- [TEST] New examples: Target weight (29, 30), events (31, 32, 33).
+- [FEAT] Events working fine: stop, scores_to_zero.
+
 ## [3.3.0] - 20261021
 
 - [DOC] Update command output.
