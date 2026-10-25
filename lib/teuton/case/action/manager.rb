@@ -100,7 +100,7 @@ class Case
 
       return unless @stopped
 
-      @current_action.description = "TEST STOPED!"
+      @current_action.description = "TEST STOPPED!"
       @current_action.command = ""
       @current_action.exec = ""
       @current_action.conn_type = "?"
