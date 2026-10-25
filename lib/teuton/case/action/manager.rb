@@ -43,6 +43,7 @@ class Case
       end
 
       report.lines += @actions.map(&:to_h)
+      report.history = @history
 
       report.tail[:max_weight] = @max_weight
       report.tail[:good_weight] = @good_weight
