@@ -13,7 +13,6 @@ class Case
       log_unique_message(key, values)
     end
     @report.tail[:unique_fault] = fails
-    @report.close
   end
 
   private

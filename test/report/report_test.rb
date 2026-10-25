@@ -39,7 +39,6 @@ class ReportTest < Test::Unit::TestCase
     ]
 
     assert_equal "", report.history
-    report.close
     assert_equal ".F..", report.history
   end
 end

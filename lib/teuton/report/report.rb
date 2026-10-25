@@ -46,17 +46,4 @@ class Report
     filepath = File.join(@output_dir, "moodle")
     Formatter.call(self, {format: :moodle_csv}, filepath)
   end
-
-  def close
-    # TODO:
-    # @tail[:max_weight] = max
-    # @tail[:good_weight] = good
-    # @tail[:fail_weight] = fails
-    # @tail[:fail_counter] = fail_counter
-
-    # i = good.to_f / max
-    # i = 0 if i.nan?
-    # @tail[:grade] = (100.0 * i).round
-    # @tail[:grade] = 0 if @tail[:unique_fault].positive?
-  end
 end
