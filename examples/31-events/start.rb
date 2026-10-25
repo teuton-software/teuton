@@ -1,4 +1,4 @@
-group "Events: scores_to_zero and stop" do
+group "Events: scores_to_zero" do
   target "Target 1: ok"
   run "id root"
   expect_ok
@@ -13,7 +13,6 @@ group "Events: scores_to_zero and stop" do
 
   event on: :last_target, when: :failed do
     scores_to_zero
-    stop
   end
 
   target "Target 4: ok"
