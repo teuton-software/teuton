@@ -7,7 +7,7 @@ module DSL
     s = " WARN" if type == :warn
     s = "ERROR" if type == :error
     t = Time.now
-    f = format("%<hour>02d:%<min>02d:%<sec>02d", { hour: t.hour, min: t.min, sec: t.sec })
+    f = format("%<hour>02d:%<min>02d:%<sec>02d", {hour: t.hour, min: t.min, sec: t.sec})
     msg = "[#{f}] #{s}| #{text}"
     msg = "[#{f}] #{text}" if s == ""
 
