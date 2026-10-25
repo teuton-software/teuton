@@ -15,10 +15,23 @@ class Case
       @stopped = false
     end
 
-    def add_event(...)
+    def add_event(**args, &block)
     end
 
-    def check_event(...)
+    def check_event(**args)
+      object = args[:on]
+      unless Case::ActionManager::OBJECTS.include? object
+        Logger.warn "Incorrect argument. Event on: #{object} ..."
+        Logger.info "Valid OBJECTS: #{Case::ActionManager::OBJECTS.join(",")}"
+        return false
+      end
+      condition = args[:when]
+      unless Case::ActionManager::CONDITIONS.include? condition
+        Logger.warn "Incorrect argument. Event ... when: #{condition}"
+        Logger.info "Valid CONDITIONS: #{Case::ActionManager::CONDITIONS.join(",")}"
+        return false
+      end
+      true
     end
 
     def close(report)
