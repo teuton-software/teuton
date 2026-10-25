@@ -1,10 +1,14 @@
 group "Events: scores_to_zero" do
-  target "Create user root"
+  target "Target ok"
   run "id root"
   expect_ok
 
-  target "Create user toor"
-  run "id toor"
+  target "Target ok"
+  run "id root"
+  expect_ok
+
+  target "Target fail"
+  run "id vader"
   expect_ok
 
   event on: :last_target, when: :failed do

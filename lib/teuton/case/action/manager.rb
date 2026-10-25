@@ -11,7 +11,7 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = {runonce: [], repeat: []}
+      @events = { runonce: [], repeat: [] }
       @stopped = false
     end
 
@@ -19,6 +19,11 @@ class Case
     end
 
     def check_event(...)
+    end
+
+    def close
+      trigger_events!
+      @current_action = nil
     end
 
     def exec_block_event(&block)
@@ -48,7 +53,11 @@ class Case
     end
 
     def scores_to_zero
-      @actions.each { |action| action.score = 0 }
+      @actions.each { |action| action.score = 0.0 }
+    end
+
+    def score
+      @actions.map { _1.score }.sum
     end
 
     def stop

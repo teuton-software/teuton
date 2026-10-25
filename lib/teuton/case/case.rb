@@ -69,6 +69,7 @@ class Case
     return 0.0 if skip
 
     @report.tail[:grade]
+    # @action_manager.score
   end
 
   def last_action
@@ -81,5 +82,5 @@ class Case
     @report.head[:tt_members] || "noname"
   end
 
-  alias_method :skip?, :skip
+  alias skip? skip
 end

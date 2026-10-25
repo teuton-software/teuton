@@ -34,7 +34,7 @@ module DSL
     @action.expected = (args[:expected] || @result.expected)
 
     @action_manager.trigger_events!
-    @report.lines << @action.to_h
+    ## @report.lines << @action.to_h
     @action = @action_manager.next_action
     # TODO: weight(1.0)
 
