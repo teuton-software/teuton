@@ -4,6 +4,7 @@ class Case
   def close(uniques)
     # Invoked from check_cases!
     @action_manager.close(@report)
+    log("Scores READJUSTED!", :warn) if @action_manager.regular_score != @action_manager.current_score
 
     fails = 0
     uniques.each_pair do |key, values|
@@ -22,7 +23,7 @@ class Case
     begin
       log("   ├── Value     => #{key}", :error)
       log("   └── Conflicts => #{value}", :error)
-    rescue => e
+    rescue StandardError => e
       log(key, :error)
       log(e.to_s, :error)
     end

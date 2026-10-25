@@ -74,6 +74,19 @@ class Case
       @current_action
     end
 
+    def regular_score
+      value = @good_weight.to_f / @max_weight
+      value = 0.0 if value.nan?
+      value
+    end
+
+    def current_score
+      current_good_weight = @actions.sum(&:score)
+      value = current_good_weight.to_f / @max_weight
+      value = 0.0 if value.nan?
+      value
+    end
+
     def stopped?
       @stopped
     end
@@ -116,9 +129,6 @@ class Case
     private
 
     def calculate_grade(report)
-      regular_score = @good_weight.to_f / @max_weight
-      0.0 if regular_score.nan?
-
       current_good_weight = @actions.map { _1.score }.sum
       current_score = current_good_weight.to_f / @max_weight
       current_score = 0.0 if current_score.nan?
