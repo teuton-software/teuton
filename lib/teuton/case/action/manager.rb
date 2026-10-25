@@ -11,7 +11,7 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = {runonce: [], repeat: []}
+      @events = { runonce: [], repeat: [] }
       @stopped = false
     end
 
@@ -79,7 +79,10 @@ class Case
     end
 
     def scores_to_zero
-      @actions.each { |action| action.score = 0.0 }
+      @actions.each do |action|
+        action.score = 0.0
+        action.description << " (SCORE TO ZERO)"
+      end
     end
 
     def stop
@@ -97,12 +100,12 @@ class Case
 
       return unless @stopped
 
-      @current_action.description = "NODATA"
+      @current_action.description = "TEST STOPED!"
       @current_action.command = ""
       @current_action.exec = ""
       @current_action.conn_type = "?"
       @current_action.duration = "?"
-      @current_action.result = "NODATA"
+      @current_action.result = ""
       @current_action.output = ""
       @current_action.alterations = ""
       @current_action.expected = ""
