@@ -4,7 +4,7 @@ require_relative "formatter/formatter"
 
 class Report
   attr_accessor :id, :filename, :output_dir,
-                :head, :lines, :tail, :format, :history
+    :head, :lines, :tail, :format, :history
 
   def initialize(id = "00")
     @id = id
@@ -13,7 +13,7 @@ class Report
 
     @head = {}
     @lines = []
-    @tail = { unique_fault: 0 }
+    @tail = {unique_fault: 0}
     # TODO
     # [String] with 1 char for every target in @lines
     # For example: "..F." means: good, good, fail and good
@@ -44,7 +44,7 @@ class Report
     Formatter.call(self, options, filepath)
 
     filepath = File.join(@output_dir, "moodle")
-    Formatter.call(self, { format: :moodle_csv }, filepath)
+    Formatter.call(self, {format: :moodle_csv}, filepath)
   end
 
   def close
