@@ -7,6 +7,8 @@ Our tests use config file to write dinamic data into separated file.
 By default, `config.yaml` is our config file. Example:
 
 ```yaml
+# File: config.yaml
+# Desc: configuration file
 global:
   tt_output_dir: var/04-config/default
 cases:
@@ -36,8 +38,8 @@ end
 
 ```
 $ teuton examples/04-config 
- 
- CASE RESULTS
+  
+ ☰ CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
 │ CASE │ MEMBERS   │ GRADE │ STATE │
 │ 01   │ student_1 │ 100.0 │ ✔     │
@@ -60,7 +62,7 @@ Let's see case 01 report.
 ```
 $ cat var/04-config/default/case-01.txt
 
- CONFIGURATION
+ ⚒ CONFIGURATION
 ┌────────────────┬────────────────────────────────┐
 │ tt_config_path │ examples/04-config/config.yaml │
 │ tt_members     │ student_1                      │
@@ -71,24 +73,24 @@ $ cat var/04-config/default/case-01.txt
 │ username       │ david                          │
 └────────────────┴────────────────────────────────┘
 
- GROUPS
+ ☰ GROUPS
  ▶ Reading params from config file
    ✔ 01 (1.0/1.0)   ┌──
         Description │ Create user david
         Command     │ id david
         Output      │ uid=1000(david) gid=1000(david) grupos=1000(david),478(wheel),464(vboxusers),108(libvirt),107(qemu),462(vagrant),460(docker),452(ollama)
-        Duration    │ 0.004 (local)
+        Duration    │ 0.012 (local)
         Alterations │ find(uid=) & find((david)) & find(gid=) & count
         Expected    │ Greater than 0
         Result      │ 1
                     └──
- RESULTS
+ 🗹 RESULTS
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-21 21:36:41 +0100 │
-│ finish_time  │ 2026-10-21 21:36:41 +0100 │
-│ duration     │ 0.004390772               │
+│ start_time   │ 2026-10-26 12:22:36 +0000 │
+│ finish_time  │ 2026-10-26 12:22:36 +0000 │
+│ duration     │ 0.012505538               │
 │ max_weight   │ 1.0                       │
 │ good_weight  │ 1.0                       │
 │ fail_weight  │ 0                         │
@@ -110,7 +112,7 @@ Execute the same test but using diferents config files. Config files available:
 ```
 $ teuton examples/04-config         
  
- CASE RESULTS
+ ☰ CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
 │ CASE │ MEMBERS   │ GRADE │ STATE │
 │ 01   │ student_1 │ 100.0 │ ✔     │
@@ -123,7 +125,7 @@ $ teuton examples/04-config
 ```
 $ teuton run --cname=starwars examples/04-config
  
- CASE RESULTS
+ ☰ CASE RESULTS
 ┌──────┬────────────┬───────┬───────┐
 │ CASE │ MEMBERS    │ GRADE │ STATE │
 │ 01   │ Yoda       │ 0.0   │ ?     │
@@ -136,7 +138,7 @@ $ teuton run --cname=starwars examples/04-config
 ```
 $ teuton run --cpath=examples/04-config/rock.yaml examples/04-config
  
- CASE RESULTS
+ ☰ CASE RESULTS
 ┌──────┬────────────┬───────┬───────┐
 │ CASE │ MEMBERS    │ GRADE │ STATE │
 │ 01   │ AC/DC band │ 0.0   │ ?     │

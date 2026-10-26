@@ -31,11 +31,11 @@ Example, executing `teuton run example/12-preserve` twice:
 ```
 var
 └── 12-preserve
-    ├── 20200519-113035
+    ├── 20200519-163035
     │   ├── case-01.txt
     │   ├── moodle.csv
     │   └── resume.txt
-    ├── 20200519-123039
+    ├── 20200519-173039
     │   ├── case-01.txt
     │   ├── moodle.csv
     │   └── resume.txt
@@ -44,4 +44,4 @@ var
     └── resume.txt
 ```
 
-The first time test was launched at 11:30, and second at 12:30 the same day.
+The first time test was launched at 16:30, and second at 17:30 the same day.

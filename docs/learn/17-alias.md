@@ -50,4 +50,4 @@ cases:
   username: obiwan
 ```
 
-Now our test will work correctly. Calling `get(:super)` will return the same value as doing `get(:superuser).
+Now our test will work correctly. Calling `get(:super)` will return the same value as doing `get(:superuser)`.

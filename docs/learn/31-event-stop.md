@@ -1,6 +1,6 @@
 [<<back](../../README.md)
 
-# DSL: event
+# Event: stop
 
 Sometimes it may be necessary to trigger an action when a specific condition occurs; for this, we can use events.
 

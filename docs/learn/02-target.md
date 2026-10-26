@@ -62,9 +62,9 @@ end
 Execute this command to run the test:
 
 ```
-$ teuton examples/02-target 
+$ teuton examples/02-target       
  
- CASE RESULTS
+ ☰ CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
 │ CASE │ MEMBERS   │ GRADE │ STATE │
 │ 01   │ anonymous │ 67.0  │       │
@@ -84,8 +84,9 @@ var
 Let's see one report:
 
 ```
-$ cat var/02-target/case-01.txt
- CONFIGURATION
+$ cat var/02-target/case-01.txt 
+
+ ⚒ CONFIGURATION
 ┌────────────────┬────────────────────────────────┐
 │ tt_config_path │ examples/02-target/config.yaml │
 │ tt_members     │ anonymous                      │
@@ -94,8 +95,7 @@ $ cat var/02-target/case-01.txt
 │ tt_skip        │ false                          │
 └────────────────┴────────────────────────────────┘
 
-
- GROUPS
+ ☰ GROUPS
  ▶ Practicing targets
    ✖ 01 (0.0/1.0)   ┌──
         Description │ Create user obiwan
@@ -114,13 +114,13 @@ $ cat var/02-target/case-01.txt
         Expected    │ Greater than 0
         Result      │ 1
                     └──
- RESULTS
+ 🗹 RESULTS
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-22 08:18:10 +0100 │
-│ finish_time  │ 2026-10-22 08:18:10 +0100 │
-│ duration     │ 0.004569779               │
+│ start_time   │ 2026-10-26 12:20:01 +0000 │
+│ finish_time  │ 2026-10-26 12:20:01 +0000 │
+│ duration     │ 0.003806668               │
 │ max_weight   │ 3.0                       │
 │ good_weight  │ 2.0                       │
 │ fail_weight  │ 1.0                       │
