@@ -34,7 +34,7 @@ class ShowResumeReport
   def show_initial_configurations
     Logger.puts Rainbow(" INITIAL CONFIGURATIONS").bright
     table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+      t.style = { border: :unicode }
       @report.head.each { |key, value| t.add_row [key.to_s, trim(value)] }
     end
     Logger.puts "#{table}\n\n"
@@ -46,9 +46,9 @@ class ShowResumeReport
   end
 
   def show_case_list
-    Logger.puts Rainbow(" \u{1f5f9} CASE RESULTS").bright
+    Logger.puts Rainbow(" \u{2630} CASE RESULTS").bright
     table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+      t.style = { border: :unicode }
       t.add_row %w[CASE MEMBERS GRADE STATE]
       @report.lines.each do |line|
         t.add_row [line[:id], line[:members], line[:grade], line[:letter]]
@@ -64,7 +64,7 @@ class ShowResumeReport
 
     Logger.puts Rainbow(" \u{1f5f2} CONN ERRORS").bright
     table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+      t.style = { border: :unicode }
       t.add_row %w[CASE MEMBERS HOST ERROR]
       @report.lines.each do |line|
         line[:conn_status].each_pair do |host, error|
@@ -100,7 +100,7 @@ class ShowResumeReport
   def show_final_values
     Logger.puts Rainbow(" FINAL VALUES").bright
     table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+      t.style = { border: :unicode }
       @report.tail.each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
     Logger.puts "#{table}\n\n"
@@ -112,7 +112,7 @@ class ShowResumeReport
 
     Logger.puts Rainbow(" HALL OF FAME").bright
     table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+      t.style = { border: :unicode }
       hall_of_fame.each { |line| t.add_row [line[0], line[1]] }
     end
     Logger.puts "#{table}\n\n"

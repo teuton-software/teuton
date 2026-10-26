@@ -41,7 +41,7 @@ class TXTFormatter < ArrayFormatter
   def process_groups
     return if @data[:groups].empty?
 
-    w "\n#{colorize(" \u{1f46a} GROUPS", :bg_blue)}\n"
+    w "\n#{colorize(" \u{2630} GROUPS", :bg_blue)}\n"
     @data[:groups].each { |g| process_group g }
   end
 
