@@ -117,11 +117,13 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [EXPECT_SEQUENCE](docs/learn/26-expect_sequence.md)
     * [RUN_SCRIPT](docs/learn/27-run_script.md)
     * [UPLOAD](docs/learn/28-upload.md)
-    * [EVENT STOP](docs/learn/31-event-stop.md)
+    * [EVENT stop](docs/learn/31-event-stop.md)
+    * [EVENT scores to zero](docs/learn/32-event-zero.md)
 4. [Configuration file](docs/config_file.md): Reserved params, configure hosts, etc.
 5. [Language reference](docs/dsl/README.md). DSL used to define tests.
     * [expect](docs/dsl/expect.md): check run output with expectations.
     * [export](docs/dsl/export.md): save evaluation reports.
+    * [event](docs/dsl/event.md): execute action when conditions are met.
     * [get](docs/dsl/get.md): read config params.
     * [group](docs/dsl/group.md): group targets.
     * [play](docs/dsl/play.md): starts main execution.
