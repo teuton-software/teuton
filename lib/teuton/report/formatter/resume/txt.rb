@@ -27,7 +27,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   def process_config
     w "#{colorize(" \u{2692} CONFIGURATION ", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:config].each { |key, value| t.add_row [key.to_s, trim(value)] }
     end
     w "#{table}\n\n"
@@ -36,13 +36,13 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   def process_cases
     w "#{colorize(" \u{1f46a} CASES", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS GRADE STATE]
       @data[:cases].each do |line|
         t.add_row [
           line[:id],
           line[:members],
-          format("  %<grade>3d", { grade: line[:grade] }),
+          format("  %<grade>3d", {grade: line[:grade]}),
           line[:letter]
         ]
       end
@@ -52,7 +52,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
 
   def process_conn_errors
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS HOST ERROR]
       @data[:cases].each do |line|
         line[:conn_status].each_pair do |h, e|
@@ -68,7 +68,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
   def process_results
     w "#{colorize(" \u{1f5f9} RESULTS", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:results].each { |key, value| t.add_row([key.to_s, value.to_s]) }
     end
     w "#{table}\n\n"
@@ -79,7 +79,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
 
     w "#{colorize(' \u{2605} HALL OF FAME', :bg_blue)}\n"
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:hall_of_fame].each do |line|
         color = :green
         color = :red if line[0] < 50
