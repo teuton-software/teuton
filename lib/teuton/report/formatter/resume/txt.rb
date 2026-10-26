@@ -62,7 +62,7 @@ class ResumeTXTFormatter < ResumeArrayFormatter
     end
     return unless table.rows.size > 1
 
-    w "#{colorize(' \u{1f5f2} CONN ERRORS', :bg_blue)}\n#{table}\n\n"
+    w "#{colorize(" \u{1f5f2} CONN ERRORS", :bg_blue)}\n#{table}\n\n"
   end
 
   def process_results

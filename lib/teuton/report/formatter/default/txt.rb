@@ -34,7 +34,7 @@ class TXTFormatter < ArrayFormatter
   def process_logs
     return if @data[:logs].empty?
 
-    w "#{colorize(" \u{1f5b9} LOGS", :bg_blue)}\n"
+    w "#{colorize(" \u{1f6c8} LOGS", :bg_blue)}\n"
     @data[:logs].each { |line| w "   #{line}\n" }
   end
 
