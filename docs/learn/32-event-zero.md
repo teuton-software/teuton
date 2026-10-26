@@ -61,16 +61,16 @@ Process:
 * target 4 is Ok.
 
 ```
-$ cat var/32-events-zero/case-01.txt
+$ cat var/32-event-zero/case-01.txt
 
  ⚒ CONFIGURATION
-┌────────────────┬─────────────────────────────────────┐
-│ tt_config_path │ examples/32-events-zero/config.yaml │
-│ tt_members     │ TOCHANGE                            │
-│ tt_script_path │ examples/32-events-zero/start.rb    │
-│ tt_sequence    │ false                               │
-│ tt_skip        │ false                               │
-└────────────────┴─────────────────────────────────────┘
+┌────────────────┬────────────────────────────────────┐
+│ tt_config_path │ examples/32-event-zero/config.yaml │
+│ tt_members     │ TOCHANGE                           │
+│ tt_script_path │ examples/32-event-zero/start.rb    │
+│ tt_sequence    │ false                              │
+│ tt_skip        │ false                              │
+└────────────────┴────────────────────────────────────┘
 
  🛈 LOGS
    [12:44:21]  INFO| Event on: last_target (target 3), when: failed
