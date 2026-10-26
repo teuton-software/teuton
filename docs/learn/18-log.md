@@ -1,4 +1,4 @@
-[<< back](README.md)
+[<<back](../../README.md)
 
 # log
 
@@ -53,7 +53,8 @@ end
 Content of `var/18-log/case-01.txt` file.
 
 ```txt
-❯ cat var/18-log/case-01.txt 
+$ cat var/18-log/case-01.txt 
+
  CONFIGURATION
 ┌────────────────┬───────────────────────────────────┐
 │ tt_config_path │ examples/18-log/config.yaml       │

@@ -1,8 +1,10 @@
-[<<back](README.md)
+[<<back](../../README.md)
 
 # DSL: upload
 
 `upload` is a dsl instruction, whose purpose is to upload files to the remote host.
+
+> **Recommendation**: Use this function as little as possible, to minimize any modifications, changes, or alterations to the remote device.
 
 ```ruby
   upload "FILENAME", to: :host1
