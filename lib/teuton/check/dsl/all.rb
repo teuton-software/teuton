@@ -13,7 +13,7 @@ module CheckDSL
 
   def readme(text)
     @stats[:readmes] += 1
-    Logger.puts "      readme      #{text}"
+    Logger.puts "      doc         #{text}"
   end
 
   def target(desc, args = {})

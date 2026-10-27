@@ -6,9 +6,9 @@ class ReadmeCommandTest < Test::Unit::TestCase
     @dirbase = File.join(filedirname, "..", "..", "examples")
   end
 
-  def old_test_readme_examples
+  def old_test_doc_examples
     puts ""
-    @examples.each { |name| execute_readme name }
+    @examples.each { |name| execute_doc name }
   end
 
   def execute_doc(name)
