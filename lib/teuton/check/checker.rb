@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "../case/action/manager"
 require_relative "../case/dsl/macro"
 require_relative "../case/result/result"
 require_relative "../utils/project"
@@ -14,6 +15,7 @@ class Checker
   attr_reader :result
 
   def initialize(script_path, config_path)
+    @action_manager = Case::ActionManager.new
     @path = {}
     @path[:script] = script_path
     @path[:dirname] = File.dirname(script_path)
@@ -73,7 +75,7 @@ class Checker
     Logger.puts ""
     if Project.value[:uses].size.positive?
       table = Terminal::Table.new do |t|
-        t.style = {border: :unicode}
+        t.style = { border: :unicode }
         t.add_row ["USE: external libraries"]
       end
       Logger.puts table
@@ -85,7 +87,7 @@ class Checker
       unless option[:panel]
         msg = "GROUP: #{t[:name]}"
         table = Terminal::Table.new do |t|
-          t.style = {border: :unicode}
+          t.style = { border: :unicode }
           t.add_row [msg]
         end
         Logger.puts table
