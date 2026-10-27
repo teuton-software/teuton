@@ -6,8 +6,9 @@ class CaseActionManagerTest < Test::Unit::TestCase
     am = Case::ActionManager.new
     am.next_action
     assert_equal 0, am.actions.size
-    assert_equal 0, am.events[:runonce].size
-    assert_equal 0, am.events[:repeat].size
+    assert_equal 0, am.events[:now].size
+    assert_equal 0, am.events[:eachtime].size
+    assert_equal 0, am.events[:atend].size
     assert_equal 1, am.current_action.id
     assert_false am.stopped?
   end

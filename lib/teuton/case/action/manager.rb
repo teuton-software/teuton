@@ -3,26 +3,26 @@ require_relative "action"
 class Case
   class ActionManager
     AVAILABLE = [
-      %i[last_target failed],
-      %i[last_target is_ok],
-      %i[every_target failed],
-      %i[every_target is_ok],
-      %i[all_targets failed],
-      %i[all_targets is_ok]
+      %i[last_target failed now],
+      %i[last_target is_ok now],
+      %i[every_target failed eachtime],
+      %i[every_target is_ok eachtime],
+      %i[all_targets failed atend],
+      %i[all_targets is_ok atend]
     ].freeze
     attr_reader :actions, :events, :current_action
 
     def initialize
       @current_action = nil
       @actions = []
-      @events = {runonce: [], repeat: []}
+      @events = {now: [], eachtime: [], atend: []}
       @stopped = false
     end
 
     def add_event(**args, &block)
     end
 
-    def check_event(**args)
+    def get_event_type(**args)
       object = args[:on]
       condition = args[:when]
       options = AVAILABLE.select { |obj, cond| obj == object && cond == condition }
@@ -32,9 +32,9 @@ class Case
         AVAILABLE.each do |obj, cond|
           Logger.info "  event on: #{obj}, when: #{cond}"
         end
-        return false
+        return nil
       end
-      true
+      options.first.last
     end
 
     def close(report)
@@ -123,7 +123,7 @@ class Case
     end
 
     def trigger_events!
-      @events[:repeat].each do |event|
+      @events[:eachtime].each do |event|
         # TODO: Do something
       end
 

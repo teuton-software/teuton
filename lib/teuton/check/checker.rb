@@ -30,7 +30,7 @@ class Checker
     @stats = {
       groups: 0,
       targets: 0,
-      events: 0,
+      events: {now: 0, eachtime: 0, atend: 0},
       logs: 0,
       readmes: 0,
       uniques: 0,
