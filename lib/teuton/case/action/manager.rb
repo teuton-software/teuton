@@ -2,10 +2,14 @@ require_relative "action"
 
 class Case
   class ActionManager
-    OBJECTS = %i[last_target every_target all_targets].freeze
-    CONDITIONS = %i[failed is_ok].freeze
-    ACTIONS = %i[scores_to_zero stop log].freeze
-
+    AVAILABLE = [
+      %i[last_target failed],
+      %i[last_target is_ok],
+      %i[every_target failed],
+      %i[every_target is_ok],
+      %i[all_targets failed],
+      %i[all_targets is_ok]
+    ].freeze
     attr_reader :actions, :events, :current_action
 
     def initialize
@@ -20,15 +24,14 @@ class Case
 
     def check_event(**args)
       object = args[:on]
-      unless Case::ActionManager::OBJECTS.include? object
-        Logger.warn "Incorrect argument. Event on: #{object} ..."
-        Logger.info "Valid OBJECTS: #{Case::ActionManager::OBJECTS.join(",")}"
-        return false
-      end
       condition = args[:when]
-      unless Case::ActionManager::CONDITIONS.include? condition
-        Logger.warn "Incorrect argument. Event ... when: #{condition}"
-        Logger.info "Valid CONDITIONS: #{Case::ActionManager::CONDITIONS.join(",")}"
+      options = AVAILABLE.select { |obj, cond| obj == object && cond == condition }
+      if options.empty?
+        Logger.warn "Unkown event! on: #{object}, when: #{condition}"
+        Logger.info "Available events:"
+        AVAILABLE.each do |obj, cond|
+          Logger.info "  event on: #{obj}, when: #{cond}"
+        end
         return false
       end
       true
