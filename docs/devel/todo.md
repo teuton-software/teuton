@@ -20,11 +20,8 @@
 
 # 3. Features
 
-## 3.1. teuton readme -> teuton doc
+## 3.1. teuton doc
 
-* Renombrar "teuton readme" por "teuton doc".
-    * Modificar código, documentación y los ejemplos
-    * Modificar los ejemplos de dvarrui/teuton-tests
 * Añadir opciones de lenguaje a `teuton doc`.
     * Por defecto se usará `--lang=en`.
     * Pero poder especificar el idioma usando el paráemetro `lang`. Por ejemplo :`teuton doc --lang=es`

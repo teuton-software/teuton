@@ -1,6 +1,7 @@
 
 ## [3.4.0] - 202610xx
 
+- [CHORE] Rename `teuton readme` by `teuton doc`.
 - [CHORE] Add UTF8 symbols to txt format titles.
 - [DOC] Learn about new examples: targe weight(29, 30), events (31, 32, 33).
 - [DOC] New examples: Target weight (29, 30), events (31, 32, 33).

@@ -11,12 +11,12 @@ Take a look at our test definition section (Group):
 ```ruby
 group "Customize readme output" do
 
-  readme "This is our README example."
-  readme "And here we'll see how to use readme keyword"
+  doc "This is our README example."
+  doc "And here we'll see how to use readme keyword"
 
   target "Create user david."
-  readme "Help: you can use 'useradd' command to create users."
-  readme "Remember: Only root is permitted to create new users."
+  doc "Help: you can use 'useradd' command to create users."
+  doc "Remember: Only root is permitted to create new users."
 
   run "id david"
   expect "david"
@@ -26,19 +26,19 @@ end
 
 > In this example, localhost's OS must be GNU/Linux (any other compatible OS) because the command used is `id david`.
 
-There exists some `readme` instructions after `group` and `target` lines.
+There exists some `doc` instructions after `group` and `target` lines.
 
 ## Execution
 
-To generate automatically a README file from previous test, execute this:
+To generate automatically a Markdown file from previous test, execute this:
 
 ```
-$ teuton readme example/15-readme > example/15-readme/README.md
+$ teuton doc example/15-doc > example/15-doc/README.md
 ```
 
 ## Result
 
-Content of `example/15-readme/README.md` file.
+Content of `example/15-doc/README.md` file.
 
 ---
 
@@ -49,7 +49,7 @@ Teuton : 3.2.1
 
 # Test: 15-readme
 
-## Customize readme output
+## Customize doc output
 This is our readme example.
 And here we'll see how to use readme keyword
 

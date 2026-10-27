@@ -5,12 +5,10 @@
 _Show test info as README file. Useful for create a readme file for the exercise._
 
 Usage:
-* `teuton readme DIRPATH`
-* `teuton readme DIRPATH > README.md`
+* `teuton doc DIRPATH`
+* `teuton doc DIRPATH > README.md`
 
 This function reads test and config files, and generate Markdown output with guidelines and target descriptions about the exercise.
-
-Alias: `teuton r DIRPATH`, `teuton -r DIRPATH`, `teuton --readme DIRPATH`
 
 ## Example
 
@@ -34,7 +32,7 @@ play do
 end
 ```
 
-Generate test documentation: `teuton readme examples/02-target`
+Generate test documentation: `teuton doc examples/02-target`
 
 ---
 ```

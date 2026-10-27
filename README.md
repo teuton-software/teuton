@@ -84,11 +84,11 @@ Consult the generated [output files](examples/02-target/output.d/)
 2. Teuton commands
     * [teuton config](docs/commands/config.md): suggest config file.
     * [teuton check](docs/commands/check.md): check test syntax.
+    * [teuton doc](docs/commands/doc.md): generate test documentation.
     * [teuton help](docs/commands/help.md): show command help.
     * [teuton new](docs/commands/new.md): create new test.
-    * [teuton readme](docs/commands/readme.md): generate test documentation.
     * [teuton run](docs/commands/run.md): run test.
-3. [Learning guide](docs/learn/README.md). Learn writing your own tests. [Examples](examples).
+3. Learning guide: Learn writing tests. [Examples](examples).
     * [Create NEW test](docs/learn/01-cmd_new.md)
     * [Evaluate TARGET](docs/learn/02-target.md)
     * [Check REMOTE HOSTS](docs/learn/03-remote_hosts.md)
@@ -103,7 +103,7 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [PRESERVE old reports](docs/learn/12-preserve.md)
     * [Hide FEEDBACK from reports](docs/learn/13-feedback.md)
     * [MOODLE](docs/learn/14-moodle_id.md)
-    * [Build README from test](docs/learn/15-readme.md)
+    * [Build DOC from test](docs/learn/15-doc.md)
     * [INCLUDE more configuration files](docs/learn/16-include.md)
     * [ALIAS](docs/learn/17-alias.md)
     * [LOG messages](docs/learn/18-log.md)
