@@ -28,10 +28,10 @@ class Case
       options = AVAILABLE.select { |obj, cond| obj == object && cond == condition }
       if options.empty?
         Logger.warn "Unkown event! on: #{object}, when: #{condition}"
-        Logger.info "Available events:"
-        AVAILABLE.each do |obj, cond|
-          Logger.info "  event on: #{obj}, when: #{cond}"
-        end
+        # Logger.info "Available events:"
+        # AVAILABLE.each do |obj, cond|
+        #   Logger.info "  event on: #{obj}, when: #{cond}"
+        # end
         return nil
       end
       options.first.last
