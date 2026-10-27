@@ -15,11 +15,12 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = {now: [], eachtime: [], atend: []}
+      @events = { now: [], eachtime: [], atend: [] }
       @stopped = false
     end
 
     def add_event(**args, &block)
+      # TODO
     end
 
     def get_event_type(**args)
