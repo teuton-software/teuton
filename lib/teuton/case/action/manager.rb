@@ -15,7 +15,7 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = { now: [], eachtime: [], atend: [] }
+      @events = {now: [], eachtime: [], atend: []}
       @stopped = false
     end
 
@@ -38,7 +38,7 @@ class Case
         Logger.warn "Unkown event! on: #{object}, when: #{condition}"
         msg = ""
       else
-        events[type] << { args: args, block: block }
+        events[type] << {args: args, block: block}
         msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
       end
       msg
