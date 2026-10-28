@@ -22,15 +22,19 @@ class Case
     def add_event(**args, &block)
       type = get_event_type(**args)
 
+      object = args[:on]
+      condition = args[:when]
       if type == :now
-        # last_target, all_targets
-        # log "Event on: #{object} (target #{last_action.id}), when: #{condition}"
         instance_exec(**args, &block) if block
-        # TODO: do something more
+        msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
       elsif !type.nil?
         events[type] << {args: args, block: block}
+        msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
+      else
+        Logger.warn "Unkown event! on: #{object}, when: #{condition}"
+        msg = ""
       end
-      type
+      msg
     end
 
     def get_event_type(**args)
@@ -39,10 +43,6 @@ class Case
       options = AVAILABLE.select { |obj, cond| obj == object && cond == condition }
       if options.empty?
         Logger.warn "Unkown event! on: #{object}, when: #{condition}"
-        # Logger.info "Available events:"
-        # AVAILABLE.each do |obj, cond|
-        #   Logger.info "  event on: #{obj}, when: #{cond}"
-        # end
         return nil
       end
       options.first.last
