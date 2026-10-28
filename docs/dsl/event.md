@@ -54,10 +54,9 @@ In the initial version, the following are available:
 | OBJECT    | every_target   | Applies to each individual target       | TODO   |
 | OBJECT    | all_targets    | Applies to all targets collectively     | TODO   |
 | CONDITION | failed         | The object's state is "failed"          |        |
-| CONDITION | is_ok          | The object's state is "correct" (OK)    | TODO   |
+| CONDITION | passed         | The object's state is "correct"         |        |
 | ACTION    | scores_to_zero | Resets all points earned so far to zero |        |
 | ACTION    | stop           | Stops the test for this case            |        |
-| ACTION    | log            | Records a message in the log            | TODO   |
 
 ## Example 1: "stop" action
 

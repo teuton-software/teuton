@@ -4,18 +4,18 @@ class Case
   class ActionManager
     AVAILABLE = [
       %i[last_target failed now],
-      %i[last_target is_ok now],
+      %i[last_target passed now],
       %i[every_target failed eachtime],
-      %i[every_target is_ok eachtime],
+      %i[every_target passed eachtime],
       %i[all_targets failed atend],
-      %i[all_targets is_ok atend]
+      %i[all_targets passed atend]
     ].freeze
     attr_reader :actions, :events, :current_action
 
     def initialize
       @current_action = nil
       @actions = []
-      @events = {now: [], eachtime: [], atend: []}
+      @events = { now: [], eachtime: [], atend: [] }
       @stopped = false
     end
 
@@ -24,15 +24,22 @@ class Case
 
       object = args[:on]
       condition = args[:when]
+      msg = ""
       if type == :now
-        instance_exec(**args, &block) if block
-        msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
-      elsif !type.nil?
-        events[type] << {args: args, block: block}
-        msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
-      else
+        flag1 = (object == :last_target)
+        flag2 = last_action.check && condition == :is_ok
+        flag3 = !last_action.check && condition == :failed
+        if flag1 && (flag2 || flag3)
+          instance_exec(**args, &block) if block
+          object = "target[#{last_action.id}]"
+          msg = "Event on: #{object}, when: #{condition}"
+        end
+      elsif type.nil?
         Logger.warn "Unkown event! on: #{object}, when: #{condition}"
         msg = ""
+      else
+        events[type] << { args: args, block: block }
+        msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
       end
       msg
     end
