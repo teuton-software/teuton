@@ -2,7 +2,7 @@ module DSL
   def event(**args, &block)
     type = @action_manager.add_event(**args, &block)
 
-    return unless type == :now
+    return if type.nil?
 
     object = args[:on]
     condition = args[:when]
