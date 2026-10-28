@@ -15,7 +15,7 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = { now: [], eachtime: [], atend: [] }
+      @events = {now: [], eachtime: [], atend: []}
       @stopped = false
     end
 
@@ -28,7 +28,7 @@ class Case
         instance_exec(**args, &block) if block
         # TODO: do something more
       elsif !type.nil?
-        events[type] << { args: args, block: block }
+        events[type] << {args: args, block: block}
       end
       type
     end
