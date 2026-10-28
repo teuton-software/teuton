@@ -15,7 +15,7 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = { now: [], eachtime: [], atend: [] }
+      @events = {now: [], eachtime: [], atend: []}
       @stopped = false
     end
 
