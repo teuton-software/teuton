@@ -65,15 +65,15 @@ class ShowCheck
       t.add_row ["Groups", @stats[:groups]]
       t.add_row ["Targets", @stats[:targets]]
       t.add_row ["Events", @stats[:events].values.sum]
-      t.add_row [" - now", @stats[:events][:now]] if @stats[:events][:now].positive?
-      t.add_row [" - eachtime", @stats[:events][:eachtime]] if @stats[:events][:eachtime].positive?
-      t.add_row [" - atend", @stats[:events][:atend]] if @stats[:events][:atend].positive?
+      t.add_row ["- now", @stats[:events][:now]] if @stats[:events][:now].positive?
+      t.add_row ["- eachtime", @stats[:events][:eachtime]] if @stats[:events][:eachtime].positive?
+      t.add_row ["- atend", @stats[:events][:atend]] if @stats[:events][:atend].positive?
       runs = @stats[:hosts].values.sum
       t.add_row ["Runs", runs]
       @stats[:hosts].each_pair { |k, v| t.add_row [" - #{k}", v] }
       t.add_row ["Uniques", @stats[:uniques]] if @stats[:uniques].positive?
       t.add_row ["Logs", @stats[:logs]] if @stats[:logs].positive?
-      t.add_row ["Readmes", @stats[:readmes]] if @stats[:readmes].positive?
+      t.add_row ["Docs", @stats[:readmes]] if @stats[:readmes].positive?
 
       if @stats[:gets].size.positive?
         total = @stats[:gets].values.sum
@@ -92,7 +92,7 @@ class ShowCheck
         uploads.each { |value| t.add_row ["", value] }
       end
     end
-    Logger.puts "#{table}\n"
+    Logger.puts "\n#{table}\n"
   end
 
   private

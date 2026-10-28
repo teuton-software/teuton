@@ -3,6 +3,7 @@ require_relative "expect"
 require_relative "event"
 require_relative "getset"
 require_relative "run"
+require_relative "target"
 
 module CheckDSL
   def log(text = "", type = :info)
@@ -11,24 +12,14 @@ module CheckDSL
     Logger.puts "      log         #{prefix}" + text.to_s
   end
 
-  def readme(text)
+  def doc(text)
     @stats[:readmes] += 1
     Logger.puts "      doc         #{text}"
   end
 
-  def target(desc, args = {})
-    Logger.warn "WARN  Previous 'target' requires 'expect'" if @target_begin
-    @target_begin = true
-    @stats[:targets] += 1
-    @targetid += 1
-    weight = args[:weight] ? args[:weight].to_f : 1.0
-    Logger.puts format("(%03<targetid>d) target      %<desc>s", targetid: @targetid, desc: desc)
-    Logger.puts "      weight      #{weight}"
-  end
-
-  def goal(...)
-    Logger.warn("Keyword deprecated: Replace 'goal' by 'target'.")
-    target(...)
+  def readme(...)
+    Logger.warn("Keyword deprecated: Replace 'readme' by 'doc'.")
+    doc(...)
   end
 
   def unique(key, _value)
