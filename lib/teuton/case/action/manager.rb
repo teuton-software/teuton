@@ -15,12 +15,22 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = {now: [], eachtime: [], atend: []}
+      @events = { now: [], eachtime: [], atend: [] }
       @stopped = false
     end
 
     def add_event(**args, &block)
-      # TODO
+      type = get_event_type(**args)
+
+      if type == :now
+        # last_target, all_targets
+        # log "Event on: #{object} (target #{last_action.id}), when: #{condition}"
+        instance_exec(**args, &block) if block
+        # TODO: do something more
+      elsif !type.nil?
+        events[type] << { args: args, block: block }
+      end
+      type
     end
 
     def get_event_type(**args)
