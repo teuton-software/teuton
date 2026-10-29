@@ -15,7 +15,7 @@ class Case
     def initialize
       @current_action = nil
       @actions = []
-      @events = {now: [], eachtime: [], atend: []}
+      @events = []
       @stopped = false
     end
 
@@ -25,20 +25,14 @@ class Case
       object = args[:on]
       condition = args[:when]
       msg = ""
-      if type == :now
-        flag1 = (object == :last_target)
-        flag2 = last_action.check && condition == :is_ok
-        flag3 = !last_action.check && condition == :failed
-        if flag1 && (flag2 || flag3)
-          instance_exec(**args, &block) if block
-          object = "target[#{last_action.id}]"
-          msg = "Event on: #{object}, when: #{condition}"
-        end
+      if object == :last_target
+        msg = trigger_on_last_target(args, &block)
       elsif type.nil?
         Logger.warn "Unkown event! on: #{object}, when: #{condition}"
         msg = ""
       else
-        events[type] << {args: args, block: block}
+        id = events.count
+        events << { id: id, args: args, block: block, type: :eachtime }
         msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
       end
       msg
@@ -141,8 +135,8 @@ class Case
     end
 
     def trigger_events!
-      @events[:eachtime].each do |event|
-        # TODO: Do something
+      @events.each do |event|
+        # TODO: Do something if type == :eachtime
       end
 
       return unless @stopped
@@ -163,7 +157,7 @@ class Case
     private
 
     def calculate_grade(report)
-      current_good_weight = @actions.map { _1.score }.sum
+      current_good_weight = @actions.sum(&:score)
       current_score = current_good_weight.to_f / @max_weight
       current_score = 0.0 if current_score.nan?
 
@@ -171,6 +165,21 @@ class Case
 
       @grade = 0.0 if report.tail[:unique_fault].positive?
       @grade
+    end
+
+    def trigger_on_last_target(args, &block)
+      do_ok = last_action.check && args[:when] == :is_ok
+      do_failed = !last_action.check && args[:when] == :failed
+      unless do_ok || do_failed
+        id = events.count
+        events << { id: id, args: args, block: block, status: :cancelled }
+        msg = "Event[#{id}] cancelled on: target[#{last_action.id}], when: #{args[:when]}"
+        return msg
+      end
+      instance_exec(**args, &block) if block
+      id = events.count
+      events << { id: id, args: args, block: block, status: :triggered }
+      "Event[#{id}] triggered on: target[#{last_action.id}], when: #{args[:when]}"
     end
   end
 end

@@ -61,7 +61,7 @@ Process:
 * target 4 is Ok.
 
 ```
-$ cat var/32-event-zero/case-01.txt
+$ cat var/32-event-zero/case-01.txt 
 
  ⚒ CONFIGURATION
 ┌────────────────┬────────────────────────────────────┐
@@ -73,8 +73,8 @@ $ cat var/32-event-zero/case-01.txt
 └────────────────┴────────────────────────────────────┘
 
  🛈 LOGS
-   [12:44:21]  INFO| Event on: last_target (target 3), when: failed
-   [12:44:21]  WARN| Scores READJUSTED!
+   [18:42:35]  INFO| Event[0] triggered on: target[3], when: failed
+   [18:42:35]  WARN| Scores READJUSTED!
 
  ☰ GROUPS
  ▶ Events: scores_to_zero
@@ -115,9 +115,9 @@ $ cat var/32-event-zero/case-01.txt
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-26 12:44:21 +0000 │
-│ finish_time  │ 2026-10-26 12:44:21 +0000 │
-│ duration     │ 0.006700903               │
+│ start_time   │ 2026-10-29 18:42:35 +0000 │
+│ finish_time  │ 2026-10-29 18:42:35 +0000 │
+│ duration     │ 0.006669172               │
 │ max_weight   │ 4.0                       │
 │ good_weight  │ 3.0                       │
 │ fail_weight  │ 1.0                       │

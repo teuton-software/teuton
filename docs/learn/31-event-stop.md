@@ -80,9 +80,9 @@ $ cat var/31-event-stop/case-01.txt
 └────────────────┴────────────────────────────────────┘
 
  🛈 LOGS
-   [08:20:39]  INFO| Event on: last_target (target 3), when: failed
+   [18:41:32]  INFO| Event[0] triggered on: target[3], when: failed
 
- 👪 GROUPS
+ ☰ GROUPS
  ▶ Events: stop
    ✔ 01 (1.0/1.0)   ┌──
         Description │ Target 1: ok
@@ -121,9 +121,9 @@ $ cat var/31-event-stop/case-01.txt
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-26 08:20:39 +0000 │
-│ finish_time  │ 2026-10-26 08:20:39 +0000 │
-│ duration     │ 0.006528045               │
+│ start_time   │ 2026-10-29 18:41:32 +0000 │
+│ finish_time  │ 2026-10-29 18:41:32 +0000 │
+│ duration     │ 0.006938396               │
 │ max_weight   │ 4.0                       │
 │ good_weight  │ 2.0                       │
 │ fail_weight  │ 2.0                       │
