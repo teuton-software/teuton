@@ -1,12 +1,13 @@
 
-## [3.4.0] - 202610xx
+## [3.4.0] - 20261030
 
+- [FEAT] Events: on: last_target, when: failed or passed.
+- [FEAT] Events: actions stop, scores_to_zero and log.
 - [CHORE] Rename `teuton readme` by `teuton doc`.
 - [CHORE] Add UTF8 symbols to txt format titles.
 - [DOC] Learn about new examples: targe weight(29, 30), events (31, 32, 33).
 - [DOC] New examples: Target weight (29, 30), events (31, 32, 33).
 - [TEST] New examples: Target weight (29, 30), events (31, 32, 33).
-- [FEAT] Events working fine: stop, scores_to_zero.
 
 ## [3.3.0] - 20261021
 

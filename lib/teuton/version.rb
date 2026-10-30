@@ -1,5 +1,5 @@
 module Teuton
-  VERSION = "3.4.0-dev".freeze
+  VERSION = "3.4.0".freeze
   APPNAME = "teuton".freeze
   GEMNAME = "teuton".freeze
   DOCKERNAME = "dvarrui/#{GEMNAME}".freeze
