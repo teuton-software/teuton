@@ -11,6 +11,7 @@ class Case
       %i[all_targets passed atend]
     ].freeze
     attr_reader :actions, :events, :current_action
+    attr_writer :log
 
     def initialize
       @current_action = nil
@@ -19,34 +20,34 @@ class Case
       @stopped = false
     end
 
+    def check_event(**args)
+      object = args[:on]
+      condition = args[:when]
+      options = AVAILABLE.select { |obj, cond| obj == object && cond == condition }
+      if options.empty?
+        Logger.warn "Unkown! Event on: #{object}, when: #{condition}"
+        return false
+      elsif options.count > 1
+        Logger.warn "More than one definition! Event on: #{object}, when: #{condition}"
+      end
+      true
+    end
+
     def add_event(**args, &block)
-      type = get_event_type(**args)
+      return unless check_event(**args)
 
       object = args[:on]
       condition = args[:when]
-      msg = ""
       if object == :last_target
-        msg = trigger_on_last_target(args, &block)
-      elsif type.nil?
-        Logger.warn "Unkown event! on: #{object}, when: #{condition}"
-        msg = ""
+        trigger_on_last_target(args, &block)
+      elsif object == :all_targets
+        trigger_on_all_targets(args, &block)
       else
         id = events.count
         events << { id: id, args: args, block: block, type: :eachtime }
         msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
       end
       msg
-    end
-
-    def get_event_type(**args)
-      object = args[:on]
-      condition = args[:when]
-      options = AVAILABLE.select { |obj, cond| obj == object && cond == condition }
-      if options.empty?
-        Logger.warn "Unkown event! on: #{object}, when: #{condition}"
-        return nil
-      end
-      options.first.last
     end
 
     def close(report)
@@ -156,6 +157,10 @@ class Case
 
     private
 
+    def log(...)
+      @log.call(...)
+    end
+
     def calculate_grade(report)
       current_good_weight = @actions.sum(&:score)
       current_score = current_good_weight.to_f / @max_weight
@@ -173,13 +178,12 @@ class Case
       unless do_ok || do_failed
         id = events.count
         events << { id: id, args: args, block: block, status: :cancelled }
-        msg = "Event[#{id}] cancelled on: target[#{last_action.id}], when: #{args[:when]}"
-        return msg
+        log "Event[#{id}] cancelled because target[#{last_action.id}] #{args[:when]}"
       end
       instance_exec(**args, &block) if block
       id = events.count
       events << { id: id, args: args, block: block, status: :triggered }
-      "Event[#{id}] triggered on: target[#{last_action.id}], when: #{args[:when]}"
+      log "Event[#{id}] triggered because target[#{last_action.id}] #{args[:when]}"
     end
   end
 end

@@ -49,6 +49,7 @@ class Case
     @unique_values = {}
     @result = Result.new
     @action_manager = ActionManager.new
+    @action_manager.log = method(:log)
     @action = @action_manager.next_action
     @uniques = []
     @sessions = {} # Store opened sessions for this case
