@@ -119,10 +119,12 @@ class Case
         action.score = 0.0
         action.description << " (SCORE TO ZERO)"
       end
+      log("Scores READJUSTED!")
     end
 
     def stop
       @stopped = true
+      log("Test STOPPED!")
     end
 
     def to_h
@@ -174,10 +176,10 @@ class Case
         events << { id: id, args: args, block: block, status: :cancelled }
         log "Event[#{id}] cancelled because target[#{last_action.id}] #{args[:when]}"
       end
-      instance_exec(**args, &block) if block
       id = events.count
       events << { id: id, args: args, block: block, status: :triggered }
       log "Event[#{id}] triggered because target[#{last_action.id}] #{args[:when]}"
+      instance_exec(**args, &block) if block
     end
 
     def trigger_on_all_targets(args, block)
@@ -190,10 +192,10 @@ class Case
         events << { id: id, args: args, block: block, status: :cancelled }
         log "Event[#{id}] cancelled. Not all_targets[1, #{last_action.id}] #{args[:when]}"
       end
-      instance_exec(**args, &block) if block
       id = events.count
       events << { id: id, args: args, block: block, status: :triggered }
       log "Event[#{id}] triggered. All_targets[1, #{last_action.id}] #{args[:when]}"
+      instance_exec(**args, &block) if block
     end
   end
 end
