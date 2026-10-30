@@ -12,10 +12,11 @@ event on: OBJECT, when: CONDITION do
 end
 ```
 
-Where
-* OBJECT can be `:last_target`
-* CONDITION can be `:failed`
-* And ACTION can be `stop`, `scores_to_zero`, or both.
+| Keyword   | Values                          |
+| --------- | ------------------------------- |
+| OBJECT    | `:last_target`, `all_targets`   |
+| CONDITION | `:failed`, `:passed`            |
+| ACTION    | `stop`, `scores_to_zero`, `log` |
 
 ## Example
 
