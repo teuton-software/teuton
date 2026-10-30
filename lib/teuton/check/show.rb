@@ -12,7 +12,7 @@ class ShowCheck
   end
 
   def suggest_config_content
-    output = {"global" => nil, "cases" => [{}]}
+    output = { "global" => nil, "cases" => [{}] }
     script_vars = find_script_vars
     script_vars.each { |i| output["cases"][0][i.to_s] = "TOCHANGE" }
     Logger.puts YAML.dump(output)
@@ -53,7 +53,7 @@ class ShowCheck
 
   def show_stats
     table = Terminal::Table.new do |t|
-      t.style = {border: :unicode}
+      t.style = { border: :unicode }
       t.add_row ["DSL Stats", "Count"]
       t.add_separator
 
@@ -64,10 +64,7 @@ class ShowCheck
       end
       t.add_row ["Groups", @stats[:groups]]
       t.add_row ["Targets", @stats[:targets]]
-      t.add_row ["Events", @stats[:events].values.sum]
-      t.add_row ["- now", @stats[:events][:now]] if @stats[:events][:now].positive?
-      t.add_row ["- eachtime", @stats[:events][:eachtime]] if @stats[:events][:eachtime].positive?
-      t.add_row ["- atend", @stats[:events][:atend]] if @stats[:events][:atend].positive?
+      t.add_row ["Events", @stats[:events]]
       runs = @stats[:hosts].values.sum
       t.add_row ["Runs", runs]
       @stats[:hosts].each_pair { |k, v| t.add_row ["- #{k}", v] }

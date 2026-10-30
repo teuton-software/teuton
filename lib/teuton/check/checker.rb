@@ -30,7 +30,7 @@ class Checker
     @stats = {
       groups: 0,
       targets: 0,
-      events: {now: 0, eachtime: 0, atend: 0},
+      events: 0,
       logs: 0,
       readmes: 0,
       uniques: 0,
@@ -75,7 +75,7 @@ class Checker
     Logger.puts ""
     if Project.value[:uses].size.positive?
       table = Terminal::Table.new do |t|
-        t.style = {border: :unicode}
+        t.style = { border: :unicode }
         t.add_row ["USE: external libraries"]
       end
       Logger.puts table
@@ -87,7 +87,7 @@ class Checker
       unless option[:panel]
         msg = "GROUP: #{t[:name]}"
         table = Terminal::Table.new do |t|
-          t.style = {border: :unicode}
+          t.style = { border: :unicode }
           t.add_row [msg]
         end
         Logger.puts table
