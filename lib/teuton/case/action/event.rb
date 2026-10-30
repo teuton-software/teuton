@@ -33,7 +33,7 @@ class Case
         trigger_on_all_targets(args, block)
       else
         id = events.count
-        events << { id: id, args: args, block: block, type: :eachtime }
+        events << {id: id, args: args, block: block, type: :eachtime}
         log "Register (sinde target #{last_action.id}) event on: #{object} , when: #{condition}"
       end
     end
@@ -84,11 +84,11 @@ class Case
       do_failed = !last_action.check && args[:when] == :failed
       id = events.count
       if do_ok || do_failed
-        events << { id: id, args: args, block: block, status: :triggered }
+        events << {id: id, args: args, block: block, status: :triggered}
         log "Event[#{id}] triggerd because target[#{last_action.id}] #{args[:when]}"
         instance_exec(**args, &block) if block
       else
-        events << { id: id, args: args, block: block, status: :cancelled }
+        events << {id: id, args: args, block: block, status: :cancelled}
         log "Event[#{id}] cancelled because target[#{last_action.id}] #{args[:when]}"
       end
     end
@@ -100,11 +100,11 @@ class Case
       do_all_failed = all_targets_failed && args[:when] == :failed
       id = events.count
       if do_all_passed || do_all_failed
-        events << { id: id, args: args, block: block, status: :triggered }
+        events << {id: id, args: args, block: block, status: :triggered}
         log "Event[#{id}] triggered. All targets[1, #{last_action.id}] #{args[:when]}"
         instance_exec(**args, &block) if block
       else
-        events << { id: id, args: args, block: block, status: :cancelled }
+        events << {id: id, args: args, block: block, status: :cancelled}
         log "Event[#{id}] cancelled. Not all targets[1, #{last_action.id}] #{args[:when]}"
       end
     end

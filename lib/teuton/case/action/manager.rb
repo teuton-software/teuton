@@ -19,18 +19,18 @@ class Case
       @current_action = nil
 
       # Calculate final values
-      @grade = @max_weight = @good_weight = @fails_weight = @fail_counter = 0
+      @grade = @max_weight = good_weight = fails_weight = fail_counter = 0
       @history = ""
 
       @actions.each do |action|
         @max_weight += action.weight if action.weight.positive?
 
         if action.check
-          @good_weight += action.weight
+          good_weight += action.weight
           @history += Settings.letter[:good]
         else
-          @fails_weight += action.weight
-          @fail_counter += 1
+          fails_weight += action.weight
+          fail_counter += 1
           @history += Settings.letter[:fail]
         end
       end
@@ -39,9 +39,9 @@ class Case
       report.history = @history
 
       report.tail[:max_weight] = @max_weight
-      report.tail[:good_weight] = @good_weight
-      report.tail[:fail_weight] = @fails_weight
-      report.tail[:fail_counter] = @fail_counter
+      report.tail[:good_weight] = good_weight
+      report.tail[:fail_weight] = fails_weight
+      report.tail[:fail_counter] = fail_counter
       report.tail[:grade] = calculate_grade(report)
     end
 
