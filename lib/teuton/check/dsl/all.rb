@@ -8,7 +8,7 @@ require_relative "target"
 module CheckDSL
   def log(text = "", type = :info)
     @stats[:logs] += 1
-    prefix = (type == :info) ? "" : "#{type.to_s.upcase}: "
+    prefix = type == :info ? "" : "#{type.to_s.upcase}: "
     Logger.puts "      log         #{prefix}" + text.to_s
   end
 
@@ -25,7 +25,7 @@ module CheckDSL
   def unique(key, _value)
     @stats[:uniques] += 1
 
-    Logger.puts "      unique      value for <#{key}>"
+    Logger.puts "   \u{26bf}  unique      value for <#{key}>"
     Logger.puts ""
   end
 end
