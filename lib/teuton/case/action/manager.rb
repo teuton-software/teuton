@@ -44,7 +44,7 @@ class Case
         trigger_on_all_targets(args, block)
       else
         id = events.count
-        events << { id: id, args: args, block: block, type: :eachtime }
+        events << {id: id, args: args, block: block, type: :eachtime}
         log "Register (sinde target #{last_action.id}) event on: #{object} , when: #{condition}"
       end
     end
@@ -95,12 +95,6 @@ class Case
       @current_action.groupname = last_action.groupname
       @current_action.description = last_action.description
       @current_action
-    end
-
-    def regular_score
-      value = @good_weight.to_f / @max_weight
-      value = 0.0 if value.nan?
-      value
     end
 
     def current_score
@@ -173,11 +167,11 @@ class Case
       do_failed = !last_action.check && args[:when] == :failed
       unless do_ok || do_failed
         id = events.count
-        events << { id: id, args: args, block: block, status: :cancelled }
+        events << {id: id, args: args, block: block, status: :cancelled}
         log "Event[#{id}] cancelled because target[#{last_action.id}] #{args[:when]}"
       end
       id = events.count
-      events << { id: id, args: args, block: block, status: :triggered }
+      events << {id: id, args: args, block: block, status: :triggered}
       log "Event[#{id}] triggered because target[#{last_action.id}] #{args[:when]}"
       instance_exec(**args, &block) if block
     end
@@ -189,11 +183,11 @@ class Case
       do_all_failed = all_targets_failed && args[:when] == :failed
       unless do_all_passed || do_all_failed
         id = events.count
-        events << { id: id, args: args, block: block, status: :cancelled }
+        events << {id: id, args: args, block: block, status: :cancelled}
         log "Event[#{id}] cancelled. Not all_targets[1, #{last_action.id}] #{args[:when]}"
       end
       id = events.count
-      events << { id: id, args: args, block: block, status: :triggered }
+      events << {id: id, args: args, block: block, status: :triggered}
       log "Event[#{id}] triggered. All_targets[1, #{last_action.id}] #{args[:when]}"
       instance_exec(**args, &block) if block
     end
