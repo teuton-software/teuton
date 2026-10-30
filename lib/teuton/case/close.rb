@@ -22,7 +22,7 @@ class Case
     begin
       log("  ├── Value     => #{key}", :warn)
       log("  └── Conflicts => #{value}", :warn)
-    rescue StandardError => e
+    rescue => e
       log(key, :error)
       log(e.to_s, :error)
     end
