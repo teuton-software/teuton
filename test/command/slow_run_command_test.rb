@@ -38,6 +38,6 @@ class RunCommandTest < Test::Unit::TestCase
     25-expect-result 26-expect_sequence
     27-run_script 28-upload
     29-zero-weight-target 30-negative-weight-target
-    31-event-stop 32-event-zero 33-events
+    31-event-stop 32-event-zero 33-zero-and-stop 34-all-targets
   ]
 end
