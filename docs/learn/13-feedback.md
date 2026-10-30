@@ -1,4 +1,4 @@
-[<< back](README.md)
+[<<back](../../README.md)
 
 # feedback
 
@@ -36,13 +36,13 @@ With `feedback: false` the fields are hidden: command, alterations, expected and
 Executing `teuton run examples/13-feedback`, we get this output:
 
 ```
-GROUPS
+☰ GROUPS
  ▶ Hide feedback messages from output
    ✔ 01 (1.0/1.0)   ┌──
         Description │ Service SSH disabled
         Command     │ *********************
         Output      │ *********
-        Duration    │ 0.008 (local)
+        Duration    │ 0.145 (local)
         Alterations │ **********************
         Expected    │ **************
         Result      │ ********

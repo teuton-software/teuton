@@ -2,9 +2,14 @@
 
 # DSL#target
 module DSL
-  def readme(_text)
+  def doc(_text)
     # Usefull when running.
     # It's works only with "teuton reamde" command action.
+  end
+
+  def readme(...)
+    Logger.warn("Keyword deprecated: Replace 'readme' by 'doc'.")
+    doc(...)
   end
 
   def target(desc, args = {})

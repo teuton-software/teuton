@@ -4,7 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/teuton.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/teuton)
 ![GitHub](https://img.shields.io/github/license/dvarrui/teuton)
 
-_Test your infrastructure as code._
+_Test your infrastructure as code._ 
 
 ![logo](./docs/images/logo-v3-128x128.png)
 
@@ -27,12 +27,12 @@ gem install teuton
 
 ```ruby
 # File: examples/02-target/start.rb 
-group "Learn about targets" do
-  target "Create user obiwan", weight: 2
+group "Practicing targets" do
+  target "Create user obiwan"
   run "id obiwan"
   expect ["uid=", "(obiwan)", "gid="]
 
-  target "Delete user vader"
+  target "Delete user vader", weight: 2
   run "id vader"
   expect_fail
 end
@@ -47,11 +47,6 @@ end
 
 ```console
 $ teutonx examples/02-target 
-------------------------------------
-Started at 2026-10-21 17:05:49 +0100
-F.
-Finished in 0.005 seconds
-------------------------------------
  
  CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
@@ -89,11 +84,11 @@ Consult the generated [output files](examples/02-target/output.d/)
 2. Teuton commands
     * [teuton config](docs/commands/config.md): suggest config file.
     * [teuton check](docs/commands/check.md): check test syntax.
+    * [teuton doc](docs/commands/doc.md): generate test documentation.
     * [teuton help](docs/commands/help.md): show command help.
     * [teuton new](docs/commands/new.md): create new test.
-    * [teuton readme](docs/commands/readme.md): generate test documentation.
     * [teuton run](docs/commands/run.md): run test.
-3. [Learning guide](docs/learn/README.md). Learn writing your own tests. [Examples](examples).
+3. Learning guide: Learn writing tests. [Examples](examples).
     * [Create NEW test](docs/learn/01-cmd_new.md)
     * [Evaluate TARGET](docs/learn/02-target.md)
     * [Check REMOTE HOSTS](docs/learn/03-remote_hosts.md)
@@ -108,7 +103,7 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [PRESERVE old reports](docs/learn/12-preserve.md)
     * [Hide FEEDBACK from reports](docs/learn/13-feedback.md)
     * [MOODLE](docs/learn/14-moodle_id.md)
-    * [Build README from test](docs/learn/15-readme.md)
+    * [Build DOC from test](docs/learn/15-doc.md)
     * [INCLUDE more configuration files](docs/learn/16-include.md)
     * [ALIAS](docs/learn/17-alias.md)
     * [LOG messages](docs/learn/18-log.md)
@@ -122,10 +117,13 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [EXPECT_SEQUENCE](docs/learn/26-expect_sequence.md)
     * [RUN_SCRIPT](docs/learn/27-run_script.md)
     * [UPLOAD](docs/learn/28-upload.md)
+    * [EVENT stop](docs/learn/31-event-stop.md)
+    * [EVENT scores to zero](docs/learn/32-event-zero.md)
 4. [Configuration file](docs/config_file.md): Reserved params, configure hosts, etc.
 5. [Language reference](docs/dsl/README.md). DSL used to define tests.
     * [expect](docs/dsl/expect.md): check run output with expectations.
     * [export](docs/dsl/export.md): save evaluation reports.
+    * [event](docs/dsl/event.md): execute action when conditions are met.
     * [get](docs/dsl/get.md): read config params.
     * [group](docs/dsl/group.md): group targets.
     * [play](docs/dsl/play.md): starts main execution.

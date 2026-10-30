@@ -3,6 +3,7 @@
 class Case
   def close(uniques)
     # Invoked from check_cases!
+    @action_manager.close(@report)
 
     fails = 0
     uniques.each_pair do |key, values|
@@ -12,16 +13,15 @@ class Case
       log_unique_message(key, values)
     end
     @report.tail[:unique_fault] = fails
-    @report.close
   end
 
   private
 
   def log_unique_message(key, value)
-    log("UNIQUE:", :error)
+    log("UNIQUE:", :warn)
     begin
-      log("   ├── Value     => #{key}", :error)
-      log("   └── Conflicts => #{value}", :error)
+      log("  ├── Value     => #{key}", :warn)
+      log("  └── Conflicts => #{value}", :warn)
     rescue => e
       log(key, :error)
       log(e.to_s, :error)

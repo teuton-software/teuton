@@ -1,6 +1,6 @@
-[<< back](README.md)
+[<<back](../../README.md)
 
-# Send
+# send
 
 `send` is a keyword used to copy the output report into remote host.
 

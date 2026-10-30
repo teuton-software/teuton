@@ -1,4 +1,4 @@
-[<< back](README.md)
+[<<back](../../README.md)
 
 # Target weight
 
@@ -24,8 +24,9 @@ group "Using file: network" do
 end
 ```
 
-Output:
 ```
+$ teuton check example/07-target-weight
+...
 ┌────────────────────────────┐
 │ GROUP: Using file: network │
 └────────────────────────────┘
@@ -38,4 +39,5 @@ Output:
       weight      2.0
       run         'host www.google.es' on host1
       expect      www.google.es has address  (String)
+...
 ```

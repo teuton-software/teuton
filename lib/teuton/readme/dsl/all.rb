@@ -5,12 +5,17 @@ require_relative "getset"
 require_relative "run"
 
 module ReadmeDSL
-  def readme(text)
+  def doc(text)
     if @action.description.nil?
       @current[:readme] << text # It's a group readme
     else
       @action.readme << text # It's a target readme
     end
+  end
+
+  def readme(...)
+    Logger.warn("Keyword deprecated: Replace 'readme' by 'doc'.")
+    doc(...)
   end
 
   def target(desc, args = {})

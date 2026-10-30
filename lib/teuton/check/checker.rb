@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "../case/action/manager"
 require_relative "../case/dsl/macro"
 require_relative "../case/result/result"
 require_relative "../utils/project"
@@ -14,6 +15,7 @@ class Checker
   attr_reader :result
 
   def initialize(script_path, config_path)
+    @action_manager = Case::ActionManager.new
     @path = {}
     @path[:script] = script_path
     @path[:dirname] = File.dirname(script_path)

@@ -1,4 +1,4 @@
-[<< back](README.md)
+[<<back](../../README.md)
 
 # Moodle
 
@@ -12,7 +12,7 @@ Add a new field called `tt_moodle_id` to each case in "config.yaml". Fill it wit
 
 Example:
 
-```
+```yaml
 global:
 cases:
 - tt_members: Darth Vader
@@ -31,7 +31,7 @@ We use `tt_moodle_max_score` to customize Moodle max score. So when Teuton expor
 
 ## Example
 
-```
+```yaml
 global:
   tt_moodle_max_score: 10
 cases:

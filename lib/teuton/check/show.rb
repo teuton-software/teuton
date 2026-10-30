@@ -64,19 +64,19 @@ class ShowCheck
       end
       t.add_row ["Groups", @stats[:groups]]
       t.add_row ["Targets", @stats[:targets]]
-      t.add_row ["Events", @stats[:events]] if @stats[:events].positive?
+      t.add_row ["Events", @stats[:events]]
       runs = @stats[:hosts].values.sum
       t.add_row ["Runs", runs]
-      @stats[:hosts].each_pair { |k, v| t.add_row [" * #{k}", v] }
+      @stats[:hosts].each_pair { |k, v| t.add_row ["- #{k}", v] }
       t.add_row ["Uniques", @stats[:uniques]] if @stats[:uniques].positive?
       t.add_row ["Logs", @stats[:logs]] if @stats[:logs].positive?
-      t.add_row ["Readmes", @stats[:readmes]] if @stats[:readmes].positive?
+      t.add_row ["Docs", @stats[:readmes]] if @stats[:readmes].positive?
 
       if @stats[:gets].size.positive?
         total = @stats[:gets].values.sum
         t.add_row ["Gets", total]
         list = @stats[:gets].sort_by { |_k, v| v }
-        list.reverse_each { |item| t.add_row [" * #{item[0]}", item[1].to_s] }
+        list.reverse_each { |item| t.add_row [" - #{item[0]}", item[1].to_s] }
       end
 
       if @stats[:sets].size.positive?
@@ -89,7 +89,7 @@ class ShowCheck
         uploads.each { |value| t.add_row ["", value] }
       end
     end
-    Logger.puts "#{table}\n"
+    Logger.puts "\n#{table}\n"
   end
 
   private
@@ -100,16 +100,16 @@ class ShowCheck
       next if k == :localhost
 
       if k.instance_of? Symbol
-        script_vars << (k.to_s + "_ip").to_sym
-        script_vars << (k.to_s + "_username").to_sym
-        script_vars << (k.to_s + "_password").to_sym
+        script_vars << :"#{k}_ip"
+        script_vars << :"#{k}_username"
+        script_vars << :"#{k}_password"
       else
-        script_vars << k.to_s + "_ip"
-        script_vars << k.to_s + "_username"
-        script_vars << k.to_s + "_password"
+        script_vars << "#{k}_ip"
+        script_vars << "#{k}_username"
+        script_vars << "#{k}_password"
       end
     end
-    @stats[:gets].keys.each { |value| script_vars << value }
+    @stats[:gets].each_key { |value| script_vars << value }
     script_vars
   end
 end

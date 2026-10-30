@@ -1,9 +1,9 @@
 
-[<< back](README.md)
+[<<back](../../README.md)
 
 # check test
 
-`teuton check DIRPATH` is a command function that checks syntax and show statistics.
+`teuton check DIRPATH` is a command function that checks syntax and show statistics. It is very useful for locating syntax errors in test files.
 
 ## Example
 

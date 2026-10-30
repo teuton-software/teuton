@@ -23,30 +23,30 @@ class TXTFormatter < ArrayFormatter
   private
 
   def process_config
-    w "#{colorize(" CONFIGURATION", :bg_blue)}\n"
+    w "#{colorize(" \u{2692} CONFIGURATION", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       @data[:config].sort.each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
-    w "#{table}\n\n"
+    w "#{table}\n"
   end
 
   def process_logs
     return if @data[:logs].empty?
 
-    w "#{colorize(" LOGS", :bg_blue)}\n"
+    w "#{colorize("\n \u{1f6c8} LOGS", :bg_blue)}\n"
     @data[:logs].each { |line| w "   #{line}\n" }
   end
 
   def process_groups
     return if @data[:groups].empty?
 
-    w "\n#{colorize(" GROUPS", :bg_blue)}\n"
+    w "\n#{colorize(" \u{2630} GROUPS", :bg_blue)}\n"
     @data[:groups].each { |g| process_group g }
   end
 
   def process_results
-    w "\n#{colorize(" RESULTS", :bg_blue)}\n"
+    w "\n#{colorize(" \u{1f5f9} RESULTS", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       @data[:results].each { |key, value| t.add_row [key.to_s, value.to_s] }
@@ -57,7 +57,7 @@ class TXTFormatter < ArrayFormatter
   def process_hof
     return if @data[:hall_of_fame].empty?
 
-    w "\n#{colorize(" HALL OF FAME", :bg_blue)}\n"
+    w "\n#{colorize(" \u{2605} HALL OF FAME", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       @data[:hall_of_fame].each do |line|
@@ -96,7 +96,8 @@ class TXTFormatter < ArrayFormatter
       else
         "├──"
       end
-      w " (#{colorize(text, color)})   #{corner}\n"
+      s = " " * (10 - text.size)
+      w " (#{colorize(text, color)})#{s}#{corner}\n"
       w "#{tab * 4}Description │ #{i[:description]}\n"
       w "#{tab * 4}Command     │ #{i[:command]}\n"
       w "#{tab * 4}Output      │ #{i[:output]}\n"
@@ -105,7 +106,7 @@ class TXTFormatter < ArrayFormatter
       w "#{tab * 4}Expected    │ #{i[:expected]}\n"
       w "#{tab * 4}Result      │ #{i[:result]}\n"
     end
-    w "#{tab * 10}└──"
+    w "#{tab * 10}└──\n"
   end
 
   def colorize(text, option)

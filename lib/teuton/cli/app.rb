@@ -50,20 +50,28 @@ module Teuton
         Teuton.check(projectpath, opt)
       end
 
-      map ["--readme"] => "readme"
+      map ["--doc"] => "doc"
       option :lang, type: :string
-      desc "readme DIRECTORY", "Show README extracted from test contents"
+      desc "doc DIRECTORY", "Display practice exercise statement"
       long_desc <<-LONGDESC
 
-      (1) teuton readme foo
-      , Create README.md from foo/start.rb.
+      (1) teuton doc foo
+      , Display exercise statement from foo/start.rb.
 
-      (2) teuton readme foo/demo.rb
-      , Create README.md from foo/demo.rb.
+      (2) teuton doc foo/demo.rb
+      , Display exercise statement from foo/demo.rb.
       LONGDESC
 
-      def readme(projectpath)
+      def doc(projectpath)
         Teuton.readme(projectpath, options)
+      end
+
+      map ["--readme"] => "readme"
+      desc "readme DIRECTORY", "DEPRECATED! Use 'teuton doc'"
+
+      def readme(projectpath)
+        Logger.info "Use: teuton doc"
+        Logger.warn "'teuton readme' has been DEPRECATED!"
       end
 
       map ["--run", "run"] => "play"

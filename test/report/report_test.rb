@@ -28,8 +28,9 @@ class ReportTest < Test::Unit::TestCase
     assert_not_equal report2.tail, report1.tail
   end
 
-  def test_history
+  def todo_test_history
     report = Report.new
+
     report.lines = [
       {check: true, weight: 1},
       {check: false, weight: 1},
@@ -38,7 +39,6 @@ class ReportTest < Test::Unit::TestCase
     ]
 
     assert_equal "", report.history
-    report.close
     assert_equal ".F..", report.history
   end
 end

@@ -46,7 +46,7 @@ class ShowResumeReport
   end
 
   def show_case_list
-    Logger.puts Rainbow(" CASE RESULTS").bright
+    Logger.puts Rainbow(" \u{2630} CASE RESULTS").bright
     table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS GRADE STATE]
@@ -62,7 +62,7 @@ class ShowResumeReport
     @report.lines.each { |line| errors += line[:conn_status].size }
     return if errors.zero?
 
-    Logger.puts Rainbow(" CONN ERRORS").bright
+    Logger.puts Rainbow(" \u{1f5f2} CONN ERRORS").bright
     table = Terminal::Table.new do |t|
       t.style = {border: :unicode}
       t.add_row %w[CASE MEMBERS HOST ERROR]

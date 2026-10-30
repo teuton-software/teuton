@@ -1,4 +1,4 @@
-[<< back](README.md)
+[<<back](../../README.md)
 
 # include
 
@@ -58,8 +58,8 @@ Config files into `moreconfigfiles` folder:
 
 If we execute the test we will see that 3 cases are processed. Which are defined in the files `file01.yaml`, `02/file02.yaml` and `file03.yml`.
 
-```
- CASE RESULTS
+``` 
+ ☰ CASE RESULTS
 ┌──────┬────────────┬───────┬───────┐
 │ CASE │ MEMBERS    │ GRADE │ STATE │
 │ 01   │ student_02 │ 0.0   │ ?     │

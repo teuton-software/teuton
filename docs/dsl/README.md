@@ -12,19 +12,20 @@ Types:
 
 ## Keyword table
 
-| DSL                 | Type       | Descripción                       |
-| :------------------ | :--------: | :-------------------------------- |
+| DSL                 | Type       | Descripción                                 |
+| :------------------ | :--------: | :------------------------------------------ |
 | [expect](expect.md) | Definition | Check the obtained result with the expected value. |
 | [export](export.md) | Execution  | Make reports with the results of every evaluation. |
-| [get](get.md)       | Settings   | Read param value from configuration file. |
-| [group](group.md)   | Definition | Define a group of items to check. |
-| [play](play.md)     | Execution  | Run the challenge.                |
+| [event](./event.md) | Definition | Execute action when conditions are met      |
+| [get](get.md)       | Settings   | Read param value from configuration file.   |
+| [group](group.md)   | Definition | Define a group of items to check.           |
+| [play](play.md)     | Execution  | Run the challenge.                          |
 | [result](result.md) | Definition | Contain the output of previous `run` order. |
-| [run](run.md)| Definition | Execute command into remote host or localhost. |
+| [run](run.md)| Definition | Execute command into remote host or localhost.     |
 | [target](target.md) | Definition | Define a target. This is the item to be checked. |
-| [send](send.md)     | Execution  | Send copy of report file to remote host. |
+| [send](send.md)     | Execution  | Send copy of report file to remote host.    |
 | [set](set.md)       | Settings   | Set new param value for running configuration. |
-| [show](show.md)     | Execution  | Show the results on screen.       |
+| [show](show.md)     | Execution  | Show the results on screen.                 |
 
 ### Programming language
 

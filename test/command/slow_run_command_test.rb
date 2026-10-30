@@ -33,8 +33,11 @@ class RunCommandTest < Test::Unit::TestCase
   autocreate_methods_with %w[
     01-cmd_new 02-target
     11-export 13-feedback 14-moodle_id
-    15-readme 16-include 17-alias 18-log 19-read_vars
+    15-doc 16-include 17-alias 18-log 19-read_vars
     21-exit_codes 22-result 23-test-code 24-test-sql
-    25-expect-result 26-expect_sequence 29-events
+    25-expect-result 26-expect_sequence
+    27-run_script 28-upload
+    29-zero-weight-target 30-negative-weight-target
+    31-event-stop 32-event-zero 33-events
   ]
 end
