@@ -20,9 +20,9 @@ class Case
   def log_unique_message(key, value)
     log("UNIQUE:", :warn)
     begin
-      log("   ├── Value     => #{key}", :warn)
-      log("   └── Conflicts => #{value}", :warn)
-    rescue => e
+      log("  ├── Value     => #{key}", :warn)
+      log("  └── Conflicts => #{value}", :warn)
+    rescue StandardError => e
       log(key, :error)
       log(e.to_s, :error)
     end
