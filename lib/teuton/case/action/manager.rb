@@ -20,7 +20,7 @@ class Case
       @stopped = false
     end
 
-    def check_event(**args)
+    def check_event(args)
       object = args[:on]
       condition = args[:when]
       options = AVAILABLE.select { |obj, cond| obj == object && cond == condition }
@@ -33,8 +33,8 @@ class Case
       true
     end
 
-    def add_event(**args, &block)
-      return unless check_event(**args)
+    def add_event(args, &block)
+      return unless check_event(args)
 
       object = args[:on]
       condition = args[:when]
@@ -44,7 +44,7 @@ class Case
         trigger_on_all_targets(args, &block)
       else
         id = events.count
-        events << { id: id, args: args, block: block, type: :eachtime }
+        events << {id: id, args: args, block: block, type: :eachtime}
         msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
       end
       msg
@@ -177,12 +177,12 @@ class Case
       do_failed = !last_action.check && args[:when] == :failed
       unless do_ok || do_failed
         id = events.count
-        events << { id: id, args: args, block: block, status: :cancelled }
+        events << {id: id, args: args, block: block, status: :cancelled}
         log "Event[#{id}] cancelled because target[#{last_action.id}] #{args[:when]}"
       end
       instance_exec(**args, &block) if block
       id = events.count
-      events << { id: id, args: args, block: block, status: :triggered }
+      events << {id: id, args: args, block: block, status: :triggered}
       log "Event[#{id}] triggered because target[#{last_action.id}] #{args[:when]}"
     end
   end
