@@ -80,7 +80,8 @@ $ cat var/31-event-stop/case-01.txt
 └────────────────┴────────────────────────────────────┘
 
  🛈 LOGS
-   [18:41:32]  INFO| Event[0] triggered on: target[3], when: failed
+   [11:27:43]  INFO| Event[0] triggered because target[3] failed
+   [11:27:43]  INFO| Test STOPPED!
 
  ☰ GROUPS
  ▶ Events: stop
@@ -121,9 +122,9 @@ $ cat var/31-event-stop/case-01.txt
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-29 18:41:32 +0000 │
-│ finish_time  │ 2026-10-29 18:41:32 +0000 │
-│ duration     │ 0.006938396               │
+│ start_time   │ 2026-10-30 11:27:43 +0000 │
+│ finish_time  │ 2026-10-30 11:27:43 +0000 │
+│ duration     │ 0.006686742               │
 │ max_weight   │ 4.0                       │
 │ good_weight  │ 2.0                       │
 │ fail_weight  │ 2.0                       │
