@@ -33,21 +33,20 @@ class Case
       true
     end
 
-    def add_event(args, &block)
+    def add_event(args, block)
       return unless check_event(args)
 
       object = args[:on]
       condition = args[:when]
       if object == :last_target
-        trigger_on_last_target(args, &block)
+        trigger_on_last_target(args, block)
       elsif object == :all_targets
-        trigger_on_all_targets(args, &block)
+        trigger_on_all_targets(args, block)
       else
         id = events.count
-        events << {id: id, args: args, block: block, type: :eachtime}
-        msg = "Event on: #{object} (target #{last_action.id}), when: #{condition}"
+        events << { id: id, args: args, block: block, type: :eachtime }
+        log "Register (sinde target #{last_action.id}) event on: #{object} , when: #{condition}"
       end
-      msg
     end
 
     def close(report)
@@ -79,11 +78,6 @@ class Case
       report.tail[:fail_weight] = @fails_weight
       report.tail[:fail_counter] = @fail_counter
       report.tail[:grade] = calculate_grade(report)
-    end
-
-    def exec_block_event(&block)
-      args = {}
-      instance_exec(**args, &block) if block
     end
 
     def last_action
@@ -172,18 +166,34 @@ class Case
       @grade
     end
 
-    def trigger_on_last_target(args, &block)
+    def trigger_on_last_target(args, block)
       do_ok = last_action.check && args[:when] == :is_ok
       do_failed = !last_action.check && args[:when] == :failed
       unless do_ok || do_failed
         id = events.count
-        events << {id: id, args: args, block: block, status: :cancelled}
+        events << { id: id, args: args, block: block, status: :cancelled }
         log "Event[#{id}] cancelled because target[#{last_action.id}] #{args[:when]}"
       end
       instance_exec(**args, &block) if block
       id = events.count
-      events << {id: id, args: args, block: block, status: :triggered}
+      events << { id: id, args: args, block: block, status: :triggered }
       log "Event[#{id}] triggered because target[#{last_action.id}] #{args[:when]}"
+    end
+
+    def trigger_on_all_targets(args, block)
+      all_targets_passed = @actions.map { _1.check }.all?
+      do_all_passed = all_targets_passed && args[:when] == :is_ok
+      all_targets_failed = @actions.map { !_1.check }.all?
+      do_all_failed = all_targets_failed && args[:when] == :failed
+      unless do_all_passed || do_all_failed
+        id = events.count
+        events << { id: id, args: args, block: block, status: :cancelled }
+        log "Event[#{id}] cancelled. Not all_targets[1, #{last_action.id}] #{args[:when]}"
+      end
+      instance_exec(**args, &block) if block
+      id = events.count
+      events << { id: id, args: args, block: block, status: :triggered }
+      log "Event[#{id}] triggered. All_targets[1, #{last_action.id}] #{args[:when]}"
     end
   end
 end
