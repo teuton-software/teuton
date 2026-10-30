@@ -168,15 +168,15 @@ class Case
     def trigger_on_last_target(args, block)
       do_ok = last_action.check && args[:when] == :is_ok
       do_failed = !last_action.check && args[:when] == :failed
+      id = events.count
       if do_ok || do_failed
-        status = :triggerd
+        events << { id: id, args: args, block: block, status: :triggered }
+        log "Event[#{id}] triggerd because target[#{last_action.id}] #{args[:when]}"
         instance_exec(**args, &block) if block
       else
-        status = :cancelled
+        events << { id: id, args: args, block: block, status: :cancelled }
+        log "Event[#{id}] cancelled because target[#{last_action.id}] #{args[:when]}"
       end
-      id = events.count
-      events << { id: id, args: args, block: block, status: status }
-      log "Event[#{id}] #{status} because target[#{last_action.id}] #{args[:when]}"
     end
 
     def trigger_on_all_targets(args, block)
