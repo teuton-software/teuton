@@ -1,4 +1,8 @@
 
+## [3.5.0] - 202610xx
+
+- [FEAT] Events: new object "last_target".
+
 ## [3.4.0] - 20261030
 
 - [FEAT] Events: on: last_target, when: failed or passed.

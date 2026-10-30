@@ -3,8 +3,8 @@ group "All targets event" do
   run "id vader"
   expect_ok
 
-  target "Target 2: fail"
-  run "id vader"
+  target "Target 2: ok"
+  run "id root"
   expect_ok
 
   target "Target 3: fail"

@@ -180,19 +180,19 @@ class Case
     end
 
     def trigger_on_all_targets(args, block)
-      all_targets_passed = @actions.map { _1.check }.all?
+      all_targets_passed = @actions.map(&:check).all?
       do_all_passed = all_targets_passed && args[:when] == :is_ok
       all_targets_failed = @actions.map { !_1.check }.all?
       do_all_failed = all_targets_failed && args[:when] == :failed
-      unless do_all_passed || do_all_failed
-        id = events.count
-        events << { id: id, args: args, block: block, status: :cancelled }
-        log "Event[#{id}] cancelled. Not all_targets[1, #{last_action.id}] #{args[:when]}"
-      end
       id = events.count
-      events << { id: id, args: args, block: block, status: :triggered }
-      log "Event[#{id}] triggered. All_targets[1, #{last_action.id}] #{args[:when]}"
-      instance_exec(**args, &block) if block
+      if do_all_passed || do_all_failed
+        events << { id: id, args: args, block: block, status: :triggered }
+        log "Event[#{id}] triggered. All targets[1, #{last_action.id}] #{args[:when]}"
+        instance_exec(**args, &block) if block
+      else
+        events << { id: id, args: args, block: block, status: :cancelled }
+        log "Event[#{id}] cancelled. Not all targets[1, #{last_action.id}] #{args[:when]}"
+      end
     end
   end
 end
