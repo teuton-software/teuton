@@ -25,7 +25,7 @@ class TXTFormatter < ArrayFormatter
   def process_config
     w "#{colorize(" \u{2692} CONFIGURATION", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:config].sort.each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
     w "#{table}\n"
@@ -48,7 +48,7 @@ class TXTFormatter < ArrayFormatter
   def process_results
     w "\n#{colorize(" \u{1f5f9} RESULTS", :bg_blue)}\n"
     table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:results].each { |key, value| t.add_row [key.to_s, value.to_s] }
     end
     w "#{table}\n"
@@ -59,7 +59,7 @@ class TXTFormatter < ArrayFormatter
 
     w "\n#{colorize(" \u{2605} HALL OF FAME", :bg_blue)}\n"
     my_screen_table = Terminal::Table.new do |t|
-      t.style = { border: :unicode }
+      t.style = {border: :unicode}
       @data[:hall_of_fame].each do |line|
         color = :green
         color = :red if line[0] < 50
@@ -92,10 +92,10 @@ class TXTFormatter < ArrayFormatter
       w tab * 1 + format(" #{symbol} %02d", i[:target_id].to_i)
       text = "#{i[:score]}/#{i[:weight]}"
       corner = if corner.nil?
-                 "┌──"
-               else
-                 "├──"
-               end
+        "┌──"
+      else
+        "├──"
+      end
       s = " " * (10 - text.size)
       w " (#{colorize(text, color)})#{s}#{corner}\n"
       w "#{tab * 4}Description │ #{i[:description]}\n"

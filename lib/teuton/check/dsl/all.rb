@@ -8,7 +8,7 @@ require_relative "target"
 module CheckDSL
   def log(text = "", type = :info)
     @stats[:logs] += 1
-    prefix = type == :info ? "" : "#{type.to_s.upcase}: "
+    prefix = (type == :info) ? "" : "#{type.to_s.upcase}: "
     Logger.puts "      log         #{prefix}" + text.to_s
   end
 
