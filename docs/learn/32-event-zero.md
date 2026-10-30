@@ -73,8 +73,8 @@ $ cat var/32-event-zero/case-01.txt
 └────────────────┴────────────────────────────────────┘
 
  🛈 LOGS
-   [11:27:47]  INFO| Event[0] triggered because target[3] failed
-   [11:27:47]  INFO| Scores READJUSTED!
+   [16:27:47]  INFO| Event[0] triggered because target[3] failed
+   [16:27:47]  INFO| Scores READJUSTED!
 
  ☰ GROUPS
  ▶ Events: scores_to_zero
@@ -115,8 +115,8 @@ $ cat var/32-event-zero/case-01.txt
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-30 11:27:47 +0000 │
-│ finish_time  │ 2026-10-30 11:27:47 +0000 │
+│ start_time   │ 2026-10-30 16:27:47 +0000 │
+│ finish_time  │ 2026-10-30 16:27:47 +0000 │
 │ duration     │ 0.006894103               │
 │ max_weight   │ 4.0                       │
 │ good_weight  │ 3.0                       │
