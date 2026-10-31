@@ -1,10 +1,8 @@
 
-## [3.6.0] -202611xx
+
+## [3.5.0] - 202611xx
 
 - [DOC] Refactor learn documentation and examples.
-
-## [3.5.0] - 202610xx
-
 - [FEAT] Events: new object "last_target".
 
 ## [3.4.0] - 20261030
