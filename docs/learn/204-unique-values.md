@@ -22,14 +22,14 @@ end
 Cheking test:
 
 ```
-$ teuton check examples/08-unique_values 
+$ teuton check examples/204-unique_values 
 
 ┌─────────────────────────┐
 │ USE: external libraries │
 └─────────────────────────┘
-      1. examples/08-unique_values/lib/users.rb
-      2. examples/08-unique_values/lib/network.rb
-      3. examples/08-unique_values/lib/unique.rb
+      1. examples/204-unique_values/lib/users.rb
+      2. examples/204-unique_values/lib/network.rb
+      3. examples/204-unique_values/lib/unique.rb
 
 ┌──────────────────────────┐
 │ GROUP: Using file: users │

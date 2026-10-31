@@ -55,7 +55,7 @@ end
 Execution:
 
 ```
-$ teutonx examples/03-remote_hosts 
+$ teutonx examples/103-remote_hosts 
  
  CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
@@ -81,9 +81,9 @@ Notice that:
 Results:
 
 ```
-$ tree var/03-remote_hosts
+$ tree var/103-remote_hosts
 
-var/03-remote_hosts
+var/103-remote_hosts
 ├── case-01.txt
 ├── case-03.txt
 ├── moodle.csv

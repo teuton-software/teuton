@@ -10,7 +10,7 @@ Usage: `export preserve: true`
 
 ## Example
 
-Example files in the `examples/12-preserve` folder.
+Example files in the `examples/304-preserve` folder.
 
 **Execution section**
 
@@ -26,11 +26,11 @@ end
 
 **Result**
 
-Example, executing `teuton run example/12-preserve` twice:
+Example, executing `teuton run example/304-preserve` twice:
 
 ```
 var
-└── 12-preserve
+└── 304-preserve
     ├── 20200519-163035
     │   ├── case-01.txt
     │   ├── moodle.csv

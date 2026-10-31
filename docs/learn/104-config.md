@@ -10,7 +10,7 @@ By default, `config.yaml` is our config file. Example:
 # File: config.yaml
 # Desc: configuration file
 global:
-  tt_output_dir: var/04-config/default
+  tt_output_dir: var/104-config/default
 cases:
 - tt_members: student_1
   username: david
@@ -37,7 +37,7 @@ end
 ## Example
 
 ```
-$ teuton examples/04-config 
+$ teuton examples/104-config 
   
  ☰ CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
@@ -50,7 +50,7 @@ $ teuton examples/04-config
 Reports:
 
 ```
-var/04-config/default
+var/104-config/default
 ├── case-01.txt
 ├── case-02.txt
 ├── moodle.csv
@@ -63,15 +63,15 @@ Let's see case 01 report.
 $ cat var/04-config/default/case-01.txt
 
  ⚒ CONFIGURATION
-┌────────────────┬────────────────────────────────┐
-│ tt_config_path │ examples/04-config/config.yaml │
-│ tt_members     │ student_1                      │
-│ tt_output_dir  │ var/04-config/default          │
-│ tt_script_path │ examples/04-config/start.rb    │
-│ tt_sequence    │ false                          │
-│ tt_skip        │ false                          │
-│ username       │ david                          │
-└────────────────┴────────────────────────────────┘
+┌────────────────┬─────────────────────────────────┐
+│ tt_config_path │ examples/104-config/config.yaml │
+│ tt_members     │ student_1                       │
+│ tt_output_dir  │ var/104-config/default          │
+│ tt_script_path │ examples/104-config/start.rb    │
+│ tt_sequence    │ false                           │
+│ tt_skip        │ false                           │
+│ username       │ david                           │
+└────────────────┴─────────────────────────────────┘
 
  ☰ GROUPS
  ▶ Reading params from config file

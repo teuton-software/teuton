@@ -62,7 +62,7 @@ end
 Execute this command to run the test:
 
 ```
-$ teuton examples/02-target       
+$ teuton examples/102-target       
  
  ☰ CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
@@ -71,11 +71,11 @@ $ teuton examples/02-target
 └──────┴───────────┴───────┴───────┘
 ```
 
-Report files are created into `var/02-target/` folder:
+Report files are created into `var/102-target/` folder:
 
 ```
 var
-└── 02-target
+└── 102-target
     ├── case-01.txt
     ├── moodle.csv
     └── resume.txt
@@ -84,16 +84,16 @@ var
 Let's see one report:
 
 ```
-$ cat var/02-target/case-01.txt 
+$ cat var/102-target/case-01.txt 
 
  ⚒ CONFIGURATION
-┌────────────────┬────────────────────────────────┐
-│ tt_config_path │ examples/02-target/config.yaml │
-│ tt_members     │ anonymous                      │
-│ tt_script_path │ examples/02-target/start.rb    │
-│ tt_sequence    │ false                          │
-│ tt_skip        │ false                          │
-└────────────────┴────────────────────────────────┘
+┌────────────────┬─────────────────────────────────┐
+│ tt_config_path │ examples/102-target/config.yaml │
+│ tt_members     │ anonymous                       │
+│ tt_script_path │ examples/102-target/start.rb    │
+│ tt_sequence    │ false                           │
+│ tt_skip        │ false                           │
+└────────────────┴─────────────────────────────────┘
 
  ☰ GROUPS
  ▶ Practicing targets

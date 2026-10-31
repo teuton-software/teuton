@@ -25,9 +25,9 @@ end
 Firs run `teuton examples/11-export`, then we have this files:
 
 ```
-$ tree var/11-export
+$ tree var/302-export
 
-var/11-export
+var/302-export
 ├── case-01.html
 ├── case-01.json
 ├── case-01.txt

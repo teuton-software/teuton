@@ -33,7 +33,7 @@ With `feedback: false` the fields are hidden: command, alterations, expected and
 
 ## Results
 
-Executing `teuton run examples/13-feedback`, we get this output:
+Executing `teuton run examples/305-feedback`, we get this output:
 
 ```
 ☰ GROUPS

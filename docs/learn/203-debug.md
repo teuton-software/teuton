@@ -9,9 +9,9 @@
 Tests grows and becames huge, with a lot of targets (That isn't a problem). Then, we organize them spliting into several files and invoke `use` keywork from our main rb file to load other files (That's good idea).
 
 ```
-$ tree examples/10-debug
+$ tree examples/203-debug
 
-examples/10-debug
+examples/203-debug
 ├── config.yaml
 ├── external.rb
 ├── internal.rb
@@ -49,7 +49,7 @@ end
 ## Output example
 
 ```
-$ teuton examples/10-debug 
+$ teuton examples/203-debug 
 
 ------------------------------------
 Started at 2026-10-26 16:30:56 +0000
