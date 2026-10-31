@@ -57,7 +57,7 @@ end
 Execution:
 
 ```
-$ teutonx examples/103-remote_hosts 
+$ teuton examples/103-remote_hosts 
  
  CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
