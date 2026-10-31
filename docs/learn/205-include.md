@@ -4,6 +4,8 @@
 
 Use `tt-include` configuration param to include several config files into your main config file.
 
+> Example files in `examples/205-include`.
+
 ## Description
 
 Until now, all the examples we have seen use one configuration file (`config.yaml`) that contain all the parameters required by the test. It is possible to save configuration distributed among several files.

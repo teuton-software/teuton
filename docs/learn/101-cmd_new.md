@@ -3,7 +3,7 @@
 
 # New test
 
-`teuton create foo` is a command function that creates skeleton for a new project. 
+`teuton new foo` is a command function that creates skeleton for a new project. 
 
 ## Example
 
