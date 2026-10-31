@@ -31,13 +31,12 @@ class RunCommandTest < Test::Unit::TestCase
   end
 
   autocreate_methods_with %w[
-    01-cmd_new 02-target
-    11-export 13-feedback 14-moodle_id
-    15-doc 16-include 17-alias 18-log 19-read_vars
-    21-exit_codes 22-result 23-test-code 24-test-sql
-    25-expect-result 26-expect_sequence
-    27-run_script 28-upload
-    29-zero-weight-target 30-negative-weight-target
-    31-event-stop 32-event-zero 33-zero-and-stop 34-all-targetsgs
+    101-cmd_new 102-target 103-remote_hosts 104-config 105-target_weight 106-send
+    201-use 203-debug 204-unique-values 205-include 206-zero-weight-target 207-negative-weight-target
+    301-log 302-export 303-doc 304-preserve 305-feedback 306-moodle_id
+    401-exit-code 402-result 403-expect-result 404-expect_sequence 405-run_script 406-upload
+    501-stop-test 502-scores-to-zero 503-zero-and-stop 504-all-targets
+    601-test-code 602-test-sql
+    701-read-vars 702-alias 703-macros
   ]
 end
