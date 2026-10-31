@@ -114,22 +114,22 @@ Consult the generated [output files](examples/02-target/output.d/)
     * Execution: Runs, expects, etc
         * [Checking exit codes](docs/learn/401-exit_codes.md)
         * [RESULT object](docs/learn/402-result.md)
-        * [expect vs result](docs/learn/25-expect-result.md)
-        * [EXPECT_SEQUENCE](docs/learn/26-expect_sequence.md)
-        * [RUN_SCRIPT](docs/learn/27-run_script.md)
-        * [UPLOAD](docs/learn/28-upload.md)
+        * [expect vs result](docs/learn/403-expect-result.md)
+        * [EXPECT_SEQUENCE](docs/learn/404-expect_sequence.md)
+        * [RUN_SCRIPT](docs/learn/405-run-script.md)
+        * [UPLOAD](docs/learn/406-upload.md)
     * Events
-        * [EVENT stop](docs/learn/31-event-stop.md)
-        * [EVENT scores to zero](docs/learn/32-event-zero.md)
-        * [EVENT zero and stop](./docs/learn/33-zero-and-stop.md)
-        * [EVENT all targets](./docs/learn/34-all-targets.md)
+        * [EVENT stop](docs/learn/501-stop-test.md)
+        * [EVENT scores to zero](docs/learn/502-scores-to-zero.md)
+        * [EVENT zero and stop](./docs/learn/503-zero-and-stop.md)
+        * [EVENT all targets](./docs/learn/504-all-targets.md)
     * Tutorials
-        * [How to test code](docs/learn/23-test-code.md)
-        * [How to test SQL and database](docs/learn/24-test-sql.md)
-    * Advanced
-        * [Don't get params, just read vars](docs/learn/19-read_vars.md)
-        * [ALIAS](docs/learn/17-alias.md)
-        * [MACROS](docs/learn/20-macros.md)
+        * [How to test code](docs/learn/601-test-code.md)
+        * [How to test SQL and database](docs/learn/602-test-sql.md)
+    * Experimental
+        * [Don't get params, just read vars](docs/learn/701-read-vars.md)
+        * [ALIAS](docs/learn/702-alias.md)
+        * [MACROS](docs/learn/703-macros.md)
 4. [Configuration file](docs/config_file.md): Reserved params, configure hosts, etc.
 5. [Language reference](docs/dsl/README.md). DSL used to define tests.
     * [expect](docs/dsl/expect.md): check run output with expectations.
