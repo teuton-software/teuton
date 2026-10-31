@@ -31,14 +31,14 @@ end
 
 When the user exists, we expect this words: `uid=, (obiwan), gid=`.
 
-```
+```bash
 $ id obiwan
 uid=1000(obiwan) gid=1000(obiwan) grupos=1000(obiwan)
 ```
 
 But when user does not exist, we expect command fail.
 
-```
+```bash
 $ id vader
 id: «vader»: no such user
 
@@ -50,8 +50,10 @@ id: «vader»: no such user
 
 When we run this teuton test, the execution section (`play`) is processed. This seccion now contains this:
 
-* [show](../dsl/show.md): display process information on screen.
-* [export](../dsl/export.md): build output reports.
+| Keyword                    | Description                           |
+|  ------------------------- | ------------------------------------- |
+| [show](../dsl/show.md)     | display process information on screen |
+| [export](../dsl/export.md) | build output reports                  |
 
 ```ruby
 play do
