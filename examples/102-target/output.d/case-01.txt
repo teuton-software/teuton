@@ -1,11 +1,11 @@
  CONFIGURATION
-┌────────────────┬────────────────────────────────┐
-│ tt_config_path │ examples/02-target/config.yaml │
-│ tt_members     │ anonymous                      │
-│ tt_script_path │ examples/02-target/start.rb    │
-│ tt_sequence    │ false                          │
-│ tt_skip        │ false                          │
-└────────────────┴────────────────────────────────┘
+┌────────────────┬─────────────────────────────────┐
+│ tt_config_path │ examples/102-target/config.yaml │
+│ tt_members     │ anonymous                       │
+│ tt_script_path │ examples/102-target/start.rb    │
+│ tt_sequence    │ false                           │
+│ tt_skip        │ false                           │
+└────────────────┴─────────────────────────────────┘
 
 
  GROUPS
