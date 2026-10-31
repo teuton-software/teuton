@@ -27,7 +27,7 @@ cases:
   host1_password: secret_3
 ```
 
-Every remote host defines its owns params:
+Every remote host is defined by some params:
 
 | Param    | Description         | Default value  |
 | -------- | ------------------- | -------------- |
