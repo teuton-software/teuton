@@ -1,6 +1,6 @@
 [<<back](../../README.md)
 
-# Example: exit_codes
+# Example: exit code
 
 `result` stores information from the last command executed by a "run" action. [Offers many functions](../dsl/result.md)) that transforms output data, and also exitcode is captured.
 

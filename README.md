@@ -88,37 +88,48 @@ Consult the generated [output files](examples/02-target/output.d/)
     * [teuton help](docs/commands/help.md): show command help.
     * [teuton new](docs/commands/new.md): create new test.
     * [teuton run](docs/commands/run.md): run test.
-3. Learning guide: Learn writing tests. [Examples](examples).
-    * [Create NEW test](docs/learn/01-cmd_new.md)
-    * [Evaluate TARGET](docs/learn/02-target.md)
-    * [Check REMOTE HOSTS](docs/learn/03-remote_hosts.md)
-    * [Read CONFIG file](docs/learn/04-config.md)
-    * [Use several files](docs/learn/05-use.md)
-    * [CHECK test syntax](docs/learn/06-cmd_check.md)
-    * [Target WEIGHT](docs/learn/07-target_weight.md)
-    * [UNIQUE values](docs/learn/08-unique_values.md)
-    * [SEND report copies to remote hosts](docs/learn/09-send.md)
-    * [DEBUG results](docs/learn/10-debug.md)
-    * [Export other FORMATS](docs/learn/11-export.md)
-    * [PRESERVE old reports](docs/learn/12-preserve.md)
-    * [Hide FEEDBACK from reports](docs/learn/13-feedback.md)
-    * [MOODLE](docs/learn/14-moodle_id.md)
-    * [Build DOC from test](docs/learn/15-doc.md)
-    * [INCLUDE more configuration files](docs/learn/16-include.md)
-    * [ALIAS](docs/learn/17-alias.md)
-    * [LOG messages](docs/learn/18-log.md)
-    * [Don't get params, just read vars](docs/learn/19-read_vars.md)
-    * [MACROS](docs/learn/20-macros.md)
-    * [Checking exit codes](docs/learn/21-exit_codes.md)
-    * [RESULT object](docs/learn/22-result.md)
-    * [How to test code](docs/learn/23-test-code.md)
-    * [How to test SQL and database](docs/learn/24-test-sql.md)
-    * [expect vs result](docs/learn/25-expect-result.md) TODO
-    * [EXPECT_SEQUENCE](docs/learn/26-expect_sequence.md)
-    * [RUN_SCRIPT](docs/learn/27-run_script.md)
-    * [UPLOAD](docs/learn/28-upload.md)
-    * [EVENT stop](docs/learn/31-event-stop.md)
-    * [EVENT scores to zero](docs/learn/32-event-zero.md)
+3. Learning guide with [examples](examples).
+    * Basic
+        * [Create NEW test](docs/learn/101-cmd_new.md)
+        * [Evaluate TARGET](docs/learn/102-target.md)
+        * [Check REMOTE HOSTS](docs/learn/103-remote_hosts.md)
+        * [Read CONFIG file](docs/learn/104-config.md)
+        * [Target WEIGHT](docs/learn/105-target_weight.md)
+        * [SEND report copies to remote hosts](docs/learn/106-send.md)
+    * Medium
+        * [USE several files](docs/learn/201-use.md)
+        * [CHECK test syntax](docs/learn/202-cmd-check.md)
+        * [DEBUG results](docs/learn/203-debug.md)
+        * [UNIQUE values](docs/learn/204-unique-values.md)
+        * [INCLUDE more configuration files](docs/learn/205-include.md)
+        * Zero weight target
+        * Negative weight target
+    * Output: reports, logs and docs.
+        * [LOG messages](docs/learn/301-log.md)
+        * [Export other FORMATS](docs/learn/302-export.md)
+        * [Build DOC from test](docs/learn/303-doc.md)
+        * [PRESERVE old reports](docs/learn/304-preserve.md)
+        * [Hide FEEDBACK from reports](docs/learn/305-feedback.md)
+        * [MOODLE](docs/learn/306-moodle_id.md)
+    * Execution: Runs, expects, etc
+        * [Checking exit codes](docs/learn/401-exit_codes.md)
+        * [RESULT object](docs/learn/402-result.md)
+        * [expect vs result](docs/learn/25-expect-result.md)
+        * [EXPECT_SEQUENCE](docs/learn/26-expect_sequence.md)
+        * [RUN_SCRIPT](docs/learn/27-run_script.md)
+        * [UPLOAD](docs/learn/28-upload.md)
+    * Events
+        * [EVENT stop](docs/learn/31-event-stop.md)
+        * [EVENT scores to zero](docs/learn/32-event-zero.md)
+        * [EVENT zero and stop](./docs/learn/33-zero-and-stop.md)
+        * [EVENT all targets](./docs/learn/34-all-targets.md)
+    * Tutorials
+        * [How to test code](docs/learn/23-test-code.md)
+        * [How to test SQL and database](docs/learn/24-test-sql.md)
+    * Advanced
+        * [Don't get params, just read vars](docs/learn/19-read_vars.md)
+        * [ALIAS](docs/learn/17-alias.md)
+        * [MACROS](docs/learn/20-macros.md)
 4. [Configuration file](docs/config_file.md): Reserved params, configure hosts, etc.
 5. [Language reference](docs/dsl/README.md). DSL used to define tests.
     * [expect](docs/dsl/expect.md): check run output with expectations.
