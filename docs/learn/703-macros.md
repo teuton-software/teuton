@@ -4,6 +4,8 @@
 
 Macros is a technique to make it easier to write and reuse code.
 
+> Example files as `examples/703-macros`.
+
 ## Example
 
 * We start from a set of repeated targets.

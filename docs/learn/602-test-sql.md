@@ -2,7 +2,7 @@
 
 # Test SQL and database content
 
-> Example files as `examples/702-test-sql`.
+> Example files as `examples/602-test-sql`.
 
 ## Exercise
 
@@ -11,7 +11,7 @@
 
 Database example:
 ```bash
-$ sqlite3 examples/702-test-sql/database_01.db
+$ sqlite3 examples/602-test-sql/database_01.db
 
 sqlite> .schema characters
 CREATE TABLE characters ( name varchar(255), rol varchar(255));
@@ -23,7 +23,7 @@ Obiwan|Jedi
 * Ask students to create SQL queries inside a file. For example: select all Jedi characters.
 
 ```bash
-$ cat examples/702-test-sql/query_01.sql
+$ cat examples/602-test-sql/query_01.sql
 
 select * from characters where rol='Jedi';
 ```
@@ -52,7 +52,7 @@ Configure params (config.yaml file):
 ```yaml
 ---
 global:
-  folder: examples/702-test-sql
+  folder: examples/602-test-sql
 cases:
 - tt_members: student_1
   database: database_01.db
@@ -62,7 +62,7 @@ cases:
 ## Run test
 
 ```
-$ teuton examples/702-test-sql                                   
+$ teuton examples/602-test-sql                                   
 
  CASE RESULTS
 ┌──────┬────────────────┬───────┬───────┐

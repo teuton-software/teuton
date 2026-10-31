@@ -4,6 +4,8 @@
 
 By using aliases we can adapt a configuration file, so that it can be used with many different tests.
 
+> Example files as `examples/602-alias`.
+
 ## Example
 
 Suppose we have a test like the following:

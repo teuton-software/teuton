@@ -4,7 +4,7 @@
 
 Let's test code using teuton.
 
-> Example files as `examples/701-test-code`.
+> Example files as `examples/601-test-code`.
 
 ## Exercise
 
@@ -12,7 +12,7 @@ Ask students to make a program that performs addition and multiplication.
 
 Usage:
 ```
-$ examples/701-test-code/code/math_1.py 3 4
+$ examples/601-test-code/code/math_1.py 3 4
 Sum = 7
 Mul = 12
 ```
@@ -43,7 +43,7 @@ Define config params:
 # File: config.yaml
 ---
 global:
-  folder: examples/701-test-code/code
+  folder: examples/601-test-code/code
 cases:
 - tt_members: student_1_python
   filename: math_1.py
@@ -57,7 +57,7 @@ cases:
 * Now run Teuton test:
 
 ```
-$ teuton examples/701-test-code 
+$ teuton examples/601-test-code 
  
  CASE RESULTS
 ┌──────┬──────────────────┬───────┬───────┐

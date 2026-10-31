@@ -4,6 +4,8 @@
 
 To get paramm values from the configuration file we already have the `get` statement. Example, to read `dirname` we do `get(:dirname)`.
 
+> Example files as `examples/701-read-vars`.
+
 ## Example 1: get
 
 Using `get` to get/read values from config file.
