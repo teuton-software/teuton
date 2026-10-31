@@ -6,6 +6,8 @@ To run test on remote host we have to define them into config file.
 
 ## Example
 
+> Example files in `examples/103-remote-hosts`.
+
 Let's see an example with:
 * 1 global param.
 * 3 cases with 3 params.
