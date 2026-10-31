@@ -6,6 +6,8 @@
 
 ## Example
 
+> Example files in `examples/105-target-weight`.
+
 Changing default target weight:
 * The first target has the default weight (1.0).
 * The second target has a weight of 2.0.
@@ -25,7 +27,7 @@ end
 ```
 
 ```
-$ teuton check example/07-target-weight
+$ teuton check example/105-target-weight
 ...
 ┌────────────────────────────┐
 │ GROUP: Using file: network │
