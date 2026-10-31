@@ -9,7 +9,7 @@ You know the classic sequence `target/run/expect`, but sometimes you need to run
 
 **run_script** upload and execute your own local script on remote host.
 
-> Example files at [examples/27-run_file](../../examples/27-run_script)
+> Example files at [examples/405-run_file](../../examples/405-run_script)
 
 ## Example files
 

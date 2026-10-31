@@ -4,6 +4,8 @@
 
 ## Example
 
+> Example files as `examples/503-zero-and-stop`.
+
 In this example, we have 4 targets, all of which will work fine except target 3.
 
 ```ruby
@@ -36,7 +38,7 @@ An event is defined to trigger the several actions when the last target (target 
 ## Report output
 
 ```
-$ teutonx examples/33-zero-and-stop 
+$ teuton examples/503-zero-and-stop 
  
  ☰ CASE RESULTS
 ┌──────┬──────────┬───────┬───────┐
@@ -54,16 +56,16 @@ Process:
 * target 4 is not evaluated because test was stopped.
 
 ```
-$ cat var/33-zero-and-stop/case-01.txt 
+$ cat var/503-zero-and-stop/case-01.txt 
 
  ⚒ CONFIGURATION
-┌────────────────┬───────────────────────────────────────┐
-│ tt_config_path │ examples/33-zero-and-stop/config.yaml │
-│ tt_members     │ TOCHANGE                              │
-│ tt_script_path │ examples/33-zero-and-stop/start.rb    │
-│ tt_sequence    │ false                                 │
-│ tt_skip        │ false                                 │
-└────────────────┴───────────────────────────────────────┘
+┌────────────────┬────────────────────────────────────────┐
+│ tt_config_path │ examples/503-zero-and-stop/config.yaml │
+│ tt_members     │ TOCHANGE                               │
+│ tt_script_path │ examples/503-zero-and-stop/start.rb    │
+│ tt_sequence    │ false                                  │
+│ tt_skip        │ false                                  │
+└────────────────┴────────────────────────────────────────┘
 
  🛈 LOGS
    [17:56:37]  INFO| Event[0] triggerd because target[3] failed

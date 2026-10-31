@@ -20,6 +20,8 @@ end
 
 ## Example
 
+> Example files as `examples/504-all-targets`.
+
 In this example, we have 4 targets, all of which will function correctly except for target 3.
 
 ```ruby
@@ -53,9 +55,9 @@ The "stop" action halts the test, setting the number of targets yet to be evalua
 ## Report output
 
 ```
-$ teuton examples/31-event-stop 
- 
- 🗹 CASE RESULTS
+$ teuton examples/504-all-targets 
+  
+ ☰ CASE RESULTS
 ┌──────┬──────────┬───────┬───────┐
 │ CASE │ MEMBERS  │ GRADE │ STATE │
 │ 01   │ TOCHANGE │ 50.0  │       │
@@ -69,36 +71,35 @@ Process:
 * target 4 is not evaluated because test was stopped.
 
 ```
-$ cat var/31-event-stop/case-01.txt
+$ cat var/504-all-targets/case-01.txt
 
  ⚒ CONFIGURATION
-┌────────────────┬────────────────────────────────────┐
-│ tt_config_path │ examples/31-event-stop/config.yaml │
-│ tt_members     │ TOCHANGE                           │
-│ tt_script_path │ examples/31-event-stop/start.rb    │
-│ tt_sequence    │ false                              │
-│ tt_skip        │ false                              │
-└────────────────┴────────────────────────────────────┘
+┌────────────────┬─────────────────────────────────────────────┐
+│ tt_config_path │ examples/events/504-all-targets/config.yaml │
+│ tt_members     │ TOCHANGE                                    │
+│ tt_script_path │ examples/events/504-all-targets/start.rb    │
+│ tt_sequence    │ false                                       │
+│ tt_skip        │ false                                       │
+└────────────────┴─────────────────────────────────────────────┘
 
  🛈 LOGS
-   [16:27:43]  INFO| Event[0] triggered because target[3] failed
-   [16:27:43]  INFO| Test STOPPED!
+   [16:02:47]  INFO| Event[0] cancelled. Not all targets[1, 3] failed
 
  ☰ GROUPS
- ▶ Events: stop
-   ✔ 01 (1.0/1.0)   ┌──
-        Description │ Target 1: ok
-        Command     │ id root
-        Output      │ uid=0(root) gid=0(root) grupos=0(root)
+ ▶ All targets event
+   ✖ 01 (0.0/1.0)   ┌──
+        Description │ Target 1: fail
+        Command     │ id vader
+        Output      │ id: «vader»: no existe ese usuario
         Duration    │ 0.002 (local)
         Alterations │ Read exit code
         Expected    │ 0
-        Result      │ 0
+        Result      │ 1
    ✔ 02 (1.0/1.0)   ├──
         Description │ Target 2: ok
         Command     │ id root
         Output      │ uid=0(root) gid=0(root) grupos=0(root)
-        Duration    │ 0.001 (local)
+        Duration    │ 0.002 (local)
         Alterations │ Read exit code
         Expected    │ 0
         Result      │ 0
@@ -110,22 +111,23 @@ $ cat var/31-event-stop/case-01.txt
         Alterations │ Read exit code
         Expected    │ 0
         Result      │ 1
-   ✖ 04 (0.0/1.0)   ├──
-        Description │ TEST STOPPED!
-        Command     │ 
-        Output      │ 
-        Duration    │ ? (?)
-        Alterations │ 
-        Expected    │ 
-        Result      │ 
+   ✔ 04 (1.0/1.0)   ├──
+        Description │ Target 4: ok
+        Command     │ id root
+        Output      │ uid=0(root) gid=0(root) grupos=0(root)
+        Duration    │ 0.001 (local)
+        Alterations │ Read exit code
+        Expected    │ 0
+        Result      │ 0
                     └──
+
  🗹 RESULTS
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-30 16:27:43 +0000 │
-│ finish_time  │ 2026-10-30 16:27:43 +0000 │
-│ duration     │ 0.006686742               │
+│ start_time   │ 2026-10-31 16:02:47 +0000 │
+│ finish_time  │ 2026-10-31 16:02:47 +0000 │
+│ duration     │ 0.00671773                │
 │ max_weight   │ 4.0                       │
 │ good_weight  │ 2.0                       │
 │ fail_weight  │ 2.0                       │

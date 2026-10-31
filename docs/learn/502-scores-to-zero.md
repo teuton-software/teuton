@@ -12,6 +12,8 @@ end
 
 ## Example
 
+> Example files as `examples/502-scores-to-zero`.
+
 In this example, we have 4 targets, all of which will function correctly except for target 3.
 
 ```ruby
@@ -61,16 +63,16 @@ Process:
 * target 4 is Ok.
 
 ```
-$ cat var/32-event-zero/case-01.txt 
+$ cat var/502-scores-to-zero/case-01.txt 
 
  ⚒ CONFIGURATION
-┌────────────────┬────────────────────────────────────┐
-│ tt_config_path │ examples/32-event-zero/config.yaml │
-│ tt_members     │ TOCHANGE                           │
-│ tt_script_path │ examples/32-event-zero/start.rb    │
-│ tt_sequence    │ false                              │
-│ tt_skip        │ false                              │
-└────────────────┴────────────────────────────────────┘
+┌────────────────┬─────────────────────────────────────────┐
+│ tt_config_path │ examples/502-scores-to-zero/config.yaml │
+│ tt_members     │ TOCHANGE                                │
+│ tt_script_path │ examples/502-scores-to-zero/start.rb    │
+│ tt_sequence    │ false                                   │
+│ tt_skip        │ false                                   │
+└────────────────┴─────────────────────────────────────────┘
 
  🛈 LOGS
    [16:27:47]  INFO| Event[0] triggered because target[3] failed

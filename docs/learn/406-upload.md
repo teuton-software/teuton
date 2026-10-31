@@ -13,7 +13,7 @@
 * `upload "FILENAME"`, upload local file to remote.
 * `to: :host1`, specifies remote host.
 
-> Example files at [examples/28-upload](../../examples/28-upload)
+> Example files at [examples/406-upload](../../examples/406-upload)
 
 ## Other options
 

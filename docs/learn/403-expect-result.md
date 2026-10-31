@@ -7,7 +7,7 @@
 
 `expect` is easier to use but less powerful than `result`.
 
-> Example files at [examples/25-expect-result](../../examples/25-expect-result)
+> Example at [examples/403-expect-result](../../examples/403-expect-result)
 
 ## Expect
 

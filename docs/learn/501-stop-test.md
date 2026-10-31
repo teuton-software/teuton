@@ -20,6 +20,8 @@ end
 
 ## Example
 
+> Example files as `examples/501-stop-test`.
+
 In this example, we have 4 targets, all of which will function correctly except for target 3.
 
 ```ruby
@@ -53,7 +55,7 @@ The "stop" action halts the test, setting the number of targets yet to be evalua
 ## Report output
 
 ```
-$ teuton examples/31-event-stop 
+$ teuton examples/501-stop-test 
  
  🗹 CASE RESULTS
 ┌──────┬──────────┬───────┬───────┐
@@ -69,13 +71,13 @@ Process:
 * target 4 is not evaluated because test was stopped.
 
 ```
-$ cat var/31-event-stop/case-01.txt
+$ cat var/501-event-stop/case-01.txt
 
  ⚒ CONFIGURATION
 ┌────────────────┬────────────────────────────────────┐
-│ tt_config_path │ examples/31-event-stop/config.yaml │
+│ tt_config_path │ examples/501-stop-test/config.yaml │
 │ tt_members     │ TOCHANGE                           │
-│ tt_script_path │ examples/31-event-stop/start.rb    │
+│ tt_script_path │ examples/501-stop-test/start.rb    │
 │ tt_sequence    │ false                              │
 │ tt_skip        │ false                              │
 └────────────────┴────────────────────────────────────┘

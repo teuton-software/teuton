@@ -4,7 +4,7 @@
 
 Evaluate the occurrence of a certain sequence that takes place in different lines of the output.
 
-> Example files at [examples/26-expect_sequence](../../examples/26-expect_sequence)
+> Example files at [examples/404-expect_sequence](../../examples/404-expect_sequence)
 
 ## Description
 
