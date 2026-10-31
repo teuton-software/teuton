@@ -42,7 +42,7 @@ But when user does not exist, we expect command fail.
 $ id vader
 id: «vader»: no such user
 
->$ echo $?
+$ echo $?
 1
 ```
 
