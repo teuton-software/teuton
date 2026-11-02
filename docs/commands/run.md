@@ -15,25 +15,24 @@ Alias: `teuton foo`
 
 # 1. Example
 
-Running Teuton test located into `example/01-target` folder.
+Running Teuton test located into `example/102-target` folder.
 
 ```
-$ teuton run example/01-target
-
+$ teutonx run examples/102-target 
 ------------------------------------
-Started at 2023-01-21 13:32:24 +0000
-F
-Finished in 0.004 seconds
+Started at 2026-11-02 10:45:40 +0000
+F.
+Finished in 0.005 seconds
 ------------------------------------
-
-CASE RESULTS
-+------+-----------+-------+-------+
-| CASE | MEMBERS   | GRADE | STATE |
-| 01   | anonymous | 0.0   | ?     |
-+------+-----------+-------+-------+
+ 
+ ☰ CASE RESULTS
+┌──────┬───────────┬───────┬───────┐
+│ CASE │ MEMBERS   │ GRADE │ STATE │
+│ 01   │ anonymous │ 67.0  │       │
+└──────┴───────────┴───────┴───────┘
 ```
 
-> Output files are saved into `var/01-target` folder.
+> Output files are saved into `var/102-target` folder.
 
 # 2. Options
 
@@ -44,12 +43,12 @@ Usage:
   teuton [run] [OPTIONS] DIRECTORY
 
 Options:
-  [--export=EXPORT]        
-  [--cname=CNAME]          
-  [--cpath=CPATH]          
-  [--case=CASE]            
-  [--color], [--no-color]  
-  [--quiet], [--no-quiet]     
+  [--export=EXPORT]                        
+  [--cname=CNAME]                          
+  [--cpath=CPATH]                          
+  [--case=CASE]                            
+  [--color], [--no-color], [--skip-color]  
+  [--quiet], [--no-quiet], [--skip-quiet]  
 ```
 
 | ID | Command              | Descriptiont |
