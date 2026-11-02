@@ -20,7 +20,7 @@ class ReadmeCommandTest < Test::Unit::TestCase
   def self.autocreate_methods_with(names)
     names.each do |name|
       class_eval %{
-        def test_doc_#{name.tr('-', '_')}
+        def test_doc_#{name.tr("-", "_")}
           execute_doc('#{name}')
         end}, __FILE__, __LINE__ - 3
     end
