@@ -1,6 +1,6 @@
 ignore:
   # Style/For: Prefer `each` over `for`.
-  - "examples/14-moodle_id/targets.rb"
+  - "examples/306-moodle_id/targets.rb"
   # Style/Alias: Use `alias_method` instead of `alias`
   - "lib/teuton/case_manager/dsl.rb"
   - "lib/teuton/check/main.rb"
