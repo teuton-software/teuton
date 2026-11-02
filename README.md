@@ -81,6 +81,7 @@ Consult the generated [output files](examples/102-target/output.d/)
 1. Installation
     * [Teuton installation](docs/install/t-node.md)
     * [SSH/Telnet installation](docs/install/s-node.md)
+    * [Modes of use](docs/modes_of_use.md): Classroom, contest, standalone.
 2. Teuton commands
     * [teuton config](docs/commands/config.md): suggest config file.
     * [teuton check](docs/commands/check.md): check test syntax.
@@ -144,8 +145,7 @@ Consult the generated [output files](examples/102-target/output.d/)
     * [set](docs/dsl/set.md): write new param.
     * [show](docs/dsl/show.md): show progress on screen.
     * [target](docs/dsl/target.md): define new target.
-6. [Modes of use](docs/modes_of_use.md): Classroom, contest, standalone.
-7. [More information](docs/more.md)
+6. [More information](docs/more.md)
 
 # Contact
 
