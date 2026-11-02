@@ -1,5 +1,6 @@
 *.gem
 *.lock
+*.pyc
 .yardoc
 html
 var
