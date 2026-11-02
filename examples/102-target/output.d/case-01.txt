@@ -1,4 +1,4 @@
- CONFIGURATION
+ ⚒ CONFIGURATION
 ┌────────────────┬─────────────────────────────────┐
 │ tt_config_path │ examples/102-target/config.yaml │
 │ tt_members     │ anonymous                       │
@@ -7,8 +7,7 @@
 │ tt_skip        │ false                           │
 └────────────────┴─────────────────────────────────┘
 
-
- GROUPS
+ ☰ GROUPS
  ▶ Practicing targets
    ✖ 01 (0.0/1.0)   ┌──
         Description │ Create user obiwan
@@ -27,13 +26,14 @@
         Expected    │ Greater than 0
         Result      │ 1
                     └──
- RESULTS
+
+ 🗹 RESULTS
 ┌──────────────┬───────────────────────────┐
 │ unique_fault │ 0                         │
 │ case_id      │ 01                        │
-│ start_time   │ 2026-10-22 08:18:10 +0100 │
-│ finish_time  │ 2026-10-22 08:18:10 +0100 │
-│ duration     │ 0.004569779               │
+│ start_time   │ 2026-11-02 10:09:28 +0000 │
+│ finish_time  │ 2026-11-02 10:09:28 +0000 │
+│ duration     │ 0.004474724               │
 │ max_weight   │ 3.0                       │
 │ good_weight  │ 2.0                       │
 │ fail_weight  │ 1.0                       │

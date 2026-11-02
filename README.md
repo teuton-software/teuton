@@ -26,7 +26,7 @@ gem install teuton
 **Create** your test file:
 
 ```ruby
-# File: examples/02-target/start.rb 
+# File: examples/102-target/start.rb 
 group "Practicing targets" do
   target "Create user obiwan"
   run "id obiwan"
@@ -46,27 +46,27 @@ end
 **Usage**: Run test with `teuton run TESTPATH`.
 
 ```console
-$ teutonx examples/02-target 
+$ teuton examples/102-target 
  
- CASE RESULTS
+ ☰ CASE RESULTS
 ┌──────┬───────────┬───────┬───────┐
 │ CASE │ MEMBERS   │ GRADE │ STATE │
-│ 01   │ anonymous │ 33.0  │ ?     │
+│ 01   │ anonymous │ 67.0  │       │
 └──────┴───────────┴───────┴───────┘
 ```
 
-**Output**: reports saved into `var/TESTNAME` folder.
+**Output**: reports saved into `var/102-target` folder.
 
 ```
 $ tree var 
 var
-└── 02-target
+└── 102-target
     ├── case-01.txt
     ├── moodle.csv
     └── resume.txt
 ```
 
-Consult the generated [output files](examples/02-target/output.d/)
+Consult the generated [output files](examples/102-target/output.d/)
 
 # Features
 
