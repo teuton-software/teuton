@@ -3,10 +3,11 @@
 ## [3.5.0] - 202611xx
 
 - [DOC] Refactor learn documentation and examples.
-- [FEAT] Events: new object "last_target".
+- [FEAT] Events: new object "every_target".
 
 ## [3.4.0] - 20261030
 
+- [FEAT] Events: on: all_targets, when: failed or passed.
 - [FEAT] Events: on: last_target, when: failed or passed.
 - [FEAT] Events: actions stop, scores_to_zero and log.
 - [CHORE] Rename `teuton readme` by `teuton doc`.
