@@ -17,10 +17,10 @@ Commands:
 ```
 
 Available command functions:
-1. [run](run.md)
-2. [check](check.md)
-3. [config](config.md)
-4. [doc](doc.md)
-5. [help](help.md)
-6. [new](new.md)
-7. **version**: _Show current version_. Usage: `teuton version`.
+1. [teuton run](run.md)
+2. [teuton check](check.md)
+3. [teuton config](config.md)
+4. [teuton doc](doc.md)
+5. [teuton help](help.md)
+6. [teuton new](new.md)
+7. **teuton version**: _Show current version_. Usage: `teuton version`.

@@ -112,7 +112,7 @@ Consult the generated [output files](examples/102-target/output.d/)
         * [PRESERVE old reports](docs/learn/304-preserve.md)
         * [Hide FEEDBACK from reports](docs/learn/305-feedback.md)
         * [MOODLE](docs/learn/306-moodle_id.md)
-    * Execution: Runs, expects, etc
+    * Execution: runs, expects, etc
         * [Checking exit codes](docs/learn/401-exit_codes.md)
         * [RESULT object](docs/learn/402-result.md)
         * [expect vs result](docs/learn/403-expect-result.md)
