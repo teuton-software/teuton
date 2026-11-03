@@ -1,6 +1,6 @@
-[<< back](../../README.md)
+[<< back](../../README.md) | [Commands](./README.md)
 
-# check
+# teuton check
 
 _Check test and config files from test folder._
 

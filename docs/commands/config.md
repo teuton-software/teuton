@@ -1,6 +1,6 @@
-[<< back](../../README.md)
+[<< back](../../README.md) | [Commands](./README.md)
 
-# config
+# teuton config
 
 _Help to create config file._
 

@@ -1,6 +1,6 @@
-[<< back](../../README.md)
+[<< back](../../README.md) | [Commands](./README.md)
 
-# new
+# teuton new
 
 _Create the skeleton of a new project._
 

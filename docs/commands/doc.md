@@ -1,6 +1,6 @@
-[<< back](../../README.md)
+[<< back](../../README.md) | [Commands](./README.md)
 
-# readme
+# teuton doc
 
 _Show test info as README file. Useful for create a readme file for the exercise._
 

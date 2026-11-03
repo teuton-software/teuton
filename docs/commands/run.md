@@ -1,7 +1,7 @@
 
-[<< back](../../README.md)
+[<< back](../../README.md) | [Commands](./README.md)
 
-# Run test
+# teuton run
 
 Run test located into DIRPATH folder.
 

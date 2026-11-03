@@ -1,6 +1,6 @@
-[<< back](../../README.md)
+[<< back](../../README.md) | [Commands](./README.md)
 
-# help
+# teuton help
 
 _Show help about command functions._
 
