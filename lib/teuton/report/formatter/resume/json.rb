@@ -1,8 +1,8 @@
 # require "json/pure"
 require "json"
-require_relative "array"
+require_relative "hash"
 
-class ResumeJSONFormatter < ResumeArrayFormatter
+class ResumeJSONFormatter < ResumeHashFormatter
   def initialize(report)
     super
     @ext = "json"

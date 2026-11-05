@@ -1,6 +1,6 @@
-require_relative "array"
+require_relative "hash"
 
-class XMLFormatter < ArrayFormatter
+class XMLFormatter < HashFormatter
   def initialize(report)
     super
     @ext = "xml"

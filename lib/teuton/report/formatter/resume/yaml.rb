@@ -1,6 +1,6 @@
-require_relative "array"
+require_relative "hash"
 
-class ResumeYAMLFormatter < ResumeArrayFormatter
+class ResumeYAMLFormatter < ResumeHashFormatter
   def initialize(report)
     super
     @ext = "yaml"

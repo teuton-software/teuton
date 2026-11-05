@@ -1,6 +1,6 @@
-require_relative "resume/array"
+require_relative "resume/hash"
 
-class MoodleCSVFormatter < ResumeArrayFormatter
+class MoodleCSVFormatter < ResumeHashFormatter
   def initialize(report)
     super
     @ext = "csv"

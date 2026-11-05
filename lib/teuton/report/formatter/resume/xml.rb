@@ -1,6 +1,6 @@
-require_relative "array"
+require_relative "hash"
 
-class ResumeXMLFormatter < ResumeArrayFormatter
+class ResumeXMLFormatter < ResumeHashFormatter
   MIN_HALL_OF_FAME = 3
 
   def initialize(report)

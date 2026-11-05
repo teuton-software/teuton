@@ -1,7 +1,7 @@
 require_relative "../base_formatter"
 require_relative "../../../utils/project"
 
-class ResumeArrayFormatter < BaseFormatter
+class ResumeHashFormatter < BaseFormatter
   def initialize(report)
     super
     @data = {}

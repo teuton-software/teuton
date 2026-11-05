@@ -1,8 +1,8 @@
 require "terminal-table"
 require "rainbow"
-require_relative "array"
+require_relative "hash"
 
-class TXTFormatter < ArrayFormatter
+class TXTFormatter < HashFormatter
   def initialize(report, colorize = false)
     @colorize = colorize
     super(report)

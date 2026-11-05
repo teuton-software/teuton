@@ -1,7 +1,7 @@
 require_relative "../base_formatter"
 require_relative "../../../utils/project"
 
-class ArrayFormatter < BaseFormatter
+class HashFormatter < BaseFormatter
   def initialize(report)
     super
     @data = {}
@@ -39,12 +39,9 @@ class ArrayFormatter < BaseFormatter
         next
       end
 
-      # value = 0.0
-      # value = line[:weight] if line[:check]
       if line[:groupname] != title
-        # Add currentgroup
-        groups << {title: title, targets: targets} unless title.nil?
         # Create new group
+        groups << {title: title, targets: targets} unless title.nil?
         title = line[:groupname]
         targets = []
       end

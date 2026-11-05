@@ -1,6 +1,6 @@
-require_relative "array"
+require_relative "hash"
 
-class MarkdownFormatter < ArrayFormatter
+class MarkdownFormatter < HashFormatter
   def initialize(report)
     super
     @ext = "md"

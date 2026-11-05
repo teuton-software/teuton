@@ -1,8 +1,8 @@
 require "terminal-table"
 require "rainbow"
-require_relative "array"
+require_relative "hash"
 
-class ResumeTXTFormatter < ResumeArrayFormatter
+class ResumeTXTFormatter < ResumeHashFormatter
   MIN_HALL_OF_FAME = 3
 
   def initialize(report, colorize = false)

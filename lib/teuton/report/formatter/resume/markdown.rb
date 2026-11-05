@@ -1,6 +1,6 @@
-require_relative "array"
+require_relative "hash"
 
-class ResumeMarkdownFormatter < ResumeArrayFormatter
+class ResumeMarkdownFormatter < ResumeHashFormatter
   MIN_HALL_OF_FAME = 3
 
   def initialize(report)
@@ -52,10 +52,10 @@ class ResumeMarkdownFormatter < ResumeArrayFormatter
       end
     end
 
-    if lines.size > 4
-      w lines.join("\n")
-      w "\n\n"
-    end
+    return unless lines.size > 4
+
+    w lines.join("\n")
+    w "\n\n"
   end
 
   def process_results

@@ -1,7 +1,7 @@
 require "yaml"
-require_relative "array"
+require_relative "hash"
 
-class YAMLFormatter < ArrayFormatter
+class YAMLFormatter < HashFormatter
   def initialize(report)
     super
     @ext = "yaml"
