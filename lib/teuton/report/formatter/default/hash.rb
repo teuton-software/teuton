@@ -33,6 +33,8 @@ class HashFormatter < BaseFormatter
     groups = []
     title = nil
     targets = []
+    summary = []
+
     @lines.each do |line|
       unless line.instance_of? Hash
         @data[:logs] << line.to_s # Add log line
@@ -62,6 +64,7 @@ class HashFormatter < BaseFormatter
 
     groups << {title: title, targets: targets} unless title.nil?
     @data[:groups] = groups
+    @data[:summary] = summary
   end
 
   def build_final_data
