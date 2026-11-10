@@ -58,13 +58,19 @@ class HashFormatter < BaseFormatter
         target[:expected] = "*" * line[:expected].size
         target[:result] = "*" * line[:result].size
       end
-
       targets << target
+
+      summary << {
+        id: line[:id],
+        description: line[:description],
+        score: line[:score],
+        weight: line[:weight]
+      }
     end
 
     groups << {title: title, targets: targets} unless title.nil?
-    @data[:groups] = groups
     @data[:summary] = summary
+    @data[:groups] = groups
   end
 
   def build_final_data
